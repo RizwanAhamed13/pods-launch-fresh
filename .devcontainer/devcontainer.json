@@ -1,0 +1,7 @@
+{
+  "name": "PODS user compute",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "forwardPorts": [8080],
+  "portsAttributes": {"8080": {"label": "PODS app", "onAutoForward": "silent"}},
+  "remoteUser": "codespace"
+}

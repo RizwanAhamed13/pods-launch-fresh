@@ -1,0 +1,70 @@
+import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { join } from 'node:path';
+import { tmpdir } from 'node:os';
+import { command, request, shell, sleep } from './util.mjs';
+const github = (path, token, options) => request(`https://api.github.com${path}`, token, {...options,headers:{'X-GitHub-Api-Version':'2026-03-10'}});
+export function bootstrap(config, origin, runnerSha) {
+  // Token goes through encrypted SSH stdin, never command-line arguments.
+  return `set -eu\numask 077\nTASK_DIR=$(mktemp -d /tmp/pods-launch.XXXXXX)\ncd "$TASK_DIR"\ncurl --fail --silent --show-error --max-time 30 ${shell(origin + '/runner.mjs')} -o runner.mjs\nprintf '%s  runner.mjs\\n' ${shell(runnerSha)} | sha256sum -c - >/dev/null\ncat > launch.json <<'PODS_CONFIG'\n${JSON.stringify(config)}\nPODS_CONFIG\ncommand -v node >/dev/null || { echo 'Node.js 22 or newer is required'; exit 1; }\nnode -e 'if(Number(process.versions.node.split(".")[0])<22)process.exit(1)'\nnohup node runner.mjs launch.json > runner.log 2>&1 < /dev/null &\necho PODS_DELIVERED\n`;
+}
+export function providers({ repo, origin, runnerSha, api = github, exec = command, pollMs = 2000 }) {
+  return {
+    github: {
+      async validate(token) { const u = await api('/user', token); return {name:u.login}; },
+      async launch(token, config, update) {
+        const found = await api(`/repos/${repo}/codespaces?per_page=100`, token);
+        let env = found.codespaces.find(c => c.display_name === 'PODS launch' && ['Available','Shutdown'].includes(c.state));
+        if (!env) { await update({status:'provisioning'}); env = await api(`/repos/${repo}/codespaces`, token, {method:'POST',body:{ref:'main',display_name:'PODS launch',idle_timeout_minutes:15,retention_period_minutes:1440}}); }
+        else if (env.state === 'Shutdown') { await update({status:'provisioning'}); env = await api(`/user/codespaces/${env.name}/start`, token, {method:'POST'}); }
+        await update({environment:env.name});
+        const deadline = Date.now() + 240000;
+        while (env.state !== 'Available') {
+          if (Date.now() > deadline) throw new Error('Codespace provisioning exceeded four minutes. Retry from GitHub Codespaces.');
+          if (['Failed','Deleted','Unavailable'].includes(env.state)) throw new Error(`Codespace is ${env.state}`);
+          await sleep(pollMs); env = await api(`/user/codespaces/${env.name}`, token);
+        }
+        const previewUrl = `https://${env.name}-8080.${env.runtime_constraints?.forwarded_ports_domain || 'app.github.dev'}`;
+        await update({status:'delivering',providerReadyAt:Date.now(),previewUrl});
+        // gh establishes authenticated SSH over GitHub's tunnel; no public inbound SSH needed.
+        const envVars = { ...process.env, GH_TOKEN: token, GH_PROMPT_DISABLED: '1' };
+        let last;
+        for (let n=0;n<3;n++) {
+          try { await exec('gh', ['codespace','ssh','-c',env.name,'--','-T','bash -s'], {env:envVars,input:bootstrap({...config,previewUrl},origin,runnerSha),timeout:60000}); last=null; break; }
+          catch(e) { last=e; await sleep(pollMs); }
+        }
+        if (last) throw new Error('Could not reach the Codespace over SSH. Check that its image includes an SSH server and retry.');
+        return {environment:env.name,previewUrl};
+      },
+      async stop(token, name) { if (name) await api(`/user/codespaces/${encodeURIComponent(name)}/stop`, token, {method:'POST'}); }
+    },
+    google: {
+      async validate(token) { await request('https://cloudshell.googleapis.com/v1/users/me/environments/default', token); return {name:'Google Cloud Shell'}; },
+      async launch(token, config, update) {
+        const directory = await mkdtemp(join(tmpdir(), 'pods-key-'));
+        const base = 'https://cloudshell.googleapis.com/v1/users/me/environments/default';
+        let publicKey;
+        try {
+          await exec('ssh-keygen', ['-q','-t','rsa','-b','3072','-N','','-f',join(directory,'key')]);
+          publicKey = (await readFile(join(directory,'key.pub'),'utf8')).trim().split(' ').slice(0,2).join(' ');
+          await update({status:'provisioning'});
+          const op = await request(base+':start', token, {method:'POST',body:{publicKeys:[publicKey]}});
+          const deadline = Date.now()+240000;
+          let result=op;
+          while (!result.done) { if(Date.now()>deadline) throw new Error('Cloud Shell provisioning exceeded four minutes'); await sleep(pollMs); result = await request(`https://cloudshell.googleapis.com/v1/${op.name}`,token); }
+          if(result.error) throw new Error(result.error.message);
+          const env = await request(base,token);
+          if (!env.sshHost || !env.sshUsername || !Number.isInteger(env.sshPort) || !env.webHost) throw new Error('Cloud Shell did not return connection details');
+          if (!/^[a-zA-Z0-9.:-]+$/.test(env.sshHost) || !/^[a-zA-Z0-9_-]+$/.test(env.sshUsername) || !/^[a-zA-Z0-9.-]+$/.test(env.webHost)) throw new Error('Invalid Cloud Shell connection details');
+          const previewUrl=`https://8080-${env.webHost}`;
+          await update({status:'delivering',providerReadyAt:Date.now(),environment:'default',previewUrl});
+          await exec('ssh',['-i',join(directory,'key'),'-p',String(env.sshPort),'-o','BatchMode=yes','-o','ConnectTimeout=20','-o','StrictHostKeyChecking=accept-new','-o',`UserKnownHostsFile=${join(directory,'known_hosts')}`,`${env.sshUsername}@${env.sshHost}`,'bash -s'],{input:bootstrap({...config,previewUrl},origin,runnerSha),timeout:60000});
+          return {environment:'default',previewUrl};
+        } finally {
+          if(publicKey) await request(base+':removePublicKey',token,{method:'POST',body:{key:publicKey}}).catch(()=>{});
+          await rm(directory,{recursive:true,force:true});
+        }
+      },
+      async stop() { /* Cloud Shell API has no stop operation. Runner stops its app. */ }
+    }
+  };
+}
