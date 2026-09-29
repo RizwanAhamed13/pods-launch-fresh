@@ -1,0 +1,61 @@
+{
+  "scope": "Local runner only: no provider, no SSH, loopback artifact delivery",
+  "testedAt": "2026-09-29T21:06:01.355Z",
+  "node": "v24.21.0",
+  "artifactBytes": 3854,
+  "sha256": "a052c22d49ebd70b9838c4a4022696aecbbacea84287d6be2334766cd84204a1",
+  "samples": [
+    {
+      "cacheHit": false,
+      "downloadMs": 33,
+      "runtimeReadyMs": 152
+    },
+    {
+      "cacheHit": true,
+      "downloadMs": 7,
+      "runtimeReadyMs": 127
+    },
+    {
+      "cacheHit": true,
+      "downloadMs": 7,
+      "runtimeReadyMs": 124
+    },
+    {
+      "cacheHit": true,
+      "downloadMs": 5,
+      "runtimeReadyMs": 125
+    },
+    {
+      "cacheHit": true,
+      "downloadMs": 5,
+      "runtimeReadyMs": 124
+    },
+    {
+      "cacheHit": true,
+      "downloadMs": 6,
+      "runtimeReadyMs": 122
+    },
+    {
+      "cacheHit": true,
+      "downloadMs": 5,
+      "runtimeReadyMs": 122
+    },
+    {
+      "cacheHit": true,
+      "downloadMs": 5,
+      "runtimeReadyMs": 120
+    },
+    {
+      "cacheHit": true,
+      "downloadMs": 5,
+      "runtimeReadyMs": 121
+    },
+    {
+      "cacheHit": true,
+      "downloadMs": 5,
+      "runtimeReadyMs": 120
+    }
+  ],
+  "p50Ms": 122,
+  "p95Ms": 152
+}

@@ -16,7 +16,7 @@ export function command(file, args, { input, env, timeout = 90000, cwd } = {}) {
     p.on('error', finish);
     p.stdout.on('data', b => { out = (out + b).slice(-65536); });
     p.stderr.on('data', b => { err = (err + b).slice(-8192); });
-    p.on('close', code => finish(code === 0 ? null : new Error(`${file} exited ${code}: ${err.slice(-1500)}`)));
+    p.on('close', code => finish(code === 0 ? null : new Error(`${file} exited ${code}: ${(err + out).slice(-1500)}`)));
     p.stdin.on('error', () => {});
     p.stdin.end(input);
   });

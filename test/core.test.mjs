@@ -65,3 +65,12 @@ test('API enforces browser ownership, CSRF, capability auth and idempotent launc
  const persisted=await readFile(join(root,'pods.sqlite'));assert.ok(!persisted.includes(Buffer.from('a'.repeat(30))));
  }finally{release();await pending;await sleep(10);await close(server);await rm(root,{recursive:true,force:true});}
 });
+test('unwritable home falls back to session storage and reports its durability',async()=>{
+ const root=await temp(),manifest=await prepare('examples/notes',root),bytes=await readFile(join(root,'artifacts',manifest.sha256+'.gz'));const {chmod}=await import('node:fs/promises');
+ const locked=join(root,'locked');await mkdir(locked);await chmod(locked,0o500);let running;const events=[];
+ const s=createServer(async(req,res)=>{if(req.url==='/a')return res.end(bytes);let b='';for await(const p of req)b+=p;events.push(JSON.parse(b));res.end('{}');});const origin=await listen(s);
+ try{
+ running=await run({id:randomBytes(24).toString('base64url'),appId:manifest.id,sha256:manifest.sha256,artifactUrl:origin+'/a',callbackUrl:origin+'/c',token:'secret',port:18084,expiresAt:Date.now()+60000},{root:join(locked,'runtime'),fallbackRoot:join(root,'temporary')});
+ assert.equal(running.storageMode,'ephemeral');assert.ok(running.dataDir.startsWith(join(root,'temporary')));assert.equal(events.at(-1).storageMode,'ephemeral');const reply=await(await fetch('http://127.0.0.1:18084/api/notes')).json();assert.equal(reply.storageMode,'ephemeral');
+ }finally{await running?.stop();await close(s);await chmod(locked,0o700);await sleep(100);await rm(root,{recursive:true,force:true});}
+});

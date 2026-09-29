@@ -6,7 +6,7 @@ The reference application is Field Notes: a real HTTP app whose notes are saved 
 
 ## Run the control plane
 
-Requires Node.js 24, GitHub CLI (`gh`), OpenSSH client, and `curl` on the server. User environments need Node.js 22+, `curl`, `sha256sum` and SSH support. The included Codespaces definition uses the standard GitHub development image.
+Requires Node.js 24, GitHub CLI (`gh`), OpenSSH client, and `curl` on the server. User environments need Node.js 22+ (PATH or standard NVM installation), `curl`, `sha256sum` and SSH support. The included Codespaces definition uses the standard GitHub development image.
 
 ```sh
 npm ci --ignore-scripts
@@ -63,7 +63,9 @@ The 20-second target is measured, not promised. The UI separates:
 
 Cold VM provisioning, provider consent, image pulls, network throughput and authentication on the forwarded app URL can exceed 20 seconds. Reuse an already running environment for the fast path. GitHub's forwarded URL remains private. PODS links to the provider's authenticated preview; it does not expose a public app proxy.
 
-Stop application sends a stop request to the runner. It stops the app process group within a few seconds, preserving note data and the cached artifact. Preview processes also stop after 30 minutes even if the control plane disappears. The Codespace itself remains running until its provider idle timeout (15 minutes requested by PODS), or until the user stops it in GitHub. Cloud Shell has no API stop operation. Billing and quota remain the user's responsibility.
+Stop application sends a stop request to the runner. It stops the app process group within a few seconds, preserving note data and the cached artifact. When the home volume is full, read-only or inaccessible, the runner uses a private directory under `/tmp` and explicitly reports temporary storage in both the launch UI and Field Notes. Such data does not survive an environment reset. No existing user files are deleted.
+
+Preview processes also stop after 30 minutes even if the control plane disappears. The Codespace itself remains running until its provider idle timeout (15 minutes requested by PODS), or until the user stops it in GitHub. Cloud Shell has no API stop operation. Billing and quota remain the user's responsibility.
 
 ## Verification
 
@@ -72,6 +74,8 @@ npm test
 npm run prepare:demo
 # Explicitly consumes your Codespaces quota:
 gh auth token | node scripts/live-codespaces.mjs https://your-pods-host
+# Cloud Shell, using an already authorized Google CLI account:
+gcloud auth print-access-token | node scripts/live-codespaces.mjs https://your-pods-host google
 ```
 
 Tests exercise the real builder and application runner, cache reuse, persistence, failed health checks, artifact tampering and path rejection, removal of inherited credentials, encrypted token storage, browser ownership, CSRF, artifact capability authorization and duplicate launch prevention. Live provider results are stored separately under `evidence/` and must not be inferred from mocked tests.

@@ -20,7 +20,7 @@ export async function createApp(options={}) {
   const jobs = new Map();
   // A restart cannot safely resume SSH dispatch; ready agents reconnect through heartbeat.
   for (const s of store.list('launch')) if (!['ready','failed','stopped'].includes(s.status)) store.put('launch',s.id,{...s,status:'failed',error:'Server restarted during launch. Please retry.'});
-  const oauth = {
+  const oauth = options.oauth || {
     github:{id:process.env.GITHUB_CLIENT_ID,secret:process.env.GITHUB_CLIENT_SECRET,authorize:'https://github.com/login/oauth/authorize',exchange:'https://github.com/login/oauth/access_token',scope:'codespace read:user'},
     google:{id:process.env.GOOGLE_CLIENT_ID,secret:process.env.GOOGLE_CLIENT_SECRET,authorize:'https://accounts.google.com/o/oauth2/v2/auth',exchange:'https://oauth2.googleapis.com/token',scope:'openid email https://www.googleapis.com/auth/cloud-platform'}
   };
@@ -41,7 +41,7 @@ export async function createApp(options={}) {
     return safe;
   }
   function connect(user,provider,token,identity,expiresIn=3600) {
-    store.put('connection',`${user.id}:${provider}`,{provider,name:identity.name,token:store.seal(token),expiresAt:Date.now()+Math.min(Number(expiresIn)||3600,86400)*1000});
+    store.put('connection',`${user.id}:${provider}`,{id:`${user.id}:${provider}`,provider,name:identity.name,token:store.seal(token),expiresAt:Date.now()+Math.min(Number(expiresIn)||3600,3600)*1000});
   }
   function connection(user,provider) {
     const c=store.get('connection',`${user.id}:${provider}`);if(!c||c.expiresAt<Date.now())throw fail(401,'Connect your compute account to continue.');return c;
@@ -70,6 +70,7 @@ export async function createApp(options={}) {
           const event=await body(req);if(!statuses.has(event.status))throw fail(400,'Unknown agent state');
           if(['stopped','failed'].includes(s.status))return json(200,{action:'stop'});
           const patch={lastSeenAt:Date.now()};
+          if(['persistent','ephemeral'].includes(event.storageMode))patch.storageMode=event.storageMode;
           if(event.status!=='heartbeat')patch.status=event.status;
           if(event.status==='ready') { if(!s.providerReadyAt)throw fail(409,'Provider is not ready');patch.readyAt=s.readyAt||Date.now(); }
           if(event.status==='failed')patch.error=String(event.error||'Application failed').slice(0,250);
@@ -89,14 +90,14 @@ export async function createApp(options={}) {
       if(auth&&req.method==='GET') {
         const p=auth[1],o=oauth[p];if(!o.id||!o.secret)throw fail(503,`${p} OAuth is not configured. Use the access-token connection in this preview or configure the OAuth app.`);
         if(!auth[2]) {
-          const state=uid(), verifier=uid()+uid();store.put('oauth',state,{owner:user.id,provider:p,verifier,expiresAt:Date.now()+600000});
+          const state=uid(), verifier=uid()+uid();store.put('oauth',state,{id:state,owner:user.id,provider:p,verifier,expiresAt:Date.now()+600000});
           const target=new URL(o.authorize);target.search=new URLSearchParams({client_id:o.id,redirect_uri:`${origin}/auth/${p}/callback`,scope:o.scope,state,response_type:'code',code_challenge:Buffer.from(digest(verifier),'hex').toString('base64url'),code_challenge_method:'S256'}).toString();return redirect(target.href);
         }
         const state=store.get('oauth',url.searchParams.get('state')||'');
         if(!state||state.owner!==user.id||state.provider!==p||state.expiresAt<Date.now())throw fail(400,'Authorization expired. Connect again.');
         store.delete('oauth',url.searchParams.get('state'));
         if(url.searchParams.has('error'))return redirect('/?error=Authorization%20was%20not%20completed.');
-        const response=await fetch(o.exchange,{method:'POST',headers:{Accept:'application/json','Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({client_id:o.id,client_secret:o.secret,code:url.searchParams.get('code')||'',redirect_uri:`${origin}/auth/${p}/callback`,grant_type:'authorization_code',code_verifier:state.verifier}),signal:AbortSignal.timeout(20000)});
+        const response=await (options.oauthFetch || fetch)(o.exchange,{method:'POST',headers:{Accept:'application/json','Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({client_id:o.id,client_secret:o.secret,code:url.searchParams.get('code')||'',redirect_uri:`${origin}/auth/${p}/callback`,grant_type:'authorization_code',code_verifier:state.verifier}),signal:AbortSignal.timeout(20000)});
         const tokens=await response.json();if(!response.ok||!tokens.access_token)throw fail(401,'Authorization failed. Please reconnect.');
         const identity=await providers[p].validate(tokens.access_token);connect(user,p,tokens.access_token,identity,tokens.expires_in);return redirect('/?connected='+p);
       }
@@ -133,6 +134,7 @@ export async function createApp(options={}) {
       else if(s.status!=='ready'&&s.createdAt<Date.now()-360000)update(s.id,{status:'failed',error:'Startup timed out. Retry the launch.'});
     }
     for(const c of store.list('user'))if(c.expiresAt<Date.now())store.delete('user',c.id);
+    for(const c of store.list('connection'))if(c.expiresAt<Date.now())store.delete('connection',c.id);
     for(const c of store.list('oauth'))if(c.expiresAt<Date.now())store.delete('oauth',c.id);
   },5000);sweep.unref();
   server.on('close',()=>{clearInterval(sweep);store.close();});

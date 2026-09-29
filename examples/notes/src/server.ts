@@ -13,7 +13,7 @@ createServer(async (req, res) => {
   try {
     const path = new URL(req.url!, 'http://localhost').pathname;
     if (path === '/health') return res.end(JSON.stringify({ok:true,host:hostname(),pid:process.pid}));
-    if (path === '/api/notes' && req.method === 'GET') return res.end(JSON.stringify({notes,host:hostname()}));
+    if (path === '/api/notes' && req.method === 'GET') return res.end(JSON.stringify({notes,host:hostname(),storageMode:process.env.PODS_STORAGE_MODE}));
     if (path === '/api/notes' && req.method === 'POST') {
       let body = ''; for await (const chunk of req) { body += chunk; if (body.length > 100000) { res.statusCode=413; return res.end('{}'); } }
       const n = JSON.parse(body); if (typeof n.title !== 'string' || typeof n.body !== 'string') throw new Error('Write a title and note');

@@ -1,0 +1,56 @@
+{
+  "testedAt": "2026-09-29T21:06:22.547Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "2LDGBk4db5k7uMySanL6pStRHH1iGeRB",
+      "appId": "field-notes",
+      "appName": "Field Notes",
+      "provider": "google",
+      "sha256": "a052c22d49ebd70b9838c4a4022696aecbbacea84287d6be2334766cd84204a1",
+      "status": "ready",
+      "createdAt": 1790715967751,
+      "updatedAt": 1790715972892,
+      "expiresAt": 1790717767751,
+      "providerReadyAt": 1790715970367,
+      "environment": "default",
+      "previewUrl": "https://8080-cs-727894643231-default.cs-asia-southeast1-kelp.cloudshell.dev",
+      "lastSeenAt": 1790715972476,
+      "storageMode": "ephemeral",
+      "timings": {
+        "downloadMs": 462,
+        "runtimeReadyMs": 660,
+        "cacheHit": false
+      },
+      "readyAt": 1790715972476,
+      "deliveryMs": 2109,
+      "totalMs": 4725
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "V4T_6xykQy-1ZFc4jEtxUcF9QEYqa0HD",
+      "appId": "field-notes",
+      "appName": "Field Notes",
+      "provider": "google",
+      "sha256": "a052c22d49ebd70b9838c4a4022696aecbbacea84287d6be2334766cd84204a1",
+      "status": "ready",
+      "createdAt": 1790715976249,
+      "updatedAt": 1790715981051,
+      "expiresAt": 1790717776249,
+      "providerReadyAt": 1790715979046,
+      "environment": "default",
+      "previewUrl": "https://8080-cs-727894643231-default.cs-asia-southeast1-kelp.cloudshell.dev",
+      "lastSeenAt": 1790715980467,
+      "storageMode": "ephemeral",
+      "timings": {
+        "downloadMs": 270,
+        "runtimeReadyMs": 483,
+        "cacheHit": true
+      },
+      "readyAt": 1790715980467,
+      "deliveryMs": 1421,
+      "totalMs": 4218
+    }
+  ]
+}
