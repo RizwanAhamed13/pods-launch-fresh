@@ -20,7 +20,11 @@ Use a stable HTTPS URL for provider callbacks. `.env` and `.data` are deliberate
 
 ## Prepare an application
 
-Create `pods.json` beside the app's source:
+PODS can detect a conventional Node/TypeScript server, a Vite/React frontend, or a static HTML site without a PODS configuration file. It reads an existing `package.json` start script or conventional server entrypoint, and collects conventional asset directories. Vite and React builds must produce their usual `dist` or `build` output. Unsupported or ambiguous projects fail with a specific explanation.
+
+For the trusted operator CLI, install/build the app's dependencies and run `node scripts/prepare.mjs /path/to/app`. This now detects supported apps automatically. The isolated URL build worker described below handles dependency installation and build scripts itself; the browser submission UI is still being implemented.
+
+An optional `pods.json` beside the app's source can override automatic detection:
 
 ```json
 {
@@ -39,7 +43,15 @@ Install the app's build dependencies on the trusted build server, then:
 node scripts/prepare.mjs /path/to/app
 ```
 
-The builder uses esbuild to compile and bundle JavaScript/TypeScript into a production CommonJS entrypoint. It packages assets, compresses the payload, computes SHA-256, and publishes a manifest atomically in `.data/artifacts`. The UI discovers prepared manifests automatically. An existing launch retains its original artifact digest after a developer publishes a new version.
+The builder uses esbuild to compile and bundle JavaScript/TypeScript into a production CommonJS entrypoint. Static sites receive a dependency-free web server with correct asset content types and client-side route fallback. The builder packages assets, compresses the payload, computes SHA-256, and publishes a manifest atomically in `.data/artifacts`. Hidden configuration files are excluded. The UI discovers prepared manifests automatically. An existing launch retains its original artifact digest after a developer publishes a new version.
+
+### Isolated repository preparation (implementation in progress)
+
+`scripts/setup-builder.sh` prepares a fresh unprivileged LXD base container on aswin. It installs the pinned Node distribution and this repository's builder tools. Build containers have no control-plane filesystem mounts or provider credentials; the template limits memory to 2 GiB, CPU to two cores, processes to 256 and the root filesystem to 4 GiB in a dedicated 12 GiB Btrfs pool. Its network permits public HTTP/HTTPS while rejecting private, link-local and Tailscale destinations. LXD's baseline DNS/DHCP services remain available. Only one job should run at a time on this bridge until per-job network isolation is added; bridge ACLs do not isolate peers on the same bridge. [LXD ACL behavior](https://canonical.com/lxd/docs/latest/howto/network_acls/).
+
+`scripts/build-worker.mjs` accepts a public HTTPS GitHub repository URL and optional application folder. Inside a disposable clone of the base container, it fetches the source, records the commit, installs npm dependencies, runs the existing build script, packages the result and starts the artifact. Verification requires an actual HTML document at `/`; a healthy terminal program or JSON-only endpoint is rejected. It produces `artifact.gz` and `result.json` for the control plane to validate and publish. This stage does not yet expose repository submission publicly, and it is not proof of the complete provider browser journey.
+
+Private repository authorization, other package managers and additional language/framework adapters remain pending. The full combined acceptance criteria are in `PRODUCT.md`.
 
 Apps must listen on `PORT` (8080), bind `0.0.0.0`, return HTTP 2xx from the health path, and write persistent files to `PODS_APP_DATA`. Runtime dependencies must bundle; native modules, dynamic external imports, top-level await, external databases and arbitrary language runtimes are not supported in this first version. Working directory assets keep their relative paths. Artifacts are limited to 20 MiB compressed and 50 MiB unpacked.
 

@@ -1,0 +1,19 @@
+{
+  "id": "vite-product",
+  "name": "Prepared counter",
+  "description": "",
+  "sha256": "f65760164635d7005f4fe14ca6f491dd5106c281292be7115675b7afb159a4e7",
+  "bytes": 2606,
+  "unpackedBytes": 4650,
+  "runtime": "node22+",
+  "applicationType": "static",
+  "detected": true,
+  "builtAt": "2026-10-02T18:30:06.784Z",
+  "verification": {
+    "documentPath": "/",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "title": "Prepared counter",
+    "checkedAt": "2026-10-02T18:30:06.966Z"
+  }
+}

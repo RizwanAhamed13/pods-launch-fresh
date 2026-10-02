@@ -1,5 +1,15 @@
 # Aswin deployment and remaining gates
 
+## Active combined goal
+
+Developer submits a repository URL → PODS builds and verifies a reusable artifact on aswin → a separate user authorizes their own provider → PODS launches the artifact and opens the actual working product page. `PRODUCT.md` contains the acceptance criteria. The new Codex goal was created with this full objective and remains unfinished.
+
+The preparation layer now detects conventional Node/TypeScript, Vite/React and static applications without `pods.json`. An isolated LXD worker accepts public GitHub repository URLs, installs/builds npm projects, packages assets, and requires a served HTML product document before producing its result. The browser submission API/UI is not connected to it yet. Current preparation tests are in `evidence/preparation-tests.txt`; initial DNS startup failure and the repaired live repository build are retained separately.
+
+Next implementation gate: add a bounded, single-job build manager that clones `pods-fresh-builder-base`, executes the worker as UID/GID 1000, stops the container before importing its bounded output, independently validates the artifact, publishes it atomically, and always removes the disposable container. Connect that manager to session-owned build API/UI, give developers versioned launch links, preserve the selected app through OAuth, and navigate users automatically to the provider's real product preview when ready. Do not expose arbitrary repository builds before the manager enforces ownership, concurrency, deadlines, output validation and cleanup.
+
+Build infrastructure is entirely new: `pods-fresh-builder-base`, bridge `podsbuildfresh`, ACL `pods-fresh-build-egress`, and Btrfs pool `pods-fresh-build-quota`. Use `/snap/lxd/current/bin/lxc` directly because the snap launcher failed to create its transient systemd scope over SSH. `scripts/setup-builder.sh` reproduces this builder. The base stays stopped between updates. Serialize build jobs: LXD bridge ACLs filter host/network traffic but do not isolate peers sharing the bridge. No prior PODS source was inspected or reused.
+
 Fresh source: `/home/aswin/pods-launch-fresh` on host `aswin`.
 
 Repository: https://github.com/RizwanAhamed13/pods-launch-fresh (private).

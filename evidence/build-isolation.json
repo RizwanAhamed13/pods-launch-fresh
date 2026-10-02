@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-02T18:31:05.177Z",
+  "unprivileged": true,
+  "isolatedUserMapping": true,
+  "memory": "2GiB",
+  "cpu": 2,
+  "processes": 256,
+  "rootDisk": "4GiB",
+  "storagePool": "pods-fresh-build-quota",
+  "controlPlaneSecretsAbsent": true,
+  "dockerSocketAbsent": true,
+  "hostFilesystemMounts": false,
+  "listeningPrivateHostServiceBlocked": true,
+  "limits": "Configuration plus one live network probe; not a full hostile-container escape or resource-exhaustion audit. Builds must remain serialized because bridge ACLs do not isolate peers."
+}

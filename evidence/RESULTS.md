@@ -1,5 +1,9 @@
 # Fresh PODS validation
 
+The automatic preparation stage has newer, separate evidence: [preparation results](PREPARATION.md). It passes 21 automated tests and adds isolated repository preparation. The original provider measurements below remain historical evidence; the new complete browser journey is still unverified.
+
+## Original prototype measurements
+
 Final sample artifact: `a052c22d49ebd70b9838c4a4022696aecbbacea84287d6be2334766cd84204a1`, 3,854 compressed bytes. Prepared on aswin. No previous PODS source was read or reused.
 
 | Gate | Result |

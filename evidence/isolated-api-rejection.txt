@@ -1,0 +1,4 @@
+{"status":"detecting"}
+{"status":"packaging"}
+{"status":"verifying"}
+PASS: a healthy JSON endpoint cannot be published as a product page.

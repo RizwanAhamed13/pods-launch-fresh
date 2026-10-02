@@ -1,0 +1,5 @@
+{"status":"detecting"}
+{"status":"installing"}
+{"status":"compiling"}
+{"status":"packaging"}
+{"status":"verifying"}

@@ -1,0 +1,33 @@
+
+> pods-launch-fresh@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ server build is reusable, deterministic and bundles TypeScript (45.868661ms)
+✔ artifact corruption, path escapes, collisions and wrong formats fail closed (3.852237ms)
+✔ stored provider credentials are authenticated ciphertext (6.023901ms)
+✔ real prepared app starts, saves data on compute, stops, and reuses artifact cache (623.132437ms)
+✔ unhealthy app never reports ready; inherited provider tokens do not reach app (124.983233ms)
+✔ API enforces browser ownership, CSRF, capability auth and idempotent launches (57.286495ms)
+✔ unwritable home falls back to session storage and reports its durability (239.477722ms)
+✔ detects and bundles a TypeScript server and its assets without pods.json (69.792719ms)
+✔ detects a generated Node entrypoint before build, but packaging requires its output (13.124131ms)
+✔ detects Vite frontend output and rejects missing build output (16.63738ms)
+✔ plain static artifact serves its actual page, assets and client routes on compute (213.969516ms)
+✔ detection reports ambiguity and never executes a shell start command (5.592393ms)
+✔ entrypoints and asset directories cannot escape through paths or symlinks (9.070685ms)
+✔ Codespaces reuses only the configured PODS runtime and delivers over SSH stdin (2.33393ms)
+✔ Codespaces provisioning failure propagates without trying to execute a runner (0.889192ms)
+✔ bootstrap quotes shell values and pins the runner before execution (0.263043ms)
+✔ OAuth uses PKCE and session-bound single-use state; callback never exposes token (92.860494ms)
+✔ repository identity is stable and accepts an optional application folder (2.357073ms)
+✔ repository input rejects local addresses, credentials, URL tricks and escaping folders (1.030663ms)
+✔ repository build worker refuses execution outside its isolated environment (0.673124ms)
+✔ fresh containers wait for DNS and report a bounded failure if networking never starts (0.869505ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1244.971129

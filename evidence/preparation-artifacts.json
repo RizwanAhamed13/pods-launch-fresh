@@ -1,0 +1,23 @@
+[
+  {
+    "kind": "static",
+    "sha256": "8d76347af27ec9d68fa048e1f699072db4f6b27c8f7b6c58bd21dee4e2f5d93b",
+    "bytes": 87081,
+    "files": 13,
+    "valid": true
+  },
+  {
+    "kind": "node",
+    "sha256": "08ff05bd603d92b3d4c434bc2e20a124083dd7d36d091c0184c2ef44060959e2",
+    "bytes": 3852,
+    "files": 2,
+    "valid": true
+  },
+  {
+    "kind": "vite",
+    "sha256": "f65760164635d7005f4fe14ca6f491dd5106c281292be7115675b7afb159a4e7",
+    "bytes": 2606,
+    "files": 3,
+    "valid": true
+  }
+]

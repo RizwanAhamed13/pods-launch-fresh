@@ -1,0 +1,5 @@
+{"status":"fetching"}
+{"status":"detecting"}
+{"status":"packaging"}
+{"status":"verifying"}
+{"status":"verified"}

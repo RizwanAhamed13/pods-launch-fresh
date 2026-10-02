@@ -1,0 +1,19 @@
+{
+  "id": "no-config-notes",
+  "name": "No config notes",
+  "description": "",
+  "sha256": "08ff05bd603d92b3d4c434bc2e20a124083dd7d36d091c0184c2ef44060959e2",
+  "bytes": 3852,
+  "unpackedBytes": 6741,
+  "runtime": "node22+",
+  "applicationType": "node",
+  "detected": true,
+  "builtAt": "2026-10-02T18:29:13.868Z",
+  "verification": {
+    "documentPath": "/",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "title": "Field Notes",
+    "checkedAt": "2026-10-02T18:29:14.048Z"
+  }
+}

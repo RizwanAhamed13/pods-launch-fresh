@@ -11,9 +11,11 @@ Let a developer submit a Git repository URL once, then let a user experience the
 ## Operating Context
 A fresh project on aswin, a new GitHub repository, no previous PODS source or project references.
 ## Capabilities and Constraints
-Provider authorization is required. Cold provisioning is provider-controlled and measured separately from artifact startup. No paid runtime is owned by PODS. Initial supported application runtime: Node.js.
+Provider authorization is required. Cold provisioning is provider-controlled and measured separately from artifact startup. No paid user runtime is owned by PODS. Current preparation detects conventional Node/TypeScript servers, Vite/React frontends and static HTML sites; all use the Node launcher. Additional language/framework adapters and private repository authorization remain pending.
 ## Evidence on Hand
 The original Node prototype passed 11 automated tests and launched its prepared demo into ready Google Cloud Shell in 4.725 and 4.218 seconds. A browser test through an authenticated SSH tunnel saved and reloaded a note. This does not establish the complete browser authorization and native-preview journey. Cold Cloud Shell provisioning took about 46 seconds in the initial attempt. Codespaces and GitHub Actions were blocked by account quota/billing. See evidence/RESULTS.md.
+
+The automatic preparation stage passes 21 automated tests on aswin and has separately exercised an isolated public repository build, TypeScript preparation without pods.json, and npm installation plus a Vite production build. See evidence/PREPARATION.md for the stage's scope and remaining work.
 ## Product Principles
 Build once. Keep user compute user-owned. Show honest progress and timings. Never label a local test as provider validation.
 
