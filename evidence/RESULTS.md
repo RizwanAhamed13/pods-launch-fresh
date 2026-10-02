@@ -1,6 +1,6 @@
 # Fresh PODS validation
 
-The automatic preparation stage has newer, separate evidence: [preparation results](PREPARATION.md). It passes 21 automated tests and adds isolated repository preparation. The original provider measurements below remain historical evidence; the new complete browser journey is still unverified.
+The latest developer API stage has [separate results](BUILD-API.md): 28 passing automated tests and a real repository URL submission through the deployed API, prepared in 7,831 ms. The earlier [preparation results](PREPARATION.md) cover automatic detection and build isolation. The original provider measurements below remain historical evidence; the new complete browser journey is still unverified.
 
 ## Original prototype measurements
 

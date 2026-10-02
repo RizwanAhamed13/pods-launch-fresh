@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 import { Store } from './store.mjs';
 import { uid, digest, same } from './util.mjs';
 import { providers as makeProviders } from './providers.mjs';
+import { BuildManager } from './builds.mjs';
+import { LxdBuilder } from './lxd-builder.mjs';
 const base = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const statuses = new Set(['downloading','starting','ready','failed','stopped','heartbeat']);
 function fail(status, message) { return Object.assign(new Error(message), {status}); }
@@ -18,6 +20,9 @@ export async function createApp(options={}) {
   const runner = await readFile(join(base,'src/runner.mjs'));
   const providers = options.providers || makeProviders({repo,origin,runnerSha:digest(runner)});
   const jobs = new Map();
+  const buildsEnabled = options.buildAdapter || process.env.PODS_BUILDS_ENABLED === '1';
+  const builds = buildsEnabled ? new BuildManager({ store, data, origin, adapter: options.buildAdapter || new LxdBuilder() }) : null;
+  if (builds) await builds.initialize();
   // A restart cannot safely resume SSH dispatch; ready agents reconnect through heartbeat.
   for (const s of store.list('launch')) if (!['ready','failed','stopped'].includes(s.status)) store.put('launch',s.id,{...s,status:'failed',error:'Server restarted during launch. Please retry.'});
   const oauth = options.oauth || {
@@ -85,21 +90,32 @@ export async function createApp(options={}) {
         if(req.headers.origin&&req.headers.origin!==origin)throw fail(403,'Request origin rejected');
         if(!same(req.headers['x-pods-csrf'],user.csrf))throw fail(403,'Refresh the page and try again.');
       }
-      if(path==='/api/me'&&req.method==='GET')return json(200,{csrf:user.csrf,connections:Object.keys(providers).map(p=>{const c=store.get('connection',`${user.id}:${p}`);return {provider:p,connected:Boolean(c&&c.expiresAt>Date.now()),name:c?.name,oauthReady:Boolean(oauth[p]?.id&&oauth[p]?.secret)};}),apps:await apps()});
+      if(path==='/api/me'&&req.method==='GET')return json(200,{csrf:user.csrf,buildsEnabled:Boolean(builds&&!builds.closed&&!builds.fault),connections:Object.keys(providers).map(p=>{const c=store.get('connection',`${user.id}:${p}`);return {provider:p,connected:Boolean(c&&c.expiresAt>Date.now()),name:c?.name,oauthReady:Boolean(oauth[p]?.id&&oauth[p]?.secret)};}),apps:await apps()});
+      if(path==='/api/builds'&&req.method==='GET')return json(200,builds?.list(user.id)||[]);
+      if(path==='/api/builds'&&req.method==='POST') {
+        if(!builds)throw fail(503,'Repository preparation is not available on this deployment.');
+        const input=await body(req);
+        const c=connection(user,['github','google'].includes(input.provider)?input.provider:'github');
+        return json(202,builds.submit(user.id,c.provider+':'+c.name,input));
+      }
+      const build=/^\/api\/builds\/([A-Za-z0-9_-]{32})$/.exec(path);
+      if(build&&req.method==='GET')return json(200,builds?builds.own(user.id,build[1]):null);
       const auth=/^\/auth\/(github|google)(\/callback)?$/.exec(path);
       if(auth&&req.method==='GET') {
         const p=auth[1],o=oauth[p];if(!o.id||!o.secret)throw fail(503,`${p} OAuth is not configured. Use the access-token connection in this preview or configure the OAuth app.`);
         if(!auth[2]) {
-          const state=uid(), verifier=uid()+uid();store.put('oauth',state,{id:state,owner:user.id,provider:p,verifier,expiresAt:Date.now()+600000});
+          const returnTo=url.searchParams.get('returnTo')||'/';
+          if(!/^(?:\/|\/develop|\/launch\/[a-z0-9-]+)$/.test(returnTo))throw fail(400,'Invalid return page.');
+          const state=uid(), verifier=uid()+uid();store.put('oauth',state,{id:state,owner:user.id,provider:p,verifier,returnTo,expiresAt:Date.now()+600000});
           const target=new URL(o.authorize);target.search=new URLSearchParams({client_id:o.id,redirect_uri:`${origin}/auth/${p}/callback`,scope:o.scope,state,response_type:'code',code_challenge:Buffer.from(digest(verifier),'hex').toString('base64url'),code_challenge_method:'S256'}).toString();return redirect(target.href);
         }
         const state=store.get('oauth',url.searchParams.get('state')||'');
         if(!state||state.owner!==user.id||state.provider!==p||state.expiresAt<Date.now())throw fail(400,'Authorization expired. Connect again.');
         store.delete('oauth',url.searchParams.get('state'));
-        if(url.searchParams.has('error'))return redirect('/?error=Authorization%20was%20not%20completed.');
+        if(url.searchParams.has('error'))return redirect((state.returnTo||'/')+'?error=Authorization%20was%20not%20completed.');
         const response=await (options.oauthFetch || fetch)(o.exchange,{method:'POST',headers:{Accept:'application/json','Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({client_id:o.id,client_secret:o.secret,code:url.searchParams.get('code')||'',redirect_uri:`${origin}/auth/${p}/callback`,grant_type:'authorization_code',code_verifier:state.verifier}),signal:AbortSignal.timeout(20000)});
         const tokens=await response.json();if(!response.ok||!tokens.access_token)throw fail(401,'Authorization failed. Please reconnect.');
-        const identity=await providers[p].validate(tokens.access_token);connect(user,p,tokens.access_token,identity,tokens.expires_in);return redirect('/?connected='+p);
+        const identity=await providers[p].validate(tokens.access_token);connect(user,p,tokens.access_token,identity,tokens.expires_in);return redirect((state.returnTo||'/')+'?connected='+p);
       }
       const conn=/^\/api\/connections\/(github|google)$/.exec(path);
       if(conn&&req.method==='POST') {const b=await body(req);if(typeof b.token!=='string'||b.token.length<20||b.token.length>4096)throw fail(400,'Enter a valid access token');const identity=await providers[conn[1]].validate(b.token);connect(user,conn[1],b.token,identity);return json(200,{connected:true,name:identity.name});}
@@ -110,7 +126,7 @@ export async function createApp(options={}) {
         const app=(await apps()).find(a=>a.id===b.appId);if(!app)throw fail(404,'Prepared application not found');
         const c=connection(user,b.provider);
         const active=store.list('launch').find(s=>s.owner===user.id&&s.provider===b.provider&&!['failed','stopped'].includes(s.status)&&s.expiresAt>Date.now());
-        if(active)return json(200,publicLaunch(active));
+        if(active) {if(active.appId!==app.id)throw fail(409,'An application is already running on this provider. Stop it before starting another.');return json(200,publicLaunch(active));}
         const id=uid(),token=uid(),createdAt=Date.now();
         const s={id,owner:user.id,appId:app.id,appName:app.name,provider:b.provider,sha256:app.sha256,status:'connecting',createdAt,updatedAt:createdAt,expiresAt:createdAt+30*60*1000,tokenHash:digest(token)};
         store.put('launch',id,s);
@@ -121,10 +137,11 @@ export async function createApp(options={}) {
       const launch=/^\/api\/launches\/([A-Za-z0-9_-]{32})(\/stop)?$/.exec(path);
       if(launch&&req.method==='GET'&&!launch[2])return json(200,publicLaunch(own(user,launch[1])));
       if(launch&&req.method==='POST'&&launch[2]) {const s=own(user,launch[1]);if(!['failed','stopped'].includes(s.status))update(s.id,{stopRequested:true});return json(200,{stopping:true});}
-      const allowed={'/':'index.html','/app.js':'app.js','/style.css':'style.css'};
+      const allowed={'/':'index.html','/develop':'index.html','/app.js':'app.js','/style.css':'style.css'};
+      if(/^\/launch\/[a-z0-9-]+$/.test(path))allowed[path]='index.html';
       if(allowed[path]&&req.method==='GET'){res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html; charset=utf-8');return res.end(await readFile(join(base,'public',allowed[path])));}
       throw fail(404,'Not found');
-    } catch(e) { if(!res.headersSent)json(e.status&&e.status<500?e.status:500,{error:e.status&&e.status<500?e.message:'The request could not be completed. Check server configuration and retry.'});else res.end(); }
+    } catch(e) { if(!res.headersSent)json(e.status||500,{error:e.status?e.message:'The request could not be completed. Check server configuration and retry.'});else res.end(); }
   });
   const sweep=setInterval(()=>{
     for(const s of store.list('launch')) {
@@ -137,9 +154,12 @@ export async function createApp(options={}) {
     for(const c of store.list('connection'))if(c.expiresAt<Date.now())store.delete('connection',c.id);
     for(const c of store.list('oauth'))if(c.expiresAt<Date.now())store.delete('oauth',c.id);
   },5000);sweep.unref();
-  server.on('close',()=>{clearInterval(sweep);store.close();});
-  return {server,store,jobs};
+  let closing;
+  function closeResources() { return closing ||= (async()=>{clearInterval(sweep);await builds?.close();store.close();})(); }
+  server.on('close',()=>{closeResources().catch(e=>console.error('shutdown',e.message));});
+  return {server,store,jobs,builds,closeResources};
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)) {
-  const {server}=await createApp();server.listen(Number(process.env.PORT||8787),process.env.HOST||'127.0.0.1',()=>console.log('PODS control plane listening on '+(process.env.PODS_ORIGIN||'http://127.0.0.1:8787')));
+  const {server,closeResources}=await createApp();server.listen(Number(process.env.PORT||8787),process.env.HOST||'127.0.0.1',()=>console.log('PODS control plane listening on '+(process.env.PODS_ORIGIN||'http://127.0.0.1:8787')));
+  for(const signal of ['SIGINT','SIGTERM'])process.once(signal,()=>{server.close();closeResources().then(()=>process.exit(0),()=>process.exit(1));});
 }

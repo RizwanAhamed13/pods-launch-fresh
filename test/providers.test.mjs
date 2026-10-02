@@ -28,10 +28,11 @@ test('OAuth uses PKCE and session-bound single-use state; callback never exposes
  await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin=`http://127.0.0.1:${server.address().port}`;
  try{
  const initial=await fetch(origin+'/api/me');const cookie=initial.headers.get('set-cookie').split(';')[0];
- const start=await fetch(origin+'/auth/github',{headers:{Cookie:cookie},redirect:'manual'});assert.equal(start.status,302);const auth=new URL(start.headers.get('location')),state=auth.searchParams.get('state');assert.equal(auth.searchParams.get('code_challenge_method'),'S256');
+ assert.equal((await fetch(origin+'/auth/github?returnTo=https://evil.example',{headers:{Cookie:cookie},redirect:'manual'})).status,400);
+ const start=await fetch(origin+'/auth/github?returnTo=/launch/prepared-version',{headers:{Cookie:cookie},redirect:'manual'});assert.equal(start.status,302);const auth=new URL(start.headers.get('location')),state=auth.searchParams.get('state');assert.equal(auth.searchParams.get('code_challenge_method'),'S256');
  const path='/auth/github/callback?state='+state+'&code=one-use-code';
  const wrong=await fetch(origin+path,{redirect:'manual'});assert.equal(wrong.status,400);
- const finish=await fetch(origin+path,{headers:{Cookie:cookie},redirect:'manual'});assert.equal(finish.status,302);assert.equal(finish.headers.get('location'),'/?connected=github');
+ const finish=await fetch(origin+path,{headers:{Cookie:cookie},redirect:'manual'});assert.equal(finish.status,302);assert.equal(finish.headers.get('location'),'/launch/prepared-version?connected=github');
  assert.equal(createHash('sha256').update(exchanged.get('code_verifier')).digest('base64url'),auth.searchParams.get('code_challenge'));
  const replay=await fetch(origin+path,{headers:{Cookie:cookie},redirect:'manual'});assert.equal(replay.status,400);
  const me=await(await fetch(origin+'/api/me',{headers:{Cookie:cookie}})).text();assert.match(me,/oauth-user/);assert.ok(!me.includes('never-exposed'));

@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-02T18:46:22.624Z",
+  "submittedRepository": "https://github.com/mdn/beginner-html-site-scripted",
+  "accountConnection": "Real GitHub token validated by the control plane; removed after this check",
+  "transport": "HTTP submission and polling against the deployed server on aswin; public HTTPS launch page checked",
+  "states": [
+    {
+      "status": "preparing",
+      "elapsedMs": 24
+    },
+    {
+      "status": "fetching",
+      "elapsedMs": 2029
+    },
+    {
+      "status": "verifying",
+      "elapsedMs": 6042
+    },
+    {
+      "status": "ready",
+      "elapsedMs": 8047
+    }
+  ],
+  "preparationMs": 7831,
+  "app": {
+    "id": "repo-d053610390afe86835757909-570260b392cc-8d76347af27e",
+    "name": "beginner-html-site-scripted",
+    "description": "",
+    "sha256": "8d76347af27ec9d68fa048e1f699072db4f6b27c8f7b6c58bd21dee4e2f5d93b",
+    "bytes": 87081,
+    "files": 13,
+    "healthPath": "/",
+    "applicationType": "static",
+    "runtime": "node22+",
+    "source": {
+      "url": "https://github.com/mdn/beginner-html-site-scripted",
+      "folder": "",
+      "revision": "570260b392cc15a0b2ecd579071b0fc6384bbe98"
+    },
+    "verification": {
+      "documentPath": "/",
+      "status": 200,
+      "title": "My test page"
+    },
+    "preparedAt": "2026-10-02T18:46:21.527Z"
+  },
+  "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-d053610390afe86835757909-570260b392cc-8d76347af27e",
+  "separateSessionCanReadApp": true,
+  "separateSessionCannotReadBuild": true,
+  "disposableContainersRemaining": 0,
+  "limits": "Developer API and isolated preparation only. No browser form, compute provisioning or final product navigation is exercised here."
+}
