@@ -1,12 +1,12 @@
 # PODS — prepare once, run on your compute
 
-A fresh implementation. A developer submits a public GitHub repository URL. PODS detects supported Node/TypeScript, Vite/React and static applications, builds them in an isolated server container, and publishes a reusable artifact. A user connects GitHub Codespaces or Google Cloud Shell. PODS delivers the immutable artifact and starts the app on the user's compute without installing packages or compiling source there. Repository submission currently works through the API; its browser form and automatic product-page navigation are the next implementation stage.
+A fresh implementation. A developer submits a public GitHub repository URL. PODS detects supported Node/TypeScript, Vite/React and static applications, builds them in an isolated server container, and publishes a reusable artifact. A user connects GitHub Codespaces or Google Cloud Shell. PODS delivers the immutable artifact and starts the app on the user's compute without installing packages or compiling source there. The browser form at `/develop` prepares a repository and produces a shareable, versioned launch link. The launch page preserves that version through authorization and automatically opens the product when ready.
 
 The reference application is Field Notes: a real HTTP app whose notes are saved in the user's environment. The control plane never runs the preview application.
 
 ## Run the control plane
 
-Requires Node.js 24, GitHub CLI (`gh`), OpenSSH client, and `curl` on the server. User environments need Node.js 22+ (PATH or standard NVM installation), `curl`, `sha256sum` and SSH support. The included Codespaces definition uses the standard GitHub development image.
+Requires Node.js 24, GitHub CLI (`gh`), OpenSSH client, and `curl` on the server. User environments need Node.js 22+ (PATH or standard NVM installation), `curl`, `sha256sum` and SSH support. The public [runtime repository](https://github.com/RizwanAhamed13/pods-launch-runtime-fresh) uses the official Node.js 24 Bookworm image pinned by digest and the SSH server feature required by GitHub CLI. The included configuration mirrors it. Initial Codespaces setup may install the runtime SSH feature; it never builds the submitted application.
 
 ```sh
 npm ci --ignore-scripts
@@ -61,13 +61,13 @@ Apps must listen on `PORT` (8080), bind `0.0.0.0`, return HTTP 2xx from the heal
 
 ## Connect providers
 
-GitHub OAuth: register a web OAuth application with callback `PODS_ORIGIN/auth/github/callback`, then set `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`. The app requests `codespace read:user`. Stable numeric GitHub IDs and Google OpenID subjects identify accounts independently of display names. The runtime repository must be accessible to the user; for a public service publish a minimal public runtime repository and set `PODS_RUNTIME_REPO` to it. This project's initial repository is private.
+GitHub OAuth: register a web OAuth application with callback `PODS_ORIGIN/auth/github/callback`, then set `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`. The app requests `codespace read:user`. Stable numeric GitHub IDs and Google OpenID subjects identify accounts independently of display names. Set `PODS_RUNTIME_REPO=RizwanAhamed13/pods-launch-runtime-fresh` for the published public runtime, or use your own public equivalent. The control-plane repository stays private; users need access only to the runtime repository. The aswin deployment now uses this public runtime.
 
 Google OAuth: create a web OAuth client in a Google Cloud project with the Cloud Shell API enabled, configure callback `PODS_ORIGIN/auth/google/callback`, and set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`. It requests `openid email cloud-platform`; consent publishing or test-user setup is required by Google. No provider client secret is bundled into the browser or artifact.
 
 Direct Google tokens must allow both Cloud Shell and OpenID user-info access. Until OAuth is configured, the UI offers an explicit access-token connection. Tokens are encrypted with AES-256-GCM, bound to an HttpOnly browser session, and expire from use after one hour (or the shorter OAuth token lifetime). The access-token path is for a controlled preview, not a substitute for a completed public OAuth rollout.
 
-PODS creates or reuses only a Codespace named `PODS launch` in the configured runtime repository. It uses the user's token to deliver the runner over authenticated SSH. Cloud Shell uses its start API with an ephemeral SSH key; the key is removed after delivery. The runner verifies both its downloaded source and the application artifact. Application subprocesses receive a minimal environment without provider tokens. Artifacts must be from trusted developers: running a third-party app grants it the effective privileges of the user account inside that environment; this is not a sandbox for malicious apps.
+PODS creates or reuses only a Codespace named `PODS launch` in the configured runtime repository, preferring an already available environment over a stopped or provisioning one. It uses the user's token to deliver the runner over authenticated SSH. Cloud Shell uses its start API with an ephemeral SSH key; the key is removed after delivery. The runner verifies both its downloaded source and the application artifact. Application subprocesses receive a minimal environment without provider tokens. Artifacts must be from trusted developers: running a third-party app grants it the effective privileges of the user account inside that environment; this is not a sandbox for malicious apps.
 
 ## Timing contract
 

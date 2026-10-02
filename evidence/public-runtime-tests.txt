@@ -1,0 +1,46 @@
+
+> pods-launch-fresh@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ container output must match repository, integrity and HTML verification; published metadata is reconstructed (4.948186ms)
+✔ build queue serializes work, deduplicates retries, hides ownership and publishes immutable launch versions (46.836006ms)
+✔ account limits survive new browser sessions; queue limits reject overload and restart marks unfinished jobs failed (14.47094ms)
+✔ invalid artifacts do not publish; cleanup failure disables further jobs (25.063739ms)
+✔ LXD file import rejects symlinks, declared oversized files and streaming overflow (30.218946ms)
+✔ worker failure always deletes its own container; cleanup errors fail closed (1.93899ms)
+✔ submission API requires account authorization and CSRF, protects jobs, and launches the selected immutable version (139.239245ms)
+✔ server build is reusable, deterministic and bundles TypeScript (49.797731ms)
+✔ artifact corruption, path escapes, collisions and wrong formats fail closed (4.297641ms)
+✔ stored provider credentials are authenticated ciphertext (4.065477ms)
+✔ real prepared app starts, saves data on compute, stops, and reuses artifact cache (653.573609ms)
+✔ unhealthy app never reports ready; inherited provider tokens do not reach app (126.135668ms)
+✔ API enforces browser ownership, CSRF, capability auth and idempotent launches (60.748951ms)
+✔ unwritable home falls back to session storage and reports its durability (236.41951ms)
+✔ detects and bundles a TypeScript server and its assets without pods.json (64.341395ms)
+✔ detects a generated Node entrypoint before build, but packaging requires its output (13.507742ms)
+✔ detects Vite frontend output and rejects missing build output (7.283773ms)
+✔ plain static artifact serves its actual page, assets and client routes on compute (221.306093ms)
+✔ detection reports ambiguity and never executes a shell start command (7.394163ms)
+✔ entrypoints and asset directories cannot escape through paths or symlinks (10.916399ms)
+✔ launch links select their exact version and unavailable versions never select another product (1.353565ms)
+✔ OAuth continuation is time-bounded and bound to the original action, product and provider (1.27834ms)
+✔ automatic navigation accepts provider previews and rejects arbitrary or credential-bearing destinations (0.547265ms)
+✔ provider identities use stable account IDs rather than a shared Cloud Shell label or mutable display name (1.055352ms)
+✔ Codespaces reuses only the configured PODS runtime and delivers over SSH stdin (2.243969ms)
+✔ a running PODS Codespace is preferred over an older provisioning or stopped environment (0.610983ms)
+✔ retrying a pending PODS Codespace waits for it instead of creating another environment (16.723751ms)
+✔ Codespaces provisioning failure propagates without trying to execute a runner (1.16119ms)
+✔ bootstrap quotes shell values and pins the runner before execution (0.332755ms)
+✔ OAuth uses PKCE and session-bound single-use state; callback never exposes token (77.070783ms)
+✔ repository identity is stable and accepts an optional application folder (3.477835ms)
+✔ repository input rejects local addresses, credentials, URL tricks and escaping folders (1.128927ms)
+✔ repository build worker refuses execution outside its isolated environment (0.743417ms)
+✔ fresh containers wait for DNS and report a bounded failure if networking never starts (0.888802ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1293.491319

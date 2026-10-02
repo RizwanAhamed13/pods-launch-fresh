@@ -1,12 +1,12 @@
 {
   "source": {
     "files": 24,
-    "lines": 1623
+    "lines": 1624
   },
   "tests_and_browser_fixture": {
     "files": 10,
-    "lines": 624
+    "lines": 634
   },
-  "total_lines": 2247,
+  "total_lines": 2258,
   "scope": "Physical JS/TS/CJS, HTML/CSS and shell lines in src/public/scripts/examples/test. Test tree and scripts/browser-fixture.mjs counted separately. Excludes JSON/lockfiles, docs, dependencies and generated artifacts."
 }

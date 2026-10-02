@@ -12,14 +12,24 @@ test('Codespaces reuses only the configured PODS runtime and delivers over SSH s
  const result=await adapter.github.launch(token,{id:'x',token:'launch-secret'},p=>updates.push(p));
  assert.equal(result.environment,'my-pods');assert.equal(calls.length,1);assert.equal(calls[0][0],'/repos/owner/runtime/codespaces?per_page=100');assert.equal(execution.file,'gh');assert.ok(!execution.args.join(' ').includes(token));assert.ok(!execution.args.join(' ').includes('launch-secret'));assert.match(execution.opts.input,/launch-secret/);assert.equal(execution.opts.env.GH_TOKEN,token);assert.equal(result.previewUrl,'https://my-pods-8080.app.github.dev');assert.equal(updates[1].status,'delivering');
 });
-test('retrying a provisioning PODS Codespace waits for it instead of creating another environment',async()=>{
+test('a running PODS Codespace is preferred over an older provisioning or stopped environment',async()=>{
+ let executions=0;const updates=[];
+ const adapter=providers({repo:'owner/runtime',origin:'https://pods.example',runnerSha:'a'.repeat(64),pollMs:1,
+  api:async(path,token,options)=>{assert.equal(options,undefined);assert.equal(path,'/repos/owner/runtime/codespaces?per_page=100');return {codespaces:[{name:'pending',display_name:'PODS launch',state:'Provisioning'},{name:'stopped',display_name:'PODS launch',state:'Shutdown'},{name:'warm',display_name:'PODS launch',state:'Available'}]};},
+  exec:async(file,args)=>{executions++;assert.equal(args[3],'warm');}});
+ const result=await adapter.github.launch('token',{},patch=>updates.push(patch));
+ assert.equal(result.environment,'warm');assert.equal(executions,1);assert.ok(!updates.some(x=>x.status==='provisioning'));
+});
+test('retrying a pending PODS Codespace waits for it instead of creating another environment',async()=>{
+ for(const state of ['Starting','Provisioning','Created','Queued','Awaiting','Updating','Rebuilding']){
  const calls=[];let executed=false;
  const adapter=providers({repo:'owner/runtime',origin:'https://pods.example',runnerSha:'a'.repeat(64),pollMs:1,
-  api:async(path,token,options)=>{calls.push({path,method:options?.method||'GET'});return path.startsWith('/repos/')?{codespaces:[{name:'pending-pods',display_name:'PODS launch',state:'Provisioning'}]}:{name:'pending-pods',state:'Available'};},
+  api:async(path,token,options)=>{calls.push({path,method:options?.method||'GET'});return path.startsWith('/repos/')?{codespaces:[{name:'pending-pods',display_name:'PODS launch',state}]}:{name:'pending-pods',state:'Available'};},
   exec:async()=>{executed=true;}});
  const result=await adapter.github.launch('token',{},()=>{});
  assert.equal(result.environment,'pending-pods');assert.equal(executed,true);
  assert.deepEqual(calls,[{path:'/repos/owner/runtime/codespaces?per_page=100',method:'GET'},{path:'/user/codespaces/pending-pods',method:'GET'}]);
+ }
 });
 test('Codespaces provisioning failure propagates without trying to execute a runner',async()=>{
  let executed=false;

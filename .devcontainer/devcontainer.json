@@ -1,7 +1,17 @@
 {
   "name": "PODS user compute",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "forwardPorts": [8080],
-  "portsAttributes": {"8080": {"label": "PODS app", "onAutoForward": "silent"}},
-  "remoteUser": "codespace"
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:24-bookworm@sha256:ef380643327dafe138722179c1ac86477a4b1f643c3a2c83d3baa1b8ea226166",
+  "features": {
+    "ghcr.io/devcontainers/features/sshd:1": {}
+  },
+  "forwardPorts": [
+    8080
+  ],
+  "portsAttributes": {
+    "8080": {
+      "label": "PODS app",
+      "onAutoForward": "silent"
+    }
+  },
+  "remoteUser": "node"
 }
