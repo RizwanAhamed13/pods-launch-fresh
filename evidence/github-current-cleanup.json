@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-10-02T19:25:13.444620+00:00",
+  "environment": "pods-launch-69rw5vx4xwvv35v67",
+  "scope": "Disposable PODS live test environment created in this run only",
+  "stopResult": "GitHub rejected stop while Provisioning",
+  "deleteRequestAccepted": true,
+  "getStatus": "404",
+  "state": null,
+  "removed": true
+}

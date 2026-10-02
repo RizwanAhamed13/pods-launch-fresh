@@ -46,7 +46,7 @@ export async function createApp(options={}) {
     return safe;
   }
   function connect(user,provider,token,identity,expiresIn=3600) {
-    store.put('connection',`${user.id}:${provider}`,{id:`${user.id}:${provider}`,provider,name:identity.name,token:store.seal(token),expiresAt:Date.now()+Math.min(Number(expiresIn)||3600,3600)*1000});
+    store.put('connection',`${user.id}:${provider}`,{id:`${user.id}:${provider}`,provider,name:identity.name,identityId:identity.id||identity.name,token:store.seal(token),expiresAt:Date.now()+Math.min(Number(expiresIn)||3600,3600)*1000});
   }
   function connection(user,provider) {
     const c=store.get('connection',`${user.id}:${provider}`);if(!c||c.expiresAt<Date.now())throw fail(401,'Connect your compute account to continue.');return c;
@@ -96,7 +96,8 @@ export async function createApp(options={}) {
         if(!builds)throw fail(503,'Repository preparation is not available on this deployment.');
         const input=await body(req);
         const c=connection(user,['github','google'].includes(input.provider)?input.provider:'github');
-        return json(202,builds.submit(user.id,c.provider+':'+c.name,input));
+        if(!c.identityId)throw fail(401,'Reconnect your account before preparing an application.');
+        return json(202,builds.submit(user.id,c.provider+':'+c.identityId,input));
       }
       const build=/^\/api\/builds\/([A-Za-z0-9_-]{32})$/.exec(path);
       if(build&&req.method==='GET')return json(200,builds?builds.own(user.id,build[1]):null);
@@ -137,7 +138,7 @@ export async function createApp(options={}) {
       const launch=/^\/api\/launches\/([A-Za-z0-9_-]{32})(\/stop)?$/.exec(path);
       if(launch&&req.method==='GET'&&!launch[2])return json(200,publicLaunch(own(user,launch[1])));
       if(launch&&req.method==='POST'&&launch[2]) {const s=own(user,launch[1]);if(!['failed','stopped'].includes(s.status))update(s.id,{stopRequested:true});return json(200,{stopping:true});}
-      const allowed={'/':'index.html','/develop':'index.html','/app.js':'app.js','/style.css':'style.css'};
+      const allowed={'/':'index.html','/develop':'index.html','/app.js':'app.js','/flow.js':'flow.js','/style.css':'style.css'};
       if(/^\/launch\/[a-z0-9-]+$/.test(path))allowed[path]='index.html';
       if(allowed[path]&&req.method==='GET'){res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html; charset=utf-8');return res.end(await readFile(join(base,'public',allowed[path])));}
       throw fail(404,'Not found');

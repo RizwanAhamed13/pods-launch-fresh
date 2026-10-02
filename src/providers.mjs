@@ -7,13 +7,13 @@ export function bootstrap(config, origin, runnerSha) {
   // Token goes through encrypted SSH stdin, never command-line arguments.
   return `set -eu\numask 077\nTASK_DIR=$(mktemp -d /tmp/pods-launch.XXXXXX)\ncd "$TASK_DIR"\ncurl --fail --silent --show-error --max-time 30 ${shell(origin + '/runner.mjs')} -o runner.mjs\nprintf '%s  runner.mjs\\n' ${shell(runnerSha)} | sha256sum -c - >/dev/null\ncat > launch.json <<'PODS_CONFIG'\n${JSON.stringify(config)}\nPODS_CONFIG\nPODS_NODE=''\nfor candidate in $(command -v node || true) /usr/local/nvm/versions/node/*/bin/node \"$HOME\"/.nvm/versions/node/*/bin/node; do\n  if [ -x \"$candidate\" ] && \"$candidate\" -e 'if(Number(process.versions.node.split(".")[0])<22)process.exit(1)' 2>/dev/null; then PODS_NODE=\"$candidate\"; break; fi\ndone\n[ -n \"$PODS_NODE\" ] || { echo 'Node.js 22 or newer was not found in PATH or NVM'; exit 1; }\nnohup \"$PODS_NODE\" runner.mjs launch.json > runner.log 2>&1 < /dev/null &\necho PODS_DELIVERED\n`;
 }
-export function providers({ repo, origin, runnerSha, api = github, exec = command, pollMs = 2000 }) {
+export function providers({ repo, origin, runnerSha, api = github, cloudRequest = request, exec = command, pollMs = 2000 }) {
   return {
     github: {
-      async validate(token) { const u = await api('/user', token); return {name:u.login}; },
+      async validate(token) { const u = await api('/user', token); if(!u.id||!u.login)throw new Error('GitHub account identity was unavailable. Reconnect your account.');return {id:String(u.id),name:u.login}; },
       async launch(token, config, update) {
         const found = await api(`/repos/${repo}/codespaces?per_page=100`, token);
-        let env = found.codespaces.find(c => c.display_name === 'PODS launch' && ['Available','Shutdown'].includes(c.state));
+        let env = found.codespaces.find(c => c.display_name === 'PODS launch' && ['Available','Shutdown','Provisioning'].includes(c.state));
         if (!env) { await update({status:'provisioning'}); env = await api(`/repos/${repo}/codespaces`, token, {method:'POST',body:{ref:'main',display_name:'PODS launch',idle_timeout_minutes:15,retention_period_minutes:1440}}); }
         else if (env.state === 'Shutdown') { await update({status:'provisioning'}); env = await api(`/user/codespaces/${env.name}/start`, token, {method:'POST'}); }
         await update({environment:env.name});
@@ -38,7 +38,12 @@ export function providers({ repo, origin, runnerSha, api = github, exec = comman
       async stop(token, name) { if (name) await api(`/user/codespaces/${encodeURIComponent(name)}/stop`, token, {method:'POST'}); }
     },
     google: {
-      async validate(token) { await request('https://cloudshell.googleapis.com/v1/users/me/environments/default', token); return {name:'Google Cloud Shell'}; },
+      async validate(token) {
+        await cloudRequest('https://cloudshell.googleapis.com/v1/users/me/environments/default', token);
+        const user = await cloudRequest('https://openidconnect.googleapis.com/v1/userinfo', token);
+        if(typeof user.sub!=='string'||!user.sub)throw new Error('Google account identity was unavailable. Reconnect with OpenID and email access.');
+        return {id:user.sub,name:user.email||'Google account'};
+      },
       async launch(token, config, update) {
         const directory = await mkdtemp(join(tmpdir(), 'pods-key-'));
         const base = 'https://cloudshell.googleapis.com/v1/users/me/environments/default';

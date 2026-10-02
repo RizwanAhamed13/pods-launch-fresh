@@ -1,14 +1,44 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PODS — make yourself at home</title><link rel="stylesheet" href="/style.css"><script type="module" src="/app.js"></script></head>
-<body><header><a class="brand" href="/" aria-label="PODS home">pods<span></span></a><span class="header-note">Good software. Your compute.</span><a href="https://github.com/RizwanAhamed13/pods-launch-fresh" target="_blank" rel="noreferrer">Developer guide</a></header>
-<main><section class="intro"><h1>Try it.<br>Make yourself at home.</h1><p>The app is already prepared. Give it a place to run, and it’s yours to explore.</p></section>
-<div class="workspace"><section class="app-panel" aria-labelledby="apps-heading"><div class="section-title"><h2 id="apps-heading">Ready to try</h2><span>Built once, ready for you</span></div><div id="apps" aria-live="polite"><p>Loading prepared applications…</p></div><div class="how"><h3>The work is already done.</h3><p>PODS builds the application ahead of time. Your environment receives the finished app and starts it. No package installation, no waiting for a build.</p></div></section>
-<section class="launch-panel" aria-labelledby="launch-heading"><h2 id="launch-heading">Choose where it runs</h2><p class="muted">Your account. Your environment. You stay in control.</p><fieldset><legend class="sr-only">Compute provider</legend><label class="provider"><input type="radio" name="provider" value="github" checked><span><strong>GitHub Codespaces</strong><small id="github-status">Connect your GitHub account</small></span><span class="provider-mark">GH</span></label><label class="provider"><input type="radio" name="provider" value="google"><span><strong>Google Cloud Shell</strong><small id="google-status">Connect your Google account</small></span><span class="provider-mark">G</span></label></fieldset>
-<p class="compute-note">Uses your provider’s quota and billing. Preview apps stop after 30 minutes; a Codespace can remain running until its idle timeout.</p>
-<button id="launch" class="primary" disabled>Loading applications…</button><p class="target">Aiming for 20 seconds on ready compute.<br>A new environment can take longer to start.</p>
-<div id="notice" role="alert" hidden></div>
-<details id="token-connect"><summary>Connect with an access token</summary><p id="token-help">For this preview, use a GitHub token with the codespace scope. Your token is encrypted on the server and expires from this session after one hour.</p><form id="token-form"><label for="token">Provider access token</label><input id="token" type="password" autocomplete="off" required minlength="20"><button type="submit" class="secondary">Connect account</button></form></details>
-<div id="progress" hidden aria-live="polite"><div class="progress-heading"><h3 id="stage-title">Connecting your compute</h3><span id="elapsed">0s</span></div><ol id="stages"><li data-stage="compute">Start your environment</li><li data-stage="deliver">Deliver the prepared app</li><li data-stage="ready">Open your application</li></ol><p id="stage-detail"></p><a id="open-app" class="primary" target="_blank" rel="noreferrer" hidden>Open application</a><button id="stop" class="text-button">Stop application</button></div>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PODS — prepared here, running with you</title><link rel="stylesheet" href="/style.css"><script type="module" src="/app.js"></script>
+</head><body>
+<!-- THESIS: Prepare a product once, then let another person open it on their own compute.
+OWN-WORLD: Inherit warm paper, evergreen text, olive rules and plain form controls from DESIGN.md.
+STORY: A developer gives a repository and shares a version; a visitor authorizes compute and enters the product.
+FIRST VIEWPORT: Task heading above two columns. Repository or application at left; account and primary action at right. Mobile follows that order.
+FORM: A task-focused extension of the established PODS surface; no new visual-world seed. Progress resolves into a share link or same-tab product navigation.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header><a class="brand" href="/" aria-label="PODS home">pods<span aria-hidden="true"></span></a><span class="header-note">Good software. Your compute.</span><nav aria-label="Main"><a id="browse-nav" href="/">Try an app</a><a id="develop-nav" href="/develop">Prepare an app</a></nav></header>
+<main id="main">
+<section class="intro"><h1 id="page-title">Loading PODS…</h1><p id="page-intro"></p></section>
+<p id="notice" role="alert" hidden></p>
+<section id="catalog" aria-labelledby="catalog-title" hidden><h2 id="catalog-title">Ready to try</h2><div id="apps"><p>Loading prepared applications…</p></div></section>
+<div class="workspace" id="workspace" hidden>
+<section id="developer" aria-labelledby="repo-title" hidden>
+  <h2 id="repo-title">Start with your repository</h2><p class="muted">Public GitHub repositories. Node, TypeScript, Vite, React and static HTML are supported.</p>
+  <form id="build-form"><label for="repository">GitHub repository URL</label><input id="repository" type="url" placeholder="https://github.com/you/your-app" autocomplete="url" maxlength="300" required aria-describedby="repository-help"><p id="repository-help" class="field-help">Use the repository’s main URL. PODS detects the build and start steps.</p><details class="folder-options"><summary>My application is inside a folder</summary><label for="folder">Application folder</label><input id="folder" placeholder="apps/web" maxlength="200" spellcheck="false"><p class="field-help">Leave this empty when the application is at the repository root.</p></details></form>
+  <div class="how"><h3>One preparation. A link to the product.</h3><p>PODS builds on our server, checks the application’s page, and saves the result. People using your link receive that prepared version on their own compute.</p></div>
+</section>
+<section id="application" aria-labelledby="application-title" hidden>
+  <h2 id="application-title"></h2><p id="application-description" class="application-description"></p><dl id="application-facts" class="facts"></dl>
+  <div class="how"><h3>The preparation is already done.</h3><p>Your environment receives the finished application. When it is ready, this tab opens the product automatically.</p></div><a class="back-link" href="/">Choose another application</a>
+</section>
+<section class="launch-panel" aria-labelledby="action-title">
+  <h2 id="action-title">Choose where it runs</h2><p id="account-intro" class="muted">Your account. Your environment.</p>
+  <fieldset id="providers"><legend class="sr-only">Compute provider</legend>
+    <label class="provider"><input type="radio" name="provider" value="github" checked><span><strong id="github-label">GitHub Codespaces</strong><small id="github-status">Connect your GitHub account</small></span></label>
+    <label class="provider" id="google-choice"><input type="radio" name="provider" value="google"><span><strong>Google Cloud Shell</strong><small id="google-status">Connect your Google account</small></span></label>
+  </fieldset>
+  <p id="compute-note" class="compute-note">Uses your provider’s quota and billing. Apps stop after 30 minutes; a Codespace can remain running until its idle timeout.</p>
+  <button id="prepare" type="submit" form="build-form" class="primary" hidden disabled>Prepare application</button><button id="launch" class="primary" disabled>Connect and open application</button>
+  <p id="target" class="target">Aiming for 20 seconds on ready compute.<br>A new environment can take longer.</p><button id="disconnect" class="text-button" hidden>Disconnect account</button>
+  <details id="token-connect" hidden><summary>Preview access-token connection</summary><p id="token-help"></p><form id="token-form"><label for="token">Provider access token</label><input id="token" type="password" autocomplete="off" minlength="20" required><button type="submit" class="secondary">Connect and continue</button></form></details>
+  <section id="progress" hidden aria-labelledby="stage-title"><div class="progress-heading"><h3 id="stage-title" role="status"></h3><span id="elapsed" aria-label="Elapsed time"></span></div><ol id="stages"><li>Start your environment</li><li>Receive the prepared app</li><li>Open the product</li></ol><p id="stage-detail" role="status" aria-atomic="true"></p><a id="open-app" class="primary" hidden>Open application</a><button id="retry-status" class="secondary" hidden>Check progress again</button><button id="stop" class="text-button" hidden>Stop application</button></section>
 </section></div>
-<section class="recent" id="recent" hidden><h2>Your recent launches</h2><div id="history"></div></section>
-</main><footer><span>Prepared by PODS. Running with you.</span><span>Apps stay on your compute. Provider access stays private.</span></footer></body></html>
+<section id="build-result" class="build-result" aria-labelledby="result-title" hidden><div><h2 id="result-title">Your application is ready to share.</h2><p id="result-detail"></p></div><div><label for="launch-link">Launch link</label><div class="copy-row"><input id="launch-link" readonly><button id="copy-link" class="secondary">Copy link</button></div><p id="copy-status" role="status"></p><a id="try-version" class="primary">Try this version</a></div></section>
+<section class="recent" id="recent" hidden><h2 id="recent-title">Your recent launches</h2><div id="history"></div></section>
+<noscript><p>PODS needs JavaScript to prepare and launch applications. Enable it, then reload this page.</p></noscript>
+</main><footer><span>Prepared by PODS. Running with you.</span><a href="https://github.com/RizwanAhamed13/pods-launch-fresh" target="_blank" rel="noreferrer">Developer guide</a></footer>
+</body></html>

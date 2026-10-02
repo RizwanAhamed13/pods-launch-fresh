@@ -1,6 +1,8 @@
 # Fresh PODS validation
 
-The latest developer API stage has [separate results](BUILD-API.md): 28 passing automated tests and a real repository URL submission through the deployed API, prepared in 7,831 ms. The earlier [preparation results](PREPARATION.md) cover automatic detection and build isolation. The original provider measurements below remain historical evidence; the new complete browser journey is still unverified.
+The latest [browser workflow results](BROWSER-FLOW.md) cover 33 passing automated tests, the developer URL form, preserved authorization intent, exact-version launch navigation and an interactive prepared product with simulated providers. Real provider browser consent and visible-product timing remain unverified. A new real Codespaces attempt is accepted by GitHub, but timed out while provisioning after four minutes, before SSH delivery or app startup; see `github-current-recheck.json`. The earlier quota rejection is historical, not the current failure.
+
+The developer API stage has [separate results](BUILD-API.md): 28 passing automated tests and a real repository URL submission through the deployed API, prepared in 7,831 ms. The earlier [preparation results](PREPARATION.md) cover automatic detection and build isolation. The original provider measurements below remain historical evidence; the complete real-provider browser journey is still unverified.
 
 ## Original prototype measurements
 

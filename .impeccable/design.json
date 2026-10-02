@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-03T00:00:00+05:30",
+  "title": "Design System: PODS",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Warm Paper", "canonical": "#f6f5ef", "tonalRamp": ["#262720", "#44463a", "#626554", "#81856f", "#a1a58c", "#c1c5aa", "#e0e3ca", "#f6f5ef"] },
+      "ink": { "role": "primary", "displayName": "Evergreen Ink", "canonical": "#242d25", "tonalRamp": ["#172018", "#242d25", "#3e493f", "#59665a", "#758377", "#93a095", "#b3bdb4", "#e8ede8"] },
+      "muted-ink": { "role": "neutral", "displayName": "Muted Ink", "canonical": "#60685f", "tonalRamp": ["#20251f", "#3a4139", "#60685f", "#7c857b", "#99a298", "#b7beb6", "#d6dbd5", "#f0f2ef"] },
+      "quiet-line": { "role": "neutral", "displayName": "Quiet Line", "canonical": "#d7dacf", "tonalRamp": ["#24261f", "#44463c", "#65685a", "#858979", "#a6aa99", "#c5c9b9", "#d7dacf", "#f3f4ef"] },
+      "olive-accent": { "role": "secondary", "displayName": "Olive Accent", "canonical": "#e7f58a", "tonalRamp": ["#252b0e", "#46521b", "#687a2b", "#8ba33d", "#aecb52", "#cde56d", "#e7f58a", "#f5fad0"] },
+      "clean-surface": { "role": "neutral", "displayName": "Clean Surface", "canonical": "#fffef8", "tonalRamp": ["#292821", "#4b493f", "#6d6b5e", "#8f8d7e", "#b2b09f", "#d4d2c1", "#eeecdf", "#fffef8"] },
+      "error": { "role": "tertiary", "displayName": "Error Red", "canonical": "#952c24", "tonalRamp": ["#2d0d0a", "#541712", "#7b211b", "#952c24", "#bd4c42", "#db756c", "#eda9a3", "#fae5e2"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Task Display", "purpose": "Page-level task headings." },
+      "title": { "displayName": "Section Title", "purpose": "Application, section, and result headings." },
+      "body": { "displayName": "Body", "purpose": "Explanations and live status detail." },
+      "label": { "displayName": "Operational Label", "purpose": "Controls, facts, navigation, elapsed time, and history." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "control-color", "value": "background 150ms ease-out", "purpose": "Primary-button hover feedback." },
+      { "name": "result-reveal", "value": "clip-path 250ms ease-out", "purpose": "Reveal a completed preparation result; removed under reduced motion." }
+    ],
+    "breakpoints": [{ "name": "mobile-task-order", "value": "800px" }]
+  },
+  "components": [
+    {
+      "name": "Primary Button", "kind": "button", "refersTo": "button-primary",
+      "description": "Full-width primary preparation, connection, open, or try action.",
+      "html": "<button class=\"ds-primary\">Connect and open application</button>",
+      "css": ".ds-primary{border:1px solid transparent;border-radius:5px;background:#242d25;color:#fffef8;padding:15px 20px;font:550 .9rem ui-sans-serif,system-ui,sans-serif;width:100%;min-height:48px;transition:background .15s ease-out}.ds-primary:hover{background:#40503a}.ds-primary:focus-visible{outline:3px solid #537028;outline-offset:4px}"
+    },
+    {
+      "name": "Secondary Button", "kind": "button", "refersTo": "button-secondary",
+      "description": "Support action for copy, retry, and preview connection.",
+      "html": "<button class=\"ds-secondary\">Check progress again</button>",
+      "css": ".ds-secondary{background:#e7f58a;color:#242d25;border:1px solid #bccd6c;border-radius:4px;padding:11px 16px;font:.85rem ui-sans-serif,system-ui,sans-serif;min-height:44px}.ds-secondary:hover{background:#dbea79}.ds-secondary:focus-visible{outline:3px solid #537028;outline-offset:4px}"
+    },
+    {
+      "name": "Repository Field", "kind": "input", "refersTo": "input",
+      "description": "Repository URL and share-link field treatment.",
+      "html": "<input class=\"ds-input\" value=\"https://github.com/you/your-app\" aria-label=\"GitHub repository URL\">",
+      "css": ".ds-input{width:100%;min-height:46px;padding:12px;border:1px solid #d7dacf;border-radius:4px;background:white;color:#242d25;font:1rem ui-sans-serif,system-ui,sans-serif;caret-color:#242d25}.ds-input:focus-visible{outline:3px solid #537028;outline-offset:4px}"
+    },
+    {
+      "name": "Provider Choice", "kind": "custom",
+      "description": "Selected compute provider with connection status.",
+      "html": "<label class=\"ds-provider\"><input type=\"radio\" checked><span><strong>GitHub Codespaces</strong><small>Connected · developer</small></span></label>",
+      "css": ".ds-provider{display:flex;gap:13px;align-items:center;border:1px solid #75814c;border-radius:5px;padding:17px 14px;min-height:72px;background:#f2f5e7;color:#242d25;font-family:ui-sans-serif,system-ui,sans-serif}.ds-provider input{accent-color:#354526;width:16px;height:16px}.ds-provider strong{display:block;font-size:.9rem;font-weight:600}.ds-provider small{display:block;color:#60685f;font-size:.8rem;margin-top:5px}.ds-provider:focus-within{outline:3px solid #537028;outline-offset:4px}"
+    },
+    {
+      "name": "Catalogue Row", "kind": "custom",
+      "description": "Prepared application entry with a direct try action.",
+      "html": "<a class=\"ds-app\" href=\"#\"><span><strong>Application name</strong><small>A prepared application, ready for your compute.</small></span><u>Try application</u></a>",
+      "css": ".ds-app{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 4px;border-top:1px solid #d7dacf;border-bottom:1px solid #d7dacf;color:#242d25;text-decoration:none;font-family:ui-sans-serif,system-ui,sans-serif}.ds-app:hover{background:#edf0e4}.ds-app:focus-visible{outline:3px solid #537028;outline-offset:4px}.ds-app strong{display:block;font-size:1.2rem}.ds-app small{display:block;color:#60685f;font-size:.9rem;line-height:1.6;margin-top:6px}.ds-app u{font-size:.85rem;text-underline-offset:4px;white-space:nowrap}"
+    },
+    {
+      "name": "Launch Progress", "kind": "custom",
+      "description": "Live operational state with elapsed time, ordered stages, and detail.",
+      "html": "<section class=\"ds-progress\"><header><strong>Starting your application</strong><span>8.4s</span></header><ol><li class=\"done\">Start your environment</li><li class=\"active\">Receive the prepared app</li><li>Open the product</li></ol><p>The app is already built. PODS is checking it before opening the product.</p></section>",
+      "css": ".ds-progress{border-top:1px solid #d7dacf;padding-top:22px;color:#242d25;font-family:ui-sans-serif,system-ui,sans-serif}.ds-progress header{display:flex;justify-content:space-between;gap:15px}.ds-progress header span,.ds-progress ol,.ds-progress p{color:#60685f;font-size:.85rem}.ds-progress ol{display:grid;gap:10px;line-height:1.5;margin:20px 0}.ds-progress li.done{color:#466529}.ds-progress li.active{color:#242d25;font-weight:600}.ds-progress p{line-height:1.6}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Warm, Dependable Utility",
+    "overview": "PODS is an operational product surface: it helps a visitor choose an application, prepare a repository, or open a prepared product on their own compute. It feels calm and trustworthy through warm paper, dark evergreen text, quiet olive rules, plain language, and familiar controls. The interface stays visibly modest while provider setup and launch state do the substantive work.\n\nOperate mode is the system's primary expression. Catalogue rows lead to an exact prepared application; the developer route turns a repository URL into visible preparation progress and a shareable link; the launch route pairs application facts with provider choice, live status detail, recovery actions, and automatic same-tab navigation to the product. A launched application keeps its own identity. PODS does not restyle every product as the earlier Field Notes sample.",
+    "keyCharacteristics": ["Warm paper and clean inset surfaces with evergreen and olive accents.", "Clear task hierarchy, honest status text, and restrained motion.", "Application context first, provider choice and action second.", "Native-feeling system typography and accessible form controls."],
+    "rules": [
+      { "name": "The Olive Restraint Rule", "body": "Use olive to clarify selection, focus, and secondary action; it should not become a decorative wash.", "section": "colors" },
+      { "name": "The Plain-Language Rule", "body": "Status headings name the current user-visible event; detail text explains what the provider or PODS is doing and how the user can recover.", "section": "typography" },
+      { "name": "The Task-Order Rule", "body": "Responsive collapse must preserve the sequence in which a person understands and completes the task.", "section": "layout" },
+      { "name": "The Flat-by-Default Rule", "body": "Do not add shadows to create hierarchy that borders, spacing, and tonal surfaces already express.", "section": "elevation" }
+    ],
+    "dos": ["Do keep the application, repository, provider, and live state explicit.", "Do preserve recovery actions after provider cancellation, connection expiry, polling interruption, build failure, or launch failure.", "Do distinguish preparation time, provider startup, application health, and browser-visible readiness when presenting timing.", "Do keep mobile controls in task order and retain 44px-or-larger action targets."],
+    "donts": ["Don't describe a terminal, health response, or launcher as the finished product.", "Don't imply browser authorization is complete when the preview-token connection is still the available setup.", "Don't apply the Field Notes document aesthetic to unrelated prepared applications.", "Don't add decorative dashboards, provider logos, shadows, or ornamental status graphics to this quiet operational surface."]
+  }
+}
