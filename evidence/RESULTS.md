@@ -6,6 +6,8 @@ The [browser workflow results](BROWSER-FLOW.md) cover the developer URL form, pr
 
 The developer API stage has [separate results](BUILD-API.md): 28 passing automated tests and a real repository URL submission through the deployed API, prepared in 7,831 ms. The earlier [preparation results](PREPARATION.md) cover automatic detection and build isolation. The original provider measurements below remain historical evidence; the complete real-provider browser journey is still unverified.
 
+The [provider onboarding handoff](OAUTH-SETUP.md) records the fresh Google project and the exact pending Google agreements and GitHub two-factor authentication. Neither provider OAuth client is configured yet.
+
 ## Original prototype measurements
 
 Final sample artifact: `a052c22d49ebd70b9838c4a4022696aecbbacea84287d6be2334766cd84204a1`, 3,854 compressed bytes. Prepared on aswin. No previous PODS source was read or reused.
