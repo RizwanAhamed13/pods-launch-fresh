@@ -11,7 +11,7 @@ import { validateBuildOutput } from '../src/builds.mjs';
 import { detectApplication } from '../src/detect.mjs';
 import { parseRepository } from '../src/repository.mjs';
 import { digest } from '../src/util.mjs';
-import { launchCompose } from '../src/container-runtime.mjs';
+import { launchCompose, containersAlive } from '../src/container-runtime.mjs';
 import { containerRecipe } from '../src/container-recipes.mjs';
 
 test('base64url preparation identities ending in separators produce valid Docker repository names',()=>{
@@ -56,6 +56,30 @@ test('Adonis and Nest preserve framework runtime files even with a direct node s
 const blob=Buffer.from('prepared image test data');
 const image={id:'sha256:'+'a'.repeat(64),sha256:digest(blob),bytes:blob.length};
 function plan(){return {web:'web',port:8000,images:[image],services:{web:{image:image.id,depends_on:{db:'service_healthy'}},db:{image:image.id,volumes:[{name:'records',target:'/var/lib/db',readOnly:false}],healthcheck:{test:['CMD','check'],interval:'2s',timeout:'1s',retries:20}}}};}
+
+test('runtime readiness requires the worker and healthy database even while the web service runs',async()=>{
+  const p=plan();p.services.worker={image:image.id};
+  const base=Object.keys(p.services).map(service=>({service,status:'running',running:true,...(service==='db'?{health:'healthy'}:{})}));
+  const check=async containers=>containersAlive(p,['compose'],async args=>args[1]==='ps'?(containers.length?'web\ndb\nworker':''):containers.map(c=>JSON.stringify(c)).join('\n'));
+  assert.equal(await check(base),true);
+  for(const [name,change] of [['worker',{status:'exited',running:false,exitCode:0}],['db',{health:'unhealthy'}],['db',{health:'starting'}],['worker',{paused:true}],['worker',{restarting:true}],['web',{status:'exited',running:false,exitCode:0}]]){
+    const states=structuredClone(base);Object.assign(states.find(c=>c.service===name),change);
+    assert.equal(await check(states),false,`${name}: ${JSON.stringify(change)}`);
+  }
+  assert.equal(await check(base.slice(0,2)),false);assert.equal(await check([]),false);
+  const duplicate=structuredClone(base[2]);duplicate.status='dead';assert.equal(await check([...base,duplicate]),false);
+});
+
+test('successful one-time dependencies stay valid but failed migrations and stopped web services fail',async()=>{
+  const p=plan();p.services.web.depends_on.migrate='service_completed_successfully';p.services.migrate={image:image.id};
+  const states=[{service:'web',status:'running',running:true},{service:'db',status:'running',running:true,health:'healthy'},{service:'migrate',status:'exited',running:false,exitCode:0}];
+  const check=()=>containersAlive(p,['compose'],async args=>args[1]==='ps'?'web\ndb\nmigrate':states.map(c=>JSON.stringify(c)).join('\n'));
+  assert.equal(await check(),true);
+  states[2].exitCode=1;assert.equal(await check(),false);
+  states[2].exitCode=0;states[2].oomKilled=true;assert.equal(await check(),false);
+  states[2].oomKilled=false;p.services.migrate.depends_on={web:'service_completed_successfully'};
+  Object.assign(states[0],{status:'exited',running:false,exitCode:0});assert.equal(await check(),false);
+});
 
 test('stale resumed container task retries once without rebuilding; other application failures do not retry',async()=>{
   const events=[],timings={};let attempts=0;

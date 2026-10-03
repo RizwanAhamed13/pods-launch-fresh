@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "scope": "isolated QA; existing worker-redis artifact images with one-time migration and fault-injectable database healthcheck",
+  "results": [
+    {
+      "fault": "stopped-worker",
+      "webStillRunning": true,
+      "pageStatus": 200,
+      "migration": "exited/0",
+      "heartbeatAfterMigration": true,
+      "job": {
+        "id": "4798a02671d84e7795602e5223da8e4a",
+        "result": "SERVICE FAULT STOPPED-WORKER",
+        "state": "complete",
+        "text": "service fault stopped-worker"
+      },
+      "persistedPriorJob": null,
+      "failureMs": 2576,
+      "cleanupMs": 6867,
+      "error": "An application service stopped or became unhealthy. Launch it again.",
+      "allServicesStopped": true
+    },
+    {
+      "fault": "unhealthy-database",
+      "webStillRunning": true,
+      "pageStatus": 200,
+      "migration": "exited/0",
+      "heartbeatAfterMigration": true,
+      "job": {
+        "id": "58ff4136d83b48c7832bc57252a144f6",
+        "result": "SERVICE FAULT UNHEALTHY-DATABASE",
+        "state": "complete",
+        "text": "service fault unhealthy-database"
+      },
+      "persistedPriorJob": {
+        "id": "4798a02671d84e7795602e5223da8e4a",
+        "result": "SERVICE FAULT STOPPED-WORKER",
+        "state": "complete",
+        "text": "service fault stopped-worker"
+      },
+      "failureMs": 2564,
+      "cleanupMs": 17933,
+      "error": "An application service stopped or became unhealthy. Launch it again.",
+      "allServicesStopped": true
+    }
+  ],
+  "testedAt": "2026-10-03T17:00:00Z",
+  "initialAttempt": "container-liveness-initial.json"
+}

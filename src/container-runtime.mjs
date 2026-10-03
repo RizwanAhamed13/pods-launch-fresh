@@ -23,6 +23,25 @@ export async function launchCompose(args, stop, timings, execute = docker) {
   }
 }
 
+export async function containersAlive(plan, args, execute = docker) {
+  const ids = await execute([...args,'ps','--all','--quiet']);
+  if (!ids.trim()) return false;
+  // Read bounded state only: full inspect output can include secrets and large health logs.
+  const format = '{"service":{{json (index .Config.Labels "com.docker.compose.service")}},"status":{{json .State.Status}},"running":{{json .State.Running}},"paused":{{json .State.Paused}},"restarting":{{json .State.Restarting}},"exitCode":{{json .State.ExitCode}},"oomKilled":{{json .State.OOMKilled}},"health":{{if .State.Health}}{{json .State.Health.Status}}{{else}}null{{end}}}';
+  const containers = (await execute(['inspect','--format',format,...ids.trim().split(/\s+/)])).trim().split('\n').map(line => JSON.parse(line));
+  const completed = new Set(Object.values(plan.services).flatMap(service =>
+    Object.entries(service.depends_on || {}).filter(([,condition]) => condition === 'service_completed_successfully').map(([name]) => name)));
+  return Object.entries(plan.services).every(([name,service]) => {
+    const instances = containers.filter(container => container.service === name);
+    return instances.length > 0 && instances.every(state => {
+      if (state.paused || state.restarting) return false;
+      if (state.status === 'exited') return name !== plan.web && completed.has(name) && state.exitCode === 0 && !state.oomKilled;
+      if (state.status !== 'running' || !state.running) return false;
+      return state.health ? state.health === 'healthy' : !service.healthcheck;
+    });
+  });
+}
+
 export async function startContainers(plan, config, root, runDir, timings) {
   await docker(['info','--format','{{.OSType}}/{{.Architecture}}']).then(platform => {
     if (!/^linux\/(?:x86_64|amd64)$/.test(platform)) throw new Error('This artifact requires a Linux amd64 Docker engine.');
@@ -63,10 +82,6 @@ export async function startContainers(plan, config, root, runDir, timings) {
   const stop = () => docker([...args,'down','--timeout','10','--remove-orphans'], {timeout:60000});
   try {
     await launchCompose(args,stop,timings);
-    return { stop, async alive() {
-      const ids = await docker([...args,'ps','--quiet',plan.web]);
-      if (!ids) return false;
-      return (await docker(['inspect','--format','{{.State.Running}}',...ids.split('\n')])).split('\n').every(x => x === 'true');
-    }};
+    return { stop, alive: () => containersAlive(plan,args) };
   } catch (e) { await stop().catch(() => {}); throw e; }
 }

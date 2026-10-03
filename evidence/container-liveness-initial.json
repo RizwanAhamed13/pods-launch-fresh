@@ -1,0 +1,24 @@
+{
+  "passed": false,
+  "results": [
+    {
+      "fault": "stopped-worker",
+      "webStillRunning": true,
+      "pageStatus": 200,
+      "migration": "exited/0",
+      "heartbeatAfterMigration": true,
+      "job": {
+        "id": "9f0c05f535d94faaa5ed745b204b7a7e",
+        "result": "SERVICE FAULT STOPPED-WORKER",
+        "state": "complete",
+        "text": "service fault stopped-worker"
+      },
+      "persistedPriorJob": null,
+      "failureMs": 7566,
+      "error": "An application service stopped or became unhealthy. Launch it again.",
+      "allServicesStopped": true
+    }
+  ],
+  "scope": "Initial isolated fault test before immediate failure reporting fix",
+  "failure": "Unhealthy-database callback had not arrived within the 15-second observation window because reporting waited for graceful service shutdown."
+}

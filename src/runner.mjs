@@ -109,6 +109,7 @@ export async function run(config, { root = storageRoot(config.provider), fallbac
       try { const res = await fetch(`http://127.0.0.1:${port}${artifact.healthPath}`, {signal:AbortSignal.timeout(1000)}); await res.body?.cancel(); if (res.ok) { healthy = true; break; } } catch {}
     }
     if (!healthy) throw new Error('Application health check timed out');
+    if (containers && !await containers.alive()) throw new Error('An application service stopped or became unhealthy before launch completed.');
     timings.runtimeReadyMs = Math.round(performance.now() - start);
     await report('ready', { previewUrl: config.previewUrl });
     await writeFile(join(root, `${config.id}.json`), JSON.stringify({id:config.id,pid:child?.pid,runnerPid:process.pid,timings,readyAt:Date.now()}), {mode:0o600});
@@ -117,7 +118,12 @@ export async function run(config, { root = storageRoot(config.provider), fallbac
       if (checking || stopped) return; checking = true;
       try {
         if (Date.now() >= config.expiresAt) return await stop();
-        if ((child && (child.exitCode !== null || child.signalCode)) || (containers && !await containers.alive())) { clearInterval(timer); process.off('SIGTERM',stop); process.off('SIGINT',stop); await containers?.stop(); stopped = true; await report('failed', {error:'The application stopped. Launch it again.'}); return; }
+        if ((child && (child.exitCode !== null || child.signalCode)) || (containers && !await containers.alive())) {
+          clearInterval(timer); stopped = true; process.off('SIGTERM',stop); process.off('SIGINT',stop);
+          try { await report('failed', {error:'An application service stopped or became unhealthy. Launch it again.'}); }
+          finally { await containers?.stop(); if (runDir) await rm(runDir,{recursive:true,force:true}); }
+          return;
+        }
         const reply = await report('heartbeat'); if (reply.action === 'stop') await stop();
       } catch {} finally { checking = false; }
     }, 3000);
