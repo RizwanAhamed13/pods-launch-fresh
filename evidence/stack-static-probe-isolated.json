@@ -1,0 +1,38 @@
+[
+  {
+    "fixture": "react",
+    "productMount": true,
+    "fixtureCode": true,
+    "scripts": [
+      {
+        "path": "/assets/index-CH49u48Q.js",
+        "status": 200,
+        "contentType": "text/javascript; charset=utf-8",
+        "bytes": 219983
+      }
+    ],
+    "passed": true,
+    "scope": "Actual isolated React artifact through SSH: HTML mount and compiled entry validation; not native provider evidence."
+  },
+  {
+    "fixture": "angular",
+    "passed": false,
+    "error": "Initial probe incorrectly required hashed Angular filenames; the actual compiled artifact serves main.js.",
+    "scope": "QA probe assumption failure, not an application failure."
+  },
+  {
+    "fixture": "angular",
+    "productMount": true,
+    "fixtureCode": true,
+    "scripts": [
+      {
+        "path": "/main.js",
+        "status": 200,
+        "contentType": "text/javascript; charset=utf-8",
+        "bytes": 97198
+      }
+    ],
+    "passed": true,
+    "scope": "Actual isolated Angular artifact through SSH: HTML mount and compiled entry validation; not native provider evidence."
+  }
+]

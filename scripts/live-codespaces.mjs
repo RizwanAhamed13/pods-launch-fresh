@@ -6,6 +6,7 @@ import { promisify } from 'node:util';
 import { probeBunWebSocket } from './probe-websocket.mjs';
 import { ssrProbeCommand } from './probe-ssr.mjs';
 import { mysqlRuntimeProbeCommand } from './probe-mysql-runtime.mjs';
+import { staticProbeCommand } from './probe-static.mjs';
 const exec = promisify(execFile);
 const provider=process.argv[3]||'github';if(!['github','google'].includes(provider))throw new Error('Unknown provider');
 const origin=process.argv[2];if(!origin)throw new Error('Supply the PODS URL');
@@ -21,9 +22,12 @@ const workerCheck=process.env.PODS_WORKER_CHECK==='1';
 const websocketCheck=process.env.PODS_WEBSOCKET_CHECK==='1';
 const ssrCheck=process.env.PODS_SSR_CHECK==='1';
 const ssrFixture=process.env.PODS_SSR_FIXTURE||'nuxt';
+const staticCheck=process.env.PODS_STATIC_CHECK==='1';
+const staticFixture=process.env.PODS_STATIC_FIXTURE||'react';
+if(!['react','angular'].includes(staticFixture)||(!staticCheck&&process.env.PODS_STATIC_FIXTURE))throw new Error('Static fixture requires an enabled React or Angular check');
 if(!['nuxt','next','sveltekit'].includes(ssrFixture)||(!ssrCheck&&process.env.PODS_SSR_FIXTURE))throw new Error('SSR fixture requires an enabled Nuxt, Next or SvelteKit SSR check');
-if([counterCheck,workerCheck,websocketCheck,ssrCheck].filter(Boolean).length>1)throw new Error('Choose one fixture check: counter, worker, WebSocket or SSR');
-if((counterCheck||workerCheck||websocketCheck||ssrCheck)&&(provider!=='github'||process.env.PODS_SINGLE_LAUNCH==='1'))throw new Error('Fixture checking requires two Codespaces launches');
+if([counterCheck,workerCheck,websocketCheck,ssrCheck,staticCheck].filter(Boolean).length>1)throw new Error('Choose one fixture check: counter, worker, WebSocket, SSR or static');
+if((counterCheck||workerCheck||websocketCheck||ssrCheck||staticCheck)&&(provider!=='github'||process.env.PODS_SINGLE_LAUNCH==='1'))throw new Error('Fixture checking requires two Codespaces launches');
 let token='';for await(const b of process.stdin)token+=b;token=token.trim();
 const initial=await fetch(origin+'/api/me'),cookie=initial.headers.get('set-cookie').split(';')[0],me=await initial.json();
 async function api(path,method='GET',body){const r=await fetch(origin+path,{method,headers:{Cookie:cookie,'X-Pods-CSRF':me.csrf,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(30000)});const d=await r.json();if(!r.ok)throw new Error(d.error);return d;}
@@ -31,6 +35,7 @@ const appId=process.argv[4]||me.apps[0]?.id;
 if(!me.apps.some(app=>app.id===appId))throw new Error('Prepared application not found');
 const selectedApp=me.apps.find(app=>app.id===appId);
 if(mysqlRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-mysql')throw new Error('MySQL runtime inspection is restricted to its explicit fixture');
+if(staticCheck&&selectedApp.source?.folder!=='examples/stacks/'+staticFixture)throw new Error('Static inspection is restricted to its explicit fixture');
 const evidencePath=process.env.PODS_EVIDENCE_FILE||`evidence/${provider}.json`;
 await api('/api/connections/'+provider,'POST',{token});token='';
 const results=[];
@@ -109,6 +114,7 @@ try {
   if(workerCheck){result.workerCheck=await probeWorker(launch.environment);await persist();if(!result.workerCheck.passed)throw new Error('Worker completion/relaunch persistence failed');}
   if(websocketCheck){result.websocketCheck=await probeWebSocket(launch.environment);await persist();if(!result.websocketCheck.passed)throw new Error('WebSocket exchange/relaunch persistence failed');}
   if(ssrCheck){result.ssrCheck=await probeEnvironment(launch.environment,ssrProbeCommand(ssrFixture));await persist();if(!result.ssrCheck.passed)throw new Error('SSR product/client assets failed');}
+  if(staticCheck){result.staticCheck=await probeEnvironment(launch.environment,staticProbeCommand(staticFixture));await persist();if(!result.staticCheck.passed)throw new Error('Static product/client assets failed');}
   if (process.env.PODS_KEEP_LAST === '1' && name === scenarios.at(-1)) { console.log('Live app left running until its 30-minute deadline: '+launch.previewUrl); break; }
   result.statusAfterStop=await stopLaunch(launch.id);await persist();
   currentLaunch=null;
