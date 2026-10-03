@@ -24,6 +24,8 @@ export function validateBuildOutput(repository, result, bytes, blobs = []) {
       !/^(?:text\/html|application\/json)(?:;|$)/i.test(result.verification?.contentType || '')) {
     throw new Error('Build output did not include a valid product document verification.');
   }
+  const api=/^application\/json/i.test(result.verification.contentType), docs=result.verification.apiDocumentation;
+  if(docs!==undefined && (!api||docs?.path!=='/docs'||docs?.schemaPath!=='/openapi.json'||!/^3\.\d+\.\d+$/.test(docs?.schemaVersion)||docs?.status!==200||docs?.contentType!=='text/html'))throw new Error('Build output did not include valid API documentation verification.');
   const images=artifact.containers?.images || [];
   if((artifact.format===2)!==(result.applicationType==='container'))throw new Error('Artifact runtime mismatch');
   if(images.length!==blobs.length || images.some(i=>!blobs.some(b=>b.sha256===i.sha256&&b.bytes.length===i.bytes&&digest(b.bytes)===i.sha256)))throw new Error('Prepared image integrity check failed');
@@ -36,9 +38,9 @@ export function validateBuildOutput(repository, result, bytes, blobs = []) {
     sha256: result.sha256, bytes: bytes.length, files: artifact.files?.length || 0,
     healthPath: artifact.healthPath, applicationType: result.applicationType, runtime: artifact.format===2?'docker-linux-amd64':'node22+',
     dataKey:`repo-${repository.key}`, ...(images.length?{images} : {}),
-    productType: /^application\/json/i.test(result.verification.contentType)?'api':'web',
+    productType: api?'api':'web', productPath:docs?'/docs':'/',
     source: { url: repository.url, folder: repository.folder, revision },
-    verification: { documentPath: '/', status: 200, title: clean(result.verification.title, 150) },
+    verification: { documentPath: '/', status: 200, title: clean(docs?.title||result.verification.title, 150), ...(docs?{apiDocumentation:{path:'/docs',schemaPath:'/openapi.json',schemaVersion:docs.schemaVersion}}:{}) },
     preparedAt: new Date().toISOString(),
   };
 }

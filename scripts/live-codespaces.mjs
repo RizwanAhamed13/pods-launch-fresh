@@ -10,6 +10,8 @@ const provider=process.argv[3]||'github';if(!['github','google'].includes(provid
 const origin=process.argv[2];if(!origin)throw new Error('Supply the PODS URL');
 // Opt-in checks only for our fixtures; requires gh signed in to the same account.
 const counterCheck=process.env.PODS_COUNTER_CHECK==='1';
+const apiProduct=process.env.PODS_API_PRODUCT==='1';
+if(apiProduct&&!counterCheck)throw new Error('API product checking requires the counter fixture check');
 const workerCheck=process.env.PODS_WORKER_CHECK==='1';
 const websocketCheck=process.env.PODS_WEBSOCKET_CHECK==='1';
 const ssrCheck=process.env.PODS_SSR_CHECK==='1';
@@ -34,10 +36,11 @@ async function probeEnvironment(environment,code) {
 async function probeCounter(environment) {
   const code=`const base='http://127.0.0.1:8080';
     async function read(path,method='GET'){const r=await fetch(base+path,{method,signal:AbortSignal.timeout(15000)});if(!r.ok)throw new Error('Counter HTTP '+r.status);return r;}
-    const page=await(await read('/')).text(),before=await(await read('/api/count')).json(),after=await(await read('/api/count','POST')).json(),again=await(await read('/api/count')).json();
-    console.log(JSON.stringify({productDocument:/<(html|title|h1)\\b/i.test(page),before:before.count,afterWrite:after.count,afterRead:again.count}));`;
+    const response=await read('/'),contentType=response.headers.get('content-type')||'',page=await response.text(),before=await(await read('/api/count')).json(),after=await(await read('/api/count','POST')).json(),again=await(await read('/api/count')).json();
+    let api=null;if(${apiProduct}){const initial=JSON.parse(page),latest=await(await read('/')).json();api={name:initial.name,before:initial.count,afterWrite:latest.count,passed:contentType.toLowerCase().startsWith('application/json')&&initial.name==='Persistent counter API'&&initial.count===before.count&&latest.count===after.count};}
+    console.log(JSON.stringify({productDocument:/<(html|title|h1)\\b/i.test(page),api,before:before.count,afterWrite:after.count,afterRead:again.count}));`;
   const check=await probeEnvironment(environment,code);
-  check.passed=check.productDocument&&Number.isInteger(check.before)&&check.afterWrite===check.before+1&&check.afterRead===check.afterWrite&&(previousCount===undefined||check.before===previousCount);
+  check.passed=(apiProduct?check.api?.passed:check.productDocument)&&Number.isInteger(check.before)&&check.afterWrite===check.before+1&&check.afterRead===check.afterWrite&&(previousCount===undefined||check.before===previousCount);
   if(previousCount!==undefined)check.expectedAfterRelaunch=previousCount;
   previousCount=check.afterWrite;
   return check;

@@ -9,6 +9,7 @@ import { detectApplication } from '../src/detect.mjs';
 import { parseRepository } from '../src/repository.mjs';
 import { prepare } from './prepare.mjs';
 import { run } from '../src/runner.mjs';
+import { discoverApiDocumentation } from './api-documentation.mjs';
 import { command, uid, sleep } from '../src/util.mjs';
 
 const exists = path => lstat(path).then(() => true, e => { if (e.code === 'ENOENT') return false; throw e; });
@@ -85,10 +86,14 @@ export async function buildSource(source, output, overrides = {}) {
       document += Buffer.from(chunk).toString('utf8');
       if (document.length > 128 * 1024) break;
     }
-    if (contentType.includes('application/json')) { JSON.parse(document); manifest.productType='api'; }
+    if (contentType.toLowerCase().includes('application/json')) { JSON.parse(document); manifest.productType='api'; }
     else if (!/<(?:html|!doctype\s+html|head|body)(?:\s|>)/i.test(document)) throw new Error('The application did not return an HTML product document.');
     const title = /<title[^>]*>([^<]*)<\/title>/i.exec(document)?.[1]?.slice(0, 150) || manifest.name;
     manifest.verification = { documentPath: '/', status: page.status, contentType, title, checkedAt: new Date().toISOString() };
+    if(manifest.productType==='api') {
+      const docs=await discoverApiDocumentation('http://127.0.0.1:8080');
+      if(docs){manifest.verification.apiDocumentation=docs;manifest.productPath=docs.path;}
+    }
     await copyFile(archive, join(output, 'artifact.gz'));
     if (manifest.images) {
       await mkdir(join(output,'images'),{recursive:true});

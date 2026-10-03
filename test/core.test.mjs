@@ -81,6 +81,24 @@ test('unwritable home falls back to session storage and reports its durability',
  assert.equal(running.storageMode,'ephemeral');assert.ok(running.dataDir.startsWith(join(root,'temporary')));assert.equal(events.at(-1).storageMode,'ephemeral');const reply=await(await fetch('http://127.0.0.1:18084/api/notes')).json();assert.equal(reply.storageMode,'ephemeral');
  }finally{await running?.stop();await close(s);await chmod(locked,0o700);await sleep(100);await rm(root,{recursive:true,force:true});}
 });
+
+test('API launch opens verified documentation on the provider host and rejects arbitrary product paths',async()=>{
+ const root=await temp(),manifest=await prepare('examples/notes',root);let config;
+ const provider={validate:async()=>({name:'test-api-user'}),launch:async(token,c,update)=>{config=c;await update({status:'delivering',providerReadyAt:Date.now(),previewUrl:'https://private-8080.app.github.dev/'});return {previewUrl:'https://private-8080.app.github.dev/'};}};
+ const {server}=await createApp({data:root,secret:'ad'.repeat(32),providers:{github:provider}}),origin=await listen(server);
+ const initial=await fetch(origin+'/api/me'),cookie=initial.headers.get('set-cookie').split(';')[0],me=await initial.json();
+ const request=(path,body)=>fetch(origin+path,{method:body===undefined?'GET':'POST',headers:{Cookie:cookie,'X-Pods-CSRF':me.csrf,'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
+ try{
+  assert.equal((await request('/api/connections/github',{token:'b'.repeat(30)})).status,200);
+  for(const productPath of ['/docs','//evil.example','/docs?secret=bad','/']){
+   await writeFile(join(root,'artifacts',manifest.id+'.json'),JSON.stringify({...manifest,productPath}));
+   const launch=await(await request('/api/launches',{provider:'github',appId:manifest.id})).json();
+   let current;for(let i=0;i<30;i++){current=await(await request('/api/launches/'+launch.id)).json();if(current.previewUrl)break;await sleep(10);}
+   assert.equal(current.previewUrl,'https://private-8080.app.github.dev'+(productPath==='/docs'?'/docs':'/'));
+   assert.equal((await fetch(origin+'/api/agent/'+launch.id,{method:'POST',headers:{Authorization:'Bearer '+config.token},body:JSON.stringify({status:'stopped'})})).status,200);
+  }
+ }finally{await close(server);await rm(root,{recursive:true,force:true});}
+});
 test('one compute account cannot be launched concurrently from separate browser sessions',async()=>{
  const root=await temp();await prepare('examples/notes',root);const configs=[];
  const provider={validate:async token=>({id:token[0],name:'same-display-name'}),launch:async(token,config,update)=>{configs.push(config);await update({status:'delivering',providerReadyAt:Date.now()});return{};}};

@@ -27,7 +27,7 @@ const browserServer=createServer(async(req,res)=>{
       const result=results.find(r=>r.stack===url.searchParams.get('stack'));if(!result)throw new Error('Unknown stack');
       await running?.stop();active=result;
       running=await run({id:uid(),appId:result.stack,dataKey:'matrix-'+result.stack,sha256:result.sha256,artifactUrl:origin+'/artifact',callbackUrl:origin+'/callback',token:'qa',port:productPort,expiresAt:Date.now()+1800000},{root:'/output/'+result.stack+'/compute'});
-      res.writeHead(302,{Location:'/'});res.end();
+      res.writeHead(302,{Location:result.productPath==='/docs'?'/docs':'/'});res.end();
     }catch(e){res.statusCode=500;res.end(e.message);}finally{selecting=false;}return;
   }
   if(!running){res.writeHead(302,{Location:'/_pods'});return res.end();}

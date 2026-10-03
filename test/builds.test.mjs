@@ -12,6 +12,7 @@ import { parseRepository } from '../src/repository.mjs';
 import { Store } from '../src/store.mjs';
 import { createApp } from '../src/server.mjs';
 import { digest, sleep } from '../src/util.mjs';
+import { discoverApiDocumentation } from '../scripts/api-documentation.mjs';
 
 const temp = () => mkdtemp(join(tmpdir(), 'pods-build-'));
 const repository = parseRepository('https://github.com/example/product');
@@ -45,6 +46,28 @@ test('container output must match repository, integrity and HTML verification; p
     { verification: { ...result.manifest.verification, status: 500 } },
   ]) assert.throws(() => validateBuildOutput(repository, { ...result.manifest, ...mod }, result.bytes));
   assert.equal(validateBuildOutput(repository,{...result.manifest,verification:{...result.manifest.verification,contentType:'application/json'}},result.bytes).productType,'api');
+});
+
+test('API documentation discovery requires a bounded local OpenAPI schema and its existing UI',async t=>{
+  let schema={openapi:'3.1.0',paths:{'/api/count':{get:{}}}},document='<html><title>Counter API</title><script>SwaggerUIBundle({url: "/openapi.json"})</script></html>',redirect=false;
+  const server=createServer((req,res)=>{if(req.url==='/openapi.json'){if(redirect){res.writeHead(302,{Location:'/unexpected'});return res.end();}res.setHeader('Content-Type','application/json');return res.end(JSON.stringify(schema));}res.setHeader('Content-Type','text/html');res.end(document);});
+  server.listen(0,'127.0.0.1');await once(server,'listening');t.after(()=>new Promise(resolve=>server.close(resolve)));
+  const origin='http://127.0.0.1:'+server.address().port;
+  assert.deepEqual(await discoverApiDocumentation(origin),{path:'/docs',schemaPath:'/openapi.json',schemaVersion:'3.1.0',status:200,contentType:'text/html',title:'Counter API'});
+  for(const bad of [null,{openapi:'3.1.0',paths:[]},{openapi:'3.1.0',paths:{}},{openapi:'no',paths:{'/':{}}},{openapi:'3.1.0',paths:{'/':{}},padding:'x'.repeat(512*1024)}]){schema=bad;assert.equal(await discoverApiDocumentation(origin),null);}
+  schema={openapi:'3.1.0',paths:{'/':{}}};
+  for(const bad of ['<html>unrelated page</html>','<html>SwaggerUIBundle({url:"https://elsewhere.example/openapi.json"})</html>','x'.repeat(256*1024+1)]){document=bad;assert.equal(await discoverApiDocumentation(origin),null);}
+  redirect=true;assert.equal(await discoverApiDocumentation(origin),null);
+});
+
+test('published API entrypoints are reconstructed from verified local documentation',()=>{
+  const result=output(),docs={path:'/docs',schemaPath:'/openapi.json',schemaVersion:'3.1.0',status:200,contentType:'text/html',title:'Counter API'};
+  const verification={...result.manifest.verification,contentType:'application/json',apiDocumentation:docs};
+  const publish=v=>validateBuildOutput(repository,{...result.manifest,productPath:'https://evil.example',verification:v},result.bytes);
+  const published=publish(verification);assert.equal(published.productPath,'/docs');assert.equal(published.productType,'api');assert.equal(published.verification.title,'Counter API');
+  for(const change of [{path:'//evil.example'},{path:'/docs?token=bad'},{schemaPath:'https://evil.example'},{schemaVersion:'bad'},{status:302},{contentType:'application/json'}])assert.throws(()=>publish({...verification,apiDocumentation:{...docs,...change}}),/documentation verification/);
+  assert.throws(()=>publish({...verification,contentType:'text/html'}),/documentation verification/);
+  assert.equal(publish({...verification,apiDocumentation:undefined}).productPath,'/');
 });
 
 test('build queue serializes work, deduplicates retries, hides ownership and publishes immutable launch versions', async () => {

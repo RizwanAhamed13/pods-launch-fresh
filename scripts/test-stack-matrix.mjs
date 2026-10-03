@@ -28,7 +28,8 @@ for(const name of names){
     await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+server.address().port;
     const launch=()=>run({id:uid(),appId:name,dataKey:'matrix-'+name,sha256:manifest.sha256,artifactUrl:origin+'/artifact',callbackUrl:origin+'/callback',token:'fixture',port:8080,expiresAt:Date.now()+300000},{root:join(output,'compute')});
     running=await launch();const first={...running.timings};
-    const page=await fetch('http://127.0.0.1:8080/').then(r=>r.text());
+    const response=await fetch('http://127.0.0.1:8080/'),page=await response.text();
+    if(manifest.productType==='api' && (!response.headers.get('content-type')?.includes('application/json') || !Number.isInteger(JSON.parse(page).count)))throw new Error('API counter product was not returned');
     let persistence=null;
     const before=await fetch('http://127.0.0.1:8080/api/count');
     if(name==='worker-redis'){
@@ -61,7 +62,7 @@ for(const name of names){
     }
     let websocket=null;
     if(name==='bun')websocket=await new Promise((ok,fail)=>{const socket=new WebSocket('ws://127.0.0.1:8080/ws'),timer=setTimeout(()=>{socket.close();fail(new Error('WebSocket reply timed out'));},5000);socket.onopen=()=>socket.send('ping');socket.onmessage=e=>{clearTimeout(timer);socket.close();e.data==='pong'?ok('ping/pong passed'):fail(new Error('WebSocket reply mismatch'));};socket.onerror=()=>{clearTimeout(timer);fail(new Error('WebSocket connection failed'));};});
-    const result={stack:name,status:'passed',scope:'real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately',buildMs,first,repeat:running.timings,persistence,websocket,htmlBytes:page.length,runtime:manifest.runtime,images:manifest.images,sha256:manifest.sha256};
+    const result={stack:name,status:'passed',scope:'real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately',buildMs,first,repeat:running.timings,persistence,websocket,productType:manifest.productType||'web',productPath:manifest.productPath||'/',responseBytes:Buffer.byteLength(page),...(manifest.productType==='api'?{}:{htmlBytes:page.length}),runtime:manifest.runtime,images:manifest.images,sha256:manifest.sha256};
     evidence.push(result);await writeFile(join(output,'manifest.json'),JSON.stringify(manifest,null,2));console.log(JSON.stringify(result));
   }catch(e){evidence.push({stack:name,status:'failed',error:e.message});console.error(name,e.message);process.exitCode=1;}
   finally{await running?.stop();if(server)await new Promise(r=>server.close(r));await writeFile(evidenceFile+'.tmp',JSON.stringify(evidence,null,2));await rename(evidenceFile+'.tmp',evidenceFile);}
