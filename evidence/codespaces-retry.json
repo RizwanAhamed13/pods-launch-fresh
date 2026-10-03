@@ -1,0 +1,34 @@
+{
+  "recordedAt": "2026-10-03T21:56:03.860739+00:00",
+  "problem": "A transient Codespaces discovery/state read immediately failed a launch; a resume request could be accepted despite an error response. Earlier upstream failures do not retain their exact HTTP status.",
+  "before": {
+    "selectedRegressionTests": 4,
+    "failed": 4
+  },
+  "after": {
+    "localTests": 92,
+    "failed": 0
+  },
+  "behavior": {
+    "getMaximumAttempts": 3,
+    "retryHttpStatuses": [
+      500,
+      502,
+      503,
+      504
+    ],
+    "retryTimeouts": true,
+    "retryKnownConnectionFailures": true,
+    "retryCreateOrResumeMutations": false,
+    "uncertainResume": "Observe the same named environment within its provisioning deadline; do not provision an empty replacement.",
+    "authQuotaFailures": "No retry or reconciliation for 401/403/429."
+  },
+  "externalRecovery": {
+    "savedCodespaceObservedAvailable": true,
+    "evidence": "preview-isolation-spring-codespaces-recovered.json",
+    "runnerRevision": "8b3dd9e",
+    "scope": "Passed before the retry code was deployed; demonstrates unchanged data in the original environment, not that the new retry logic caused provider recovery.",
+    "privatePortConfirmed": 28486
+  },
+  "validationScope": "Provider failures are injected in deterministic tests. Live healthy provider acceptance is separate."
+}

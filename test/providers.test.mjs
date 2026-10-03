@@ -8,6 +8,44 @@ import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
 // Provider orchestration tests isolate the separately tested tunnel registration.
 const providers=options=>realProviders({preparePreview:async()=>{},...options});
+test('transient Codespaces discovery and polling errors recover within one launch without duplicate mutations',async()=>{
+ const calls=[],saved={name:'saved-data',display_name:'PODS launch containers',repository:{full_name:'owner/runtime'}},reads=new Map();let delivered=0;
+ const adapter=providers({repo:'owner/runtime',pollMs:1,origin:'https://pods.example',runnerSha:'a'.repeat(64),
+  api:async(path,token,options)=>{const method=options?.method||'GET';calls.push([method,path]);if(method==='POST')return {...saved,state:'Starting'};const n=(reads.get(path)||0)+1;reads.set(path,n);if(n===1||n===3)throw Object.assign(new Error('Temporary gateway failure'),{status:503});return {...saved,state:n===2?'Shutdown':'Available'};},
+  exec:async()=>{delivered++;}});
+ const result=await adapter.github.launch('token',{containerRuntime:true,preferredEnvironment:'saved-data'},()=>{});
+ assert.equal(result.environment,'saved-data');assert.equal(delivered,1);
+ assert.deepEqual(calls.filter(([method])=>method==='POST'),[['POST','/user/codespaces/saved-data/start']]);
+ assert.equal(calls.filter(([method])=>method==='GET').length,4);
+});
+test('uncertain resume is reconciled against the same Codespace without repeating start or creating another',async()=>{
+ for(const failure of [Object.assign(new Error('Gateway timeout'),{status:504}),Object.assign(new Error('Network timeout'),{name:'TimeoutError'})]){
+  let reads=0,starts=0,delivered=0;const seen=[];
+  const saved={name:'saved-data',display_name:'PODS launch',repository:{full_name:'owner/runtime'}};
+  const adapter=providers({repo:'owner/runtime',pollMs:1,origin:'https://pods.example',runnerSha:'a'.repeat(64),api:async(path,token,options)=>{seen.push(path);if(options?.method==='POST'){starts++;throw failure;}reads++;return {...saved,state:reads<=2?'Shutdown':reads===3?'Starting':'Available'};},exec:async()=>{delivered++;}});
+  const result=await adapter.github.launch('token',{preferredEnvironment:'saved-data'},()=>{});
+  assert.equal(result.environment,'saved-data');assert.equal(starts,1);assert.equal(delivered,1);assert.equal(reads,4);assert.ok(seen.every(path=>path.startsWith('/user/codespaces/saved-data')));
+ }
+});
+test('persistent reads and terminal provider errors are bounded; uncertain creation is never repeated',async()=>{
+ for(const status of [401,403,404,422,429,500,502,503,504]){
+  let calls=0,delivered=0;const adapter=providers({repo:'owner/runtime',pollMs:1,api:async()=>{calls++;throw Object.assign(new Error('Provider error'),{status});},exec:async()=>{delivered++;}});
+  await assert.rejects(adapter.github.launch('token',{},()=>{}),/Provider error/);
+  assert.equal(calls,status>=500?3:1);assert.equal(delivered,0);
+ }
+ let creates=0;const adapter=providers({repo:'owner/runtime',pollMs:1,api:async(path,token,options)=>{if(options?.method==='POST'){creates++;throw Object.assign(new Error('Uncertain create'),{status:504});}return {codespaces:[]};},exec:async()=>assert.fail('No confirmed environment')});
+ await assert.rejects(adapter.github.launch('token',{},()=>{}),/Uncertain create/);assert.equal(creates,1);
+});
+test('an unacknowledged resume reaches its deadline without repeating the mutation or dispatching an app',async()=>{
+ let starts=0;const adapter=providers({repo:'owner/runtime',pollMs:1,provisionMs:8,api:async(path,token,options)=>{if(options?.method==='POST'){starts++;throw Object.assign(new Error('Temporary failure'),{status:503});}return {name:'saved-data',display_name:'PODS launch',repository:{full_name:'owner/runtime'},state:'Shutdown'};},exec:async()=>assert.fail('Unavailable compute must not receive a runner')});
+ await assert.rejects(adapter.github.launch('token',{preferredEnvironment:'saved-data'},()=>{}),/provisioning.*deadline/);assert.equal(starts,1);
+});
+test('resume authorization and quota failures are surfaced immediately without reconciliation or duplicate requests',async()=>{
+ for(const status of [401,403,429]){
+  const methods=[];const adapter=providers({repo:'owner/runtime',pollMs:1,api:async(path,token,options)=>{methods.push(options?.method||'GET');if(options?.method==='POST')throw Object.assign(new Error('Resume refused'),{status});return {name:'saved-data',display_name:'PODS launch',repository:{full_name:'owner/runtime'},state:'Shutdown'};},exec:async()=>assert.fail('Refused compute must not receive an app')});
+  await assert.rejects(adapter.github.launch('token',{preferredEnvironment:'saved-data'},()=>{}),/Resume refused/);assert.deepEqual(methods,['GET','POST']);
+ }
+});
 test('providers use the assigned port in both the private preview and delivered runner config',async()=>{
  const order=[],updates=[];let input;
  const github=providers({repo:'owner/runtime',origin:'https://pods.example',runnerSha:'a'.repeat(64),api:async()=>({codespaces:[{name:'my-pods',display_name:'PODS launch',state:'Available'}]}),preparePreview:async options=>{order.push('private');assert.equal(options.port,23456);},exec:async(file,args,options)=>{order.push('runner');input=options.input;}}).github;

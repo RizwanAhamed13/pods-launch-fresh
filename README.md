@@ -79,6 +79,11 @@ The 20-second target is measured, not promised. The UI separates:
 
 Cold VM provisioning, provider consent, image pulls, network throughput and authentication on the forwarded app URL can exceed 20 seconds. Reuse an already running environment for the fast path. GitHub's forwarded URL remains private. PODS links to the provider's authenticated preview; it does not expose a public app proxy.
 
+Codespaces discovery and state reads retry transient provider errors up to three
+attempts with bounded backoff. If a resume response is uncertain, PODS observes the
+same environment until its provisioning deadline. Creation and resume mutations
+are never automatically repeated; authorization and quota errors remain immediate.
+
 Each app receives a stable private preview port (20000–29999) per compute account.
 The reservation follows its data key across artifact versions, browser sessions and
 control-server restarts. Collisions allocate another unused port; exhausted accounts
