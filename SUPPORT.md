@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **80 passing
+later passing attempts do not erase them. Automated coverage is **87 passing
 checks locally and on aswin**.
 
 ## Actual repository URL to native product
@@ -844,3 +844,51 @@ The two providers' first-image downloads did not overlap.
 
 Evidence: `evidence/stack-spring-boot-noble-{url,google,codespaces}.json` and the
 native comparison in `evidence/stack-jvm-runtime-comparison.json`.
+
+
+## Application origin isolation and standalone Angular native acceptance
+
+Core8b3dd9e reserves a private port per stable application data key and compute
+account. Reservations survive artifact updates, browser-session changes, launch
+history deletion and server restarts. Collision resolution never assigns the same
+origin to two apps in that account. Codespaces registration finishes before the
+runner starts and its forwarding process exits; the private mapping remains.
+Cloud Shell uses the assigned port in its authenticated provider hostname.
+
+The unchanged React and Angular fixtures both use `localStorage.count`. On the
+same Cloud Shell environment, React now uses29528 and Angular21869: React0→1,
+Angular0→1, React relaunch1→2, then Angular relaunch1→2. Every reload retained
+its own value. The final Angular check still read1 after React had changed to2,
+proving their browser state is separate. No storage keys were renamed or cleared.
+Browser-only state previously stored at the shared8080 origin remains there;
+PODS cannot reliably attribute that state to an individual app. Backend database
+paths and saved Codespace affinity are unchanged.
+
+The actual developer form prepared standalone Angular at public9eee994 in97.208s,
+producing49,453bytes. On ready Cloud Shell compute, first product visibility took
+5.768s and a successful click6.066s; cached visibility5.115s/click5.420s. Codespaces
+returned an upstream timeout on its first attempt, then the bounded retry passed:
+first health10.828s, cached6.807s, with the97,198-byte compiled JavaScript entry
+verified through authenticated HTTP. Both previews stopped. Native Codespaces
+browser sign-in and JavaScript interaction remain pending.
+
+React Codespaces health took14.460s with its new mapping and6.695s on repeat.
+Both static checks passed. Provider port inspection confirmed both app mappings
+private after the temporary forwarding processes exited. These measurements use
+existing compute; they do not establish cold provisioning latency.
+
+Spring Boot's new Cloud Shell origin28486 read the existing SQLite4, wrote5,
+then retained5 across full stop/relaunch and wrote6. The repeat browser interaction
+completed in16.706s; the first browser observation includes tool gaps and is only
+an upper bound. Two attempts to resume its saved Codespace returned provider
+errors before delivery, so new-port Codespaces database acceptance remains pending.
+The failed attempts are preserved; no new empty environment replaced its data.
+
+Current coverage:55 isolated fixtures,19 native Google browser fixtures and19
+Codespaces authenticated HTTP/protocol fixtures.36 fixtures still need native
+acceptance.87 automated checks pass locally and on aswin. Source totals5,214
+physical lines under `evidence/code-lines.json`. All successful launches from this
+checkpoint stopped; a final production audit found no active builds or launches.
+
+Evidence: `evidence/preview-isolation*.json` and
+`evidence/stack-angular-{url,google,codespaces,codespaces-retry}.json`.

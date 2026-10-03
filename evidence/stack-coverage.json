@@ -69,7 +69,12 @@
       "serverEvidence": "stack-matrix-01.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-local.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-angular-url.json",
+        "stack-angular-google.json",
+        "stack-angular-codespaces.json",
+        "stack-angular-codespaces-retry.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-01.json",
@@ -884,7 +889,9 @@
       "nativeProviderEvidence": [
         "stack-react-url.json",
         "stack-react-google.json",
-        "stack-react-codespaces.json"
+        "stack-react-codespaces.json",
+        "preview-isolation-google.json",
+        "preview-isolation-react-codespaces.json"
       ],
       "attempts": [
         {
@@ -999,7 +1006,10 @@
         "stack-spring-boot-codespaces.json",
         "stack-spring-boot-noble-url.json",
         "stack-spring-boot-noble-google.json",
-        "stack-spring-boot-noble-codespaces.json"
+        "stack-spring-boot-noble-codespaces.json",
+        "preview-isolation-google.json",
+        "preview-isolation-spring-codespaces.json",
+        "preview-isolation-spring-codespaces-retry.json"
       ],
       "attempts": [
         {

@@ -9,17 +9,73 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 5054 physical source lines: 2794 product/tooling, 1193 tests, 903 examples,
+- 5214 physical source lines: 2847 product/tooling, 1300 tests, 903 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 80 automated checks pass locally and on aswin for Maven runtime change685fa80.
+- 87 automated checks pass locally and on aswin for preview isolation8b3dd9e.
 - Native Google browser fixtures: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
-  FastAPI JSON API/SQLite, Next.js, SvelteKit, Flask/MySQL, Spring Boot/SQLite, standalone React: eighteen.
-- Same eighteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
+  FastAPI JSON API/SQLite, Next.js, SvelteKit, Flask/MySQL, Spring Boot/SQLite, standalone React, standalone Angular: nineteen.
+- Same nineteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: Spring Boot Noble runtime native acceptance
+## Latest completed gate: private application origins and native Angular
+
+- Core8b3dd9e pushed, synced and deployed. Stable SQLite preview-port reservations
+  keyed by compute account/dataKey (20000–29999); collision/exhaustion handling.
+  Provider URLs and live probes use assigned ports; Codespaces establishes private
+  forwarding before runner dispatch and closes its temporary local process.
+  Regression first failed because different apps shared8080, then all87 checks
+  passed locally/aswin. New helper real CLI registration4.757s, mapping private
+  after exit. Test-only private ports21081/21082 remain registered, no listeners.
+- Restart verified old PID806978/cwd/argv/listener and no active work. New control
+  PID887714, persistent exec30021, runtime8b3dd9e. Public /health200 and runnerSHA
+  9ef8029d995e07421e5297aaa1b644fb145a54c838e0b2d2f6f38f0e356cfc3b unchanged.
+  Initial health audit used nonexistent/api/health404; corrected actual/health.
+- Normal developer form submitted Angular once at quota2/global2/active0. Build
+  4ZZt4nGUw5T7iR_-l4R2cNbdaIr_coxP prepared in97.208s;49,453bytes/node22+.
+  Public9eee994 unchanged, no QA artifact import or quota alteration.
+  App repo-95521097a3a9fd2e8303de2a-9eee994ba7f7-fd7ffeb2c297.
+- Real Google sequence (all stopped): React29528 read0/write1/reload1; Spring28486
+  read existing SQLite4/write5/reload5 then full relaunch5→6/reload6; Angular21869
+  read0/write1/reload1; React relaunch1→2; Angular relaunch still1→2. Both frontend
+  source fixtures still use localStorage.count. Browser data separation proven,
+  no renamed keys or cleared state. Old browser-only8080 data is left at old origin.
+- React continuous browser writes6.608s/5.553s. Angular6.066s/5.420s, health4.391s/
+  4.149s. Spring cached repeat retained5 and wrote6 in16.706s; its first browser
+  timing was invalidated as an exact measurement by an unsupported heading-level
+  selector matching the launcher, then correctly observed with h1. Upper bounds
+  retained; no first Spring browser20s claim. Final captured browser logs empty.
+- Codespaces React at saved7vrw57jpjjppcww57 passed14.460s/6.695s health and static
+  checks. Spring saved69rw5vx4xp46c5qw5 had upstream errors before delivery on
+  first and one retry; do not create a replacement environment or lose SQLite4.
+  Its new-port database acceptance remains pending. Historical old-port native
+  evidence still valid. Harness cleanup waits45s and reports no stopped status
+  for already-failed pre-dispatch launches; terminal failure/noactivework audited.
+- Angular first Codespaces attempt failed same upstream message before delivery.
+  Independent repository listing from aswin subsequently returned200 in598ms;
+  GitHub status reported operational (no global outage claim). One bounded retry
+  passed10.828s/6.807s with real97,198byte compiled entry; both stopped. Native
+  Codespaces browser auth/interaction still pending. Both21869/29528 confirmed
+  private through provider CLI after successful launches.
+- Evidence preview-isolation*.json and stack-angular-{url,google,codespaces,
+  codespaces-retry}.json retains failures and exact scope. Coverage19native/55,
+  36remaining.87tests,5214source lines. No source fixture changes this turn.
+- Final read-only audit21:51:44UTC: active builds0/launches0; account3/hour;
+  next normal slot21:58:56.886UTC. No live native test harness/observer. All harness
+  sessions88867,67467,85199,2255,20614 ended (failures preserved).
+- Pending browser handoffs re-marked: developer stackQa6 tab13 Angular completed;
+  accountWorker tab12 stopped Angular; nativeGithubKeep tab10 pending2FA and
+  cloudLifecycle tab14 pendingRestart. No repeated auth or restart confirmation.
+  CUA isolationBrowserChecks/isolationBrowserLogs captured into evidence.
+- Next bounded work can investigate saved Codespace resume failures before its
+  new-port database test, or another remaining native framework after quota.
+  Do not loop blind retries, bypass quota, switch identities or import QA artifacts.
+  New origins do not erase previous native evidence, but most frameworks have not
+  yet been tested natively at assigned ports. Stable deployment and cold20s remain.
+  Goal active; current turn delivered code and native acceptance, not blocked.
+
+## Previous completed gate: Spring Boot Noble runtime native acceptance
 
 - Core runtime recipe685fa80 remains deployed; public source still9eee994. Normal
   quota observer69264 ended0 at21:23:08UTC (account2/global2). Submitted the developer
@@ -445,8 +501,8 @@ Runner SHA75cfd87f58a02353b48a080ee480b9b5ac246e2e189474f57e318fa11fdc0a0f.
 ## Operational state
 
 Origin https://collection-conferences-ages-clearly.trycloudflare.com.
-Control server PID806978, persistent exec86720; PID file matches verified cwd.
-Deploymentb02fea1 passed public health, runner hash and native API persistence
+Control server PID887714, persistent exec30021; PID file matches verified cwd.
+Deployment8b3dd9e passed public health, runner hash and native preview isolation
 checks. The earlier structured CSRF checks remain in browser-session-recovery.json.
 Always verify PID file, cwd, cmdline
 and listener before targeted restart. Use scripts/serve.sh from the repository;

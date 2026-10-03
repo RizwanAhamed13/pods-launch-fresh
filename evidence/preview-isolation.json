@@ -1,6 +1,6 @@
 {
   "recordedAt": "2026-10-03T21:42:28.515041+00:00",
-  "scope": "App-specific provider preview origins. Native application acceptance still pending this implementation commit.",
+  "scope": "App-specific provider preview origins: native Cloud Shell React, Angular and Spring Boot acceptance; Codespaces React and Angular authenticated HTTP acceptance.",
   "regression": {
     "test": "test/preview-origin.test.mjs",
     "before": "Failed: unrelated applications received the same same-environment-8080.app.github.dev origin.",
@@ -20,7 +20,30 @@
     "helperPort": 21082,
     "helperRegistrationMs": 4757,
     "helperExited": true,
-    "scope": "CLI registration only; no product or native browser claim."
+    "scope": "CLI registration only; no product or native browser claim.",
+    "helperMappingRetainedAfterExit": true,
+    "confirmedPortsAfterLaunches": [
+      {
+        "browseUrl": "https://pods-launch-7vrw57jpjjppcww57-21081.app.github.dev",
+        "sourcePort": 21081,
+        "visibility": "private"
+      },
+      {
+        "browseUrl": "https://pods-launch-7vrw57jpjjppcww57-21082.app.github.dev",
+        "sourcePort": 21082,
+        "visibility": "private"
+      },
+      {
+        "browseUrl": "https://pods-launch-7vrw57jpjjppcww57-21869.app.github.dev",
+        "sourcePort": 21869,
+        "visibility": "private"
+      },
+      {
+        "browseUrl": "https://pods-launch-7vrw57jpjjppcww57-29528.app.github.dev",
+        "sourcePort": 29528,
+        "visibility": "private"
+      }
+    ]
   },
   "sources": [
     "https://docs.cloud.google.com/shell/docs/using-web-preview",
@@ -29,6 +52,45 @@
   "limitations": [
     "Old shared-port browser storage remains at its old origin; no automatic ambiguous migration.",
     "Provider hostname changes can still change browser origins.",
-    "Native acceptance pending."
-  ]
+    "Native Codespaces browser authentication remains pending.",
+    "Saved Spring Boot Codespace returned a provider timeout before dispatch on two attempts; new-port Codespaces database acceptance remains pending."
+  ],
+  "aswinTests": {
+    "command": "npm test",
+    "passed": 87,
+    "failed": 0
+  },
+  "deployment": {
+    "coreRevision": "8b3dd9e",
+    "serverPid": 887714,
+    "healthStatus": 200,
+    "runnerSha256": "9ef8029d995e07421e5297aaa1b644fb145a54c838e0b2d2f6f38f0e356cfc3b",
+    "note": "Initial health audit used /api/health and received404; verified the defined /health route returned200."
+  },
+  "nativeEvidence": [
+    "preview-isolation-google.json",
+    "preview-isolation-react-codespaces.json",
+    "preview-isolation-spring-codespaces.json",
+    "preview-isolation-spring-codespaces-retry.json",
+    "stack-angular-url.json",
+    "stack-angular-google.json",
+    "stack-angular-codespaces.json",
+    "stack-angular-codespaces-retry.json"
+  ],
+  "providerReadAfterTimeouts": {
+    "from": "aswin",
+    "httpStatus": 200,
+    "elapsedMs": 598,
+    "returnedCodespaces": 3,
+    "scope": "Read-only repository Codespaces listing after launch API errors; does not prove resume succeeds."
+  },
+  "finalAudit": {
+    "observedAt": "2026-10-03T21:51:44.354525+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "recentAccountBuilds": 3,
+    "nextOrdinarySlot": "2026-10-03T21:58:56.886000+00:00",
+    "serverPid": 887714
+  },
+  "remainingNativeAcceptance": "Spring Boot new-port Codespaces database retest pending provider resume recovery; prior old-port SQLite acceptance remains valid historical evidence."
 }

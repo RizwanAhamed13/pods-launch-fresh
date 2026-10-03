@@ -162,7 +162,7 @@ product visibility took 16.055s, retained data was visible by 16.704s, and a new
 write succeeded by 17.020s. Codespaces HTTP write/read/restart passed at 13.212s
 cached. First-image health took 46.554s/77.906s on Google/Codespaces, exceeding 20s.
 All four previews stopped with saved data retained. Native browser testing for
-Codespaces and the remaining native fixtures are still pending. Current source is
+Codespaces and the remaining native fixtures are still pending. At that checkpoint, source was
 5053 physical lines, including tests and examples; counting scope is recorded in
 `evidence/code-lines.json`.
 
@@ -174,6 +174,22 @@ with the artifact absent and 6.104s cached. Browser localStorage survived reload
 and full application relaunch. Codespaces provisioning made its first launch
 131.308s; cached health took 5.304s, with the product mount and compiled entry
 checked over authenticated HTTP. Native Codespaces browser interaction remains
-pending. All four previews stopped. Current coverage is 55 isolated fixtures and 18
-native fixtures; 37 native fixtures remain. All 80 automated checks pass locally
-and on aswin.
+pending. All four previews stopped. That checkpoint covered 55 isolated fixtures and 18
+native fixtures, with 37 native fixtures remaining and 80 automated checks passing.
+
+
+Application previews now receive stable, separate provider addresses. The real
+React/Angular browser test proved their unchanged localStorage keys no longer mix
+on the same Cloud Shell environment. Existing Spring Boot SQLite records also
+survived the address change and a full app restart. Old browser-only state remains
+at the former shared address; it is not copied between products.
+
+Standalone Angular adds native fixture19. Normal URL preparation took97.208s;
+Cloud Shell meaningful interaction took6.066s with the artifact absent and5.420s
+cached. Codespaces authenticated HTTP passed at10.828s/6.807s after one upstream
+failure. Native Codespaces browser interaction is still pending. Current coverage
+is55 isolated fixtures,19 native fixtures and36 awaiting native acceptance. All87
+automated checks pass on both machines; source totals5,214 physical lines. The
+Spring Boot Codespace's new-port retest remains pending after two provider resume
+errors, while its existing data and environment binding are preserved. Universal
+stack support and a cold-launch20-second guarantee are not established.
