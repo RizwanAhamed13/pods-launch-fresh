@@ -1,0 +1,223 @@
+{
+  "recordedAt": "2026-10-03T23:10:12.735Z",
+  "scope": "Existing isolated QA artifacts on aswin, not native provider acceptance or a new build. Validates compiled-entry URLs, nested application document fallback and missing-asset HTTP semantics.",
+  "results": [
+    {
+      "fixture": "react",
+      "artifactSha256": "25312833ce7fc425825f4442656cd4bef1c6ea68897c61dbe164244d95151870",
+      "check": {
+        "fixture": "react",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-CH49u48Q.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 219983
+          }
+        ],
+        "spaRoute": {
+          "path": "/pods-spa-check/nested",
+          "status": 200,
+          "documentMatches": true,
+          "entriesResolve": true
+        },
+        "missingAssetStatus": 404,
+        "passed": true,
+        "scope": "Authenticated HTTP product shell, compiled entry assets and nested route document; not JavaScript execution, browser interaction or database persistence"
+      },
+      "stopped": true
+    },
+    {
+      "fixture": "angular",
+      "artifactSha256": "fd7ffeb2c2974fee5173666ddc7a4f18384e9f40b97ac20fa6288a0be892fdc1",
+      "check": {
+        "fixture": "angular",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/main.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 97198
+          }
+        ],
+        "spaRoute": {
+          "path": "/pods-spa-check/nested",
+          "status": 200,
+          "documentMatches": true,
+          "entriesResolve": true
+        },
+        "missingAssetStatus": 404,
+        "passed": true,
+        "scope": "Authenticated HTTP product shell, compiled entry assets and nested route document; not JavaScript execution, browser interaction or database persistence"
+      },
+      "stopped": true
+    },
+    {
+      "fixture": "vue",
+      "artifactSha256": "30c74ea076030dccbd63dfafd75fcbaebb5c5464129da841bdcb5dc707f24fdb",
+      "check": {
+        "fixture": "vue",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-CuxAIaJs.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 186439
+          }
+        ],
+        "spaRoute": {
+          "path": "/pods-spa-check/nested",
+          "status": 200,
+          "documentMatches": true,
+          "entriesResolve": true
+        },
+        "missingAssetStatus": 404,
+        "passed": true,
+        "scope": "Authenticated HTTP product shell, compiled entry assets and nested route document; not JavaScript execution, browser interaction or database persistence"
+      },
+      "stopped": true
+    },
+    {
+      "fixture": "svelte",
+      "artifactSha256": "c2611773269bca60a00a081753a88ba1737b2f3e29413da7fa733c21cfd35e79",
+      "check": {
+        "fixture": "svelte",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-Pz6WuF9y.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 25441
+          }
+        ],
+        "spaRoute": {
+          "path": "/pods-spa-check/nested",
+          "status": 200,
+          "documentMatches": true,
+          "entriesResolve": true
+        },
+        "missingAssetStatus": 404,
+        "passed": true,
+        "scope": "Authenticated HTTP product shell, compiled entry assets and nested route document; not JavaScript execution, browser interaction or database persistence"
+      },
+      "stopped": true
+    },
+    {
+      "fixture": "preact",
+      "artifactSha256": "c4a6185adae5d9710eb4ad968d8b5b17ecc3f9306365c5fcf573763ca198bb78",
+      "check": {
+        "fixture": "preact",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-axAnAOMW.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 13629
+          }
+        ],
+        "spaRoute": {
+          "path": "/pods-spa-check/nested",
+          "status": 200,
+          "documentMatches": true,
+          "entriesResolve": true
+        },
+        "missingAssetStatus": 404,
+        "passed": true,
+        "scope": "Authenticated HTTP product shell, compiled entry assets and nested route document; not JavaScript execution, browser interaction or database persistence"
+      },
+      "stopped": true
+    },
+    {
+      "fixture": "solid",
+      "artifactSha256": "8fd329781c5f9024f7e92b7fa1cdff3114ed4b09488c77531d87e26bbb32b755",
+      "check": {
+        "fixture": "solid",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-MWot9r4j.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 10991
+          }
+        ],
+        "spaRoute": {
+          "path": "/pods-spa-check/nested",
+          "status": 200,
+          "documentMatches": true,
+          "entriesResolve": true
+        },
+        "missingAssetStatus": 404,
+        "passed": true,
+        "scope": "Authenticated HTTP product shell, compiled entry assets and nested route document; not JavaScript execution, browser interaction or database persistence"
+      },
+      "stopped": true
+    },
+    {
+      "fixture": "lit",
+      "artifactSha256": "56f291e44a0cbecc17e8be02dc294b0c362d9e8cd35cd79f731182b421311793",
+      "check": {
+        "fixture": "lit",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-WGRLEUsU.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 15621
+          }
+        ],
+        "spaRoute": {
+          "path": "/pods-spa-check/nested",
+          "status": 200,
+          "documentMatches": true,
+          "entriesResolve": true
+        },
+        "missingAssetStatus": 404,
+        "passed": true,
+        "scope": "Authenticated HTTP product shell, compiled entry assets and nested route document; not JavaScript execution, browser interaction or database persistence"
+      },
+      "stopped": true
+    },
+    {
+      "fixture": "alpine",
+      "artifactSha256": "9a0031b1a63941b5e37e22b6fd18b40c6b71588624cf0e6be22bf2b8bbde09d6",
+      "check": {
+        "fixture": "alpine",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-BzoVhwSd.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 55217
+          }
+        ],
+        "spaRoute": {
+          "path": "/pods-spa-check/nested",
+          "status": 200,
+          "documentMatches": true,
+          "entriesResolve": true
+        },
+        "missingAssetStatus": 404,
+        "passed": true,
+        "scope": "Authenticated HTTP product shell, compiled entry assets and nested route document; not JavaScript execution, browser interaction or database persistence"
+      },
+      "stopped": true
+    }
+  ],
+  "probeRevision": "bc1e2c7"
+}

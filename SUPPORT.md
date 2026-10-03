@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **96 passing
+later passing attempts do not erase them. Automated coverage is **99 passing
 checks locally and on aswin**. Native coverage is 23 Google browser fixtures and
 23 Codespaces HTTP/protocol fixtures; 32 await native acceptance. Codespaces
 native browser authorization and interaction remain pending.
@@ -1087,3 +1087,26 @@ and **23 Codespaces HTTP/protocol fixtures**, with **32** awaiting native accept
 The source remains **5,307 physical lines**; its latest validation is **96 passing
 checks locally and on aswin** at `2cbfc93`.
 Evidence: `evidence/stack-solid-{url,google,codespaces}.json`.
+
+
+## Nested SPA entrypoint verification
+
+The frontend probe now checks a direct nested URL as well as the root page.
+It requires the same application document, verifies that the compiled module
+URLs still resolve correctly (including Angular's base URL), and requires HTTP404
+for a missing asset. It rejects a healthy root page that hides a broken nested
+entrypoint or serves HTML with HTTP200 in place of a missing file.
+
+All eight existing compiled frontend fixtures passed these checks in isolated
+compute. The native Cloud Shell Solid app also opened directly at
+`/pods-spa-check/nested`, accepted a counter write 2→3 and retained 3 after reload;
+its browser warning/error log was empty and the app was stopped afterwards.
+This checks SPA document fallback and executable frontend delivery. It does not
+claim that arbitrary application-specific routes have been tested.
+
+Three new rejection tests failed before the probe was extended. All **99** tests
+pass locally and on aswin at `bc1e2c7`. Source totals **5,328 physical lines**.
+These are additional checks of existing fixtures; coverage remains 55 isolated,
+23 native Google browser and 23 Codespaces HTTP/protocol fixtures, with32 pending.
+The production application runtime did not change. Evidence:
+`evidence/spa-entrypoint-qa.json` and `evidence/spa-entrypoint-checks.json`.

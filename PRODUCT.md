@@ -261,3 +261,10 @@ served verified compiled assets in 27.546s with environment preparation and
 7.458s cached; its browser interaction remains pending. All four launches stopped
 and port 24730 remained private. Current coverage is 55 isolated / 23 native /
 32 pending, with 5,307 scoped source lines and 96 passing automated checks.
+
+
+Frontend acceptance now includes direct nested URL entry, correctly resolved
+compiled bundles and honest missing-file responses. All eight prepared frontend
+fixtures passed in isolated compute, and Solid passed an actual native Cloud Shell
+nested-page interaction and reload. All99 automated checks pass locally/aswin at
+bc1e2c7. Source totals5,328 lines; native fixture counts are unchanged.

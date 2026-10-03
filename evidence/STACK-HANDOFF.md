@@ -19,12 +19,35 @@ historical results remain in SUPPORT.md, PRODUCT.md and their evidence files.
   echo, express, fastapi, fastify, fiber, flask-mariadb, flask-mongodb7, flask-redis,
   flask-sqlite, flask-valkey, go, gradio, hono, koa, ktor, lit, micronaut, nestjs,
   phoenix, php, react-router, rocket, sinatra, streamlit, symfony.
-- 5,307 physical source lines: 2,880 product/tooling, 1,360 tests, 903 examples,
+- 5,328 physical source lines: 2,888 product/tooling, 1,373 tests, 903 examples,
   164 browser tools. code-lines.json states the exclusions.
-- Latest source revision 2cbfc93: 96 automated checks passed locally and on aswin.
-  No source changes after that validation; current gate adds evidence/docs only.
+- Latest test-tool source revision bc1e2c7: 99 automated checks passed locally
+  and on aswin. Production runtime remains unchanged.
 
-## Latest completed gate: native Solid
+## Latest completed gate: nested SPA entrypoint acceptance
+
+- bc1e2c7 extends the static frontend probe: direct nested URL must return the
+  app document, compiled entry URLs must resolve at that location (honoring base),
+  and missing assets must return404. Three new rejection cases were red before;
+  all99 automated checks pass locally/aswin after. No production runtime edits.
+- All eight real existing compiled frontend artifacts passed the new probe in
+  the isolated QA guest, then stopped. Evidence spa-entrypoint-qa.json.
+  Ad-hoc runner2271 finished0; port18092 free. No production artifact imports.
+- Native Google Solid direct /pods-spa-check/nested rendered, counter2→3 and
+  reload3 passed. Browser logs[], launchstopped. Evidence spa-entrypoint-checks.json.
+  Final audit23:11:52UTC: active builds0/launches0, localhealth200. This is browser
+  localStorage and SPA fallback, not database durability or arbitrary route tests.
+- Source5,328lines, counts55isolated/23native/32pending unchanged. Local test
+  session62327 finished0. Backend6cfadb6 and frontend2cbfc93 unchanged.
+- The developer form now stages examples/stacks/lit, with no stale ready result.
+  Nothing was submitted while at the quota. Nextordinaryslot23:23:54.313UTC.
+- Readonly quota watcher66841 is LIVE; /tmp/pods-next-native-quota-watch.py extends
+  only the observation deadline to20minutes. No production limit changed. Last
+  emitted account3/global3/activebuild0. Resume the same handle, do not duplicate.
+- Asked which permanent public hostname should be used for launch/OAuth callbacks;
+  no answer yet. Existing GitHub2FA and CloudShellRestart handoffs unchanged.
+
+## Previous gate: native Solid
 
 - Same-account quota watcher 66741 finished0 at23:00:01UTC, account2/global2,
   active builds0. Submitted Solid once via the actual developer form at23:00:50UTC.
@@ -47,7 +70,7 @@ historical results remain in SUPPORT.md, PRODUCT.md and their evidence files.
   /tmp/pods-solid-production-evidence.json; final audit /tmp/pods-solid-final-audit.json.
 - Final audit23:04:55UTC: active builds0, active launches0, local/public health200;
   service active/running MainPID913910. Quota3/account3/global in rolling hour.
-- Next ordinary slot23:23:54.313UTC (04:53:54.313IST). No quota watcher is live.
+- Next ordinary slot23:23:54.313UTC (04:53:54.313IST). Watcher66841 is live.
   Fresh readonly check before the next submission; do not change limits, switch
   identity or import QA artifacts. Normal limits3/account/hour,12/global/hour.
 - Next native candidate: Lit, then Alpine; existing static probe covers both.
@@ -81,9 +104,9 @@ After compaction call cua.rewriteDocumentation, then reuse bindings. Mark pendin
 workflow tabs for handoff each turn. Never repeat a launch/build because a readonly
 observation timed out; the action may already have completed.
 
-- stackQa6: IAB2tab13, completed Solid preparation and share link.
+- stackQa6: IAB2tab13, Lit draft, no ready result; Prepare application button.
   Exact ready region label is `Your application is ready to share.` (with period).
-- accountWorker: IAB2tab12, stopped Solid launcher; browser localStorage count2.
+- accountWorker: IAB2tab12, stopped Solid launcher; browser localStorage count3.
   CUA solidLaunchUrl, solidBrowserChecks and solidBrowserLogs retain evidence.
 - nativeGithubKeep: IAB2tab10, still pending two-factor authentication at this gate.
   User action already requested; no SMS/code sent. GitHub browser OAuth unconfigured.
@@ -114,7 +137,7 @@ observation timed out; the action may already have completed.
   records(kind,id,value JSON), singular build/launch. Never print tokens, root
   owner/account/session/computeKey values. Build repository.owner is public repo owner.
 - /tmp/pods-native-quota-watch.py is a readonly bounded watcher, Svelte account
-  anchor NLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp. Existing66741 is finished; no live waiter.
+  anchor NLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp. Existing66741 is finished; next watcher66841 is live with a20minute bound.
 - Latest Solid Codespace pods-launch-7vrw57jpjjppcww57 Available at inspection;
   Svelte/Preact pods-launch-jj497rpqpp7529v7 Shutdown. Container fixtures use
   pods-launch-containers-69rw5vx4xp46c5qw5 and97qw56gjg47gf7vrv. Recheck actual state.

@@ -1,0 +1,43 @@
+{
+  "scope": "Expanded native frontend test probe and existing prepared-artifact route handling. No production runtime behavior changed. SPA fallback is checked; application-specific router behavior is not inferred.",
+  "sourceRevision": "bc1e2c7",
+  "localTestsPassed": 99,
+  "aswinTestsPassed": 99,
+  "redBefore": {
+    "newRejectionCasesFailed": 3,
+    "missingChecks": [
+      "nested document unavailable/incorrect",
+      "relative entry resolves differently on a nested URL",
+      "missing asset masked by HTTP200"
+    ]
+  },
+  "isolatedEvidence": "spa-entrypoint-qa.json",
+  "nativeGoogle": {
+    "fixture": "solid",
+    "path": "/pods-spa-check/nested",
+    "heading": "Solid counter",
+    "before": 2,
+    "afterWrite": 3,
+    "afterReload": 3,
+    "passed": true,
+    "warningOrErrorLogs": [],
+    "scope": "Actual browser product, direct nested URL entry and reload; localStorage, not a database.",
+    "audit": {
+      "at": "2026-10-03T23:11:52.622198+00:00",
+      "launch": {
+        "id": "dAJFVAuA3xDmKTFb3bb7G_dQXnGnftUf",
+        "appId": "repo-afb358c19eb4451f3ac34fe3-9eee994ba7f7-8fd329781c5f",
+        "provider": "google",
+        "port": 24730,
+        "status": "stopped",
+        "createdAt": 1791069017863,
+        "providerReadyAt": 1791069021461,
+        "readyAt": 1791069023541,
+        "updatedAt": 1791069047884
+      },
+      "activeBuilds": 0,
+      "activeLaunches": 0,
+      "localHealthStatus": 200
+    }
+  }
+}
