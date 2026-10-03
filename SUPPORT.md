@@ -302,6 +302,12 @@ snapshot and retained `-conflict` attempt/recovery evidence.
 
 ## Database durability
 
+Codespaces selection is bound to the provider account and stable application data
+key. Relaunches and new prepared versions return to the saved Codespace, even
+when another environment is already running. Missing or incompatible saved
+environments fail explicitly; automatic data migration between Codespaces is not
+implemented. This binding survives browser sessions and control-plane restarts.
+
 Container data lives beneath Cloud Shell's persistent home or Codespaces'
 persistent `/workspaces` directory. Legacy Docker volume migration and volume
 metadata recreation passed against real PostgreSQL, retaining its record.

@@ -28,6 +28,7 @@ export async function createApp(options={}) {
   const builds = buildsEnabled ? new BuildManager({ store, data, origin, adapter: options.buildAdapter || new LxdBuilder() }) : null;
   if (builds) await builds.initialize();
   const computeKey = c => c?.identityId ? digest(JSON.stringify([c.provider,c.identityId])) : null;
+  const environmentKey = (key,dataKey) => digest(JSON.stringify([key,dataKey]));
   // Preserve account locks across browser disconnects; migrate active older records where identity remains available.
   for (const s of store.list('launch')) if (!s.computeKey && !['failed','stopped'].includes(s.status)) {
     const key=computeKey(store.get('connection',`${s.owner}:${s.provider}`));
@@ -66,6 +67,10 @@ export async function createApp(options={}) {
     const current=store.get('launch',id);
     if(!current||['stopped','failed'].includes(current.status))return;
     if(patch.previewUrl && current.productPath==='/docs') {const target=new URL(patch.previewUrl);target.pathname='/docs';patch={...patch,previewUrl:target.href};}
+    if(current.provider==='github' && current.computeKey && current.dataKey && patch.environment) {
+      const key=environmentKey(current.computeKey,current.dataKey);
+      store.put('environment',key,{name:patch.environment});
+    }
     store.put('launch',id,{...current,...patch,updatedAt:Date.now()});
   }
   const server=createServer(async(req,res)=>{
@@ -146,15 +151,22 @@ export async function createApp(options={}) {
       if(path==='/api/launches'&&req.method==='GET')return json(200,store.list('launch').filter(s=>s.owner===user.id).map(publicLaunch).sort((a,b)=>b.createdAt-a.createdAt).slice(0,20));
       if(path==='/api/launches'&&req.method==='POST') {
         const b=await body(req);if(!['github','google'].includes(b.provider))throw fail(400,'Choose a compute provider');
-        const app=(await apps()).find(a=>a.id===b.appId);if(!app)throw fail(404,'Prepared application not found');
+        const catalog=await apps(),app=catalog.find(a=>a.id===b.appId);if(!app)throw fail(404,'Prepared application not found');
         const c=connection(user,b.provider);
         const key=computeKey(c);if(!key)throw fail(401,'Reconnect your compute account before launching an application.');
         const active=store.list('launch').find(s=>s.provider===b.provider&&(s.owner===user.id||s.computeKey===key)&&!['failed','stopped'].includes(s.status)&&s.expiresAt>Date.now());
         if(active) {if(active.owner!==user.id)throw fail(409,'An application is already running in this compute account from another session. Stop it there before starting another.');if(active.appId!==app.id)throw fail(409,'An application is already running on this provider. Stop it before starting another.');return json(200,publicLaunch(active));}
+        const dataKey=app.dataKey || app.id;
+        let preferredEnvironment;
+        if(b.provider==='github') {
+          preferredEnvironment=store.get('environment',environmentKey(key,dataKey))?.name;
+          // Upgrade existing successful launches using their artifact's stable data key.
+          if(!preferredEnvironment)preferredEnvironment=store.list('launch').filter(s=>s.provider==='github'&&s.computeKey===key&&s.readyAt&&s.environment&&(s.dataKey||catalog.find(a=>a.id===s.appId)?.dataKey||s.appId)===dataKey).sort((a,b)=>b.readyAt-a.readyAt)[0]?.environment;
+        }
         const id=uid(),token=uid(),createdAt=Date.now();
-        const s={id,owner:user.id,computeKey:key,appId:app.id,appName:app.name,provider:b.provider,sha256:app.sha256,images:app.images || [],productPath:app.productPath==='/docs'?'/docs':'/',status:'connecting',createdAt,updatedAt:createdAt,expiresAt:createdAt+30*60*1000,tokenHash:digest(token)};
+        const s={id,owner:user.id,computeKey:key,dataKey,appId:app.id,appName:app.name,provider:b.provider,sha256:app.sha256,images:app.images || [],productPath:app.productPath==='/docs'?'/docs':'/',status:'connecting',createdAt,updatedAt:createdAt,expiresAt:createdAt+30*60*1000,tokenHash:digest(token)};
         store.put('launch',id,s);
-        const config={id,provider:b.provider,appId:app.id,dataKey:app.dataKey || app.id,containerRuntime:app.runtime==='docker-linux-amd64',sha256:app.sha256,artifactUrl:`${origin}/api/agent/${id}/artifact`,callbackUrl:`${origin}/api/agent/${id}`,token,port:8080,expiresAt:s.expiresAt};
+        const config={id,provider:b.provider,appId:app.id,dataKey,preferredEnvironment,containerRuntime:app.runtime==='docker-linux-amd64',sha256:app.sha256,artifactUrl:`${origin}/api/agent/${id}/artifact`,callbackUrl:`${origin}/api/agent/${id}`,token,port:8080,expiresAt:s.expiresAt};
         const job=providers[b.provider].launch(store.open(c.token),config,patch=>update(id,patch)).then(result=>update(id,result)).catch(e=>{console.error('launch',id,e.message);update(id,{status:'failed',error:'Could not start your compute. '+String(e.message).slice(0,220)});}).finally(()=>jobs.delete(id));
         jobs.set(id,job);return json(202,publicLaunch(s));
       }

@@ -203,6 +203,12 @@ is stopped, preserving database uid/gid; the original is retained. Source Compos
 host mounts are still rejected. Existing Node application data is also migrated
 to the persistent Codespaces workspace without overwriting newer records.
 
+Returning applications reuse the Codespace assigned to their compute account and
+stable application data key, including after a new build or browser session.
+A different warm Codespace does not replace that selection. If the saved
+Codespace is missing or unavailable, launch stops with a recovery message;
+PODS does not silently start with empty data in another environment.
+
 Real PostgreSQL migration and volume metadata recreation passed in isolated QA.
 The actual Codespace also retained its database through a full container rebuild:
 the record remained 2 and accepted a new write to 3 after PODS relaunched the

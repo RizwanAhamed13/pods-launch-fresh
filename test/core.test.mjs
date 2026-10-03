@@ -146,3 +146,33 @@ test('existing ready previews gain durable private account locks when the server
   }
  }finally{if(instance){await close(instance.server);await instance.closeResources();}await rm(root,{recursive:true,force:true});}
 });
+test('Codespace data affinity survives versions, browser sessions and server restarts without crossing accounts',async()=>{
+ const root=await temp(),secret='af'.repeat(32),manifest=await prepare('examples/notes',root),configs=[];
+ const version={...manifest,id:'field-notes-v2',dataKey:'field-notes'};
+ await writeFile(join(root,'artifacts',version.id+'.json'),JSON.stringify(version));
+ const seed=new Store(root,secret);
+ // A successful pre-upgrade launch has no dataKey; resolve it through its artifact.
+ seed.put('launch','historical',{id:'historical',computeKey:digest(JSON.stringify(['github','a'])),provider:'github',appId:manifest.id,status:'stopped',environment:'original-data',readyAt:1,createdAt:1});seed.close();
+ let instance;
+ const provider={validate:async token=>({id:token[0],name:'same-display-name'}),launch:async(token,config,update)=>{configs.push(config);const environment=config.preferredEnvironment||'new-'+token[0];await update({environment,status:'delivering',providerReadyAt:Date.now()});return {environment};}};
+ try{
+  for(const restart of [false,true]){
+   instance=await createApp({data:root,secret,providers:{github:provider}});const origin=await listen(instance.server);
+   for(const account of ['a','b']){
+    const initial=await fetch(origin+'/api/me'),cookie=initial.headers.get('set-cookie').split(';')[0],me=await initial.json();
+    const request=(path,value)=>fetch(origin+path,{method:value===undefined?'GET':'POST',headers:{Cookie:cookie,'X-Pods-CSRF':me.csrf,'Content-Type':'application/json'},body:value===undefined?undefined:JSON.stringify(value)});
+    assert.equal((await request('/api/connections/github',{token:account.repeat(30)})).status,200);
+    const response=await request('/api/launches',{provider:'github',appId:version.id});assert.equal(response.status,202);const launch=await response.json();
+    await Promise.all(instance.jobs.values());const config=configs.at(-1);
+    assert.equal(config.preferredEnvironment,account==='a'?'original-data':restart?'new-b':undefined);
+    assert.equal(config.dataKey,'field-notes');assert.equal(launch.computeKey,undefined);
+    const current=await(await request('/api/launches/'+launch.id)).json();assert.equal(current.environment,account==='a'?'original-data':'new-b');
+    assert.equal((await fetch(origin+'/api/agent/'+launch.id,{method:'POST',headers:{Authorization:'Bearer '+config.token},body:JSON.stringify({status:'stopped'})})).status,200);
+   }
+   // Bindings must persist independently of retained launch history and browser credentials.
+   for(const entry of instance.store.list('launch'))instance.store.delete('launch',entry.id);
+   for(const entry of instance.store.list('connection'))instance.store.delete('connection',entry.id);
+   await close(instance.server);await instance.closeResources();instance=null;
+  }
+ }finally{if(instance){await close(instance.server);await instance.closeResources();}await rm(root,{recursive:true,force:true});}
+});

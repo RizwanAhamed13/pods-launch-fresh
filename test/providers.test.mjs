@@ -20,6 +20,27 @@ test('a running PODS Codespace is preferred over an older provisioning or stoppe
  const result=await adapter.github.launch('token',{},patch=>updates.push(patch));
  assert.equal(result.environment,'warm');assert.equal(executions,1);assert.ok(!updates.some(x=>x.status==='provisioning'));
 });
+test('an app returns to its saved Codespace even when a different environment is warm',async()=>{
+ const calls=[],updates=[];
+ const saved={name:'saved-data',display_name:'PODS launch containers',state:'Shutdown',repository:{full_name:'owner/runtime'}};
+ const adapter=providers({repo:'owner/runtime',origin:'https://pods.example',runnerSha:'a'.repeat(64),pollMs:1,
+  api:async(path,token,options)=>{calls.push([path,options?.method||'GET']);if(path.startsWith('/repos/'))return {codespaces:[{...saved,name:'warm-empty',state:'Available'},saved]};return {...saved,state:options?.method==='POST'?'Available':'Shutdown'};},
+  exec:async(file,args)=>assert.equal(args[3],'saved-data')});
+ const result=await adapter.github.launch('token',{containerRuntime:true,preferredEnvironment:'saved-data'},p=>updates.push(p));
+ assert.equal(result.environment,'saved-data');
+ assert.deepEqual(calls,[['/user/codespaces/saved-data','GET'],['/user/codespaces/saved-data/start','POST']]);
+ assert.equal(updates.find(p=>p.environment)?.environment,'saved-data');
+});
+test('a missing, failed or unrelated saved Codespace never silently replaces application data',async()=>{
+ for(const kind of ['missing','Failed','Unavailable','wrong-repository','wrong-runtime']){
+  let executions=0;const calls=[];
+  const adapter=providers({repo:'owner/runtime',origin:'https://pods.example',runnerSha:'a'.repeat(64),pollMs:1,
+   api:async(path,token,options)=>{calls.push([path,options?.method||'GET']);if(path.startsWith('/repos/'))return {codespaces:[{name:'warm-empty',display_name:'PODS launch',state:'Available'}]};if(kind==='missing')throw Object.assign(new Error('Not found'),{status:404});return {name:'saved-data',display_name:kind==='wrong-runtime'?'Other':'PODS launch',state:['Failed','Unavailable'].includes(kind)?kind:'Available',repository:{full_name:kind==='wrong-repository'?'other/repo':'owner/runtime'}};},
+   exec:async()=>{executions++;}});
+  await assert.rejects(adapter.github.launch('token',{preferredEnvironment:'saved-data'},()=>{}),/saved Codespace/i);
+  assert.equal(executions,0);assert.deepEqual(calls,[['/user/codespaces/saved-data','GET']]);
+ }
+});
 test('retrying a pending PODS Codespace waits for it instead of creating another environment',async()=>{
  for(const state of ['Starting','Provisioning','Created','Queued','Awaiting','Updating','Rebuilding']){
  const calls=[];let executed=false;
