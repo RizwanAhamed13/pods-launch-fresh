@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **87 passing
+later passing attempts do not erase them. Automated coverage is **93 passing
 checks locally and on aswin**.
 
 ## Actual repository URL to native product
@@ -881,10 +881,13 @@ Spring Boot's new Cloud Shell origin28486 read the existing SQLite4, wrote5,
 then retained5 across full stop/relaunch and wrote6. The repeat browser interaction
 completed in16.706s; the first browser observation includes tool gaps and is only
 an upper bound. Two attempts to resume its saved Codespace returned provider
-errors before delivery, so new-port Codespaces database acceptance remains pending.
-The failed attempts are preserved; no new empty environment replaced its data.
+errors before delivery. After the same saved Codespace recovered to Available,
+a native retest on private port 28486 retained SQLite 4→5, then 5→6 through full
+stop/relaunch. Health took 24.997s first and 13.983s on repeat. Both stopped.
+The failed attempts remain preserved; no new empty environment replaced its data.
+This recovery passed before the retry changes below were deployed.
 
-Current coverage:55 isolated fixtures,19 native Google browser fixtures and19
+At the origin-isolation checkpoint:55 isolated fixtures,19 native Google browser fixtures and19
 Codespaces authenticated HTTP/protocol fixtures.36 fixtures still need native
 acceptance.87 automated checks pass locally and on aswin. Source totals5,214
 physical lines under `evidence/code-lines.json`. All successful launches from this
@@ -892,3 +895,47 @@ checkpoint stopped; a final production audit found no active builds or launches.
 
 Evidence: `evidence/preview-isolation*.json` and
 `evidence/stack-angular-{url,google,codespaces,codespaces-retry}.json`.
+
+## Codespaces transient-error recovery
+
+Core `dec153c` retries discovery/state reads up to three attempts for transient
+HTTP 500/502/503/504, timeouts and known connection failures. If a resume response
+is uncertain, it observes the same saved environment within a bounded deadline.
+It never automatically repeats create/resume mutations. Authorization and quota
+errors are surfaced immediately. Four new regressions failed before the change;
+all 92 checks passed locally and on aswin afterward. The live Spring recovery
+above is separate evidence, not proof that this change caused provider recovery.
+
+Evidence: `evidence/codespaces-retry.json` and
+`evidence/preview-isolation-spring-codespaces-recovered.json`.
+
+## Standalone Vue native acceptance
+
+The normal developer form prepared `examples/stacks/vue` at public `9eee994` in
+**33.055s**, producing a **99,466-byte** artifact. Core `dec153c` launched it at
+private port 27260 on existing user compute, without a terminal step.
+
+| Scenario | Result |
+| --- | --- |
+| Cloud Shell, artifact absent | Health 5.227s; real Vue rendered, counter 0→1 and reload retained 1 |
+| Cloud Shell, cached after full stop | Health 4.267s; product visible 7.053s, successful interaction 7.367s; retained 1, wrote 2 and reload retained 2 |
+| Codespaces, artifact absent | Health 10.840s; authenticated product shell and 186,439-byte compiled JavaScript entry passed |
+| Codespaces, cached after full stop | Health 7.572s; compiled-entry check passed again |
+
+The first Google browser observation was interrupted by a tool timeout; its
+22.745s visibility / 23.038s interaction values are upper bounds including tool
+gaps, not exact launch timings. The repeat browser measurement was continuous.
+Browser error/warning logs were empty at the final check. All four launches
+stopped, and provider inspection confirmed the Codespaces port private.
+This fixture uses browser localStorage, not a backend database. Native Codespaces
+browser sign-in and JavaScript interaction are still pending.
+
+The serialized static probe now covers Vue alongside React and Angular, and
+rejects a React bundle presented at an otherwise valid Vue mount/asset path.
+All **93 checks** pass locally and on aswin. Current coverage is **55 isolated
+fixtures**, **20 native Google browser fixtures**, and **20 Codespaces HTTP/protocol
+fixtures**; **35** fixtures await native acceptance. Source totals **5,274 physical
+lines** under `evidence/code-lines.json`. These are existing-compute observations,
+not a cold-provisioning guarantee.
+
+Evidence: `evidence/stack-vue-{url,google,codespaces}.json`.

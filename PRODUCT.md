@@ -187,9 +187,25 @@ at the former shared address; it is not copied between products.
 Standalone Angular adds native fixture19. Normal URL preparation took97.208s;
 Cloud Shell meaningful interaction took6.066s with the artifact absent and5.420s
 cached. Codespaces authenticated HTTP passed at10.828s/6.807s after one upstream
-failure. Native Codespaces browser interaction is still pending. Current coverage
-is55 isolated fixtures,19 native fixtures and36 awaiting native acceptance. All87
-automated checks pass on both machines; source totals5,214 physical lines. The
-Spring Boot Codespace's new-port retest remains pending after two provider resume
-errors, while its existing data and environment binding are preserved. Universal
+failure. Native Codespaces browser interaction is still pending. That checkpoint covered
+55 isolated fixtures,19 native fixtures and36 awaiting native acceptance. All87
+automated checks passed on both machines; source totaled5,214 physical lines. The
+Spring Boot Codespace later recovered and passed its new-port database retest:
+SQLite 4→5, then 5→6 after full stop/relaunch. Its existing data and environment
+binding were preserved. Universal
 stack support and a cold-launch20-second guarantee are not established.
+
+
+Standalone Vue is native fixture 20. Ordinary URL preparation took 33.055s.
+Its actual Cloud Shell product retained browser state through reload and full
+stop/relaunch; the continuous cached interaction took 7.367s. Codespaces checks
+passed at 10.840s first and 7.572s cached, validating the product shell and compiled
+entry over authenticated HTTP. All four launches stopped. Native Codespaces
+browser interaction remains pending.
+
+Codespaces status reads now recover from bounded transient failures. An uncertain
+resume response is reconciled against the same saved environment; create/resume
+mutations are never automatically repeated. Authorization and quota errors remain
+immediate. All 93 automated checks pass locally and on aswin. Current coverage:
+55 isolated fixtures,20 native fixtures,35 awaiting native acceptance; 5,274
+physical source lines under the documented scope. The broad goal remains active.

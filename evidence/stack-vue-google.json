@@ -1,0 +1,69 @@
+{
+  "recordedAt": "2026-10-03T22:02:27.267157+00:00",
+  "coreRevision": "dec153c",
+  "scope": "Actual Vue client rendering and interaction at its native Cloud Shell URL. Browser localStorage persistence, not a backend database.",
+  "results": [
+    {
+      "id": "GhHeIv2JQO9qtr6tG3RiJwPFK0eeawlh",
+      "appId": "repo-b6a487ee32ba4a822c511ed3-9eee994ba7f7-30c74ea07603",
+      "provider": "google",
+      "port": 27260,
+      "createdAt": 1791064838618,
+      "updatedAt": 1791064877038,
+      "status": "stopped",
+      "providerReadyAt": 1791064841446,
+      "readyAt": 1791064843845,
+      "timings": {
+        "downloadMs": 470,
+        "runtimeReadyMs": 687,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 5227,
+      "deliveryMs": 2399
+    },
+    {
+      "id": "903rPt8JJd9-7AXpIQsYJ3eO5BCGpTRn",
+      "appId": "repo-b6a487ee32ba4a822c511ed3-9eee994ba7f7-30c74ea07603",
+      "provider": "google",
+      "port": 27260,
+      "createdAt": 1791064893040,
+      "updatedAt": 1791064915501,
+      "status": "stopped",
+      "providerReadyAt": 1791064895703,
+      "readyAt": 1791064897307,
+      "timings": {
+        "downloadMs": 209,
+        "runtimeReadyMs": 423,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 4267,
+      "deliveryMs": 1604
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "first-launch",
+      "visibleMs": 22745,
+      "interactionMs": 23038,
+      "timingScope": "Upper bounds include observation timeout and tool gaps",
+      "before": 0,
+      "afterWrite": 1,
+      "afterReload": 1,
+      "passed": true
+    },
+    {
+      "scenario": "repeat-launch",
+      "visibleMs": 7053,
+      "interactionMs": 7367,
+      "timingScope": "Continuous same-call click to product interaction on ready compute",
+      "before": 1,
+      "afterWrite": 2,
+      "afterReload": 2,
+      "passed": true
+    }
+  ],
+  "browserErrorOrWarningLogsAtFinalCheck": [],
+  "passed": true
+}

@@ -9,17 +9,69 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 5214 physical source lines: 2847 product/tooling, 1300 tests, 903 examples,
+- 5274 physical source lines: 2866 product/tooling, 1341 tests, 903 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 87 automated checks pass locally and on aswin for preview isolation8b3dd9e.
+- 93 automated checks pass locally and on aswin at core172334f.
 - Native Google browser fixtures: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
-  FastAPI JSON API/SQLite, Next.js, SvelteKit, Flask/MySQL, Spring Boot/SQLite, standalone React, standalone Angular: nineteen.
-- Same nineteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
+  FastAPI JSON API/SQLite, Next.js, SvelteKit, Flask/MySQL, Spring Boot/SQLite, standalone React, standalone Angular, standalone Vue: twenty.
+- Same twenty fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: private application origins and native Angular
+## Latest completed gate: bounded provider recovery and native Vue
+
+- Coredec153c committed/pushed/synced/deployed: Codespaces discovery/state reads
+  retry up to3 for transient500/502/503/504/timeouts/known connection errors.
+  An uncertain resume response observes the same saved environment within its
+  deadline; no duplicate create/resume mutations.401/403/429 remain immediate.
+  Four regressions failed first;92 tests then passed locally/aswin. Core172334f
+  extends static QA to Vue with a wrong-React-bundle regression;93 tests passed
+  locally/aswin. The Vue probe runs locally/serialized on compute; no further
+  control-plane runtime restart needed for this harness-only change.
+- Controlled restart verified887714/cwd/cmdline/listener and active0 before stop.
+  Current PID895643, persistent exec47404, in-memory runtime dec153c. Health200,
+  unchanged runnerSHA9ef8029d995e07421e5297aaa1b644fb145a54c838e0b2d2f6f38f0e356cfc3b.
+- Saved Spring Codespace69rw5vx4xp46c5qw5 recovered to Available externally before
+  deploying retries. Native new-port28486 checks retainedSQLite4→5, stopped,
+  relaunched5→6, stopped. Health24.997s/13.983s; provider port confirmed private.
+  Both image caches hit. This closes its new-port acceptance; it does NOT show
+  new retry code caused the recovery. Historical upstream errors retain no exact
+  HTTP status, so do not invent one. Evidencecodespaces-retry.json and
+  preview-isolation-spring-codespaces-recovered.json. Harness3496 ended0.
+- After the ordinary quota slot opened, the same account submitted Vue through
+  normal /develop UI. Build33.055s,99,466bytes,public9eee994 unchanged.
+  Apprepo-b6a487ee32ba4a822c511ed3-9eee994ba7f7-30c74ea07603; private port27260.
+  No QA artifacts imported, no quota alterations or identity switches.
+- Google Vue first health5.227s/cachefalse, actualcounter0→1/reload1. An observation
+  timeout interrupted continuous measurement:22.745s visible/23.038s interaction
+  are upper bounds with tool gaps. On full stop/relaunch health4.267s/cachetrue,
+  continuousvisible7.053s/write7.367s, retained1→2/reload2. Both stopped; final
+  browser warnings/errors[]. Vue useslocalStorage, not a backend DB.
+- Codespaces Vue healthy first10.840s/cachefalse and repeat7.572s/cachetrue at
+  existing7vrw57jpjjppcww57, both186,439byte compiled entries pass authenticated
+  HTTP; both stopped. Port27260 confirmedprivate afterward. Harness1765 ended0.
+  Native Codespaces browser sign-in/JS interaction still pending. Evidence
+  stack-vue-{url,google,codespaces}.json. These launches validate healthyprovider
+  behavior on the deployed retry revision; transientfaultcases are deterministic.
+- Currentcoverage55isolated/20native/35pending;93checks/5274physicalsource lines.
+  Latestreadonlyaudit22:03:16UTCactivebuilds0/launches0,account3/hour; next ordinary
+  slot22:23:20.702UTC. Do not bypass quota, switch accounts, or import QA artifacts.
+  No fixture changes this turn. No active native test harness remains.
+- Four browser handoffs retained: stackQa6tab13 Vue preparation complete;
+  accountWorkertab12 stoppedVue; nativeGithubKeeptab10 pendinguser2FA;
+  cloudLifecycletab14 pendinguserRestart. Do not repeat pending prompts. Actual
+  Vuebrowserchecks/logs remain inCUAvueBrowserChecks/vueBrowserLogs and saved.
+  Observationcatch must accept /deadline|timeout|timed out/i; a timeout does not
+  cancel launch, so do not click Launch again. Scope productheading to h1.
+- Next remaining native fixture can beSvelte/Preact or a backend afterquota. Use
+  same normalURLsubmission; extend fixture-awareprobe only when needed. Current
+  staticprobe coversReact/Angular/Vue. Most older native checks used shared8080;
+  they remain historical valid evidence but assignedport coverage is not universal.
+  Stable deployment, CloudShellVMreplacement, CodespacesOAuth/browser, cold20s
+  and remaining35nativefixtures are still open. Goalactive with verified progress.
+
+## Previous gate: private application origins and native Angular
 
 - Core8b3dd9e pushed, synced and deployed. Stable SQLite preview-port reservations
   keyed by compute account/dataKey (20000–29999); collision/exhaustion handling.
