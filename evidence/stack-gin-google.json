@@ -1,0 +1,66 @@
+{
+  "scope": "Real repository URL preparation, then native Gin product on existing authorized Google Cloud Shell compute. Initial image absent; no VM provisioning test. Gin persists its counter in a file, not a database.",
+  "appId": "repo-32bb2b65f70a84def50a6fc2-00df7c09ea97-33bf34b1ce7d",
+  "browser": {
+    "initialValue": 0,
+    "firstWrite": 1,
+    "reloadRetained": 1,
+    "confirmedFullStopRelaunchRetained": 1,
+    "secondWrite": 2,
+    "secondReloadRetained": 2
+  },
+  "uncachedBrowser": {
+    "clickToProductMs": 12454,
+    "clickToSuccessfulInteractionMs": 12764,
+    "before": 0,
+    "after": 1,
+    "buttonClicks": 1,
+    "method": "Continuous launch click, native heading and initial value, then one button write in the same browser tool call."
+  },
+  "cachedBrowser": {
+    "clickToSavedProductMs": 8858,
+    "clickToSuccessfulInteractionMs": 9174,
+    "before": 1,
+    "after": 2,
+    "buttonClicks": 1,
+    "method": "Continuous launch click, native heading and retained value, then one button write in the same browser tool call."
+  },
+  "attempts": [
+    {
+      "id": "O36YX5Ay1JJLlmLy2OOXzCwkMekziNZZ",
+      "status": "stopped",
+      "createdAt": 1791045492244,
+      "providerReadyAt": 1791045494992,
+      "readyAt": 1791045502066,
+      "error": null,
+      "timings": {
+        "downloadMs": 608,
+        "imagesMs": 2867,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 5126,
+        "cacheHit": false
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 9822
+    },
+    {
+      "id": "0HcsEZZLHbcWCRkSiLYJJOGYGxXGKRYw",
+      "status": "ready",
+      "createdAt": 1791045531189,
+      "providerReadyAt": 1791045534259,
+      "readyAt": 1791045537445,
+      "error": null,
+      "timings": {
+        "downloadMs": 230,
+        "imagesMs": 68,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 1790,
+        "cacheHit": true
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 6256
+    }
+  ]
+}

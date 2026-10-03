@@ -458,7 +458,13 @@
       "serverEvidence": "stack-matrix-11-progress.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-11.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-gin-url.json",
+        "stack-gin-google.json",
+        "stack-gin-codespaces.json",
+        "stack-gin-codespaces-before.json",
+        "stack-gin-codespaces-conflict.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-07.json",

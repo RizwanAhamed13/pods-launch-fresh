@@ -28,7 +28,7 @@ Public fixture commit: 00df7c0. Latest product fix: 414e64a, pushed and deployed
   bytes match the committed source and /health passes. OAuth availability remains
   Google=true, GitHub=false. No live connection was forcibly expired.
 - React/Express/PostgreSQL, Angular SSR/SQLite, Flask/PostgreSQL,
-  Quarkus/SQLite, Laravel/SQLite and Blazor/SQLite have native Google browser/product evidence. These results do
+  Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite and Go Gin (persistent file) have native Google browser/product evidence. These results do
   not automatically cover the other frameworks or arbitrary applications.
 - Quarkus real developer URL preparation: 222.751 seconds. Native Google first
   launch: 46.008 seconds to ready. Cached: 8.442 seconds to ready and 9.923 seconds
@@ -101,14 +101,32 @@ Public fixture commit: 00df7c0. Latest product fix: 414e64a, pushed and deployed
   The real Blazor preparation/launch title now reads Blazor + SQLite. 52 checks
   pass locally and on aswin (stack-blazor-unit-tests*.txt).
 
+- Go Gin was submitted through the real developer form and prepared in 287.355s.
+  Existing Dockerfile compiles a Go executable; the runtime download is 11.1 MiB.
+  On existing Google compute with the image absent: health 9.822s, visible 12.454s,
+  successful native button write 12.764s. Cached: health 6.256s, saved page 8.858s,
+  successful write 9.174s. Both browser timings are continuous measurements.
+  Counter 0→1, reload 1, confirmed stop/relaunch 1, write 2/reload 2 all passed.
+  This fixture uses a persistent file, not a database. See stack-gin-{url,google}.json.
+- Gin Codespaces: initial attempt failed before image loading because the earlier
+  Blazor preview occupied port 8080. Verified its exact image and sole PODS runner,
+  sent SIGTERM to that runner, and confirmed PODS status stopped. No data removed.
+  Retry on the same available compute: image absent health 10.828s, cached 7.393s.
+  The small manifest was already cached by the failed attempt; imageCacheHits=0
+  on the retry. HTTP write 0→1 / read 1, confirmed stop/relaunch retained 1, write/read 2
+  passed. Final Gin app stopped normally too. Preserve stack-gin-codespaces-conflict
+  and -before evidence alongside stack-gin-codespaces.json. Native browser pending.
+- No runtime code changes in this checkpoint; the preceding 52-check suite remains
+  applicable. Native launches exercised the already deployed product.
+
 ## Pending actions
 
-1. Continue representative native provider coverage; Blazor now passes Google
-   browser and Codespaces authenticated HTTP with SQLite stop/relaunch persistence.
+1. Continue representative native provider coverage; Gin now passes Google
+   browser and Codespaces authenticated HTTP with file stop/relaunch persistence.
 2. Cloud Shell VM replacement: a confirmation question is pending. The actual
    Restart dialog preserves home but terminates all processes and provisions a
    new VM. Do not click final Restart before the user approves. Current native
-   Blazor SQLite baseline is 3; prior Angular 2, Laravel 1 and Quarkus 2 remain stored. Do not delete/reset the home directory.
+   Gin file-counter baseline is 2; prior Blazor SQLite 3, Angular 2, Laravel 1 and Quarkus 2 remain stored. Do not delete/reset the home directory.
 3. GitHub browser OAuth is not configured (public API oauthReady=false). Its
    access-token/API test path does not satisfy the one-click browser authorization
    goal. Native GitHub sign-in is also pending; do not repeat that earlier question
@@ -125,16 +143,17 @@ set PATH explicitly for checks. Never print .env, tokens or authorization codes.
 Each isolated build receives src/scripts from the current deployed checkout;
 the new recipe was used by the real developer preparation without a server restart.
 
-Blazor app ID: repo-21972257c10534daf1a0ca4a-00df7c09ea97-20503f2717cd
-Google launch x7v0GCXCKzTItcfsTDBuMTVQxDRVyFKJ belongs to independent Chrome, value 3.
-Codespace pods-launch-containers-69rw5vx4xp46c5qw5 currently serves Blazor, value 2
-(launch qBbnxy1CELdEvf2FJW0sFp9OUeA1Kkop). The previous Angular launch was stopped.
+Gin app ID: repo-32bb2b65f70a84def50a6fc2-00df7c09ea97-33bf34b1ce7d
+Google launch 0HcsEZZLHbcWCRkSiLYJJOGYGxXGKRYw belongs to independent Chrome, value 2.
+Codespace pods-launch-containers-69rw5vx4xp46c5qw5 has no running Gin/Blazor app
+after confirmed cleanup. Gin launch 28wEQ8YjGrOatLBek9P_5wwJ5Y-hjcu8 is stopped,
+with stored value 2. Its prior Blazor launch is also stopped, stored value 2.
 These previews stop at their 30-minute deadlines; no pending matrix build job.
 The local expired-session browser fixture and its products were stopped after
 validation. Its temporary tab17 is closed; no test fixture process remains. The title browser
 fixture was also stopped and its tab18 closed after passing encoded/literal text checks.
 
-CUA in-app browser 2: developerWide tab12 launch controls; stackQa6 tab13 completed Blazor
+CUA in-app browser 2: developerWide tab12 launch controls; stackQa6 tab13 completed Gin
 preparation; cloudLifecycle tab14 pending Restart confirmation; nativeGithubKeep
 tab10 existing sign-in handoff. Chrome browser 1: independentUser tab2083874416
 is the verified native Google product. The cache-regression QA tab16 was closed after all eight browser checks. Reapply handoff/deliverable marks each turn.

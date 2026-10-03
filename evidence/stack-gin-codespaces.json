@@ -1,0 +1,95 @@
+{
+  "testedAt": "2026-10-03T16:41:48.179Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "8dGXPmB21vPVXYiv-Px3a1gwmWmOijhk",
+      "appId": "repo-32bb2b65f70a84def50a6fc2-00df7c09ea97-33bf34b1ce7d",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "33bf34b1ce7dd8649d01687b6221329b0e652f61a6c4048172a75a934a7f527c",
+      "images": [
+        {
+          "id": "sha256:84f17214a743f73259ff96da3c410086301f8f8a6ada72c495977c8bb3595ded",
+          "sha256": "e5612791e44596fd91a37d4364fa3d68e261bea0c69c6e8bcd9b6e010be5b061",
+          "bytes": 11650076
+        }
+      ],
+      "status": "ready",
+      "createdAt": 1791045669450,
+      "updatedAt": 1791045680278,
+      "expiresAt": 1791047469450,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791045670168,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791045680278,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 641,
+        "imagesMs": 2741,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 5217,
+        "cacheHit": true
+      },
+      "readyAt": 1791045680278,
+      "deliveryMs": 10110,
+      "totalMs": 10828,
+      "counterCheck": {
+        "productDocument": true,
+        "before": 0,
+        "afterWrite": 1,
+        "afterRead": 1,
+        "passed": true
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "28wEQ8YjGrOatLBek9P_5wwJ5Y-hjcu8",
+      "appId": "repo-32bb2b65f70a84def50a6fc2-00df7c09ea97-33bf34b1ce7d",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "33bf34b1ce7dd8649d01687b6221329b0e652f61a6c4048172a75a934a7f527c",
+      "images": [
+        {
+          "id": "sha256:84f17214a743f73259ff96da3c410086301f8f8a6ada72c495977c8bb3595ded",
+          "sha256": "e5612791e44596fd91a37d4364fa3d68e261bea0c69c6e8bcd9b6e010be5b061",
+          "bytes": 11650076
+        }
+      ],
+      "status": "ready",
+      "createdAt": 1791045690805,
+      "updatedAt": 1791045698198,
+      "expiresAt": 1791047490805,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791045691536,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791045698198,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 300,
+        "imagesMs": 51,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 1670,
+        "cacheHit": true
+      },
+      "readyAt": 1791045698198,
+      "deliveryMs": 6662,
+      "totalMs": 7393,
+      "counterCheck": {
+        "productDocument": true,
+        "before": 1,
+        "afterWrite": 2,
+        "afterRead": 2,
+        "passed": true,
+        "expectedAfterRelaunch": 1
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "scope": "Prepared Go Gin artifact on an already Available Codespace; authenticated HTTP product/counter checks, not native browser or OAuth validation. Gin uses a persistent file, not a database.",
+  "initialAttemptEvidence": "stack-gin-codespaces-conflict.json",
+  "initialEnvironmentEvidence": "stack-gin-codespaces-before.json",
+  "cacheCaveat": "First successful launch reused the small artifact manifest downloaded by the failed port-conflict attempt. imageCacheHits was 0: the Gin image was downloaded/loaded on that successful launch."
+}

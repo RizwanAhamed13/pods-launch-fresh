@@ -1,0 +1,44 @@
+{
+  "testedAt": "2026-10-03T16:37:39.492Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "EHH7GWx7VggwmKiZ3RyUrPt18Dak_fm_",
+      "appId": "repo-32bb2b65f70a84def50a6fc2-00df7c09ea97-33bf34b1ce7d",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "33bf34b1ce7dd8649d01687b6221329b0e652f61a6c4048172a75a934a7f527c",
+      "images": [
+        {
+          "id": "sha256:84f17214a743f73259ff96da3c410086301f8f8a6ada72c495977c8bb3595ded",
+          "sha256": "e5612791e44596fd91a37d4364fa3d68e261bea0c69c6e8bcd9b6e010be5b061",
+          "bytes": 11650076
+        }
+      ],
+      "status": "failed",
+      "createdAt": 1791045450020,
+      "updatedAt": 1791045456649,
+      "expiresAt": 1791047250020,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791045450524,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791045456648,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 1207,
+        "cacheHit": false
+      },
+      "error": "Port 8080 is already in use; stop the existing application first",
+      "testError": "Port 8080 is already in use; stop the existing application first"
+    }
+  ],
+  "recovery": {
+    "cause": "Previous Blazor test was deliberately left running; its container still owned port 8080. Gin failed before loading its image.",
+    "action": "Verified the exact Blazor image and sole PODS runner, then sent SIGTERM to that runner. Its normal cleanup stopped the container and reported stopped to PODS. No persistent files or volumes were deleted.",
+    "previousLaunchId": "qBbnxy1CELdEvf2FJW0sFp9OUeA1Kkop",
+    "previousLaunchStatusAfterCleanup": "stopped",
+    "retryEvidence": "stack-gin-codespaces.json",
+    "retryCaveat": "The small Gin artifact manifest was already cached by the failed attempt; the Gin container image was not loaded."
+  }
+}

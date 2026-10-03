@@ -267,6 +267,38 @@ encoded symbols and literal markup rendered as text. All 52 automated checks pas
 locally and on aswin. Codespaces native browser sign-in and OAuth remain pending.
 See `evidence/stack-blazor-{url,google,codespaces}.json` and `browser-title.json`.
 
+## Native Go Gin workflow
+
+The developer form prepared the Gin application from its repository folder at
+revision `00df7c09ea97` in **287.355 seconds**. Its existing Dockerfile compiles a
+Go executable on aswin and packages it in an **11.1 MiB** runtime image. Its
+counter uses a persistent file; this fixture does not demonstrate a database.
+
+| Cloud Shell scenario | Observed result |
+| --- | --- |
+| Existing VM, image initially absent | 9.822 seconds to health; 2.867 seconds receiving/loading the image |
+| First-image browser interaction | **12.764 seconds** from launch click through native button write 0→1 |
+| Cached launch | 6.256 seconds to health; 8.858 seconds to native product with saved count |
+| Cached browser interaction | **9.174 seconds** from launch click through native button write 1→2 |
+| Persistence | Reload retained 1; confirmed stop/relaunch retained 1; later reload retained 2 |
+
+Both browser timings use one continuous launch/navigation/value/write check.
+These observations meet the 20-second target for this small compiled application
+on already-running Cloud Shell compute, including its first image transfer.
+They do not measure new VM provisioning or generalize to larger runtime images.
+See `evidence/stack-gin-url.json` and `evidence/stack-gin-google.json`.
+
+Codespaces was already available. Its initial attempt correctly failed because
+the previous Blazor test still owned port 8080. After verifying and stopping only
+that test runner, Gin reached health in **10.828 seconds with its image absent**
+and **7.393 seconds cached**. The small artifact manifest was already cached by
+the failed attempt; the first successful launch still downloaded and loaded the
+Gin image. Authenticated HTTP write/read 0→1, confirmed stop, fresh launch retaining
+1, and write/read 1→2 all passed. The final test application was stopped without
+removing its persistent data. Native Codespaces browser interaction remains
+unverified. See `evidence/stack-gin-codespaces.json`, its `-before` environment
+snapshot and retained `-conflict` attempt/recovery evidence.
+
 ## Database durability
 
 Container data lives beneath Cloud Shell's persistent home or Codespaces'

@@ -1,0 +1,52 @@
+{
+  "scope": "Real developer form submission and isolated server preparation on aswin; provider tests recorded separately.",
+  "attempts": [
+    {
+      "id": "psqVvS_ToFTRhX6cxMZTaOgG2QQkKTm_",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/gin",
+        "key": "32bb2b65f70a84def50a6fc2"
+      },
+      "status": "ready",
+      "createdAt": 1791045146286,
+      "startedAt": 1791045146397,
+      "finishedAt": 1791045433641,
+      "error": null,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-32bb2b65f70a84def50a6fc2-00df7c09ea97-33bf34b1ce7d",
+      "app": {
+        "id": "repo-32bb2b65f70a84def50a6fc2-00df7c09ea97-33bf34b1ce7d",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "33bf34b1ce7dd8649d01687b6221329b0e652f61a6c4048172a75a934a7f527c",
+        "bytes": 275,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-32bb2b65f70a84def50a6fc2",
+        "images": [
+          {
+            "id": "sha256:84f17214a743f73259ff96da3c410086301f8f8a6ada72c495977c8bb3595ded",
+            "sha256": "e5612791e44596fd91a37d4364fa3d68e261bea0c69c6e8bcd9b6e010be5b061",
+            "bytes": 11650076
+          }
+        ],
+        "productType": "web",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/gin",
+          "revision": "00df7c09ea971725adecb076d508f767fc6e1846"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Gin counter"
+        },
+        "preparedAt": "2026-10-03T16:37:13.597Z"
+      }
+    }
+  ]
+}
