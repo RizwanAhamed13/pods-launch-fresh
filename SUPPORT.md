@@ -80,7 +80,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **61 passing
+later passing attempts do not erase them. Automated coverage is **66 passing
 checks locally and on aswin**.
 
 ## Actual repository URL to native product

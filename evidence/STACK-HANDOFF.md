@@ -9,15 +9,45 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 4667 physical source lines: 2643 product/tooling, 966 tests, 894 examples,
+- 4712 physical source lines: 2648 product/tooling, 1006 tests, 894 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 61 automated checks pass locally and on aswin after API entrypoint change4cf4370.
+- 66 automated checks pass locally and on aswin after SSR probe change52baf33.
 - Native Google browser families: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
   FastAPI JSON API/SQLite: thirteen.
 - Same thirteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
+
+## In progress: Next.js native gate
+
+- Core52baf33 pushed and synced to aswin. Runtime server remains4cf4370/PID784115;
+  only native QA helper/tests changed, so no restart needed.
+- New probeSsrProduct supports Next and Nuxt; probeNuxtSsr remains a default-Nuxt
+  alias. PODS_SSR_CHECK=1 PODS_SSR_FIXTURE=next activates Next in live-codespaces.
+- 66/66 checks pass both local/aswin. Five new negative/positive tests reject
+  wrong UI, missing scripts, HTTP failures, HTML-as-JS, external/wrong-framework
+  script paths and unknown fixture. Real optimized batch24 Next artifact passed
+  SSR counter and seven client scripts; evidence stack-next-ssr-probe.json.
+- Isolated QA Next run stopped, Docker ps empty, ports18090/8080 free. New QA tab23
+  closed. Always use /snap/lxd/current/bin/lxc, already the production default.
+  Plain lxc invokes a failing snap/DBus scope wrapper; no daemon or permission
+  problem. No sudo or host configuration changes needed.
+- Native Next has NOT been submitted or tested yet. Existing production DB query
+  confirmed no Next build. Form stackQa6 IAB2tab13 is staged with public repo and
+  examples/stacks/next, Google selected. Prepare another version has NOT clicked.
+- Normal quota observer exec25001 is live, /tmp/pods-wait-next-build.py. It reads
+  production DB anchored to previous FastAPI build.account, never changes it.
+  Last output19:10:30UTC: same-account3/global3/active0/readyfalse. Next ordinary
+  slot19:20:19UTC. Deadline15minutes; polls45s internally. Final ready evidence
+  will write evidence/stack-next-build-window.json (currently empty/in-flight).
+  Poll this same session; do not start another waiter or submit before eligible.
+- Once admitted, actual form submission→build observer→Google native browser and
+  Codespaces harness with PODS_SSR_CHECK=1 PODS_SSR_FIXTURE=next. Use evidence path
+  stack-next-codespaces.json and actual resulting app ID. Next transient counter
+  resets on reload by design; verify hydration/click and reset, not DB durability.
+- Current Google connection may expire near19:20UTC; ordinary same-account OAuth
+  can resume the preserved preparation. No user terminal/setup steps.
 
 ## Latest completed gate: genuine JSON API native acceptance
 
@@ -174,7 +204,7 @@ pods-launch-containers-97qw56gjg47gf7vrv; prior image-phase Codespace
 pods-launch-containers-69rw5vx4xp46c5qw5. API Google2/Codespaces2; earlier
 Google Django3/Rails2/Bun2, Codespaces Django4/Rails4/Bun2.
 
-CUA bindings: stackQa6 IAB2tab13 API build result; accountWorker IAB2tab12 stopped
+CUA bindings: stackQa6 IAB2tab13 staged Next developer form; accountWorker IAB2tab12 stopped
 API launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
 connection; nativeGithubKeep IAB2tab10; cloudLifecycle IAB2tab14.
 After compaction call rewriteDocumentation; re-mark pending tabs. Locator timeouts
@@ -184,12 +214,11 @@ QA LXD pods-fresh-matrix-01, /opt/pods source, /work/stacks fixtures,/output res
 /opt/node/bin/node uid/gid1000,PODS_ISOLATED_BUILD=1. Browser QA PID292107 (exec86855) listens
 8081 with PODS_QA_APP_PORT=18090 and catalog/output/evidence/browser-matrix.json.
 SIGTERM292107 stopped only its API runner (exec43462 completed0); SSH tunnel
-localhost18890 remains. Current unprivileged LXC cleanup inspection failed twice
-because snap could not create its DBus transient scope; privileged read-only
-inspection80581 also could not run because sudo requires interactive authentication.
-No sudo password requested or supplied. The earlier runner-stop completion is
-retained; no claim of a fresh container/port inventory. API QA tab22 closed.
-Do not repeat SIGTERM blindly: handler was one-shot.
+localhost18890 remains. Plain lxc cleanup inspection failed because its snap launcher could not create
+its DBus scope; bundled /snap/lxd/current/bin/lxc works with existing access.
+Fresh inventory after the Next probe confirms Docker empty and app ports18090/8080
+free. QA server292107 remains with its one-shot runner handler consumed; do not
+repeat SIGTERM blindly. API tab22 and Next tab23 closed.
 SQLite reads must use readonly mode and whitelist public fields. Never dump
 credentials or owner/identity/session values. Code graph project
 Users-rizwanahamed-Documents-ChatGPT-podsv2; targeted fallback for absent scripts.

@@ -1,0 +1,73 @@
+{
+  "recordedAt": "2026-10-03T19:10:49.169Z",
+  "scope": "New HTTP probe against existing genuine isolated Next.js artifact through SSH tunnel; not native provider or browser hydration evidence.",
+  "sourceEvidence": "stack-matrix-24.json",
+  "result": {
+    "fixture": "next",
+    "productRendered": true,
+    "initialCounter": 0,
+    "scripts": [
+      {
+        "path": "/_next/static/chunks/20pkwklkbp1q4.js",
+        "status": 200,
+        "contentType": "application/javascript; charset=UTF-8",
+        "bytes": 183339
+      },
+      {
+        "path": "/_next/static/chunks/1rj7ns8rte9vc.js",
+        "status": 200,
+        "contentType": "application/javascript; charset=UTF-8",
+        "bytes": 229156
+      },
+      {
+        "path": "/_next/static/chunks/turbopack-03h4qq07e4vwr.js",
+        "status": 200,
+        "contentType": "application/javascript; charset=UTF-8",
+        "bytes": 9688
+      },
+      {
+        "path": "/_next/static/chunks/3fntmmi971322.js",
+        "status": 200,
+        "contentType": "application/javascript; charset=UTF-8",
+        "bytes": 14377
+      },
+      {
+        "path": "/_next/static/chunks/2xxrnzxavw23s.js",
+        "status": 200,
+        "contentType": "application/javascript; charset=UTF-8",
+        "bytes": 408
+      },
+      {
+        "path": "/_next/static/chunks/0cz1d0mv5g_q7.js",
+        "status": 200,
+        "contentType": "application/javascript; charset=UTF-8",
+        "bytes": 112594
+      },
+      {
+        "path": "/_next/static/chunks/3l04zcqx63h3y.js",
+        "status": 200,
+        "contentType": "application/javascript; charset=UTF-8",
+        "bytes": 16797
+      }
+    ],
+    "passed": true,
+    "scope": "Authenticated HTTP server-rendered fixture and client entry assets; not browser hydration, interaction or database persistence"
+  },
+  "artifactSha256": "133e3d8d687ad51a195390d7271e228acff7888a89fffec278a5a4c5496a7bc1",
+  "sourceRevision": "52baf33",
+  "automatedTests": {
+    "local": 66,
+    "aswin": 66,
+    "failed": 0,
+    "newProbeChecks": 5
+  },
+  "qaCleanup": {
+    "appsStopped": true,
+    "appPortsFree": [
+      18090,
+      8080
+    ],
+    "client": "/snap/lxd/current/bin/lxc",
+    "scope": "Existing unprivileged LXD access; direct bundled client works, snap wrapper failed with DBus transient scope error. Production already uses the bundled client."
+  }
+}
