@@ -189,5 +189,21 @@
   ],
   "fixtureRepair": "Enabled the real notes example API in the loopback product proxy so browser save/read can be verified. Fixture process was restarted between developer and launch phases; reports are retained separately.",
   "harnessNotes": "An AX disclosure button was not found by a DOM button-role selector; using its current AX control expanded it. A DOM input-value evaluation timed out; the current AX tree and server job metadata verified the exact draft instead.",
-  "productionConnectionExpiryForced": false
+  "productionConnectionExpiryForced": false,
+  "deployment": {
+    "commit": "4c1b887",
+    "host": "aswin",
+    "verifiedAt": "2026-10-03T16:16:00Z",
+    "health": true,
+    "publicScriptMatchesCheckout": true,
+    "appJsSha256": "b5242b31c9809b430cb24ed130754c2ad1327652450159a08b3cd1bae2482a5e",
+    "automatedChecks": {
+      "local": 52,
+      "aswin": 52
+    },
+    "oauthReady": {
+      "google": true,
+      "github": false
+    }
+  }
 }

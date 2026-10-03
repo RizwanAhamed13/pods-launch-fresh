@@ -7,7 +7,7 @@ Core: https://github.com/RizwanAhamed13/pods-launch-fresh
 Public fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh
 Local: /Users/rizwanahamed/Documents/ChatGPT/podsv2
 Aswin: /home/aswin/pods-launch-fresh and /home/aswin/pods-launch-runtime-fresh
-Public fixture commit: 00df7c0. Latest product fix: a7170b2, pushed and deployed.
+Public fixture commit: 00df7c0. Latest product fix: 4c1b887, pushed and deployed.
 
 ## Current evidence
 
@@ -15,8 +15,18 @@ Public fixture commit: 00df7c0. Latest product fix: a7170b2, pushed and deployed
   reusable artifact launches and browser interaction. See SUPPORT.md and
   stack-coverage.json; historical failures remain recorded.
 - 52 automated checks pass locally and on aswin. The latest aswin rerun is recorded in
-  stack-npm-cache-unit-tests-aswin.txt. Source LOC 4153: 2351 product/tooling, 132 browser
-  tools, 802 tests, 868 example sources. code-lines.json defines the count.
+  browser-reconnect-unit-tests-aswin.txt. Source LOC 4201: 2365 product/tooling, 156 browser
+  tools, 812 tests, 868 example sources. code-lines.json defines the count.
+- Expired submission authorization reconnects and resumes the exact build or
+  launch on the first click. One automatic recovery attempt survives OAuth
+  navigation; repeated failures stop without a loop or duplicate work. Cancelled
+  authorization preserves and expands the developer folder, including with no
+  history. Google build and GitHub launch browser regressions, real local notes
+  save/stop/relaunch persistence, cancellation and non-401 validation all pass.
+  These regressions use simulated OAuth/providers/preparation and are explicitly
+  not new native-provider evidence. See browser-reconnect.json. Public app.js
+  bytes match the committed source and /health passes. OAuth availability remains
+  Google=true, GitHub=false. No live connection was forcibly expired.
 - React/Express/PostgreSQL, Angular SSR/SQLite, Flask/PostgreSQL,
   Quarkus/SQLite and Laravel/SQLite have native Google browser/product evidence. These results do
   not automatically cover the other frameworks or arbitrary applications.
@@ -61,9 +71,10 @@ Public fixture commit: 00df7c0. Latest product fix: a7170b2, pushed and deployed
   retained the initial missing-isolation-marker QA invocation failure.
 
 - New real Angular submission (same source folder across fixture revisions)
-  prepared in 155.221 seconds. Developer Google session had expired; pressing
-  prepare again reconnected the already-authorized account and resumed the saved
-  draft automatically. No new permission prompt or terminal work.
+  prepared in 155.221 seconds. Developer Google session had expired; at that time,
+  pressing prepare again reconnected the already-authorized account and resumed
+  the saved draft. The extra-click defect is now fixed and covered by the browser
+  regression above. No new permission prompt or terminal work.
 - Optimized Angular on Cloud Shell: uncached image 61.933 seconds to health,
   cached 5.867 seconds to health and 8.312 seconds to native saved product.
   Old artifact's value 1 retained; new write 2/reload2/full stop/relaunch2.
@@ -102,6 +113,8 @@ Optimized Angular app ID: repo-ce3c167a84b230196d7bf924-00df7c09ea97-4da6dd64ea0
 Google launch alDHTjLLANfC-WVOlYHiYge3AQOQ8iX8 belongs to independent Chrome, value2.
 Codespace pods-launch-containers-69rw5vx4xp46c5qw5 currently serves Angular, value2.
 These previews stop at their 30-minute deadlines; no pending matrix build job.
+The local expired-session browser fixture and its products were stopped after
+validation. Its temporary tab17 is closed; no test fixture process remains.
 
 CUA in-app browser 2: developerWide tab12 launch controls; stackQa6 tab13 completed optimized Angular
 preparation; cloudLifecycle tab14 pending Restart confirmation; nativeGithubKeep
