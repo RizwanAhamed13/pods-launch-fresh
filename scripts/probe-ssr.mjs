@@ -1,8 +1,8 @@
 // Serialized into an authorized Codespace. This checks our SSR fixtures over
 // HTTP; hydration and interaction still require a separate real browser check.
 export async function probeSsrProduct(base='http://127.0.0.1:8080',fixture='nuxt') {
-  if(!['nuxt','next','sveltekit'].includes(fixture))throw new Error('Unknown SSR fixture');
-  const [heading,prefix]={next:['Next\\.js counter','/_next/'],nuxt:['Nuxt counter','/_nuxt/'],sveltekit:['SvelteKit counter','/_app/immutable/entry/']}[fixture];
+  if(!['nuxt','next','sveltekit','astro'].includes(fixture))throw new Error('Unknown SSR fixture');
+  const [heading,prefix]={next:['Next\\.js counter','/_next/'],nuxt:['Nuxt counter','/_nuxt/'],sveltekit:['SvelteKit counter','/_app/immutable/entry/'],astro:['Astro counter',null]}[fixture];
   async function read(url) {
     const response=await fetch(url,{redirect:'error',signal:AbortSignal.timeout(10000)});
     if(!response.ok)throw new Error('SSR fixture HTTP '+response.status);
@@ -11,6 +11,18 @@ export async function probeSsrProduct(base='http://127.0.0.1:8080',fixture='nuxt
   const root=new URL('/',base),response=await read(root),page=await response.text();
   const productRendered=new RegExp('<h1\\b[^>]*>'+heading+'<\\/h1>').test(page)&&/<p\b[^>]*\bid=["']value["'][^>]*>0<\/p>/.test(page);
   if(!response.headers.get('content-type')?.includes('text/html')||!productRendered)throw new Error('Expected server-rendered '+fixture+' counter was not found');
+  if(fixture==='astro') {
+    // This fixture intentionally ships inline JavaScript; browser interaction is
+    // checked separately. Its server timestamp must advance on a second request.
+    const inlineClient=/<button\b[^>]*\bid=["']add["'][^>]*>Add one<\/button>/.test(page)&&/<script>\s*\S[\s\S]*?<\/script>/.test(page);
+    if(!inlineClient)throw new Error('Astro inline client and counter control were not found');
+    const timestamp=html=>html.match(/Rendered on server:\s*(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z)/)?.[1];
+    const first=timestamp(page);
+    await new Promise(resolve=>setTimeout(resolve,20));
+    const repeat=await read(root),second=timestamp(await repeat.text()),observedAt=Date.now();
+    if(!repeat.headers.get('content-type')?.includes('text/html')||!first||!second||Date.parse(second)<=Date.parse(first)||Math.abs(Date.parse(first)-observedAt)>30000||Math.abs(Date.parse(second)-observedAt)>30000)throw new Error('Astro response was not freshly server-rendered');
+    return {fixture,productRendered,initialCounter:0,inlineClient,scripts:[],dynamicRender:{first,second,passed:true},passed:true,scope:'Authenticated HTTP fresh server-rendered Astro fixture and inline client delivery; not browser execution, interaction or database persistence'};
+  }
   const paths=fixture==='sveltekit'
     ? [...page.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)].flatMap(script=>[...script[1].matchAll(/\bimport\(\s*["']([^"']+)["']\s*\)/g)].map(match=>match[1]))
     : [...page.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi)].map(match=>match[1]);

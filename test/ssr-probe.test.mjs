@@ -12,7 +12,7 @@ async function serve(options,run){
   const requests=[];
   const server=createServer((req,res)=>{
     requests.push(req.url);
-    if(req.url==='/'){res.setHeader('Content-Type','text/html');res.end(options.page??markup());}
+    if(req.url==='/'){res.setHeader('Content-Type','text/html');res.end(typeof options.page==='function'?options.page():options.page??markup());}
     else{res.statusCode=options.status??200;res.setHeader('Content-Type',options.type??'text/javascript');res.end(options.script??'console.log("fixture client")');}
   });
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
@@ -53,4 +53,15 @@ test('native SSR command executes in a fresh Node process for all three framewor
     const entries=fixture==='sveltekit'?2:1;
     const result=JSON.parse(stdout);assert.equal(result.fixture,fixture);assert.equal(result.passed,true);assert.equal(result.scripts.length,entries);assert.equal(requests.length,entries+1);
   });
+});
+const astroMarkup=(timestamp=new Date().toISOString())=>`<html><h1>Astro counter</h1><p id="value">0</p><button id="add">Add one</button><p>Rendered on server: ${timestamp}</p><script>document.querySelector('#add').onclick=()=>{};</script></html>`;
+test('Astro probe verifies fresh server rendering and inline client delivery in a separate process',async()=>{
+  await serve({page:()=>astroMarkup()},async(base,requests)=>{
+    const {stdout}=await promisify(execFile)(process.execPath,['--input-type=module','-e',ssrProbeCommand('astro',base)],{timeout:10000});
+    const result=JSON.parse(stdout);assert.equal(result.passed,true);assert.equal(result.inlineClient,true);assert.equal(result.dynamicRender.passed,true);assert.deepEqual(result.scripts,[]);assert.deepEqual(requests,['/','/']);
+  });
+});
+test('Astro probe rejects static, stale, unrelated and missing-client responses',async()=>{
+  for(const page of [astroMarkup(),()=>astroMarkup('2000-01-01T00:00:00.000Z'),()=>astroMarkup().replace('Astro counter','Other counter'),()=>astroMarkup().replace(/<script.*?<\/script>/,'')])
+    await serve({page},base=>assert.rejects(probeSsrProduct(base,'astro')));
 });
