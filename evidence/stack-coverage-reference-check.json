@@ -1,7 +1,7 @@
 {
-  "rows": 55,
-  "serverPassCount": 54,
-  "browserPassCount": 54,
+  "rows": 56,
+  "serverPassCount": 55,
+  "browserPassCount": 55,
   "retainedFailedFixture": "flask-mongodb",
   "allReferencedEvidenceExists": true,
   "scope": "Coverage index and file existence only; no tests rerun or new runtime support inferred."

@@ -46,7 +46,7 @@ are measured separately. See `evidence/` for completed evidence.
 
 ## Verification status
 
-**54 distinct application fixtures** have passed a real server build, prepared
+**55 distinct application fixtures** have passed a real server build, prepared
 artifact launch and browser interaction. All named framework fixture families in the target matrix now have a passing representative. Each fixture is a genuine framework application, not a replacement
 HTML page. The browser checks use an authenticated SSH tunnel to aswin's isolated
 QA guest; provider tests are recorded separately below.
@@ -64,11 +64,12 @@ QA guest; provider tests are recorded separately below.
 | PHP | Plain PHP, Laravel, Symfony | SQLite write/read/restart and browser reload passed |
 | Ruby | Sinatra, Rails | SQLite write/read/restart and browser reload passed |
 | Other runtimes | Compiled Deno, compiled Bun, Elixir/Phoenix | Product and persistent record passed; Bun WebSocket ping/pong and live UI passed |
+| JSON API product | FastAPI API + SQLite | Existing Swagger UI discovered automatically; browser API write/read and database restart passed |
 | Combined application | React + Express + PostgreSQL | Browser write/reload and full database restart passed |
 | Background processing | Flask web + Python worker + Redis | Job submitted, worker result displayed, completed job survives relaunch |
 | Private databases/services | SQLite, PostgreSQL 17, MySQL, MariaDB, Redis, Valkey, MongoDB 7.0.43 | Write/read/stop/restart/read passed; no public database ports |
 
-The database variants account for several of the 54 distinct applications.
+The database variants account for several of the 55 distinct applications.
 Frontend fixtures use localStorage or deliberately transient client state; they
 are not evidence of backend database durability. Next.js and Nuxt counters reset
 on reload by design. Their original batch02 harness did not relaunch non-API
@@ -79,7 +80,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **58 passing
+later passing attempts do not erase them. Automated coverage is **61 passing
 checks locally and on aswin**.
 
 ## Actual repository URL to native product
@@ -523,5 +524,43 @@ The deployed runner retained Django SQLite data on both providers. Cloud Shell
 showed the saved record in 7.870s and completed a browser write in 8.140s. Two
 Codespaces authenticated HTTP launches reached health in 6.881s and 6.386s and
 retained SQLite data across a full stop/relaunch. All three previews stopped.
-These were cached-image checks; native uncached phase measurements remain pending.
+These were cached-image checks; the FastAPI API measurements below add native
+uncached phase evidence.
 See `evidence/image-phases.json` and `evidence/image-phases-codespaces.json`.
+
+## JSON API entrypoints
+
+The `fastapi-api` fixture serves JSON at `/`; it does not add an HTML landing
+page. PODS verifies that response and discovers the application's existing
+Swagger UI at `/docs` only when a bounded, local OpenAPI 3 schema is available at
+`/openapi.json`. Its launch URL then opens that existing interface automatically.
+The same fixture passes SQLite write/read/restart and browser request-form checks.
+External schema redirects and unverified or arbitrary preview paths are rejected.
+
+This discovery currently covers that conventional OpenAPI/Swagger layout. Other
+JSON APIs retain their root endpoint. A JSON response alone did not render as a
+product navigation in the tested in-app browser; that initial failure is retained
+in `evidence/stack-browser-27.json`. PODS does not yet discover every custom API
+documentation route or provide a browser interface for APIs that have none.
+
+The actual developer form built the public API fixture at `f58a3e357955` in
+84.909s, producing a 52.4 MiB image. Both providers selected `/docs` automatically.
+
+| API scenario | Measured result |
+| --- | --- |
+| Cloud Shell, existing compute/image absent | Health 18.676s; interface visible 19.995s; browser write 0→1 completed 26.383s |
+| Cloud Shell, cached | Health 6.147s; interface visible 8.119s; retained record 1 read by 14.489s; subsequent write 2 by 21.017s |
+| Codespaces, new environment/image absent | Health 156.195s, including 132.083s before provider readiness; JSON API and documentation HTTP checks passed |
+| Codespaces, cached | Health 9.734s; retained record 1, wrote 2 and read it back |
+
+Browser timings include the actual Swagger request-form actions. The cached
+21.017s measurement includes a read and then a separate write; it is not the
+time of first interaction. Both Google writes survived browser reload. Each
+provider retained SQLite through a full application stop/relaunch. All four
+previews stopped. Codespaces checks used authenticated HTTP over SSH; native
+browser authorization remains pending.
+
+The first image took 9.537s to download on each provider, then 2.078s to load on
+Cloud Shell and 3.820s on Codespaces. Transfer dominated image preparation in
+these samples. These measurements do not establish a general launch-time bound.
+Evidence: `evidence/stack-fastapi-api-{url,google,codespaces}.json`.

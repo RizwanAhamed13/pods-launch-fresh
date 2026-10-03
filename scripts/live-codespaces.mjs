@@ -37,7 +37,7 @@ async function probeCounter(environment) {
   const code=`const base='http://127.0.0.1:8080';
     async function read(path,method='GET'){const r=await fetch(base+path,{method,signal:AbortSignal.timeout(15000)});if(!r.ok)throw new Error('Counter HTTP '+r.status);return r;}
     const response=await read('/'),contentType=response.headers.get('content-type')||'',page=await response.text(),before=await(await read('/api/count')).json(),after=await(await read('/api/count','POST')).json(),again=await(await read('/api/count')).json();
-    let api=null;if(${apiProduct}){const initial=JSON.parse(page),latest=await(await read('/')).json();api={name:initial.name,before:initial.count,afterWrite:latest.count,passed:contentType.toLowerCase().startsWith('application/json')&&initial.name==='Persistent counter API'&&initial.count===before.count&&latest.count===after.count};}
+    let api=null;if(${apiProduct}){const initial=JSON.parse(page),latest=await(await read('/')).json(),docs=await(await read('/docs')).text();api={name:initial.name,before:initial.count,afterWrite:latest.count,documentationDocument:docs.includes('SwaggerUIBundle'),passed:contentType.toLowerCase().startsWith('application/json')&&initial.name==='Persistent counter API'&&initial.count===before.count&&latest.count===after.count&&docs.includes('SwaggerUIBundle')};}
     console.log(JSON.stringify({productDocument:/<(html|title|h1)\\b/i.test(page),api,before:before.count,afterWrite:after.count,afterRead:again.count}));`;
   const check=await probeEnvironment(environment,code);
   check.passed=(apiProduct?check.api?.passed:check.productDocument)&&Number.isInteger(check.before)&&check.afterWrite===check.before+1&&check.afterRead===check.afterWrite&&(previousCount===undefined||check.before===previousCount);
@@ -90,6 +90,7 @@ try {
   const result={scenario:name,...launch};results.push(result);console.log(JSON.stringify({scenario:name,status:launch.status,totalMs:launch.totalMs,deliveryMs:launch.deliveryMs,timings:launch.timings,environment:launch.environment,storageMode:launch.storageMode,error:launch.error}));
   await persist();
   if(launch.status!=='ready')throw new Error(launch.error||'Launch failed');
+  if(apiProduct&&new URL(launch.previewUrl).pathname!=='/docs')throw new Error('API product did not select its verified interface');
   if(counterCheck){result.counterCheck=await probeCounter(launch.environment);await persist();if(!result.counterCheck.passed)throw new Error('Counter write/read/relaunch persistence failed');}
   if(workerCheck){result.workerCheck=await probeWorker(launch.environment);await persist();if(!result.workerCheck.passed)throw new Error('Worker completion/relaunch persistence failed');}
   if(websocketCheck){result.websocketCheck=await probeWebSocket(launch.environment);await persist();if(!result.websocketCheck.passed)throw new Error('WebSocket exchange/relaunch persistence failed');}

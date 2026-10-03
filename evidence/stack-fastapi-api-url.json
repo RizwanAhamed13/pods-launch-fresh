@@ -1,0 +1,59 @@
+{
+  "recordedAt": "2026-10-03T19:00:09.798321+00:00",
+  "scope": "Actual developer form submission after normal same-account build availability; production isolated preparation, no imported QA artifact.",
+  "attempts": [
+    {
+      "id": "Qmviuz6kDy55Tb2ybssEwAH7aC1CeO09",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/fastapi-api",
+        "key": "0a5395ff6c05eeae1cc76c56"
+      },
+      "status": "ready",
+      "createdAt": 1791053919208,
+      "startedAt": 1791053919273,
+      "finishedAt": 1791054004182,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-0a5395ff6c05eeae1cc76c56-f58a3e357955-c3ffdb2bed82",
+      "app": {
+        "id": "repo-0a5395ff6c05eeae1cc76c56-f58a3e357955-c3ffdb2bed82",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "c3ffdb2bed82fe19a62beeef10fbfbe6d36c99ae86a1f02965f622728d95d096",
+        "bytes": 275,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-0a5395ff6c05eeae1cc76c56",
+        "images": [
+          {
+            "id": "sha256:bbd1b7b19e360ed9e7e4043d26407b93cd223f2d62554d12804dffe66f3ea50d",
+            "sha256": "c86f732a573ac9dadd9cb14aa35436c4ec19d7783ee2bb7ccd929e60ccb9fc32",
+            "bytes": 54899297
+          }
+        ],
+        "productType": "api",
+        "productPath": "/docs",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/fastapi-api",
+          "revision": "f58a3e35795578fb1f036369ebdcdd992a074bf8"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Persistent counter API - Swagger UI",
+          "apiDocumentation": {
+            "path": "/docs",
+            "schemaPath": "/openapi.json",
+            "schemaVersion": "3.1.0"
+          }
+        },
+        "preparedAt": "2026-10-03T19:00:03.985Z"
+      }
+    }
+  ],
+  "buildMs": 84909
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "stack": "fastapi-api",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 64489,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 12,
+      "imageCacheHits": 1,
+      "imageArchiveCacheHits": 0,
+      "imageCacheCheckMs": 44,
+      "imageDownloadMs": 0,
+      "imageLoadMs": 0,
+      "imagesMs": 44,
+      "runtimeReadyMs": 4501
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imageArchiveCacheHits": 0,
+      "imageCacheCheckMs": 44,
+      "imageDownloadMs": 0,
+      "imageLoadMs": 0,
+      "imagesMs": 44,
+      "runtimeReadyMs": 4051
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "productType": "api",
+    "responseBytes": 148,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:1fb86f72c128e54f38a1c1ea08df82330425f2fb20177937fb59b22329d6f449",
+        "sha256": "3b2af4e6b0cc24ab360485411ca1e4f11b783b18b38c57be424485f81568c817",
+        "bytes": 54900055
+      }
+    ],
+    "sha256": "322e228db34516db4198052f2814c53c700bdc18fd736b976dc47ecd217f3955"
+  }
+]

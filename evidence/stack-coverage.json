@@ -1,7 +1,7 @@
 {
   "scope": "Framework browser results use an SSH tunnel to real aswin artifacts. Native provider evidence applies only to named fixtures; Codespaces browser sign-in is pending. Failed historical attempts are preserved.",
-  "serverPassCount": 54,
-  "browserPassCount": 54,
+  "serverPassCount": 55,
+  "browserPassCount": 55,
   "fixtures": [
     {
       "fixture": "actix",
@@ -302,6 +302,39 @@
         {
           "evidence": "stack-matrix-02.json",
           "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "fastapi-api",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-27.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-27.json",
+      "nativeProviderEvidence": [
+        "stack-fastapi-api-url.json",
+        "stack-fastapi-api-google.json",
+        "stack-fastapi-api-codespaces.json"
+      ],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-26.json",
+          "status": "passed",
+          "scope": "JSON root and SQLite restart passed; browser entrypoint acceptance failed separately."
+        },
+        {
+          "evidence": "stack-browser-27.json",
+          "status": "failed",
+          "scope": "Initial JSON navigation stayed on catalog; retained alongside later verified Swagger interface pass."
+        },
+        {
+          "evidence": "stack-matrix-27.json",
+          "status": "passed"
+        },
+        {
+          "evidence": "stack-browser-27.json",
+          "status": "passed",
+          "scope": "Existing verified /docs interface opens automatically and browser SQLite interaction passes."
         }
       ]
     },

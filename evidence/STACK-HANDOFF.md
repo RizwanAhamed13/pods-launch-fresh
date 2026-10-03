@@ -5,20 +5,50 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 ## Source and coverage
 
 - Core private https://github.com/RizwanAhamed13/pods-launch-fresh; public fixtures
-  https://github.com/RizwanAhamed13/pods-launch-runtime-fresh at 00df7c0.
+  https://github.com/RizwanAhamed13/pods-launch-runtime-fresh at f58a3e3.
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
-- 54 distinct real fixtures pass isolated build, artifact run and meaningful browser
+- 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 4565 physical source lines: 2608 product/tooling, 925 tests, 868 examples,
+- 4667 physical source lines: 2643 product/tooling, 966 tests, 894 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 58 automated checks pass locally and on aswin after image timing change3b8fd11.
+- 61 automated checks pass locally and on aswin after API entrypoint change4cf4370.
 - Native Google browser families: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
-  Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite: twelve.
-- Same twelve families have Codespaces authenticated SSH HTTP/protocol checks;
+  Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
+  FastAPI JSON API/SQLite: thirteen.
+- Same thirteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: image phase diagnostics
+## Latest completed gate: genuine JSON API native acceptance
+
+- Runtime/source4cf4370 discovers a verified existing /docs Swagger interface only
+  with bounded same-origin /openapi.json OpenAPI3 schema. JSON root remains the
+  health/API endpoint. Fixed relative product path preserves provider hostname.
+- 61 checks pass locally/aswin. Isolated QA adds fixture55: fastapi-api, real
+  JSON-only API/SQLite. Initial in-app JSON navigation failure is retained;
+  revised catalog automatically opens existing Swagger UI and writes/reads data.
+- Public fixturef58a3e3. Real developer submission admitted normally18:58:39UTC;
+  buildQmviuz6kDy55Tb2ybssEwAH7aC1CeO09 ready in84.909s. No quota manipulation,
+  identity switching or imported QA artifact. Production image54899297bytes.
+  App repo-0a5395ff6c05eeae1cc76c56-f58a3e357955-c3ffdb2bed82.
+- Native Google automatically opened/docs. First-image health18.676s, interface
+  visible19.995s, browser POST0→1 completed26.383s; reloadGET retained1.
+  Cached health6.147s, interface8.119s, retainedGET1 at14.489s, then POST2 at21.017s;
+  reloadGET2. Timings continuous and include Swagger request-form actions.
+- Codespaces new environment health156.195s (provider startup132.083s); cached
+  health9.734s. JSON root, /docs document, selected preview/docs and counter
+  0→1/restart1→2 passed through authenticated SSH HTTP. Browser still pending.
+  Harness84991 finished0. Both providers' two launches confirmed stopped.
+- Uncached image download9.537s each provider, Docker load2.078s Google/3.820s
+  Codespaces. Transfer dominates these samples; no optimization claimed.
+- Evidence stack-matrix-26/27, stack-browser-27 and stack-fastapi-api-{url,google,
+  codespaces}.json. Coverage55/55,13 native fixtures;42 remain native-untested.
+- Production source4cf4370, serverPID784115 exec56803. Public health/runner hash
+  checked after deployment; no restart needed for later harness/docs-only commit.
+- Normal same-account next build slot19:20:19UTC, then19:33:57 and19:58:39 absent
+  other builds. Observer21270 completed0; no quota observer running.
+
+## Previous completed gate: image phase diagnostics
 
 - Runtime change3b8fd11 preserves delivery integrity and adds imageCacheCheckMs,
   imageDownloadMs, imageLoadMs, imageArchiveCacheHits; total imagesMs retained.
@@ -132,26 +162,34 @@ Runner SHA75cfd87f58a02353b48a080ee480b9b5ac246e2e189474f57e318fa11fdc0a0f.
 ## Operational state
 
 Origin https://collection-conferences-ages-clearly.trycloudflare.com.
-Control server PID774112, persistent exec75146; PID file matches verified cwd.
-Deployment3b8fd11 passed public health, runner hash and native cached persistence
+Control server PID784115, persistent exec56803; PID file matches verified cwd.
+Deployment4cf4370 passed public health, runner hash and native API persistence
 checks. The earlier structured CSRF checks remain in browser-session-recovery.json.
 Always verify PID file, cwd, cmdline
 and listener before targeted restart. Use scripts/serve.sh from the repository;
 Node/gh in /home/aswin/pods-tools/bin. Do not restart with active builds/launches.
 
-No live PODS apps after image-phase checks; data retained. Codespace
-pods-launch-containers-69rw5vx4xp46c5qw5. Google Django3/Rails2/Bun2; Codespaces Django4/Rails4/Bun2.
+No live PODS apps after API checks; data retained. Latest API Codespace
+pods-launch-containers-97qw56gjg47gf7vrv; prior image-phase Codespace
+pods-launch-containers-69rw5vx4xp46c5qw5. API Google2/Codespaces2; earlier
+Google Django3/Rails2/Bun2, Codespaces Django4/Rails4/Bun2.
 
-CUA bindings: stackQa6 IAB2tab13 Django build result; accountWorker IAB2tab12 stopped
-Django launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
+CUA bindings: stackQa6 IAB2tab13 API build result; accountWorker IAB2tab12 stopped
+API launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
 connection; nativeGithubKeep IAB2tab10; cloudLifecycle IAB2tab14.
 After compaction call rewriteDocumentation; re-mark pending tabs. Locator timeouts
 do not cancel launches: never resubmit because an observation timed out.
 
 QA LXD pods-fresh-matrix-01, /opt/pods source, /work/stacks fixtures,/output results,
-/opt/node/bin/node uid/gid1000,PODS_ISOLATED_BUILD=1. Browser QA PID125572 listens
-8081; prior SIGTERM stopped only its runner. SSH tunnel localhost18890 remains.
-All QA apps stopped/port8080 free at prior checkpoint; no new QA apps this turn.
+/opt/node/bin/node uid/gid1000,PODS_ISOLATED_BUILD=1. Browser QA PID292107 (exec86855) listens
+8081 with PODS_QA_APP_PORT=18090 and catalog/output/evidence/browser-matrix.json.
+SIGTERM292107 stopped only its API runner (exec43462 completed0); SSH tunnel
+localhost18890 remains. Current unprivileged LXC cleanup inspection failed twice
+because snap could not create its DBus transient scope; privileged read-only
+inspection80581 also could not run because sudo requires interactive authentication.
+No sudo password requested or supplied. The earlier runner-stop completion is
+retained; no claim of a fresh container/port inventory. API QA tab22 closed.
+Do not repeat SIGTERM blindly: handler was one-shot.
 SQLite reads must use readonly mode and whitelist public fields. Never dump
 credentials or owner/identity/session values. Code graph project
 Users-rizwanahamed-Documents-ChatGPT-podsv2; targeted fallback for absent scripts.

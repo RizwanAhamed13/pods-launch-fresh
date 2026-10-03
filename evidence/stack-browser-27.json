@@ -1,0 +1,23 @@
+[
+  {
+    "stack": "fastapi-api",
+    "status": "failed",
+    "scope": "Initial browser catalog selection to JSON root in the in-app browser; app HTTP returned200 and SQLite restart passed, but the browser remained on the catalog.",
+    "serverEvidence": "stack-matrix-26.json",
+    "recovery": "Manually opening the existing /docs interface worked and a browser POST incremented1\u21922. This manual navigation was not counted as one-click acceptance."
+  },
+  {
+    "stack": "fastapi-api",
+    "status": "passed",
+    "scope": "Updated isolated preparation discovers existing OpenAPI/Swagger UI and catalog selection automatically opens /docs. Actual browser request forms write and read SQLite via authenticated SSH tunnel to aswin QA; not native provider evidence.",
+    "serverEvidence": "stack-matrix-27.json",
+    "automaticProductPath": "/docs",
+    "before": 3,
+    "afterWrite": 4,
+    "afterReloadRead": 4,
+    "observationNotes": [
+      "Initial count locator matched tokenized JSON text incompletely; AX response confirmed count4.",
+      "Reload retained a POST fragment, so GET request controls were scoped to the observed GET operation container; no duplicate writes."
+    ]
+  }
+]

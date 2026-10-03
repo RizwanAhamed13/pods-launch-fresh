@@ -1,0 +1,84 @@
+{
+  "recordedAt": "2026-10-03T19:05:07.214514+00:00",
+  "scope": "Native Cloud Shell browser on real JSON-only FastAPI product with existing Swagger UI. First launch on existing compute with absent image; second uses installed image. Full application stop/relaunch, not VM replacement. Timings measured continuously through actual Swagger operations, including browser automation action time.",
+  "preparationEvidence": "stack-fastapi-api-url.json",
+  "attempts": [
+    {
+      "id": "oiY_HU0_36xq8gSCA1bQAyIuvUkIsU5D",
+      "appId": "repo-0a5395ff6c05eeae1cc76c56-f58a3e357955-c3ffdb2bed82",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791054143462,
+      "readyAt": 1791054162138,
+      "providerReadyAt": 1791054146150,
+      "timings": {
+        "downloadMs": 483,
+        "imagesMs": 11674,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 48,
+        "imageDownloadMs": 9537,
+        "imageLoadMs": 2078,
+        "runtimeReadyMs": 14227,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "stopRequested": true,
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev/docs",
+      "productPath": "/docs",
+      "totalMs": 18676
+    },
+    {
+      "id": "J4G_H9agxiBUx6PQpwtCNexlZ6OXdcUE",
+      "appId": "repo-0a5395ff6c05eeae1cc76c56-f58a3e357955-c3ffdb2bed82",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791054227023,
+      "readyAt": 1791054233170,
+      "providerReadyAt": 1791054229495,
+      "timings": {
+        "downloadMs": 196,
+        "imagesMs": 63,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 63,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2117,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "stopRequested": true,
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev/docs",
+      "productPath": "/docs",
+      "totalMs": 6147
+    }
+  ],
+  "browser": [
+    {
+      "launchId": "oiY_HU0_36xq8gSCA1bQAyIuvUkIsU5D",
+      "automaticallyOpened": "/docs",
+      "visibleMs": 19995,
+      "firstSuccessfulWriteMs": 26383,
+      "afterWrite": 1,
+      "afterReloadRead": 1
+    },
+    {
+      "launchId": "J4G_H9agxiBUx6PQpwtCNexlZ6OXdcUE",
+      "automaticallyOpened": "/docs",
+      "visibleMs": 8119,
+      "retainedReadMs": 14489,
+      "before": 1,
+      "readThenWriteMs": 21017,
+      "afterWrite": 2,
+      "afterReloadRead": 2
+    }
+  ],
+  "confirmedStopped": true,
+  "databasePersistence": "SQLite value1 survived full stop/fresh launch; second write2 survived browser reload.",
+  "limits": [
+    "First cold browser write exceeded20seconds despite root health18.676s.",
+    "Cached first read succeeded14.489s; read followed by separate write completed21.017s.",
+    "Native provider browser evidence applies to this API fixture only."
+  ]
+}

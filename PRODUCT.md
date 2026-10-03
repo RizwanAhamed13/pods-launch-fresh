@@ -15,7 +15,7 @@ Provider authorization is required. Conventional public GitHub applications can 
 
 Cold provisioning and uncached image transfer are measured separately from cached launch. User compute remains owned and billed by the user's provider. Persistent container data is stored under Cloud Shell's home or Codespaces' `/workspaces`; provider lifecycle durability requires separate evidence.
 ## Evidence on Hand
-The current implementation passes 58 automated checks locally and on aswin. All 54 distinct stack fixtures have real server-build, reusable-artifact launch and meaningful browser-interaction evidence. The fixtures cover frontend, SSR, backend, database and worker combinations; they do not represent 54 different frameworks. Database fixtures have write/read/stop/relaunch checks. See `evidence/stack-coverage.json`, numbered stack matrix/browser evidence, and `SUPPORT.md` for the exact scope and retained failures.
+The current implementation passes 61 automated checks locally and on aswin. All 55 distinct stack fixtures have real server-build, reusable-artifact launch and meaningful browser-interaction evidence. The fixtures cover frontend, SSR, backend, database and worker combinations; they do not represent 55 different frameworks. Database fixtures have write/read/stop/relaunch checks. See `evidence/stack-coverage.json`, numbered stack matrix/browser evidence, and `SUPPORT.md` for the exact scope and retained failures.
 
 Real developer repository submissions and native Cloud Shell product interactions pass for Flask + PostgreSQL, React + Express + PostgreSQL, Angular SSR + SQLite, Quarkus + SQLite, Laravel + SQLite, Blazor Server + SQLite, and the Go Gin persistent-file counter. Angular's cached launch displayed its usable product and saved record in 7.223 seconds; its uncached launch took 72.289 seconds to health. These observations do not establish a universal 20-second cold-launch guarantee. The optimized npm recipe excludes download caches while retaining installed dependencies. All eight affected fixtures were rebuilt and retested. Its new Angular artifact showed saved data in the native Cloud Shell product in 8.312 seconds cached and took 61.933 seconds uncached to health; the old artifact’s SQLite record survived the upgrade.
 
@@ -106,5 +106,23 @@ Image delivery now reports installed-image/archive checks, verified transfer and
 Docker loading separately. The deployed runner passes cached native Cloud Shell
 Django interaction and Codespaces HTTP/SQLite restart checks while preserving
 saved records. This is diagnostic instrumentation, not an image optimization;
-the next uncached native launch must identify which phase dominates. Evidence:
+the subsequent API launch identifies transfer as the dominant image phase. Evidence:
 `evidence/image-phases.json`.
+
+JSON-only products now have explicit representative evidence. The FastAPI API
+fixture serves JSON and stores its counter in SQLite. Preparation discovers its
+existing OpenAPI/Swagger interface, so one-click navigation can open `/docs`
+instead of leaving the in-app browser on an unrendered JSON navigation. Local
+schema validation and fixed provider-relative paths preserve the provider host.
+Other API documentation layouts remain unverified; APIs without an interface
+retain their JSON root.
+
+FastAPI API + SQLite is the thirteenth fixture with native-provider evidence.
+The real developer form prepared it in 84.909s. Cloud Shell automatically opened
+its Swagger UI in 19.995s with the image absent and 8.119s cached. Its first cold
+write completed at 26.383s; the cached retained-value read completed at 14.489s.
+SQLite writes survived browser reload and full application restart. Codespaces
+HTTP/API/documentation checks passed at 156.195s with a new environment and
+9.734s cached, retaining SQLite across restart. Its native browser test remains
+pending. All four previews stopped. Source is 4667 physical lines under the scope
+recorded in `evidence/code-lines.json`; this includes tests and example apps.
