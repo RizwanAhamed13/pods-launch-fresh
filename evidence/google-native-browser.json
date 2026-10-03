@@ -1,0 +1,81 @@
+{
+  "observedAt": "2026-10-03T06:34:04.895075+00:00",
+  "provider": "Google Cloud Shell",
+  "sourceRepository": "https://github.com/mdn/beginner-html-site-scripted",
+  "sourceRevision": "570260b392cc15a0b2ecd579071b0fc6384bbe98",
+  "artifactBuiltOn": "aswin",
+  "browserAuthorization": "Real web OAuth with the Google account signed into the browser; refreshed after the initial ten-minute state expired",
+  "launches": [
+    {
+      "id": "zkhsvaZTXg25f6X0E_5Q7odHOvX7c4Rj",
+      "appId": "repo-d053610390afe86835757909-570260b392cc-8d76347af27e",
+      "sha256": "8d76347af27ec9d68fa048e1f699072db4f6b27c8f7b6c58bd21dee4e2f5d93b",
+      "status": "stopped",
+      "createdAt": 1791008888366,
+      "providerReadyAt": 1791008898760,
+      "readyAt": 1791008901223,
+      "expiresAt": 1791010688366,
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 551,
+        "runtimeReadyMs": 793,
+        "cacheHit": false
+      },
+      "acceptedToHealthyMs": 12857,
+      "providerReadyToHealthyMs": 2463
+    },
+    {
+      "id": "DKkSdzRWTKT9g4NczmFydXN4KBWX4JS0",
+      "appId": "repo-d053610390afe86835757909-570260b392cc-8d76347af27e",
+      "sha256": "8d76347af27ec9d68fa048e1f699072db4f6b27c8f7b6c58bd21dee4e2f5d93b",
+      "status": "ready",
+      "createdAt": 1791009059065,
+      "providerReadyAt": 1791009061965,
+      "readyAt": 1791009063662,
+      "expiresAt": 1791010859065,
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 208,
+        "runtimeReadyMs": 464,
+        "cacheHit": true
+      },
+      "acceptedToHealthyMs": 4597,
+      "providerReadyToHealthyMs": 1697
+    }
+  ],
+  "firstLaunchBrowserObservation": {
+    "observedAt": 1791008920044,
+    "acceptedToObservationUpperBoundMs": 31678,
+    "note": "Observation was delayed by code inspection; not a precise first-paint measurement."
+  },
+  "repeatBrowserMeasurement": {
+    "clickedAt": 1791009058748,
+    "visibleObservedAt": 1791009071797,
+    "clickToVisibleUpperBoundMs": 13049,
+    "heading": "Mozilla is cool",
+    "method": "Wall-clock timestamps around the real Open My test page button click and the first product DOM observation. A browser locator wait returned early; observation resumed and still bounded visibility below 20 seconds.",
+    "computeState": "Already running; prepared artifact cached",
+    "interaction": {
+      "action": "Click Firefox image",
+      "before": "images/firefox-icon.png",
+      "after": "images/firefox2.png",
+      "passed": true
+    }
+  },
+  "recoveryVerification": {
+    "expiredStateTests": true,
+    "sweptStateTests": true,
+    "wrongBrowserAndProviderRejected": true,
+    "liveBrowserInvalidCallbackReturnedToOriginalProduct": true,
+    "googleRemainedSelected": true,
+    "authorizationLifetimeMs": 600000
+  },
+  "remaining": [
+    "Controlled cold launch-to-visible measurement",
+    "Full developer browser URL submission",
+    "Independent second-user browser journey",
+    "Real GitHub OAuth and native product interaction"
+  ]
+}

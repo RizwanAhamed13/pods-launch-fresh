@@ -50,10 +50,44 @@ test('OAuth uses PKCE and session-bound single-use state; callback never exposes
  assert.equal((await fetch(origin+'/auth/github?returnTo=https://evil.example',{headers:{Cookie:cookie},redirect:'manual'})).status,400);
  const start=await fetch(origin+'/auth/github?returnTo=/launch/prepared-version',{headers:{Cookie:cookie},redirect:'manual'});assert.equal(start.status,302);const auth=new URL(start.headers.get('location')),state=auth.searchParams.get('state');assert.equal(auth.searchParams.get('code_challenge_method'),'S256');
  const path='/auth/github/callback?state='+state+'&code=one-use-code';
- const wrong=await fetch(origin+path,{redirect:'manual'});assert.equal(wrong.status,400);
+ const wrong=await fetch(origin+path,{redirect:'manual'});assert.equal(wrong.status,302);assert.equal(new URL(wrong.headers.get('location'),origin).pathname,'/');assert.equal(exchanged,undefined);
  const finish=await fetch(origin+path,{headers:{Cookie:cookie},redirect:'manual'});assert.equal(finish.status,302);assert.equal(finish.headers.get('location'),'/launch/prepared-version?connected=github');
  assert.equal(createHash('sha256').update(exchanged.get('code_verifier')).digest('base64url'),auth.searchParams.get('code_challenge'));
- const replay=await fetch(origin+path,{headers:{Cookie:cookie},redirect:'manual'});assert.equal(replay.status,400);
+ const replay=await fetch(origin+path,{headers:{Cookie:cookie},redirect:'manual'});assert.equal(replay.status,302);assert.match(replay.headers.get('location'),/^\/launch\/prepared-version\?error=/);
  const me=await(await fetch(origin+'/api/me',{headers:{Cookie:cookie}})).text();assert.match(me,/oauth-user/);assert.ok(!me.includes('never-exposed'));
+ }finally{await new Promise(r=>server.close(r));await rm(root,{recursive:true,force:true});}
+});
+
+test('expired or swept OAuth state returns to the original product and provider without exchanging the code',async()=>{
+ const root=await mkdtemp(join(tmpdir(),'pods-expired-oauth-'));let exchanges=0;
+ const o={id:'client',secret:'secret',authorize:'https://provider.example/authorize',exchange:'https://provider.example/token',scope:'cloud-platform'};
+ const {server,store}=await createApp({data:root,secret:'dc'.repeat(32),oauth:{github:o,google:o},providers:{},oauthFetch:async()=>{exchanges++;throw new Error('Expired code must not be exchanged');}});
+ await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin=`http://127.0.0.1:${server.address().port}`;
+ try{
+ const initial=await fetch(origin+'/api/me'),cookie=initial.headers.get('set-cookie').split(';')[0];
+ const request=path=>fetch(origin+path,{headers:{Cookie:cookie},redirect:'manual'});
+ for(const target of ['/launch/original-product','/develop']){
+  const start=await request('/auth/google?returnTo='+encodeURIComponent(target));
+  const key=new URL(start.headers.get('location')).searchParams.get('state'), state=store.get('oauth',key);
+  assert.ok(state.expiresAt<=Date.now()+600000);assert.ok(state.expiresAt>Date.now()+590000);
+  store.put('oauth',key,{...state,expiresAt:Date.now()-1});
+  for(const swept of [false,true]){
+   if(swept)store.delete('oauth',key);
+   const response=await request('/auth/google/callback?state='+key+'&code=expired-sensitive-code');
+   assert.equal(response.status,302);
+   const location=new URL(response.headers.get('location'),origin);
+   assert.equal(location.origin,origin);assert.equal(location.pathname,target);
+   assert.equal(location.searchParams.get('provider'),'google');assert.match(location.searchParams.get('error'),/expired/);
+   assert.ok(!location.href.includes('expired-sensitive-code'));assert.equal(exchanges,0);
+   assert.equal((await fetch(location,{headers:{Cookie:cookie}})).headers.get('content-type'),'text/html; charset=utf-8');
+  }
+ }
+ // Another browser must never inherit this browser's product or authorization state.
+ const start=await request('/auth/google?returnTo=/launch/private-context');
+ const key=new URL(start.headers.get('location')).searchParams.get('state');
+ const stranger=await fetch(origin+'/auth/google/callback?state='+key+'&code=stolen-code',{redirect:'manual'});
+ assert.equal(new URL(stranger.headers.get('location'),origin).pathname,'/');assert.ok(store.get('oauth',key));
+ const wrongProvider=await request('/auth/github/callback?state='+key+'&code=wrong-provider-code');
+ assert.equal(new URL(wrongProvider.headers.get('location'),origin).pathname,'/');assert.ok(store.get('oauth',key));assert.equal(exchanges,0);
  }finally{await new Promise(r=>server.close(r));await rm(root,{recursive:true,force:true});}
 });

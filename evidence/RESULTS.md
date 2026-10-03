@@ -1,12 +1,14 @@
 # Fresh PODS validation
 
-The latest [public-runtime validation](PUBLIC-RUNTIME.md) passed 34 automated tests and launched the prepared application in a real user-owned Codespace: 96.693 seconds cold and 5.452 seconds on repeat, measured from accepted request to healthy callback. The runtime repository is now public and uses a smaller Node image. The native preview is private and currently requires GitHub two-factor sign-in. Real provider browser consent, visible-product timing and product interaction remain unverified. The earlier quota rejection and private-runtime provisioning timeout are historical results.
+The [real Google browser flow](GOOGLE-BROWSER.md) now passes: web OAuth, delivery of the server-prepared MDN artifact to the user’s Cloud Shell, automatic native product navigation and an image-switch interaction. A repeat launch on ready compute reached the visible product within **13,049 ms**. The recovery fix passes all 35 automated tests and replaces raw expired-authorization JSON with a normal reconnect page. Controlled cold timing, developer-UI submission, a second independent user and the GitHub native browser journey remain outstanding.
+
+The latest [public-runtime validation](PUBLIC-RUNTIME.md) passed 34 automated tests and launched the prepared application in a real user-owned Codespace: 96.693 seconds cold and 5.452 seconds on repeat, measured from accepted request to healthy callback. The runtime repository is now public and uses a smaller Node image. The native preview is private and currently requires GitHub two-factor sign-in. GitHub browser consent, visible-product timing and product interaction remain unverified. The earlier quota rejection and private-runtime provisioning timeout are historical results.
 
 The [browser workflow results](BROWSER-FLOW.md) cover the developer URL form, preserved authorization intent, exact-version launch navigation and an interactive prepared product with simulated providers. Those browser checks do not certify real provider onboarding.
 
 The developer API stage has [separate results](BUILD-API.md): 28 passing automated tests and a real repository URL submission through the deployed API, prepared in 7,831 ms. The earlier [preparation results](PREPARATION.md) cover automatic detection and build isolation. The original provider measurements below remain historical evidence; the complete real-provider browser journey is still unverified.
 
-The [provider onboarding handoff](OAUTH-SETUP.md) records completed Google configuration and enabled Cloud Shell API. The operator-supplied web client is securely installed on aswin and Google OAuth is ready. The real browser flow has reached the final Google Cloud account-access consent; approval and native product-page validation remain outstanding. GitHub still needs two-factor sign-in and its OAuth client.
+The [provider onboarding handoff](OAUTH-SETUP.md) records installed Google OAuth credentials, enabled Cloud Shell API and successful end-user authorization. GitHub still needs two-factor sign-in and its OAuth client.
 
 ## Original prototype measurements
 

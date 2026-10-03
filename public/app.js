@@ -219,16 +219,18 @@ try {
   me = await api('/api/me'); app = appForRoute(me.apps, page);
   if (page.view === 'develop' && !me.buildsEnabled) notice('Repository preparation is unavailable right now. Please try again later.');
   if (page.view === 'launch') application(); else if (page.view === 'catalog') catalogue();
+  const query = new URLSearchParams(location.search);
   const pending = pendingForPage(storage.get('pods-pending'), page);
+  const expectedProvider = query.has('error') && ['github', 'google'].includes(query.get('provider')) ? query.get('provider') : pending?.provider;
   if (pending) { provider(pending.provider); if (pending.action === 'build') { $('repository').value = pending.url; $('folder').value = pending.folder; } }
+  if (page.view === 'launch' && expectedProvider) provider(expectedProvider);
   connections(); setBusy(false); const rows = await history();
   if (page.view === 'develop' && rows.length) { const current = rows.find(row => !ended(row.status)) || rows[0]; showBuild(current); if (!ended(current.status)) poll('build'); }
   if (page.view === 'launch' && app) {
     let saved; try { saved = JSON.parse(storage.get('pods-active')); } catch {}
-    const current = rows.find(row => row.appId === app.id && (!pending || row.provider === pending.provider) && !['failed', 'stopped'].includes(row.status));
+    const current = rows.find(row => row.appId === app.id && (!expectedProvider || row.provider === expectedProvider) && !['failed', 'stopped'].includes(row.status));
     if (current) { provider(current.provider); connections(); autoOpen = saved?.id === current.id && saved?.autoOpen === true; showLaunch(current); if (!ended(current.status)) poll('launch'); }
   }
-  const query = new URLSearchParams(location.search);
   if (query.has('error')) {
     storage.remove('pods-pending');
     const account = pending ? (pending.action === 'build' ? 'GitHub' : providerName(pending.provider)) + ': ' : '';

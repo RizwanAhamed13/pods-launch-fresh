@@ -1,0 +1,15 @@
+✔ Codespaces reuses only the configured PODS runtime and delivers over SSH stdin (2.066792ms)
+✔ a running PODS Codespace is preferred over an older provisioning or stopped environment (0.537205ms)
+✔ retrying a pending PODS Codespace waits for it instead of creating another environment (15.648212ms)
+✔ Codespaces provisioning failure propagates without trying to execute a runner (1.344289ms)
+✔ bootstrap quotes shell values and pins the runner before execution (0.250605ms)
+✔ OAuth uses PKCE and session-bound single-use state; callback never exposes token (67.511479ms)
+✔ expired or swept OAuth state returns to the original product and provider without exchanging the code (31.898734ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 256.892626

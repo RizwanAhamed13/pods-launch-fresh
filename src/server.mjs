@@ -9,6 +9,7 @@ import { BuildManager } from './builds.mjs';
 import { LxdBuilder } from './lxd-builder.mjs';
 const base = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const statuses = new Set(['downloading','starting','ready','failed','stopped','heartbeat']);
+const returnPage = value => typeof value === 'string' && /^(?:\/|\/develop|\/launch\/[a-z0-9-]+)$/.test(value);
 function fail(status, message) { return Object.assign(new Error(message), {status}); }
 async function body(req) { let b=''; for await(const p of req) { b+=p; if(b.length>16384)throw fail(413,'Request too large'); } try{return JSON.parse(b||'{}');}catch{throw fail(400,'Invalid JSON');} }
 export async function createApp(options={}) {
@@ -106,14 +107,19 @@ export async function createApp(options={}) {
         const p=auth[1],o=oauth[p];if(!o.id||!o.secret)throw fail(503,`${p} OAuth is not configured. Use the access-token connection in this preview or configure the OAuth app.`);
         if(!auth[2]) {
           const returnTo=url.searchParams.get('returnTo')||'/';
-          if(!/^(?:\/|\/develop|\/launch\/[a-z0-9-]+)$/.test(returnTo))throw fail(400,'Invalid return page.');
+          if(!returnPage(returnTo))throw fail(400,'Invalid return page.');
+          // Keep only navigation context after the short-lived authorization state is swept.
+          store.put('user',user.id,{...user,oauthReturnTo:{...user.oauthReturnTo,[p]:returnTo}});
           const state=uid(), verifier=uid()+uid();store.put('oauth',state,{id:state,owner:user.id,provider:p,verifier,returnTo,expiresAt:Date.now()+600000});
           const target=new URL(o.authorize);target.search=new URLSearchParams({client_id:o.id,redirect_uri:`${origin}/auth/${p}/callback`,scope:o.scope,state,response_type:'code',code_challenge:Buffer.from(digest(verifier),'hex').toString('base64url'),code_challenge_method:'S256'}).toString();return redirect(target.href);
         }
         const state=store.get('oauth',url.searchParams.get('state')||'');
-        if(!state||state.owner!==user.id||state.provider!==p||state.expiresAt<Date.now())throw fail(400,'Authorization expired. Connect again.');
+        const owned=state?.owner===user.id&&state.provider===p;
+        const returnTo=owned?state.returnTo:user.oauthReturnTo?.[p];
+        const recover=message=>redirect((returnPage(returnTo)?returnTo:'/')+'?'+new URLSearchParams({error:message,provider:p}));
+        if(!owned||state.expiresAt<Date.now())return recover('Authorization expired. Connect again.');
         store.delete('oauth',url.searchParams.get('state'));
-        if(url.searchParams.has('error'))return redirect((state.returnTo||'/')+'?error=Authorization%20was%20not%20completed.');
+        if(url.searchParams.has('error'))return recover('Authorization was not completed.');
         const response=await (options.oauthFetch || fetch)(o.exchange,{method:'POST',headers:{Accept:'application/json','Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({client_id:o.id,client_secret:o.secret,code:url.searchParams.get('code')||'',redirect_uri:`${origin}/auth/${p}/callback`,grant_type:'authorization_code',code_verifier:state.verifier}),signal:AbortSignal.timeout(20000)});
         const tokens=await response.json();if(!response.ok||!tokens.access_token)throw fail(401,'Authorization failed. Please reconnect.');
         const identity=await providers[p].validate(tokens.access_token);connect(user,p,tokens.access_token,identity,tokens.expires_in);return redirect((state.returnTo||'/')+'?connected='+p);

@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-10-03T05:24:52.693112+00:00",
+  "observedAt": "2026-10-03T06:34:04.895075+00:00",
   "projectId": "pods-launch-fresh-20261003",
   "oauthConfigurationCreated": true,
   "audience": "External",
@@ -18,7 +18,7 @@
     "status": "Created by operator; credentials supplied as local JSON and installed on aswin"
   },
   "oauthCredentialsInstalled": true,
-  "nativeBrowserJourneyVerified": false,
+  "nativeBrowserJourneyVerified": true,
   "source": "Google Cloud console visible UI",
   "serverGoogleOAuthReady": true,
   "credentialStorage": {
@@ -26,5 +26,6 @@
     "mode": "0600",
     "trackedByGit": false
   },
-  "browserAuthorizationStatus": "Account selected and sign-in completed; final Google Cloud access checkbox and Continue await user approval"
+  "browserAuthorizationStatus": "Completed real Google consent, refreshed after the initial state expired, and verified native product rendering and interaction",
+  "validationEvidence": "GOOGLE-BROWSER.md"
 }
