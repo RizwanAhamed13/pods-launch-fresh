@@ -35,23 +35,26 @@ export function providers({ repo, origin, runnerSha, api = github, cloudRequest 
         } else {
           const found = await readGithub(`/repos/${repo}/codespaces?per_page=100`, token);
           const eligible = found.codespaces.filter(c => c.display_name === displayName);
-          env = ['Available','Shutdown','Starting','Provisioning','Created','Queued','Awaiting','Updating','Rebuilding'].map(state => eligible.find(c => c.state === state)).find(Boolean);
+          env = ['Available','Shutdown','Starting','Provisioning','Created','Queued','Awaiting','Updating','Rebuilding','ShuttingDown'].map(state => eligible.find(c => c.state === state)).find(Boolean);
         }
         const deadline = Date.now() + provisionMs;
         if (!env) { await update({status:'provisioning'}); env = await api(`/repos/${repo}/codespaces`, token, {method:'POST',body:{ref:'main',display_name:displayName,idle_timeout_minutes:15,retention_period_minutes:1440}}); }
-        else if (env.state === 'Shutdown') {
-          await update({status:'provisioning'});
-          try { env = await api(`/user/codespaces/${env.name}/start`, token, {method:'POST'}); }
-          catch(error) {
-            if(!transient(error))throw error;
-            // The provider may have accepted the resume despite losing its response.
-            // Observe this exact environment; never resend the mutation or replace data.
-          }
-        }
+        let resumeRequested = false;
         await update({environment:env.name});
         while (env.state !== 'Available') {
           if (Date.now() >= deadline) throw new Error('Codespace did not become available within the provisioning deadline. Retry from GitHub Codespaces.');
           if (['Failed','Deleted','Unavailable'].includes(env.state)) throw new Error(`Codespace is ${env.state}`);
+          if (env.state === 'Shutdown' && !resumeRequested) {
+            await update({status:'provisioning'});
+            resumeRequested = true;
+            try { env = await api(`/user/codespaces/${env.name}/start`, token, {method:'POST'}); }
+            catch(error) {
+              if(!transient(error))throw error;
+              // A lost response may follow an accepted resume; observe this exact
+              // environment without repeating the mutation or replacing its data.
+            }
+            if (env.state === 'Available') break;
+          }
           await sleep(pollMs); env = await readGithub(`/user/codespaces/${env.name}`, token,deadline);
         }
         const port=config.port??8080;

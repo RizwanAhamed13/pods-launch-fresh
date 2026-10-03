@@ -8,6 +8,24 @@ import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
 // Provider orchestration tests isolate the separately tested tunnel registration.
 const providers=options=>realProviders({preparePreview:async()=>{},...options});
+for(const saved of [false,true])test(`a ${saved?'saved':'discovered'} Codespace shutting down is reused and resumed once after shutdown`,async()=>{
+ const env={name:'retained-data',display_name:'PODS launch',repository:{full_name:'owner/runtime'}},calls=[];let reads=0,started=false,delivered=0;
+ const adapter=providers({repo:'owner/runtime',origin:'https://pods.example',runnerSha:'a'.repeat(64),pollMs:1,provisionMs:1000,
+  api:async(path,token,options)=>{const method=options?.method||'GET';calls.push([method,path]);
+   if(method==='POST'){assert.equal(path,'/user/codespaces/retained-data/start');assert.equal(started,false);started=true;return {...env,state:'Starting'};}
+   if(path.startsWith('/repos/'))return {codespaces:[{...env,state:'ShuttingDown'}]};
+   assert.equal(path,'/user/codespaces/retained-data');reads++;return {...env,state:started?'Available':reads<=2?'ShuttingDown':'Shutdown'};
+  },exec:async(file,args)=>{assert.equal(args[3],'retained-data');delivered++;}});
+ const result=await adapter.github.launch('token',saved?{preferredEnvironment:'retained-data'}:{},()=>{});
+ assert.equal(result.environment,'retained-data');assert.equal(delivered,1);
+ assert.deepEqual(calls.filter(([method])=>method==='POST'),[['POST','/user/codespaces/retained-data/start']]);
+});
+test('a Codespace stuck shutting down reaches the deadline without mutation or runner dispatch',async()=>{
+ const env={name:'retained-data',display_name:'PODS launch',state:'ShuttingDown'};let mutations=0;
+ const adapter=providers({repo:'owner/runtime',pollMs:1,provisionMs:8,
+  api:async(path,token,options)=>{if(options?.method==='POST'){mutations++;throw new Error('Unexpected mutation');}return path.startsWith('/repos/')?{codespaces:[env]}:env;},exec:async()=>assert.fail('Compute is not available')});
+ await assert.rejects(adapter.github.launch('token',{},()=>{}),/provisioning.*deadline/);assert.equal(mutations,0);
+});
 test('transient Codespaces discovery and polling errors recover within one launch without duplicate mutations',async()=>{
  const calls=[],saved={name:'saved-data',display_name:'PODS launch containers',repository:{full_name:'owner/runtime'}},reads=new Map();let delivered=0;
  const adapter=providers({repo:'owner/runtime',pollMs:1,origin:'https://pods.example',runnerSha:'a'.repeat(64),
