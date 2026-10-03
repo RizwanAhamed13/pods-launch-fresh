@@ -1,0 +1,91 @@
+{
+  "recordedAt": "2026-10-03T23:47:05.990463+00:00",
+  "controlRevision": "5e5b4a0",
+  "scope": "Actual Alpine framework rendering and interaction at the native Cloud Shell preview. Browser localStorage persistence, not a backend database.",
+  "results": [
+    {
+      "id": "TfusmwV6lbk_7WYxuv-1KyX9ByOY5mp_",
+      "appId": "repo-12f864fb611e43022b6a3345-9eee994ba7f7-9a0031b1a639",
+      "provider": "google",
+      "port": 20343,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791071124509,
+        "startRequestedAt": 1791071124908
+      },
+      "createdAt": 1791071123884,
+      "updatedAt": 1791071145093,
+      "providerReadyAt": 1791071127285,
+      "readyAt": 1791071129808,
+      "timings": {
+        "downloadMs": 636,
+        "runtimeReadyMs": 898,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 5924,
+      "deliveryMs": 2523
+    },
+    {
+      "id": "-g1a_yoE5bVWXaxe7xHBxjy_cb1pQyoo",
+      "appId": "repo-12f864fb611e43022b6a3345-9eee994ba7f7-9a0031b1a639",
+      "provider": "google",
+      "port": 20343,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791071146370,
+        "startRequestedAt": 1791071146434
+      },
+      "createdAt": 1791071145876,
+      "updatedAt": 1791071162618,
+      "providerReadyAt": 1791071148757,
+      "readyAt": 1791071150344,
+      "timings": {
+        "downloadMs": 268,
+        "runtimeReadyMs": 518,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 4468,
+      "deliveryMs": 1587
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "first-launch",
+      "visibleMs": 6805,
+      "interactionMs": 7111,
+      "before": 0,
+      "afterWrite": 1,
+      "afterReload": 1,
+      "passed": true
+    },
+    {
+      "scenario": "repeat-launch",
+      "visibleMs": 5225,
+      "interactionMs": 5515,
+      "before": 1,
+      "afterWrite": 2,
+      "afterReload": 2,
+      "passed": true
+    }
+  ],
+  "nestedRouteCheck": {
+    "path": "/pods-spa-check/nested",
+    "before": 2,
+    "afterWrite": 3,
+    "afterReload": 3,
+    "passed": true
+  },
+  "timingScope": "Continuous launch click through visible product and meaningful interaction in each browser tool call. Both launches observed RUNNING compute; first artifact absent, then cached. Health and delivery timings derived from production timestamps.",
+  "browserErrorOrWarningLogsAtFinalCheck": [],
+  "passed": true,
+  "finalProductionAudit": {
+    "at": "2026-10-03T23:46:33.862437+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200
+  }
+}

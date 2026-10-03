@@ -86,8 +86,8 @@ or in-flight crash recovery.
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
 later passing attempts do not erase them. Automated coverage is **111 passing
-checks locally and on aswin**. Native coverage is 24 Google browser fixtures and
-24 Codespaces HTTP/protocol fixtures; 31 await native acceptance. Codespaces
+checks locally and on aswin**. Native coverage is 25 Google browser fixtures and
+25 Codespaces HTTP/protocol fixtures; 30 await native acceptance. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1196,3 +1196,34 @@ the final audit found zero active builds or launches and health200.
 Evidence: `evidence/provider-compute-state.json` and
 `evidence/compute-state-codespaces.json`. Source totals **5,487 physical lines**.
 Coverage stays55isolated/24nativeGooglebrowser/24Codespacesprotocol;31native pending.
+
+
+## Standalone Alpine native acceptance
+
+The actual developer form prepared Alpine in **35.172 seconds**, producing a
+**30,945-byte** artifact at public revision `9eee994ba7f7`. Ordinary same-account
+preparation capacity opened before submission; no QA artifact was imported.
+
+| Measurement | Observed result |
+| --- | --- |
+| Cloud Shell, initial state RUNNING, artifact absent | Health 5.924s; product visible 6.805s; successful click 7.111s |
+| Cloud Shell, RUNNING, cached after full app stop | Health 4.468s; visible 5.225s; successful click 5.515s |
+| Codespaces, initial state Available, artifact absent | Health 10.609s; delivery 10.172s |
+| Codespaces, Available, cached after full app stop | Health 6.612s; delivery 6.066s |
+
+Actual Alpine browser interaction changed 0→1 and retained 1 after reload and full
+app stop/relaunch, then changed 1→2. Direct `/pods-spa-check/nested` entry rendered
+the product, changed 2→3 and retained 3 after reload. Browser logs were empty.
+These are browser localStorage checks, not database durability checks.
+
+Both Codespaces launches served the 55,217-byte compiled Alpine entry,
+resolved entry assets at the nested URL and returned 404 for a missing asset.
+Native Codespaces browser sign-in and JavaScript execution remain pending.
+All four previews stopped, port 20343 stayed private, and the final production
+audit found no active builds or launches and health 200.
+
+All eight frontend fixtures now have native Cloud Shell browser acceptance and
+Codespaces HTTP/protocol acceptance. Overall coverage is **55 isolated fixtures**,
+**25 native Google browser fixtures**, **25 Codespaces HTTP/protocol fixtures**
+and **30 awaiting native acceptance**. Source remains 5,487 physical lines with
+111 passing checks at runtime `5e5b4a0`. Evidence: `evidence/stack-alpine-*.json`.

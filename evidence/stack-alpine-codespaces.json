@@ -1,0 +1,131 @@
+{
+  "testedAt": "2026-10-03T23:45:46.642Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "MKnu_ws3AiPRiTmn5nV3HvraTWpDgpBe",
+      "dataKey": "repo-12f864fb611e43022b6a3345",
+      "port": 20343,
+      "appId": "repo-12f864fb611e43022b6a3345-9eee994ba7f7-9a0031b1a639",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "9a0031b1a63941b5e37e22b6fd18b40c6b71588624cf0e6be22bf2b8bbde09d6",
+      "images": [],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791071109154,
+      "updatedAt": 1791071119764,
+      "expiresAt": 1791072909154,
+      "environment": "pods-launch-7vrw57jpjjppcww57",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791071109539
+      },
+      "providerReadyAt": 1791071109591,
+      "previewUrl": "https://pods-launch-7vrw57jpjjppcww57-20343.app.github.dev",
+      "lastSeenAt": 1791071119763,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 1123,
+        "runtimeReadyMs": 1345,
+        "cacheHit": false
+      },
+      "readyAt": 1791071119763,
+      "deliveryMs": 10172,
+      "totalMs": 10609,
+      "staticCheck": {
+        "fixture": "alpine",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-BzoVhwSd.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 55217
+          }
+        ],
+        "spaRoute": {
+          "path": "/pods-spa-check/nested",
+          "status": 200,
+          "documentMatches": true,
+          "entriesResolve": true
+        },
+        "missingAssetStatus": 404,
+        "passed": true,
+        "scope": "Authenticated HTTP product shell, compiled entry assets and nested route document; not JavaScript execution, browser interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "RNikY_hAa_CJlEDaZWTDjZrFJ7sWyiPZ",
+      "dataKey": "repo-12f864fb611e43022b6a3345",
+      "port": 20343,
+      "appId": "repo-12f864fb611e43022b6a3345-9eee994ba7f7-9a0031b1a639",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "9a0031b1a63941b5e37e22b6fd18b40c6b71588624cf0e6be22bf2b8bbde09d6",
+      "images": [],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791071130299,
+      "updatedAt": 1791071136911,
+      "expiresAt": 1791072930299,
+      "environment": "pods-launch-7vrw57jpjjppcww57",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791071130816
+      },
+      "providerReadyAt": 1791071130845,
+      "previewUrl": "https://pods-launch-7vrw57jpjjppcww57-20343.app.github.dev",
+      "lastSeenAt": 1791071136911,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 247,
+        "runtimeReadyMs": 494,
+        "cacheHit": true
+      },
+      "readyAt": 1791071136911,
+      "deliveryMs": 6066,
+      "totalMs": 6612,
+      "staticCheck": {
+        "fixture": "alpine",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-BzoVhwSd.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 55217
+          }
+        ],
+        "spaRoute": {
+          "path": "/pods-spa-check/nested",
+          "status": 200,
+          "documentMatches": true,
+          "entriesResolve": true
+        },
+        "missingAssetStatus": 404,
+        "passed": true,
+        "scope": "Authenticated HTTP product shell, compiled entry assets and nested route document; not JavaScript execution, browser interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "privatePortCheck": {
+    "checkedAt": "2026-10-03T23:47:05.990463+00:00",
+    "port": 20343,
+    "visibility": "private",
+    "passed": true
+  },
+  "scope": "Authenticated SSH HTTP product shell, compiled Alpine entry, nested URL and missing asset checks on native compute. Both initial compute states Available; native Codespaces browser sign-in and JavaScript execution remain pending.",
+  "finalProductionAudit": {
+    "at": "2026-10-03T23:46:33.862437+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200
+  }
+}

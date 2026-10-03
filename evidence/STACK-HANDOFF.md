@@ -13,18 +13,45 @@ historical results remain in SUPPORT.md, PRODUCT.md and their evidence files.
 - aswin: /home/aswin/pods-launch-fresh; SSH alias aswin.
 - 55 real isolated app fixtures pass build, artifact run and meaningful browser
   interaction. stack-coverage.json records precise scope and historical failures.
-- 24 fixtures pass native Google browser interaction and Codespaces authenticated
+- 25 fixtures pass native Google browser interaction and Codespaces authenticated
   HTTP/protocol checks. Codespaces native browser authorization remains pending.
-- 31 remaining native fixtures: actix, adonis, alpine, aspnet, astro, axum, deno,
+- 30 remaining native fixtures: actix, adonis, aspnet, astro, axum, deno,
   echo, express, fastapi, fastify, fiber, flask-mariadb, flask-mongodb7, flask-redis,
   flask-sqlite, flask-valkey, go, gradio, hono, koa, ktor, micronaut, nestjs,
   phoenix, php, react-router, rocket, sinatra, streamlit, symfony.
 - 5,487 physical source lines: 2,944 product/tooling, 1,476 tests, 903 examples,
   164 browser tools. code-lines.json states the exclusions.
 - Latest source/runtime5e5b4a0:111 automated checks passed locally/aswin.
-  MainPID946172. Public /support remains55isolated/24native.
+  MainPID946172. Public /support now55isolated/25native.
 
-## Latest completed gate: provider state observations
+## Latest completed gate: native Alpine
+
+- Watcher 58240 finished successfully at 23:44:11 UTC: account 2/global 2, no
+  active builds. Actual form submitted once at 23:44:24.906 UTC; build 35.172s,
+  artifact 30,945 bytes. Public revision 9eee994; runtime 5e5b4a0, checkout b8d92e6.
+  No quota changes or QA imports.
+- App repo-12f864fb611e43022b6a3345-9eee994ba7f7-9a0031b1a639; port 20343.
+  Google initially RUNNING on both launches: first health 5.924s, visible 6.805s,
+  interaction 7.111s; cached health 4.468s, visible 5.225s, interaction 5.515s.
+  Continuous timing within each browser call. Counter 0→1/reload 1; full stop/
+  relaunch retained 1→2/reload 2; nested URL 2→3/reload 3. No browser warnings or
+  errors. This proves browser localStorage, not database durability.
+- Codespaces harness 40346 finished successfully in 7vrw57jpjjppcww57, initially
+  Available on both launches. First health 10.609s/delivery 10.172s/cache false;
+  repeat 6.612s/6.066s/cache true. Compiled entry 55,217 bytes, nested entry and
+  missing asset 404 passed twice. All four previews stopped, port 20343 private.
+  Final audit 23:46:33 UTC: no active builds or launches, health 200.
+- Evidence stack-alpine-{url,google,codespaces}.json; explicit acceptance flags
+  25/25. All eight frontend fixtures now pass Google browser and Codespaces
+  protocol acceptance. Total 55 isolated / 25 native / 30 pending; Codespaces
+  browser testing remains pending.
+- Next: Astro, then React Router to finish SSR families. Astro draft staged but
+  not submitted. Match the native protocol probe to its real fixture before
+  testing; the existing SSR probe currently names only Nuxt/Next/SvelteKit.
+- Next ordinary quota slot 00:00:50.774 UTC. Read-only watcher 73961 is live with
+  a 20-minute bound; do not duplicate it or submit before availability.
+
+## Previous gate: provider state observations
 
 - Runtime5e5b4a0 records compute.initialState and observedAt before provider
   startup, plus actual creation/resume/start request timestamps. Missing state
@@ -172,11 +199,12 @@ After compaction call cua.rewriteDocumentation, then reuse bindings. Mark pendin
 workflow tabs for handoff each turn. Never repeat a launch/build because a readonly
 observation timed out; the action may already have completed.
 
-- stackQa6: IAB2tab13, Alpine draft staged after Lit acceptance; not submitted.
+- stackQa6: IAB2tab13, Astro draft staged after Alpine acceptance; not submitted.
   Exact ready region label is `Your application is ready to share.` (with period).
-- accountWorker: IAB2tab12, stopped Lit launcher; browser localStorage count4.
-  CUA litLaunchUrl, litBrowserChecks, litNestedCheck and litBrowserLogs retain evidence.
-- supportQa: IAB2tab29, public /support deliverable, counts24/24 after evidence sync.
+- accountWorker: IAB2tab12, stopped Alpine launcher; browser localStorage count3.
+  CUA alpineLaunchUrl, alpineBrowserChecks, alpineNestedCheck and alpineBrowserLogs.
+  Helpers measurePreparedCounter and stopPreparedProduct retain bounded waits.
+- supportQa: IAB2tab29, public /support deliverable, counts25/25 after evidence sync.
 - nativeGithubKeep: IAB2tab10, still pending two-factor authentication at this gate.
   User action already requested; no SMS/code sent. GitHub browser OAuth unconfigured.
   Keep previews private; do not send another authorization request.
@@ -206,7 +234,7 @@ observation timed out; the action may already have completed.
   records(kind,id,value JSON), singular build/launch. Never print tokens, root
   owner/account/session/computeKey values. Build repository.owner is public repo owner.
 - /tmp/pods-native-quota-watch.py is a readonly bounded watcher, Svelte account
-  anchor NLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp. Existing66741 and66841 are finished. Watcher58240 is live for the Alpine slot;
+  anchor NLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp. Existing66741,66841 and58240 are finished. Watcher73961 is live for the Astro slot;
   /tmp/pods-next-native-quota-watch.py,20minute bound,30second readonly sampling.
 - Latest Solid/Lit Codespace pods-launch-7vrw57jpjjppcww57 Available at inspection;
   Svelte/Preact pods-launch-jj497rpqpp7529v7 Shutdown. Container fixtures use
@@ -222,7 +250,7 @@ observation timed out; the action may already have completed.
 
 ## Remaining completion gates
 
-Continue the31native fixtures and preserve separate health/visible/interactive
+Continue the30native fixtures and preserve separate health/visible/interactive
 measurements, first artifact/image delivery versus cached and cold compute.
 Native Codespaces browser interaction/OAuth, Cloud Shell VM replacement persistence,
 durable DNS/tunnel and cold20s are unproven. Many cold/container cases exceed20s.

@@ -1,0 +1,56 @@
+{
+  "recordedAt": "2026-10-03T23:47:05.990463+00:00",
+  "controlRevision": "5e5b4a0",
+  "checkoutRevision": "b8d92e6",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated server build, with no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-03T23:44:11.520314+00:00",
+    "accountRecent": 2,
+    "globalRecent": 2,
+    "activeBuilds": 0
+  },
+  "submittedAt": "2026-10-03T23:44:24.906Z",
+  "attempts": [
+    {
+      "id": "zk6Pk2NCrC7Z6VPQzGC2HCO5pJ6hFLr-",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/alpine",
+        "key": "12f864fb611e43022b6a3345"
+      },
+      "status": "ready",
+      "createdAt": 1791071065640,
+      "startedAt": 1791071065660,
+      "finishedAt": 1791071100832,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-12f864fb611e43022b6a3345-9eee994ba7f7-9a0031b1a639",
+      "app": {
+        "id": "repo-12f864fb611e43022b6a3345-9eee994ba7f7-9a0031b1a639",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "9a0031b1a63941b5e37e22b6fd18b40c6b71588624cf0e6be22bf2b8bbde09d6",
+        "bytes": 30945,
+        "files": 3,
+        "healthPath": "/",
+        "applicationType": "static",
+        "runtime": "node22+",
+        "dataKey": "repo-12f864fb611e43022b6a3345",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/alpine",
+          "revision": "9eee994ba7f70d1793bc449573ddb36e01003818"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "PODS counter"
+        },
+        "preparedAt": "2026-10-03T23:45:00.830Z"
+      }
+    }
+  ],
+  "buildMs": 35172
+}
