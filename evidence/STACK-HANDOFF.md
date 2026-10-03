@@ -9,9 +9,9 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 4933 physical source lines: 2726 product/tooling, 1149 tests, 894 examples,
+- 4963 physical source lines: 2756 product/tooling, 1149 tests, 894 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 75 automated checks pass locally; new MySQL inspection helper awaits aswin validation.
+- 75 automated checks pass locally and on aswin for MySQL inspection helper01891c1.
 - Native Google browser families: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
@@ -32,6 +32,13 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Tests reject published3306/33060, host networking, extra product ports, unhealthy
   or missing containers, and missing/wrong/ephemeral storage. Serialized remote
   command executes in a fresh Node process with a controlled Docker fixture.
+- Real isolated MySQL probe passed: write0→1, stop/restart, read1, healthy DB,
+  no DB host ports, durable workspace volume. Evidence stack-mysql-runtime-boundary.json.
+  Test script scripts/test-mysql-runtime-live.mjs, exec81946 ended0. QA ports8080/18090
+  free, Docker empty. Unique test volume data retained under /workspaces/.pods-launch.
+- Read-only quota observer exec64106 is live, polls once/minute, exits when ordinary
+  same-account/global quota permits submission. It only reads production SQLite.
+  Resume/poll this handle; do not start a duplicate or infer completion from timeout.
 - Native MySQL data and boundary checks remain pending. Same-account preparation
   limit currently3/hour; next slot2026-10-03T20:21:13.019Z. Do not bypass quota,
   switch identities, or import QA artifacts into production.
@@ -298,7 +305,7 @@ pods-launch-containers-97qw56gjg47gf7vrv; prior image-phase Codespace
 pods-launch-containers-69rw5vx4xp46c5qw5. API Google2/Codespaces4; earlier
 Google Django3/Rails2/Bun2, Codespaces Django4/Rails4/Bun2.
 
-CUA bindings: stackQa6 IAB2tab13 completed optimized Nuxt build; accountWorker IAB2tab12 stopped
+CUA bindings: stackQa6 IAB2tab13 has MySQL folder staged, not submitted; accountWorker IAB2tab12 stopped
 optimized Nuxt launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
 connection; nativeGithubKeep IAB2tab10; cloudLifecycle IAB2tab14.
 After compaction call rewriteDocumentation; re-mark pending tabs. Locator timeouts

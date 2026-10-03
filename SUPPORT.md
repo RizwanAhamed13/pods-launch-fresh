@@ -80,7 +80,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **72 passing
+later passing attempts do not erase them. Automated coverage is **75 passing
 checks locally and on aswin**.
 
 ## Actual repository URL to native product
@@ -667,3 +667,17 @@ Both first-image samples still exceed 20s. These measurements are not a controll
 before/after latency comparison and do not establish a universal timing guarantee.
 Evidence: `stack-nuxt-standalone-{comparison,url,google,codespaces}.json` and
 `stack-matrix-29.json` in `evidence/`.
+
+## MySQL native acceptance preparation
+
+A new read-only runtime probe checks the actual Docker service network, verifies
+that no MySQL port is published, and verifies the database mount points to its
+application volume under the durable Codespaces workspace. It avoids reading
+container environment variables. Tests reject exposed ports, host networking,
+unhealthy containers, missing/wrong volumes, and temporary storage.
+
+The probe passed against a real MySQL container in the isolated aswin QA guest:
+counter0→1 survived a complete app/database stop and restart, both database health
+checks passed, and only product port8080 was published. This is isolated evidence,
+not a native Codespaces result. See `evidence/stack-mysql-runtime-boundary.json`.
+Native MySQL URL preparation and provider acceptance remain pending.

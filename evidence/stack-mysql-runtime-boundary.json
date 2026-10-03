@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "scope": "Real isolated Docker/MySQL and durable-volume boundary inspection under a Codespaces-shaped workspace path; not native provider evidence.",
+  "dataKey": "qa-mysql-boundary-30d9cbb2-2d6d-46b2-b14c-ebe82370a622",
+  "first": {
+    "passed": true,
+    "project": "pods-97c7292a5b7500813cb7e076",
+    "services": [
+      "web",
+      "db"
+    ],
+    "databaseHealth": "healthy",
+    "databaseHostPorts": [],
+    "productHostPorts": [
+      8080
+    ],
+    "volume": "pods-97c7292a5b7500813cb7e076_records-disk-v1",
+    "durableWorkspaceVolume": true,
+    "scope": "Read-only Docker boundary and volume inspection on Codespaces; record persistence is verified separately through HTTP before and after restart."
+  },
+  "repeat": {
+    "passed": true,
+    "project": "pods-97c7292a5b7500813cb7e076",
+    "services": [
+      "web",
+      "db"
+    ],
+    "databaseHealth": "healthy",
+    "databaseHostPorts": [],
+    "productHostPorts": [
+      8080
+    ],
+    "volume": "pods-97c7292a5b7500813cb7e076_records-disk-v1",
+    "durableWorkspaceVolume": true,
+    "scope": "Read-only Docker boundary and volume inspection on Codespaces; record persistence is verified separately through HTTP before and after restart."
+  },
+  "before": 0,
+  "saved": 1,
+  "afterRestart": 1,
+  "stopped": true,
+  "recordedAt": "2026-10-03T20:12:57.579Z",
+  "sourceSha256": {
+    "scripts/probe-mysql-runtime.mjs": "04970c59698bb34d316d9d1257e0c1631970a93414faad21162f2bd410bde004",
+    "scripts/test-mysql-runtime-live.mjs": "59ad421ff4e8a4aaaee550a90e71f8abb156a70b1b8fc719a0b39b9462ca3cf3"
+  },
+  "executionEnvironment": "Isolated aswin LXD guest pods-fresh-matrix-01; the nested probe scope describes the tested Codespaces volume contract, not an actual Codespaces run.",
+  "cleanup": "Docker containers empty and application ports8080/18090 free after test."
+}
