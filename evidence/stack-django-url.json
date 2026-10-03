@@ -1,0 +1,52 @@
+{
+  "scope": "Real developer form submission after normal build allowance opened; isolated preparation on aswin. Native provider evidence recorded separately.",
+  "attempts": [
+    {
+      "id": "KbEietsWkyvU_03zGLLIt0dvrqQvOpvb",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/django",
+        "key": "2f3eccf055bfd890686f5122"
+      },
+      "status": "ready",
+      "createdAt": 1791052437530,
+      "startedAt": 1791052437666,
+      "finishedAt": 1791052547006,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-2f3eccf055bfd890686f5122-00df7c09ea97-63c8734bb2d2",
+      "app": {
+        "id": "repo-2f3eccf055bfd890686f5122-00df7c09ea97-63c8734bb2d2",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "63c8734bb2d2618ee7fc1d448038428ffdc9f2be51eb123860f0aae6680cb18a",
+        "bytes": 275,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-2f3eccf055bfd890686f5122",
+        "images": [
+          {
+            "id": "sha256:f24eb439ab204dd691e0712616f37ccf87aad5dac090d9a8da69a7ef7e0c4aaf",
+            "sha256": "2a2b2f0d8a49926be2067416d5747e3288dc8e8a9391dbd446cde6169c5824aa",
+            "bytes": 58765738
+          }
+        ],
+        "productType": "web",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/django",
+          "revision": "00df7c09ea971725adecb076d508f767fc6e1846"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Django counter"
+        },
+        "preparedAt": "2026-10-03T18:35:46.797Z"
+      }
+    }
+  ],
+  "buildMs": 109340
+}

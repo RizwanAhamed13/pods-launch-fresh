@@ -489,3 +489,24 @@ A local real-browser fixture verified preparation recovery, bounded repeated
 failure, and automatic launch into a working notes product with save/reload.
 Those provider/OAuth components were simulated. All 56 automated tests pass.
 See `evidence/browser-session-recovery.json` and `stack-nuxt-session-rejection.json`.
+
+## Django and SQLite native acceptance
+
+The actual developer URL form prepared Django in **109.340 seconds**, producing
+one **58,765,738-byte (56.0 MiB)** reusable image. No launch-time installation or
+manual configuration was required from the user.
+
+| Django scenario | Measured result |
+| --- | --- |
+| Cloud Shell, existing compute/image absent | Health 21.853s; saved record visible 23.694s; browser database write **23.974s** |
+| Cloud Shell, cached | Health 6.461s; retained record visible 7.788s; browser database write **8.067s** |
+| Codespaces, existing compute/image absent | Health 25.116s; authenticated HTTP/SQLite write 0→1 and readback passed |
+| Codespaces, cached | Health 6.903s; retained 1, wrote 2 and readback passed |
+
+Both Google browser writes survived reload, and record 1 survived full application
+stop/relaunch before write 2. Codespaces independently passed the same database
+restart sequence through authenticated HTTP. All four previews were confirmed
+stopped. These are existing-compute measurements, not fresh VM provisioning;
+first-image launches exceeded 20s. Codespaces native browser authorization and
+Cloud Shell VM replacement remain pending. Evidence:
+`evidence/stack-django-{url,google,codespaces}.json`.

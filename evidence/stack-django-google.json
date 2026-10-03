@@ -1,0 +1,75 @@
+{
+  "recordedAt": "2026-10-03T18:38:54.160005+00:00",
+  "scope": "Native Cloud Shell browser on actual Django + SQLite product. Existing compute with image absent then cached. Continuous launch-click to saved-record visibility and successful database write. Full application restart, not VM replacement.",
+  "preparationEvidence": "stack-django-url.json",
+  "attempts": [
+    {
+      "id": "VCx7dNtOtmatZtsM_PqyjIsZ8yKHxi7Z",
+      "appId": "repo-2f3eccf055bfd890686f5122-00df7c09ea97-63c8734bb2d2",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791052596768,
+      "updatedAt": 1791052628765,
+      "expiresAt": 1791054396768,
+      "providerReadyAt": 1791052599584,
+      "readyAt": 1791052618621,
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "lastSeenAt": 1791052628765,
+      "timings": {
+        "downloadMs": 699,
+        "imagesMs": 14059,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 17436,
+        "cacheHit": false
+      },
+      "environment": "default",
+      "stopRequested": true,
+      "storageMode": "persistent",
+      "totalMs": 21853
+    },
+    {
+      "id": "Cj8fX1wm_leItMpdVxojhWjzS1gL7wjH",
+      "appId": "repo-2f3eccf055bfd890686f5122-00df7c09ea97-63c8734bb2d2",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791052640715,
+      "updatedAt": 1791052657353,
+      "expiresAt": 1791054440715,
+      "providerReadyAt": 1791052643314,
+      "readyAt": 1791052647176,
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "lastSeenAt": 1791052657353,
+      "timings": {
+        "downloadMs": 305,
+        "imagesMs": 62,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 2443,
+        "cacheHit": true
+      },
+      "environment": "default",
+      "stopRequested": true,
+      "storageMode": "persistent",
+      "totalMs": 6461
+    }
+  ],
+  "browser": [
+    {
+      "launchId": "VCx7dNtOtmatZtsM_PqyjIsZ8yKHxi7Z",
+      "before": 0,
+      "afterClick": 1,
+      "afterReload": 1,
+      "savedRecordVisibleMs": 23694,
+      "interactionMs": 23974
+    },
+    {
+      "launchId": "Cj8fX1wm_leItMpdVxojhWjzS1gL7wjH",
+      "before": 1,
+      "afterClick": 2,
+      "afterReload": 2,
+      "savedRecordVisibleMs": 7788,
+      "interactionMs": 8067
+    }
+  ],
+  "confirmedStopped": true,
+  "databasePersistence": "SQLite record1 survived full application stop and fresh launch; second write2 survived browser reload."
+}

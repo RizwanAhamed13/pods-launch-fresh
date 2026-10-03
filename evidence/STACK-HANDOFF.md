@@ -14,11 +14,31 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - 56 automated checks pass locally and on aswin after session recovery change c24dc4a.
 - Native Google browser families: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
-  Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt: eleven.
-- Same eleven families have Codespaces authenticated SSH HTTP/protocol checks;
+  Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite: twelve.
+- Same twelve families have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: Nuxt and session recovery
+## Latest completed gate: Django and SQLite
+
+- Real developer URL preparation109.340s; source fixture examples/stacks/django at
+  unchanged public00df7c0. BuildKbEietsWkyvU_03zGLLIt0dvrqQvOpvb, app
+  repo-2f3eccf055bfd890686f5122-00df7c09ea97-63c8734bb2d2, image58765738bytes.
+- Ordinary account slot opened18:33:45UTC; submission18:33:57UTC. No quota or
+  identity manipulation. Observer22726 and Codespaces harness53742 completed0.
+- Google first image absent: health21.853s, DB0 visible23.694s, write1 at23.974s;
+  reload1. Cached: health6.461s, retained1 visible7.788s, write2 at8.067s; reload2.
+  Both browser timings measured continuously with bounded locator retries.
+- Codespaces existing running VM first image absent25.116s/write0→1; cached6.903s,
+  retained1→2. Actual authenticated HTTP/SQLite full restart passed. Browser
+  authorization still pending. All four launches confirmed stopped, data retained.
+- Evidence stack-django-{url,google,codespaces}.json and coverage index updated.
+  No runtime/source changes; the previously passing56tests remain valid, not rerun.
+- Next ordinary same-account slot18:58:14UTC absent other builds. Quota observers
+  must match build.account, not browser owner, because limits bind provider identity.
+  Remaining native fixtures42. First-image delivery still misses20s for Django;
+ 14.059s Google and14.207s Codespaces spent loading the56MiB image.
+
+## Previous completed gate: Nuxt and session recovery
 
 - Actual developer form prepared examples/stacks/nuxt in 241.125s after normal
   quota availability. Build LyS0ndmZTHrMBdMDra0Ms28ZOHNdJu08. App:
@@ -98,11 +118,11 @@ Always verify PID file, cwd, cmdline
 and listener before targeted restart. Use scripts/serve.sh from the repository;
 Node/gh in /home/aswin/pods-tools/bin. Do not restart with active builds/launches.
 
-No live PODS apps after Nuxt stops; data retained. Codespace
+No live PODS apps after Django stops; data retained. Codespace
 pods-launch-containers-69rw5vx4xp46c5qw5. Google Rails2/Bun2; Codespaces Rails4/Bun2.
 
-CUA bindings: stackQa6 IAB2tab13 Nuxt build result; accountWorker IAB2tab12 stopped
-Nuxt launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
+CUA bindings: stackQa6 IAB2tab13 Django build result; accountWorker IAB2tab12 stopped
+Django launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
 connection; nativeGithubKeep IAB2tab10; cloudLifecycle IAB2tab14.
 After compaction call rewriteDocumentation; re-mark pending tabs. Locator timeouts
 do not cancel launches: never resubmit because an observation timed out.

@@ -92,3 +92,12 @@ Codespaces browser interaction is still pending. Nuxt counter resets on reload
 by design. Both provider pairs were stopped. A precise stale-session CSRF
 rejection now preserves the intended action through one forced reconnection;
 local browser regression verifies recovery without duplicate jobs or loops.
+
+Django + SQLite adds a twelfth native application family. Actual URL preparation
+completed in 109.340s and delivered a 56.0 MiB image. Cloud Shell reached health
+in 21.853s with its image absent and 6.461s cached; actual browser writes completed
+in 23.974s and 8.067s respectively, measured continuously from launch. Record 1
+survived full application restart before write 2, and both writes survived reload.
+Codespaces HTTP/SQLite checks independently passed 0→1/restart 1→2 at 25.116s
+image-absent and 6.903s cached. All previews stopped. These results do not establish
+fresh-VM speed or native Codespaces browser authorization.
