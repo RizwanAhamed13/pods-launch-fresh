@@ -268,3 +268,12 @@ compiled bundles and honest missing-file responses. All eight prepared frontend
 fixtures passed in isolated compute, and Solid passed an actual native Cloud Shell
 nested-page interaction and reload. All99 automated checks pass locally/aswin at
 bc1e2c7. Source totals5,328 lines; native fixture counts are unchanged.
+
+
+PODS now has a public, filterable compatibility page at `/support`, available
+without access to the private repository. Separate columns distinguish isolated
+browser tests, native Cloud Shell browser tests and Codespaces HTTP/protocol
+checks. Native pass labels require explicit acceptance flags; failed test records
+cannot create a pass. The page states the remaining browser, performance and
+application-type limits. Revision e5033d1 passed102tests locally/aswin and public
+browser checks. Source totals5,423lines; coverage remains55isolated/23native.

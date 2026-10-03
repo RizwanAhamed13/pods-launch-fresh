@@ -19,12 +19,33 @@ historical results remain in SUPPORT.md, PRODUCT.md and their evidence files.
   echo, express, fastapi, fastify, fiber, flask-mariadb, flask-mongodb7, flask-redis,
   flask-sqlite, flask-valkey, go, gradio, hono, koa, ktor, lit, micronaut, nestjs,
   phoenix, php, react-router, rocket, sinatra, streamlit, symfony.
-- 5,328 physical source lines: 2,888 product/tooling, 1,373 tests, 903 examples,
+- 5,423 physical source lines: 2,940 product/tooling, 1,416 tests, 903 examples,
   164 browser tools. code-lines.json states the exclusions.
-- Latest test-tool source revision bc1e2c7: 99 automated checks passed locally
-  and on aswin. Production runtime remains unchanged.
+- Latest source/runtime e5033d1: 102 automated checks passed locally/aswin.
+  MainPID938367. Public /support verified in browser and over HTTPS.
 
-## Latest completed gate: nested SPA entrypoint acceptance
+## Latest completed gate: public compatibility page
+
+- Source/runtime e5033d1, MainPID938367; public /support is linked in the footer.
+  Filterable55rows, independent23Googlebrowser/23Codespacesprotocol acceptance.
+  Reads stack-coverage.json on request; counts update with evidence, no restart.
+- Crucial: after a new native fixture passes, update that row's nativeAcceptance
+  flags (googleBrowser / codespacesProtocol) separately alongside its evidence.
+  Evidence filenames alone are not passes. Existing23flags reflect accepted gates.
+- All102tests pass locally/aswin; graph reindexed through b9c5a00. Public HTML
+  equals current renderer exactly. Browser Angular2/PostgreSQL2/no-match0,
+  keyboard clear55; mobile page390px/table viewport341px and internal scroll620px.
+  fill-empty CUA action did not clear; fresh DOM proved unchanged input, keyboard
+  clear worked. No product bug inferred. Evidence public-compatibility.json.
+- Controlled idle restarts913910→937070→938367 verified unit/cwd/cmdline/listener,
+  activebuild0/launch0, health200 and SQLitequick_checkok. Runtimee5033d1 now serves
+  the explicit acceptance flags. Last restart23:22:01UTC, health359ms.
+- Local fixture23250/PID10324 ended0; tab29supportQa is now the public /support
+  page marked deliverable. Viewport restored. No QA guest changes this gate.
+- Quota watcher66841 remains LIVE; nextordinaryslot23:23:54.313UTC. Lit draft is
+  ready in stackQa6. Do not duplicate watcher or submit before capacity opens.
+
+## Previous gate: nested SPA entrypoint acceptance
 
 - bc1e2c7 extends the static frontend probe: direct nested URL must return the
   app document, compiled entry URLs must resolve at that location (honoring base),
@@ -123,7 +144,7 @@ observation timed out; the action may already have completed.
 
 - Origin https://collection-conferences-ages-clearly.trycloudflare.com.
 - systemd user unit pods-launch-fresh.service is the sole control server authority.
-  MainPID913910, backend6cfadb6. Node/gh in /home/aswin/pods-tools/bin.
+  MainPID938367, backend e5033d1. Node/gh in /home/aswin/pods-tools/bin.
   XDG_RUNTIME_DIR=/run/user/1000 and
   DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus for remote systemctl.
 - Before intentional restart, prove no active builds/launches, verify unit PID,
@@ -146,7 +167,7 @@ observation timed out; the action may already have completed.
   exec86855, app18090/proxy8081/tunnel18890. Its one-shot SIGTERM handler is consumed;
   do not send another SIGTERM blindly. Draft test19889 stopped; QA guest unchanged.
 - Code graph project Users-rizwanahamed-Documents-ChatGPT-podsv2. Indexed through
-  6cfadb6; public/scripts/examples/deploy absent, so targeted fallback is appropriate.
+  b9c5a00; public/scripts/examples/deploy absent, so targeted fallback is appropriate.
 - npm test = node --test test/*.test.mjs; never bare node --test. Validation before
   commit uses set -e. Token stdin for gh harness; never print it.
 

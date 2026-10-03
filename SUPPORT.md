@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **99 passing
+later passing attempts do not erase them. Automated coverage is **102 passing
 checks locally and on aswin**. Native coverage is 23 Google browser fixtures and
 23 Codespaces HTTP/protocol fixtures; 32 await native acceptance. Codespaces
 native browser authorization and interaction remain pending.
@@ -1110,3 +1110,25 @@ These are additional checks of existing fixtures; coverage remains 55 isolated,
 23 native Google browser and 23 Codespaces HTTP/protocol fixtures, with32 pending.
 The production application runtime did not change. Evidence:
 `evidence/spa-entrypoint-qa.json` and `evidence/spa-entrypoint-checks.json`.
+
+
+## Public compatibility page
+
+The product now publishes this scope at `/support`, linked from the launch and
+preparation pages. It lists all55 passing representative applications and allows
+filtering by framework, language or database. Isolated build/browser, native
+Cloud Shell browser and Codespaces HTTP/protocol results have separate columns.
+Codespaces browser acceptance remains visibly pending. Account details and raw
+private evidence are never included in the public page.
+
+Counts and statuses come from the saved coverage record. Native passes require
+explicit `nativeAcceptance.googleBrowser` or `nativeAcceptance.codespacesProtocol`
+flags, assigned only after the corresponding acceptance gate passes. A filename
+for a failed provider attempt does not count as a pass. Future evidence updates
+refresh the page without changing the renderer.
+
+At `e5033d1`, all102tests pass locally/aswin. Browser filtering, no-match handling,
+keyboard clearing, the public footer link and narrow-screen overflow were checked.
+A controlled idle service restart passed health and SQLite integrity checks;
+public HTTPS HTML exactly matched the current evidence-backed rendering.
+Source totals5,423physical lines. Evidence: `evidence/public-compatibility.json`.

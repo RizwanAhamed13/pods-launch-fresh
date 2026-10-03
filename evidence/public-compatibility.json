@@ -1,0 +1,57 @@
+{
+  "at": "2026-10-03T23:22:39.797201+00:00",
+  "revision": "e5033d1",
+  "publicUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/support",
+  "isolatedRows": 55,
+  "googleBrowserAccepted": 23,
+  "codespacesProtocolAccepted": 23,
+  "codespacesBrowserPending": true,
+  "localTestsPassed": 102,
+  "aswinTestsPassed": 102,
+  "browserChecks": {
+    "angularMatches": 2,
+    "postgresqlMatches": 2,
+    "noMatchCount": 0,
+    "keyboardClearRestoresRows": 55,
+    "warningsOrErrors": [],
+    "mobile": {
+      "viewportWidth": 390,
+      "pageWidth": 390,
+      "tableViewport": 341,
+      "tableWidth": 620
+    },
+    "publicFooterLinkOpensSupport": true,
+    "publicPostgresqlMatches": 2,
+    "publicScopeQualificationVisible": true
+  },
+  "observationNote": "The browser tool fill-empty action left Angular in the input. Fresh DOM confirmed it had not cleared; keyboard select-all and Backspace cleared it and restored55rows. No product change was needed for that tool behavior.",
+  "acceptancePolicy": "Explicit googleBrowser and codespacesProtocol acceptance flags are curated from existing accepted native evidence. Merely adding a provider test filename, including a failed attempt, does not publish a pass.",
+  "publication": "Public HTML matched the current renderer and evidence exactly over HTTPS. No account, credentials, raw evidence records or private repository access are required.",
+  "deployments": [
+    {
+      "at": "2026-10-03T23:19:59.015439+00:00",
+      "revision": "b9c5a00",
+      "activeBuildsBefore": 0,
+      "activeLaunchesBefore": 0,
+      "oldPid": 913910,
+      "newPid": 937070,
+      "healthStatus": 200,
+      "healthAfterRestartMs": 258,
+      "supportPageVerified": true,
+      "sqliteQuickCheck": "ok"
+    },
+    {
+      "at": "2026-10-03T23:22:01.141222+00:00",
+      "revision": "e5033d1",
+      "activeBuildsBefore": 0,
+      "activeLaunchesBefore": 0,
+      "oldPid": 937070,
+      "newPid": 938367,
+      "healthStatus": 200,
+      "healthAfterRestartMs": 359,
+      "supportPageVerified": true,
+      "sqliteQuickCheck": "ok"
+    }
+  ],
+  "localBrowserFixtureStopped": true
+}
