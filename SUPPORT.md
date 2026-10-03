@@ -60,7 +60,7 @@ QA guest; provider tests are recorded separately below.
 | JVM | Spring Boot, Quarkus, Micronaut, Ktor | SQLite write/read/restart and browser reload passed |
 | Go | net/http, Gin, Echo, Fiber | Persistent record write/read/restart and browser reload passed |
 | Rust | Axum, Actix Web, Rocket | Persistent record write/read/restart and browser reload passed |
-| .NET | ASP.NET Core, Blazor Server | SQLite write/read/restart; Blazor interactive server UI passed |
+| .NET | ASP.NET Core, Blazor Server | ASP.NET file counter and Blazor SQLite write/read/restart; Blazor interactive server UI passed |
 | PHP | Plain PHP, Laravel, Symfony | SQLite write/read/restart and browser reload passed |
 | Ruby | Sinatra, Rails | SQLite write/read/restart and browser reload passed |
 | Other runtimes | Compiled Deno, compiled Bun, Elixir/Phoenix | Product and persistent record passed; Bun WebSocket ping/pong and live UI passed |
@@ -236,6 +236,36 @@ gaps. Only the cached browser timing was measured in one continuous check.
 Codespaces native browser authorization remains unverified. Other seven recipe
 fixtures have rebuilt server/browser evidence but no new provider timing claims.
 See `evidence/stack-angular-ssr-optimized-{url,google,codespaces}.json`.
+
+## Native Blazor Server workflow
+
+The developer form prepared the real Blazor Server + SQLite application at
+revision `00df7c09ea97` in **186.353 seconds**, producing a 102.6 MiB image. The
+generated .NET recipe published it on aswin without a developer-written PODS
+manifest. The same artifact launched on both providers.
+
+| Scenario | Observed result |
+| --- | --- |
+| Cloud Shell, existing VM and uncached image | 31.573 seconds to health; 23.626 seconds receiving/loading the image |
+| Cloud Shell, cached launch | 6.523 seconds to health; 7.844 seconds to native page with saved SQLite value |
+| Cloud Shell, interaction and persistence | Blazor button wrote 0→1; reload and stop/relaunch retained 1; later writes/reloads reached 3 |
+| Cloud Shell, cached successful interaction | **14.714 seconds upper bound** from launch click through native button write 2→3, including a browser-tool gap |
+| Codespaces, resumed compute and uncached image | 57.435 seconds to health |
+| Codespaces, cached launch | 7.068 seconds to health |
+| Codespaces, authenticated HTTP/database | Write/read 0→1; confirmed stop and fresh launch retained 1; second write/read 1→2 |
+
+Blazor's server-rendered page can appear before its interactive connection. One
+immediate button click after page visibility was ignored; a later click after
+the WebSocket connected worked. That observation is retained. The final measured
+launch waited for evidence of the new connection before one successful button
+click; its 14.714-second upper bound includes a tool-call gap. It does not claim
+the first rendered frame is interactive or establish a latency guarantee.
+
+The PODS title now decodes HTML character references safely, so this application
+appears as `Blazor + SQLite` instead of `Blazor &#x2B; SQLite`. Browser checks cover
+encoded symbols and literal markup rendered as text. All 52 automated checks pass
+locally and on aswin. Codespaces native browser sign-in and OAuth remain pending.
+See `evidence/stack-blazor-{url,google,codespaces}.json` and `browser-title.json`.
 
 ## Database durability
 

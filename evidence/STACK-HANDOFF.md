@@ -7,7 +7,7 @@ Core: https://github.com/RizwanAhamed13/pods-launch-fresh
 Public fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh
 Local: /Users/rizwanahamed/Documents/ChatGPT/podsv2
 Aswin: /home/aswin/pods-launch-fresh and /home/aswin/pods-launch-runtime-fresh
-Public fixture commit: 00df7c0. Latest product fix: 4c1b887, pushed and deployed.
+Public fixture commit: 00df7c0. Latest product fix: 414e64a, pushed and deployed.
 
 ## Current evidence
 
@@ -15,7 +15,7 @@ Public fixture commit: 00df7c0. Latest product fix: 4c1b887, pushed and deployed
   reusable artifact launches and browser interaction. See SUPPORT.md and
   stack-coverage.json; historical failures remain recorded.
 - 52 automated checks pass locally and on aswin. The latest aswin rerun is recorded in
-  browser-reconnect-unit-tests-aswin.txt. Source LOC 4201: 2365 product/tooling, 156 browser
+  stack-blazor-unit-tests-aswin.txt. Source LOC 4209: 2372 product/tooling, 157 browser
   tools, 812 tests, 868 example sources. code-lines.json defines the count.
 - Expired submission authorization reconnects and resumes the exact build or
   launch on the first click. One automatic recovery attempt survives OAuth
@@ -28,7 +28,7 @@ Public fixture commit: 00df7c0. Latest product fix: 4c1b887, pushed and deployed
   bytes match the committed source and /health passes. OAuth availability remains
   Google=true, GitHub=false. No live connection was forcibly expired.
 - React/Express/PostgreSQL, Angular SSR/SQLite, Flask/PostgreSQL,
-  Quarkus/SQLite and Laravel/SQLite have native Google browser/product evidence. These results do
+  Quarkus/SQLite, Laravel/SQLite and Blazor/SQLite have native Google browser/product evidence. These results do
   not automatically cover the other frameworks or arbitrary applications.
 - Quarkus real developer URL preparation: 222.751 seconds. Native Google first
   launch: 46.008 seconds to ready. Cached: 8.442 seconds to ready and 9.923 seconds
@@ -85,14 +85,30 @@ Public fixture commit: 00df7c0. Latest product fix: 4c1b887, pushed and deployed
   second write/read2. Native browser/OAuth still pending. Evidence:
   stack-angular-ssr-optimized-{url,google,codespaces}.json.
 
+- Blazor real developer form prepared .NET/SQLite in 186.353 seconds (102.6 MiB).
+  Cloud Shell uncached health 31.573s; cached health 6.523s / saved page 7.844s.
+  SQLite 0→1 / reload 1 / stop-relaunch 1 passed. A subsequent immediate click after SSR
+  visibility was ignored before the interactive connection; later connected
+  write 2 / reload 2 passed. The final cached launch retained 2 and wrote 3 within
+  14.714s of launch, including a tool gap after an unsupported networkidle wait;
+  this is an upper bound. Reload retained 3. Retain the early-input failure.
+- Blazor Codespaces started from Shutdown: resumed/uncached 57.435s, cached 7.068s;
+  authenticated HTTP write 0→1, confirmed stop/fresh launch retained 1, write/read 2.
+  This does not verify browser interaction or OAuth. See stack-blazor-{url,google,
+  codespaces}.json. No source fixture changes or quota bypass were required.
+- Product fix 414e64a decodes HTML title entities as plain text. Browser regression
+  checks encoded punctuation, emoji and literal markup; no elements are injected.
+  The real Blazor preparation/launch title now reads Blazor + SQLite. 52 checks
+  pass locally and on aswin (stack-blazor-unit-tests*.txt).
+
 ## Pending actions
 
-1. Continue representative native provider coverage; the Laravel gate is complete
-   for Google browser and Codespaces authenticated HTTP. No quota bypass needed.
+1. Continue representative native provider coverage; Blazor now passes Google
+   browser and Codespaces authenticated HTTP with SQLite stop/relaunch persistence.
 2. Cloud Shell VM replacement: a confirmation question is pending. The actual
    Restart dialog preserves home but terminates all processes and provisions a
    new VM. Do not click final Restart before the user approves. Current native
-   optimized Angular SQLite baseline is 2; prior Laravel1 and Quarkus2 remain stored. Do not delete/reset the home directory.
+   Blazor SQLite baseline is 3; prior Angular 2, Laravel 1 and Quarkus 2 remain stored. Do not delete/reset the home directory.
 3. GitHub browser OAuth is not configured (public API oauthReady=false). Its
    access-token/API test path does not satisfy the one-click browser authorization
    goal. Native GitHub sign-in is also pending; do not repeat that earlier question
@@ -109,14 +125,16 @@ set PATH explicitly for checks. Never print .env, tokens or authorization codes.
 Each isolated build receives src/scripts from the current deployed checkout;
 the new recipe was used by the real developer preparation without a server restart.
 
-Optimized Angular app ID: repo-ce3c167a84b230196d7bf924-00df7c09ea97-4da6dd64ea03
-Google launch alDHTjLLANfC-WVOlYHiYge3AQOQ8iX8 belongs to independent Chrome, value2.
-Codespace pods-launch-containers-69rw5vx4xp46c5qw5 currently serves Angular, value2.
+Blazor app ID: repo-21972257c10534daf1a0ca4a-00df7c09ea97-20503f2717cd
+Google launch x7v0GCXCKzTItcfsTDBuMTVQxDRVyFKJ belongs to independent Chrome, value 3.
+Codespace pods-launch-containers-69rw5vx4xp46c5qw5 currently serves Blazor, value 2
+(launch qBbnxy1CELdEvf2FJW0sFp9OUeA1Kkop). The previous Angular launch was stopped.
 These previews stop at their 30-minute deadlines; no pending matrix build job.
 The local expired-session browser fixture and its products were stopped after
-validation. Its temporary tab17 is closed; no test fixture process remains.
+validation. Its temporary tab17 is closed; no test fixture process remains. The title browser
+fixture was also stopped and its tab18 closed after passing encoded/literal text checks.
 
-CUA in-app browser 2: developerWide tab12 launch controls; stackQa6 tab13 completed optimized Angular
+CUA in-app browser 2: developerWide tab12 launch controls; stackQa6 tab13 completed Blazor
 preparation; cloudLifecycle tab14 pending Restart confirmation; nativeGithubKeep
 tab10 existing sign-in handoff. Chrome browser 1: independentUser tab2083874416
 is the verified native Google product. The cache-regression QA tab16 was closed after all eight browser checks. Reapply handoff/deliverable marks each turn.

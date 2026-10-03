@@ -176,7 +176,11 @@
       "serverEvidence": "stack-matrix-16.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-16.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-blazor-url.json",
+        "stack-blazor-google.json",
+        "stack-blazor-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-16.json",

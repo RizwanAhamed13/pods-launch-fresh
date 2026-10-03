@@ -1,0 +1,64 @@
+
+> pods-launch-fresh@0.1.0 test
+> node --test test/*.test.mjs
+
+✔ container output must match repository, integrity and HTML verification; published metadata is reconstructed (5.101531ms)
+✔ build queue serializes work, deduplicates retries, hides ownership and publishes immutable launch versions (61.931531ms)
+✔ account limits survive new browser sessions; queue limits reject overload and restart marks unfinished jobs failed (16.314432ms)
+✔ invalid artifacts do not publish; cleanup failure disables further jobs (24.616741ms)
+✔ LXD file import rejects symlinks, declared oversized files and streaming overflow (32.790128ms)
+✔ build failure retains the final diagnostic after verbose Docker progress (14.425201ms)
+✔ worker failure always deletes its own container; cleanup errors fail closed (1.701616ms)
+✔ submission API requires account authorization and CSRF, protects jobs, and launches the selected immutable version (150.927533ms)
+✔ base64url preparation identities ending in separators produce valid Docker repository names (1.544608ms)
+✔ image preparation retries only transient transport failures once within its original deadline (1.974462ms)
+✔ prepared Node servers select existing production scripts instead of Angular or Nest development servers (13.814158ms)
+✔ Adonis and Nest preserve framework runtime files even with a direct node start command (8.029892ms)
+✔ stale resumed container task retries once without rebuilding; other application failures do not retry (0.737284ms)
+✔ container artifact is integrity checked, bounded and rejects host access or missing dependencies (3.350194ms)
+✔ runtime exposes only the product, never rebuilds/pulls, and keeps named database volumes (0.823934ms)
+✔ Angular SSR receives the exact provider preview host and local health hosts at runtime (0.728917ms)
+✔ Compose detects the web service, database dependency, explicit defaults and portable storage (1.714976ms)
+✔ publication verifies every separate image and binds data identity to the repository folder (2.125972ms)
+✔ Angular browser output, SSR and non-Node runtimes use the correct preparation paths (9.184174ms)
+✔ server build is reusable, deterministic and bundles TypeScript (43.829739ms)
+✔ artifact corruption, path escapes, collisions and wrong formats fail closed (3.889619ms)
+✔ stored provider credentials are authenticated ciphertext (4.814091ms)
+✔ real prepared app starts, saves data on compute, stops, and reuses artifact cache (681.528509ms)
+✔ unhealthy app never reports ready; inherited provider tokens do not reach app (122.747818ms)
+✔ API enforces browser ownership, CSRF, capability auth and idempotent launches (61.24613ms)
+✔ unwritable home falls back to session storage and reports its durability (248.264168ms)
+✔ detects and bundles a TypeScript server and its assets without pods.json (49.763663ms)
+✔ detects a generated Node entrypoint before build, but packaging requires its output (15.176636ms)
+✔ detects Vite frontend output and rejects missing build output (15.401783ms)
+✔ plain static artifact serves its actual page, assets and client routes on compute (227.55337ms)
+✔ detection reports ambiguity and never executes a shell start command (6.79487ms)
+✔ entrypoints and asset directories cannot escape through paths or symlinks (11.0331ms)
+✔ launch links select their exact version and unavailable versions never select another product (1.417873ms)
+✔ OAuth continuation is time-bounded and bound to the original action, product and provider (1.271751ms)
+✔ automatic navigation accepts provider previews and rejects arbitrary or credential-bearing destinations (0.490084ms)
+✔ provider identities use stable account IDs rather than a shared Cloud Shell label or mutable display name (1.191368ms)
+✔ Codespaces reuses only the configured PODS runtime and delivers over SSH stdin (2.556384ms)
+✔ a running PODS Codespace is preferred over an older provisioning or stopped environment (0.726989ms)
+✔ retrying a pending PODS Codespace waits for it instead of creating another environment (16.123224ms)
+✔ Codespaces provisioning failure propagates without trying to execute a runner (1.700947ms)
+✔ a missing server GitHub CLI is diagnosed without retrying user compute (0.743722ms)
+✔ bootstrap quotes shell values and pins the runner before execution (0.222946ms)
+✔ OAuth uses PKCE and session-bound single-use state; callback never exposes token (91.560147ms)
+✔ expired or swept OAuth state returns to the original product and provider without exchanging the code (44.483284ms)
+✔ repository identity is stable and accepts an optional application folder (2.159642ms)
+✔ repository input rejects local addresses, credentials, URL tricks and escaping folders (1.243297ms)
+✔ repository build worker refuses execution outside its isolated environment (0.932367ms)
+✔ fresh containers wait for DNS and report a bounded failure if networking never starts (0.98737ms)
+✔ provider storage uses persistent workspaces and migrates only the selected application once (23.68312ms)
+✔ managed storage rejects traversal and symlink destinations (3.795247ms)
+✔ database files survive loss of Docker volume metadata and legacy data is retained (9.236851ms)
+✔ wrong volume identity and interrupted migration fail without creating an empty replacement (6.530424ms)
+ℹ tests 52
+ℹ suites 0
+ℹ pass 52
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1563.345546

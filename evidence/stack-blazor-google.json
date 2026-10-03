@@ -1,0 +1,120 @@
+{
+  "scope": "Real developer URL preparation followed by Blazor Server + SQLite on existing Google Cloud Shell compute in independent Chrome. OAuth refreshed using the same previously authorized Google identity; no new scopes. Uncached refers to image availability, not fresh VM provisioning.",
+  "appId": "repo-21972257c10534daf1a0ca4a-00df7c09ea97-20503f2717cd",
+  "browser": {
+    "initialValue": 0,
+    "firstWrite": 1,
+    "reloadRetained": 1,
+    "firstFullStopRelaunchRetained": 1,
+    "thirdLaunchConnectedWrite": 2,
+    "thirdReloadRetained": 2,
+    "fourthFullStopRelaunchRetained": 2,
+    "fourthWrite": 3,
+    "fourthReloadRetained": 3
+  },
+  "firstBrowserObservation": {
+    "accountSelectionToObservationMs": 40461,
+    "productVisible": true,
+    "note": "Includes existing-account OAuth refresh and navigation; not a post-authorization launch-only timing."
+  },
+  "cachedBrowserObservations": [
+    {
+      "attempt": 2,
+      "clickToSavedProductMs": 7844,
+      "savedValue": 1,
+      "method": "Continuous click-to-native heading and saved value assertion. This observes rendering, not immediate interactivity."
+    },
+    {
+      "attempt": 3,
+      "clickToSavedProductMs": 7966,
+      "savedValue": 1,
+      "immediateButtonClickIgnored": true,
+      "note": "One click immediately after SSR visibility did not update SQLite. A later click after the observed Blazor WebSocket connection changed 1 to 2; reload retained 2. This early-input failure is preserved."
+    },
+    {
+      "attempt": 4,
+      "clickToSavedProductMs": 6861,
+      "clickToSuccessfulInteractionUpperBoundMs": 14714,
+      "before": 2,
+      "after": 3,
+      "buttonClicks": 1,
+      "freshWebSocketObserved": true,
+      "timingIncludesToolGap": true,
+      "note": "One launch click automatically opened the product. After its new Blazor connection was observed, one button click changed SQLite 2 to 3. Reload retained 3. Timing includes a tool-call gap after the browser tool rejected a networkidle wait; it is an upper bound, not a continuous precise latency."
+    }
+  ],
+  "attempts": [
+    {
+      "id": "VLVY9I8FiEPcuLMK6uoWgkUiT9Ao77Bi",
+      "status": "stopped",
+      "createdAt": 1791044521500,
+      "providerReadyAt": 1791044524278,
+      "readyAt": 1791044553073,
+      "error": null,
+      "timings": {
+        "downloadMs": 619,
+        "imagesMs": 23626,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 26923,
+        "cacheHit": false
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 31573
+    },
+    {
+      "id": "B9ZjD2rmRD2Ek5Kgn25q_MeSCnn_kPAm",
+      "status": "stopped",
+      "createdAt": 1791044611308,
+      "providerReadyAt": 1791044614307,
+      "readyAt": 1791044617831,
+      "error": null,
+      "timings": {
+        "downloadMs": 247,
+        "imagesMs": 63,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 2042,
+        "cacheHit": true
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 6523
+    },
+    {
+      "id": "kT5dLx5bjZaXs_ElMAz5RH0LXL5zfXvq",
+      "status": "stopped",
+      "createdAt": 1791044868970,
+      "providerReadyAt": 1791044872128,
+      "readyAt": 1791044875588,
+      "error": null,
+      "timings": {
+        "downloadMs": 297,
+        "imagesMs": 62,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 2094,
+        "cacheHit": true
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 6618
+    },
+    {
+      "id": "x7v0GCXCKzTItcfsTDBuMTVQxDRVyFKJ",
+      "status": "ready",
+      "createdAt": 1791044937637,
+      "providerReadyAt": 1791044940414,
+      "readyAt": 1791044943723,
+      "error": null,
+      "timings": {
+        "downloadMs": 214,
+        "imagesMs": 61,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 2007,
+        "cacheHit": true
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 6086
+    }
+  ]
+}

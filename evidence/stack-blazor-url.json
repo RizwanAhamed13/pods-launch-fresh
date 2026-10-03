@@ -1,0 +1,52 @@
+{
+  "scope": "Real developer form submission, isolated server build on aswin, immutable artifact; compute tests recorded separately.",
+  "attempts": [
+    {
+      "id": "k9VbjeVoXs_g260OmbhwgbI2c0KCZWKl",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/blazor",
+        "key": "21972257c10534daf1a0ca4a"
+      },
+      "status": "ready",
+      "createdAt": 1791044258701,
+      "startedAt": 1791044258710,
+      "finishedAt": 1791044445054,
+      "error": null,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-21972257c10534daf1a0ca4a-00df7c09ea97-20503f2717cd",
+      "app": {
+        "id": "repo-21972257c10534daf1a0ca4a-00df7c09ea97-20503f2717cd",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "20503f2717cd613de026b537efb8fd4fc1ffc2155ef0ec962d1640a6fbd9f87b",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-21972257c10534daf1a0ca4a",
+        "images": [
+          {
+            "id": "sha256:bc8ad4b9f34e7b3984b18740cc0c21cf2914aec4ac49f1c19818b012db20db32",
+            "sha256": "20a785a977dff6aa240020c1d80773e819ee9d620cf7b1838ea7d1b567a4320e",
+            "bytes": 107538175
+          }
+        ],
+        "productType": "web",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/blazor",
+          "revision": "00df7c09ea971725adecb076d508f767fc6e1846"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Blazor &#x2B; SQLite"
+        },
+        "preparedAt": "2026-10-03T16:20:44.671Z"
+      }
+    }
+  ]
+}

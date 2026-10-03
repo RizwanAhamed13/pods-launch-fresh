@@ -13,7 +13,7 @@
   "cloudShellReplacement": {
     "status": "awaiting_explicit_restart_confirmation",
     "observedDialog": "Restarting terminates the session and running processes, provisions a new VM, and preserves the home directory.",
-    "baseline": "Current optimized Angular SSR SQLite value 2 after retained old-artifact value 1, browser write/reload and confirmed application stop/relaunch. Prior Laravel value 1 and Quarkus value 2 remain stored; they are not the running product.",
+    "baseline": "Current Blazor SQLite value 3 after browser writes, reloads and confirmed application stop/relaunch retained 1 and then 2. Prior Angular value 2, Laravel value 1 and Quarkus value 2 remain stored; they are not the running product.",
     "actionTaken": "Restart confirmation dialog opened; final Restart not clicked."
   }
 }
