@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **102 passing
+later passing attempts do not erase them. Automated coverage is **111 passing
 checks locally and on aswin**. Native coverage is 24 Google browser fixtures and
 24 Codespaces HTTP/protocol fixtures; 31 await native acceptance. Codespaces
 native browser authorization and interaction remain pending.
@@ -1164,3 +1164,35 @@ and **24 Codespaces HTTP/protocol fixtures**, with **31** awaiting native accept
 Source and automated-check totals remain **5,423 physical lines** and **102 passing
 checks** from runtime revision `e5033d1`; this gate changed evidence and documentation.
 Evidence: `evidence/stack-lit-{url,google,codespaces}.json`.
+
+
+## Observed provider state and launch timing
+
+Runtime `5e5b4a0` records the provider's initial state before startup, its
+observation time and any create/resume/start request timestamp. Missing states
+stay unknown; old measurements are not backfilled. Artifact cache status remains
+a separate measurement. Cloud Shell adds one environment read before starting,
+with that overhead included in accepted-request-to-health time.
+
+Nine new state scenarios failed before this change. All **111 automated checks**
+pass locally and on aswin. A controlled idle restart passed health and SQLite
+integrity checks. Live verification reused the existing Lit artifact:
+
+| Provider and observed initial state | Health time | Product verification |
+| --- | --- | --- |
+| Cloud Shell `RUNNING`, cached artifact | 5.679s | Native counter retained 3, wrote 4 and retained 4 after reload |
+| Codespaces `ShuttingDown`, cached artifact | 57.025s | Same environment resumed once; compiled product and route checks passed |
+| Codespaces `Available`, cached artifact | 7.857s | Same artifact and environment; compiled product and route checks passed |
+
+The first Codespaces test followed an explicit stop of its idle test environment.
+Its initial shutdown transition and later resume request are now recorded, so it
+is not confused with ready compute or newly created compute. Both Codespaces
+checks remain authenticated HTTP/protocol verification, not native browser tests.
+The Google browser observation crossed a tool deadline; its 13.457s visibility
+and 13.746s interaction measurements are upper bounds, not continuous timings.
+No launch was resubmitted. All three previews stopped; port26163 stayed private;
+the final audit found zero active builds or launches and health200.
+
+Evidence: `evidence/provider-compute-state.json` and
+`evidence/compute-state-codespaces.json`. Source totals **5,487 physical lines**.
+Coverage stays55isolated/24nativeGooglebrowser/24Codespacesprotocol;31native pending.

@@ -1,0 +1,119 @@
+{
+  "testedAt": "2026-10-03T23:38:07.213Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "Mt97oJit9E3yetExIl7BOEyCZUv_Xq-5",
+      "dataKey": "repo-b2cd87ee9e8063ac61d2b4e0",
+      "port": 26163,
+      "appId": "repo-b2cd87ee9e8063ac61d2b4e0-9eee994ba7f7-56f291e44a0c",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "56f291e44a0cbecc17e8be02dc294b0c362d9e8cd35cd79f731182b421311793",
+      "images": [],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791070602356,
+      "updatedAt": 1791070659381,
+      "expiresAt": 1791072402356,
+      "environment": "pods-launch-7vrw57jpjjppcww57",
+      "compute": {
+        "initialState": "ShuttingDown",
+        "observedAt": 1791070602778,
+        "resumeRequestedAt": 1791070634336
+      },
+      "providerReadyAt": 1791070648498,
+      "previewUrl": "https://pods-launch-7vrw57jpjjppcww57-26163.app.github.dev",
+      "lastSeenAt": 1791070659381,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 547,
+        "runtimeReadyMs": 1126,
+        "cacheHit": true
+      },
+      "readyAt": 1791070659381,
+      "deliveryMs": 10883,
+      "totalMs": 57025,
+      "staticCheck": {
+        "fixture": "lit",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-WGRLEUsU.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 15621
+          }
+        ],
+        "spaRoute": {
+          "path": "/pods-spa-check/nested",
+          "status": 200,
+          "documentMatches": true,
+          "entriesResolve": true
+        },
+        "missingAssetStatus": 404,
+        "passed": true,
+        "scope": "Authenticated HTTP product shell, compiled entry assets and nested route document; not JavaScript execution, browser interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "tGdF_Kc0a0237aj5pObYbB4KPtfrinj4",
+      "dataKey": "repo-b2cd87ee9e8063ac61d2b4e0",
+      "port": 26163,
+      "appId": "repo-b2cd87ee9e8063ac61d2b4e0-9eee994ba7f7-56f291e44a0c",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "56f291e44a0cbecc17e8be02dc294b0c362d9e8cd35cd79f731182b421311793",
+      "images": [],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791070669594,
+      "updatedAt": 1791070677451,
+      "expiresAt": 1791072469594,
+      "environment": "pods-launch-7vrw57jpjjppcww57",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791070670134
+      },
+      "providerReadyAt": 1791070670151,
+      "previewUrl": "https://pods-launch-7vrw57jpjjppcww57-26163.app.github.dev",
+      "lastSeenAt": 1791070677451,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 731,
+        "runtimeReadyMs": 1056,
+        "cacheHit": true
+      },
+      "readyAt": 1791070677451,
+      "deliveryMs": 7300,
+      "totalMs": 7857,
+      "staticCheck": {
+        "fixture": "lit",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-WGRLEUsU.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 15621
+          }
+        ],
+        "spaRoute": {
+          "path": "/pods-spa-check/nested",
+          "status": 200,
+          "documentMatches": true,
+          "entriesResolve": true
+        },
+        "missingAssetStatus": 404,
+        "passed": true,
+        "scope": "Authenticated HTTP product shell, compiled entry assets and nested route document; not JavaScript execution, browser interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    }
+  ]
+}

@@ -19,12 +19,36 @@ historical results remain in SUPPORT.md, PRODUCT.md and their evidence files.
   echo, express, fastapi, fastify, fiber, flask-mariadb, flask-mongodb7, flask-redis,
   flask-sqlite, flask-valkey, go, gradio, hono, koa, ktor, micronaut, nestjs,
   phoenix, php, react-router, rocket, sinatra, streamlit, symfony.
-- 5,423 physical source lines: 2,940 product/tooling, 1,416 tests, 903 examples,
+- 5,487 physical source lines: 2,944 product/tooling, 1,476 tests, 903 examples,
   164 browser tools. code-lines.json states the exclusions.
-- Latest source/runtime e5033d1: 102 automated checks passed locally/aswin.
-  MainPID938367. Public /support verified in browser and over HTTPS.
+- Latest source/runtime5e5b4a0:111 automated checks passed locally/aswin.
+  MainPID946172. Public /support remains55isolated/24native.
 
-## Latest completed gate: native Lit
+## Latest completed gate: provider state observations
+
+- Runtime5e5b4a0 records compute.initialState and observedAt before provider
+  startup, plus actual creation/resume/start request timestamps. Missing state
+  stays null. Runner cache status remains separate. Historical measurements are
+  never retroactively labeled cold/warm. Google adds one initial environment GET;
+  its overhead is included in total timing. Official state references are in README.
+- Nine new state scenarios were red before;111checks now pass locally/aswin.
+  Test files /tmp/pods-provider-observations-before.txt,
+  /tmp/pods-provider-observations-after.txt and
+  /tmp/pods-compute-state-tests-{local,aswin}.txt. Graph reindexed through5e5b4a0.
+- Idle restart23:36:28UTC,938367→946172,health320ms,SQLitequick_checkok.
+  Native Google Lit recorded RUNNING, health5.679s, cachetrue, retained3→4/reload4
+  and stopped. Browser13.457svisible/13.746sinteraction are upper bounds after an
+  observation deadline, not continuous performance measurements. No duplicate launch.
+- Explicitly stopped the idle Lit test Codespace7vrw57jpjjppcww57 to exercise
+  resume state recording. Harness72611 ended0: initialShuttingDown→resume request
+  recorded, health57.025s; repeatinitialAvailable,health7.857s. Same environment,
+  cachetrue on both, compiled product/nested route/missing asset probes passed.
+  Both stopped. Evidence compute-state-codespaces.json/provider-compute-state.json.
+  Final audit23:39:09UTC activebuild0/launch0,localhealth200,port26163private.
+- Alpine draft remains unsubmitted; normal quota watcher58240 is live for
+ 23:44:08.679UTC. Resume existing handles; do not duplicate them.
+
+## Previous gate: native Lit
 
 - Actual developer form submitted once after quota watcher66841 ended0, with
   account2/global2/active0 at23:24:12UTC. Build47.476s; artifact10,615bytes,
@@ -150,7 +174,7 @@ observation timed out; the action may already have completed.
 
 - stackQa6: IAB2tab13, Alpine draft staged after Lit acceptance; not submitted.
   Exact ready region label is `Your application is ready to share.` (with period).
-- accountWorker: IAB2tab12, stopped Lit launcher; browser localStorage count3.
+- accountWorker: IAB2tab12, stopped Lit launcher; browser localStorage count4.
   CUA litLaunchUrl, litBrowserChecks, litNestedCheck and litBrowserLogs retain evidence.
 - supportQa: IAB2tab29, public /support deliverable, counts24/24 after evidence sync.
 - nativeGithubKeep: IAB2tab10, still pending two-factor authentication at this gate.
@@ -168,7 +192,7 @@ observation timed out; the action may already have completed.
 
 - Origin https://collection-conferences-ages-clearly.trycloudflare.com.
 - systemd user unit pods-launch-fresh.service is the sole control server authority.
-  MainPID938367, backend e5033d1. Node/gh in /home/aswin/pods-tools/bin.
+  MainPID946172, backend5e5b4a0. Node/gh in /home/aswin/pods-tools/bin.
   XDG_RUNTIME_DIR=/run/user/1000 and
   DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus for remote systemctl.
 - Before intentional restart, prove no active builds/launches, verify unit PID,
@@ -192,7 +216,7 @@ observation timed out; the action may already have completed.
   exec86855, app18090/proxy8081/tunnel18890. Its one-shot SIGTERM handler is consumed;
   do not send another SIGTERM blindly. Draft test19889 stopped; QA guest unchanged.
 - Code graph project Users-rizwanahamed-Documents-ChatGPT-podsv2. Indexed through
-  b9c5a00; public/scripts/examples/deploy absent, so targeted fallback is appropriate.
+ 5e5b4a0; public/scripts/examples/deploy absent, so targeted fallback is appropriate.
 - npm test = node --test test/*.test.mjs; never bare node --test. Validation before
   commit uses set -e. Token stdin for gh harness; never print it.
 

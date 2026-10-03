@@ -1,0 +1,95 @@
+{
+  "recordedAt": "2026-10-03T23:37:53.498596+00:00",
+  "revision": "5e5b4a0",
+  "scope": "Provider-reported initial state before startup and request timestamps. New VM creation is distinguished by creationRequestedAt; artifact/image cache status is independent. Existing historical records are not inferred or backfilled.",
+  "automatedChecks": {
+    "newCasesFailedBefore": 9,
+    "localPassedAfter": 111,
+    "aswinPassedAfter": 111,
+    "failuresAfter": 0,
+    "localCommand": "npm test",
+    "newCasesCommand": "node --test test/provider-observations.test.mjs",
+    "testFile": "test/provider-observations.test.mjs"
+  },
+  "deployment": {
+    "at": "2026-10-03T23:36:28.773755+00:00",
+    "revision": "5e5b4a0",
+    "oldPid": 938367,
+    "newPid": 946172,
+    "activeBuildsBefore": 0,
+    "activeLaunchesBefore": 0,
+    "healthStatus": 200,
+    "restartToLocalHealthMs": 320,
+    "sqliteQuickCheck": "ok",
+    "aswinTestsPassed": 111
+  },
+  "google": {
+    "launch": {
+      "id": "GLvn80Wb8RLTZg0H8dHnQoZqjmQJfzDM",
+      "appId": "repo-b2cd87ee9e8063ac61d2b4e0-9eee994ba7f7-56f291e44a0c",
+      "provider": "google",
+      "port": 26163,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791070612378,
+        "startRequestedAt": 1791070612527
+      },
+      "createdAt": 1791070611704,
+      "updatedAt": 1791070635681,
+      "providerReadyAt": 1791070615078,
+      "readyAt": 1791070617383,
+      "timings": {
+        "downloadMs": 285,
+        "runtimeReadyMs": 701,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 5679,
+      "deliveryMs": 2305
+    },
+    "browser": {
+      "visibleUpperBoundMs": 13457,
+      "interactionUpperBoundMs": 13746,
+      "before": 3,
+      "afterWrite": 4,
+      "afterReload": 4,
+      "passed": true
+    },
+    "timingScope": "Initial browser wait expired before rendering. Continued observing the same launch without resubmitting. Browser timing is an upper bound including tool gaps; health timing comes from persisted timestamps.",
+    "logs": []
+  },
+  "codespacesEvidence": "compute-state-codespaces.json",
+  "sourceLines": 5487,
+  "providerReferences": [
+    "https://cloud.google.com/shell/docs/reference/rest/v1/users.environments#State",
+    "https://docs.github.com/en/rest/codespaces/codespaces#get-a-codespace-for-the-authenticated-user"
+  ],
+  "finalProductionAudit": {
+    "at": "2026-10-03T23:39:09.800234+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200
+  },
+  "codespaces": {
+    "firstComputeState": {
+      "initialState": "ShuttingDown",
+      "observedAt": 1791070602778,
+      "resumeRequestedAt": 1791070634336
+    },
+    "repeatComputeState": {
+      "initialState": "Available",
+      "observedAt": 1791070670134
+    },
+    "firstHealthMs": 57025,
+    "repeatHealthMs": 7857,
+    "sameEnvironment": true,
+    "cachedArtifactBoth": true,
+    "staticProbesPassed": true,
+    "bothStopped": true,
+    "privatePort": {
+      "sourcePort": 26163,
+      "visibility": "private"
+    }
+  }
+}
