@@ -1,191 +1,103 @@
 # Broad stack checkpoint
 
-Goal status: active. The 54-fixture server/browser QA matrix passes; remaining
-provider and authorization gates prevent a complete one-click compatibility claim.
+Goal active. Do not mark complete: native evidence for remaining frameworks,
+GitHub browser OAuth/sign-in and Cloud Shell VM replacement remain unverified.
 
-Core: https://github.com/RizwanAhamed13/pods-launch-fresh
-Public fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh
-Local: /Users/rizwanahamed/Documents/ChatGPT/podsv2
-Aswin: /home/aswin/pods-launch-fresh and /home/aswin/pods-launch-runtime-fresh
-Public fixture commit: 00df7c0. Latest product fix: 414e64a, pushed and deployed.
+## Code and evidence
 
-## Current evidence
+- Core: https://github.com/RizwanAhamed13/pods-launch-fresh (private).
+- Fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh (public), 00df7c0.
+- Local: /Users/rizwanahamed/Documents/ChatGPT/podsv2.
+- Aswin: /home/aswin/pods-launch-fresh and /home/aswin/pods-launch-runtime-fresh.
+- Latest product fix: 004c64b, pushed/deployed. Runner SHA matches public bytes:
+  75cfd87f58a02353b48a080ee480b9b5ac246e2e189474f57e318fa11fdc0a0f.
+- 54 distinct framework/application/database fixtures pass isolated builds,
+  reusable launches and meaningful browser interaction. They are not 54 frameworks.
+  SUPPORT.md and stack-coverage.json preserve exact coverage and historical failures.
+- 54 automated checks pass locally/aswin (container-liveness-unit-tests*.txt).
+- 4335 source lines: 2474 product/tooling, 836 tests, 868 examples, 157 browser tools.
+  code-lines.json defines the count; docs/config/generated files are excluded.
+- Native Google browser product families: Flask/PostgreSQL,
+  React/Express/PostgreSQL, Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite,
+  Blazor/SQLite, Gin/persistent file, and Flask/Python worker/Redis.
+- Codespaces authenticated HTTP covers those eight families. Native browser
+  authorization remains separate and pending. Full Codespaces rebuild retained
+  PostgreSQL data; Cloud Shell VM replacement is not proven.
 
-- 54 distinct genuine framework/application fixtures pass isolated server builds,
-  reusable artifact launches and browser interaction. See SUPPORT.md and
-  stack-coverage.json; historical failures remain recorded.
-- 52 automated checks pass locally and on aswin. The latest aswin rerun is recorded in
-  stack-blazor-unit-tests-aswin.txt. Source LOC 4232: 2395 product/tooling, 157 browser
-  tools, 812 tests, 868 example sources. code-lines.json defines the count.
-- Expired submission authorization reconnects and resumes the exact build or
-  launch on the first click. One automatic recovery attempt survives OAuth
-  navigation; repeated failures stop without a loop or duplicate work. Cancelled
-  authorization preserves and expands the developer folder, including with no
-  history. Google build and GitHub launch browser regressions, real local notes
-  save/stop/relaunch persistence, cancellation and non-401 validation all pass.
-  These regressions use simulated OAuth/providers/preparation and are explicitly
-  not new native-provider evidence. See browser-reconnect.json. Public app.js
-  bytes match the committed source and /health passes. OAuth availability remains
-  Google=true, GitHub=false. No live connection was forcibly expired.
-- React/Express/PostgreSQL, Angular SSR/SQLite, Flask/PostgreSQL,
-  Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite and Go Gin (persistent file) have native Google browser/product evidence. These results do
-  not automatically cover the other frameworks or arbitrary applications.
-- Quarkus real developer URL preparation: 222.751 seconds. Native Google first
-  launch: 46.008 seconds to ready. Cached: 8.442 seconds to ready and 9.923 seconds
-  from click until the native product displayed its saved SQLite record.
-  Write 0→1, reload 1, full stop/relaunch 1 all passed.
-- Independent Chrome/PODS session: initially disconnected and without history;
-  selected the already-authorized Google identity and automatically reached the
-  Quarkus product without terminal/token/manual installation. Write 1→2 and
-  reload 2 passed. Two distinct PODS session owners were confirmed. This is a
-  separate browser using the same Google account, not a second Google account.
-- Quarkus Codespaces: 72.764 seconds uncached, 8.207 cached to ready. Authenticated
-  SSH HTTP checked the real product and SQLite write 0→1/read 1. Native browser
-  still reaches GitHub sign-in. Post-write Codespaces restart was not tested for
-  this fixture. Earlier Flask/PostgreSQL full Codespaces rebuild durability passed.
-- Fixed developer form hydration race: workspace stays inert until account and
-  history restoration finish. Delayed-history (15 seconds), simulated OAuth
-  continuation and distinct new repository/folder submission passed in the real
-  browser UI. Browser fixture is now self-contained. See browser-initialization.json.
+## Latest completed gate: worker and dependency liveness
 
-- Laravel real developer URL preparation passed in 270.053 seconds after the
-  existing quota window opened. Cloud Shell uncached 80.740 seconds, cached
-  health 5.571 seconds and native saved product 8.187 seconds. Browser write
-  0→1/reload 1/full stop and relaunch 1 passed. Codespaces resumed/uncached
-  110.093 seconds, cached 6.777 seconds; authenticated HTTP write 0→1, confirmed
-  stop and fresh launch retained 1, then write/read 1→2. Native GitHub browser
-  still pending. Evidence: stack-laravel-{url,google,codespaces}.json.
-- Strengthened scripts/live-codespaces.mjs: stop confirmation and fresh-launch-ID
-  gates, optional PODS_COUNTER_CHECK=1 for fixture write/read/relaunch durability.
-  Verified against the real Laravel Codespace. No product runtime source changes
-  in this checkpoint; the prior 52-check product suite remains applicable.
+- Developer form submitted examples/stacks/worker-redis after its normal quota
+  window opened. Build ZYqbMj9idqJ8tOowQiSLNB_SWZ6mj8dw completed in 138.088 seconds.
+- App: repo-90eed92544a3c9d01cc828e7-00df7c09ea97-19cac81e0f89.
+  Two immutable images total 65.3 MiB; web and worker share one image.
+- Google existing VM/images absent: health 29.905s; native product <=32.321s.
+  The early 304ms heading match was the launcher title and is excluded.
+  First job GOOGLE WORKER ONE completed in 444ms and survived reload.
+- Confirmed stop then new Google launch: health 8.254s, retained product 11.233s,
+  new job GOOGLE WORKER TWO complete 11.543s continuously from launch. Reload retained it.
+- Codespaces: health 31.143s/images absent and 9.308s/cached. Both real worker
+  probes passed: completed distinct jobs, retained first job after full restart,
+  and both applications confirmed stopped. No native GitHub browser claim.
+- Evidence: stack-worker-redis-{url,google,codespaces}.json. Completed jobs only;
+  do not claim exactly-once or in-flight crash recovery.
+- Fixed src/container-runtime.mjs: check every service before readiness and on
+  heartbeats, including missing/stopped/paused/restarting/unhealthy services.
+  Explicit service_completed_successfully dependencies may exit successfully.
+- Fixed src/runner.mjs: report failure before graceful cleanup, preserve data.
+- Real isolated fault test: web remained HTTP 200, worker death reported 2.576s,
+  DB unhealthy reported 2.564s. Cleanup 6.867s/17.933s; saved job retained on restart.
+  A completed migration remained valid. container-liveness.json; first delayed
+  callback failure retained in container-liveness-initial.json.
+- Reproducer scripts/test-container-liveness.mjs runs only as the isolated QA
+  user, reusing existing worker-redis images. Its synthetic artifact adds a
+  migration service and fault-injectable healthcheck; it never publishes a version.
 
-- npm container recipes now keep download caches temporary in the build layer.
-  All eight affected fixtures passed real rebuild/start/restart/browser checks
-  (matrix/browser24). Image probes confirm caches absent and dependencies
-  present. gzip reductions: Angular40.4%, Next35.9%, Nuxt48.3%, SvelteKit28.6%,
-  Astro36.7%, ReactRouter34.6%, Adonis3.3%, Nest2.4%. New optimized Angular
-  native provider results are recorded below; other seven recipe fixtures have
-  no new native timing claim. 52 automated checks passed locally and on aswin
-  (stack-npm-cache-unit-tests*.txt). Batch23
-  retained the initial missing-isolation-marker QA invocation failure.
+## Next gates and pending user actions
 
-- New real Angular submission (same source folder across fixture revisions)
-  prepared in 155.221 seconds. Developer Google session had expired; at that time,
-  pressing prepare again reconnected the already-authorized account and resumed
-  the saved draft. The extra-click defect is now fixed and covered by the browser
-  regression above. No new permission prompt or terminal work.
-- Optimized Angular on Cloud Shell: uncached image 61.933 seconds to health,
-  cached 5.867 seconds to health and 8.312 seconds to native saved product.
-  Old artifact's value 1 retained; new write 2/reload2/full stop/relaunch2.
-  First browser observation timed out at 48 seconds while launch continued;
-  later 75.069 seconds is only an upper bound including tool gaps.
-- Optimized Angular on Codespaces: resumed/uncached 94.454 seconds, cached
-  7.179 seconds. HTTP counter 0→1, confirmed stop, fresh launch retained1,
-  second write/read2. Native browser/OAuth still pending. Evidence:
-  stack-angular-ssr-optimized-{url,google,codespaces}.json.
-
-- Blazor real developer form prepared .NET/SQLite in 186.353 seconds (102.6 MiB).
-  Cloud Shell uncached health 31.573s; cached health 6.523s / saved page 7.844s.
-  SQLite 0→1 / reload 1 / stop-relaunch 1 passed. A subsequent immediate click after SSR
-  visibility was ignored before the interactive connection; later connected
-  write 2 / reload 2 passed. The final cached launch retained 2 and wrote 3 within
-  14.714s of launch, including a tool gap after an unsupported networkidle wait;
-  this is an upper bound. Reload retained 3. Retain the early-input failure.
-- Blazor Codespaces started from Shutdown: resumed/uncached 57.435s, cached 7.068s;
-  authenticated HTTP write 0→1, confirmed stop/fresh launch retained 1, write/read 2.
-  This does not verify browser interaction or OAuth. See stack-blazor-{url,google,
-  codespaces}.json. No source fixture changes or quota bypass were required.
-- Product fix 414e64a decodes HTML title entities as plain text. Browser regression
-  checks encoded punctuation, emoji and literal markup; no elements are injected.
-  The real Blazor preparation/launch title now reads Blazor + SQLite. 52 checks
-  pass locally and on aswin (stack-blazor-unit-tests*.txt).
-
-- Go Gin was submitted through the real developer form and prepared in 287.355s.
-  Existing Dockerfile compiles a Go executable; the runtime download is 11.1 MiB.
-  On existing Google compute with the image absent: health 9.822s, visible 12.454s,
-  successful native button write 12.764s. Cached: health 6.256s, saved page 8.858s,
-  successful write 9.174s. Both browser timings are continuous measurements.
-  Counter 0→1, reload 1, confirmed stop/relaunch 1, write 2/reload 2 all passed.
-  This fixture uses a persistent file, not a database. See stack-gin-{url,google}.json.
-- Gin Codespaces: initial attempt failed before image loading because the earlier
-  Blazor preview occupied port 8080. Verified its exact image and sole PODS runner,
-  sent SIGTERM to that runner, and confirmed PODS status stopped. No data removed.
-  Retry on the same available compute: image absent health 10.828s, cached 7.393s.
-  The small manifest was already cached by the failed attempt; imageCacheHits=0
-  on the retry. HTTP write 0→1 / read 1, confirmed stop/relaunch retained 1, write/read 2
-  passed. Final Gin app stopped normally too. Preserve stack-gin-codespaces-conflict
-  and -before evidence alongside stack-gin-codespaces.json. Native browser pending.
-- No runtime code changes in this checkpoint; the preceding 52-check suite remains
-  applicable. Native launches exercised the already deployed product.
-
-## Current worker-probe gate
-
-- Previous goal turn was progress: real Gin native launch/persistence evidence.
-- New scripts/live-codespaces.mjs flag PODS_WORKER_CHECK=1 verifies completed
-  work, latest-job output, the same stored job after a full stop/relaunch, then
-  another job with a distinct ID. It is exclusive with counter checks and needs
-  two Codespaces launches. Real worker positive validation is still pending.
-- Shared SSH probe counter regression passed on real Codespaces: Gin 2→3, stop,
-  relaunch retained3, write/read4, stop. A deliberate worker check against healthy
-  Gin correctly failed at /api/jobs HTTP404. Cleanup was confirmed stopped in
-  the control-plane record. See stack-worker-probe-{counter-regression,negative,
-  validation}.json and the retained negative text output. No product runtime changed.
-- Normal account build window next opens 2026-10-03 16:57:28 UTC (22:27 IST).
-  Live observer exec session 98803 waits for that timestamp; it does not submit
-  a build. Poll that same handle coarsely, or inspect current time/build records.
-  Then use existing developer tab13: select the connected Google account, change
-  Application folder to examples/stacks/worker-redis, prepare once, and verify the
-  returned link. Do not alter quotas or switch identities to evade the window.
-- After preparation, stop Google Gin using its PODS controls before launching the
-  worker artifact. Google browser acceptance: submit text, see the completed result,
-  reload, full stop/relaunch, same result. Run the worker flag against Codespaces
-  and let both test applications stop normally to avoid port conflicts.
-
-## Pending actions
-
-1. Continue representative native provider coverage; Gin now passes Google
-   browser and Codespaces authenticated HTTP with file stop/relaunch persistence.
-2. Cloud Shell VM replacement: a confirmation question is pending. The actual
-   Restart dialog preserves home but terminates all processes and provisions a
-   new VM. Do not click final Restart before the user approves. Current native
-   Gin file-counter baseline is 2; prior Blazor SQLite 3, Angular 2, Laravel 1 and Quarkus 2 remain stored. Do not delete/reset the home directory.
-3. GitHub browser OAuth is not configured (public API oauthReady=false). Its
-   access-token/API test path does not satisfy the one-click browser authorization
-   goal. Native GitHub sign-in progressed through existing-account Google login and now
-   requires two-factor authentication; no SMS was sent or code entered. Do not repeat the earlier question
-   or make the private preview public. Google oauthReady=true.
-4. Continue representative native provider coverage. Cold downloads exceed the
-   20-second target; retain separate cached, uncached, health and visible timings.
+1. Continue remaining representative native framework/provider coverage; a
+   native Bun/WebSocket product would cover another application type. Check the
+   existing connected account's normal preparation window first. Do not switch
+   identities or bypass quotas. The old quota observer 98803 finished successfully.
+2. GitHub preview tab10 requires two-factor authentication after existing-account
+   Google sign-in. No SMS was sent or code entered. User step already requested;
+   do not repeat the question or make the private preview public.
+3. GitHub web OAuth is not configured (oauthReady=false), Google=true. Token/CLI
+   launches do not satisfy browser authorization acceptance.
+4. Cloud Shell tab14 has a pending Restart confirmation (home retained, processes
+   terminated/new VM). No approval yet; do not click final Restart/reset home.
+   A separate background Authorize Cloud Shell modal was visible. User request pending.
+5. Preserve separate preparation, uncached/cached health and native interaction
+   timings. Cold images exceed 20s; no universal cold/new-VM guarantee.
 
 ## Runtime and browser handoff
 
 Origin: https://collection-conferences-ages-clearly.trycloudflare.com
-Server port 8787, last verified PID 445141. Use scripts/serve.sh for restart so
-/home/aswin/pods-tools/bin is in PATH. Ordinary non-login SSH lacks node/npm/gh;
-set PATH explicitly for checks. Never print .env, tokens or authorization codes.
-Each isolated build receives src/scripts from the current deployed checkout;
-the new recipe was used by the real developer preparation without a server restart.
+Server localhost8787, PID708830, exec session83087. Use scripts/serve.sh if a
+restart is necessary; it adds /home/aswin/pods-tools/bin to PATH. Ordinary SSH
+needs that PATH for node/npm/gh. Never print .env, tokens or OAuth codes.
+No active build/QA/probe job; session80247 finished successfully.
 
-Gin app ID: repo-32bb2b65f70a84def50a6fc2-00df7c09ea97-33bf34b1ce7d
-Google launch 0HcsEZZLHbcWCRkSiLYJJOGYGxXGKRYw belongs to independent Chrome, value 2.
-Codespace pods-launch-containers-69rw5vx4xp46c5qw5 has no running Gin/Blazor app
-after confirmed cleanup. Gin launch 28wEQ8YjGrOatLBek9P_5wwJ5Y-hjcu8 is stopped,
-with stored value 2 in that evidence. The newer counter-probe regression retained 2,
-wrote 3, stopped/relaunched, retained 3 and wrote 4; current Gin stored value is 4.
-All later probe launches are stopped. Prior Blazor is also stopped, stored value 2.
-These previews stop at their 30-minute deadlines; no pending matrix build job.
-The local expired-session browser fixture and its products were stopped after
-validation. Its temporary tab17 is closed; no test fixture process remains. The title browser
-fixture was also stopped and its tab18 closed after passing encoded/literal text checks.
+Current Google worker launch: NnAO3SfXlvZx_PL8G9cQMJUe9tkieXmi, ready with
+GOOGLE WORKER TWO, expires 2026-10-03T17:32:54.669Z. Previous worker launch
+fnXEedamp3h-TZcODSyPg-v1ee3tfn3v is stopped. Gin2, Blazor3, Angular2,
+Laravel1 and Quarkus2 remain stored but those apps are stopped.
+Codespace pods-launch-containers-69rw5vx4xp46c5qw5 has no test app running.
+Both worker launches 2QYXoiHsl7RDemnQU5tYy6VOfvEwUBOw and
+uGe7hTV_P6gTx1bceZOFs83SRjQFrl_2 are stopped. Latest saved job NATIVE WORKER 2;
+first job retained. Gin saved4, Blazor2, Angular2, PostgreSQL3 also retained.
 
-CUA in-app browser 2: developerWide tab12 launch controls; stackQa6 tab13 completed Gin
-preparation; cloudLifecycle tab14 pending Restart confirmation; nativeGithubKeep
-tab10 GitHub two-factor/SMS confirmation handoff. Chrome browser 1: independentUser tab2083874416
-is the verified native Google product. The cache-regression QA tab16 was closed after all eight browser checks. Reapply handoff/deliverable marks each turn.
+CUA bindings: stackQa6 (IAB2 tab13, developer page, completed worker);
+nativeGithubKeep (IAB2 tab10, 2FA handoff); cloudLifecycle (IAB2 tab14,
+pending restart handoff); independentUser (Chrome1 tab2083874416, native worker
+product, marked deliverable). workerLaunchUrl holds current launch link.
+After compaction call cua.rewriteDocumentation before using browsers. Re-mark
+handoff/deliverable tabs each turn. Browser wait timeouts do not cancel real jobs.
 
-QA guest pods-fresh-matrix-01: /opt/pods, /work/stacks, /output; use
-/snap/lxd/current/bin/lxc and /opt/node/bin/node with uid/gid 1000. Pool 60 GiB,
-QA root 50 GiB, production builder root remains 12 GiB. Do not prune unrelated
-work. Browser QA proxy is localhost:18890 via the existing SSH tunnel. No need to
-repeat the completed 54-fixture matrix without a relevant source change.
+SQLite /home/aswin/pods-launch-fresh/.data/pods.sqlite: readonly mode, whitelist
+public fields; never dump owner/account/token/session/connection records.
+LXD binary /snap/lxd/current/bin/lxc. QA pods-fresh-matrix-01, sources /opt/pods,
+fixtures /work/stacks, prepared results /output/<fixture>. Node /opt/node/bin/node,
+uid/gid1000, PODS_ISOLATED_BUILD=1. Root50GiB/pool60GiB; no host Docker.
+No broad fixture rebuild is needed unless a relevant source change justifies it.
+Code graph project Users-rizwanahamed-Documents-ChatGPT-podsv2; use graph-first
+code discovery, targeted fallback when graph lacks scripts/examples.

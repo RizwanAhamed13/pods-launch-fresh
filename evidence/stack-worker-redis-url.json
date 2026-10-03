@@ -1,0 +1,58 @@
+{
+  "scope": "Real developer form submission and isolated server preparation on aswin; provider tests recorded separately.",
+  "attempts": [
+    {
+      "id": "ZYqbMj9idqJ8tOowQiSLNB_SWZ6mj8dw",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/worker-redis",
+        "key": "90eed92544a3c9d01cc828e7"
+      },
+      "status": "ready",
+      "createdAt": 1791046656233,
+      "startedAt": 1791046656393,
+      "finishedAt": 1791046794481,
+      "error": null,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-90eed92544a3c9d01cc828e7-00df7c09ea97-19cac81e0f89",
+      "app": {
+        "id": "repo-90eed92544a3c9d01cc828e7-00df7c09ea97-19cac81e0f89",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "19cac81e0f89e4f30a43ffc07358feb1e4ac6fc3a17ea05b9a1c6ad0d5189913",
+        "bytes": 512,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-90eed92544a3c9d01cc828e7",
+        "images": [
+          {
+            "id": "sha256:aa1358d90f7d4c35cccf7337fc7d95c1552754d92d00ea015e34b79089ad8403",
+            "sha256": "35267f1619b1ecec6103a673029825d2715d9396cbaaaba4effa1a509d239b9e",
+            "bytes": 52235703
+          },
+          {
+            "id": "sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499",
+            "sha256": "bfdc962ecd6dca3b0a34035109f2fb30ac958a5948602330af5f73c639a10102",
+            "bytes": 16256101
+          }
+        ],
+        "productType": "web",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/worker-redis",
+          "revision": "00df7c09ea971725adecb076d508f767fc6e1846"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Background worker + Redis"
+        },
+        "preparedAt": "2026-10-03T16:59:54.235Z"
+      }
+    }
+  ],
+  "buildMs": 138088
+}

@@ -14,7 +14,7 @@
   "cloudShellReplacement": {
     "status": "awaiting_explicit_restart_confirmation",
     "observedDialog": "Restarting terminates the session and running processes, provisions a new VM, and preserves the home directory.",
-    "baseline": "Current Gin persistent-file counter value 2 after browser write/reload and confirmed stop/relaunch retained 1. Prior Blazor SQLite value 3, Angular SQLite value 2, Laravel SQLite value 1 and Quarkus SQLite value 2 remain stored; they are not the running product.",
+    "baseline": "Current worker-redis native product shows GOOGLE WORKER TWO after completed jobs, reload and full stop/relaunch retained GOOGLE WORKER ONE. Gin file value 2, Blazor SQLite 3, Angular SQLite 2, Laravel SQLite 1 and Quarkus SQLite 2 remain stored; those products are stopped.",
     "actionTaken": "Restart confirmation dialog opened; final Restart not clicked."
   }
 }

@@ -1,5 +1,5 @@
 {
-  "scope": "New opt-in native worker probe; positive worker/provider validation is pending the normal build window.",
+  "scope": "Opt-in native worker probe, validated against the real prepared worker application on Codespaces.",
   "syntaxCheck": "node --check scripts/live-codespaces.mjs passed",
   "cliGuards": {
     "combinedCounterAndWorker": "rejected before networking",
@@ -7,7 +7,8 @@
   },
   "counterRegression": "stack-worker-probe-counter-regression.json",
   "negativeControl": "stack-worker-probe-negative.json",
-  "positiveWorkerNativeStatus": "pending",
-  "nextDeveloperBuildSlotUtc": "2026-10-03T16:57:28Z",
-  "scopeLimit": "Tests completed Redis jobs and their retained results; does not test exactly-once or in-flight recovery."
+  "positiveWorkerNativeStatus": "passed",
+  "nextDeveloperBuildSlotUtc": "2026-10-03T16:57:28Z (historical; the worker build was submitted after this window opened)",
+  "scopeLimit": "Tests completed Redis jobs and their retained results; does not test exactly-once or in-flight recovery.",
+  "positiveWorkerNativeEvidence": "stack-worker-redis-codespaces.json"
 }

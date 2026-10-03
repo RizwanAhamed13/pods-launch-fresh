@@ -112,6 +112,16 @@ stop/relaunch before submitting another. It tests completed-job persistence,
 not exactly-once processing or recovery of an interrupted job. Counter and
 worker checks are mutually exclusive and require two Codespaces launches.
 
+The launcher monitors every prepared service before reporting ready and during
+heartbeats. Missing, stopped, paused or unhealthy workers/databases fail the
+launch even if its web page still responds. Dependencies explicitly declared as
+`service_completed_successfully` may remain exited with code zero. Failure is
+reported before graceful cleanup; persistent data is retained.
+`scripts/test-container-liveness.mjs` reuses the worker fixture images inside the
+isolated QA guest to exercise real worker death, database health failure,
+successful migration completion and completed-job recovery. See
+`evidence/container-liveness.json`; this is separate from native-provider evidence.
+
 `test/builds.test.mjs` adds queue serialization, account limits, output validation, cleanup failures and API ownership checks. On aswin, `gh auth token | node scripts/check-build-api.mjs` tests a real public-repository submission against the running server, verifies the public launch page, and removes its temporary provider connection. Results are in `evidence/BUILD-API.md`. `evidence/BROWSER-FLOW.md` records the tested browser form, authorization continuation, exact-version navigation, product interaction and error recovery using explicitly simulated providers; these checks do not certify a real provider browser launch.
 
 ## Operating limits

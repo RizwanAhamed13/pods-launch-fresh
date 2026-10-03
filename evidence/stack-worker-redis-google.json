@@ -1,0 +1,71 @@
+{
+  "scope": "Real independent Chrome/PODS browser session using its existing authorized Google identity; native Cloud Shell product, completed worker jobs, reload and full stop/relaunch persistence. Existing VM; no VM replacement.",
+  "productCommit": "004c64b",
+  "launches": [
+    {
+      "id": "fnXEedamp3h-TZcODSyPg-v1ee3tfn3v",
+      "appId": "repo-90eed92544a3c9d01cc828e7-00df7c09ea97-19cac81e0f89",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791046887547,
+      "readyAt": 1791046917452,
+      "totalMs": 29905,
+      "timings": {
+        "downloadMs": 662,
+        "imagesMs": 20084,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 25516,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "environment": "default",
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "error": null,
+      "expiresAt": 1791048687547
+    },
+    {
+      "id": "NnAO3SfXlvZx_PL8G9cQMJUe9tkieXmi",
+      "appId": "repo-90eed92544a3c9d01cc828e7-00df7c09ea97-19cac81e0f89",
+      "provider": "google",
+      "status": "ready",
+      "createdAt": 1791046974669,
+      "readyAt": 1791046982923,
+      "totalMs": 8254,
+      "timings": {
+        "downloadMs": 513,
+        "imagesMs": 153,
+        "imageCacheHits": 2,
+        "runtimeReadyMs": 4445,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "environment": "default",
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "error": null,
+      "expiresAt": 1791048774669
+    }
+  ],
+  "browser": {
+    "first": {
+      "productVisibleUpperBoundMs": 32321,
+      "measurementNote": "Native textbox observation across separate browser calls. Earlier 304ms heading match was the launcher title, invalid and excluded.",
+      "input": "google worker one",
+      "result": "GOOGLE WORKER ONE",
+      "jobCompletionMs": 444,
+      "reloadRetained": true,
+      "stopConfirmed": true
+    },
+    "cached": {
+      "savedProductVisibleMs": 11233,
+      "launchToNewJobCompleteMs": 11543,
+      "continuousMeasurement": true,
+      "retainedBeforeNewJob": "GOOGLE WORKER ONE",
+      "input": "google worker two",
+      "result": "GOOGLE WORKER TWO",
+      "reloadRetained": true,
+      "leftRunningUntilDeadline": true
+    }
+  },
+  "limits": "Completed-job persistence only; no exactly-once or in-flight crash-recovery claim.",
+  "totalMsDefinition": "Control-plane readyAt minus createdAt; excludes pre-click user authorization."
+}

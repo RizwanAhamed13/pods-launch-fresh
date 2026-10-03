@@ -79,7 +79,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **52 passing
+later passing attempts do not erase them. Automated coverage is **54 passing
 checks locally and on aswin**.
 
 ## Actual repository URL to native product
@@ -313,6 +313,38 @@ Cloud Shell VM replacement remains unverified. Application stop/relaunch,
 Docker volume metadata recreation and provider VM replacement are separate gates.
 See `evidence/stack-storage-live.json` and
 `evidence/stack-codespaces-rebuild-proof.json`.
+
+## Native background worker and Redis
+
+The real developer form prepared `examples/stacks/worker-redis` at public fixture
+commit `00df7c0` in **138.088 seconds**, producing 65.3 MiB across two immutable
+images shared by the web, worker and Redis services. The deployed launcher is
+`004c64b`.
+
+| Check | Result |
+|---|---|
+| Cloud Shell, existing VM with both images absent | 29.905 seconds to health; 32.321-second upper bound to native product |
+| Cloud Shell, cached launch | 8.254 seconds to health; 11.233 seconds to product displaying the retained job |
+| Cloud Shell, actual worker interaction | First job completed in 444 ms; cached launch to a new completed job took 11.543 seconds continuously |
+| Cloud Shell persistence | Completed result retained after reload and confirmed full stop/relaunch; a second job also survived reload |
+| Codespaces, both images absent | 31.143 seconds to health |
+| Codespaces, cached launch | 9.308 seconds to health |
+| Codespaces authenticated HTTP | Completed job, confirmed stop, fresh launch, retained job and distinct new completed job; both launches stopped |
+
+The initial 304 ms browser heading match was the PODS launcher title and is
+excluded from product timing. Native Google verification waits for the actual
+worker input and completed result. Codespaces native browser sign-in remains
+pending; its authenticated HTTP results do not certify that browser journey.
+Evidence: `stack-worker-redis-{url,google,codespaces}.json`.
+These checks cover completed jobs, not exactly-once delivery or in-flight recovery.
+
+The launcher now checks all services, including worker and database health,
+before readiness and on subsequent heartbeats. An isolated real-container fault
+test reported worker death in 2.576 seconds and database health failure in 2.564
+seconds while the web page still returned HTTP 200. Graceful cleanup completed
+later and preserved the completed job across relaunch. A successful one-time
+migration remained valid. The initial delayed-failure test is retained alongside
+the passing result in `evidence/container-liveness*.json`.
 
 ## Constraints and resolved failures
 

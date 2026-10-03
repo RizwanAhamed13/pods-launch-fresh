@@ -1,0 +1,135 @@
+{
+  "testedAt": "2026-10-03T17:02:34.253Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "2QYXoiHsl7RDemnQU5tYy6VOfvEwUBOw",
+      "appId": "repo-90eed92544a3c9d01cc828e7-00df7c09ea97-19cac81e0f89",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "19cac81e0f89e4f30a43ffc07358feb1e4ac6fc3a17ea05b9a1c6ad0d5189913",
+      "images": [
+        {
+          "id": "sha256:aa1358d90f7d4c35cccf7337fc7d95c1552754d92d00ea015e34b79089ad8403",
+          "sha256": "35267f1619b1ecec6103a673029825d2715d9396cbaaaba4effa1a509d239b9e",
+          "bytes": 52235703
+        },
+        {
+          "id": "sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499",
+          "sha256": "bfdc962ecd6dca3b0a34035109f2fb30ac958a5948602330af5f73c639a10102",
+          "bytes": 16256101
+        }
+      ],
+      "status": "ready",
+      "createdAt": 1791046874910,
+      "updatedAt": 1791046906053,
+      "expiresAt": 1791048674910,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791046875448,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791046906053,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 949,
+        "imagesMs": 18671,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 25295,
+        "cacheHit": false
+      },
+      "readyAt": 1791046906053,
+      "deliveryMs": 30605,
+      "totalMs": 31143,
+      "workerCheck": {
+        "productDocument": true,
+        "input": "native worker 1",
+        "submittedId": "9e528948036d4f2d9823157b629cfebe",
+        "retained": null,
+        "completed": {
+          "id": "9e528948036d4f2d9823157b629cfebe",
+          "result": "NATIVE WORKER 1",
+          "state": "complete",
+          "text": "native worker 1"
+        },
+        "latest": {
+          "id": "9e528948036d4f2d9823157b629cfebe",
+          "result": "NATIVE WORKER 1",
+          "state": "complete",
+          "text": "native worker 1"
+        },
+        "passed": true
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "uGe7hTV_P6gTx1bceZOFs83SRjQFrl_2",
+      "appId": "repo-90eed92544a3c9d01cc828e7-00df7c09ea97-19cac81e0f89",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "19cac81e0f89e4f30a43ffc07358feb1e4ac6fc3a17ea05b9a1c6ad0d5189913",
+      "images": [
+        {
+          "id": "sha256:aa1358d90f7d4c35cccf7337fc7d95c1552754d92d00ea015e34b79089ad8403",
+          "sha256": "35267f1619b1ecec6103a673029825d2715d9396cbaaaba4effa1a509d239b9e",
+          "bytes": 52235703
+        },
+        {
+          "id": "sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499",
+          "sha256": "bfdc962ecd6dca3b0a34035109f2fb30ac958a5948602330af5f73c639a10102",
+          "bytes": 16256101
+        }
+      ],
+      "status": "ready",
+      "createdAt": 1791046923640,
+      "updatedAt": 1791046932948,
+      "expiresAt": 1791048723640,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791046924361,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791046932948,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 263,
+        "imagesMs": 116,
+        "imageCacheHits": 2,
+        "runtimeReadyMs": 3876,
+        "cacheHit": true
+      },
+      "readyAt": 1791046932948,
+      "deliveryMs": 8587,
+      "totalMs": 9308,
+      "workerCheck": {
+        "productDocument": true,
+        "input": "native worker 2",
+        "submittedId": "a2a096e3e7ea415a9e66ed7ca4bd23e2",
+        "retained": {
+          "id": "9e528948036d4f2d9823157b629cfebe",
+          "result": "NATIVE WORKER 1",
+          "state": "complete",
+          "text": "native worker 1"
+        },
+        "completed": {
+          "id": "a2a096e3e7ea415a9e66ed7ca4bd23e2",
+          "result": "NATIVE WORKER 2",
+          "state": "complete",
+          "text": "native worker 2"
+        },
+        "latest": {
+          "id": "a2a096e3e7ea415a9e66ed7ca4bd23e2",
+          "result": "NATIVE WORKER 2",
+          "state": "complete",
+          "text": "native worker 2"
+        },
+        "passed": true,
+        "expectedAfterRelaunch": {
+          "id": "9e528948036d4f2d9823157b629cfebe",
+          "result": "NATIVE WORKER 1",
+          "state": "complete",
+          "text": "native worker 1"
+        }
+      },
+      "statusAfterStop": "stopped"
+    }
+  ]
+}

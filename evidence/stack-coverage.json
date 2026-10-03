@@ -985,7 +985,11 @@
       "serverEvidence": "stack-matrix-17.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-17.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-worker-redis-url.json",
+        "stack-worker-redis-google.json",
+        "stack-worker-redis-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-17.json",
