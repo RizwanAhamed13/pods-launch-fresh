@@ -1,0 +1,13 @@
+{
+  "name": "astro-counter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "astro build",
+    "start": "node dist/server/entry.mjs"
+  },
+  "dependencies": {
+    "astro": "7.3.5",
+    "@astrojs/node": "11.1.6"
+  }
+}

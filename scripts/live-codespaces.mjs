@@ -11,8 +11,9 @@ if(!me.apps.some(app=>app.id===appId))throw new Error('Prepared application not 
 const evidencePath=process.env.PODS_EVIDENCE_FILE||`evidence/${provider}.json`;
 await api('/api/connections/'+provider,'POST',{token});token='';
 const results=[];
+const scenarios=process.env.PODS_SINGLE_LAUNCH==='1'?['launch']:['first-launch','repeat-launch'];
 try {
- for(const name of ['first-launch','repeat-launch']) {
+ for(const name of scenarios) {
   const started=await api('/api/launches','POST',{provider,appId});let launch=started,last='';const deadline=Date.now()+360000;
   while(!['ready','failed','stopped'].includes(launch.status)){
    if(Date.now()>deadline)throw new Error('Live launch timed out');
@@ -22,7 +23,7 @@ try {
   results.push({scenario:name,...launch});console.log(JSON.stringify({scenario:name,status:launch.status,totalMs:launch.totalMs,deliveryMs:launch.deliveryMs,timings:launch.timings,environment:launch.environment,storageMode:launch.storageMode,error:launch.error}));
   await writeFile(evidencePath,JSON.stringify({testedAt:new Date().toISOString(),origin,results},null,2));
   if(launch.status!=='ready')throw new Error(launch.error||'Launch failed');
-  if (process.env.PODS_KEEP_LAST === '1' && name === 'repeat-launch') { console.log('Live app left running until its 30-minute deadline: '+launch.previewUrl); break; }
+  if (process.env.PODS_KEEP_LAST === '1' && name === scenarios.at(-1)) { console.log('Live app left running until its 30-minute deadline: '+launch.previewUrl); break; }
   await api('/api/launches/'+launch.id+'/stop','POST',{});
   for(let n=0;n<15;n++){await new Promise(r=>setTimeout(r,1000));if((await api('/api/launches/'+launch.id)).status==='stopped')break;}
  }

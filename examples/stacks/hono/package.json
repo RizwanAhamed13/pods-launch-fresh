@@ -1,0 +1,12 @@
+{
+  "name": "hono-counter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "hono": "4.13.12",
+    "@hono/node-server": "2.1.3"
+  }
+}

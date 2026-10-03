@@ -1,0 +1,1 @@
+<script>import {onMount} from 'svelte';let count=$state(0);onMount(()=>{count=Number(localStorage.getItem('sveltekit-counter')||0)});function add(){count++;localStorage.setItem('sveltekit-counter',String(count))}</script><svelte:head><title>SvelteKit counter</title></svelte:head><h1>SvelteKit counter</h1><p id="value">{count}</p><button onclick={add}>Add one</button>

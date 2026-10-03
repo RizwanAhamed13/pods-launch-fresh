@@ -1,0 +1,4 @@
+---
+const renderedAt = new Date().toISOString();
+---
+<!doctype html><html lang="en"><head><title>Astro counter</title></head><body><h1>Astro counter</h1><p id="value">0</p><button id="add">Add one</button><p>Rendered on server: {renderedAt}</p><script is:inline>let count=Number(localStorage.getItem('astro-counter')||0);const v=document.querySelector('#value');v.textContent=count;document.querySelector('#add').onclick=()=>{v.textContent=++count;localStorage.setItem('astro-counter',String(count))};</script></body></html>

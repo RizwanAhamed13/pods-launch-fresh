@@ -1,0 +1,10 @@
+{
+  "provider": "github",
+  "scope": "HTTP interaction inside user Codespace over authenticated SSH; not native browser",
+  "before": 0,
+  "saved": 1,
+  "read": 1,
+  "nativeBrowser": "pending GitHub sign-in",
+  "afterStopAndRelaunch": 1,
+  "persistence": "passed"
+}
