@@ -86,8 +86,8 @@ or in-flight crash recovery.
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
 later passing attempts do not erase them. Automated coverage is **96 passing
-checks locally and on aswin**. Native coverage is 22 Google browser fixtures and
-22 Codespaces HTTP/protocol fixtures; 33 await native acceptance. Codespaces
+checks locally and on aswin**. Native coverage is 23 Google browser fixtures and
+23 Codespaces HTTP/protocol fixtures; 32 await native acceptance. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1040,3 +1040,50 @@ Coverage is **55 isolated browser fixtures**, **22 native Google browser fixture
 and **22 Codespaces HTTP/protocol fixtures**, with **33** awaiting native acceptance.
 The source and its existing 96-check validation are unchanged: **5,297 lines**.
 Evidence: `evidence/stack-preact-{url,google,codespaces}.json`.
+
+
+## Editing a prepared repository
+
+Changing the repository URL or application folder now clears the previous
+preparation's ready status and share link. Earlier immutable versions remain in
+history. An edited draft restored after cancelled authorization also starts with
+no stale result; reconnecting prepares the edited source automatically.
+
+Core `2cbfc93` passed browser checks for folder changes, URL changes, authorization
+cancellation and reconnect continuation. The same folder-change case passed on
+the production developer page after deployment. The isolated browser fixture
+made exactly three intended build requests; its providers were simulated. All
+96 automated checks pass locally and on aswin. Public frontend bytes match the
+checkout. Source totals **5,307 physical lines**; native coverage remains 22/55
+until another framework completes acceptance.
+
+Evidence: `evidence/preparation-draft-state.json`.
+
+
+## Standalone Solid native acceptance
+
+The same developer account prepared `examples/stacks/solid` once through the
+normal developer form after ordinary quota became available. The isolated build
+took **59.956 seconds** and saved an **8,310-byte** artifact from public revision
+`9eee994`. No QA artifact was imported and the production quota was unchanged.
+
+| Scenario | Measured result |
+| --- | --- |
+| Cloud Shell, artifact absent on existing compute | Health 5.411s; Solid visible 6.774s; successful click 7.057s |
+| Cloud Shell, cached after full app stop | Health 4.088s; Solid visible 5.173s; successful click 5.469s |
+| Codespaces, first launch with environment preparation | Health 27.546s, including 14.619s delivery; exceeded 20s |
+| Codespaces, cached after full app stop | Health 7.458s, including 6.697s delivery |
+
+The Cloud Shell product counter went 0→1, retained 1 across reload and full app
+stop/relaunch, then went 1→2 and retained 2 after reload. Timing was continuous
+from each launch click through the successful interaction. The final warning/error
+log was empty. This is browser localStorage persistence, not database durability.
+Codespaces served the real 10,991-byte compiled Solid entry on both launches;
+its native browser sign-in and JavaScript interaction remain pending. All four
+launches stopped, and provider inspection confirmed port 24730 stayed private.
+
+Coverage is **55 isolated browser fixtures**, **23 native Google browser fixtures**
+and **23 Codespaces HTTP/protocol fixtures**, with **32** awaiting native acceptance.
+The source remains **5,307 physical lines**; its latest validation is **96 passing
+checks locally and on aswin** at `2cbfc93`.
+Evidence: `evidence/stack-solid-{url,google,codespaces}.json`.

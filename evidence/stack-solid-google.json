@@ -1,0 +1,74 @@
+{
+  "recordedAt": "2026-10-03T23:04:01.197703+00:00",
+  "controlRevision": "6cfadb6",
+  "frontendRevision": "2cbfc93",
+  "scope": "Actual Solid browser rendering and interaction at the native Cloud Shell preview. Browser localStorage persistence, not a backend database.",
+  "results": [
+    {
+      "id": "fEd-y2e4pDbe1505J96QDbXvdP_7wKYB",
+      "appId": "repo-afb358c19eb4451f3ac34fe3-9eee994ba7f7-8fd329781c5f",
+      "provider": "google",
+      "port": 24730,
+      "createdAt": 1791068571185,
+      "updatedAt": 1791068585926,
+      "status": "stopped",
+      "providerReadyAt": 1791068574123,
+      "readyAt": 1791068576596,
+      "timings": {
+        "downloadMs": 607,
+        "runtimeReadyMs": 891,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 5411,
+      "deliveryMs": 2473
+    },
+    {
+      "id": "oxPOctYePrTmDE1rZ-stxMaCcR5OW86g",
+      "appId": "repo-afb358c19eb4451f3ac34fe3-9eee994ba7f7-8fd329781c5f",
+      "provider": "google",
+      "port": 24730,
+      "createdAt": 1791068591638,
+      "updatedAt": 1791068611128,
+      "status": "stopped",
+      "providerReadyAt": 1791068594063,
+      "readyAt": 1791068595726,
+      "timings": {
+        "downloadMs": 328,
+        "runtimeReadyMs": 611,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 4088,
+      "deliveryMs": 1663
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "first-launch",
+      "visibleMs": 6774,
+      "interactionMs": 7057,
+      "before": 0,
+      "afterWrite": 1,
+      "afterReload": 1,
+      "passed": true
+    },
+    {
+      "scenario": "repeat-launch",
+      "visibleMs": 5173,
+      "interactionMs": 5469,
+      "before": 1,
+      "afterWrite": 2,
+      "afterReload": 2,
+      "passed": true
+    }
+  ],
+  "timingScope": "Continuous launch-click through meaningful interaction in a single browser tool call. Existing user compute; first artifact absent, then cached. Health totalMs and deliveryMs derived from persisted timestamps.",
+  "browserErrorOrWarningLogsAtFinalCheck": [],
+  "passed": true,
+  "finalProductionAudit": {
+    "at": "2026-10-03T23:04:55.743739+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0
+  }
+}

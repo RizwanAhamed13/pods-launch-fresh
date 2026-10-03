@@ -1,714 +1,139 @@
 # Broad stack checkpoint
 
-Goal active. Do not claim universal support or complete provider/browser acceptance.
+Goal active and incomplete. Do not claim universal compatibility or complete
+provider/browser acceptance. This checkpoint replaces stale operational notes;
+historical results remain in SUPPORT.md, PRODUCT.md and their evidence files.
 
 ## Source and coverage
 
-- Core private https://github.com/RizwanAhamed13/pods-launch-fresh; public fixtures
-  https://github.com/RizwanAhamed13/pods-launch-runtime-fresh at 9eee994.
-- Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
-- 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
-  interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 5297 physical source lines: 2870 product/tooling, 1360 tests, 903 examples,
-  164 browser tools. Exclusions in code-lines.json.
-- 96 automated checks pass locally and on aswin at core6cfadb6.
-- Native Google browser fixtures: Flask/PostgreSQL, React/Express/PostgreSQL,
-  Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
-  Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
-  FastAPI JSON API/SQLite, Next.js, SvelteKit, Flask/MySQL, Spring Boot/SQLite, standalone React, standalone Angular, standalone Vue, standalone Svelte, standalone Preact: twenty-two.
-- Same twenty-two fixtures have Codespaces authenticated SSH HTTP/protocol checks;
-  native Codespaces browser authorization and interaction remain pending.
+- Private core: https://github.com/RizwanAhamed13/pods-launch-fresh.
+- Public fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
+  revision 9eee994ba7f70d1793bc449573ddb36e01003818.
+- Local: /Users/rizwanahamed/Documents/ChatGPT/podsv2.
+- aswin: /home/aswin/pods-launch-fresh; SSH alias aswin.
+- 55 real isolated app fixtures pass build, artifact run and meaningful browser
+  interaction. stack-coverage.json records precise scope and historical failures.
+- 23 fixtures pass native Google browser interaction and Codespaces authenticated
+  HTTP/protocol checks. Codespaces native browser authorization remains pending.
+- 32 remaining native fixtures: actix, adonis, alpine, aspnet, astro, axum, deno,
+  echo, express, fastapi, fastify, fiber, flask-mariadb, flask-mongodb7, flask-redis,
+  flask-sqlite, flask-valkey, go, gradio, hono, koa, ktor, lit, micronaut, nestjs,
+  phoenix, php, react-router, rocket, sinatra, streamlit, symfony.
+- 5,307 physical source lines: 2,880 product/tooling, 1,360 tests, 903 examples,
+  164 browser tools. code-lines.json states the exclusions.
+- Latest source revision 2cbfc93: 96 automated checks passed locally and on aswin.
+  No source changes after that validation; current gate adds evidence/docs only.
 
-## Latest completed gate: native Preact
+## Latest completed gate: native Solid
 
-- Prior turn made progress: deployed shutdown fix and accepted native Svelte.
-  Current turn confirmed clean local/aswin1a43787, service MainPID913910 active
-  and health200. Runtime remains6cfadb6; no code changes or unnecessary test reruns.
-- Existing quota watcher4300 finished0 at22:44:00UTC with account2/global2 and
-  active builds0. The same account submitted Preact once through the actual form.
-  Build41.126s,10,279bytes, public9eee994 unchanged. No quota bypass or QA import.
-- Apprepo-f7e7b6b2816804a2f52daa2d-9eee994ba7f7-c4a6185adae5;
-  dataKeyrepo-f7e7b6b2816804a2f52daa2d, private port23682 on both providers.
-- Native Google first: health5.281s, visible6.994s, interaction7.293s,0→1/reload1.
-  After confirmed full app stop: health4.266s, visible5.505s, interaction5.809s,
-  retained1→2/reload2. Both timings continuous, logs[], both stopped.
-  This proves browser localStorage persistence, not a backend database.
-- Native Codespaces harness16318 finished0: existingjj497rpqpp7529v7 served
-  compiled Preact entry13,629bytes; health10.446s first/cachefalse and6.814s
-  repeat/cachetrue. Both stopped. Provider inspection confirmed23682private.
-  Native browser sign-in/interaction still pending; don't call HTTP tests browser E2E.
-- Evidence stack-preact-{url,google,codespaces}.json, with whitelisted production
-  build/launch fields; totals derived from persisted timestamps. Browser values
-  remain in CUA preactBrowserChecks/preactBrowserLogs. Temp production capture
-  /tmp/pods-preact-production-evidence.json contains no account/session fields.
-- Final production audit22:48:55UTC: active builds0, active launches0.
-- Coverage55isolated/22native/33pending;96 tests and5,297source lines unchanged.
-  Production ready builds for the same account cover exactly these22fixtures;
-  there are no already-prepared pending fixtures to launch without another build.
-- Next ordinary account slot22:59:37.705UTC (04:29:37.705IST). New quota watcher
-  handle66741 is LIVE; same readonly script /tmp/pods-native-quota-watch.py,
-  same Svelte account anchor,3/account/hour and12/global/hour,15-minute limit.
-  Do not bypass limits, switch identities or import QA artifacts.
-- Browser handoffs: stackQa6tab13 input now examples/stacks/solid but the ready
-  result still belongs to Preact; do NOT treat it as a Solid preparation. Wait
-  for actual submission and a new result. accountWorkertab12 stoppedPreact,
-  browser count2. nativeGithubKeep10 andcloudLifecycle14 remain pending user2FA
-  andCloudShellRestart. Preserve all four tabs, don't repeat pending prompts.
-- Next gate: Solid normal URL submission and both native provider tests after
-  capacity opens. Existing static probe already supports Solid. Goal remains
-  active with a completed new fixture this turn; broad completion is unproven.
+- Same-account quota watcher 66741 finished0 at23:00:01UTC, account2/global2,
+  active builds0. Submitted Solid once via the actual developer form at23:00:50UTC.
+  Isolated build59.956s, artifact8,310bytes, public9eee994. No quota changes,
+  identity swaps or QA imports. A ready-region observation used a label missing
+  the final period, so it waited longer; fresh DOM found the completed build.
+  The preparation was not resubmitted and browser launch measurements are unaffected.
+- App repo-afb358c19eb4451f3ac34fe3-9eee994ba7f7-8fd329781c5f;
+  dataKey repo-afb358c19eb4451f3ac34fe3; stable private port24730.
+- Google first: health5.411s, visible6.774s, interaction7.057s,0→1/reload1.
+  After confirmed full app stop: health4.088s, visible5.173s, interaction5.469s,
+  retained1→2/reload2. Continuous timing within each browser call; final logs[].
+  Both launches stopped. This proves browser localStorage, not database durability.
+- Codespaces harness41895 finished0. Existing7vrw57jpjjppcww57 served compiled
+  Solid entry10,991bytes: first health27.546s/delivery14.619s/cachefalse, repeat
+  health7.458s/delivery6.697s/cachetrue. Both probes passed, both launches stopped.
+  Provider port24730 confirmed private. First launch included environment preparation;
+  initial provider state was not recorded. Do not claim native browser execution.
+- Evidence stack-solid-{url,google,codespaces}.json. Whitelisted production capture
+  /tmp/pods-solid-production-evidence.json; final audit /tmp/pods-solid-final-audit.json.
+- Final audit23:04:55UTC: active builds0, active launches0, local/public health200;
+  service active/running MainPID913910. Quota3/account3/global in rolling hour.
+- Next ordinary slot23:23:54.313UTC (04:53:54.313IST). No quota watcher is live.
+  Fresh readonly check before the next submission; do not change limits, switch
+  identity or import QA artifacts. Normal limits3/account/hour,12/global/hour.
+- Next native candidate: Lit, then Alpine; existing static probe covers both.
+  Select the folder in the form and prepare only after ordinary capacity opens.
 
-## Previous gate: native Svelte and Codespaces shutdown handling
+## Recent fixes retained
 
-- Normal quota watcher26541 finished0 with account/global2 in the rolling hour.
-  The same developer submitted Svelte once in the actual form. Build36.962s,
-  artifact16,155bytes at public9eee994, under supervised runtime0a6047b.
-  This closes the new repository build under systemd gate. No QA imports.
-- Svelte apprepo-8c73fd9c46e6ce933c4a380e-9eee994ba7f7-c2611773269b,
-  dataKeyrepo-8c73fd9c46e6ce933c4a380e, private port28992.
-  Google first health4.757s/visible5.752s/write6.225s, counter0→1/reload1;
-  cached full restart health4.532s/visible5.503s/write5.785s, retained1→2/reload2.
-  Continuous browser observations, final logs[], bothstopped. localStorage, noDB.
-- Codespaces harness45019 finished0: newjj497rpqpp7529v7 health143.111s,
-  delivery10.913s; repeat6.469s. Both25,441byte Svelte compiled-entry checks
-  passed, bothstopped; provider port28992confirmedprivate. Browser pending.
-  Previous7vrw57jpjjppcww57 was Shutdown when read after creation; the initial
-  discovery response was not captured, so do not assign the creation a cause.
-- Core6cfadb6 handles official ShuttingDown state: discovered or preferred
-  environment waits for Shutdown, starts exactlyonce, keeps data affinity.
-  Stuckshutdown reachesdeadline withoutmutation. Three regressions red first,
-  then96localchecks pass. Existing transient read/resume/auth/quota tests pass.
-  Officialschema and scoped evidence in codespaces-shutdown.json.
-  All96aswinchecks passed. Verified idle901477/cwd/cmdline/listener; controlled
-  systemd restart nowPID913910, localhealth200 in325ms, SQLitequick_checkok.
-  Publichealth200. Nativeharness40481 finished0 aftercontrolledstop: provider
-  stateShuttingDown observed beforeharness, Starting later; samejj497rpqpp7529v7
-  ready130.003s/delivery25.206s, repeat6.818s. Bothcachehit/compiledentrypassed,
-  bothstopped, port28992private. Exactfirstadapterstateunrecorded; deterministic
-  tests prove branch, liverecheck provesresume/serving. Evidence
-  codespaces-shutdown-live.json. Final22:37:20UTCactivebuilds0/launches0.
-- Coverage55isolated/21native/34pending,5297physical source lines. Evidence
-  stack-svelte-{url,google,codespaces}.json. No source fixture changes.
-- Quota watcher4300 is LIVE; /tmp/pods-native-quota-watch.py is a readonly
-  sameSvelteaccount watcherevery30s with15minlimit. Last22:35UTCaccount3/global3,
-  nextordinaryslot22:43:58.739UTC. Resume samehandle at mostonce/minute. It exits
-  whenavailable; do not startduplicatewaiters. Freshcheckrequiredbeforesubmit.
-  Never alter limits, switch identity, or import QA artifacts to bypass quota.
-- Browser state: stackQa6tab13Svelteprepared; accountWorkertab12stoppedSvelte,
-  Sveltebrowsercount2. nativeGithubKeep10stillpending2FA andcloudLifecycle14
-  pendingRestart. Preserve four handoffs; do not repeat pending prompts.
-- Next native fixture: Preact after an ordinary quota slot. Static probe already
-  supports it. All34remaining native fixtures, nativeCodespacesbrowser/OAuth,
-  CloudShellVMreplacement, durableDNS/tunnel and cold20s remain open.
+- 2cbfc93 clears completed preparation results after repository/folder changes,
+  retains old versions in history, and clears stale results after OAuth draft restore.
+  preparation-draft-state.json records actual production before/after plus three
+  loopback simulated-provider requests, all202/ready, no launches. Fixture19889
+  stopped, exec62150finished0, tab28closed. All96tests passed local/aswin.
+- Served frontend SHA256:
+  3e7a44a59fbf72c499e03305587d61d69f2922e5875a29792f56404a44b84fa3.
+  Backend runtime remains6cfadb6; static frontend updated without service restart.
+- 6cfadb6 handles Codespaces ShuttingDown, waits for Shutdown, resumes the same
+  environment once within the deadline. Three red-before regressions,96green.
+  codespaces-shutdown.json and codespaces-shutdown-live.json retain exact scope.
+- Provider read retries are bounded to transient failures; auth/quota failures are
+  immediate. Creation is not retried. Affinity prevents silently replacing a saved
+  app's environment/data. Stable app ports20000–29999 and private forwarding isolate
+  product origins. Existing native cases using historical8080 are not all retested.
+- Previous Preact native evidence: stack-preact-{url,google,codespaces}.json;
+  first/repeat Google interactions7.293s/5.809s; Codespaces10.446s/6.814s.
+  Previous Svelte native evidence: stack-svelte-*.json. Historical details are in
+  SUPPORT.md; do not rerun passing isolated checks without a changed concern.
 
-## Previous gate: supervised control plane and expanded frontend checks
+## Browser handoffs
 
-- Core0a6047b adds deploy/pods-launch-fresh.service; systemd259 validation passed.
-  Installed at /home/aswin/.config/systemd/user/pods-launch-fresh.service, enabled
-  under the existing lingering user manager. Typeexec, Restarton-failure/3s,
-  five starts/minute limit,30sstop,UMask0077. No sudo/linger/security changes.
-  Temporary Cloudflare tunnel still manual PID2322522; stable DNS remains pending.
-- The manual control PID895643 was verified by cwd/cmdline/listener and idle
-  production records, then stopped cleanly. First servicePID901184. A second
-  idle check preceded one scoped SIGKILL of that verified process; systemd
-  recovered to localhealth200 in3257ms, publichealth200 afterward, NRestarts1.
-  Build records and preview-port reservations identical; SQLitequick_checkok.
-  Current observed servicePID901477, runtime0a6047b. Always query serviceMainPID;
-  DO NOT use old PID markers for lifecycle operations. Old pods-launch-server.pid
-  moved to /home/aswin/pods-launch-server.manual-retired.pid, contents895643.
-  Service is independent of SSH sessions; prior persistentexec47404 is retired.
-- For SSH user-manager commands set XDG_RUNTIME_DIR=/run/user/1000 and
-  DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus. Query/restart only
-  pods-launch-fresh.service. Unrelated existing services were not changed.
-  Always check active builds/launches before an intentional restart.
-- Post-recovery Google: original browser connection survived, Vue at same27260
-  retained2→3/reload3; visible8.148s, successfulinteraction8.433s. Stopped, final
-  browserwarn/errorlogs[]. Codespaces Vue health8.186s/7.095s, compiledentries
-  passed, bothstopped. Harness56825ended0. Evidencecontrol-service-recovery.json
-  and service-recovery-codespaces.json. Host reboot, active-work crash, tunnel
-  recovery still need evidence. A new Svelte build passed in the later gate.
-- Core44df802 extends serialized staticprobe toSvelte/Preact/Solid/Lit/Alpine.
-  All8frameworks exercised in unit and freshprocess tests, rejecting wrong
-  framework bundles, external/uncompiled asset URLs and unknown/prototype names.
-  All93testspasslocal/aswin. No runtimeappsource changed, so no extra restart.
-- Existing real QA artifacts for the5additions passed the new probe on local
-  guestport18092; eachstarted/stopped explicitly. BundlebytesSvelte25441,
-  Preact13629,Solid10991,Lit15621,Alpine55217. This is NOTnativeacceptance.
-  Evidence static-probe-expanded.json preserves initial ad-hoc harness issue:
-  launchID too short; corrected toUUID before any appstart. LXD file-push overwrite
-  of uid1000owned /tmpfile failed under protected_regular; updated via uid1000
-  lxc exec stdin instead. Do not relax file protection or change ownership.
-  Repro script /tmp/pods-static-expanded-run.mjs exists locally,aswin,andQAguest;
-  probe /tmp/pods-static-probe.mjs onaswin/guest. ExistingQAserveruntouched.
-  Harness37068ended0 afterretrievingevidence; allfiveprobeappsconfirmedstopped.
-- The normal quota watcher26541 completed0; Svelte preparation and native results
-  are recorded in the newer gate above. Four browser handoffs remain preserved.
+After compaction call cua.rewriteDocumentation, then reuse bindings. Mark pending
+workflow tabs for handoff each turn. Never repeat a launch/build because a readonly
+observation timed out; the action may already have completed.
 
-## Previous gate: bounded provider recovery and native Vue
-
-- Coredec153c committed/pushed/synced/deployed: Codespaces discovery/state reads
-  retry up to3 for transient500/502/503/504/timeouts/known connection errors.
-  An uncertain resume response observes the same saved environment within its
-  deadline; no duplicate create/resume mutations.401/403/429 remain immediate.
-  Four regressions failed first;92 tests then passed locally/aswin. Core172334f
-  extends static QA to Vue with a wrong-React-bundle regression;93 tests passed
-  locally/aswin. The Vue probe runs locally/serialized on compute; no further
-  control-plane runtime restart needed for this harness-only change.
-- Controlled restart verified887714/cwd/cmdline/listener and active0 before stop.
-  Current PID895643, persistent exec47404, in-memory runtime dec153c. Health200,
-  unchanged runnerSHA9ef8029d995e07421e5297aaa1b644fb145a54c838e0b2d2f6f38f0e356cfc3b.
-- Saved Spring Codespace69rw5vx4xp46c5qw5 recovered to Available externally before
-  deploying retries. Native new-port28486 checks retainedSQLite4→5, stopped,
-  relaunched5→6, stopped. Health24.997s/13.983s; provider port confirmed private.
-  Both image caches hit. This closes its new-port acceptance; it does NOT show
-  new retry code caused the recovery. Historical upstream errors retain no exact
-  HTTP status, so do not invent one. Evidencecodespaces-retry.json and
-  preview-isolation-spring-codespaces-recovered.json. Harness3496 ended0.
-- After the ordinary quota slot opened, the same account submitted Vue through
-  normal /develop UI. Build33.055s,99,466bytes,public9eee994 unchanged.
-  Apprepo-b6a487ee32ba4a822c511ed3-9eee994ba7f7-30c74ea07603; private port27260.
-  No QA artifacts imported, no quota alterations or identity switches.
-- Google Vue first health5.227s/cachefalse, actualcounter0→1/reload1. An observation
-  timeout interrupted continuous measurement:22.745s visible/23.038s interaction
-  are upper bounds with tool gaps. On full stop/relaunch health4.267s/cachetrue,
-  continuousvisible7.053s/write7.367s, retained1→2/reload2. Both stopped; final
-  browser warnings/errors[]. Vue useslocalStorage, not a backend DB.
-- Codespaces Vue healthy first10.840s/cachefalse and repeat7.572s/cachetrue at
-  existing7vrw57jpjjppcww57, both186,439byte compiled entries pass authenticated
-  HTTP; both stopped. Port27260 confirmedprivate afterward. Harness1765 ended0.
-  Native Codespaces browser sign-in/JS interaction still pending. Evidence
-  stack-vue-{url,google,codespaces}.json. These launches validate healthyprovider
-  behavior on the deployed retry revision; transientfaultcases are deterministic.
-- Currentcoverage55isolated/20native/35pending;93checks/5274physicalsource lines.
-  Latestreadonlyaudit22:03:16UTCactivebuilds0/launches0,account3/hour; next ordinary
-  slot22:23:20.702UTC. Do not bypass quota, switch accounts, or import QA artifacts.
-  No fixture changes this turn. No active native test harness remains.
-- Four browser handoffs retained: stackQa6tab13 Vue preparation complete;
-  accountWorkertab12 stoppedVue; nativeGithubKeeptab10 pendinguser2FA;
-  cloudLifecycletab14 pendinguserRestart. Do not repeat pending prompts. Actual
-  Vuebrowserchecks/logs remain inCUAvueBrowserChecks/vueBrowserLogs and saved.
-  Observationcatch must accept /deadline|timeout|timed out/i; a timeout does not
-  cancel launch, so do not click Launch again. Scope productheading to h1.
-- Next remaining native fixture can beSvelte/Preact or a backend afterquota. Use
-  same normalURLsubmission; extend fixture-awareprobe only when needed. Current
-  staticprobe coversReact/Angular/Vue. Most older native checks used shared8080;
-  they remain historical valid evidence but assignedport coverage is not universal.
-  Stable deployment, CloudShellVMreplacement, CodespacesOAuth/browser, cold20s
-  and remaining35nativefixtures are still open. Goalactive with verified progress.
-
-## Previous gate: private application origins and native Angular
-
-- Core8b3dd9e pushed, synced and deployed. Stable SQLite preview-port reservations
-  keyed by compute account/dataKey (20000–29999); collision/exhaustion handling.
-  Provider URLs and live probes use assigned ports; Codespaces establishes private
-  forwarding before runner dispatch and closes its temporary local process.
-  Regression first failed because different apps shared8080, then all87 checks
-  passed locally/aswin. New helper real CLI registration4.757s, mapping private
-  after exit. Test-only private ports21081/21082 remain registered, no listeners.
-- Restart verified old PID806978/cwd/argv/listener and no active work. New control
-  PID887714, persistent exec30021, runtime8b3dd9e. Public /health200 and runnerSHA
-  9ef8029d995e07421e5297aaa1b644fb145a54c838e0b2d2f6f38f0e356cfc3b unchanged.
-  Initial health audit used nonexistent/api/health404; corrected actual/health.
-- Normal developer form submitted Angular once at quota2/global2/active0. Build
-  4ZZt4nGUw5T7iR_-l4R2cNbdaIr_coxP prepared in97.208s;49,453bytes/node22+.
-  Public9eee994 unchanged, no QA artifact import or quota alteration.
-  App repo-95521097a3a9fd2e8303de2a-9eee994ba7f7-fd7ffeb2c297.
-- Real Google sequence (all stopped): React29528 read0/write1/reload1; Spring28486
-  read existing SQLite4/write5/reload5 then full relaunch5→6/reload6; Angular21869
-  read0/write1/reload1; React relaunch1→2; Angular relaunch still1→2. Both frontend
-  source fixtures still use localStorage.count. Browser data separation proven,
-  no renamed keys or cleared state. Old browser-only8080 data is left at old origin.
-- React continuous browser writes6.608s/5.553s. Angular6.066s/5.420s, health4.391s/
-  4.149s. Spring cached repeat retained5 and wrote6 in16.706s; its first browser
-  timing was invalidated as an exact measurement by an unsupported heading-level
-  selector matching the launcher, then correctly observed with h1. Upper bounds
-  retained; no first Spring browser20s claim. Final captured browser logs empty.
-- Codespaces React at saved7vrw57jpjjppcww57 passed14.460s/6.695s health and static
-  checks. Spring saved69rw5vx4xp46c5qw5 had upstream errors before delivery on
-  first and one retry; do not create a replacement environment or lose SQLite4.
-  Its new-port database acceptance remains pending. Historical old-port native
-  evidence still valid. Harness cleanup waits45s and reports no stopped status
-  for already-failed pre-dispatch launches; terminal failure/noactivework audited.
-- Angular first Codespaces attempt failed same upstream message before delivery.
-  Independent repository listing from aswin subsequently returned200 in598ms;
-  GitHub status reported operational (no global outage claim). One bounded retry
-  passed10.828s/6.807s with real97,198byte compiled entry; both stopped. Native
-  Codespaces browser auth/interaction still pending. Both21869/29528 confirmed
-  private through provider CLI after successful launches.
-- Evidence preview-isolation*.json and stack-angular-{url,google,codespaces,
-  codespaces-retry}.json retains failures and exact scope. Coverage19native/55,
-  36remaining.87tests,5214source lines. No source fixture changes this turn.
-- Final read-only audit21:51:44UTC: active builds0/launches0; account3/hour;
-  next normal slot21:58:56.886UTC. No live native test harness/observer. All harness
-  sessions88867,67467,85199,2255,20614 ended (failures preserved).
-- Pending browser handoffs re-marked: developer stackQa6 tab13 Angular completed;
-  accountWorker tab12 stopped Angular; nativeGithubKeep tab10 pending2FA and
-  cloudLifecycle tab14 pendingRestart. No repeated auth or restart confirmation.
-  CUA isolationBrowserChecks/isolationBrowserLogs captured into evidence.
-- Next bounded work can investigate saved Codespace resume failures before its
-  new-port database test, or another remaining native framework after quota.
-  Do not loop blind retries, bypass quota, switch identities or import QA artifacts.
-  New origins do not erase previous native evidence, but most frameworks have not
-  yet been tested natively at assigned ports. Stable deployment and cold20s remain.
-  Goal active; current turn delivered code and native acceptance, not blocked.
-
-## Previous completed gate: Spring Boot Noble runtime native acceptance
-
-- Core runtime recipe685fa80 remains deployed; public source still9eee994. Normal
-  quota observer69264 ended0 at21:23:08UTC (account2/global2). Submitted the developer
-  form exactly once. BuildOcdtlor3MVY5-Mspz2OyJu15-sFRMlZP prepared in185.843s;
-  observer51984 ended0. Image131473220bytes; no imported QA artifact.
-- App repo-8a9b80c77f2897d8664a184b-9eee994ba7f7-74e471ac4004,
-  stable dataKey repo-8a9b80c77f2897d8664a184b. Actual source/public commit confirmed.
-- Google new image: health49.033s, visible49.900s, saved SQLite2 read50.443s,
-  successful write2→3 at50.732s; reload3. Full stop. Cached: health14.743s,
-  visible15.274s, saved3 read15.802s, successful write3→4 at16.085s; reload4.
-  Both browser measurements continuous; captured warnings/errors empty; both stopped.
-- Codespaces69rw5vx4xp46c5qw5: first health74.065s/provider14.975s, cached13.655s.
-  Authenticated HTTP read2/write3, full stop/relaunch read3/write4. This verifies
-  artifact-upgrade data affinity despite the newer static-app Codespace. Both stopped;
-  harness1195 ended0. Native Codespaces browser authorization remains pending.
-- Google download23.722s versus26.566s before, but load7.623s versus3.612s, so first
-  total did not improve. Codespaces download23.737s. First-image transfers did not
-  overlap (Google cached relaunch ran while Codespaces first launch started).
-  No first-image20s claim. Evidence stack-spring-boot-noble-{url,google,codespaces}.json.
-- Read-only production audit21:30:58UTC: active builds0/launches0, account3/hour;
-  next normal account slot21:43:44.834UTC. No live quota/build/native-test observers.
-  Native18/55,37remaining. Source5054lines; automated80/80 from unchanged685fa80.
-- Next useful work before Angular native acceptance: investigate browser-origin
-  separation. Current server config fixes every launch to port8080; both provider
-  preview URLs hard-code8080. React and Angular fixtures both use localStorage.count
-  (verified in actual files after graph search missed it). Thus different products
-  on the same provider environment share a browser origin. Do not hide this by
-  renaming fixture storage keys or clearing existing browser data. Validate and
-  address platform-level origin separation, stable across versions, preserving
-  backend database identity and private provider previews. Native Angular will
-  be a meaningful cross-app storage check. This source-derived concern still
-  needs a direct platform regression and provider capability verification.
-- Browser handoffs remain developer tab13, stopped Spring launcher tab12,
-  GitHub2FA tab10, CloudShellRestart tab14. Re-mark next turn. CUA variables include
-  springNobleBrowserChecks and springNobleGoogleLogs; old tabs/auth actions pending.
-  Running control server remains b02fea1/PID806978; no runtime code changed this turn.
-  Goal active; this turn completed real native upgrade/persistence evidence.
-
-## Previous completed gate: smaller full Java runtime, isolated acceptance
-
-- Core685fa80 pushed/synced to aswin. Maven uses explicit Noble builder/full JRE;
-  builder digest is unchanged and all49 Java modules/version strings match the
-  previous runtime. Gradle unchanged. No production server restart required.
-- Batch31 finished0: Spring Boot, Quarkus, Micronaut and Ktor all passed build,
-  artifact upgrade retaining SQLite2, write3 and stop/relaunch retaining3.
-  Browser31 then passed write3→4/reload4 for all four, with no captured warnings
-  or errors. Catalog updated only for these passing rows. No new fixture count.
-- Image archives shrink by15.5MB each (10.04–11.03%). Exact bytes and digests are
-  in stack-jvm-runtime-comparison.json and stack-matrix-31.json. Full-module
-  inspection is stack-jvm-runtime-modules.json. These local runs had cached Docker
-  images; they do not prove native transfer speed or the20-second first-image goal.
-- Local80 tests passed. On aswin an overly broad `node --test` discovered seven
-  non-test scripts/fixtures and failed; the documented `npm test` passed all80.
-  Both attempts are recorded in stack-jvm-validation.json; no product test failed.
-- QA Ktor stopped with a single verified SIGTERM to292107, handler consumed;
-  Docker has no running QA containers. Browser tab27 closed. Matrix34570,
-  module comparison70689 and cleanup34553 ended0. No live test/quota observers.
-- Production read-only audit21:16:46UTC: active builds0/launches0; account3/global3
-  builds in the last hour. Next normal account slot21:22:12.854UTC. Do not bypass
-  limits, change identities or import QA artifacts into production.
-- Next gate: after quota allows, submit the real developer form for
-  examples/stacks/spring-boot at public9eee994. Prepare the smaller artifact using
-  the deployed685fa80 recipe; keep stable dataKey repo-8a9b80c77f2897d8664a184b.
-  Google and Codespaces previously saved SQLite2; verify2 before writing3, then
-  stop/relaunch and verify3 before writing4. Codespaces harness flags:
-  PODS_COUNTER_CHECK=1 PODS_EXPECT_INITIAL_COUNT=2 with a fresh evidence filename.
-  Native affinity should return69rw5vx4xp46c5qw5 despite the newer static React
-  environment7vrw57jpjjppcww57. Preserve all environments/data.
-- Compare native first-image download and cached product timings to previous
-  Spring results; retain honest scope. Existing Quarkus/Spring native evidence
-  applies to earlier images. Native coverage still18/55,37remaining.
-- Four browser handoffs remain: developer tab13, launcher tab12, GitHub2FA tab10,
-  CloudShellRestart tab14. Re-mark in next turn; do not repeat pending auth actions.
-  Running control server remains b02fea1/PID806978. Goal active; this turn made
-  implementation and testing progress, no blocked condition.
-
-## Previous completed gate: standalone React frontend native acceptance
-
-- Core80efe8d pushed/synced; all80 checks pass local/aswin. New opt-in static probe
-  validates React/Angular mount and compiled entry assets. Serialized fresh-Node
-  command and missing/external/HTML-fallback/unrelated asset failures are tested.
-- Actual isolated React and Angular artifacts passed. Initial Angular probe rejected
-  valid unhashed main.js; corrected and regression added. All attempts retained in
-  stack-static-probe-isolated.json. QA Angular stopped with one SIGTERM to292107;
-  handler consumed; tab26 closed. No control-server restart needed.
-- Quota observer32410 ended0 at20:58:48UTC (account2/global2/active0). Developer form
-  submitted once. BuildfNNk5J_JbyMgjq6C7KLK_RDz9-C9dYOf prepared public9eee994 in33.711s,
-  artifact103755bytes, runtimeNode22+, no Docker image. Observer66465 ended0.
-  App repo-ca40d6838dd2f00c7dba8311-9eee994ba7f7-25312833ce7f;
-  dataKey repo-ca40d6838dd2f00c7dba8311. No QA artifact import.
-- Google artifact absent/existing compute: health4.894s, actual React visible5.899s,
-  click0→1 at6.203s, reload1. Full stop. Cached: health4.904s, visible5.795s,
-  saved1 visible5.802s, click1→2 at6.104s, reload2. Both browser measurements
-  continuous; final error/warning logs empty. Both stopped. Browser localStorage
-  only, no backend DB persistence claim. Saved browser count2.
-- Codespacespods-launch-7vrw57jpjjppcww57: first health131.308s, provider124.768s,
-  delivery6.540s; cached health5.304s/delivery4.752s. Both authenticated HTTP
-  mount/compiled entry checks passed (219983bytes JS); not JavaScript execution.
-  Harness65462 ended0; both stopped. Native Codespaces browser remains pending.
-- Evidence stack-react-{url,google,codespaces}.json. Native18/55,37remaining.
-  Ready-compute samples pass20s; provider provisioning does not. Latest readonly
-  production audit builds0/launches0. No live test observers. Runtime remains
-  b02fea1/PID806978, source80efe8d synced; no runtime restart needed.
-- Browser tabs retained: stackQa6 tab13 developer React result, accountWorker
-  tab12 stopped React launcher, nativeGithubKeep tab10 pending GitHub2FA, and
-  cloudLifecycle tab14 pending CloudShellRestart approval. Do not repeat pending
-  authorization actions. Goal remains active; current and previous turns progressed.
-- Normal next account build slot should expire around21:22UTC (prior MySQL build).
-  Recheck authoritative quota before submission. Useful independent work while
-  waiting can target the measured first-image JVM transfer overhead; do not alter
-  limits, switch identities, or import QA artifacts into production.
-
-## Previous completed gate: Spring Boot SQLite and native acceptance
-
-- Core074fecd and public9eee994 pushed/synced. Spring Boot now uses real SQLite
-  JDBC3.53.4.0; original matrix02/matrix15/browser02 only proved file persistence.
-  Matrix30: build94.027s, runtime9.930s/repeat9.640s, record0→1/restart1.
-  Browser1→2/reload2 and direct SQLite format/integrity/value inspection passed.
-  Evidence stack-matrix-30.json / stack-browser-30.json. Build93455 ended0.
-- Normal quota observer16268 ended0 at20:40:46UTC (account2/global2/active0).
-  Developer form submitted exactly once; buildShYiVdNQT5uXf91B0wTFC62SZfAAXTK_
-  prepared public9eee994 in196.106s. URLobserver15516 ended0. No QA artifact import.
-  App repo-8a9b80c77f2897d8664a184b-9eee994ba7f7-ec5c6a995625;
-  stable dataKey repo-8a9b80c77f2897d8664a184b, image146983923bytes.
-- Cloud Shell image absent: health46.554s; product observed50.010s/write50.332s
-  (upper bounds including tool boundary). Counter0→1/reload1. Full app stop.
-  Cached continuous observation: health15.264s, product16.055s, saved1 visible
-  16.704s, write1→2 at17.020s; reload2. Error/warning logs empty. Both stopped.
-- Codespaces69rw5vx4xp46c5qw5: first health77.906s (provider12.273s), cached13.212s.
-  Authenticated HTTP counter0→1/read1, stop/relaunch, read1 before write2/read2.
-  Harness71915 ended0; both stopped. Native Codespaces browser remains pending.
-- Downloads Google26.566s/Codespaces26.559s did not overlap. First-image launches
-  exceed20s; cached samples are not guarantees. No provider VM replacement claim.
-- Evidence stack-spring-boot-{url,google,codespaces}.json. Native17/55,38remaining.
-  Last readonly production audit: builds0/launches0. Saved native SQLite2/2.
-  No live test observers. QA Docker empty; browser QA serverPID292107 still up,
-  its app stop handler consumed. QA tab25 closed. Control server remains
-  b02fea1/PID806978; no runtime restart needed. Next fixture may proceed when
-  normal account quota permits (next older Nuxt slot expires about20:58UTC).
-- Browser tabs to retain: stackQa6 tab13 developer Spring result, accountWorker
-  tab12 stopped Spring launcher, nativeGithubKeep tab10 pending GitHub2FA, and
-  cloudLifecycle tab14 pending CloudShellRestart approval. Do not repeat pending
-  authorization actions. Goal remains active, no blocked condition this turn.
-
-## Previous completed gate: MySQL native database acceptance
-
-- Core b7ddcde pushed/synced; 75 tests pass locally/aswin. No product runtime change
-  or restart needed; server remains b02fea1/PID806978. MySQL helper is opt-in QA.
-- Normal same-account quota permitted one developer form submission: observer64106
-  completed0. BuildLPhG2-vSjBWYE0vUgp5YE9dcLhyPR25C prepared examples/stacks/flask-mysql
-  at public f58a3e3 in191.104s. Observer58565 ended0. No QA artifact import.
-  App repo-92ea628b6475df117d05b393-f58a3e357955-d9f33af13065;
-  dataKey repo-92ea628b6475df117d05b393, 2 images total296853958bytes.
-- Google image absent: health103.340s. Product observed128.146s/first successful
-  write128.437s are upper bounds after bounded waits/tool boundary. Counter0→1,
-  reload1, full app/database stop. Cached: health10.848s, visible11.352s,
-  restored record1 by11.458s, write1→2 by11.742s continuously; reload2.
-  Final browser error/warn logs empty; both launches stopped.
-- Codespaces69rw5vx4xp46c5qw5: health146.425s first (provider12.812s),10.393s cached.
-  Native HTTP checks write0→1, stop/relaunch, read1 before write2, read2.
-  Docker boundary inspection passes twice: healthy web/db, only product8080
-  published, no DB host ports, same records-disk-v1 MySQL volume backed by its
-  /workspaces application directory. Harness52170 completed0; both stopped.
-- Image downloads53.700s each did not overlap; loads Google22.859s/Codespaces43.681s.
-  First launches miss20s; cached samples are not guarantees. Native CS browser and
-  provider VM replacement/rebuild are not proven by this MySQL test.
-- Evidence stack-mysql-{url,google,codespaces}.json. Coverage55 isolated /16 native
-  fixtures;39 native fixtures remain. Final production read-only check: no active
-  builds or launches. Saved MySQL Google2/Codespaces2.
-- Prior isolated boundary probe passed with a Codespaces-shaped workspace path;
-  scope is explicitly QA. Evidence stack-mysql-runtime-boundary.json, real script
-  scripts/test-mysql-runtime-live.mjs; exec81946 ended0. QA Docker empty and ports
-  8080/18090 free; unique test volume remains in /workspaces/.pods-launch.
-- Reproduce native QA with PODS_COUNTER_CHECK=1 PODS_EXPECT_INITIAL_COUNT=<saved>
-  PODS_MYSQL_RUNTIME_CHECK=1 and an unused PODS_EVIDENCE_FILE. Helper requires the
-  explicit examples/stacks/flask-mysql folder and two Codespaces launches. It reads
-  bounded Docker metadata, never container environment variables.
-
-## Previous completed gate: optimized Nuxt native acceptance
-
-- Core c774ec5 is pushed and deployed. All 72 tests pass locally/aswin. Control
-  server remains b02fea1/PID806978; each isolated build copies fresh recipe source,
-  so no control-server restart was needed.
-- Canonical npm Nuxt builds copy standalone `.output` into a clean Node runtime.
-  Custom commands/hooks/`.npmrc`/other managers retain the full-project recipe.
-  Matrix29 image shrank 132783437→80930156 bytes (39.05%). Real build/start/restart
-  and browser counter 0→1, reload0 passed. The failed upload/stale matrix28 result
-  is explicitly excluded in stack-nuxt-standalone-stale.json.
-- Normal same-account quota reset allowed one developer form submission.
-  Build DORFY4Fqv6BE6yLTfupMStkezw9VBTEn prepared examples/stacks/nuxt at public f58a3e3
-  in241.807s, image80930828bytes. App repo-17942c0277f8155e2cc154ce-f58a3e357955-8296b658d67e.
-  Observer93193 ended0; no QA artifact imported into production.
-- Google image absent: health23.449s, visible24.793s; successful click observed
-  by30.901s includes tool boundary. Cached: health5.901s, visible6.454s,
-  successful click6.738s measured continuously. Counter0→1 and reload0 twice;
-  final error/warn logs empty. No DB persistence claim for this fixture.
-- Codespaces returned assigned69rw5vx4xp46c5qw5. First health43.350s includes
-  provider startup15.223s; cached7.252s. Actual SSR and client JS passed twice.
-  Harness31481 ended0. Native Codespaces browser remains pending.
-- Image downloads Google14.358s/Codespaces14.354s did not overlap. First-image
-  launches still exceed20s; cached samples are not guarantees. All4launches stopped;
-  final production read-only check confirmed no active builds or launches.
-- Evidence stack-nuxt-standalone-{comparison,url,google,codespaces}.json,
-  stack-matrix-29.json. Coverage remains55 isolated /15 native fixture families.
-
-## Previous completed gate: SvelteKit native acceptance
-
-- Core95effd3 pushed and synced. Only QA helper/tests changed; production runtime
-  remainsb02fea1/PID806978, no restart needed. All71 tests pass local/aswin.
-- Same-account quota read allowed normal submission (account2/global2/active0).
-  Actual developer form submitted once at19:40:45.822UTC; buildJoTXa4uehPSLWKRMm7p_gedWbMIciPdN
-  prepared examples/stacks/sveltekit publicf58a3e3 in85.789s. Observer65864 ended0.
-  App repo-1478ac009026ec2c5c411578-f58a3e357955-2a2796da3771, image103148461bytes.
-- Google existing compute/image absent: health29.439s; product visible30.912s;
-  first observed click0→1 by38.854s includes tool boundary. Reload retained1.
-  Cached: health5.521s, visible6.512s, restored state6.517s, successful1→2 click6.811s
-  measured continuously. Reload retained2; final browser error/warn logs empty.
-- Codespaces existingcompute/image absent: health38.635s; cached6.329s.
-  Actual SSR document and both dynamic start/app entry assets passed twice.
-  Harness33854 ended0; all4launches stopped. Native CS browser remains pending.
-- SvelteKit stores localStorage, not a backend DB. No DB durability claim.
-  Google image download18.472s/load3.776s; Codespaces18.459s/6.668s. First-image
-  transfers did not overlap. Both uncached launches exceed20s on existing compute.
-- SSR probe now checks SvelteKit inline dynamic import entries and rejects missing/
-  external bootstrap assets. Serialized-command regression executes all3frameworks.
-- Evidence stack-sveltekit-{url,google,codespaces}.json; native15/55,40remaining.
-
-## Previous completed gate: Codespace data affinity
-
-- Coreb02fea1 pushed, synced and deployed. Three regressions failed before the fix;
-  all70 tests pass on local/aswin after it. No runner changes.
-- Returning apps bind account + stable application data key to their Codespace.
-  Versions, browser sessions and server restart retain this mapping. Existing
-  successful launches with account identity migrate through their artifact data key.
-  Missing/unavailable/wrong-runtime environments fail without silently using empty
-  storage. Cross-environment data migration is not implemented.
-- Before native test:69rw5vx4xp46c5qw5 Available; original API97qw56gjg47gf7vrv Shutdown.
-  PODS correctly resumed97, verified old SQLite2 before writing3, stopped, relaunched,
-  read3 then wrote4. Both stopped. Resumed health53.049s (delivery35.240s); cached
-  health6.789s. Images already cached in both cases; no20s claim for resumed case.
-- Authenticated SSH HTTP/JSON API/documentation checks passed; native browser scope
-  remains pending. Harness93466 ended0. No active launches/builds/test observers.
-- Production PID806978, persistent exec86720; public health and unchanged runner
-  hash confirmed. Evidence stack-codespaces-affinity{,-live}.json.
-
-## Previous completed gate: Next.js native acceptance
-
-- Corefe3b3e9 pushed and synced. Production runtime remains4cf4370/PID784115;
-  only native QA helpers/tests changed, no runtime restart needed.
-- Normal quota observer25001 ended0 at19:21:00UTC (account2/global2/active0).
-  Actual developer form submitted once19:21:13UTC. BuildlF4DerG-NV2azAXngA2jGX_7V7JeJhTW
-  prepared examples/stacks/next at publicf58a3e3 in117.854s. Observer61472 ended0.
-  App repo-dccd3e62a815c56abb62f51e-f58a3e357955-cc7cecf280c3; image189767810bytes.
-- Google existing compute/image absent: health88.177s, SSR visible89.243s. Initial
-  click left0; later click worked by110.539s, reload0. Cold observations include
-  tool gaps and retain first-click failure. No browser errors/warnings at later check.
-- Google cached: health6.817s, visible8.132s, successful click8.421s continuously;
-  reload0. Counter is transient by design; no database durability claim. Both stopped.
-- Codespaces first health111.017s then test harness failed before HTTP probe because
-  generated source had an extra closing parenthesis. Failed evidence preserved in
-  stack-next-codespaces-first-attempt.json. Harness55293 ended1, application stopped.
-- Fixfe3b3e9 centralizes ssrProbeCommand. A fresh-Node-process test executes the
-  exact generated command for Next/Nuxt. All67 checks pass local/aswin. No product
-  runtime changes. Corrected harness60585 ended0, cached health7.181/6.660s; both
-  SSR and all7client scripts pass, both stopped. Browser auth still pending.
-- Google image download68.586s/load10.195s; Codespaces68.372s/9.578s. First-image
-  transfers overlapped, so these are concurrent-test samples, not single-user
-  bandwidth measurements. All five Next launches confirmed stopped.
-- Evidence stack-next-{build-window,url,google,codespaces,codespaces-first-attempt}.json.
-  Scope55 isolated fixtures,14 native fixtures;41 remain without native evidence.
-- No observer or test harness still running. Current readonly account quota:
-  3 recent,0active; next ordinary slots19:33:57.530,19:58:39.208,20:21:13.019UTC
-  absent other submissions. Do not bypass quotas or switch identities.
-- Next available native family can proceed through the ordinary developer form.
-  Current form shows completed Next result; do not accidentally submit it again.
-- Potential next diagnostic: API used Codespace97qw56gjg47gf7vrv whereas Next
-  reused69rw5vx4xp46c5qw5. Inspect app/environment selection before assuming this
-  is a defect; determine whether a previously launched app retains its environment
-  and DB when more than one matching Codespace exists. No data-loss claim yet.
-
-## Previous completed gate: genuine JSON API native acceptance
-
-- Runtime/source4cf4370 discovers a verified existing /docs Swagger interface only
-  with bounded same-origin /openapi.json OpenAPI3 schema. JSON root remains the
-  health/API endpoint. Fixed relative product path preserves provider hostname.
-- 61 checks pass locally/aswin. Isolated QA adds fixture55: fastapi-api, real
-  JSON-only API/SQLite. Initial in-app JSON navigation failure is retained;
-  revised catalog automatically opens existing Swagger UI and writes/reads data.
-- Public fixturef58a3e3. Real developer submission admitted normally18:58:39UTC;
-  buildQmviuz6kDy55Tb2ybssEwAH7aC1CeO09 ready in84.909s. No quota manipulation,
-  identity switching or imported QA artifact. Production image54899297bytes.
-  App repo-0a5395ff6c05eeae1cc76c56-f58a3e357955-c3ffdb2bed82.
-- Native Google automatically opened/docs. First-image health18.676s, interface
-  visible19.995s, browser POST0→1 completed26.383s; reloadGET retained1.
-  Cached health6.147s, interface8.119s, retainedGET1 at14.489s, then POST2 at21.017s;
-  reloadGET2. Timings continuous and include Swagger request-form actions.
-- Codespaces new environment health156.195s (provider startup132.083s); cached
-  health9.734s. JSON root, /docs document, selected preview/docs and counter
-  0→1/restart1→2 passed through authenticated SSH HTTP. Browser still pending.
-  Harness84991 finished0. Both providers' two launches confirmed stopped.
-- Uncached image download9.537s each provider, Docker load2.078s Google/3.820s
-  Codespaces. Transfer dominates these samples; no optimization claimed.
-- Evidence stack-matrix-26/27, stack-browser-27 and stack-fastapi-api-{url,google,
-  codespaces}.json. Coverage55/55,13 native fixtures;42 remain native-untested.
-- Production source4cf4370, serverPID784115 exec56803. Public health/runner hash
-  checked after deployment; no restart needed for later harness/docs-only commit.
-- Normal same-account next build slot19:20:19UTC, then19:33:57 and19:58:39 absent
-  other builds. Observer21270 completed0; no quota observer running.
-
-## Previous completed gate: image phase diagnostics
-
-- Runtime change3b8fd11 preserves delivery integrity and adds imageCacheCheckMs,
-  imageDownloadMs, imageLoadMs, imageArchiveCacheHits; total imagesMs retained.
-  Failure timings are preserved; server accepts bounded whitelisted numeric values.
-- 58 tests pass locally/aswin. Real deployed Django Google cached browser retained2,
-  displayed it7.870s, wrote3 at8.140s and reloaded3. Health7.128s, cache check66ms.
-- Codespaces cached health6.881/6.386s, retained2→3 then3→4 across full stop/relaunch.
-  Authenticated HTTP only; native browser pending. All three launches stopped.
-- Native cache hits correctly show zero transfer/load. First-image phase breakdown
-  still pending next normally admitted build. No quota/cache manipulation.
-- Existing isolated Python image inspected read-only/no-network, no compiler or
-  pip download cache found. No recipe optimization made. Inspect exec26339 ended0.
-- Evidence image-phases.json and image-phases-codespaces.json. Native harness13102
-  and record readers56200/5550 completed0. No test runners left active.
-- Updated control server PID774112, exec75146. Public health and runner hash
-  9ef8029d995e07421e5297aaa1b644fb145a54c838e0b2d2f6f38f0e356cfc3b verified.
-- No new build this turn. Same-account next ordinary slot remains18:58:14UTC
-  (then19:20:19/19:33:57 absent other builds). No quota observer running.
-
-## Previous completed gate: Django and SQLite
-
-- Real developer URL preparation109.340s; source fixture examples/stacks/django at
-  unchanged public00df7c0. BuildKbEietsWkyvU_03zGLLIt0dvrqQvOpvb, app
-  repo-2f3eccf055bfd890686f5122-00df7c09ea97-63c8734bb2d2, image58765738bytes.
-- Ordinary account slot opened18:33:45UTC; submission18:33:57UTC. No quota or
-  identity manipulation. Observer22726 and Codespaces harness53742 completed0.
-- Google first image absent: health21.853s, DB0 visible23.694s, write1 at23.974s;
-  reload1. Cached: health6.461s, retained1 visible7.788s, write2 at8.067s; reload2.
-  Both browser timings measured continuously with bounded locator retries.
-- Codespaces existing running VM first image absent25.116s/write0→1; cached6.903s,
-  retained1→2. Actual authenticated HTTP/SQLite full restart passed. Browser
-  authorization still pending. All four launches confirmed stopped, data retained.
-- Evidence stack-django-{url,google,codespaces}.json and coverage index updated.
-  No runtime/source changes; the previously passing56tests remain valid, not rerun.
-- Next ordinary same-account slot18:58:14UTC absent other builds. Quota observers
-  must match build.account, not browser owner, because limits bind provider identity.
-  Remaining native fixtures42. First-image delivery still misses20s for Django;
- 14.059s Google and14.207s Codespaces spent receiving/loading the56MiB image;
-  those earlier combined timings do not distinguish transfer from Docker load.
-
-## Previous completed gate: Nuxt and session recovery
-
-- Actual developer form prepared examples/stacks/nuxt in 241.125s after normal
-  quota availability. Build LyS0ndmZTHrMBdMDra0Ms28ZOHNdJu08. App:
-  repo-17942c0277f8155e2cc154ce-00df7c09ea97-5a5b1d9df9e5.
-- Prepared image132785944bytes (126.6MiB), real Nuxt SSR and client entry.
-- Google first image absent: health64.995s; images55.911s. Page observed by65.516s,
-  first SSR-visible click ignored before hydration. Later click0→1 observed by94.010s
-  (upper bounds with tool gaps). Reload0 by design: transient client state, no DB claim.
-- Google cached: health6.865s; product0 visible7.642s; click0→1 at7.936s measured
-  continuously. Reload0. Both runs confirmed stopped.
-- Codespaces first/resumed/image absent100.893s; cached6.801s. Both SSR0 and
-  /_nuxt/Xrz7lXV0.js (47938bytes, JavaScript) HTTP checks passed. Both stopped.
-  This does not prove native Codespaces browser hydration.
-- Evidence stack-nuxt-{url,google,codespaces,build-window,session-rejection}.json.
-  Observers79266 and9961 finished0. No duplicate jobs or quota changes.
-- Initial developer submission failed stale CSRF before creating a build. Manual
-  refresh showed disconnected accounts/empty form; ordinary same-account OAuth
-  resumed once refilled. Underlying reason for session change remains unknown.
-- Fix c24dc4a emits SESSION_CHANGED only for rejected CSRF and forces one provider
-  reauthorization while preserving exact app/repository/folder. Other403s retain
-  normal rejection. No mutation is replayed without authorization.
-- Local browser fixture verified preparation403→202, repeated403→403 with one
-  recovery/no build, and GitHub launch403→202 into actual notes save/reload.
-  OAuth/providers/build were simulated; artifact/runner/storage real local.
-  Evidence browser-session-recovery.json. Fixture19889 stopped via cleanup;
-  sessionQa IABtab21 can close. Tests enforce CSRF no work and distinct origin403.
-- scripts/probe-ssr.mjs negative controls remain valid from e269f9e; no source change.
-
-## Recent retained evidence
-
-Ruby recipe3544609 separates build/runtime native gems/shared libraries, excludes
-compiler/git/cache. Rails image251119273→93313156bytes (62.8%); Sinatra
-216259334→72508238 (66.5%). Real isolated build, SQLite restart and browser checks
-passed. Evidence stack-matrix-25.json, stack-browser-25.json and stack-ruby-*.
-
-Optimized real Rails URL preparation390.875s, image93312249bytes. Google first
-health32.105s/write34.230s; cachedhealth9.345s/write10.966s; reload/full restart
-SQLite passed. Codespaces59.936s/9.112s, previous-image count2 retained→3→4.
-All stopped; evidence stack-rails-optimized-{url,google,codespaces}.json.
-Sinatra native provider evidence still pending.
-
-Bun real URL preparation106.981s. Google initial port conflict retained; conflicting
-worker expired naturally, never manually interrupted. Successful uncached image
-health20.170s (manifest cached), cachedhealth5.678s/native write9.430s. WebSocket
-SQLite/reload/full restart passed. Codespaces24.716s/7.138s with ping/pong,
-message updates/reconnect/SQLite restart. All stopped; stack-bun-* evidence.
-
-Account-lock46a907c prevents concurrent dispatch across sessions sharing a provider
-identity; private computeKey never exposed. Runner all-service liveness004c64b
-revokes readiness on worker/database failure even with healthy web HTTP.
-Runner SHA75cfd87f58a02353b48a080ee480b9b5ac246e2e189474f57e318fa11fdc0a0f.
-
-## Next gates and pending user actions
-
-1. Continue a remaining native family through normal real developer URL submission,
-   preparation, both providers and meaningful product interaction. All isolated
-   fixtures already passed; do not repeat them without a changed recipe/concern.
-   Never bypass quota, switch identities to evade it or import QA artifacts into
-   production. Build limits bind provider identity independently of browser session.
-2. GitHub IABtab10 /sessions/two-factor/sms/confirm: user action already requested,
-   no SMS/code sent. GitHub browser OAuth remains unconfigured. Keep preview private.
-3. Chrome GitHub fresh check redirected to login; temporary tab2083874427 closed.
-   IABtab10 is still awaiting Send SMS; no code sent.
-4. Cloud Shell IABtab14 pending Restart confirmation: processes stop, VM replaced,
-   home remains. No approval; do not click Restart/reset or accept background
-   Authorize modal. Codespaces full rebuild retained PostgreSQL; Cloud Shell VM
-   replacement remains unverified.
-5. Native support for every remaining framework and durable deployment still pending.
-   Cold image transfers frequently exceed20s. Cached samples are not a guarantee.
-   Nuxt demonstrates SSR visibility can precede interactivity; retain this distinction.
+- stackQa6: IAB2tab13, completed Solid preparation and share link.
+  Exact ready region label is `Your application is ready to share.` (with period).
+- accountWorker: IAB2tab12, stopped Solid launcher; browser localStorage count2.
+  CUA solidLaunchUrl, solidBrowserChecks and solidBrowserLogs retain evidence.
+- nativeGithubKeep: IAB2tab10, still pending two-factor authentication at this gate.
+  User action already requested; no SMS/code sent. GitHub browser OAuth unconfigured.
+  Keep previews private; do not send another authorization request.
+- cloudLifecycle: IAB2tab14, pending Cloud Shell Restart confirmation. No approval
+  to replace the VM. Do not click Restart or accept background Authorize modal.
+  Home persistence across VM replacement remains unverified.
+- For Google launch timing, use continuous Date.now before the Open button through
+  actual framework heading, button action and read; then reload and full appstop.
+  Heading locator uses h1 plus exact text, not unsupported role level options.
+- Snapshot redaction: strip Connected account text and private Cloud Shell hostnames.
 
 ## Operational state
 
-Origin https://collection-conferences-ages-clearly.trycloudflare.com.
-Control server PID887714, persistent exec30021; PID file matches verified cwd.
-Deployment8b3dd9e passed public health, runner hash and native preview isolation
-checks. The earlier structured CSRF checks remain in browser-session-recovery.json.
-Always verify PID file, cwd, cmdline
-and listener before targeted restart. Use scripts/serve.sh from the repository;
-Node/gh in /home/aswin/pods-tools/bin. Do not restart with active builds/launches.
+- Origin https://collection-conferences-ages-clearly.trycloudflare.com.
+- systemd user unit pods-launch-fresh.service is the sole control server authority.
+  MainPID913910, backend6cfadb6. Node/gh in /home/aswin/pods-tools/bin.
+  XDG_RUNTIME_DIR=/run/user/1000 and
+  DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus for remote systemctl.
+- Before intentional restart, prove no active builds/launches, verify unit PID,
+  cwd/cmdline/listener, then restart only this unit. Never use retired manual PID
+  /home/aswin/pods-launch-server.manual-retired.pid. Unrelated pods-j03 units untouched.
+- Health endpoint /health on loopback8787. Cloudflared PID2322522 remains manual;
+  durable DNS/tunnel supervision remains open. Do not change callback hostname.
+- RunnerSHA 9ef8029d995e07421e5297aaa1b644fb145a54c838e0b2d2f6f38f0e356cfc3b.
+- Production SQLite reads use URI readonly mode and whitelist public fields only:
+  file:/home/aswin/pods-launch-fresh/.data/pods.sqlite?mode=ro.
+  records(kind,id,value JSON), singular build/launch. Never print tokens, root
+  owner/account/session/computeKey values. Build repository.owner is public repo owner.
+- /tmp/pods-native-quota-watch.py is a readonly bounded watcher, Svelte account
+  anchor NLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp. Existing66741 is finished; no live waiter.
+- Latest Solid Codespace pods-launch-7vrw57jpjjppcww57 Available at inspection;
+  Svelte/Preact pods-launch-jj497rpqpp7529v7 Shutdown. Container fixtures use
+  pods-launch-containers-69rw5vx4xp46c5qw5 and97qw56gjg47gf7vrv. Recheck actual state.
+- QA guest pods-fresh-matrix-01: direct /snap/lxd/current/bin/lxc, /opt/pods source,
+  /work/stacks, /output, /opt/node/bin/node, uid1000. Existing QA server PID292107,
+  exec86855, app18090/proxy8081/tunnel18890. Its one-shot SIGTERM handler is consumed;
+  do not send another SIGTERM blindly. Draft test19889 stopped; QA guest unchanged.
+- Code graph project Users-rizwanahamed-Documents-ChatGPT-podsv2. Indexed through
+  6cfadb6; public/scripts/examples/deploy absent, so targeted fallback is appropriate.
+- npm test = node --test test/*.test.mjs; never bare node --test. Validation before
+  commit uses set -e. Token stdin for gh harness; never print it.
 
-No live PODS apps after MySQL checks; data retained. Latest MySQL Codespace
-pods-launch-containers-69rw5vx4xp46c5qw5. Latest Nuxt Codespace
-pods-launch-containers-69rw5vx4xp46c5qw5. Latest SvelteKit Codespace
-pods-launch-containers-97qw56gjg47gf7vrv. Latest Next Codespace
-pods-launch-containers-69rw5vx4xp46c5qw5; API Codespace
-pods-launch-containers-97qw56gjg47gf7vrv; prior image-phase Codespace
-pods-launch-containers-69rw5vx4xp46c5qw5. API Google2/Codespaces4; earlier
-Google Django3/Rails2/Bun2, Codespaces Django4/Rails4/Bun2.
+## Remaining completion gates
 
-CUA bindings: stackQa6 IAB2tab13 completed MySQL preparation; accountWorker IAB2tab12 stopped
-MySQL launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
-connection; nativeGithubKeep IAB2tab10; cloudLifecycle IAB2tab14.
-After compaction call rewriteDocumentation; re-mark pending tabs. Locator timeouts
-do not cancel launches: never resubmit because an observation timed out.
-
-QA LXD pods-fresh-matrix-01, /opt/pods source, /work/stacks fixtures,/output results,
-/opt/node/bin/node uid/gid1000,PODS_ISOLATED_BUILD=1. Browser QA PID292107 (exec86855) listens
-8081 with PODS_QA_APP_PORT=18090 and catalog/output/evidence/browser-matrix.json.
-SIGTERM292107 most recently stopped the optimized Nuxt runner; SSH tunnel
-localhost18890 remains. Plain lxc cleanup inspection failed because its snap launcher could not create
-its DBus scope; bundled /snap/lxd/current/bin/lxc works with existing access.
-Fresh inventory after the optimized Nuxt probe confirms Docker empty and app ports18090/8080
-free. QA server292107 remains with its one-shot runner handler consumed; do not
-repeat SIGTERM blindly. API tab22, Next tab23, Nuxt tab24 closed.
-SQLite reads must use readonly mode and whitelist public fields. Never dump
-credentials or owner/identity/session values. Code graph project
-Users-rizwanahamed-Documents-ChatGPT-podsv2; targeted fallback for absent scripts.
+Continue the32native fixtures and preserve separate health/visible/interactive
+measurements, first artifact/image delivery versus cached and cold compute.
+Native Codespaces browser interaction/OAuth, Cloud Shell VM replacement persistence,
+durable DNS/tunnel and cold20s are unproven. Many cold/container cases exceed20s.
+No representative matrix can establish arbitrary-application compatibility; retain
+explicit supported recipes and Dockerfile/Compose contract, declared dependencies,
+secrets and migrations. Non-web/native desktop/mobile/GPU apps remain outside this
+browser-product scope. Goal remains active with meaningful progress this gate.

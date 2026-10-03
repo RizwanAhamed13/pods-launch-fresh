@@ -1,0 +1,65 @@
+{
+  "at": "2026-10-03T22:54:25.312240+00:00",
+  "scope": "Preparation UI regression. Before: production observation. After: loopback browser fixture with simulated build/provider authorization, not native-provider acceptance.",
+  "before": {
+    "folder": "examples/stacks/solid",
+    "oldPreactResultStillVisible": true
+  },
+  "after": {
+    "changedFolderClearsResultAndProgress": true,
+    "staleResultHrefRemoved": true,
+    "oldVersionRemainsInHistory": true,
+    "newFolderProducesNewVersion": true,
+    "changedRepositoryClearsResult": true,
+    "authorizationCancellationRestoresEditedDraftWithoutOldResult": true,
+    "reconnectAutomaticallyPreparesEditedSource": true
+  },
+  "unintendedBuildRequests": 0,
+  "fixtureRequests": [
+    {
+      "path": "/api/builds",
+      "status": 202
+    },
+    {
+      "path": "/api/builds",
+      "status": 202
+    },
+    {
+      "path": "/api/builds",
+      "status": 202
+    }
+  ],
+  "fixtureSources": [
+    {
+      "url": "https://github.com/example/other-notes",
+      "folder": "apps/web",
+      "status": "ready"
+    },
+    {
+      "url": "https://github.com/example/notes",
+      "folder": "",
+      "status": "ready"
+    },
+    {
+      "url": "https://github.com/example/notes",
+      "folder": "apps/web",
+      "status": "ready"
+    }
+  ],
+  "observationNote": "Read-only textbox evaluation timed out after the third preparation; fresh DOM confirmed the same result without resubmission.",
+  "validationNote": "Initial ad hoc extraction assumed record order and HTTP201. Compared the exact source set and actual asynchronous acceptance HTTP202 instead; no extra build was submitted.",
+  "localTestsPassed": 96,
+  "revision": "2cbfc93",
+  "aswinTestsPassed": 96,
+  "servedFrontendSha256": "3e7a44a59fbf72c499e03305587d61d69f2922e5875a29792f56404a44b84fa3",
+  "publicFrontendMatches": true,
+  "productionAfter": {
+    "editedFolder": "examples/stacks/solid",
+    "oldResultHidden": true,
+    "oldProgressHidden": true,
+    "prepareEnabled": true,
+    "preactRetainedInHistory": true,
+    "scope": "Same actual production developer session as the before observation; editing only, no build submitted."
+  },
+  "fixtureExited": true
+}

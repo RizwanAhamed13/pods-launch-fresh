@@ -245,3 +245,19 @@ Codespaces compiled-product checks passed at10.446s/6.814s on existing compute;
 native browser execution is still pending. All four launches stopped, with the
 provider port private. Current coverage:55 isolated /22 native /33 pending.
 The runtime remains6cfadb6 with96 validated tests and5,297 scoped source lines.
+
+
+Editing the developer's repository URL or folder now clears the old prepared
+result, while preserving earlier versions in history. Cancelled authorization
+restores the new draft without presenting a stale launch link. Browser checks
+covered edits and reconnect continuation; the folder-change fix also passed on
+production. Revision2cbfc93 has96 passing checks locally/aswin and5,307 source lines.
+
+
+Standalone Solid adds native fixture 23. Ordinary URL preparation took 59.956s;
+the Cloud Shell product responded to a click in 7.057s on first delivery and
+5.469s after a full app restart, retaining its localStorage counter. Codespaces
+served verified compiled assets in 27.546s with environment preparation and
+7.458s cached; its browser interaction remains pending. All four launches stopped
+and port 24730 remained private. Current coverage is 55 isolated / 23 native /
+32 pending, with 5,307 scoped source lines and 96 passing automated checks.
