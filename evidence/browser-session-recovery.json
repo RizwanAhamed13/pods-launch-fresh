@@ -130,5 +130,25 @@
     "Leave the loaded page connected. POST /fixture/expire-session using the test controller, then submit a new exact draft or launch once. Complete simulated authorization and verify automatic continuation.",
     "Use ?repeat=1 to invalidate every submission. After one OAuth return the repeated 403 must stay on the page without creating work. Read /fixture/report for counts."
   ],
-  "productionSessionExpiryForced": false
+  "productionSessionExpiryForced": false,
+  "deployment": {
+    "verifiedAt": "2026-10-03T18:32:15.518777+00:00",
+    "commit": "c24dc4a",
+    "host": "aswin",
+    "health": true,
+    "publicScriptMatchesCheckout": true,
+    "appJsSha256": "65043b481554fb7db29f41595567bb34f90780f26bd5b85fce594b2fdc33cde9",
+    "structuredCsrfRejection": {
+      "error": "Your browser session changed. Reconnect to continue.",
+      "code": "SESSION_CHANGED"
+    },
+    "automatedChecks": {
+      "local": 56,
+      "aswin": 56
+    },
+    "oauthReady": {
+      "github": false,
+      "google": true
+    }
+  }
 }
