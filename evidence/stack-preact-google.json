@@ -1,0 +1,73 @@
+{
+  "recordedAt": "2026-10-03T22:47:29.154395+00:00",
+  "controlRevision": "6cfadb6",
+  "scope": "Actual Preact browser rendering and interaction at the native Cloud Shell preview. Browser localStorage persistence, not a backend database.",
+  "results": [
+    {
+      "id": "OLJqOSZxzldoPh8OzeUd7Wge5TH2kZeI",
+      "appId": "repo-f7e7b6b2816804a2f52daa2d-9eee994ba7f7-c4a6185adae5",
+      "provider": "google",
+      "port": 23682,
+      "createdAt": 1791067525024,
+      "updatedAt": 1791067545570,
+      "status": "stopped",
+      "providerReadyAt": 1791067527745,
+      "readyAt": 1791067530305,
+      "timings": {
+        "downloadMs": 608,
+        "runtimeReadyMs": 905,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 5281,
+      "deliveryMs": 2560
+    },
+    {
+      "id": "aTMvi3rP5eiCYklpZyjsRl1SLd0pJqWH",
+      "appId": "repo-f7e7b6b2816804a2f52daa2d-9eee994ba7f7-c4a6185adae5",
+      "provider": "google",
+      "port": 23682,
+      "createdAt": 1791067558673,
+      "updatedAt": 1791067575270,
+      "status": "stopped",
+      "providerReadyAt": 1791067561154,
+      "readyAt": 1791067562939,
+      "timings": {
+        "downloadMs": 332,
+        "runtimeReadyMs": 572,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 4266,
+      "deliveryMs": 1785
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "first-launch",
+      "visibleMs": 6994,
+      "interactionMs": 7293,
+      "before": 0,
+      "afterWrite": 1,
+      "afterReload": 1,
+      "passed": true
+    },
+    {
+      "scenario": "repeat-launch",
+      "visibleMs": 5505,
+      "interactionMs": 5809,
+      "before": 1,
+      "afterWrite": 2,
+      "afterReload": 2,
+      "passed": true
+    }
+  ],
+  "timingScope": "Continuous launch-click through meaningful interaction in a single browser tool call. Existing user compute; first artifact absent, then cached. Health totalMs and deliveryMs derived from persisted timestamps.",
+  "browserErrorOrWarningLogsAtFinalCheck": [],
+  "passed": true,
+  "finalProductionAudit": {
+    "at": "2026-10-03T22:48:55.935806+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0
+  }
+}

@@ -15,11 +15,50 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Native Google browser fixtures: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
-  FastAPI JSON API/SQLite, Next.js, SvelteKit, Flask/MySQL, Spring Boot/SQLite, standalone React, standalone Angular, standalone Vue, standalone Svelte: twenty-one.
-- Same twenty-one fixtures have Codespaces authenticated SSH HTTP/protocol checks;
+  FastAPI JSON API/SQLite, Next.js, SvelteKit, Flask/MySQL, Spring Boot/SQLite, standalone React, standalone Angular, standalone Vue, standalone Svelte, standalone Preact: twenty-two.
+- Same twenty-two fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: native Svelte and Codespaces shutdown handling
+## Latest completed gate: native Preact
+
+- Prior turn made progress: deployed shutdown fix and accepted native Svelte.
+  Current turn confirmed clean local/aswin1a43787, service MainPID913910 active
+  and health200. Runtime remains6cfadb6; no code changes or unnecessary test reruns.
+- Existing quota watcher4300 finished0 at22:44:00UTC with account2/global2 and
+  active builds0. The same account submitted Preact once through the actual form.
+  Build41.126s,10,279bytes, public9eee994 unchanged. No quota bypass or QA import.
+- Apprepo-f7e7b6b2816804a2f52daa2d-9eee994ba7f7-c4a6185adae5;
+  dataKeyrepo-f7e7b6b2816804a2f52daa2d, private port23682 on both providers.
+- Native Google first: health5.281s, visible6.994s, interaction7.293s,0→1/reload1.
+  After confirmed full app stop: health4.266s, visible5.505s, interaction5.809s,
+  retained1→2/reload2. Both timings continuous, logs[], both stopped.
+  This proves browser localStorage persistence, not a backend database.
+- Native Codespaces harness16318 finished0: existingjj497rpqpp7529v7 served
+  compiled Preact entry13,629bytes; health10.446s first/cachefalse and6.814s
+  repeat/cachetrue. Both stopped. Provider inspection confirmed23682private.
+  Native browser sign-in/interaction still pending; don't call HTTP tests browser E2E.
+- Evidence stack-preact-{url,google,codespaces}.json, with whitelisted production
+  build/launch fields; totals derived from persisted timestamps. Browser values
+  remain in CUA preactBrowserChecks/preactBrowserLogs. Temp production capture
+  /tmp/pods-preact-production-evidence.json contains no account/session fields.
+- Final production audit22:48:55UTC: active builds0, active launches0.
+- Coverage55isolated/22native/33pending;96 tests and5,297source lines unchanged.
+  Production ready builds for the same account cover exactly these22fixtures;
+  there are no already-prepared pending fixtures to launch without another build.
+- Next ordinary account slot22:59:37.705UTC (04:29:37.705IST). New quota watcher
+  handle66741 is LIVE; same readonly script /tmp/pods-native-quota-watch.py,
+  same Svelte account anchor,3/account/hour and12/global/hour,15-minute limit.
+  Do not bypass limits, switch identities or import QA artifacts.
+- Browser handoffs: stackQa6tab13 input now examples/stacks/solid but the ready
+  result still belongs to Preact; do NOT treat it as a Solid preparation. Wait
+  for actual submission and a new result. accountWorkertab12 stoppedPreact,
+  browser count2. nativeGithubKeep10 andcloudLifecycle14 remain pending user2FA
+  andCloudShellRestart. Preserve all four tabs, don't repeat pending prompts.
+- Next gate: Solid normal URL submission and both native provider tests after
+  capacity opens. Existing static probe already supports Solid. Goal remains
+  active with a completed new fixture this turn; broad completion is unproven.
+
+## Previous gate: native Svelte and Codespaces shutdown handling
 
 - Normal quota watcher26541 finished0 with account/global2 in the rolling hour.
   The same developer submitted Svelte once in the actual form. Build36.962s,

@@ -236,3 +236,12 @@ same environment and cached artifact:130.003s with compute restart, then6.818s
 cached. The initial provider state was not captured by the adapter; deterministic
 regressions establish the shutdown transition, while this live test establishes
 resume and compiled-product serving on the deployed revision.
+
+
+Standalone Preact adds native fixture22 through ordinary URL preparation, with
+no code or fixture changes. Google interaction took7.293s with the artifact absent
+and5.809s cached, retaining localStorage through reload and full app restart.
+Codespaces compiled-product checks passed at10.446s/6.814s on existing compute;
+native browser execution is still pending. All four launches stopped, with the
+provider port private. Current coverage:55 isolated /22 native /33 pending.
+The runtime remains6cfadb6 with96 validated tests and5,297 scoped source lines.

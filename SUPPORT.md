@@ -86,8 +86,8 @@ or in-flight crash recovery.
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
 later passing attempts do not erase them. Automated coverage is **96 passing
-checks locally and on aswin**. Native coverage is 21 Google browser fixtures and
-21 Codespaces HTTP/protocol fixtures; 34 await native acceptance. Codespaces
+checks locally and on aswin**. Native coverage is 22 Google browser fixtures and
+22 Codespaces HTTP/protocol fixtures; 33 await native acceptance. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1013,3 +1013,30 @@ This verifies live resume on the new revision; the exact state seen by the first
 adapter lookup was not captured. The 96 checks pass on aswin, and the service was
 restarted only after verifying no active builds or launches. Current source count:
 **5,297 physical lines**. Evidence: `evidence/codespaces-shutdown-live.json`.
+
+
+## Standalone Preact native acceptance
+
+The same developer account submitted `examples/stacks/preact` through the normal
+form after a verified quota slot opened. Core `6cfadb6` built public `9eee994` in
+**41.126s**, producing a **10,279-byte** prepared artifact. No QA artifact was
+imported and no source changes were needed.
+
+| Scenario | Result |
+| --- | --- |
+| Cloud Shell, artifact absent on existing compute | Health 5.281s; Preact visible 6.994s; successful click 7.293s |
+| Cloud Shell, cached after full app stop | Health 4.266s; Preact visible 5.505s; successful click 5.809s |
+| Codespaces, artifact absent on existing compute | Health 10.446s; authenticated product and compiled-entry checks passed |
+| Codespaces, cached after full app stop | Health 6.814s; compiled-entry check passed again |
+
+The actual Google product retained localStorage 0→1/reload 1, then retained 1
+after restart and wrote 2/reload 2. Both browser timings are continuous and the
+final warning/error log was empty. This fixture does not prove backend database
+persistence. Codespaces served the real 13,629-byte Preact entry; its native
+browser sign-in and JavaScript execution remain pending. All four launches
+stopped and provider inspection confirmed port 23682 private.
+
+Coverage is **55 isolated browser fixtures**, **22 native Google browser fixtures**
+and **22 Codespaces HTTP/protocol fixtures**, with **33** awaiting native acceptance.
+The source and its existing 96-check validation are unchanged: **5,297 lines**.
+Evidence: `evidence/stack-preact-{url,google,codespaces}.json`.

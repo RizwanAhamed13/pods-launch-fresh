@@ -1,0 +1,54 @@
+{
+  "recordedAt": "2026-10-03T22:47:29.154395+00:00",
+  "controlRevision": "6cfadb6",
+  "checkoutRevision": "1a43787",
+  "scope": "Actual developer form after the same-account quota watcher confirmed availability; production isolated preparation under the supervised control service. No imported QA artifact.",
+  "quotaBefore": {
+    "accountRecent": 2,
+    "globalRecent": 2,
+    "activeBuilds": 0
+  },
+  "attempts": [
+    {
+      "id": "zzv6wVJtnE_xGw7Z9v1oRIPK6-bYpJer",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/preact",
+        "key": "f7e7b6b2816804a2f52daa2d"
+      },
+      "status": "ready",
+      "createdAt": 1791067448679,
+      "startedAt": 1791067448690,
+      "finishedAt": 1791067489816,
+      "app": {
+        "id": "repo-f7e7b6b2816804a2f52daa2d-9eee994ba7f7-c4a6185adae5",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "c4a6185adae5d9710eb4ad968d8b5b17ecc3f9306365c5fcf573763ca198bb78",
+        "bytes": 10279,
+        "files": 3,
+        "healthPath": "/",
+        "applicationType": "static",
+        "runtime": "node22+",
+        "dataKey": "repo-f7e7b6b2816804a2f52daa2d",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/preact",
+          "revision": "9eee994ba7f70d1793bc449573ddb36e01003818"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "PODS counter"
+        },
+        "preparedAt": "2026-10-03T22:44:49.811Z"
+      },
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-f7e7b6b2816804a2f52daa2d-9eee994ba7f7-c4a6185adae5"
+    }
+  ],
+  "buildMs": 41126
+}

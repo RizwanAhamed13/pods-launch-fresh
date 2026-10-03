@@ -5,6 +5,6 @@
   "retainedFailedFixture": "flask-mongodb",
   "allReferencedEvidenceExists": true,
   "scope": "Coverage index and file existence only; no tests rerun or new runtime support inferred.",
-  "nativeProviderFixtureCount": 21,
-  "pendingNativeProviderFixtureCount": 34
+  "nativeProviderFixtureCount": 22,
+  "pendingNativeProviderFixtureCount": 33
 }
