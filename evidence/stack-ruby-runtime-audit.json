@@ -1,0 +1,22 @@
+{
+  "scope": "Isolated QA runtime images; compiler/tool absence, offline shared-library loading and cache removal verified. Native timing measured separately.",
+  "recipeSha256": "02e046edb6ddf97855ac872943328b702d534a88499cfd9479a44d583d1438bf",
+  "results": [
+    {
+      "stack": "rails",
+      "image": "sha256:9e83d6d621ee8819d497530dc249140e06fd6e24063d64c2d36924372d6a7e70",
+      "compilerBuildToolsAbsent": true,
+      "gemDownloadCacheAbsent": true,
+      "runtimeLibrariesLoad": true,
+      "output": "Runtime libraries loaded\n71584\t/usr/local/bundle\n52\t/app\n"
+    },
+    {
+      "stack": "sinatra",
+      "image": "sha256:301db020770905e95333028288dbb4290d7268148a5cbc7bb51901d38e98f31e",
+      "compilerBuildToolsAbsent": true,
+      "gemDownloadCacheAbsent": true,
+      "runtimeLibrariesLoad": true,
+      "output": "Runtime libraries loaded\n4788\t/usr/local/bundle\n16\t/app\n"
+    }
+  ]
+}

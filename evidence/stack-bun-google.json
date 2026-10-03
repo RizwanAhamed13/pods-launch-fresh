@@ -1,5 +1,5 @@
 {
-  "scope": "Native Google Cloud Shell Bun attempt; failed before application start. No WebSocket acceptance claim.",
+  "scope": "Native Cloud Shell product, WebSocket button, reload and full application stop/relaunch; initial failed attempt preserved.",
   "attempts": [
     {
       "id": "CKlLEhjY6a8zrjhuUZ-Ov9rDt9CzcTii",
@@ -8,6 +8,7 @@
       "status": "failed",
       "createdAt": 1791048063908,
       "updatedAt": 1791048068265,
+      "expiresAt": 1791049863908,
       "providerReadyAt": 1791048066407,
       "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
       "lastSeenAt": 1791048068265,
@@ -17,7 +18,57 @@
         "cacheHit": false
       },
       "environment": "default",
-      "expiresAt": 1791049863908
+      "storageMode": "persistent"
+    },
+    {
+      "id": "6swZtjuz9-nhjtam74HqnhasqHyu7joT",
+      "appId": "repo-f8398873a1ed16dd986aa442-00df7c09ea97-84fa7d76242e",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791049911113,
+      "updatedAt": 1791049978066,
+      "expiresAt": 1791051711113,
+      "providerReadyAt": 1791049913853,
+      "readyAt": 1791049931283,
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "lastSeenAt": 1791049978065,
+      "timings": {
+        "downloadMs": 193,
+        "imagesMs": 13767,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 15889,
+        "cacheHit": true
+      },
+      "environment": "default",
+      "stopRequested": true,
+      "storageMode": "persistent",
+      "totalMs": 20170,
+      "deliveryMs": 17430
+    },
+    {
+      "id": "zW5KWDhsAP7D8FpKtliNxAfrYyvnxlkv",
+      "appId": "repo-f8398873a1ed16dd986aa442-00df7c09ea97-84fa7d76242e",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791050002523,
+      "updatedAt": 1791050033941,
+      "expiresAt": 1791051802523,
+      "providerReadyAt": 1791050004806,
+      "readyAt": 1791050008201,
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "lastSeenAt": 1791050033941,
+      "timings": {
+        "downloadMs": 202,
+        "imagesMs": 47,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 1860,
+        "cacheHit": true
+      },
+      "environment": "default",
+      "stopRequested": true,
+      "storageMode": "persistent",
+      "totalMs": 5678,
+      "deliveryMs": 3395
     }
   ],
   "priorWorker": {
@@ -69,6 +120,50 @@
     "sameProviderPreview": true,
     "nativePreviewReload": "Background worker + Redis product displayed HELLO PODS; Bun was not running.",
     "cause": "The launch guard checked browser ownership, allowing separate sessions to dispatch to the same compute account.",
-    "action": "Requested confirmation to stop the newer preview; it has not been interrupted."
-  }
+    "action": "Requested confirmation to stop the newer preview; it has not been interrupted.",
+    "resolution": "New worker expired naturally and server confirmed stopped before retry; no manual interruption or pending permission inferred."
+  },
+  "expiredWorker": {
+    "id": "gW5Ob4iItkBOdF9Cwdf5qGTq6CEVBu_v",
+    "appId": "repo-90eed92544a3c9d01cc828e7-00df7c09ea97-19cac81e0f89",
+    "provider": "google",
+    "status": "stopped",
+    "createdAt": 1791047945739,
+    "updatedAt": 1791049748340,
+    "expiresAt": 1791049745739,
+    "providerReadyAt": 1791047948381,
+    "readyAt": 1791047954254,
+    "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+    "lastSeenAt": 1791049743515,
+    "error": "Preview time ended. Launch again.",
+    "timings": {
+      "downloadMs": 241,
+      "imagesMs": 152,
+      "imageCacheHits": 2,
+      "runtimeReadyMs": 4282,
+      "cacheHit": true
+    },
+    "environment": "default",
+    "storageMode": "persistent"
+  },
+  "browser": [
+    {
+      "launchId": "6swZtjuz9-nhjtam74HqnhasqHyu7joT",
+      "before": 0,
+      "afterWebSocketClick": 1,
+      "afterReload": 1,
+      "interactionUpperBoundMs": 31359,
+      "scope": "First Bun image on existing compute; manifest cached by failed attempt. Upper bound includes unrelated tool-call gap, not continuous readiness measurement."
+    },
+    {
+      "launchId": "zW5KWDhsAP7D8FpKtliNxAfrYyvnxlkv",
+      "before": 1,
+      "afterWebSocketClick": 2,
+      "afterReload": 2,
+      "savedRecordVisibleMs": 9125,
+      "interactionMs": 9430,
+      "scope": "Cached launch measured continuously across two browser calls, including one locator timeout. Actual Add one button waited for WebSocket connection; main interaction completed."
+    }
+  ],
+  "confirmedStopped": true
 }

@@ -27,7 +27,15 @@ Go Gin adds a small compiled-runtime native result: a real developer preparation
 
 The Flask/Python worker with Redis now passes real URL preparation and native Cloud Shell job completion, reload and full stop/relaunch persistence. Preparation took 138.088 seconds. Cloud Shell reached health in 29.905 seconds with both images absent and 8.254 seconds cached; the cached browser showed the retained job in 11.233 seconds and completed a new job within 11.543 seconds continuously from launch. Codespaces authenticated HTTP completed and retained jobs over two launches (31.143 seconds uncached, 9.308 cached); its browser authorization remains unverified. These are completed-job checks, not exactly-once or in-flight crash recovery. The launcher now monitors every service: isolated real-container faults revoked readiness in about 2.6 seconds even with a working web page, while successful one-time migrations remained valid. See `evidence/stack-worker-redis-*.json` and `evidence/container-liveness.json`.
 
-Bun adds real URL preparation and Codespaces WebSocket/SQLite persistence evidence: preparation 106.981 seconds, health 24.716 seconds with its image absent and 7.138 seconds cached. Ping/pong, message-based updates, reconnect, HTTP readback and full stop/relaunch passed. Cloud Shell Bun failed safely because a newer worker from another browser session occupied port 8080. Its native product check remains pending. The server now prevents concurrent launches from separate sessions sharing a provider account, without exposing another session’s launch controls or history.
+Bun adds real URL preparation and Codespaces WebSocket/SQLite persistence evidence: preparation 106.981 seconds, health 24.716 seconds with its image absent and 7.138 seconds cached. Ping/pong, message-based updates, reconnect, HTTP readback and full stop/relaunch passed. The first Cloud Shell Bun attempt failed safely because a newer worker from another browser session occupied port 8080. After that worker expired naturally, Bun passed native WebSocket updates and SQLite reload/full restart persistence. Health took 20.170 seconds with the image absent (manifest already cached), then 5.678 seconds fully cached. A cached native launch displayed the retained record in 9.125 seconds and completed a WebSocket write in 9.430 seconds. Both previews stopped cleanly; the initial failure remains recorded. The server now prevents concurrent launches from separate sessions sharing a provider account, without exposing another session’s launch controls or history.
+
+Rails + SQLite now passes real URL preparation and Codespaces HTTP/database
+write/read/full stop/relaunch (104.115 seconds resumed with its image absent,
+8.193 seconds cached). That native evidence uses the original image. The new
+Ruby build/runtime split reduces isolated Rails and Sinatra image downloads by
+62.8% and 66.5%; both rebuilt applications pass SQLite restart and real browser
+write/reload checks. Rails also retained the earlier image's saved record.
+Native provider timings for the smaller images remain pending.
 
 ## Product Principles
 Build once. Keep user compute user-owned. Show honest progress and timings. Never label a local test as provider validation.

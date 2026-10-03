@@ -364,7 +364,15 @@ session’s launch. Existing active records acquire a private account lock on
 upgrade when their connection identity is available. Legacy records whose
 identity has already been swept still rely on the runner’s port check.
 
-Cloud Shell Bun interaction remains pending until that worker can be stopped.
+The newer worker expired naturally and was confirmed stopped before retry. Bun
+then passed native Cloud Shell WebSocket button writes, reload and full stop /
+relaunch SQLite persistence (0→1, then retained 1→2). With the image absent but
+the manifest cached by the failed attempt, health took **20.170 seconds**; fully
+cached health took **5.678 seconds**. The cached native browser displayed the
+retained record in **9.125 seconds** and completed its WebSocket write in
+**9.430 seconds** continuously from launch. The first interaction was observed
+within 31.359 seconds, including an unrelated tool-call gap; it is not a precise
+readiness measurement. Both successful previews were confirmed stopped.
 A healthy Gin application on Codespaces remains the negative protocol control:
 HTTP succeeds, its WebSocket handshake fails, and cleanup is confirmed. See
 `evidence/stack-bun-{url,codespaces,google}.json`,
@@ -408,3 +416,25 @@ References: [Compose service model](https://docs.docker.com/reference/compose-fi
 [Codespaces rebuild lifecycle](https://docs.github.com/en/codespaces/about-codespaces/understanding-the-codespace-lifecycle),
 [Angular host configuration](https://angular.dev/best-practices/security#configuring-allowed-hosts),
 [MongoDB 8 release notes](https://www.mongodb.com/docs/v8.0/release-notes/8.0/).
+
+## Ruby runtime preparation and native Rails evidence
+
+The real developer form prepared Rails + SQLite in **280.507 seconds**. Its
+original 239.5 MiB image passed two Codespaces authenticated HTTP/database
+launches: **104.115 seconds** resumed with the image absent, then **8.193 seconds**
+cached. Writes 0→1 and 1→2 survived readback and full application stop/relaunch.
+The first launch included 62.846 seconds of image loading. Native Codespaces
+browser authorization is still pending. See `evidence/stack-rails-url.json` and
+`evidence/stack-rails-codespaces.json`.
+
+Ruby preparation now compiles native gems in a build stage and delivers a
+separate runtime with the required shared libraries. Real isolated rebuilds
+reduced compressed Rails images from **251,119,273 to 93,313,156 bytes (62.8%)**
+and Sinatra from **216,259,334 to 72,508,238 bytes (66.5%)**. Both passed artifact
+launch, SQLite write/read/full restart and actual browser write/reload. Rails
+also retained data from its previous image. Offline probes loaded PostgreSQL,
+SQLite and C++ shared libraries and verified compiler tools and gem download
+caches are absent. This is a measured size improvement; native provider speed
+for these new images remains unmeasured. Existing prepared versions are unchanged.
+See `evidence/stack-ruby-image-comparison.json`, `stack-ruby-runtime-audit.json`,
+`stack-matrix-25.json` and `stack-browser-25.json`.

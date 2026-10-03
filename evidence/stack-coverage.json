@@ -769,16 +769,24 @@
     {
       "fixture": "rails",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-18.json",
+      "serverEvidence": "stack-matrix-25.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-18.json",
-      "nativeProviderEvidence": [],
+      "browserEvidence": "stack-browser-25.json",
+      "nativeProviderEvidence": [
+        "stack-rails-url.json",
+        "stack-rails-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-18.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-25.json",
+          "status": "passed"
         }
-      ]
+      ],
+      "recipeOptimizationEvidence": "stack-ruby-image-comparison.json"
     },
     {
       "fixture": "react",
@@ -857,16 +865,21 @@
     {
       "fixture": "sinatra",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-02.json",
+      "serverEvidence": "stack-matrix-25.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-02.json",
+      "browserEvidence": "stack-browser-25.json",
       "nativeProviderEvidence": [],
       "attempts": [
         {
           "evidence": "stack-matrix-02.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-25.json",
+          "status": "passed"
         }
-      ]
+      ],
+      "recipeOptimizationEvidence": "stack-ruby-image-comparison.json"
     },
     {
       "fixture": "solid",

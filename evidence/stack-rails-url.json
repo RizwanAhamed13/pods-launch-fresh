@@ -1,0 +1,52 @@
+{
+  "scope": "Real developer form submission and isolated server preparation on aswin; native provider tests recorded separately.",
+  "attempts": [
+    {
+      "id": "2g5Mpxvv0g74VnnP_kZjmhslrE50GqJf",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/rails",
+        "key": "7acf8b761b239213c2c6cd7c"
+      },
+      "status": "ready",
+      "createdAt": 1791048825729,
+      "startedAt": 1791048825741,
+      "finishedAt": 1791049106248,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-7acf8b761b239213c2c6cd7c-00df7c09ea97-b935554e124a",
+      "app": {
+        "id": "repo-7acf8b761b239213c2c6cd7c-00df7c09ea97-b935554e124a",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "b935554e124a2a84493071a9ce7fca004c3797ed2b37684718b441aaf8d7818d",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-7acf8b761b239213c2c6cd7c",
+        "images": [
+          {
+            "id": "sha256:aed856e9fdba82587a28631dd9fadc8fecf9325044b570de6ae6a0893b228ad5",
+            "sha256": "6f418b7ca5b0e3224c931953c63c50c1a58a45e6324e4f95f83b3a0b7acb6b9b",
+            "bytes": 251128037
+          }
+        ],
+        "productType": "web",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/rails",
+          "revision": "00df7c09ea971725adecb076d508f767fc6e1846"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Rails + SQLite"
+        },
+        "preparedAt": "2026-10-03T17:38:25.306Z"
+      }
+    }
+  ],
+  "buildMs": 280507
+}

@@ -1,0 +1,27 @@
+{
+  "scope": "Existing isolated QA Ruby images before splitting build/runtime stages; not provider timing evidence",
+  "results": [
+    {
+      "stack": "rails",
+      "sha256": "ce3ca279e0201eca87b22d39a7998fae0fffb5a21dac691c42af4bd91ee1813e",
+      "images": [
+        {
+          "id": "sha256:16e22de8630d34ee69cba3cb89619979dcfe90df1a23de2da8797643c47e6a51",
+          "sha256": "ac69edb9254bd98e985f29849b524fc566c777fe146b11ead180949d5fc2e646",
+          "bytes": 251119273
+        }
+      ]
+    },
+    {
+      "stack": "sinatra",
+      "sha256": "28f50ad2704aef28c71e9441090d0da0caae9a09edb8a65bc7e232cab92db38d",
+      "images": [
+        {
+          "id": "sha256:709fe550edf877e422f679a544c68b65f199f9659cc9c4d475c38f128c3f993f",
+          "sha256": "49b9baa55a33078c598468ebc19b3c93d1a7b26c36345d9577ee695d9caa5b6c",
+          "bytes": 216259334
+        }
+      ]
+    }
+  ]
+}

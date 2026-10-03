@@ -1,0 +1,30 @@
+{
+  "scope": "Delivered compressed images in isolated QA; not measured provider speed improvement. Native Rails evidence uses the earlier image.",
+  "results": [
+    {
+      "stack": "rails",
+      "beforeBytes": 251119273,
+      "afterBytes": 93313156,
+      "reductionPercent": 62.84,
+      "persistence": {
+        "before": 2,
+        "saved": 3,
+        "afterRestart": 3
+      }
+    },
+    {
+      "stack": "sinatra",
+      "beforeBytes": 216259334,
+      "afterBytes": 72508238,
+      "reductionPercent": 66.47,
+      "persistence": {
+        "before": 0,
+        "saved": 1,
+        "afterRestart": 1
+      }
+    }
+  ],
+  "runtimeAudit": "stack-ruby-runtime-audit.json",
+  "serverEvidence": "stack-matrix-25.json",
+  "browserEvidence": "stack-browser-25.json"
+}

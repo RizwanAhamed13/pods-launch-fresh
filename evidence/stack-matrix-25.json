@@ -1,0 +1,74 @@
+[
+  {
+    "stack": "rails",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 144738,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 10,
+      "imageCacheHits": 1,
+      "imagesMs": 45,
+      "runtimeReadyMs": 4631
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 4,
+      "imageCacheHits": 1,
+      "imagesMs": 62,
+      "runtimeReadyMs": 4329
+    },
+    "persistence": {
+      "before": 2,
+      "saved": 3,
+      "afterRestart": 3
+    },
+    "websocket": null,
+    "htmlBytes": 518,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:9e83d6d621ee8819d497530dc249140e06fd6e24063d64c2d36924372d6a7e70",
+        "sha256": "093aac3b26bbc37af19a135ebfad72b3b7174339e64c323b4096cbe004c741a7",
+        "bytes": 93313156
+      }
+    ],
+    "sha256": "b9602d9b1f206549255ff4c0b51f9a986d0e74848dafbf6d679028aed0bb278b"
+  },
+  {
+    "stack": "sinatra",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 57950,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 8,
+      "imageCacheHits": 1,
+      "imagesMs": 41,
+      "runtimeReadyMs": 2724
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 50,
+      "runtimeReadyMs": 2642
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 379,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:301db020770905e95333028288dbb4290d7268148a5cbc7bb51901d38e98f31e",
+        "sha256": "2c28556bcd085342f6a440294d7722365f0410959b25c7c654a58ffe293cfeb8",
+        "bytes": 72508238
+      }
+    ],
+    "sha256": "61415baf2faa6d9d73280c9b05d5f1d5f47a65981d73c20aa8ebfbdd9b59d203"
+  }
+]

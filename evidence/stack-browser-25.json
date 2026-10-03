@@ -1,0 +1,22 @@
+[
+  {
+    "stack": "rails",
+    "status": "passed",
+    "before": 3,
+    "afterClick": 4,
+    "afterReload": 4,
+    "scope": "Rebuilt multi-stage Ruby artifact; actual browser via authenticated SSH tunnel to isolated aswin QA, not a native provider launch.",
+    "artifactRestartEvidence": "stack-matrix-25.json",
+    "cleanup": "Confirmed no QA containers running and port 8080 free after graceful runner stop; persistent data retained."
+  },
+  {
+    "stack": "sinatra",
+    "status": "passed",
+    "before": 1,
+    "afterClick": 2,
+    "afterReload": 2,
+    "scope": "Rebuilt multi-stage Ruby artifact; actual browser via authenticated SSH tunnel to isolated aswin QA, not a native provider launch.",
+    "artifactRestartEvidence": "stack-matrix-25.json",
+    "cleanup": "Confirmed no QA containers running and port 8080 free after graceful runner stop; persistent data retained."
+  }
+]

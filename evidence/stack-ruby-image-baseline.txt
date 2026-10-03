@@ -1,0 +1,6 @@
+85564	/usr/local/bundle
+26252	/usr/lib/gcc
+33936	/usr/include
+52	/app
+/usr/bin/gcc
+ruby 3.3.12 (2026-07-16 revision 0581089df9) [x86_64-linux]
