@@ -9,16 +9,36 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 54 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 4509 physical source lines: 2592 product/tooling, 885 tests, 868 examples,
+- 4565 physical source lines: 2608 product/tooling, 925 tests, 868 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 56 automated checks pass locally and on aswin after session recovery change c24dc4a.
+- 58 automated checks pass locally and on aswin after image timing change3b8fd11.
 - Native Google browser families: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite: twelve.
 - Same twelve families have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: Django and SQLite
+## Latest completed gate: image phase diagnostics
+
+- Runtime change3b8fd11 preserves delivery integrity and adds imageCacheCheckMs,
+  imageDownloadMs, imageLoadMs, imageArchiveCacheHits; total imagesMs retained.
+  Failure timings are preserved; server accepts bounded whitelisted numeric values.
+- 58 tests pass locally/aswin. Real deployed Django Google cached browser retained2,
+  displayed it7.870s, wrote3 at8.140s and reloaded3. Health7.128s, cache check66ms.
+- Codespaces cached health6.881/6.386s, retained2→3 then3→4 across full stop/relaunch.
+  Authenticated HTTP only; native browser pending. All three launches stopped.
+- Native cache hits correctly show zero transfer/load. First-image phase breakdown
+  still pending next normally admitted build. No quota/cache manipulation.
+- Existing isolated Python image inspected read-only/no-network, no compiler or
+  pip download cache found. No recipe optimization made. Inspect exec26339 ended0.
+- Evidence image-phases.json and image-phases-codespaces.json. Native harness13102
+  and record readers56200/5550 completed0. No test runners left active.
+- Updated control server PID774112, exec75146. Public health and runner hash
+  9ef8029d995e07421e5297aaa1b644fb145a54c838e0b2d2f6f38f0e356cfc3b verified.
+- No new build this turn. Same-account next ordinary slot remains18:58:14UTC
+  (then19:20:19/19:33:57 absent other builds). No quota observer running.
+
+## Previous completed gate: Django and SQLite
 
 - Real developer URL preparation109.340s; source fixture examples/stacks/django at
   unchanged public00df7c0. BuildKbEietsWkyvU_03zGLLIt0dvrqQvOpvb, app
@@ -36,7 +56,8 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Next ordinary same-account slot18:58:14UTC absent other builds. Quota observers
   must match build.account, not browser owner, because limits bind provider identity.
   Remaining native fixtures42. First-image delivery still misses20s for Django;
- 14.059s Google and14.207s Codespaces spent loading the56MiB image.
+ 14.059s Google and14.207s Codespaces spent receiving/loading the56MiB image;
+  those earlier combined timings do not distinguish transfer from Docker load.
 
 ## Previous completed gate: Nuxt and session recovery
 
@@ -111,15 +132,15 @@ Runner SHA75cfd87f58a02353b48a080ee480b9b5ac246e2e189474f57e318fa11fdc0a0f.
 ## Operational state
 
 Origin https://collection-conferences-ages-clearly.trycloudflare.com.
-Control server PID766684, persistent exec21146; PID file matches verified cwd
-and cmdline. Deployment c24dc4a passed public health, script SHA and structured
-CSRF rejection at18:32UTC; details in browser-session-recovery.json.
+Control server PID774112, persistent exec75146; PID file matches verified cwd.
+Deployment3b8fd11 passed public health, runner hash and native cached persistence
+checks. The earlier structured CSRF checks remain in browser-session-recovery.json.
 Always verify PID file, cwd, cmdline
 and listener before targeted restart. Use scripts/serve.sh from the repository;
 Node/gh in /home/aswin/pods-tools/bin. Do not restart with active builds/launches.
 
-No live PODS apps after Django stops; data retained. Codespace
-pods-launch-containers-69rw5vx4xp46c5qw5. Google Rails2/Bun2; Codespaces Rails4/Bun2.
+No live PODS apps after image-phase checks; data retained. Codespace
+pods-launch-containers-69rw5vx4xp46c5qw5. Google Django3/Rails2/Bun2; Codespaces Django4/Rails4/Bun2.
 
 CUA bindings: stackQa6 IAB2tab13 Django build result; accountWorker IAB2tab12 stopped
 Django launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired

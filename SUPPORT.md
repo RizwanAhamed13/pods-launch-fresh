@@ -79,7 +79,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **56 passing
+later passing attempts do not erase them. Automated coverage is **58 passing
 checks locally and on aswin**.
 
 ## Actual repository URL to native product
@@ -510,3 +510,18 @@ stopped. These are existing-compute measurements, not fresh VM provisioning;
 first-image launches exceeded 20s. Codespaces native browser authorization and
 Cloud Shell VM replacement remain pending. Evidence:
 `evidence/stack-django-{url,google,codespaces}.json`.
+
+## Image delivery diagnostics
+
+The launcher now records cache checks, verified image download and Docker load
+separately, including failed attempts. Archive reuse is distinguished from an
+already installed image. This adds diagnostics, not a claimed speedup. All 58
+automated checks pass locally and on aswin; corrupt/truncated/oversized downloads
+and mismatched loaded identities remain rejected.
+
+The deployed runner retained Django SQLite data on both providers. Cloud Shell
+showed the saved record in 7.870s and completed a browser write in 8.140s. Two
+Codespaces authenticated HTTP launches reached health in 6.881s and 6.386s and
+retained SQLite data across a full stop/relaunch. All three previews stopped.
+These were cached-image checks; native uncached phase measurements remain pending.
+See `evidence/image-phases.json` and `evidence/image-phases-codespaces.json`.

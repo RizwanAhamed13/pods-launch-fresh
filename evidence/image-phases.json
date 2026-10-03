@@ -1,0 +1,157 @@
+{
+  "recordedAt": "2026-10-03T18:47:04.931637+00:00",
+  "sourceRevision": "3b8fd11",
+  "runnerSha256": "9ef8029d995e07421e5297aaa1b644fb145a54c838e0b2d2f6f38f0e356cfc3b",
+  "purpose": "Separate first-image cache checks, verified transfer and Docker loading before choosing an optimization. This change does not claim a speedup.",
+  "phases": {
+    "imageCacheCheckMs": "Installed-image inspection and cached-archive size/hash validation",
+    "imageDownloadMs": "HTTP request, streamed transfer/hash, validation and archive publication",
+    "imageLoadMs": "Docker load and post-load image identity verification",
+    "imagesMs": "Total image preparation including cache checks, transfer, load and cleanup",
+    "imageArchiveCacheHits": "Verified cached archives reused; distinct from already installed images"
+  },
+  "tests": {
+    "local": {
+      "passed": 58,
+      "failed": 0
+    },
+    "aswin": {
+      "passed": 58,
+      "failed": 0
+    },
+    "cases": [
+      "download and installed-image reuse",
+      "verified archive reuse",
+      "same-size corrupt archive redownload",
+      "corrupt, truncated and oversized downloads rejected before Docker load",
+      "loaded image identity mismatch rejected",
+      "timings survive failure and server accepts only bounded whitelisted numbers"
+    ]
+  },
+  "google": {
+    "launch": {
+      "id": "-e1IAfb0Ms0m4-y_QD8eRPWUV7y5smUY",
+      "appId": "repo-2f3eccf055bfd890686f5122-00df7c09ea97-63c8734bb2d2",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791053135216,
+      "readyAt": 1791053142344,
+      "providerReadyAt": 1791053138147,
+      "timings": {
+        "downloadMs": 277,
+        "imagesMs": 66,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 66,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2461,
+        "cacheHit": true
+      },
+      "stopRequested": true,
+      "storageMode": "persistent",
+      "totalMs": 7128
+    },
+    "browser": {
+      "savedRecordVisibleMs": 7870,
+      "interactionMs": 8140,
+      "before": 2,
+      "afterWrite": 3,
+      "afterReload": 3
+    },
+    "scope": "Actual native Cloud Shell browser, cached existing artifact, record retained across runner upgrade; no VM replacement"
+  },
+  "codespacesEvidence": "image-phases-codespaces.json",
+  "confirmedStopped": [
+    {
+      "id": "-e1IAfb0Ms0m4-y_QD8eRPWUV7y5smUY",
+      "appId": "repo-2f3eccf055bfd890686f5122-00df7c09ea97-63c8734bb2d2",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791053135216,
+      "readyAt": 1791053142344,
+      "providerReadyAt": 1791053138147,
+      "timings": {
+        "downloadMs": 277,
+        "imagesMs": 66,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 66,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2461,
+        "cacheHit": true
+      },
+      "stopRequested": true,
+      "storageMode": "persistent",
+      "totalMs": 7128
+    },
+    {
+      "id": "9DLUPXVnK9nKvw-21IUmhHByr2RgVO9h",
+      "appId": "repo-2f3eccf055bfd890686f5122-00df7c09ea97-63c8734bb2d2",
+      "provider": "github",
+      "status": "stopped",
+      "createdAt": 1791053115029,
+      "readyAt": 1791053121910,
+      "providerReadyAt": 1791053115554,
+      "timings": {
+        "downloadMs": 188,
+        "imagesMs": 46,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 46,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 1672,
+        "cacheHit": true
+      },
+      "stopRequested": true,
+      "storageMode": "persistent",
+      "totalMs": 6881
+    },
+    {
+      "id": "Rmql5DmMdWuWj2iU4i7Wvnk7US_d6UAM",
+      "appId": "repo-2f3eccf055bfd890686f5122-00df7c09ea97-63c8734bb2d2",
+      "provider": "github",
+      "status": "stopped",
+      "createdAt": 1791053133162,
+      "readyAt": 1791053139548,
+      "providerReadyAt": 1791053133842,
+      "timings": {
+        "downloadMs": 281,
+        "imagesMs": 49,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 49,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 1801,
+        "cacheHit": true
+      },
+      "stopRequested": true,
+      "storageMode": "persistent",
+      "totalMs": 6386
+    }
+  ],
+  "inspection": {
+    "environment": "Existing isolated QA guest, read-only no-network one-off container; no product data mounted",
+    "fixture": "django",
+    "imageId": "sha256:ffac822ed587ac1eea4782c8cbfa5b51b869f5d30186e887da8e13438ab3ca82",
+    "archiveBytes": 58762776,
+    "packageDiskKiB": {
+      "django": 39704,
+      "pip": 11012,
+      "gunicorn": 2068,
+      "click": 992,
+      "uvicorn": 856
+    },
+    "gccFound": false,
+    "recipeAlreadyUsesNoDownloadCache": true,
+    "recipeChanged": false
+  },
+  "limits": [
+    "All three native verification launches reused the installed Django image; download/load phases correctly reported zero.",
+    "Native uncached phase breakdown still pending a normally admitted new developer build. No build quota or image cache was altered.",
+    "Codespaces product checks used authenticated HTTP over SSH; native browser authentication remains pending."
+  ]
+}
