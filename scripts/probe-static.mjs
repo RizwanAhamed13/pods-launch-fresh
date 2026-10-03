@@ -1,7 +1,8 @@
 // Serialized into authorized user compute. Browser execution is tested separately.
 export async function probeStaticProduct(base='http://127.0.0.1:8080',fixture='react') {
-  if(!['react','angular','vue'].includes(fixture))throw new Error('Unknown static fixture');
-  const root=new URL('/',base),heading={react:'React counter',angular:'Angular counter',vue:'Vue counter'}[fixture];
+  const frameworks={react:'React',angular:'Angular',vue:'Vue',svelte:'Svelte',preact:'Preact',solid:'Solid',lit:'Lit',alpine:'Alpine'};
+  if(!Object.hasOwn(frameworks,fixture))throw new Error('Unknown static fixture');
+  const root=new URL('/',base),heading=frameworks[fixture]+' counter';
   async function read(url) {
     const response=await fetch(url,{redirect:'error',signal:AbortSignal.timeout(10000)});
     if(!response.ok)throw new Error('Static fixture HTTP '+response.status);

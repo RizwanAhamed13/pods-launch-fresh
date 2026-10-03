@@ -24,7 +24,7 @@ const ssrCheck=process.env.PODS_SSR_CHECK==='1';
 const ssrFixture=process.env.PODS_SSR_FIXTURE||'nuxt';
 const staticCheck=process.env.PODS_STATIC_CHECK==='1';
 const staticFixture=process.env.PODS_STATIC_FIXTURE||'react';
-if(!['react','angular','vue'].includes(staticFixture)||(!staticCheck&&process.env.PODS_STATIC_FIXTURE))throw new Error('Static fixture requires an enabled React, Angular or Vue check');
+if(!['react','angular','vue','svelte','preact','solid','lit','alpine'].includes(staticFixture)||(!staticCheck&&process.env.PODS_STATIC_FIXTURE))throw new Error('Static fixture requires an enabled supported frontend check');
 if(!['nuxt','next','sveltekit'].includes(ssrFixture)||(!ssrCheck&&process.env.PODS_SSR_FIXTURE))throw new Error('SSR fixture requires an enabled Nuxt, Next or SvelteKit SSR check');
 if([counterCheck,workerCheck,websocketCheck,ssrCheck,staticCheck].filter(Boolean).length>1)throw new Error('Choose one fixture check: counter, worker, WebSocket, SSR or static');
 if((counterCheck||workerCheck||websocketCheck||ssrCheck||staticCheck)&&(provider!=='github'||process.env.PODS_SINGLE_LAUNCH==='1'))throw new Error('Fixture checking requires two Codespaces launches');
