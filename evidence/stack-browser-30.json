@@ -1,0 +1,19 @@
+[
+  {
+    "stack": "spring-boot",
+    "status": "passed",
+    "before": 1,
+    "after": 2,
+    "reloaded": 2,
+    "scope": "Real prepared Spring Boot + SQLite artifact browser through authenticated SSH; not native provider evidence.",
+    "serverEvidence": "stack-matrix-30.json",
+    "databaseInspection": {
+      "sqliteFormatHeader": true,
+      "integrityCheck": "ok",
+      "valueAfterArtifactRestart": 1,
+      "valueAfterBrowserWrite": 2
+    },
+    "browserErrorOrWarningLogsAtFinalCheck": [],
+    "historicalCorrection": "Previous Spring Boot matrix02/matrix15 and browser02 exercised plain-file persistence, not SQLite. This rebuilt fixture supplies the SQLite evidence."
+  }
+]

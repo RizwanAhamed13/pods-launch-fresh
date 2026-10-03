@@ -1,0 +1,49 @@
+[
+  {
+    "stack": "spring-boot",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 94027,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 10,
+      "imageCacheHits": 1,
+      "imageArchiveCacheHits": 0,
+      "imageCacheCheckMs": 44,
+      "imageDownloadMs": 0,
+      "imageLoadMs": 0,
+      "imagesMs": 44,
+      "runtimeReadyMs": 9930
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 23,
+      "imageCacheHits": 1,
+      "imageArchiveCacheHits": 0,
+      "imageCacheCheckMs": 43,
+      "imageDownloadMs": 0,
+      "imageLoadMs": 0,
+      "imagesMs": 43,
+      "runtimeReadyMs": 9640
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "productType": "web",
+    "productPath": "/",
+    "responseBytes": 387,
+    "htmlBytes": 387,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:81b4271f3b543c5f05c666bf163ce97e82a7e98d5861e2938a763e4b1459c198",
+        "sha256": "e16393b48f9f9a75fe913b560d35c5cfdf370b0e0ef06a21822721548b00268b",
+        "bytes": 146984073
+      }
+    ],
+    "sha256": "d2313f255b134ce10b235264a3685bbfa29a8aebf23190b48b1c4aad47ca8c15"
+  }
+]

@@ -70,6 +70,11 @@ QA guest; provider tests are recorded separately below.
 | Private databases/services | SQLite, PostgreSQL 17, MySQL, MariaDB, Redis, Valkey, MongoDB 7.0.43 | Write/read/stop/restart/read passed; no public database ports |
 
 The database variants account for several of the 55 distinct applications.
+Spring Boot was corrected to use real SQLite in matrix30/browser30; its earlier
+matrix02/matrix15/browser02 results exercised a plain file and are retained as
+historical evidence only. The SQLite file signature, integrity and saved values
+were also checked directly.
+
 Frontend fixtures use localStorage or deliberately transient client state; they
 are not evidence of backend database durability. Next.js and Nuxt counters reset
 on reload by design. Their original batch02 harness did not relaunch non-API

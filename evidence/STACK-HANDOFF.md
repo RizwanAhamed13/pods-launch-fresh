@@ -5,11 +5,11 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 ## Source and coverage
 
 - Core private https://github.com/RizwanAhamed13/pods-launch-fresh; public fixtures
-  https://github.com/RizwanAhamed13/pods-launch-runtime-fresh at f58a3e3.
+  https://github.com/RizwanAhamed13/pods-launch-runtime-fresh at 9eee994.
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 4963 physical source lines: 2756 product/tooling, 1149 tests, 894 examples,
+- 4972 physical source lines: 2756 product/tooling, 1149 tests, 903 examples,
   164 browser tools. Exclusions in code-lines.json.
 - 75 automated checks pass locally and on aswin for MySQL inspection helper01891c1.
 - Native Google browser fixtures: Flask/PostgreSQL, React/Express/PostgreSQL,
@@ -19,7 +19,20 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Same sixteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: MySQL native database acceptance
+## Current gate: Spring Boot SQLite correction and native acceptance
+
+- Public fixtures9eee994 replaces the Spring Boot plain-file counter with real
+  SQLite JDBC3.53.4.0. Original matrix02/matrix15/browser02 are file persistence
+  evidence only; SUPPORT and coverage explicitly correct that scope.
+- Matrix30 passed: build94.027s, runtime9.930s/repeat9.640s, record0→1/restart1.
+  Actual browser1→2/reload2; direct SQLite format/integrity/value inspection passed.
+  Evidence stack-matrix-30.json and stack-browser-30.json. QA app stopped; server
+  PID292107 remains. QA tab25 may close. No product control runtime change.
+- Read-only quota observer16268 ended0 at20:40:46UTC with account2/global2/active0.
+  Normal developer submission and native provider acceptance are next; no native
+  Spring Boot claim yet. Isolated build exec93455 ended0. Public push45606 ended0.
+
+## Previous completed gate: MySQL native database acceptance
 
 - Core b7ddcde pushed/synced; 75 tests pass locally/aswin. No product runtime change
   or restart needed; server remains b02fea1/PID806978. MySQL helper is opt-in QA.

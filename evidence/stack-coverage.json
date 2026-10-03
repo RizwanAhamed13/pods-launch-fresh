@@ -967,9 +967,9 @@
     {
       "fixture": "spring-boot",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-15.json",
+      "serverEvidence": "stack-matrix-30.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-02.json",
+      "browserEvidence": "stack-browser-30.json",
       "nativeProviderEvidence": [],
       "attempts": [
         {
@@ -979,8 +979,13 @@
         {
           "evidence": "stack-matrix-15.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-30.json",
+          "status": "passed"
         }
-      ]
+      ],
+      "persistenceScope": "SQLite since matrix30/browser30. Earlier matrix02/matrix15/browser02 tested a plain file."
     },
     {
       "fixture": "streamlit",
