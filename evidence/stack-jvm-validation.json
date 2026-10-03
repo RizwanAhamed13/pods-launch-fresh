@@ -1,0 +1,13 @@
+{
+  "sourceCommit": "685fa801013ccb544a48c3eae318258fa5bf2fb8",
+  "localAutomatedSuite": {"tests":80,"passed":80,"failed":0},
+  "aswinAutomatedAttempts": [
+    {"command":"node --test","exitCode":1,"tests":87,"passed":80,"failed":7,"classification":"Invalid test discovery command: included isolated-only scripts and browser/application fixtures. No implementation failure in the 80 unit tests. Isolation guards rejected the live scripts; the storage script stopped at its missing QA manifest."},
+    {"command":"npm test","resolvedCommand":"node --test test/*.test.mjs","exitCode":0,"tests":80,"passed":80,"failed":0}
+  ],
+  "isolatedBuildAndRestartEvidence":"stack-matrix-31.json",
+  "isolatedBrowserEvidence":"stack-browser-31.json",
+  "qaCleanup":{"applicationStopped":true,"runningContainers":0,"browserTabClosed":true},
+  "productionAudit":{"checkedAt":"2026-10-03T21:16:46.540467+00:00","activeBuilds":0,"activeLaunches":0,"accountBuildsLastHour":3,"globalBuildsLastHour":3,"nextAccountSlotAt":"2026-10-03T21:22:12.854000+00:00"},
+  "nativeProviderRetest":"Pending normal production URL build quota; no limit bypass or QA artifact import."
+}

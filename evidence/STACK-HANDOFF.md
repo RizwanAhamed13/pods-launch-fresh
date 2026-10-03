@@ -9,9 +9,9 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 5053 physical source lines: 2793 product/tooling, 1193 tests, 903 examples,
+- 5054 physical source lines: 2794 product/tooling, 1193 tests, 903 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 80 automated checks pass locally and on aswin for frontend inspection helper80efe8d.
+- 80 automated checks pass locally and on aswin for Maven runtime change685fa80.
 - Native Google browser fixtures: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
@@ -19,7 +19,45 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Same eighteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: standalone React frontend native acceptance
+## Latest completed gate: smaller full Java runtime, isolated acceptance
+
+- Core685fa80 pushed/synced to aswin. Maven uses explicit Noble builder/full JRE;
+  builder digest is unchanged and all49 Java modules/version strings match the
+  previous runtime. Gradle unchanged. No production server restart required.
+- Batch31 finished0: Spring Boot, Quarkus, Micronaut and Ktor all passed build,
+  artifact upgrade retaining SQLite2, write3 and stop/relaunch retaining3.
+  Browser31 then passed write3→4/reload4 for all four, with no captured warnings
+  or errors. Catalog updated only for these passing rows. No new fixture count.
+- Image archives shrink by15.5MB each (10.04–11.03%). Exact bytes and digests are
+  in stack-jvm-runtime-comparison.json and stack-matrix-31.json. Full-module
+  inspection is stack-jvm-runtime-modules.json. These local runs had cached Docker
+  images; they do not prove native transfer speed or the20-second first-image goal.
+- Local80 tests passed. On aswin an overly broad `node --test` discovered seven
+  non-test scripts/fixtures and failed; the documented `npm test` passed all80.
+  Both attempts are recorded in stack-jvm-validation.json; no product test failed.
+- QA Ktor stopped with a single verified SIGTERM to292107, handler consumed;
+  Docker has no running QA containers. Browser tab27 closed. Matrix34570,
+  module comparison70689 and cleanup34553 ended0. No live test/quota observers.
+- Production read-only audit21:16:46UTC: active builds0/launches0; account3/global3
+  builds in the last hour. Next normal account slot21:22:12.854UTC. Do not bypass
+  limits, change identities or import QA artifacts into production.
+- Next gate: after quota allows, submit the real developer form for
+  examples/stacks/spring-boot at public9eee994. Prepare the smaller artifact using
+  the deployed685fa80 recipe; keep stable dataKey repo-8a9b80c77f2897d8664a184b.
+  Google and Codespaces previously saved SQLite2; verify2 before writing3, then
+  stop/relaunch and verify3 before writing4. Codespaces harness flags:
+  PODS_COUNTER_CHECK=1 PODS_EXPECT_INITIAL_COUNT=2 with a fresh evidence filename.
+  Native affinity should return69rw5vx4xp46c5qw5 despite the newer static React
+  environment7vrw57jpjjppcww57. Preserve all environments/data.
+- Compare native first-image download and cached product timings to previous
+  Spring results; retain honest scope. Existing Quarkus/Spring native evidence
+  applies to earlier images. Native coverage still18/55,37remaining.
+- Four browser handoffs remain: developer tab13, launcher tab12, GitHub2FA tab10,
+  CloudShellRestart tab14. Re-mark in next turn; do not repeat pending auth actions.
+  Running control server remains b02fea1/PID806978. Goal active; this turn made
+  implementation and testing progress, no blocked condition.
+
+## Previous completed gate: standalone React frontend native acceptance
 
 - Core80efe8d pushed/synced; all80 checks pass local/aswin. New opt-in static probe
   validates React/Angular mount and compiled entry assets. Serialized fresh-Node
