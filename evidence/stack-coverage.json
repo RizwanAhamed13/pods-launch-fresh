@@ -84,7 +84,10 @@
       "browserPassed": true,
       "browserEvidence": "stack-browser-24.json",
       "nativeProviderEvidence": [
-        "stack-angular-ssr-google.json"
+        "stack-angular-ssr-google.json",
+        "stack-angular-ssr-optimized-url.json",
+        "stack-angular-ssr-optimized-google.json",
+        "stack-angular-ssr-optimized-codespaces.json"
       ],
       "attempts": [
         {

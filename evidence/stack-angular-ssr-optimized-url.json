@@ -1,0 +1,52 @@
+{
+  "scope": "Real developer form submission using deployed npm cache optimization at a7170b2; expired existing Google connection reconnected automatically and the draft resumed without terminal work.",
+  "attempts": [
+    {
+      "id": "uTEieSvVR2qKebQ9L-osJyy4UtuFc86G",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/angular-ssr",
+        "key": "ce3c167a84b230196d7bf924"
+      },
+      "status": "ready",
+      "createdAt": 1791043046008,
+      "startedAt": 1791043046018,
+      "finishedAt": 1791043201239,
+      "error": null,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-ce3c167a84b230196d7bf924-00df7c09ea97-4da6dd64ea03",
+      "app": {
+        "id": "repo-ce3c167a84b230196d7bf924-00df7c09ea97-4da6dd64ea03",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "4da6dd64ea03101d97b85e4900e3a0940b406a1b5180f38d673adff52c968d6a",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-ce3c167a84b230196d7bf924",
+        "images": [
+          {
+            "id": "sha256:0de6529c482a54b071bbbb9c12605c4f0b4daf5aad52255772dacfb9d08424ca",
+            "sha256": "6aa2d9fbe9d5b36d31c69d74070aea62a6c08467a7ac6929a05972750b7cbc58",
+            "bytes": 148723204
+          }
+        ],
+        "productType": "web",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/angular-ssr",
+          "revision": "00df7c09ea971725adecb076d508f767fc6e1846"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Angular SSR counter"
+        },
+        "preparedAt": "2026-10-03T16:00:00.678Z"
+      }
+    }
+  ]
+}

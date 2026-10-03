@@ -130,8 +130,8 @@ full application stop/relaunch retained 1.
 
 This also verifies the exact provider hostname configuration in the native SSR
 runtime. Evidence: `evidence/stack-angular-ssr-url.json` and
-`evidence/stack-angular-ssr-google.json`. Codespaces remains untested for this
-specific fixture.
+`evidence/stack-angular-ssr-google.json`. The optimized artifact retest below
+also adds Codespaces HTTP/database coverage for this fixture.
 
 ## Native Quarkus JVM workflow
 
@@ -210,11 +210,32 @@ exercised in the browser after this change; all passed.
 
 Filesystem probes inside all eight new images confirm the temporary npm cache
 and default download cache are absent, with installed dependencies still present.
-The 52 automated checks also pass. These size reductions do not yet establish
-new native-provider launch timings; the provider timings above refer to their
-original immutable artifacts. See `evidence/stack-npm-cache-comparison.json`,
-`stack-npm-cache-footprint.json`, `stack-matrix-24.json` and `stack-browser-24.json`.
-The rejected QA invocation is retained in `stack-matrix-23.json`.
+The 52 automated checks also pass locally and on aswin. See
+`evidence/stack-npm-cache-comparison.json`, `stack-npm-cache-footprint.json`,
+`stack-matrix-24.json` and `stack-browser-24.json`. The rejected QA invocation is
+retained in `stack-matrix-23.json`.
+
+A new real developer submission prepared the optimized Angular artifact in
+**155.221 seconds**. Its source folder is unchanged between fixture revisions
+`5f376f60ed9c` and `00df7c09ea97`; the prepared image is 141.8 MiB.
+
+| Optimized Angular scenario | Observed result |
+| --- | --- |
+| Cloud Shell, existing VM and uncached image | 61.933 seconds to ready, including 51.701 seconds image transfer/loading |
+| Cloud Shell, cached | 5.867 seconds to ready; **8.312 seconds** click-to-native saved product |
+| Cloud Shell, database | Previous artifact's value 1 retained; write 1→2, reload 2, confirmed stop/relaunch 2 |
+| Codespaces, resumed VM and uncached image | 94.454 seconds to ready, including 50.404 seconds image transfer/loading |
+| Codespaces, cached | 7.179 seconds to ready |
+| Codespaces, authenticated HTTP/database | Write 0→1; confirmed stop and fresh launch retained 1; second write/read 1→2 |
+
+The uncached Google observation improved from 72.289 to 61.933 seconds but still
+exceeds the 20-second target. These are individual observations, not a guarantee
+or a controlled latency benchmark. The first browser wait expired while the
+same launch continued; its later 75.069-second observation includes tool-call
+gaps. Only the cached browser timing was measured in one continuous check.
+Codespaces native browser authorization remains unverified. Other seven recipe
+fixtures have rebuilt server/browser evidence but no new provider timing claims.
+See `evidence/stack-angular-ssr-optimized-{url,google,codespaces}.json`.
 
 ## Database durability
 

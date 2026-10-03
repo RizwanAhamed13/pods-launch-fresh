@@ -7,15 +7,15 @@ Core: https://github.com/RizwanAhamed13/pods-launch-fresh
 Public fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh
 Local: /Users/rizwanahamed/Documents/ChatGPT/podsv2
 Aswin: /home/aswin/pods-launch-fresh and /home/aswin/pods-launch-runtime-fresh
-Public fixture commit: 00df7c0. Latest product fix: bb35fc0, pushed and deployed.
+Public fixture commit: 00df7c0. Latest product fix: a7170b2, pushed and deployed.
 
 ## Current evidence
 
 - 54 distinct genuine framework/application fixtures pass isolated server builds,
   reusable artifact launches and browser interaction. See SUPPORT.md and
   stack-coverage.json; historical failures remain recorded.
-- 52 automated checks pass locally and on aswin. The current aswin rerun is recorded in
-  stack-unit-tests-aswin.txt. Source LOC 4153: 2351 product/tooling, 132 browser
+- 52 automated checks pass locally and on aswin. The latest aswin rerun is recorded in
+  stack-npm-cache-unit-tests-aswin.txt. Source LOC 4153: 2351 product/tooling, 132 browser
   tools, 802 tests, 868 example sources. code-lines.json defines the count.
 - React/Express/PostgreSQL, Angular SSR/SQLite, Flask/PostgreSQL,
   Quarkus/SQLite and Laravel/SQLite have native Google browser/product evidence. These results do
@@ -54,10 +54,25 @@ Public fixture commit: 00df7c0. Latest product fix: bb35fc0, pushed and deployed
   All eight affected fixtures passed real rebuild/start/restart/browser checks
   (matrix/browser24). Image probes confirm caches absent and dependencies
   present. gzip reductions: Angular40.4%, Next35.9%, Nuxt48.3%, SvelteKit28.6%,
-  Astro36.7%, ReactRouter34.6%, Adonis3.3%, Nest2.4%. New native launch timing
-  is not yet proven; existing provider evidence uses previous immutable artifacts.
-  52 local automated checks passed (stack-npm-cache-unit-tests.txt). Batch23
+  Astro36.7%, ReactRouter34.6%, Adonis3.3%, Nest2.4%. New optimized Angular
+  native provider results are recorded below; other seven recipe fixtures have
+  no new native timing claim. 52 automated checks passed locally and on aswin
+  (stack-npm-cache-unit-tests*.txt). Batch23
   retained the initial missing-isolation-marker QA invocation failure.
+
+- New real Angular submission (same source folder across fixture revisions)
+  prepared in 155.221 seconds. Developer Google session had expired; pressing
+  prepare again reconnected the already-authorized account and resumed the saved
+  draft automatically. No new permission prompt or terminal work.
+- Optimized Angular on Cloud Shell: uncached image 61.933 seconds to health,
+  cached 5.867 seconds to health and 8.312 seconds to native saved product.
+  Old artifact's value 1 retained; new write 2/reload2/full stop/relaunch2.
+  First browser observation timed out at 48 seconds while launch continued;
+  later 75.069 seconds is only an upper bound including tool gaps.
+- Optimized Angular on Codespaces: resumed/uncached 94.454 seconds, cached
+  7.179 seconds. HTTP counter 0→1, confirmed stop, fresh launch retained1,
+  second write/read2. Native browser/OAuth still pending. Evidence:
+  stack-angular-ssr-optimized-{url,google,codespaces}.json.
 
 ## Pending actions
 
@@ -66,7 +81,7 @@ Public fixture commit: 00df7c0. Latest product fix: bb35fc0, pushed and deployed
 2. Cloud Shell VM replacement: a confirmation question is pending. The actual
    Restart dialog preserves home but terminates all processes and provisions a
    new VM. Do not click final Restart before the user approves. Current native
-   Laravel SQLite baseline is 1; previous Quarkus value 2 remains stored. Do not delete/reset the home directory.
+   optimized Angular SQLite baseline is 2; prior Laravel1 and Quarkus2 remain stored. Do not delete/reset the home directory.
 3. GitHub browser OAuth is not configured (public API oauthReady=false). Its
    access-token/API test path does not satisfy the one-click browser authorization
    goal. Native GitHub sign-in is also pending; do not repeat that earlier question
@@ -80,18 +95,18 @@ Origin: https://collection-conferences-ages-clearly.trycloudflare.com
 Server port 8787, last verified PID 445141. Use scripts/serve.sh for restart so
 /home/aswin/pods-tools/bin is in PATH. Ordinary non-login SSH lacks node/npm/gh;
 set PATH explicitly for checks. Never print .env, tokens or authorization codes.
-Public frontend files are read per request, so this client fix required no restart.
+Each isolated build receives src/scripts from the current deployed checkout;
+the new recipe was used by the real developer preparation without a server restart.
 
-Laravel app ID: repo-8781a389be8b5e500f4239b9-00df7c09ea97-a063e2512975
-Google current launch belongs to the independent Chrome session, SQLite value 1.
-Codespace pods-launch-containers-69rw5vx4xp46c5qw5 currently serves Laravel, value 2.
+Optimized Angular app ID: repo-ce3c167a84b230196d7bf924-00df7c09ea97-4da6dd64ea03
+Google launch alDHTjLLANfC-WVOlYHiYge3AQOQ8iX8 belongs to independent Chrome, value2.
+Codespace pods-launch-containers-69rw5vx4xp46c5qw5 currently serves Angular, value2.
 These previews stop at their 30-minute deadlines; no pending matrix build job.
 
-CUA in-app browser 2: developerWide tab12 launch controls; stackQa6 tab13 completed Laravel
+CUA in-app browser 2: developerWide tab12 launch controls; stackQa6 tab13 completed optimized Angular
 preparation; cloudLifecycle tab14 pending Restart confirmation; nativeGithubKeep
 tab10 existing sign-in handoff. Chrome browser 1: independentUser tab2083874416
-is the verified native Google product. The duplicate Chrome GitHub sign-in tab and
-local regression browser were closed. Reapply handoff/deliverable marks each turn.
+is the verified native Google product. The cache-regression QA tab16 was closed after all eight browser checks. Reapply handoff/deliverable marks each turn.
 
 QA guest pods-fresh-matrix-01: /opt/pods, /work/stacks, /output; use
 /snap/lxd/current/bin/lxc and /opt/node/bin/node with uid/gid 1000. Pool 60 GiB,

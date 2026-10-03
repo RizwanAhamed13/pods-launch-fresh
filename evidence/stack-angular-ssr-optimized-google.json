@@ -1,0 +1,58 @@
+{
+  "scope": "Real developer URL preparation with npm cache optimization, followed by native Google product in the independent Chrome session. The Google VM already existed; uncached refers to the new image, not a new VM.",
+  "sourceComparison": "git diff --exit-code 5f376f60ed9c..00df7c09ea97 -- examples/stacks/angular-ssr returned no changes in the public fixture repository.",
+  "browser": {
+    "savedValueFromPreviousArtifact": 1,
+    "afterWrite": 2,
+    "afterReload": 2,
+    "afterFullStopAndRelaunch": 2
+  },
+  "firstBrowserObservation": {
+    "upperBoundMs": 75069,
+    "note": "First 48-second browser navigation observation timed out while the same launch kept starting. A subsequent observation found the real product and saved value; no duplicate launch was created. Includes tool-call gaps, not a precise navigation latency."
+  },
+  "measuredWarmBrowser": {
+    "clickToSavedProductMs": 8312,
+    "savedValue": 2,
+    "method": "Wall clock from launch click to native navigation and visible saved-value assertion within one browser tool call."
+  },
+  "attempts": [
+    {
+      "id": "fKeMhTFd6XboYA8ZojJy-cUbBxKp_482",
+      "status": "stopped",
+      "createdAt": 1791043271929,
+      "providerReadyAt": 1791043275501,
+      "readyAt": 1791043333862,
+      "error": null,
+      "timings": {
+        "downloadMs": 621,
+        "imagesMs": 51701,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 56154,
+        "cacheHit": false
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 61933
+    },
+    {
+      "id": "alDHTjLLANfC-WVOlYHiYge3AQOQ8iX8",
+      "status": "ready",
+      "createdAt": 1791043372030,
+      "providerReadyAt": 1791043374567,
+      "readyAt": 1791043377897,
+      "error": null,
+      "timings": {
+        "downloadMs": 207,
+        "imagesMs": 60,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 2101,
+        "cacheHit": true
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 5867
+    }
+  ],
+  "appId": "repo-ce3c167a84b230196d7bf924-00df7c09ea97-4da6dd64ea03"
+}

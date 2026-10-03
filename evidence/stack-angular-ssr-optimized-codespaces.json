@@ -1,0 +1,91 @@
+{
+  "testedAt": "2026-10-03T16:02:34.848Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "sn3nPJb0Js0NHzGUK1j1_p-r1nvnOuMd",
+      "appId": "repo-ce3c167a84b230196d7bf924-00df7c09ea97-4da6dd64ea03",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "4da6dd64ea03101d97b85e4900e3a0940b406a1b5180f38d673adff52c968d6a",
+      "images": [
+        {
+          "id": "sha256:0de6529c482a54b071bbbb9c12605c4f0b4daf5aad52255772dacfb9d08424ca",
+          "sha256": "6aa2d9fbe9d5b36d31c69d74070aea62a6c08467a7ac6929a05972750b7cbc58",
+          "bytes": 148723204
+        }
+      ],
+      "status": "ready",
+      "createdAt": 1791043234131,
+      "updatedAt": 1791043328585,
+      "expiresAt": 1791045034131,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791043249226,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791043328585,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 959,
+        "imagesMs": 50404,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 64356,
+        "cacheHit": false
+      },
+      "readyAt": 1791043328585,
+      "deliveryMs": 79359,
+      "totalMs": 94454,
+      "counterCheck": {
+        "productDocument": true,
+        "before": 0,
+        "afterWrite": 1,
+        "afterRead": 1,
+        "passed": true
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "QLhEd8At_YBFRWYfnmXLbb9gRIPpXDn6",
+      "appId": "repo-ce3c167a84b230196d7bf924-00df7c09ea97-4da6dd64ea03",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "4da6dd64ea03101d97b85e4900e3a0940b406a1b5180f38d673adff52c968d6a",
+      "images": [
+        {
+          "id": "sha256:0de6529c482a54b071bbbb9c12605c4f0b4daf5aad52255772dacfb9d08424ca",
+          "sha256": "6aa2d9fbe9d5b36d31c69d74070aea62a6c08467a7ac6929a05972750b7cbc58",
+          "bytes": 148723204
+        }
+      ],
+      "status": "ready",
+      "createdAt": 1791043339768,
+      "updatedAt": 1791043346947,
+      "expiresAt": 1791045139768,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791043340265,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791043346947,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 585,
+        "imagesMs": 43,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 2026,
+        "cacheHit": true
+      },
+      "readyAt": 1791043346947,
+      "deliveryMs": 6682,
+      "totalMs": 7179,
+      "counterCheck": {
+        "productDocument": true,
+        "before": 1,
+        "afterWrite": 2,
+        "afterRead": 2,
+        "passed": true,
+        "expectedAfterRelaunch": 1
+      }
+    }
+  ],
+  "scope": "New optimized Angular artifact; first launch resumed the confirmed Shutdown Codespace with an uncached image. Counter checks use authenticated SSH HTTP, not native browser interaction or GitHub web OAuth."
+}
