@@ -27,6 +27,12 @@ export async function createApp(options={}) {
   const buildsEnabled = options.buildAdapter || process.env.PODS_BUILDS_ENABLED === '1';
   const builds = buildsEnabled ? new BuildManager({ store, data, origin, adapter: options.buildAdapter || new LxdBuilder() }) : null;
   if (builds) await builds.initialize();
+  const computeKey = c => c?.identityId ? digest(JSON.stringify([c.provider,c.identityId])) : null;
+  // Preserve account locks across browser disconnects; migrate active older records where identity remains available.
+  for (const s of store.list('launch')) if (!s.computeKey && !['failed','stopped'].includes(s.status)) {
+    const key=computeKey(store.get('connection',`${s.owner}:${s.provider}`));
+    if(key)store.put('launch',s.id,{...s,computeKey:key});
+  }
   // A restart cannot safely resume SSH dispatch; ready agents reconnect through heartbeat.
   for (const s of store.list('launch')) if (!['ready','failed','stopped'].includes(s.status)) store.put('launch',s.id,{...s,status:'failed',error:'Server restarted during launch. Please retry.'});
   const oauth = options.oauth || {
@@ -44,7 +50,7 @@ export async function createApp(options={}) {
     return user;
   }
   function publicLaunch(s) {
-    const {tokenHash,owner,...safe}=s;
+    const {tokenHash,owner,computeKey,...safe}=s;
     if(s.providerReadyAt&&s.readyAt)safe.deliveryMs=s.readyAt-s.providerReadyAt;
     if(s.readyAt)safe.totalMs=s.readyAt-s.createdAt;
     return safe;
@@ -141,10 +147,11 @@ export async function createApp(options={}) {
         const b=await body(req);if(!['github','google'].includes(b.provider))throw fail(400,'Choose a compute provider');
         const app=(await apps()).find(a=>a.id===b.appId);if(!app)throw fail(404,'Prepared application not found');
         const c=connection(user,b.provider);
-        const active=store.list('launch').find(s=>s.owner===user.id&&s.provider===b.provider&&!['failed','stopped'].includes(s.status)&&s.expiresAt>Date.now());
-        if(active) {if(active.appId!==app.id)throw fail(409,'An application is already running on this provider. Stop it before starting another.');return json(200,publicLaunch(active));}
+        const key=computeKey(c);if(!key)throw fail(401,'Reconnect your compute account before launching an application.');
+        const active=store.list('launch').find(s=>s.provider===b.provider&&(s.owner===user.id||s.computeKey===key)&&!['failed','stopped'].includes(s.status)&&s.expiresAt>Date.now());
+        if(active) {if(active.owner!==user.id)throw fail(409,'An application is already running in this compute account from another session. Stop it there before starting another.');if(active.appId!==app.id)throw fail(409,'An application is already running on this provider. Stop it before starting another.');return json(200,publicLaunch(active));}
         const id=uid(),token=uid(),createdAt=Date.now();
-        const s={id,owner:user.id,appId:app.id,appName:app.name,provider:b.provider,sha256:app.sha256,images:app.images || [],status:'connecting',createdAt,updatedAt:createdAt,expiresAt:createdAt+30*60*1000,tokenHash:digest(token)};
+        const s={id,owner:user.id,computeKey:key,appId:app.id,appName:app.name,provider:b.provider,sha256:app.sha256,images:app.images || [],status:'connecting',createdAt,updatedAt:createdAt,expiresAt:createdAt+30*60*1000,tokenHash:digest(token)};
         store.put('launch',id,s);
         const config={id,provider:b.provider,appId:app.id,dataKey:app.dataKey || app.id,containerRuntime:app.runtime==='docker-linux-amd64',sha256:app.sha256,artifactUrl:`${origin}/api/agent/${id}/artifact`,callbackUrl:`${origin}/api/agent/${id}`,token,port:8080,expiresAt:s.expiresAt};
         const job=providers[b.provider].launch(store.open(c.token),config,patch=>update(id,patch)).then(result=>update(id,result)).catch(e=>{console.error('launch',id,e.message);update(id,{status:'failed',error:'Could not start your compute. '+String(e.message).slice(0,220)});}).finally(()=>jobs.delete(id));

@@ -81,3 +81,50 @@ test('unwritable home falls back to session storage and reports its durability',
  assert.equal(running.storageMode,'ephemeral');assert.ok(running.dataDir.startsWith(join(root,'temporary')));assert.equal(events.at(-1).storageMode,'ephemeral');const reply=await(await fetch('http://127.0.0.1:18084/api/notes')).json();assert.equal(reply.storageMode,'ephemeral');
  }finally{await running?.stop();await close(s);await chmod(locked,0o700);await sleep(100);await rm(root,{recursive:true,force:true});}
 });
+test('one compute account cannot be launched concurrently from separate browser sessions',async()=>{
+ const root=await temp();await prepare('examples/notes',root);const configs=[];
+ const provider={validate:async token=>({id:token[0],name:'same-display-name'}),launch:async(token,config,update)=>{configs.push(config);await update({status:'delivering',providerReadyAt:Date.now()});return{};}};
+ const {server,store}=await createApp({data:root,secret:'ad'.repeat(32),providers:{github:provider,google:provider}}),origin=await listen(server);
+ async function browser(token,providerName='google'){
+  const response=await fetch(origin+'/api/me'),cookie=response.headers.get('set-cookie').split(';')[0],me=await response.json();
+  const request=(path,value)=>fetch(origin+path,{method:value===undefined?'GET':'POST',headers:{Cookie:cookie,'X-Pods-CSRF':me.csrf,'Content-Type':'application/json'},body:value===undefined?undefined:JSON.stringify(value)});
+  assert.equal((await request('/api/connections/'+providerName,{token:token.repeat(30)})).status,200);return request;
+ }
+ const launch=(request,provider='google')=>request('/api/launches',{provider,appId:'field-notes'});
+ try{
+  const first=await browser('a'),second=await browser('a'),otherAccount=await browser('b'),otherProvider=await browser('a','github');
+  let response=await launch(first);assert.equal(response.status,202);const active=await response.json();
+  assert.equal((await(await launch(first)).json()).id,active.id);
+  response=await launch(second);assert.equal(response.status,409);assert.match((await response.json()).error,/another session/);assert.equal(configs.length,1);
+  assert.equal((await second('/api/launches/'+active.id)).status,404);
+  assert.equal((await second('/api/launches/'+active.id+'/stop',{})).status,404);
+  assert.deepEqual(await(await second('/api/launches')).json(),[]);
+  assert.equal(active.computeKey,undefined);assert.ok(store.get('launch',active.id).computeKey);
+  assert.equal((await launch(otherAccount)).status,202);assert.equal((await launch(otherProvider,'github')).status,202);
+  // Disconnect/credential expiry does not free a still-running application's account lock.
+  const stored=store.get('launch',active.id);store.delete('connection',stored.owner+':google');
+  await first('/api/launches/'+active.id+'/stop',{});assert.equal((await launch(second)).status,409);
+  const config=configs.find(c=>c.id===active.id);
+  assert.equal((await fetch(origin+'/api/agent/'+active.id,{method:'POST',headers:{Authorization:'Bearer '+config.token},body:JSON.stringify({status:'stopped'})})).status,200);
+  response=await launch(second);assert.equal(response.status,202);assert.notEqual((await response.json()).id,active.id);
+ }finally{await close(server);await rm(root,{recursive:true,force:true});}
+});
+test('existing ready previews gain durable private account locks when the server upgrades',async()=>{
+ const root=await temp(),secret='ae'.repeat(32);await prepare('examples/notes',root);
+ const seed=new Store(root,secret),id=randomBytes(24).toString('base64url');
+ seed.put('connection','old-browser:google',{provider:'google',identityId:'same-compute',token:seed.seal('existing-token'),expiresAt:Date.now()+60000});
+ seed.put('launch',id,{id,owner:'old-browser',provider:'google',appId:'field-notes',status:'ready',lastSeenAt:Date.now(),expiresAt:Date.now()+60000});seed.close();
+ let instance;
+ try{
+  for(const restart of [false,true]){
+   instance=await createApp({data:root,secret,providers:{google:{validate:async()=>({id:'same-compute',name:'renamed-account'}),launch:async()=>assert.fail('Conflicting launch must not reach the provider')}}});
+   const origin=await listen(instance.server),initial=await fetch(origin+'/api/me'),cookie=initial.headers.get('set-cookie').split(';')[0],me=await initial.json();
+   const request=(path,value)=>fetch(origin+path,{method:'POST',headers:{Cookie:cookie,'X-Pods-CSRF':me.csrf,'Content-Type':'application/json'},body:JSON.stringify(value)});
+   assert.equal((await request('/api/connections/google',{token:'a'.repeat(30)})).status,200);
+   assert.equal((await request('/api/launches',{provider:'google',appId:'field-notes'})).status,409);
+   assert.equal(instance.store.get('launch',id).status,'ready');assert.ok(instance.store.get('launch',id).computeKey);
+   if(!restart)instance.store.delete('connection','old-browser:google');
+   await close(instance.server);await instance.closeResources();instance=null;
+  }
+ }finally{if(instance){await close(instance.server);await instance.closeResources();}await rm(root,{recursive:true,force:true});}
+});
