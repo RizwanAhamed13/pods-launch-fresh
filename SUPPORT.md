@@ -807,11 +807,40 @@ All four real server builds passed. Each retained its previous SQLite value 2
 after the artifact upgrade, wrote 3, and retained 3 after stop/relaunch. The browser
 then wrote 4 and retained 4 on reload, with no captured warnings or errors.
 The local runner already had the images; its 4–10 second readiness samples do
-not measure first-image download speed. Native provider retests of these smaller
-artifacts are pending; previous Spring Boot and Quarkus native results apply to
-their earlier images. The 20-second goal is still unproven for first-image JVM
+not measure first-image download speed. Spring Boot's smaller artifact subsequently
+passed the native checks below. Quarkus, Micronaut and Ktor native retests remain
+pending. The 20-second goal is still unproven for first-image JVM
 launches. Existing prepared artifacts are immutable and are not replaced.
 
 Evidence: `evidence/stack-matrix-31.json`, `evidence/stack-browser-31.json`,
 `evidence/stack-jvm-runtime-comparison.json`, and
 `evidence/stack-jvm-runtime-modules.json`.
+
+## Spring Boot runtime upgrade on user compute
+
+The real developer form prepared the same public source revision `9eee994` with
+the Noble JRE recipe in **185.843 seconds**. The production archive is
+131,473,220 bytes; its new immutable launch version keeps the original data key.
+
+| Scenario | Health ready | Native browser product | Successful browser write |
+| --- | ---: | ---: | ---: |
+| Cloud Shell, new image on existing compute | 49.033s | 49.900s | 50.732s |
+| Cloud Shell, cached full relaunch | 14.743s | 15.274s | 16.085s |
+| Codespaces, new image | 74.065s | Pending browser authorization | Authenticated HTTP passed |
+| Codespaces, cached full relaunch | 13.655s | Pending browser authorization | Authenticated HTTP passed |
+
+Both providers read the old artifact's SQLite value 2 before writing 3. After a
+full application stop and relaunch, both read 3 before writing 4. Google browser
+reloads retained each write and captured no warnings/errors. All four launches
+stopped. Codespaces returned to the previously assigned `69rw5vx4xp46c5qw5`
+environment despite a newer static-app environment, preserving database affinity.
+
+Google image download fell from 26.566s to 23.722s, but loading increased from
+3.612s to 7.623s; total first-image time did not improve in this sample. Codespaces
+download took 23.737s, with 14.975s provider startup. First-image launches still
+exceed 20 seconds. These are individual measurements with runtime variability;
+only cached readiness and Google product interaction met the target here.
+The two providers' first-image downloads did not overlap.
+
+Evidence: `evidence/stack-spring-boot-noble-{url,google,codespaces}.json` and the
+native comparison in `evidence/stack-jvm-runtime-comparison.json`.

@@ -996,7 +996,10 @@
       "nativeProviderEvidence": [
         "stack-spring-boot-url.json",
         "stack-spring-boot-google.json",
-        "stack-spring-boot-codespaces.json"
+        "stack-spring-boot-codespaces.json",
+        "stack-spring-boot-noble-url.json",
+        "stack-spring-boot-noble-google.json",
+        "stack-spring-boot-noble-codespaces.json"
       ],
       "attempts": [
         {
@@ -1018,7 +1021,7 @@
       ],
       "persistenceScope": "SQLite since matrix30/browser30. Earlier matrix02/matrix15/browser02 tested a plain file.",
       "recipeOptimizationEvidence": "stack-jvm-runtime-comparison.json",
-      "nativeRuntimeRetest": "Noble JRE artifact pending; existing native evidence, when present, uses the previous runtime."
+      "nativeRuntimeRetest": "Noble JRE passed Google native browser and Codespaces authenticated HTTP/SQLite; native Codespaces browser remains pending."
     },
     {
       "fixture": "streamlit",

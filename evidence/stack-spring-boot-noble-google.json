@@ -1,0 +1,83 @@
+{
+  "recordedAt": "2026-10-03T21:29:19.114890+00:00",
+  "scope": "Real Cloud Shell browser Spring Boot product using the smaller full Noble JRE. SQLite retained across artifact upgrade, writes, reloads, and full application restart; both launches stopped.",
+  "results": [
+    {
+      "id": "PnShPh7yLRD6qEqnkYNYLAT9yg8Q3LwK",
+      "appId": "repo-8a9b80c77f2897d8664a184b-9eee994ba7f7-74e471ac4004",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791062819366,
+      "providerReadyAt": 1791062822198,
+      "readyAt": 1791062868399,
+      "updatedAt": 1791062896132,
+      "environment": "default",
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 554,
+        "imagesMs": 31406,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 35,
+        "imageDownloadMs": 23722,
+        "imageLoadMs": 7623,
+        "runtimeReadyMs": 44211,
+        "cacheHit": false
+      },
+      "totalMs": 49033,
+      "deliveryMs": 46201
+    },
+    {
+      "id": "AWAin7ebUsjQXToKnnBavS554IpAi03Z",
+      "appId": "repo-8a9b80c77f2897d8664a184b-9eee994ba7f7-74e471ac4004",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791062909753,
+      "providerReadyAt": 1791062912444,
+      "readyAt": 1791062924496,
+      "updatedAt": 1791062940223,
+      "environment": "default",
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 192,
+        "imagesMs": 61,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 60,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 10877,
+        "cacheHit": true
+      },
+      "totalMs": 14743,
+      "deliveryMs": 12052
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "new-image-existing-compute",
+      "visibleMs": 49900,
+      "savedDataVisibleMs": 50443,
+      "successfulClickMs": 50732,
+      "before": 2,
+      "after": 3,
+      "afterReload": 3,
+      "timingScope": "Continuous observation from launch click through product visibility, restored SQLite read and successful write."
+    },
+    {
+      "scenario": "cached-relaunch",
+      "visibleMs": 15274,
+      "savedDataVisibleMs": 15802,
+      "successfulClickMs": 16085,
+      "before": 3,
+      "after": 4,
+      "afterReload": 4,
+      "timingScope": "Continuous observation from launch click through product visibility, restored SQLite read and successful write."
+    }
+  ],
+  "browserErrorOrWarningLogsAtFinalCheck": [],
+  "persistenceScope": "Previous immutable artifact saved SQLite2; upgraded artifact read2 before writing3, then full stop/relaunch read3 before writing4. No provider VM replacement claim.",
+  "passed": true
+}

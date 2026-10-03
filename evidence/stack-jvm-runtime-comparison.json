@@ -137,5 +137,34 @@
       }
     }
   ],
-  "nativeProviderRetest": "Pending: existing Spring Boot and Quarkus native evidence uses previous runtime artifacts."
+  "nativeProviderRetest": "Spring Boot Noble runtime passed real developer URL preparation, native Google browser, and Codespaces authenticated HTTP/SQLite tests. Quarkus, Micronaut and Ktor Noble native retests remain pending.",
+  "springBootNativeEvidence": [
+    "stack-spring-boot-noble-url.json",
+    "stack-spring-boot-noble-google.json",
+    "stack-spring-boot-noble-codespaces.json"
+  ],
+  "springBootNativeComparison": {
+    "previousImageBytes": 146983923,
+    "newImageBytes": 131473220,
+    "google": {
+      "previousFirstHealthMs": 46554,
+      "newFirstHealthMs": 49033,
+      "previousImageDownloadMs": 26566,
+      "newImageDownloadMs": 23722,
+      "previousImageLoadMs": 3612,
+      "newImageLoadMs": 7623,
+      "newProductVisibleMs": 49900,
+      "newCachedProductVisibleMs": 15274,
+      "newCachedSuccessfulWriteMs": 16085
+    },
+    "codespaces": {
+      "previousFirstHealthMs": 77906,
+      "newFirstHealthMs": 74065,
+      "newProviderReadyMs": 14975,
+      "previousImageDownloadMs": 26559,
+      "newImageDownloadMs": 23737,
+      "newCachedHealthMs": 13655
+    },
+    "scope": "Separate samples with provider/runtime variability, not a controlled performance guarantee. Google first-image download completed before Codespaces first-image launch; only Google cached launch overlapped Codespaces. Native Codespaces browser remains pending. First-image launches still exceed20 seconds."
+  }
 }

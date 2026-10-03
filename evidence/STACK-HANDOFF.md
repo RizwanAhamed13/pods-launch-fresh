@@ -19,7 +19,46 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Same eighteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: smaller full Java runtime, isolated acceptance
+## Latest completed gate: Spring Boot Noble runtime native acceptance
+
+- Core runtime recipe685fa80 remains deployed; public source still9eee994. Normal
+  quota observer69264 ended0 at21:23:08UTC (account2/global2). Submitted the developer
+  form exactly once. BuildOcdtlor3MVY5-Mspz2OyJu15-sFRMlZP prepared in185.843s;
+  observer51984 ended0. Image131473220bytes; no imported QA artifact.
+- App repo-8a9b80c77f2897d8664a184b-9eee994ba7f7-74e471ac4004,
+  stable dataKey repo-8a9b80c77f2897d8664a184b. Actual source/public commit confirmed.
+- Google new image: health49.033s, visible49.900s, saved SQLite2 read50.443s,
+  successful write2→3 at50.732s; reload3. Full stop. Cached: health14.743s,
+  visible15.274s, saved3 read15.802s, successful write3→4 at16.085s; reload4.
+  Both browser measurements continuous; captured warnings/errors empty; both stopped.
+- Codespaces69rw5vx4xp46c5qw5: first health74.065s/provider14.975s, cached13.655s.
+  Authenticated HTTP read2/write3, full stop/relaunch read3/write4. This verifies
+  artifact-upgrade data affinity despite the newer static-app Codespace. Both stopped;
+  harness1195 ended0. Native Codespaces browser authorization remains pending.
+- Google download23.722s versus26.566s before, but load7.623s versus3.612s, so first
+  total did not improve. Codespaces download23.737s. First-image transfers did not
+  overlap (Google cached relaunch ran while Codespaces first launch started).
+  No first-image20s claim. Evidence stack-spring-boot-noble-{url,google,codespaces}.json.
+- Read-only production audit21:30:58UTC: active builds0/launches0, account3/hour;
+  next normal account slot21:43:44.834UTC. No live quota/build/native-test observers.
+  Native18/55,37remaining. Source5054lines; automated80/80 from unchanged685fa80.
+- Next useful work before Angular native acceptance: investigate browser-origin
+  separation. Current server config fixes every launch to port8080; both provider
+  preview URLs hard-code8080. React and Angular fixtures both use localStorage.count
+  (verified in actual files after graph search missed it). Thus different products
+  on the same provider environment share a browser origin. Do not hide this by
+  renaming fixture storage keys or clearing existing browser data. Validate and
+  address platform-level origin separation, stable across versions, preserving
+  backend database identity and private provider previews. Native Angular will
+  be a meaningful cross-app storage check. This source-derived concern still
+  needs a direct platform regression and provider capability verification.
+- Browser handoffs remain developer tab13, stopped Spring launcher tab12,
+  GitHub2FA tab10, CloudShellRestart tab14. Re-mark next turn. CUA variables include
+  springNobleBrowserChecks and springNobleGoogleLogs; old tabs/auth actions pending.
+  Running control server remains b02fea1/PID806978; no runtime code changed this turn.
+  Goal active; this turn completed real native upgrade/persistence evidence.
+
+## Previous completed gate: smaller full Java runtime, isolated acceptance
 
 - Core685fa80 pushed/synced to aswin. Maven uses explicit Noble builder/full JRE;
   builder digest is unchanged and all49 Java modules/version strings match the
