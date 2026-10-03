@@ -5,11 +5,14 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { probeBunWebSocket } from './probe-websocket.mjs';
 import { ssrProbeCommand } from './probe-ssr.mjs';
+import { mysqlRuntimeProbeCommand } from './probe-mysql-runtime.mjs';
 const exec = promisify(execFile);
 const provider=process.argv[3]||'github';if(!['github','google'].includes(provider))throw new Error('Unknown provider');
 const origin=process.argv[2];if(!origin)throw new Error('Supply the PODS URL');
 // Opt-in checks only for our fixtures; requires gh signed in to the same account.
 const counterCheck=process.env.PODS_COUNTER_CHECK==='1';
+const mysqlRuntimeCheck=process.env.PODS_MYSQL_RUNTIME_CHECK==='1';
+if(mysqlRuntimeCheck&&!counterCheck)throw new Error('MySQL runtime inspection requires the counter fixture check');
 const apiProduct=process.env.PODS_API_PRODUCT==='1';
 const expectedInitialCount=process.env.PODS_EXPECT_INITIAL_COUNT;
 if(expectedInitialCount!==undefined&&(!counterCheck||!/^\d+$/.test(expectedInitialCount)||!Number.isSafeInteger(Number(expectedInitialCount))))throw new Error('Expected initial count requires a nonnegative integer and counter fixture checking');
@@ -26,6 +29,8 @@ const initial=await fetch(origin+'/api/me'),cookie=initial.headers.get('set-cook
 async function api(path,method='GET',body){const r=await fetch(origin+path,{method,headers:{Cookie:cookie,'X-Pods-CSRF':me.csrf,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(30000)});const d=await r.json();if(!r.ok)throw new Error(d.error);return d;}
 const appId=process.argv[4]||me.apps[0]?.id;
 if(!me.apps.some(app=>app.id===appId))throw new Error('Prepared application not found');
+const selectedApp=me.apps.find(app=>app.id===appId);
+if(mysqlRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-mysql')throw new Error('MySQL runtime inspection is restricted to its explicit fixture');
 const evidencePath=process.env.PODS_EVIDENCE_FILE||`evidence/${provider}.json`;
 await api('/api/connections/'+provider,'POST',{token});token='';
 const results=[];
@@ -98,6 +103,7 @@ try {
   const result={scenario:name,...launch};results.push(result);console.log(JSON.stringify({scenario:name,status:launch.status,totalMs:launch.totalMs,deliveryMs:launch.deliveryMs,timings:launch.timings,environment:launch.environment,storageMode:launch.storageMode,error:launch.error}));
   await persist();
   if(launch.status!=='ready')throw new Error(launch.error||'Launch failed');
+  if(mysqlRuntimeCheck){result.mysqlRuntimeCheck=await probeEnvironment(launch.environment,mysqlRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id));await persist();}
   if(apiProduct&&new URL(launch.previewUrl).pathname!=='/docs')throw new Error('API product did not select its verified interface');
   if(counterCheck){result.counterCheck=await probeCounter(launch.environment);await persist();if(!result.counterCheck.passed)throw new Error('Counter write/read/relaunch persistence failed');}
   if(workerCheck){result.workerCheck=await probeWorker(launch.environment);await persist();if(!result.workerCheck.passed)throw new Error('Worker completion/relaunch persistence failed');}

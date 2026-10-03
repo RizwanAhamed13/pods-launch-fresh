@@ -9,15 +9,32 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 4833 physical source lines: 2687 product/tooling, 1088 tests, 894 examples,
+- 4933 physical source lines: 2726 product/tooling, 1149 tests, 894 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 72 automated checks pass locally and on aswin for Nuxt recipe c774ec5.
+- 75 automated checks pass locally; new MySQL inspection helper awaits aswin validation.
 - Native Google browser families: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
   FastAPI JSON API/SQLite, Next.js, SvelteKit: fifteen.
 - Same fifteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
+
+## Current gate: MySQL native database acceptance
+
+- Next fixture is examples/stacks/flask-mysql on public f58a3e3. Its isolated
+  build/browser and counter persistence already passed; native provider acceptance
+  is pending. Do not repeat those passing checks without a specific concern.
+- Added scripts/probe-mysql-runtime.mjs plus optional PODS_MYSQL_RUNTIME_CHECK=1
+  to the explicit Codespaces harness. Requires PODS_COUNTER_CHECK=1 and the exact
+  MySQL fixture folder. It checks both running containers, healthy private DB,
+  only product port8080, and the application-owned MySQL volume in /workspaces.
+  Docker inspect selects bounded fields and never reads environment variables.
+- Tests reject published3306/33060, host networking, extra product ports, unhealthy
+  or missing containers, and missing/wrong/ephemeral storage. Serialized remote
+  command executes in a fresh Node process with a controlled Docker fixture.
+- Native MySQL data and boundary checks remain pending. Same-account preparation
+  limit currently3/hour; next slot2026-10-03T20:21:13.019Z. Do not bypass quota,
+  switch identities, or import QA artifacts into production.
 
 ## Latest completed gate: optimized Nuxt native acceptance
 
