@@ -142,6 +142,14 @@ function showBuild(state) {
     if (changed && wasRunning) { $('result-title').tabIndex = -1; $('result-title').focus(); }
   } else if (state.status === 'failed') $('prepare').textContent = 'Try preparation again';
 }
+function clearChangedBuild() {
+  if (page.view !== 'develop' || busy || initializing || !building || !ended(building.status)) return;
+  if ($('repository').value.trim() === building.repository.url && $('folder').value.trim() === building.repository.folder) return;
+  building = null; clearTimeout(timer);
+  $('progress').hidden = true; $('build-result').hidden = true; $('retry-status').hidden = true;
+  $('launch-link').value = ''; $('try-version').removeAttribute('href'); $('copy-status').textContent = '';
+  $('prepare').textContent = 'Prepare application'; notice('');
+}
 async function poll(kind) {
   clearTimeout(timer); $('retry-status').hidden = true;
   try {
@@ -199,6 +207,7 @@ async function prepare(reconnected = false) {
 }
 
 $('build-form').addEventListener('submit', event => { event.preventDefault(); prepare(); });
+for (const id of ['repository', 'folder']) $(id).addEventListener('input', clearChangedBuild);
 $('launch').addEventListener('click', () => launch());
 document.querySelectorAll('input[name="provider"]').forEach(input => input.addEventListener('change', () => { notice(''); connections(); }));
 $('token-form').addEventListener('submit', async event => {
@@ -256,6 +265,7 @@ try {
     if (pending.folder) document.querySelector('.folder-options').open = true;
   }
   initializing = false; $('workspace').inert = false; $('workspace').removeAttribute('aria-busy'); $('loading').hidden = true; setBusy(busy);
+  clearChangedBuild();
   if (query.has('error')) {
     storage.remove('pods-pending');
     const account = pending ? providerName(pending.provider) + ': ' : '';
