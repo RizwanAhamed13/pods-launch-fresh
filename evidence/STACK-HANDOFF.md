@@ -9,7 +9,7 @@ Goal active: do not claim universal support or complete provider acceptance.
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 54 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json list exact evidence and failures.
-- 4475 physical source lines: 2567 product/tooling, 883 tests, 868 examples,
+- 4500 physical source lines: 2592 product/tooling, 883 tests, 868 examples,
   157 browser tools. Exclusions in code-lines.json.
 - 56 automated checks pass locally and on aswin after Ruby change.
 - Native Google browser families: Flask/PostgreSQL, React/Express/PostgreSQL,
@@ -17,6 +17,30 @@ Goal active: do not claim universal support or complete provider acceptance.
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite: ten families.
 - Codespaces authenticated SSH HTTP/protocol additionally covers Rails/SQLite:
   ten families. Native browser authorization remains separate and pending.
+
+## Current Nuxt gate
+
+- Previous goal turn made progress: optimized Rails and Bun native acceptance.
+- New `scripts/probe-ssr.mjs` checks the Nuxt fixture's real server-rendered heading
+  and initial counter, then fetches each same-origin Nuxt JavaScript entry.
+  `PODS_SSR_CHECK=1` integrates it into both Codespaces launches. It does not
+  claim browser hydration or database durability; Nuxt counter resets on reload.
+- Passed on existing real Nuxt artifact in isolated QA. Five negative HTTP cases
+  and three harness guards passed. Evidence stack-nuxt-ssr-probe-qa.json and
+  stack-ssr-probe-controls.json include the probe source hash. QA app stopped,
+  port8080 free; temporary Nuxt tab20 closed. No framework rebuild was needed.
+- Normal developer quota is still full as of18:09UTC. Read-only live observer
+  exec32847 is waiting for the ordinary slot after18:18:13UTC. Poll this SAME
+  handle no more than once per minute; do not duplicate it. Script
+  /tmp/pods-wait-nuxt-window.py, output /tmp/pods-nuxt-build-window.json. It uses
+  readonly SQLite and only reports availability/count; no quota change or submission.
+- IABtab13 `stackQa6` now has folder examples/stacks/nuxt, correct public repo URL,
+  Google selected/connected. Existing Rails result remains on screen until a
+  NEW submission. Nuxt has NOT been submitted yet. After allowance becomes
+  available, click Prepare another version once and observe the actual build.
+- Then use PODS_SSR_CHECK=1 for Codespaces HTTP/asset/restart checks and native
+  Cloud Shell Add one interaction0→1/reload0, confirmed stop/relaunch, interaction
+  again. Measure launch-to-interaction continuously; HTML visibility is insufficient.
 
 ## Latest completed gates
 
@@ -93,7 +117,7 @@ any future targeted restart. Use scripts/serve.sh; tools in/home/aswin/pods-tool
 No live PODS apps after optimized Rails stops; data retained. Codespace
 pods-launch-containers-69rw5vx4xp46c5qw5. Google Rails2/Bun2; Codespaces Rails4/Bun2.
 
-CUA: stackQa6 IAB2tab13 completed optimized Rails preparation; accountWorker IAB2
+CUA: stackQa6 IAB2tab13 Nuxt draft ready, prior optimized Rails result visible; accountWorker IAB2
 tab12 stopped optimized Rails; independentUser Chrome1tab2083874416 prior failed Bun with
 expired connection; nativeGithubKeep IAB2tab10 2FA; cloudLifecycle IAB2tab14 restart.
 rubyQa IAB2tab19 completed isolated Sinatra check, QA app stopped and tab closed.

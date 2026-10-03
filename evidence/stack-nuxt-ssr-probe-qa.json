@@ -1,0 +1,16 @@
+{
+  "scope": "Authenticated HTTP server-rendered fixture and client entry assets; not browser hydration, interaction or database persistence",
+  "productRendered": true,
+  "initialCounter": 0,
+  "scripts": [
+    {
+      "path": "/_nuxt/Xrz7lXV0.js",
+      "status": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "bytes": 47938
+    }
+  ],
+  "passed": true,
+  "environment": "Existing isolated Nuxt artifact on aswin via authenticated SSH tunnel; not native provider acceptance",
+  "probeSha256": "1aabc55dd2af5c6482b86df6d17ed53f9c207c6580f7cdd59e2747cb071c6138"
+}

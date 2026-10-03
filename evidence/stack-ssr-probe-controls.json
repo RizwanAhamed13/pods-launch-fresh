@@ -1,0 +1,53 @@
+{
+  "scope": "Real loopback HTTP positive/negative controls plus launch harness guards; not provider acceptance",
+  "results": [
+    {
+      "scenario": "valid-http-fixture",
+      "passed": true,
+      "scope": "Synthetic HTTP positive control; not a real framework or browser test"
+    },
+    {
+      "scenario": "wrong-product",
+      "rejected": true,
+      "error": "Expected server-rendered Nuxt counter was not found"
+    },
+    {
+      "scenario": "no-entry",
+      "rejected": true,
+      "error": "Expected Nuxt client entry scripts were not found"
+    },
+    {
+      "scenario": "missing-entry",
+      "rejected": true,
+      "error": "SSR fixture HTTP 404"
+    },
+    {
+      "scenario": "html-fallback",
+      "rejected": true,
+      "error": "Nuxt client entry did not return JavaScript"
+    },
+    {
+      "scenario": "external-entry",
+      "rejected": true,
+      "error": "Unexpected Nuxt client script URL"
+    }
+  ],
+  "guards": [
+    {
+      "scenario": "mixed-checks",
+      "rejectedBeforeNetwork": true,
+      "message": "Choose one fixture check: counter, worker, WebSocket or SSR"
+    },
+    {
+      "scenario": "wrong-provider",
+      "rejectedBeforeNetwork": true,
+      "message": "Fixture checking requires two Codespaces launches"
+    },
+    {
+      "scenario": "single-launch",
+      "rejectedBeforeNetwork": true,
+      "message": "Fixture checking requires two Codespaces launches"
+    }
+  ],
+  "probeSha256": "1aabc55dd2af5c6482b86df6d17ed53f9c207c6580f7cdd59e2747cb071c6138"
+}

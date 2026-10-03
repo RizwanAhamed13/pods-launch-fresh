@@ -97,6 +97,8 @@ gh auth token | PODS_COUNTER_CHECK=1 node scripts/live-codespaces.mjs https://yo
 gh auth token | PODS_WORKER_CHECK=1 node scripts/live-codespaces.mjs https://your-pods-host github prepared-worker-app-id
 # Our compiled Bun fixture: WebSocket message, reconnect and saved SQLite counter.
 gh auth token | PODS_WEBSOCKET_CHECK=1 node scripts/live-codespaces.mjs https://your-pods-host github prepared-bun-app-id
+# Our Nuxt fixture: server-rendered counter and client JavaScript entry assets.
+gh auth token | PODS_SSR_CHECK=1 node scripts/live-codespaces.mjs https://your-pods-host github prepared-nuxt-app-id
 # Cloud Shell, using an already authorized Google CLI account:
 gcloud auth print-access-token | node scripts/live-codespaces.mjs https://your-pods-host google
 ```
@@ -118,14 +120,24 @@ worker checks are mutually exclusive and require two Codespaces launches.
 counter update over WebSocket, reconnect, HTTP readback, and retained value after
 confirmed stop/relaunch. The shared `scripts/probe-websocket.mjs` runs inside the
 authorized Codespace via SSH. This checks the protocol on user compute; native
-browser/proxy behavior is a separate gate. All three fixture flags are mutually
+browser/proxy behavior is a separate gate. All four fixture flags are mutually
 exclusive. Failure cleanup now waits for a confirmed stop and records cleanup
 errors. The shared protocol probe has passed against the real prepared Bun app
 in isolated QA; a healthy native Gin app correctly failed its WebSocket handshake
 and was stopped. The real URL-prepared Bun artifact now also passes this probe
 on Codespaces, including full stop/relaunch persistence. Native browser/proxy
-acceptance remains separate: Cloud Shell hit another session’s running worker;
-GitHub browser authentication is still pending.
+acceptance remains separate: Cloud Shell now passes after the conflicting worker
+expired naturally; GitHub browser authentication is still pending.
+
+`PODS_SSR_CHECK=1` checks our Nuxt fixture's server-rendered product and zero
+counter, then requests every client entry script referenced by the document.
+Missing scripts, HTML fallback responses and unexpected external script URLs
+fail the check. Both fresh and cached application launches are checked and
+stopped. This verifies HTTP delivery; actual browser hydration and button
+interaction are recorded separately. The fixture has no database and its client
+counter intentionally resets on reload. Isolated artifact and negative HTTP
+controls are in `evidence/stack-nuxt-ssr-probe-qa.json` and
+`evidence/stack-ssr-probe-controls.json`.
 
 The launcher monitors every prepared service before reporting ready and during
 heartbeats. Missing, stopped, paused or unhealthy workers/databases fail the
