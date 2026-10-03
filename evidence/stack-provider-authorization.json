@@ -1,0 +1,19 @@
+{
+  "scope": "Public API readiness flags and browser observations; no credentials included",
+  "google": {
+    "oauthReady": true,
+    "independentBrowserJourney": "passed with existing authorized identity",
+    "evidence": "stack-quarkus-google.json"
+  },
+  "github": {
+    "oauthReady": false,
+    "nativePreview": "Sign in to GitHub in both in-app browser and independent Chrome",
+    "remaining": "Configure a GitHub web OAuth app and complete native browser sign-in. Token/API tests do not satisfy browser authorization acceptance."
+  },
+  "cloudShellReplacement": {
+    "status": "awaiting_explicit_restart_confirmation",
+    "observedDialog": "Restarting terminates the session and running processes, provisions a new VM, and preserves the home directory.",
+    "baseline": "Quarkus SQLite value 2 in native Cloud Shell after the independent browser write.",
+    "actionTaken": "Restart confirmation dialog opened; final Restart not clicked."
+  }
+}

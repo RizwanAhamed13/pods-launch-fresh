@@ -1,0 +1,52 @@
+{
+  "scope": "Real developer UI repository submission on aswin; no provider launch implied",
+  "attempts": [
+    {
+      "id": "_c8LE2Yokz3ZGOx8f0J2g81Uf_GR0h7T",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/quarkus",
+        "key": "8a0fc5a97608c34acbbc9951"
+      },
+      "status": "ready",
+      "createdAt": 1791040117587,
+      "startedAt": 1791040117597,
+      "finishedAt": 1791040340338,
+      "error": null,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-8a0fc5a97608c34acbbc9951-00df7c09ea97-e90b6e712c0c",
+      "app": {
+        "id": "repo-8a0fc5a97608c34acbbc9951-00df7c09ea97-e90b6e712c0c",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "e90b6e712c0cbb9ace27c74e6742d79c6977465df6458fb5e3d0ad586e4b173f",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-8a0fc5a97608c34acbbc9951",
+        "images": [
+          {
+            "id": "sha256:05c2991ef25d169bd7f99f89c5f7c768c489080dfe253aa33d75b02374ac9340",
+            "sha256": "613ef6d8ca0821815bd692c81d5e3f6809b8f6958a348114b550db24e5c0d0c1",
+            "bytes": 144755374
+          }
+        ],
+        "productType": "web",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/quarkus",
+          "revision": "00df7c09ea971725adecb076d508f767fc6e1846"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Quarkus + SQLite"
+        },
+        "preparedAt": "2026-10-03T15:12:19.824Z"
+      }
+    }
+  ]
+}

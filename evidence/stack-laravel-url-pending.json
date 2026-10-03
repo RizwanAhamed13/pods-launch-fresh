@@ -1,0 +1,8 @@
+{
+  "scope": "Real developer form submission; no build or provider success implied",
+  "repository": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+  "folder": "examples/stacks/laravel",
+  "status": "rate_limited",
+  "message": "Preparation limit reached. Please try again in an hour.",
+  "nextStep": "Retry after the existing account build quota window resets. Do not bypass it."
+}

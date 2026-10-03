@@ -1,0 +1,13 @@
+{
+  "scope": "Authenticated SSH HTTP interaction inside the real private Codespace; native browser remains at GitHub sign-in. This check does not cover stop/relaunch after this write.",
+  "productTitlePresent": true,
+  "before": {
+    "count": 0
+  },
+  "afterWrite": {
+    "count": 1
+  },
+  "afterRead": {
+    "count": 1
+  }
+}

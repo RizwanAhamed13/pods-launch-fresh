@@ -3,7 +3,7 @@
 ## Platform
 web
 ## Stack
-Delegated by the user. Node.js control plane and a dependency-free Node launcher; esbuild prepares Node applications on aswin.
+Node.js control plane and portable launcher. Isolated builds on aswin produce Node bundles, static production assets, or prebuilt Linux containers and database services. JVM, Go, Rust, .NET and other runtime compilation happens during preparation, not on user compute.
 ## Users
 Developers prepare an app once. Users try it on their own Google Cloud Shell or GitHub Codespaces compute.
 ## Product Purpose
@@ -11,12 +11,15 @@ Let a developer submit a Git repository URL once, then let a user experience the
 ## Operating Context
 A fresh project on aswin, a new GitHub repository, no previous PODS source or project references.
 ## Capabilities and Constraints
-Provider authorization is required. Cold provisioning is provider-controlled and measured separately from artifact startup. No paid user runtime is owned by PODS. Current preparation detects conventional Node/TypeScript servers, Vite/React frontends and static HTML sites; all use the Node launcher. Additional language/framework adapters and private repository authorization remain pending.
-## Evidence on Hand
-The original Node prototype passed 11 automated tests and launched its prepared demo into ready Google Cloud Shell in 4.725 and 4.218 seconds. A browser test through an authenticated SSH tunnel saved and reloaded a note. This does not establish the complete browser authorization and native-preview journey. Cold Cloud Shell provisioning took about 46 seconds in the initial attempt. The original Codespaces and GitHub Actions attempts were blocked by account quota/billing. The public-runtime Codespaces test now launches the prepared app in 96.693 seconds cold and 5.452 seconds warm, measured to health rather than browser readiness. Native preview sign-in has reached GitHub two-factor authentication. See evidence/PUBLIC-RUNTIME.md and evidence/RESULTS.md.
+Provider authorization is required. Conventional public GitHub applications can be detected without a PODS-specific manifest. Existing Dockerfile/Compose projects extend the supported recipes. The explicit framework, application-type and database matrix is in `SUPPORT.md`; it is not a claim of universal repository compatibility. Private repositories, missing external secrets, unsupported Compose options, desktop/mobile binaries and GPU workloads remain constraints.
 
-The automatic preparation stage passes 21 automated tests on aswin and has separately exercised an isolated public repository build, TypeScript preparation without pods.json, and npm installation plus a Vite production build. See evidence/PREPARATION.md for the stage's scope and remaining work.
-The implementation now passes 34 automated tests plus manual developer/launch/product checks with explicitly simulated providers. Real native provider browser journeys and visible-product timing remain unverified. See evidence/BROWSER-FLOW.md.
+Cold provisioning and uncached image transfer are measured separately from cached launch. User compute remains owned and billed by the user's provider. Persistent container data is stored under Cloud Shell's home or Codespaces' `/workspaces`; provider lifecycle durability requires separate evidence.
+## Evidence on Hand
+The current implementation passes 52 automated checks locally and on aswin. All 54 distinct stack fixtures have real server-build, reusable-artifact launch and meaningful browser-interaction evidence. The fixtures cover frontend, SSR, backend, database and worker combinations; they do not represent 54 different frameworks. Database fixtures have write/read/stop/relaunch checks. See `evidence/stack-coverage.json`, numbered stack matrix/browser evidence, and `SUPPORT.md` for the exact scope and retained failures.
+
+Real developer repository submissions and native Cloud Shell product interactions pass for Flask + PostgreSQL, React + Express + PostgreSQL, Angular SSR + SQLite, and Quarkus + SQLite. Angular's cached launch displayed its usable product and saved record in 7.223 seconds; its uncached launch took 72.289 seconds to health. These observations do not establish a universal 20-second cold-launch guarantee.
+
+Live Codespaces API launches and authenticated HTTP interactions pass for Flask/PostgreSQL and React/Express/PostgreSQL. A full Codespaces rebuild retained PostgreSQL data. An independent Chrome/PODS session completed Google authorization and automatically opened Quarkus, with a database write surviving reload; it used the same previously authorized Google identity. Native Codespaces browser sign-in, GitHub browser OAuth configuration, Cloud Shell VM replacement, and provider evidence for every remaining framework are still pending. Local QA evidence must not be described as native provider validation. Historic prototype results remain in their dated evidence files.
 ## Product Principles
 Build once. Keep user compute user-owned. Show honest progress and timings. Never label a local test as provider validation.
 

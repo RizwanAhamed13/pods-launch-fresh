@@ -667,7 +667,12 @@
       "serverEvidence": "stack-matrix-19.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-19.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-quarkus-url.json",
+        "stack-quarkus-google.json",
+        "stack-quarkus-codespaces.json",
+        "stack-quarkus-codespaces-interaction.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-15.json",

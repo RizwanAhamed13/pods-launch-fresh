@@ -133,6 +133,39 @@ runtime. Evidence: `evidence/stack-angular-ssr-url.json` and
 `evidence/stack-angular-ssr-google.json`. Codespaces remains untested for this
 specific fixture.
 
+## Native Quarkus JVM workflow
+
+The real developer form prepared Quarkus + SQLite from repository revision
+`00df7c09ea97` in **222.751 seconds**, producing a 138.0 MB prebuilt download.
+Cloud Shell opened the real Quarkus page. A browser write changed SQLite 0→1;
+reload and full stop/relaunch retained 1.
+
+- Cloud Shell uncached: **46.008 seconds** to ready, including **34.982 seconds**
+  loading the image.
+- Cloud Shell cached: **8.442 seconds** to ready; **9.923 seconds** from the launch
+  click until the native product displayed the saved record.
+- Codespaces: **72.764 seconds** uncached and **8.207 seconds** cached to ready.
+  Authenticated HTTP product/database interaction is recorded separately;
+  native browser sign-in is still pending.
+
+An independent Chrome session started without a PODS connection or history,
+opened the shared link, selected the already-authorized Google account, and
+continued automatically to the native product. Its write 1→2 survived reload.
+The server confirms two distinct PODS sessions. This proves a separate browser
+journey using the same Google identity and compute; it does not test a second
+Google account. No terminal, access-token entry or manual installation was needed
+in that browser journey.
+
+See `evidence/stack-quarkus-url.json`, `evidence/stack-quarkus-google.json`,
+`evidence/stack-quarkus-codespaces.json` and its interaction evidence.
+Laravel's native developer submission reached the existing hourly preparation
+limit; its provider test is pending, separately from its passing QA fixture.
+
+The current deployment has Google browser OAuth configured. GitHub browser OAuth
+is **not configured** (`oauthReady: false`); its tested API path uses an explicit
+preview token connection. Native GitHub sign-in and configured PODS GitHub OAuth
+are both required before claiming the complete Codespaces one-click flow.
+
 ## Database durability
 
 Container data lives beneath Cloud Shell's persistent home or Codespaces'

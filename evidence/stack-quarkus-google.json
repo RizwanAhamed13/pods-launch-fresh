@@ -1,0 +1,82 @@
+{
+  "scope": "Real developer URL to prepared Quarkus JVM artifact, followed by native Google browser product; existing authorized Google connection reused.",
+  "browser": {
+    "before": 0,
+    "afterWrite": 1,
+    "afterReload": 1,
+    "afterFullStopAndRelaunch": 1
+  },
+  "measuredWarmBrowser": {
+    "clickToSavedProductMs": 9923,
+    "savedValue": 1,
+    "method": "Wall clock from launch click to native preview navigation and visible saved-value assertion within one browser tool call."
+  },
+  "attempts": [
+    {
+      "id": "lXZIFuJXwbAvXy0fiZqC7_olhRkExbee",
+      "status": "stopped",
+      "createdAt": 1791040432673,
+      "providerReadyAt": 1791040435749,
+      "readyAt": 1791040478681,
+      "error": null,
+      "timings": {
+        "downloadMs": 638,
+        "imagesMs": 34982,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 41024,
+        "cacheHit": false
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 46008
+    },
+    {
+      "id": "AeIYANwbgksbkblZ2ZYhHtEii1wPj8Q9",
+      "status": "stopped",
+      "createdAt": 1791040583818,
+      "providerReadyAt": 1791040586854,
+      "readyAt": 1791040592260,
+      "error": null,
+      "timings": {
+        "downloadMs": 182,
+        "imagesMs": 57,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 3626,
+        "cacheHit": true
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 8442
+    },
+    {
+      "id": "r7Z7fQNlAJbrN5fCYN7lt0NDZsOx-C7L",
+      "status": "ready",
+      "createdAt": 1791040720343,
+      "providerReadyAt": 1791040723319,
+      "readyAt": 1791040728175,
+      "error": null,
+      "timings": {
+        "downloadMs": 211,
+        "imagesMs": 57,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 3647,
+        "cacheHit": true
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 7832
+    }
+  ],
+  "independentUser": {
+    "distinctPodsSessions": 2,
+    "developerBrowser": "Codex in-app browser",
+    "userBrowser": "Chrome",
+    "initialState": "Google and GitHub disconnected; no preparation or launch history",
+    "authorization": "Selected the same already-authorized Google account in the real account chooser; no new scope grant",
+    "result": "PODS continued automatically through the callback to the native product; no terminal, token entry or manual installation",
+    "before": 1,
+    "afterWrite": 2,
+    "afterReload": 2,
+    "scope": "Separate PODS/browser session using the same Google identity and compute; not proof of a second Google account."
+  }
+}
