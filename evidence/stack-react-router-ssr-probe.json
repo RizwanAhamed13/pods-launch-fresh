@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-10-03T23:54:24.128Z",
+  "scope": "Existing real isolated SSR artifact; no production import and no native provider claim",
+  "artifactSha256": "fc3321fce18b8e95853e1bbfc0b691a71410f4aacb77543ccb608d2073129d4e",
+  "result": {
+    "fixture": "react-router",
+    "productRendered": true,
+    "initialCounter": 0,
+    "scripts": [
+      {
+        "path": "/assets/root-Q1OWNSXF.js",
+        "status": 200,
+        "contentType": "text/javascript; charset=utf-8",
+        "bytes": 688
+      },
+      {
+        "path": "/assets/entry.client-BuSCv7hK.js",
+        "status": 200,
+        "contentType": "text/javascript; charset=utf-8",
+        "bytes": 224210
+      }
+    ],
+    "passed": true,
+    "scope": "Authenticated HTTP server-rendered fixture and client entry assets; not browser hydration, interaction or database persistence"
+  },
+  "validation": {
+    "localTests": 114,
+    "aswinTests": 114,
+    "probeRevision": "18026bb",
+    "liveRuntimeUnchanged": "5e5b4a0",
+    "qaAppStopped": true
+  }
+}

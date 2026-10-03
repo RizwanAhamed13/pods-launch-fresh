@@ -1,0 +1,26 @@
+{
+  "recordedAt": "2026-10-03T23:52:25.258Z",
+  "scope": "Existing real isolated Astro artifact; no production import and no native provider claim",
+  "artifactSha256": "58b8f6175336d5eccff13617a72af5cd061e88c2bb846825b4e6de3bec31589d",
+  "result": {
+    "fixture": "astro",
+    "productRendered": true,
+    "initialCounter": 0,
+    "inlineClient": true,
+    "scripts": [],
+    "dynamicRender": {
+      "first": "2026-10-03T23:52:25.232Z",
+      "second": "2026-10-03T23:52:25.256Z",
+      "passed": true
+    },
+    "passed": true,
+    "scope": "Authenticated HTTP fresh server-rendered Astro fixture and inline client delivery; not browser execution, interaction or database persistence"
+  },
+  "validation": {
+    "localTests": 113,
+    "aswinTests": 113,
+    "probeRevision": "17afaf1",
+    "liveRuntimeUnchanged": "5e5b4a0",
+    "qaAppStopped": true
+  }
+}

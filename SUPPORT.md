@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **111 passing
+later passing attempts do not erase them. Automated coverage is **114 passing
 checks locally and on aswin**. Native coverage is 25 Google browser fixtures and
 25 Codespaces HTTP/protocol fixtures; 30 await native acceptance. Codespaces
 native browser authorization and interaction remain pending.
@@ -1227,3 +1227,19 @@ Codespaces HTTP/protocol acceptance. Overall coverage is **55 isolated fixtures*
 **25 native Google browser fixtures**, **25 Codespaces HTTP/protocol fixtures**
 and **30 awaiting native acceptance**. Source remains 5,487 physical lines with
 111 passing checks at runtime `5e5b4a0`. Evidence: `evidence/stack-alpine-*.json`.
+
+## Astro and React Router native probe preparation
+
+The HTTP probe now covers all five standalone SSR fixtures. Astro verifies the
+rendered counter, inline client delivery and advancing server timestamps on two
+requests. React Router verifies the rendered counter and requests its actual root
+and client entry modules. External, missing and wrong-framework entry points are
+rejected. Native tests also verify the selected prepared app matches the fixture.
+
+Both new checks passed against existing genuine isolated artifacts, with clean
+application stops afterward. All 114 automated checks pass locally and on aswin.
+These isolated probe results do not add native acceptance: Astro and React Router
+still require actual URL preparation and provider/browser launches.
+Source totals 5,523 physical lines, now including the four-line Astro source file
+previously omitted by the extension filter. Evidence: `stack-astro-ssr-probe.json`
+and `stack-react-router-ssr-probe.json`.

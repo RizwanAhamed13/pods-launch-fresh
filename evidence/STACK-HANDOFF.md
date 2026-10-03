@@ -19,12 +19,32 @@ historical results remain in SUPPORT.md, PRODUCT.md and their evidence files.
   echo, express, fastapi, fastify, fiber, flask-mariadb, flask-mongodb7, flask-redis,
   flask-sqlite, flask-valkey, go, gradio, hono, koa, ktor, micronaut, nestjs,
   phoenix, php, react-router, rocket, sinatra, streamlit, symfony.
-- 5,487 physical source lines: 2,944 product/tooling, 1,476 tests, 903 examples,
+- 5,523 physical source lines: 2,960 product/tooling, 1,492 tests, 907 examples,
   164 browser tools. code-lines.json states the exclusions.
-- Latest source/runtime5e5b4a0:111 automated checks passed locally/aswin.
+- Latest source18026bb:114 automated checks passed locally/aswin. Live runtime remains5e5b4a0; changes only affect native QA probes.
   MainPID946172. Public /support now55isolated/25native.
 
-## Latest completed gate: native Alpine
+## Current gate: SSR native probe preparation
+
+- 17afaf1 adds Astro fresh-render/inline-client HTTP checks; 18026bb adds React
+  Router root/client entry checks. Both probes passed actual isolated artifacts;
+  both QA apps stopped. New controls reject missing/wrong/external client entries,
+  stale/static Astro output, unrelated pages and missing inline code.
+- All114 automated tests pass locally/aswin; logs
+  /tmp/pods-ssr-complete-tests-{local,aswin}.txt. Source/runtime not restarted.
+- Evidence stack-{astro,react-router}-ssr-probe.json. Browser/native acceptance
+  stays25 until actual native results. Current native SSR harness now supports
+  nuxt/next/sveltekit/astro/react-router and validates the selected app folder.
+- Source count now includes four-line .astro file previously excluded by filter.
+- Astro developer draft is still unsubmitted; watcher73961 remains live for the
+  ordinary00:00:50.774UTC preparation slot. Do not duplicate or bypass quota.
+- /tmp/pods-capture-ssr.py captures readonly, whitelisted build/launch evidence;
+  run on aswin with fixture astro or react-router after preparation.
+- CUA helper measurePreparedCounter is hardcoded to Open PODS counter; use the
+  actual Astro launcher button label after observing it. Keep continuous timings.
+- GitHub browser remained at two-factor page on23:57UTC read; no repeated request.
+
+## Previous completed gate: native Alpine
 
 - Watcher 58240 finished successfully at 23:44:11 UTC: account 2/global 2, no
   active builds. Actual form submitted once at 23:44:24.906 UTC; build 35.172s,
@@ -47,7 +67,7 @@ historical results remain in SUPPORT.md, PRODUCT.md and their evidence files.
   browser testing remains pending.
 - Next: Astro, then React Router to finish SSR families. Astro draft staged but
   not submitted. Match the native protocol probe to its real fixture before
-  testing; the existing SSR probe currently names only Nuxt/Next/SvelteKit.
+  testing; the SSR probe now includes both Astro and React Router, with real isolated checks.
 - Next ordinary quota slot 00:00:50.774 UTC. Read-only watcher 73961 is live with
   a 20-minute bound; do not duplicate it or submit before availability.
 
