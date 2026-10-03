@@ -75,8 +75,8 @@ function application() {
   const downloadSize = downloadBytes >= 1024 * 1024 ? `${(downloadBytes / 1024 / 1024).toFixed(1)} MB` : `${(downloadBytes / 1024).toFixed(1)} KB`;
   const size = element('div'); size.append(element('dt', 'Prepared download'), element('dd', downloadSize)); facts.append(size);
 }
-async function ensureConnection(intent) {
-  if (me.connections.find(c => c.provider === intent.provider)?.connected) return true;
+async function ensureConnection(intent, reconnect = false) {
+  if (!reconnect && me.connections.find(c => c.provider === intent.provider)?.connected) return true;
   storage.set('pods-pending', { ...intent, createdAt: Date.now() });
   if (me.connections.find(c => c.provider === intent.provider)?.oauthReady) location.assign('/auth/' + intent.provider + '?returnTo=' + encodeURIComponent(location.pathname));
   else {
@@ -160,11 +160,18 @@ async function history() {
   }
   return rows;
 }
-async function errorNotice(error) {
+async function errorNotice(error, intent, reconnected) {
   setBusy(false); notice(error.message);
-  if (error.status === 401) { me = await api('/api/me'); connections(); }
+  if (error.status === 401) {
+    try {
+      me = await api('/api/me'); connections();
+      // Submission rejects expired authorization before creating work. Resume once,
+      // carrying the limit through OAuth navigation so failed authorization cannot loop.
+      if (intent && !reconnected) await ensureConnection({ ...intent, reconnected: true }, true);
+    } catch { notice(error.message + ' Refresh the page to reconnect.'); }
+  }
 }
-async function launch() {
+async function launch(reconnected = false) {
   if (!app || busy) return;
   notice(''); const intent = { action: 'launch', provider: selected(), appId: app.id };
   if (!await ensureConnection(intent)) return;
@@ -173,26 +180,28 @@ async function launch() {
     const state = await api('/api/launches', { method: 'POST', body: JSON.stringify({ provider: intent.provider, appId: app.id }) });
     storage.set('pods-active', { id: state.id, appId: app.id, autoOpen: true }); showLaunch(state);
     if (!ended(state.status)) poll('launch');
-  } catch (error) { autoOpen = false; await errorNotice(error); }
+  } catch (error) { autoOpen = false; await errorNotice(error, intent, reconnected); }
 }
-async function prepare() {
+async function prepare(reconnected = false) {
   if (busy || !$('build-form').reportValidity()) return;
   notice(''); const intent = { action: 'build', provider: selected(), url: $('repository').value.trim(), folder: $('folder').value.trim() };
   if (!await ensureConnection(intent)) return;
   storage.remove('pods-pending'); setBusy(true); $('build-result').hidden = true;
   try { const state = await api('/api/builds', { method: 'POST', body: JSON.stringify(intent) }); showBuild(state); if (!ended(state.status)) poll('build'); }
-  catch (error) { await errorNotice(error); }
+  catch (error) { await errorNotice(error, intent, reconnected); }
 }
 
 $('build-form').addEventListener('submit', event => { event.preventDefault(); prepare(); });
-$('launch').addEventListener('click', launch);
+$('launch').addEventListener('click', () => launch());
 document.querySelectorAll('input[name="provider"]').forEach(input => input.addEventListener('change', () => { notice(''); connections(); }));
 $('token-form').addEventListener('submit', async event => {
   event.preventDefault(); const button = event.submitter; button.disabled = true; notice('');
   try {
     await api('/api/connections/' + selected(), { method: 'POST', body: JSON.stringify({ token: $('token').value.trim() }) });
     $('token').value = ''; me = await api('/api/me'); connections(); $('token-connect').open = false;
-    if (page.view === 'develop') await prepare(); else await launch();
+    const pending = pendingForPage(storage.get('pods-pending'), page);
+    const reconnected = pending?.provider === selected() && pending.reconnected === true;
+    if (page.view === 'develop') await prepare(reconnected); else await launch(reconnected);
   } catch (error) { notice(error.message); } finally { button.disabled = false; }
 });
 $('disconnect').addEventListener('click', async () => {
@@ -234,17 +243,22 @@ try {
     const current = rows.find(row => row.appId === app.id && (!expectedProvider || row.provider === expectedProvider) && !['failed', 'stopped'].includes(row.status));
     if (current) { provider(current.provider); connections(); autoOpen = saved?.id === current.id && saved?.autoOpen === true; showLaunch(current); if (!ended(current.status)) poll('launch'); }
   }
+  // History describes earlier work; the interrupted draft also survives cancellation.
+  if (pending?.action === 'build') {
+    $('repository').value = pending.url; $('folder').value = pending.folder;
+    if (pending.folder) document.querySelector('.folder-options').open = true;
+  }
   initializing = false; $('workspace').inert = false; $('workspace').removeAttribute('aria-busy'); $('loading').hidden = true; setBusy(busy);
   if (query.has('error')) {
     storage.remove('pods-pending');
-    const account = pending ? (pending.action === 'build' ? 'GitHub' : providerName(pending.provider)) + ': ' : '';
+    const account = pending ? providerName(pending.provider) + ': ' : '';
     notice(account + query.get('error') + (page.view === 'develop' ? ' Select Prepare application to connect again.' : ' Choose your compute and connect again to open the application.'));
   }
   else if (pending && query.get('connected') === pending.provider && me.connections.some(c => c.provider === pending.provider && c.connected)) {
     storage.remove('pods-pending');
-    if (pending.action === 'build') { $('repository').value = pending.url; $('folder').value = pending.folder; await prepare(); }
+    if (pending.action === 'build') await prepare(pending.reconnected === true);
     else if (active && !ended(active.status)) { autoOpen = true; storage.set('pods-active', { id: active.id, appId: app.id, autoOpen: true }); await poll('launch'); }
-    else await launch();
+    else await launch(pending.reconnected === true);
   }
   if (query.has('error') || query.has('connected')) window.history.replaceState(null, '', location.pathname);
 } catch (error) { $('loading').hidden = true; notice('Could not load PODS. Refresh this page to retry. ' + error.message); }

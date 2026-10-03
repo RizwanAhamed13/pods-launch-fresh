@@ -1,0 +1,193 @@
+{
+  "recordedAt": "2026-10-03T16:15:02.373284+00:00",
+  "scope": "Real PODS browser UI and server with simulated OAuth/providers/preparation on loopback. Notes artifact, runner, save and persistence are real local execution. Not native Google or GitHub provider evidence.",
+  "observedBeforeFix": "During the real optimized Angular preparation, an expired Google connection caused the first click to fail with 401. A second click was needed to reconnect and resume.",
+  "checks": [
+    {
+      "name": "Expired Google preparation reconnects on first click and resumes the exact new draft",
+      "passed": true,
+      "repository": "https://github.com/example/reconnected",
+      "folder": "apps/new",
+      "responseSequence": [
+        401,
+        202
+      ],
+      "newBuilds": 1,
+      "extraPrepareClicks": 0
+    },
+    {
+      "name": "Cancel reconnect preserves repository, folder and selected Google provider despite older build history",
+      "passed": true,
+      "repository": "https://github.com/example/cancelled",
+      "folder": "apps/keep-draft",
+      "newBuilds": 0
+    },
+    {
+      "name": "Repository validation error is displayed without automatic retry",
+      "passed": true,
+      "status": 400,
+      "repository": "https://example.com/invalid",
+      "newBuilds": 0
+    },
+    {
+      "name": "Repeated Google preparation expiration stops after one automatic recovery",
+      "passed": true,
+      "responseSequence": [
+        401,
+        401
+      ],
+      "recoveryAuthorizations": 1,
+      "newBuilds": 0
+    },
+    {
+      "name": "Expired GitHub launch reconnects on first click and automatically opens the exact product",
+      "passed": true,
+      "appId": "field-notes",
+      "responseSequence": [
+        401,
+        202
+      ],
+      "newLaunches": 1,
+      "extraLaunchClicks": 0,
+      "priorLaunchStopped": true,
+      "savedNoteVisible": "Reconnect preserves product"
+    },
+    {
+      "name": "Repeated GitHub launch expiration stops after one automatic recovery",
+      "passed": true,
+      "responseSequence": [
+        401,
+        401
+      ],
+      "recoveryAuthorizations": 1,
+      "newLaunches": 0
+    },
+    {
+      "name": "Cancelling first preparation preserves and expands a nonempty folder with no build history",
+      "passed": true,
+      "repository": "https://github.com/example/first-draft",
+      "folder": "apps/visible-after-cancel",
+      "newBuilds": 0
+    }
+  ],
+  "fixtureReports": {
+    "developer": {
+      "requests": [
+        {
+          "path": "/api/builds",
+          "status": 202
+        },
+        {
+          "path": "/api/builds",
+          "status": 401
+        },
+        {
+          "path": "/api/builds",
+          "status": 202
+        },
+        {
+          "path": "/api/builds",
+          "status": 401
+        },
+        {
+          "path": "/api/builds",
+          "status": 400
+        },
+        {
+          "path": "/api/builds",
+          "status": 401
+        },
+        {
+          "path": "/api/builds",
+          "status": 401
+        }
+      ],
+      "authorizations": [
+        "google",
+        "google",
+        "google",
+        "google",
+        "google"
+      ],
+      "builds": [
+        {
+          "id": "HfV8H8o3dik6KeDt5crYyJQttI07rRjD",
+          "repository": {
+            "url": "https://github.com/example/reconnected",
+            "owner": "example",
+            "name": "reconnected",
+            "folder": "apps/new",
+            "key": "a025fa849a45041cf6310b90"
+          },
+          "status": "ready"
+        },
+        {
+          "id": "h73ua2r7MULZFSokx35QnO7r2x0Nz4_F",
+          "repository": {
+            "url": "https://github.com/example/earlier",
+            "owner": "example",
+            "name": "earlier",
+            "folder": "apps/old",
+            "key": "13762d08dbbd217f6221f4a3"
+          },
+          "status": "ready"
+        }
+      ],
+      "launches": []
+    },
+    "launch": {
+      "requests": [
+        {
+          "path": "/api/launches",
+          "status": 202
+        },
+        {
+          "path": "/api/launches",
+          "status": 401
+        },
+        {
+          "path": "/api/launches",
+          "status": 202
+        },
+        {
+          "path": "/api/launches",
+          "status": 401
+        },
+        {
+          "path": "/api/launches",
+          "status": 401
+        }
+      ],
+      "authorizations": [
+        "github",
+        "github",
+        "github",
+        "github"
+      ],
+      "builds": [],
+      "launches": [
+        {
+          "id": "AJZFqvvOGiOq89L1H8bzkoXd8mRtdgyr",
+          "appId": "field-notes",
+          "provider": "github",
+          "status": "stopped"
+        },
+        {
+          "id": "mW-5hvENS546yMulrMIJfQ2wEQFusNFy",
+          "appId": "field-notes",
+          "provider": "github",
+          "status": "stopped"
+        }
+      ]
+    }
+  },
+  "reproduce": [
+    "Run node scripts/browser-fixture.mjs and open http://127.0.0.1:19888/develop or /launch/field-notes. Complete a simulated provider authorization first.",
+    "Leave the page showing Connected. POST http://127.0.0.1:19888/fixture/expire-connections from the test controller, then click Prepare/Open once. Complete the simulated authorization and verify automatic continuation.",
+    "Use ?repeat=1 on that fixture-only POST to expire every action. Verify one authorization return then a visible error, with no redirect loop or new job. POST without repeat clears this mode.",
+    "Read /fixture/report to compare accepted/rejected submission counts and created jobs. Cancellation and invalid repository submissions must not create work."
+  ],
+  "fixtureRepair": "Enabled the real notes example API in the loopback product proxy so browser save/read can be verified. Fixture process was restarted between developer and launch phases; reports are retained separately.",
+  "harnessNotes": "An AX disclosure button was not found by a DOM button-role selector; using its current AX control expanded it. A DOM input-value evaluation timed out; the current AX tree and server job metadata verified the exact draft instead.",
+  "productionConnectionExpiryForced": false
+}

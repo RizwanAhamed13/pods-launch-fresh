@@ -23,6 +23,8 @@ Live Codespaces API launches and authenticated HTTP interactions pass for Flask/
 ## Product Principles
 Build once. Keep user compute user-owned. Show honest progress and timings. Never label a local test as provider validation.
 
+An expired connection on submission now reconnects and resumes the selected preparation or launch automatically, with one recovery attempt to prevent authorization loops. Cancelled authorization preserves the developer's draft. Browser regression evidence covers both actions, cancellation, repeated expiration and repository validation; provider authorization and compute were simulated for this regression (`evidence/browser-reconnect.json`).
+
 ## Combined Goal — URL Preparation and Developer/User Journeys
 
 The repository-URL workflow and the developer/user workflow are one product, not separate implementations.

@@ -168,7 +168,7 @@ test('submission API requires account authorization and CSRF, protects jobs, and
   const root = await temp();
   let delivered;
   const provider = { validate: async () => ({ name: 'developer' }), launch: async (token, config) => { delivered = config; return {}; } };
-  const { server, closeResources } = await createApp({ data: root, secret: 'ab'.repeat(32),
+  const { server, store, closeResources } = await createApp({ data: root, secret: 'ab'.repeat(32),
     providers: { github: provider, google: provider },
     buildAdapter: { ...idleAdapter, build: async repo => output(repo) } });
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
@@ -178,6 +178,12 @@ test('submission API requires account authorization and CSRF, protects jobs, and
   try {
     assert.equal(me.buildsEnabled, true);
     assert.equal((await req('/api/builds', { url: repository.url })).status, 401);
+    await req('/api/connections/github', { token: 'x'.repeat(30) });
+    const expire = () => { for (const c of store.list('connection')) store.put('connection', c.id, { ...c, expiresAt: Date.now() - 1 }); };
+    expire();
+    assert.equal((await req('/api/builds', { url: repository.url })).status, 401);
+    assert.equal(store.list('build').length, 0); // Reauthorization can resume without duplicating work.
+    assert.equal((await (await req('/api/me')).json()).connections.find(c => c.provider === 'github').connected, false);
     await req('/api/connections/github', { token: 'x'.repeat(30) });
     assert.equal((await req('/api/builds', { url: repository.url }, { 'X-Pods-CSRF': 'bad' })).status, 403);
     assert.equal((await req('/api/builds', { url: 'http://localhost/' })).status, 400);
@@ -189,6 +195,10 @@ test('submission API requires account authorization and CSRF, protects jobs, and
     for (let i = 0; i < 100; i++) { ready = await (await req('/api/builds/' + job.id)).json(); if (ready.status === 'ready') break; await sleep(10); }
     assert.equal(ready.status, 'ready');
     assert.equal((await fetch(origin + '/launch/' + ready.app.id)).status, 200);
+    expire();
+    assert.equal((await req('/api/launches', { appId: ready.app.id, provider: 'github' })).status, 401);
+    assert.equal(store.list('launch').length, 0); assert.equal(delivered, undefined);
+    await req('/api/connections/github', { token: 'x'.repeat(30) });
     const launched = await req('/api/launches', { appId: ready.app.id, provider: 'github' });
     assert.equal(launched.status, 202);
     assert.equal(delivered.sha256, ready.app.sha256);

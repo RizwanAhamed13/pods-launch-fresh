@@ -17,6 +17,8 @@ const artifact = await readFile(join(root, 'artifacts', sourceManifest.sha256 + 
 const historyDelay = Number(process.env.PODS_FIXTURE_HISTORY_DELAY_MS || 0);
 const runners = [];
 const processes = new Map();
+const requests = [], authorizations = [];
+let expireEveryAction = false;
 let productPort = 19900;
 const adapter = {
   initialize: async () => {}, close: async () => {},
@@ -44,7 +46,7 @@ const oauth = Object.fromEntries(['github', 'google'].map(provider => [provider,
   id: 'browser-fixture', secret: 'not-a-real-secret', authorize: origin + '/fixture/authorize/' + provider,
   exchange: origin + '/fixture/token', scope: 'fixture',
 }]));
-const { server, closeResources } = await createApp({ data: root, origin, secret: randomBytes(32).toString('hex'), buildAdapter: adapter,
+const { server, store, closeResources } = await createApp({ data: root, origin, secret: randomBytes(32).toString('hex'), buildAdapter: adapter,
   providers: { github: compute('github'), google: compute('google') }, oauth,
   oauthFetch: async () => new Response(JSON.stringify({ access_token: 'simulated-browser-token', expires_in: 3600 })),
 });
@@ -52,19 +54,41 @@ const handler = server.listeners('request')[0];
 server.removeAllListeners('request');
 server.on('request', async (req, res) => {
   const url = new URL(req.url, origin);
+  // Loopback QA controls only; these routes do not exist in the production server.
+  const expireConnections = () => { for (const c of store.list('connection')) store.put('connection', c.id, { ...c, expiresAt: Date.now() - 1 }); };
+  if (req.method === 'POST' && url.pathname === '/fixture/expire-connections') {
+    expireEveryAction = url.searchParams.get('repeat') === '1'; expireConnections();
+    res.setHeader('Content-Type', 'application/json'); return res.end(JSON.stringify({ expired: true, expireEveryAction }));
+  }
+  if (req.method === 'GET' && url.pathname === '/fixture/report') {
+    res.setHeader('Content-Type', 'application/json');
+    return res.end(JSON.stringify({ requests, authorizations,
+      builds: store.list('build').map(({ id, repository, status, appId }) => ({ id, repository, status, appId })),
+      launches: store.list('launch').map(({ id, appId, provider, status }) => ({ id, appId, provider, status })),
+    }));
+  }
+  if (req.method === 'POST' && ['/api/builds', '/api/launches'].includes(url.pathname)) {
+    if (expireEveryAction) expireConnections();
+    res.once('finish', () => requests.push({ path: url.pathname, status: res.statusCode }));
+  }
   if (req.method === 'GET' && ['/api/builds', '/api/launches'].includes(url.pathname)) await sleep(historyDelay);
   const authorization = /^\/fixture\/authorize\/(github|google)$/.exec(url.pathname);
   if (authorization) {
+    authorizations.push(authorization[1]);
     const callback = `/auth/${authorization[1]}/callback?state=${encodeURIComponent(url.searchParams.get('state'))}`;
     res.setHeader('Content-Type', 'text/html');
     return res.end(`<!doctype html><html><head><title>Simulated provider authorization</title></head><body><h1>Simulated ${authorization[1]} authorization</h1><p>Browser QA only. No real provider account or compute is used.</p><a href="${callback}&code=fixture-code">Authorize test account</a><p><a href="${callback}&error=access_denied">Cancel authorization</a></p></body></html>`);
   }
   const product = /^\/fixture\/product\/([A-Za-z0-9_-]{32})\//.exec(url.pathname);
-  if (product || url.pathname.startsWith('/assets/')) {
+  if (product || url.pathname.startsWith('/assets/') || url.pathname === '/api/notes') {
     const requestedPort = product ? processes.get(product[1]) : productPort;
     if (!requestedPort) { res.writeHead(404); return res.end('Test product unavailable'); }
     try {
-      const response = await fetch(`http://127.0.0.1:${requestedPort}${product ? '/' : url.pathname}`);
+      const chunks = []; for await (const chunk of req) chunks.push(chunk);
+      const response = await fetch(`http://127.0.0.1:${requestedPort}${product ? '/' : url.pathname}`, {
+        method: req.method, headers: { 'Content-Type': req.headers['content-type'] || 'application/json' },
+        body: ['GET', 'HEAD'].includes(req.method) ? undefined : Buffer.concat(chunks),
+      });
       res.writeHead(response.status, { 'Content-Type': response.headers.get('content-type') || 'text/plain' });
       return res.end(Buffer.from(await response.arrayBuffer()));
     } catch { res.writeHead(502); return res.end('Test product stopped'); }
