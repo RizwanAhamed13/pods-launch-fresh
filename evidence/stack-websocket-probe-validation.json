@@ -1,0 +1,10 @@
+{
+  "scope": "Shared Bun WebSocket fixture probe and failure cleanup validation; positive native Bun launch remains pending.",
+  "syntax": "node --check scripts/probe-websocket.mjs and scripts/live-codespaces.mjs passed",
+  "isolatedPositive": "stack-websocket-probe-qa.json",
+  "nativeNegative": "stack-websocket-probe-negative.json",
+  "cliGuards": "stack-websocket-probe-guards.json",
+  "nativeBunStatus": "pending normal developer build window",
+  "nextBuildWindowUtc": "2026-10-03T17:17:40.701Z",
+  "liveWaitSession": 96624
+}

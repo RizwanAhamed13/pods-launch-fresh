@@ -15,7 +15,7 @@ GitHub browser OAuth/sign-in and Cloud Shell VM replacement remain unverified.
   reusable launches and meaningful browser interaction. They are not 54 frameworks.
   SUPPORT.md and stack-coverage.json preserve exact coverage and historical failures.
 - 54 automated checks pass locally/aswin (container-liveness-unit-tests*.txt).
-- 4335 source lines: 2474 product/tooling, 836 tests, 868 examples, 157 browser tools.
+- 4417 source lines: 2556 product/tooling, 836 tests, 868 examples, 157 browser tools.
   code-lines.json defines the count; docs/config/generated files are excluded.
 - Native Google browser product families: Flask/PostgreSQL,
   React/Express/PostgreSQL, Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite,
@@ -52,6 +52,33 @@ GitHub browser OAuth/sign-in and Cloud Shell VM replacement remain unverified.
   user, reusing existing worker-redis images. Its synthetic artifact adds a
   migration service and fault-injectable healthcheck; it never publishes a version.
 
+## WebSocket probe gate completed; native Bun next
+
+- New scripts/probe-websocket.mjs is self-contained and serialized through the
+  authorized Codespace SSH connection. PODS_WEBSOCKET_CHECK=1 is exclusive with
+  counter/worker flags and requires two launches. Stop cleanup is now confirmed
+  on both successful and failed probes.
+- Real prepared Bun QA: WebSocket ping/pong, increment 0→1, socket reconnect,
+  HTTP readback, full application restart retains1, second increment2. Isolated
+  data identity websocket-probe-bun; both QA applications stopped.
+- Negative native control against healthy Gin: HTTP ready, WebSocket handshake
+  rejected as expected, stop confirmed. This is expected validation, not a Bun
+  failure. Gin saved4 unchanged; no Codespaces application remains running.
+- Evidence stack-websocket-probe-{qa,negative,guards,validation}.json; product
+  runtime unchanged, so previous 54 automated product checks remain applicable.
+- Positive native Bun is pending. Quota observer exec session96624 waits until
+  2026-10-03T17:17:40.701Z, confirmed live. Poll the same handle; do not duplicate
+  builds or change identities. Developer tab13 currently completed worker.
+- At that time submit examples/stacks/bun using the existing Google developer
+  account and public fixture revision00df7c0, once. No need to rebuild QA fixtures.
+  Stop the current Google worker through its PODS controls before launching Bun.
+  Browser acceptance: button enables after WebSocket opens, increment, reload,
+  full stop/relaunch retains counter, new increment. Measure actual enabled
+  interaction continuously, not the identical launcher heading.
+- Run Codespaces with PODS_WEBSOCKET_CHECK=1 and the new prepared app ID; native
+  browser authentication remains separate. Current QA/probe sessions71335/7982
+  completed (negative intentionally exit1, cleanup confirmed).
+
 ## Next gates and pending user actions
 
 1. Continue remaining representative native framework/provider coverage; a
@@ -75,7 +102,8 @@ Origin: https://collection-conferences-ages-clearly.trycloudflare.com
 Server localhost8787, PID708830, exec session83087. Use scripts/serve.sh if a
 restart is necessary; it adds /home/aswin/pods-tools/bin to PATH. Ordinary SSH
 needs that PATH for node/npm/gh. Never print .env, tokens or OAuth codes.
-No active build/QA/probe job; session80247 finished successfully.
+No active build/QA/probe job; session80247 finished successfully. Build-window
+observer session96624 is live until 2026-10-03T17:17:40.701Z. It does not submit a job.
 
 Current Google worker launch: NnAO3SfXlvZx_PL8G9cQMJUe9tkieXmi, ready with
 GOOGLE WORKER TWO, expires 2026-10-03T17:32:54.669Z. Previous worker launch

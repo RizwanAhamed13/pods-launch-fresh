@@ -346,6 +346,14 @@ later and preserved the completed job across relaunch. A successful one-time
 migration remained valid. The initial delayed-failure test is retained alongside
 the passing result in `evidence/container-liveness*.json`.
 
+The next native WebSocket gate uses `PODS_WEBSOCKET_CHECK=1`: real message-based
+counter updates, socket reconnect and SQLite persistence after application
+restart. Its shared probe passes against the prepared Bun artifact in isolated
+QA. A healthy Gin application on Codespaces is a verified negative control:
+HTTP readiness succeeds, the WebSocket connection fails, and cleanup is confirmed.
+This does not yet add native Bun support evidence. See
+`evidence/stack-websocket-probe-{qa,negative,guards}.json`.
+
 ## Constraints and resolved failures
 
 - MongoDB 8 refuses to start on aswin's Linux 7.0.0 kernel. Its documented

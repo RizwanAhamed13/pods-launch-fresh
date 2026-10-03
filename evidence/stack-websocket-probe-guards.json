@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "flags": {
+        "PODS_WEBSOCKET_CHECK": "1",
+        "PODS_WORKER_CHECK": "1"
+      },
+      "rejectedBeforeNetworking": true,
+      "message": "Error: Choose one fixture check: counter, worker or WebSocket"
+    },
+    {
+      "flags": {
+        "PODS_WEBSOCKET_CHECK": "1",
+        "PODS_COUNTER_CHECK": "1"
+      },
+      "rejectedBeforeNetworking": true,
+      "message": "Error: Choose one fixture check: counter, worker or WebSocket"
+    },
+    {
+      "flags": {
+        "PODS_WEBSOCKET_CHECK": "1",
+        "PODS_SINGLE_LAUNCH": "1"
+      },
+      "rejectedBeforeNetworking": true,
+      "message": "Error: Persistence checking requires two Codespaces launches"
+    }
+  ]
+}

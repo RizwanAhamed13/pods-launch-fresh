@@ -95,6 +95,8 @@ gh auth token | node scripts/live-codespaces.mjs https://your-pods-host
 gh auth token | PODS_COUNTER_CHECK=1 node scripts/live-codespaces.mjs https://your-pods-host github prepared-app-id
 # Our Flask/worker/Redis fixture: completed job, stop/relaunch, retained job, new job.
 gh auth token | PODS_WORKER_CHECK=1 node scripts/live-codespaces.mjs https://your-pods-host github prepared-worker-app-id
+# Our compiled Bun fixture: WebSocket message, reconnect and saved SQLite counter.
+gh auth token | PODS_WEBSOCKET_CHECK=1 node scripts/live-codespaces.mjs https://your-pods-host github prepared-bun-app-id
 # Cloud Shell, using an already authorized Google CLI account:
 gcloud auth print-access-token | node scripts/live-codespaces.mjs https://your-pods-host google
 ```
@@ -111,6 +113,16 @@ completed result and latest-job response, then checks the same job after a full
 stop/relaunch before submitting another. It tests completed-job persistence,
 not exactly-once processing or recovery of an interrupted job. Counter and
 worker checks are mutually exclusive and require two Codespaces launches.
+
+`PODS_WEBSOCKET_CHECK=1` selects the Bun fixture check instead: ping/reply,
+counter update over WebSocket, reconnect, HTTP readback, and retained value after
+confirmed stop/relaunch. The shared `scripts/probe-websocket.mjs` runs inside the
+authorized Codespace via SSH. This checks the protocol on user compute; native
+browser/proxy behavior is a separate gate. All three fixture flags are mutually
+exclusive. Failure cleanup now waits for a confirmed stop and records cleanup
+errors. The shared protocol probe has passed against the real prepared Bun app
+in isolated QA; a healthy native Gin app correctly failed its WebSocket handshake
+and was stopped. Positive native Bun validation is still pending.
 
 The launcher monitors every prepared service before reporting ready and during
 heartbeats. Missing, stopped, paused or unhealthy workers/databases fail the

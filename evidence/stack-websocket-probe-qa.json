@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "scope": "real prepared Bun artifact in isolated QA; native provider tests separate",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "productDocument": true,
+      "before": 0,
+      "pong": "pong",
+      "afterMessage": 1,
+      "reconnectPong": "pong",
+      "afterRead": 1,
+      "passed": true,
+      "timings": {
+        "cacheHit": false,
+        "downloadMs": 62,
+        "imageCacheHits": 1,
+        "imagesMs": 37,
+        "runtimeReadyMs": 4869
+      }
+    },
+    {
+      "scenario": "repeat-launch",
+      "productDocument": true,
+      "before": 1,
+      "pong": "pong",
+      "afterMessage": 2,
+      "reconnectPong": "pong",
+      "afterRead": 2,
+      "passed": true,
+      "timings": {
+        "cacheHit": true,
+        "downloadMs": 5,
+        "imageCacheHits": 1,
+        "imagesMs": 38,
+        "runtimeReadyMs": 4259
+      },
+      "expectedAfterRelaunch": 1
+    }
+  ]
+}
