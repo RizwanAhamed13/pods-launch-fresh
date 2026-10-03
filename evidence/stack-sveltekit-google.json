@@ -1,0 +1,82 @@
+{
+  "recordedAt": "2026-10-03T19:46:39.975343+00:00",
+  "scope": "Real Cloud Shell browser product after developer URL submission; both launches stopped.",
+  "results": [
+    {
+      "id": "iY1dbf39abexg5PSHpGGbP46okMcGZFB",
+      "appId": "repo-1478ac009026ec2c5c411578-f58a3e357955-2a2796da3771",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791056602799,
+      "providerReadyAt": 1791056605547,
+      "readyAt": 1791056632238,
+      "updatedAt": 1791056711503,
+      "environment": "default",
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 563,
+        "imagesMs": 22303,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 35,
+        "imageDownloadMs": 18472,
+        "imageLoadMs": 3776,
+        "runtimeReadyMs": 25144,
+        "cacheHit": false
+      },
+      "totalMs": 29439,
+      "deliveryMs": 26691
+    },
+    {
+      "id": "e4BUN09KYzxm8SGLfQ1esAAWH7Sgg8Se",
+      "appId": "repo-1478ac009026ec2c5c411578-f58a3e357955-2a2796da3771",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791056724730,
+      "providerReadyAt": 1791056726994,
+      "readyAt": 1791056730251,
+      "updatedAt": 1791056755430,
+      "environment": "default",
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 183,
+        "imagesMs": 68,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 68,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2116,
+        "cacheHit": true
+      },
+      "totalMs": 5521,
+      "deliveryMs": 3257
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "image-absent",
+      "visibleMs": 30912,
+      "successfulClickObservedMs": 38854,
+      "before": 0,
+      "after": 1,
+      "afterReload": 1,
+      "timingScope": "Page visibility continuous; later successful click includes tool boundary, an observation upper bound."
+    },
+    {
+      "scenario": "cached-relaunch",
+      "visibleMs": 6512,
+      "restoredStateMs": 6517,
+      "successfulClickMs": 6811,
+      "before": 1,
+      "after": 2,
+      "afterReload": 2,
+      "timingScope": "Continuous click-to-product and successful interaction."
+    }
+  ],
+  "browserErrorOrWarningLogsAtFinalCheck": [],
+  "persistenceScope": "Browser localStorage retained through reload and app restart. This is not backend database durability.",
+  "passed": true
+}

@@ -80,7 +80,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **70 passing
+later passing attempts do not erase them. Automated coverage is **71 passing
 checks locally and on aswin**.
 
 ## Actual repository URL to native product
@@ -612,3 +612,31 @@ Readiness was 53.049s for resumed compute and 6.789s for the cached relaunch. Th
 are authenticated SSH HTTP/SQLite checks; native Codespaces browser acceptance
 remains pending. See `evidence/stack-codespaces-affinity.json` and
 `evidence/stack-codespaces-affinity-live.json`.
+
+
+## SvelteKit native product acceptance
+
+The real developer form prepared `examples/stacks/sveltekit` from public revision
+`f58a3e3` in **85.789 seconds**, producing a **98.4 MiB** reusable image. No isolated
+QA artifact was imported into production.
+
+| Scenario | Verified result |
+| --- | --- |
+| Cloud Shell, existing compute / image absent | Health 29.439s; browser product visible 30.912s; first observed click changed 0→1 by 38.854s, including a tool boundary |
+| Cloud Shell, cached relaunch | Health 5.521s; visible 6.512s; restored state 6.517s; successful click 1→2 in 6.811s, measured continuously |
+| Cloud Shell state | Reload retained 1; full app stop/relaunch retained 1; subsequent click/reload retained 2 |
+| Codespaces, existing compute / image absent | Health 38.635s; real SSR document and both start/app client-entry requests passed |
+| Codespaces, cached relaunch | Health 6.329s; repeated SSR and client-entry checks passed |
+
+The SvelteKit fixture persists state in browser localStorage; it does not prove
+backend database durability. No browser errors or warnings were present at the
+final Cloud Shell check. All four previews stopped cleanly. Codespaces checks
+used authenticated SSH HTTP, so native browser authorization and hydration remain
+pending. Image download took 18.472s on Google and 18.459s on Codespaces; image
+loading took 3.776s and 6.668s respectively. Both first-image launches exceeded 20s.
+
+The SSR probe now handles SvelteKit's inline dynamic imports and checks both
+same-origin start/app entry assets. Negative controls reject incomplete or external
+bootstrap imports, and a fresh Node process executes the serialized native command.
+All 71 automated checks pass locally and on aswin. Evidence:
+`evidence/stack-sveltekit-{url,google,codespaces}.json`.

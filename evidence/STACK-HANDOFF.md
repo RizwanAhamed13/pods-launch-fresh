@@ -9,17 +9,39 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 4801 physical source lines: 2678 product/tooling, 1065 tests, 894 examples,
+- 4813 physical source lines: 2682 product/tooling, 1073 tests, 894 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 70 automated checks pass locally and on aswin after Codespace affinity fixb02fea1.
+- 71 automated checks pass locally and on aswin after SvelteKit SSR helper95effd3.
 - Native Google browser families: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
-  FastAPI JSON API/SQLite, Next.js: fourteen.
-- Same fourteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
+  FastAPI JSON API/SQLite, Next.js, SvelteKit: fifteen.
+- Same fifteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: Codespace data affinity
+## Latest completed gate: SvelteKit native acceptance
+
+- Core95effd3 pushed and synced. Only QA helper/tests changed; production runtime
+  remainsb02fea1/PID806978, no restart needed. All71 tests pass local/aswin.
+- Same-account quota read allowed normal submission (account2/global2/active0).
+  Actual developer form submitted once at19:40:45.822UTC; buildJoTXa4uehPSLWKRMm7p_gedWbMIciPdN
+  prepared examples/stacks/sveltekit publicf58a3e3 in85.789s. Observer65864 ended0.
+  App repo-1478ac009026ec2c5c411578-f58a3e357955-2a2796da3771, image103148461bytes.
+- Google existing compute/image absent: health29.439s; product visible30.912s;
+  first observed click0→1 by38.854s includes tool boundary. Reload retained1.
+  Cached: health5.521s, visible6.512s, restored state6.517s, successful1→2 click6.811s
+  measured continuously. Reload retained2; final browser error/warn logs empty.
+- Codespaces existingcompute/image absent: health38.635s; cached6.329s.
+  Actual SSR document and both dynamic start/app entry assets passed twice.
+  Harness33854 ended0; all4launches stopped. Native CS browser remains pending.
+- SvelteKit stores localStorage, not a backend DB. No DB durability claim.
+  Google image download18.472s/load3.776s; Codespaces18.459s/6.668s. First-image
+  transfers did not overlap. Both uncached launches exceed20s on existing compute.
+- SSR probe now checks SvelteKit inline dynamic import entries and rejects missing/
+  external bootstrap assets. Serialized-command regression executes all3frameworks.
+- Evidence stack-sveltekit-{url,google,codespaces}.json; native15/55,40remaining.
+
+## Previous completed gate: Codespace data affinity
 
 - Coreb02fea1 pushed, synced and deployed. Three regressions failed before the fix;
   all70 tests pass on local/aswin after it. No runner changes.
@@ -224,14 +246,15 @@ Always verify PID file, cwd, cmdline
 and listener before targeted restart. Use scripts/serve.sh from the repository;
 Node/gh in /home/aswin/pods-tools/bin. Do not restart with active builds/launches.
 
-No live PODS apps after affinity checks; data retained. Latest Next Codespace
+No live PODS apps after SvelteKit checks; data retained. Latest SvelteKit Codespace
+pods-launch-containers-97qw56gjg47gf7vrv. Latest Next Codespace
 pods-launch-containers-69rw5vx4xp46c5qw5; API Codespace
 pods-launch-containers-97qw56gjg47gf7vrv; prior image-phase Codespace
 pods-launch-containers-69rw5vx4xp46c5qw5. API Google2/Codespaces4; earlier
 Google Django3/Rails2/Bun2, Codespaces Django4/Rails4/Bun2.
 
-CUA bindings: stackQa6 IAB2tab13 completed Next build; accountWorker IAB2tab12 stopped
-Next launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
+CUA bindings: stackQa6 IAB2tab13 completed SvelteKit build; accountWorker IAB2tab12 stopped
+SvelteKit launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
 connection; nativeGithubKeep IAB2tab10; cloudLifecycle IAB2tab14.
 After compaction call rewriteDocumentation; re-mark pending tabs. Locator timeouts
 do not cancel launches: never resubmit because an observation timed out.

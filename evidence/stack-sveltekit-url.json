@@ -1,0 +1,59 @@
+{
+  "recordedAt": "2026-10-03T19:43:12.418504+00:00",
+  "scope": "Actual developer form submission after normal same-account quota availability; production isolated preparation, no imported QA artifact.",
+  "quotaBefore": {
+    "accountRecent": 2,
+    "globalRecent": 2,
+    "activeBuilds": 0
+  },
+  "attempts": [
+    {
+      "id": "JoTXa4uehPSLWKRMm7p_gedWbMIciPdN",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/sveltekit",
+        "key": "1478ac009026ec2c5c411578"
+      },
+      "status": "ready",
+      "createdAt": 1791056445822,
+      "startedAt": 1791056445832,
+      "finishedAt": 1791056531621,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-1478ac009026ec2c5c411578-f58a3e357955-2a2796da3771",
+      "app": {
+        "id": "repo-1478ac009026ec2c5c411578-f58a3e357955-2a2796da3771",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "2a2796da3771c7c52f1ba41ddc8daee1902228a0ba8603b732685015a1f078eb",
+        "bytes": 277,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-1478ac009026ec2c5c411578",
+        "images": [
+          {
+            "id": "sha256:9f57ce545eee1d144889465fe8ae64fdced1f416c4ca11433c599b12a2283c0e",
+            "sha256": "d8426e78f2a64b4e5857872f6ef8a641127a2bd3cb9b0405ecb86a3d64c24e98",
+            "bytes": 103148461
+          }
+        ],
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/sveltekit",
+          "revision": "f58a3e35795578fb1f036369ebdcdd992a074bf8"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "SvelteKit counter"
+        },
+        "preparedAt": "2026-10-03T19:42:11.257Z"
+      }
+    }
+  ],
+  "buildMs": 85789
+}

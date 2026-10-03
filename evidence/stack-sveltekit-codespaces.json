@@ -1,0 +1,130 @@
+{
+  "testedAt": "2026-10-03T19:46:06.748Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "VbGya_XQaoqyVD25CHY3ak-wOopswwyz",
+      "dataKey": "repo-1478ac009026ec2c5c411578",
+      "appId": "repo-1478ac009026ec2c5c411578-f58a3e357955-2a2796da3771",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "2a2796da3771c7c52f1ba41ddc8daee1902228a0ba8603b732685015a1f078eb",
+      "images": [
+        {
+          "id": "sha256:9f57ce545eee1d144889465fe8ae64fdced1f416c4ca11433c599b12a2283c0e",
+          "sha256": "d8426e78f2a64b4e5857872f6ef8a641127a2bd3cb9b0405ecb86a3d64c24e98",
+          "bytes": 103148461
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791056703285,
+      "updatedAt": 1791056741920,
+      "expiresAt": 1791058503285,
+      "environment": "pods-launch-containers-97qw56gjg47gf7vrv",
+      "providerReadyAt": 1791056703770,
+      "previewUrl": "https://pods-launch-containers-97qw56gjg47gf7vrv-8080.app.github.dev",
+      "lastSeenAt": 1791056741920,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 411,
+        "imagesMs": 25174,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 29,
+        "imageDownloadMs": 18459,
+        "imageLoadMs": 6668,
+        "runtimeReadyMs": 33378,
+        "cacheHit": false
+      },
+      "readyAt": 1791056741920,
+      "deliveryMs": 38150,
+      "totalMs": 38635,
+      "ssrCheck": {
+        "fixture": "sveltekit",
+        "productRendered": true,
+        "initialCounter": 0,
+        "scripts": [
+          {
+            "path": "/_app/immutable/entry/start.BOTPromz.js",
+            "status": 200,
+            "contentType": "text/javascript",
+            "bytes": 522
+          },
+          {
+            "path": "/_app/immutable/entry/app.BI78U5nd.js",
+            "status": 200,
+            "contentType": "text/javascript",
+            "bytes": 1063
+          }
+        ],
+        "passed": true,
+        "scope": "Authenticated HTTP server-rendered fixture and client entry assets; not browser hydration, interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "p6ij574vLRHgF-gicHQsEVC8pqVt211h",
+      "dataKey": "repo-1478ac009026ec2c5c411578",
+      "appId": "repo-1478ac009026ec2c5c411578-f58a3e357955-2a2796da3771",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "2a2796da3771c7c52f1ba41ddc8daee1902228a0ba8603b732685015a1f078eb",
+      "images": [
+        {
+          "id": "sha256:9f57ce545eee1d144889465fe8ae64fdced1f416c4ca11433c599b12a2283c0e",
+          "sha256": "d8426e78f2a64b4e5857872f6ef8a641127a2bd3cb9b0405ecb86a3d64c24e98",
+          "bytes": 103148461
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791056752380,
+      "updatedAt": 1791056758709,
+      "expiresAt": 1791058552380,
+      "environment": "pods-launch-containers-97qw56gjg47gf7vrv",
+      "providerReadyAt": 1791056752895,
+      "previewUrl": "https://pods-launch-containers-97qw56gjg47gf7vrv-8080.app.github.dev",
+      "lastSeenAt": 1791056758709,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 183,
+        "imagesMs": 45,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 45,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 1610,
+        "cacheHit": true
+      },
+      "readyAt": 1791056758709,
+      "deliveryMs": 5814,
+      "totalMs": 6329,
+      "ssrCheck": {
+        "fixture": "sveltekit",
+        "productRendered": true,
+        "initialCounter": 0,
+        "scripts": [
+          {
+            "path": "/_app/immutable/entry/start.BOTPromz.js",
+            "status": 200,
+            "contentType": "text/javascript",
+            "bytes": 522
+          },
+          {
+            "path": "/_app/immutable/entry/app.BI78U5nd.js",
+            "status": 200,
+            "contentType": "text/javascript",
+            "bytes": 1063
+          }
+        ],
+        "passed": true,
+        "scope": "Authenticated HTTP server-rendered fixture and client entry assets; not browser hydration, interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    }
+  ]
+}
