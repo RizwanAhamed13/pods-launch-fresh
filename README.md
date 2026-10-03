@@ -18,6 +18,30 @@ cp .env.example .env
 
 Use a stable HTTPS URL for provider callbacks. `.env` and `.data` are deliberately ignored by Git. The deployed aswin preview uses a temporary Cloudflare tunnel; its hostname is not a durable production URL.
 
+For the aswin checkout at `~/pods-launch-fresh`, the repository includes a user
+service that restarts the control plane after process failure. Before switching
+from a foreground process, wait for active builds and launches to finish and stop
+that verified process cleanly. Do not start two servers against the same database.
+
+```sh
+export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+mkdir -p ~/.config/systemd/user
+install -m 644 deploy/pods-launch-fresh.service ~/.config/systemd/user/
+systemd-analyze --user verify ~/.config/systemd/user/pods-launch-fresh.service
+systemctl --user daemon-reload
+systemctl --user enable --now pods-launch-fresh.service
+systemctl --user show pods-launch-fresh.service -p ActiveState -p MainPID -p NRestarts
+```
+
+Use `systemctl --user restart pods-launch-fresh.service` for later deployments,
+after checking for active work. `MainPID` is authoritative; the old manual PID
+file is not used by this service. Logs are available through
+`journalctl --user -u pods-launch-fresh.service`. Restart attempts are bounded to
+five starts per minute. Boot/logout persistence requires user lingering, which
+is already enabled for aswin. This unit supervises the control plane only; the
+temporary tunnel and a stable public hostname still need a durable deployment.
+
 ## Prepare an application
 
 PODS detects conventional frontend and backend projects without requiring a PODS configuration file. It reads existing package/build manifests, production start scripts, conventional entrypoints, Dockerfiles and supported Compose definitions. React, Angular, Vue and other browser frameworks are compiled on the server; server-rendered frameworks retain their prepared server runtime. Python, JVM, Go, Rust, .NET, PHP and Ruby projects use automatic container recipes where their conventions match. [SUPPORT.md](SUPPORT.md) lists the tested frameworks and the limits of each evidence layer. Unsupported or ambiguous projects fail with a specific explanation.

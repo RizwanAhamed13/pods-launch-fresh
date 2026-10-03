@@ -1,0 +1,17 @@
+[Unit]
+Description=PODS application preparation and launch service
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Type=exec
+WorkingDirectory=%h/pods-launch-fresh
+ExecStart=%h/pods-launch-fresh/scripts/serve.sh
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=30
+KillMode=control-group
+UMask=0077
+
+[Install]
+WantedBy=default.target
