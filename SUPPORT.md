@@ -79,7 +79,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **54 passing
+later passing attempts do not erase them. Automated coverage is **56 passing
 checks locally and on aswin**.
 
 ## Actual repository URL to native product
@@ -346,12 +346,29 @@ later and preserved the completed job across relaunch. A successful one-time
 migration remained valid. The initial delayed-failure test is retained alongside
 the passing result in `evidence/container-liveness*.json`.
 
-The next native WebSocket gate uses `PODS_WEBSOCKET_CHECK=1`: real message-based
-counter updates, socket reconnect and SQLite persistence after application
-restart. Its shared probe passes against the prepared Bun artifact in isolated
-QA. A healthy Gin application on Codespaces is a verified negative control:
-HTTP readiness succeeds, the WebSocket connection fails, and cleanup is confirmed.
-This does not yet add native Bun support evidence. See
+The WebSocket gate uses `PODS_WEBSOCKET_CHECK=1`: real message-based counter
+updates, socket reconnect and SQLite persistence after application restart.
+The actual developer URL submission prepared Bun in **106.981 seconds** and
+produced a 62.4 MiB image. Codespaces reached health in **24.716 seconds** with
+that image absent and **7.138 seconds** cached. Both authenticated SSH probes
+passed: ping/pong, WebSocket counter update, reconnect and HTTP readback;
+the second launch retained count 1 before incrementing to 2. Both stopped.
+This proves the protocol on user compute, not native browser/proxy authorization.
+
+The first native Cloud Shell Bun attempt failed safely because port 8080 was
+occupied. The earlier worker had stopped; another browser session had since
+launched a new worker on the same environment. Its actual product remained
+visible. PODS now prevents cross-session concurrent launches for the same
+provider account before dispatch, without revealing or handing over the other
+session’s launch. Existing active records acquire a private account lock on
+upgrade when their connection identity is available. Legacy records whose
+identity has already been swept still rely on the runner’s port check.
+
+Cloud Shell Bun interaction remains pending until that worker can be stopped.
+A healthy Gin application on Codespaces remains the negative protocol control:
+HTTP succeeds, its WebSocket handshake fails, and cleanup is confirmed. See
+`evidence/stack-bun-{url,codespaces,google}.json`,
+`evidence/compute-account-lock-tests.txt`, and
 `evidence/stack-websocket-probe-{qa,negative,guards}.json`.
 
 ## Constraints and resolved failures

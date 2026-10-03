@@ -194,7 +194,11 @@
       "serverEvidence": "stack-matrix-14.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-14.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-bun-url.json",
+        "stack-bun-codespaces.json",
+        "stack-bun-google.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-05.json",
@@ -208,7 +212,8 @@
           "evidence": "stack-matrix-14.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeProviderScope": "Codespaces authenticated SSH WebSocket/HTTP and SQLite restart passed. Native Cloud Shell attempt failed on another session\u2019s occupied port; native browser acceptance remains pending."
     },
     {
       "fixture": "deno",

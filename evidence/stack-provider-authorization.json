@@ -14,7 +14,13 @@
   "cloudShellReplacement": {
     "status": "awaiting_explicit_restart_confirmation",
     "observedDialog": "Restarting terminates the session and running processes, provisions a new VM, and preserves the home directory.",
-    "baseline": "Current worker-redis native product shows GOOGLE WORKER TWO after completed jobs, reload and full stop/relaunch retained GOOGLE WORKER ONE. Gin file value 2, Blazor SQLite 3, Angular SQLite 2, Laravel SQLite 1 and Quarkus SQLite 2 remain stored; those products are stopped.",
+    "baseline": "New worker launch gW5Ob4iItkBOdF9Cwdf5qGTq6CEVBu_v started from another session and is still running; native product reload showed HELLO PODS. Earlier GOOGLE WORKER ONE/TWO had survived full restart. Gin file 2, Blazor SQLite 3, Angular SQLite 2, Laravel SQLite 1 and Quarkus SQLite 2 remain stored; those products are stopped.",
     "actionTaken": "Restart confirmation dialog opened; final Restart not clicked."
+  },
+  "cloudShellBun": {
+    "status": "awaiting_permission_to_stop_newer_worker",
+    "evidence": "stack-bun-google.json",
+    "accountConflictFix": "compute-account-lock-live.json",
+    "request": "Asked whether the newer worker preview may be stopped for Bun native testing; no answer yet. Saved Redis jobs would remain."
   }
 }

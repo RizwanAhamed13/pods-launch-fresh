@@ -1,0 +1,74 @@
+{
+  "scope": "Native Google Cloud Shell Bun attempt; failed before application start. No WebSocket acceptance claim.",
+  "attempts": [
+    {
+      "id": "CKlLEhjY6a8zrjhuUZ-Ov9rDt9CzcTii",
+      "appId": "repo-f8398873a1ed16dd986aa442-00df7c09ea97-84fa7d76242e",
+      "provider": "google",
+      "status": "failed",
+      "createdAt": 1791048063908,
+      "updatedAt": 1791048068265,
+      "providerReadyAt": 1791048066407,
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "lastSeenAt": 1791048068265,
+      "error": "Port 8080 is already in use; stop the existing application first",
+      "timings": {
+        "downloadMs": 473,
+        "cacheHit": false
+      },
+      "environment": "default",
+      "expiresAt": 1791049863908
+    }
+  ],
+  "priorWorker": {
+    "id": "NnAO3SfXlvZx_PL8G9cQMJUe9tkieXmi",
+    "appId": "repo-90eed92544a3c9d01cc828e7-00df7c09ea97-19cac81e0f89",
+    "provider": "google",
+    "status": "stopped",
+    "createdAt": 1791046974669,
+    "updatedAt": 1791047648469,
+    "providerReadyAt": 1791046977259,
+    "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+    "stopRequested": true,
+    "lastSeenAt": 1791047648469,
+    "timings": {
+      "downloadMs": 513,
+      "imagesMs": 153,
+      "imageCacheHits": 2,
+      "runtimeReadyMs": 4445,
+      "cacheHit": true
+    },
+    "readyAt": 1791046982923,
+    "environment": "default",
+    "expiresAt": 1791048774669
+  },
+  "newWorker": {
+    "id": "gW5Ob4iItkBOdF9Cwdf5qGTq6CEVBu_v",
+    "appId": "repo-90eed92544a3c9d01cc828e7-00df7c09ea97-19cac81e0f89",
+    "provider": "google",
+    "status": "ready",
+    "createdAt": 1791047945739,
+    "updatedAt": 1791048464771,
+    "providerReadyAt": 1791047948381,
+    "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+    "lastSeenAt": 1791048464771,
+    "timings": {
+      "downloadMs": 241,
+      "imagesMs": 152,
+      "imageCacheHits": 2,
+      "runtimeReadyMs": 4282,
+      "cacheHit": true
+    },
+    "readyAt": 1791047954254,
+    "environment": "default",
+    "expiresAt": 1791049745739
+  },
+  "diagnosis": {
+    "priorWorkerConfirmedStopped": true,
+    "newWorkerDifferentBrowserSession": true,
+    "sameProviderPreview": true,
+    "nativePreviewReload": "Background worker + Redis product displayed HELLO PODS; Bun was not running.",
+    "cause": "The launch guard checked browser ownership, allowing separate sessions to dispatch to the same compute account.",
+    "action": "Requested confirmation to stop the newer preview; it has not been interrupted."
+  }
+}

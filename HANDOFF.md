@@ -1,4 +1,8 @@
-# PODS goal and deployment handoff
+# Original PODS checkpoint (historical)
+
+For current deployment, line count, tests and pending work, use
+[evidence/STACK-HANDOFF.md](evidence/STACK-HANDOFF.md). The details below
+record the original workflow milestone and are not current status.
 
 The active goal remains developer repository URL → server preparation → reusable launch link → separate user's authorized compute → actual usable product page. `PRODUCT.md` contains the completion gates. This goal is not complete.
 

@@ -1,0 +1,53 @@
+{
+  "scope": "Real developer form submission and isolated server preparation on aswin; native provider tests recorded separately.",
+  "attempts": [
+    {
+      "id": "MvtaB8aiHp80w0RPixBtZt8uFU-KbsA4",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/bun",
+        "key": "f8398873a1ed16dd986aa442"
+      },
+      "status": "ready",
+      "createdAt": 1791047893637,
+      "startedAt": 1791047893765,
+      "finishedAt": 1791048000746,
+      "error": null,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-f8398873a1ed16dd986aa442-00df7c09ea97-84fa7d76242e",
+      "app": {
+        "id": "repo-f8398873a1ed16dd986aa442-00df7c09ea97-84fa7d76242e",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "84fa7d76242ee17f6c9c7c43deb4e0643abef5aedaff2269cf83a4e7edd08ae0",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-f8398873a1ed16dd986aa442",
+        "images": [
+          {
+            "id": "sha256:e8fed8eb5bfd34996e35264b45953434dc3d3e9b3b02ebf2b0f6c66cf17d5717",
+            "sha256": "d2d7340dd4c7b1f10246697ebce7566dfb7caeec9d3432015891de0edd96d7f1",
+            "bytes": 65413111
+          }
+        ],
+        "productType": "web",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/bun",
+          "revision": "00df7c09ea971725adecb076d508f767fc6e1846"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Bun WebSocket + SQLite persistent counter"
+        },
+        "preparedAt": "2026-10-03T17:20:00.519Z"
+      }
+    }
+  ],
+  "buildMs": 106981
+}

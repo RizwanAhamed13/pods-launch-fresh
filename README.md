@@ -122,7 +122,10 @@ browser/proxy behavior is a separate gate. All three fixture flags are mutually
 exclusive. Failure cleanup now waits for a confirmed stop and records cleanup
 errors. The shared protocol probe has passed against the real prepared Bun app
 in isolated QA; a healthy native Gin app correctly failed its WebSocket handshake
-and was stopped. Positive native Bun validation is still pending.
+and was stopped. The real URL-prepared Bun artifact now also passes this probe
+on Codespaces, including full stop/relaunch persistence. Native browser/proxy
+acceptance remains separate: Cloud Shell hit another session’s running worker;
+GitHub browser authentication is still pending.
 
 The launcher monitors every prepared service before reporting ready and during
 heartbeats. Missing, stopped, paused or unhealthy workers/databases fail the

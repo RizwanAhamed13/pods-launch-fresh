@@ -1,0 +1,18 @@
+{
+  "testedAt": "2026-10-03T17:30:57.575756+00:00",
+  "revision": "46a907ceca94509df439867a2546594dc67c0ae3",
+  "serverPid": 723437,
+  "health": {
+    "ok": true
+  },
+  "runnerSha256": "75cfd87f58a02353b48a080ee480b9b5ac246e2e189474f57e318fa11fdc0a0f",
+  "regressionBeforeFix": "Second browser launch for the same compute account returned 202 instead of 409.",
+  "browserAfterFix": "An application is already running in this compute account from another session. Stop it there before starting another.",
+  "newBunLaunchCreated": false,
+  "existingWorkerId": "gW5Ob4iItkBOdF9Cwdf5qGTq6CEVBu_v",
+  "existingWorkerStatus": "ready",
+  "workerLastSeenAt": 1791048653891,
+  "existingWorkerAccountLockMigrated": true,
+  "otherSessionControlsExposed": false,
+  "scope": "Native developer-side browser rejected conflicting launch. Read-only store check confirmed no dispatch/new Bun record and preserved the existing worker. No native Bun success claim."
+}

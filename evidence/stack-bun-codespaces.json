@@ -1,0 +1,97 @@
+{
+  "testedAt": "2026-10-03T17:21:45.251Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "HguiqYZ1zMiQ0lwFWwUF5sA9xiPsRJZ-",
+      "appId": "repo-f8398873a1ed16dd986aa442-00df7c09ea97-84fa7d76242e",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "84fa7d76242ee17f6c9c7c43deb4e0643abef5aedaff2269cf83a4e7edd08ae0",
+      "images": [
+        {
+          "id": "sha256:e8fed8eb5bfd34996e35264b45953434dc3d3e9b3b02ebf2b0f6c66cf17d5717",
+          "sha256": "d2d7340dd4c7b1f10246697ebce7566dfb7caeec9d3432015891de0edd96d7f1",
+          "bytes": 65413111
+        }
+      ],
+      "status": "ready",
+      "createdAt": 1791048031856,
+      "updatedAt": 1791048056572,
+      "expiresAt": 1791049831856,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791048032258,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791048056572,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 911,
+        "imagesMs": 14788,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 18778,
+        "cacheHit": false
+      },
+      "readyAt": 1791048056572,
+      "deliveryMs": 24314,
+      "totalMs": 24716,
+      "websocketCheck": {
+        "productDocument": true,
+        "before": 0,
+        "pong": "pong",
+        "afterMessage": 1,
+        "reconnectPong": "pong",
+        "afterRead": 1,
+        "passed": true,
+        "scope": "Authenticated SSH WebSocket/HTTP on user compute; native provider browser/proxy tested separately"
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "G4NquD1LMiPh-QYBc1wX2z_wmYrNMx5w",
+      "appId": "repo-f8398873a1ed16dd986aa442-00df7c09ea97-84fa7d76242e",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "84fa7d76242ee17f6c9c7c43deb4e0643abef5aedaff2269cf83a4e7edd08ae0",
+      "images": [
+        {
+          "id": "sha256:e8fed8eb5bfd34996e35264b45953434dc3d3e9b3b02ebf2b0f6c66cf17d5717",
+          "sha256": "d2d7340dd4c7b1f10246697ebce7566dfb7caeec9d3432015891de0edd96d7f1",
+          "bytes": 65413111
+        }
+      ],
+      "status": "ready",
+      "createdAt": 1791048077460,
+      "updatedAt": 1791048084598,
+      "expiresAt": 1791049877460,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791048077981,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791048084598,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 557,
+        "imagesMs": 41,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 2012,
+        "cacheHit": true
+      },
+      "readyAt": 1791048084598,
+      "deliveryMs": 6617,
+      "totalMs": 7138,
+      "websocketCheck": {
+        "productDocument": true,
+        "before": 1,
+        "pong": "pong",
+        "afterMessage": 2,
+        "reconnectPong": "pong",
+        "afterRead": 2,
+        "passed": true,
+        "scope": "Authenticated SSH WebSocket/HTTP on user compute; native provider browser/proxy tested separately",
+        "expectedAfterRelaunch": 1
+      },
+      "statusAfterStop": "stopped"
+    }
+  ]
+}
