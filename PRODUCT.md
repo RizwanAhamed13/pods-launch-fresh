@@ -219,3 +219,20 @@ host reboot remain outside this recovery evidence. Static compiled-asset checks
 now cover all eight frontend fixtures, preparing the remaining native tests.
 Coverage remains 55 isolated / 20 native / 35 pending; 93 checks pass on both
 machines and the scoped source count is 5,276 lines.
+
+
+Standalone Svelte adds native fixture 21. Normal server preparation took36.962s
+under the supervised service. Actual Cloud Shell interaction took6.225s with the
+artifact absent and5.785s cached, retaining browser state through a full app
+restart. Codespaces served verified compiled assets in143.111s on new compute
+and6.469s cached; native browser execution remains pending. Current coverage is
+55 isolated /21 native /34 pending, with5,297 scoped physical source lines.
+Codespaces shutdown transitions now retain and resume the same environment once;
+three new regressions failed before the fix and all96 checks pass locally and on
+aswin.
+
+A controlled native Codespaces stop/relaunch passed on the fix, retaining the
+same environment and cached artifact:130.003s with compute restart, then6.818s
+cached. The initial provider state was not captured by the adapter; deterministic
+regressions establish the shutdown transition, while this live test establishes
+resume and compiled-product serving on the deployed revision.

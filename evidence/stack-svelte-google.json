@@ -1,0 +1,68 @@
+{
+  "recordedAt": "2026-10-03T22:26:26.350703+00:00",
+  "controlRevision": "0a6047b",
+  "scope": "Actual Svelte browser rendering and interaction at the native Cloud Shell preview. Browser localStorage persistence, not a backend database.",
+  "results": [
+    {
+      "id": "X2XJxWbl3xbePluwmlYw3iURVtYajlB-",
+      "appId": "repo-8c73fd9c46e6ce933c4a380e-9eee994ba7f7-c2611773269b",
+      "provider": "google",
+      "port": 28992,
+      "createdAt": 1791066312597,
+      "updatedAt": 1791066326543,
+      "status": "stopped",
+      "providerReadyAt": 1791066314998,
+      "readyAt": 1791066317354,
+      "timings": {
+        "downloadMs": 504,
+        "runtimeReadyMs": 763,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 4757,
+      "deliveryMs": 2356
+    },
+    {
+      "id": "DJ7cuZ2jC7hzczxuN4WOSXgDadwOwzHy",
+      "appId": "repo-8c73fd9c46e6ce933c4a380e-9eee994ba7f7-c2611773269b",
+      "provider": "google",
+      "port": 28992,
+      "createdAt": 1791066334698,
+      "updatedAt": 1791066348401,
+      "status": "stopped",
+      "providerReadyAt": 1791066337850,
+      "readyAt": 1791066339230,
+      "timings": {
+        "downloadMs": 191,
+        "runtimeReadyMs": 398,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 4532,
+      "deliveryMs": 1380
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "first-launch",
+      "visibleMs": 5752,
+      "interactionMs": 6225,
+      "before": 0,
+      "afterWrite": 1,
+      "afterReload": 1,
+      "passed": true
+    },
+    {
+      "scenario": "repeat-launch",
+      "visibleMs": 5503,
+      "interactionMs": 5785,
+      "before": 1,
+      "afterWrite": 2,
+      "afterReload": 2,
+      "passed": true
+    }
+  ],
+  "timingScope": "Continuous launch-click through meaningful interaction in a single browser tool call. Existing user compute; first artifact absent, then cached.",
+  "browserErrorOrWarningLogsAtFinalCheck": [],
+  "passed": true
+}

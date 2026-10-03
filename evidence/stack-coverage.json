@@ -1057,13 +1057,19 @@
       "serverEvidence": "stack-matrix-01.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-local.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-svelte-url.json",
+        "stack-svelte-google.json",
+        "stack-svelte-codespaces.json",
+        "codespaces-shutdown-live.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-01.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeProviderScope": "Native Cloud Shell browser Svelte interaction, reload and full app restart retained localStorage values. Codespaces authenticated HTTP product shell and compiled entry passed after new compute provisioning and a cached app restart; native Codespaces browser authorization/JavaScript interaction remain pending."
     },
     {
       "fixture": "sveltekit",

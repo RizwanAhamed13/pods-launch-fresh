@@ -1,0 +1,73 @@
+{
+  "recordedAt": "2026-10-03T22:32:23.087643+00:00",
+  "revision": "6cfadb6",
+  "rootCause": "Codespaces discovery excluded ShuttingDown; a saved environment transitioning to Shutdown after the initial lookup was only polled and never resumed.",
+  "officialStateSource": "https://github.com/github/rest-api-description/blob/main/descriptions/api.github.com/api.github.com.json",
+  "schema": "components.schemas.codespace.properties.state",
+  "change": "Reuse a matching ShuttingDown environment, wait for Shutdown, then request resume at most once within the existing deadline. Transient response reconciliation and immediate authorization/quota failures remain covered.",
+  "before": {
+    "regressions": 3,
+    "failed": 3,
+    "outcomes": [
+      "Discovery attempted an unexpected create instead of retaining the environment.",
+      "Saved environment timed out without resuming after shutdown.",
+      "Stuck shutdown attempted an unexpected create instead of reaching its deadline."
+    ]
+  },
+  "after": {
+    "localTests": 96,
+    "passed": 96,
+    "failed": 0,
+    "remoteTests": {
+      "passed": 96,
+      "failed": 0
+    }
+  },
+  "scope": "Deterministic provider-state regressions. The initial Svelte discovery response was not captured, so this does not establish why that live launch created new compute.",
+  "deployment": {
+    "at": "2026-10-03T22:33:21.171017+00:00",
+    "revision": "6cfadb6",
+    "oldPid": 901477,
+    "newPid": 913910,
+    "activeBuildsBefore": 0,
+    "activeLaunchesBefore": 0,
+    "healthStatus": 200,
+    "restartToLocalHealthMs": 325,
+    "sqliteQuickCheck": "ok",
+    "aswinTestsPassed": 96,
+    "publicHealthStatus": 200
+  },
+  "controlledNativeComputeStop": {
+    "at": "2026-10-03T22:33:59.988087+00:00",
+    "environment": "pods-launch-jj497rpqpp7529v7",
+    "before": "Available",
+    "afterStopRequest": "ShuttingDown",
+    "scope": "Controlled stop of the Svelte QA Codespace after both application launches stopped; state observed before launch harness, not an assertion of the state seen by the adapter."
+  },
+  "nativeStateObservations": [
+    {
+      "at": "2026-10-03T22:35:37.374949+00:00",
+      "environment": "pods-launch-jj497rpqpp7529v7",
+      "state": "Starting"
+    }
+  ],
+  "liveVerification": {
+    "evidence": "codespaces-shutdown-live.json",
+    "resumeHealthMs": 130003,
+    "repeatHealthMs": 6818,
+    "sameEnvironment": true,
+    "artifactCacheHitBoth": true,
+    "compiledEntryChecksPassedBoth": true,
+    "allStopped": true,
+    "port": 28992,
+    "visibilityAfterStop": "private",
+    "scope": "Controlled provider stop was observed ShuttingDown before launching; subsequently Starting and the same environment became ready. Exact initial adapter response was not captured. No native browser or backend database claim."
+  },
+  "finalAudit": {
+    "at": "2026-10-03T22:37:20.780733+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "accountBuildsLastHour": 3,
+    "globalBuildsLastHour": 3
+  }
+}

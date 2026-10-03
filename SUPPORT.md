@@ -85,8 +85,10 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **93 passing
-checks locally and on aswin**.
+later passing attempts do not erase them. Automated coverage is **96 passing
+checks locally and on aswin**. Native coverage is 21 Google browser fixtures and
+21 Codespaces HTTP/protocol fixtures; 34 await native acceptance. Codespaces
+native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
 
@@ -968,3 +970,46 @@ scope. The systemd unit is configuration and is excluded from that source count.
 
 Evidence: `evidence/control-service-recovery.json`,
 `evidence/service-recovery-codespaces.json`, `evidence/static-probe-expanded.json`.
+
+
+## Standalone Svelte native acceptance
+
+The normal developer form built `examples/stacks/svelte` at public `9eee994` in
+**36.962s**, producing a **16,155-byte** artifact under the supervised service.
+This used the ordinary account quota and isolated builder; no QA artifact was
+imported. All four launches stopped, and Codespaces port 28992 remained private.
+
+| Scenario | Result |
+| --- | --- |
+| Cloud Shell, artifact absent on existing compute | Health 4.757s; product visible 5.752s; successful click 6.225s |
+| Cloud Shell, cached after full app stop | Health 4.532s; product visible 5.503s; successful click 5.785s |
+| Codespaces, new compute and absent artifact | Health 143.111s; delivery 10.913s; authenticated compiled-entry check passed |
+| Codespaces, cached after full app stop | Health 6.469s; authenticated compiled-entry check passed |
+
+The real Google browser retained localStorage 0→1/reload 1, then retained 1 after
+restart and wrote 2/reload 2. This is browser storage, not a backend database.
+Both click measurements were continuous. Codespaces checked its product mount
+and 25,441-byte Svelte entry, without executing JavaScript in a native browser.
+Its new-compute launch exceeded 20 seconds; browser authorization remains pending.
+
+Coverage is **55 isolated browser fixtures**, **21 native Google browser fixtures**
+and **21 Codespaces HTTP/protocol fixtures**; **34** await native acceptance.
+Evidence: `evidence/stack-svelte-{url,google,codespaces}.json`.
+
+## Codespaces shutdown transition
+
+Core `6cfadb6` retains matching `ShuttingDown` environments and resumes the same
+one once it reaches `Shutdown`. An environment that never finishes shutdown
+reaches the bounded deadline without a create, start or app dispatch. Three
+regressions failed before the fix; all 96 checks pass locally and on aswin. The initial live
+Svelte discovery response was not recorded, so its new environment is not
+attributed to this bug. Evidence: `evidence/codespaces-shutdown.json`.
+
+The deployed fix also passed a controlled native compute stop/relaunch. GitHub
+reported `ShuttingDown` before submission, then `Starting`; the same Codespace
+served the Svelte compiled entry at **130.003s**, followed by **6.818s** cached.
+Both artifact-cache checks hit, both apps stopped, and port 28992 stayed private.
+This verifies live resume on the new revision; the exact state seen by the first
+adapter lookup was not captured. The 96 checks pass on aswin, and the service was
+restarted only after verifying no active builds or launches. Current source count:
+**5,297 physical lines**. Evidence: `evidence/codespaces-shutdown-live.json`.

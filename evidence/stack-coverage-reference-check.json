@@ -4,5 +4,7 @@
   "browserPassCount": 55,
   "retainedFailedFixture": "flask-mongodb",
   "allReferencedEvidenceExists": true,
-  "scope": "Coverage index and file existence only; no tests rerun or new runtime support inferred."
+  "scope": "Coverage index and file existence only; no tests rerun or new runtime support inferred.",
+  "nativeProviderFixtureCount": 21,
+  "pendingNativeProviderFixtureCount": 34
 }

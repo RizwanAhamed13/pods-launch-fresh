@@ -9,17 +9,60 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 5276 physical source lines: 2867 product/tooling, 1342 tests, 903 examples,
+- 5297 physical source lines: 2870 product/tooling, 1360 tests, 903 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 93 automated checks pass locally and on aswin at core44df802.
+- 96 automated checks pass locally and on aswin at core6cfadb6.
 - Native Google browser fixtures: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
-  FastAPI JSON API/SQLite, Next.js, SvelteKit, Flask/MySQL, Spring Boot/SQLite, standalone React, standalone Angular, standalone Vue: twenty.
-- Same twenty fixtures have Codespaces authenticated SSH HTTP/protocol checks;
+  FastAPI JSON API/SQLite, Next.js, SvelteKit, Flask/MySQL, Spring Boot/SQLite, standalone React, standalone Angular, standalone Vue, standalone Svelte: twenty-one.
+- Same twenty-one fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: supervised control plane and expanded frontend checks
+## Latest completed gate: native Svelte and Codespaces shutdown handling
+
+- Normal quota watcher26541 finished0 with account/global2 in the rolling hour.
+  The same developer submitted Svelte once in the actual form. Build36.962s,
+  artifact16,155bytes at public9eee994, under supervised runtime0a6047b.
+  This closes the new repository build under systemd gate. No QA imports.
+- Svelte apprepo-8c73fd9c46e6ce933c4a380e-9eee994ba7f7-c2611773269b,
+  dataKeyrepo-8c73fd9c46e6ce933c4a380e, private port28992.
+  Google first health4.757s/visible5.752s/write6.225s, counter0→1/reload1;
+  cached full restart health4.532s/visible5.503s/write5.785s, retained1→2/reload2.
+  Continuous browser observations, final logs[], bothstopped. localStorage, noDB.
+- Codespaces harness45019 finished0: newjj497rpqpp7529v7 health143.111s,
+  delivery10.913s; repeat6.469s. Both25,441byte Svelte compiled-entry checks
+  passed, bothstopped; provider port28992confirmedprivate. Browser pending.
+  Previous7vrw57jpjjppcww57 was Shutdown when read after creation; the initial
+  discovery response was not captured, so do not assign the creation a cause.
+- Core6cfadb6 handles official ShuttingDown state: discovered or preferred
+  environment waits for Shutdown, starts exactlyonce, keeps data affinity.
+  Stuckshutdown reachesdeadline withoutmutation. Three regressions red first,
+  then96localchecks pass. Existing transient read/resume/auth/quota tests pass.
+  Officialschema and scoped evidence in codespaces-shutdown.json.
+  All96aswinchecks passed. Verified idle901477/cwd/cmdline/listener; controlled
+  systemd restart nowPID913910, localhealth200 in325ms, SQLitequick_checkok.
+  Publichealth200. Nativeharness40481 finished0 aftercontrolledstop: provider
+  stateShuttingDown observed beforeharness, Starting later; samejj497rpqpp7529v7
+  ready130.003s/delivery25.206s, repeat6.818s. Bothcachehit/compiledentrypassed,
+  bothstopped, port28992private. Exactfirstadapterstateunrecorded; deterministic
+  tests prove branch, liverecheck provesresume/serving. Evidence
+  codespaces-shutdown-live.json. Final22:37:20UTCactivebuilds0/launches0.
+- Coverage55isolated/21native/34pending,5297physical source lines. Evidence
+  stack-svelte-{url,google,codespaces}.json. No source fixture changes.
+- Quota watcher4300 is LIVE; /tmp/pods-native-quota-watch.py is a readonly
+  sameSvelteaccount watcherevery30s with15minlimit. Last22:35UTCaccount3/global3,
+  nextordinaryslot22:43:58.739UTC. Resume samehandle at mostonce/minute. It exits
+  whenavailable; do not startduplicatewaiters. Freshcheckrequiredbeforesubmit.
+  Never alter limits, switch identity, or import QA artifacts to bypass quota.
+- Browser state: stackQa6tab13Svelteprepared; accountWorkertab12stoppedSvelte,
+  Sveltebrowsercount2. nativeGithubKeep10stillpending2FA andcloudLifecycle14
+  pendingRestart. Preserve four handoffs; do not repeat pending prompts.
+- Next native fixture: Preact after an ordinary quota slot. Static probe already
+  supports it. All34remaining native fixtures, nativeCodespacesbrowser/OAuth,
+  CloudShellVMreplacement, durableDNS/tunnel and cold20s remain open.
+
+## Previous gate: supervised control plane and expanded frontend checks
 
 - Core0a6047b adds deploy/pods-launch-fresh.service; systemd259 validation passed.
   Installed at /home/aswin/.config/systemd/user/pods-launch-fresh.service, enabled
@@ -44,7 +87,7 @@ Goal active. Do not claim universal support or complete provider/browser accepta
   browserwarn/errorlogs[]. Codespaces Vue health8.186s/7.095s, compiledentries
   passed, bothstopped. Harness56825ended0. Evidencecontrol-service-recovery.json
   and service-recovery-codespaces.json. Host reboot, active-work crash, tunnel
-  recovery and a new repository build under the service still need evidence.
+  recovery still need evidence. A new Svelte build passed in the later gate.
 - Core44df802 extends serialized staticprobe toSvelte/Preact/Solid/Lit/Alpine.
   All8frameworks exercised in unit and freshprocess tests, rejecting wrong
   framework bundles, external/uncompiled asset URLs and unknown/prototype names.
@@ -59,19 +102,8 @@ Goal active. Do not claim universal support or complete provider/browser accepta
   Repro script /tmp/pods-static-expanded-run.mjs exists locally,aswin,andQAguest;
   probe /tmp/pods-static-probe.mjs onaswin/guest. ExistingQAserveruntouched.
   Harness37068ended0 afterretrievingevidence; allfiveprobeappsconfirmedstopped.
-- Production quota watcher is LIVE exec26541: readonly SQLite checkevery30s,
-  normal sameVuepreparer accountlimit3/global12/noactivebuild. It exitsavailable
-  once capacityopens, or after20minutes. At lastpollitreportedwaiting3/hour,
-  nextslot22:23:20.702UTC. Resume that same handle at mostonce/minute, do not
-  start duplicatewaiters. This is an explicit verified wait, not a stopped job.
-  Noquota changes, identityswitching, orQAartifactimports allowed.
-- Next: when26541reportsavailable, normal /develop submitSvelte folder under
-  public9eee994. This both advances35remainingnativefixtures and validates the
-  isolatedbuilder path under systemd. Staticprobe supportsSvelte directly.
-  NativeCodespacesbrowser andCloudShellRestart prompts remain pending; do not
-  repeat requests. Preserve4browserhandoffs. stackQa6tab13Vuepreparationcomplete,
-  accountWorkertab12stoppedVue(nowbrowsercount3), nativeGithubKeep10pending2FA,
-  cloudLifecycle14pendingRestart. Goalactive; previous turnmadeverifiedprogress.
+- The normal quota watcher26541 completed0; Svelte preparation and native results
+  are recorded in the newer gate above. Four browser handoffs remain preserved.
 
 ## Previous gate: bounded provider recovery and native Vue
 
