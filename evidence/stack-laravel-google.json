@@ -1,0 +1,52 @@
+{
+  "scope": "Real developer URL to prepared Laravel + SQLite artifact followed by native Google browser product; existing authorized connection reused in independent Chrome session.",
+  "browser": {
+    "before": 0,
+    "afterWrite": 1,
+    "afterReload": 1,
+    "afterFullStopAndRelaunch": 1
+  },
+  "measuredWarmBrowser": {
+    "clickToSavedProductMs": 8187,
+    "savedValue": 1,
+    "method": "Wall clock from launch click to native preview navigation and visible saved-value assertion within one browser tool call."
+  },
+  "attempts": [
+    {
+      "id": "fDh6zovqVekgmmlz6qJ_hBeVDXW4Paas",
+      "status": "stopped",
+      "createdAt": 1791041417007,
+      "providerReadyAt": 1791041420376,
+      "readyAt": 1791041497747,
+      "error": null,
+      "timings": {
+        "downloadMs": 503,
+        "imagesMs": 70087,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 75813,
+        "cacheHit": false
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 80740
+    },
+    {
+      "id": "ZYI_cSqendsSgADqlWK1dGrayeehgxNH",
+      "status": "ready",
+      "createdAt": 1791041674540,
+      "providerReadyAt": 1791041676924,
+      "readyAt": 1791041680111,
+      "error": null,
+      "timings": {
+        "downloadMs": 204,
+        "imagesMs": 70,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 2020,
+        "cacheHit": true
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 5571
+    }
+  ]
+}

@@ -15,10 +15,10 @@ Public fixture commit: 00df7c0. Latest product fix: bb35fc0, pushed and deployed
   reusable artifact launches and browser interaction. See SUPPORT.md and
   stack-coverage.json; historical failures remain recorded.
 - 52 automated checks pass locally and on aswin. The current aswin rerun is recorded in
-  stack-unit-tests-aswin.txt. Source LOC 4116: 2314 product/tooling, 132 browser
+  stack-unit-tests-aswin.txt. Source LOC 4149: 2347 product/tooling, 132 browser
   tools, 802 tests, 868 example sources. code-lines.json defines the count.
-- React/Express/PostgreSQL, Angular SSR/SQLite, Flask/PostgreSQL and now
-  Quarkus/SQLite have native Google browser/product evidence. These results do
+- React/Express/PostgreSQL, Angular SSR/SQLite, Flask/PostgreSQL,
+  Quarkus/SQLite and Laravel/SQLite have native Google browser/product evidence. These results do
   not automatically cover the other frameworks or arbitrary applications.
 - Quarkus real developer URL preparation: 222.751 seconds. Native Google first
   launch: 46.008 seconds to ready. Cached: 8.442 seconds to ready and 9.923 seconds
@@ -38,15 +38,26 @@ Public fixture commit: 00df7c0. Latest product fix: bb35fc0, pushed and deployed
   continuation and distinct new repository/folder submission passed in the real
   browser UI. Browser fixture is now self-contained. See browser-initialization.json.
 
+- Laravel real developer URL preparation passed in 270.053 seconds after the
+  existing quota window opened. Cloud Shell uncached 80.740 seconds, cached
+  health 5.571 seconds and native saved product 8.187 seconds. Browser write
+  0→1/reload 1/full stop and relaunch 1 passed. Codespaces resumed/uncached
+  110.093 seconds, cached 6.777 seconds; authenticated HTTP write 0→1, confirmed
+  stop and fresh launch retained 1, then write/read 1→2. Native GitHub browser
+  still pending. Evidence: stack-laravel-{url,google,codespaces}.json.
+- Strengthened scripts/live-codespaces.mjs: stop confirmation and fresh-launch-ID
+  gates, optional PODS_COUNTER_CHECK=1 for fixture write/read/relaunch durability.
+  Verified against the real Laravel Codespace. No product runtime source changes
+  in this checkpoint; the prior 52-check product suite remains applicable.
+
 ## Pending actions
 
-1. Laravel real developer submission reached the existing hourly preparation
-   limit. Keep the rate limit; retry when its window resets. The Laravel QA
-   fixture already passes. See stack-laravel-url-pending.json.
+1. Continue representative native provider coverage; the Laravel gate is complete
+   for Google browser and Codespaces authenticated HTTP. No quota bypass needed.
 2. Cloud Shell VM replacement: a confirmation question is pending. The actual
    Restart dialog preserves home but terminates all processes and provisions a
    new VM. Do not click final Restart before the user approves. Current native
-   Quarkus SQLite baseline is 2. Do not delete/reset the home directory.
+   Laravel SQLite baseline is 1; previous Quarkus value 2 remains stored. Do not delete/reset the home directory.
 3. GitHub browser OAuth is not configured (public API oauthReady=false). Its
    access-token/API test path does not satisfy the one-click browser authorization
    goal. Native GitHub sign-in is also pending; do not repeat that earlier question
@@ -62,13 +73,13 @@ Server port 8787, last verified PID 445141. Use scripts/serve.sh for restart so
 set PATH explicitly for checks. Never print .env, tokens or authorization codes.
 Public frontend files are read per request, so this client fix required no restart.
 
-Quarkus app ID: repo-8a0fc5a97608c34acbbc9951-00df7c09ea97-e90b6e712c0c
-Google current launch belongs to the independent Chrome session, SQLite value 2.
-Codespace pods-launch-containers-69rw5vx4xp46c5qw5 currently serves Quarkus, value 1.
+Laravel app ID: repo-8781a389be8b5e500f4239b9-00df7c09ea97-a063e2512975
+Google current launch belongs to the independent Chrome session, SQLite value 1.
+Codespace pods-launch-containers-69rw5vx4xp46c5qw5 currently serves Laravel, value 2.
 These previews stop at their 30-minute deadlines; no pending matrix build job.
 
-CUA in-app browser 2: developerWide tab12 launch controls; stackQa6 tab13 Laravel
-rate-limit form; cloudLifecycle tab14 pending Restart confirmation; nativeGithubKeep
+CUA in-app browser 2: developerWide tab12 launch controls; stackQa6 tab13 completed Laravel
+preparation; cloudLifecycle tab14 pending Restart confirmation; nativeGithubKeep
 tab10 existing sign-in handoff. Chrome browser 1: independentUser tab2083874416
 is the verified native Google product. The duplicate Chrome GitHub sign-in tab and
 local regression browser were closed. Reapply handoff/deliverable marks each turn.

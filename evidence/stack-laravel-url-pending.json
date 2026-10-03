@@ -4,5 +4,6 @@
   "folder": "examples/stacks/laravel",
   "status": "rate_limited",
   "message": "Preparation limit reached. Please try again in an hour.",
-  "nextStep": "Retry after the existing account build quota window resets. Do not bypass it."
+  "nextStep": "Retry after the existing account build quota window resets. Do not bypass it.",
+  "resolution": "The existing quota window opened; a later real form submission passed. See stack-laravel-url.json and native provider evidence. The original observation above is retained."
 }

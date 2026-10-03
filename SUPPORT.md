@@ -158,8 +158,31 @@ in that browser journey.
 
 See `evidence/stack-quarkus-url.json`, `evidence/stack-quarkus-google.json`,
 `evidence/stack-quarkus-codespaces.json` and its interaction evidence.
-Laravel's native developer submission reached the existing hourly preparation
-limit; its provider test is pending, separately from its passing QA fixture.
+
+## Native Laravel workflow
+
+After the existing preparation quota window opened, the real developer form
+prepared Laravel + SQLite at revision `00df7c09ea97` in **270.053 seconds**. The
+222.1 MiB image was built once on aswin and reused on both providers.
+
+| Scenario | Observed result |
+| --- | --- |
+| Cloud Shell, uncached image | 80.740 seconds to ready; 70.087 seconds receiving/loading the image |
+| Cloud Shell, cached relaunch | 5.571 seconds to ready; **8.187 seconds** click-to-native product with saved data |
+| Cloud Shell, browser interaction | SQLite write 0→1, reload 1, full stop/relaunch 1 |
+| Codespaces, resumed compute and uncached image | 110.093 seconds to ready; 76.423 seconds receiving/loading the image |
+| Codespaces, cached relaunch | 6.777 seconds to ready |
+| Codespaces, authenticated HTTP interaction | Write/read 0→1, confirmed stop, a fresh launch retained 1, then write/read 1→2 |
+
+The Codespaces test now fails if stop is not confirmed, the repeat launch reuses
+the previous ID, or the saved counter does not survive. This is HTTP/database
+evidence inside the Codespace; native browser sign-in remains pending. The
+Cloud Shell browser measurement uses one continuous click/navigation/value check.
+Uncached launches exceed the 20-second target even when compute already exists.
+
+Evidence: `evidence/stack-laravel-url.json`, `evidence/stack-laravel-google.json`,
+`evidence/stack-laravel-codespaces.json`. The earlier rate-limit observation is
+retained in `evidence/stack-laravel-url-pending.json`; the quota was not bypassed.
 
 The current deployment has Google browser OAuth configured. GitHub browser OAuth
 is **not configured** (`oauthReady: false`); its tested API path uses an explicit

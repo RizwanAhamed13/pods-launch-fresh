@@ -1,0 +1,52 @@
+{
+  "scope": "Real developer form submission on aswin after the existing account quota window opened; earlier rate-limit observation retained separately.",
+  "attempts": [
+    {
+      "id": "XiX2CbGN_Eb4q0QfTA7KupWs6mEki2d2",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/laravel",
+        "key": "8781a389be8b5e500f4239b9"
+      },
+      "status": "ready",
+      "createdAt": 1791041068535,
+      "startedAt": 1791041068545,
+      "finishedAt": 1791041338598,
+      "error": null,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-8781a389be8b5e500f4239b9-00df7c09ea97-a063e2512975",
+      "app": {
+        "id": "repo-8781a389be8b5e500f4239b9-00df7c09ea97-a063e2512975",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "a063e2512975eae2a73011cefa48d96b9e05290caea50fcd3a16dc5c95de006a",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-8781a389be8b5e500f4239b9",
+        "images": [
+          {
+            "id": "sha256:f9e7fda242b58854caf48038e3df896ef43964f50fc830502cc66657234b17ef",
+            "sha256": "6dfa334610dbd36b862ff609dc297b1af7576cf452dbf9825f5b057595a36621",
+            "bytes": 232842232
+          }
+        ],
+        "productType": "web",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/laravel",
+          "revision": "00df7c09ea971725adecb076d508f767fc6e1846"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Laravel + SQLite"
+        },
+        "preparedAt": "2026-10-03T15:28:57.703Z"
+      }
+    }
+  ]
+}

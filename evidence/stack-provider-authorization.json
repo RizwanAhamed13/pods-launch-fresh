@@ -13,7 +13,7 @@
   "cloudShellReplacement": {
     "status": "awaiting_explicit_restart_confirmation",
     "observedDialog": "Restarting terminates the session and running processes, provisions a new VM, and preserves the home directory.",
-    "baseline": "Quarkus SQLite value 2 in native Cloud Shell after the independent browser write.",
+    "baseline": "Current Laravel SQLite value 1 after native browser write, reload and full application stop/relaunch. Previous Quarkus value 2 remains stored; it is not the current running product.",
     "actionTaken": "Restart confirmation dialog opened; final Restart not clicked."
   }
 }

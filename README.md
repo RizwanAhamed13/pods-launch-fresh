@@ -90,11 +90,19 @@ npm test
 npm run prepare:demo
 # Explicitly consumes your Codespaces quota:
 gh auth token | node scripts/live-codespaces.mjs https://your-pods-host
+# Our /api/count fixtures: write/read, confirmed stop, fresh launch, saved-value check.
+# gh must be signed in to the same account used by the supplied token.
+gh auth token | PODS_COUNTER_CHECK=1 node scripts/live-codespaces.mjs https://your-pods-host github prepared-app-id
 # Cloud Shell, using an already authorized Google CLI account:
 gcloud auth print-access-token | node scripts/live-codespaces.mjs https://your-pods-host google
 ```
 
 Tests exercise the real builder and application runner, cache reuse, persistence, failed health checks, artifact tampering and path rejection, removal of inherited credentials, encrypted token storage, browser ownership, CSRF, artifact capability authorization and duplicate launch prevention. Live provider results are stored separately under `evidence/` and must not be inferred from mocked tests.
+
+The live test aborts if a stop is not confirmed or the repeat launch reuses the
+previous launch ID. `PODS_COUNTER_CHECK=1` adds authenticated HTTP checks inside
+the Codespace and records the value retained across relaunch. This fixture-specific
+check does not replace native browser interaction or test arbitrary application APIs.
 
 `test/builds.test.mjs` adds queue serialization, account limits, output validation, cleanup failures and API ownership checks. On aswin, `gh auth token | node scripts/check-build-api.mjs` tests a real public-repository submission against the running server, verifies the public launch page, and removes its temporary provider connection. Results are in `evidence/BUILD-API.md`. `evidence/BROWSER-FLOW.md` records the tested browser form, authorization continuation, exact-version navigation, product interaction and error recovery using explicitly simulated providers; these checks do not certify a real provider browser launch.
 
