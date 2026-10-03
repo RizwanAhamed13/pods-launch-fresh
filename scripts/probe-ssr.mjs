@@ -23,3 +23,6 @@ export async function probeSsrProduct(base='http://127.0.0.1:8080',fixture='nuxt
   return {fixture,productRendered,initialCounter:0,scripts,passed:true,scope:'Authenticated HTTP server-rendered fixture and client entry assets; not browser hydration, interaction or database persistence'};
 }
 export {probeSsrProduct as probeNuxtSsr};
+export function ssrProbeCommand(fixture='nuxt',base='http://127.0.0.1:8080') {
+  return `console.log(JSON.stringify(await (${probeSsrProduct.toString()})(${JSON.stringify(base)},${JSON.stringify(fixture)})));`;
+}

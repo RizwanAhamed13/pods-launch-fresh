@@ -4,7 +4,7 @@ import { writeFile } from 'node:fs/promises';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { probeBunWebSocket } from './probe-websocket.mjs';
-import { probeSsrProduct } from './probe-ssr.mjs';
+import { ssrProbeCommand } from './probe-ssr.mjs';
 const exec = promisify(execFile);
 const provider=process.argv[3]||'github';if(!['github','google'].includes(provider))throw new Error('Unknown provider');
 const origin=process.argv[2];if(!origin)throw new Error('Supply the PODS URL');
@@ -96,7 +96,7 @@ try {
   if(counterCheck){result.counterCheck=await probeCounter(launch.environment);await persist();if(!result.counterCheck.passed)throw new Error('Counter write/read/relaunch persistence failed');}
   if(workerCheck){result.workerCheck=await probeWorker(launch.environment);await persist();if(!result.workerCheck.passed)throw new Error('Worker completion/relaunch persistence failed');}
   if(websocketCheck){result.websocketCheck=await probeWebSocket(launch.environment);await persist();if(!result.websocketCheck.passed)throw new Error('WebSocket exchange/relaunch persistence failed');}
-  if(ssrCheck){result.ssrCheck=await probeEnvironment(launch.environment,`console.log(JSON.stringify(await (${probeSsrProduct.toString()})(undefined,${JSON.stringify(ssrFixture)}))));`);await persist();if(!result.ssrCheck.passed)throw new Error('SSR product/client assets failed');}
+  if(ssrCheck){result.ssrCheck=await probeEnvironment(launch.environment,ssrProbeCommand(ssrFixture));await persist();if(!result.ssrCheck.passed)throw new Error('SSR product/client assets failed');}
   if (process.env.PODS_KEEP_LAST === '1' && name === scenarios.at(-1)) { console.log('Live app left running until its 30-minute deadline: '+launch.previewUrl); break; }
   result.statusAfterStop=await stopLaunch(launch.id);await persist();
   currentLaunch=null;
