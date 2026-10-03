@@ -6,9 +6,11 @@ import { promisify } from 'node:util';
 const exec = promisify(execFile);
 const provider=process.argv[3]||'github';if(!['github','google'].includes(provider))throw new Error('Unknown provider');
 const origin=process.argv[2];if(!origin)throw new Error('Supply the PODS URL');
-// Opt-in only for our counter fixtures; requires gh signed in to the same account.
+// Opt-in checks only for our fixtures; requires gh signed in to the same account.
 const counterCheck=process.env.PODS_COUNTER_CHECK==='1';
-if(counterCheck&&(provider!=='github'||process.env.PODS_SINGLE_LAUNCH==='1'))throw new Error('Counter persistence checking requires two Codespaces launches');
+const workerCheck=process.env.PODS_WORKER_CHECK==='1';
+if(counterCheck&&workerCheck)throw new Error('Choose either counter or worker fixture checking');
+if((counterCheck||workerCheck)&&(provider!=='github'||process.env.PODS_SINGLE_LAUNCH==='1'))throw new Error('Persistence checking requires two Codespaces launches');
 let token='';for await(const b of process.stdin)token+=b;token=token.trim();
 const initial=await fetch(origin+'/api/me'),cookie=initial.headers.get('set-cookie').split(';')[0],me=await initial.json();
 async function api(path,method='GET',body){const r=await fetch(origin+path,{method,headers:{Cookie:cookie,'X-Pods-CSRF':me.csrf,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(30000)});const d=await r.json();if(!r.ok)throw new Error(d.error);return d;}
@@ -18,19 +20,39 @@ const evidencePath=process.env.PODS_EVIDENCE_FILE||`evidence/${provider}.json`;
 await api('/api/connections/'+provider,'POST',{token});token='';
 const results=[];
 const persist=()=>writeFile(evidencePath,JSON.stringify({testedAt:new Date().toISOString(),origin,results},null,2));
-let previousCount, currentLaunch;
-async function probeCounter(environment) {
+let previousCount, previousJob, currentLaunch;
+async function probeEnvironment(environment,code) {
   if(!/^[a-z0-9-]+$/.test(environment||''))throw new Error('Invalid Codespace environment');
+  const quoted="'"+code.replaceAll("'","'\\''")+"'";
+  const {stdout}=await exec('gh',['codespace','ssh','-c',environment,'--','node --input-type=module -e '+quoted],{timeout:60000,maxBuffer:65536});
+  return JSON.parse(stdout);
+}
+async function probeCounter(environment) {
   const code=`const base='http://127.0.0.1:8080';
     async function read(path,method='GET'){const r=await fetch(base+path,{method,signal:AbortSignal.timeout(15000)});if(!r.ok)throw new Error('Counter HTTP '+r.status);return r;}
     const page=await(await read('/')).text(),before=await(await read('/api/count')).json(),after=await(await read('/api/count','POST')).json(),again=await(await read('/api/count')).json();
     console.log(JSON.stringify({productDocument:/<(html|title|h1)\\b/i.test(page),before:before.count,afterWrite:after.count,afterRead:again.count}));`;
-  const quoted="'"+code.replaceAll("'","'\\''")+"'";
-  const {stdout}=await exec('gh',['codespace','ssh','-c',environment,'--','node --input-type=module -e '+quoted],{timeout:60000,maxBuffer:65536});
-  const check=JSON.parse(stdout);
+  const check=await probeEnvironment(environment,code);
   check.passed=check.productDocument&&Number.isInteger(check.before)&&check.afterWrite===check.before+1&&check.afterRead===check.afterWrite&&(previousCount===undefined||check.before===previousCount);
   if(previousCount!==undefined)check.expectedAfterRelaunch=previousCount;
   previousCount=check.afterWrite;
+  return check;
+}
+async function probeWorker(environment) {
+  const code=`const base='http://127.0.0.1:8080',previous=${JSON.stringify(previousJob||null)},input=${JSON.stringify('native worker '+results.length)};
+    async function read(path,method='GET',body){const r=await fetch(base+path,{method,headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error('Worker HTTP '+r.status+' '+path);return r;}
+    const page=await(await read('/')).text(),retained=previous?await(await read('/api/jobs/'+encodeURIComponent(previous.id))).json():null;
+    const submitted=await(await read('/api/jobs','POST',{text:input})).json();
+    if(typeof submitted.id!=='string'||!submitted.id)throw new Error('Worker did not return a job ID');
+    if(previous&&submitted.id===previous.id)throw new Error('New work reused the previous job ID');
+    const deadline=Date.now()+20000;let completed;
+    do {completed=await(await read('/api/jobs/'+encodeURIComponent(submitted.id))).json();if(completed.state==='complete')break;await new Promise(r=>setTimeout(r,200));}while(Date.now()<deadline);
+    const latest=await(await read('/api/latest')).json();
+    console.log(JSON.stringify({productDocument:/<(html|title|h1)\\b/i.test(page),input,submittedId:submitted.id,retained,completed,latest}));`;
+  const check=await probeEnvironment(environment,code);
+  check.passed=check.productDocument&&check.completed.id===check.submittedId&&check.completed.state==='complete'&&check.completed.text===check.input&&check.completed.result===check.input.toUpperCase()&&check.latest.id===check.submittedId&&check.latest.state==='complete'&&check.latest.result===check.completed.result&&(!previousJob||(check.retained?.id===previousJob.id&&check.retained.state==='complete'&&check.retained.text===previousJob.text&&check.retained.result===previousJob.result));
+  if(previousJob)check.expectedAfterRelaunch=previousJob;
+  previousJob=check.completed;
   return check;
 }
 const scenarios=process.env.PODS_SINGLE_LAUNCH==='1'?['launch']:['first-launch','repeat-launch'];
@@ -48,6 +70,7 @@ try {
   await persist();
   if(launch.status!=='ready')throw new Error(launch.error||'Launch failed');
   if(counterCheck){result.counterCheck=await probeCounter(launch.environment);await persist();if(!result.counterCheck.passed)throw new Error('Counter write/read/relaunch persistence failed');}
+  if(workerCheck){result.workerCheck=await probeWorker(launch.environment);await persist();if(!result.workerCheck.passed)throw new Error('Worker completion/relaunch persistence failed');}
   if (process.env.PODS_KEEP_LAST === '1' && name === scenarios.at(-1)) { console.log('Live app left running until its 30-minute deadline: '+launch.previewUrl); break; }
   await api('/api/launches/'+launch.id+'/stop','POST',{});
   const stopDeadline=Date.now()+45000;let stopped;

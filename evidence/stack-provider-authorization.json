@@ -7,8 +7,9 @@
   },
   "github": {
     "oauthReady": false,
-    "nativePreview": "Sign in to GitHub in both in-app browser and independent Chrome",
-    "remaining": "Configure a GitHub web OAuth app and complete native browser sign-in. Token/API tests do not satisfy browser authorization acceptance."
+    "nativePreview": "Google sign-in completed for the existing identity; GitHub now requires two-factor authentication at its SMS confirmation page. No SMS sent and no code entered by the agent.",
+    "remaining": "Complete GitHub two-factor sign-in in the preserved browser tab, then configure a GitHub web OAuth app for PODS. Token/API tests do not satisfy browser authorization acceptance.",
+    "browserObservation": "2026-10-03: continued the existing-account Google sign-in route; reached GitHub /sessions/two-factor/sms/confirm without creating an account or granting new scopes."
   },
   "cloudShellReplacement": {
     "status": "awaiting_explicit_restart_confirmation",

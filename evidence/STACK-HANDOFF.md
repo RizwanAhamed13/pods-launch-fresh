@@ -15,7 +15,7 @@ Public fixture commit: 00df7c0. Latest product fix: 414e64a, pushed and deployed
   reusable artifact launches and browser interaction. See SUPPORT.md and
   stack-coverage.json; historical failures remain recorded.
 - 52 automated checks pass locally and on aswin. The latest aswin rerun is recorded in
-  stack-blazor-unit-tests-aswin.txt. Source LOC 4209: 2372 product/tooling, 157 browser
+  stack-blazor-unit-tests-aswin.txt. Source LOC 4232: 2395 product/tooling, 157 browser
   tools, 812 tests, 868 example sources. code-lines.json defines the count.
 - Expired submission authorization reconnects and resumes the exact build or
   launch on the first click. One automatic recovery attempt survives OAuth
@@ -119,6 +119,29 @@ Public fixture commit: 00df7c0. Latest product fix: 414e64a, pushed and deployed
 - No runtime code changes in this checkpoint; the preceding 52-check suite remains
   applicable. Native launches exercised the already deployed product.
 
+## Current worker-probe gate
+
+- Previous goal turn was progress: real Gin native launch/persistence evidence.
+- New scripts/live-codespaces.mjs flag PODS_WORKER_CHECK=1 verifies completed
+  work, latest-job output, the same stored job after a full stop/relaunch, then
+  another job with a distinct ID. It is exclusive with counter checks and needs
+  two Codespaces launches. Real worker positive validation is still pending.
+- Shared SSH probe counter regression passed on real Codespaces: Gin 2→3, stop,
+  relaunch retained3, write/read4, stop. A deliberate worker check against healthy
+  Gin correctly failed at /api/jobs HTTP404. Cleanup was confirmed stopped in
+  the control-plane record. See stack-worker-probe-{counter-regression,negative,
+  validation}.json and the retained negative text output. No product runtime changed.
+- Normal account build window next opens 2026-10-03 16:57:28 UTC (22:27 IST).
+  Live observer exec session 98803 waits for that timestamp; it does not submit
+  a build. Poll that same handle coarsely, or inspect current time/build records.
+  Then use existing developer tab13: select the connected Google account, change
+  Application folder to examples/stacks/worker-redis, prepare once, and verify the
+  returned link. Do not alter quotas or switch identities to evade the window.
+- After preparation, stop Google Gin using its PODS controls before launching the
+  worker artifact. Google browser acceptance: submit text, see the completed result,
+  reload, full stop/relaunch, same result. Run the worker flag against Codespaces
+  and let both test applications stop normally to avoid port conflicts.
+
 ## Pending actions
 
 1. Continue representative native provider coverage; Gin now passes Google
@@ -129,7 +152,8 @@ Public fixture commit: 00df7c0. Latest product fix: 414e64a, pushed and deployed
    Gin file-counter baseline is 2; prior Blazor SQLite 3, Angular 2, Laravel 1 and Quarkus 2 remain stored. Do not delete/reset the home directory.
 3. GitHub browser OAuth is not configured (public API oauthReady=false). Its
    access-token/API test path does not satisfy the one-click browser authorization
-   goal. Native GitHub sign-in is also pending; do not repeat that earlier question
+   goal. Native GitHub sign-in progressed through existing-account Google login and now
+   requires two-factor authentication; no SMS was sent or code entered. Do not repeat the earlier question
    or make the private preview public. Google oauthReady=true.
 4. Continue representative native provider coverage. Cold downloads exceed the
    20-second target; retain separate cached, uncached, health and visible timings.
@@ -147,7 +171,9 @@ Gin app ID: repo-32bb2b65f70a84def50a6fc2-00df7c09ea97-33bf34b1ce7d
 Google launch 0HcsEZZLHbcWCRkSiLYJJOGYGxXGKRYw belongs to independent Chrome, value 2.
 Codespace pods-launch-containers-69rw5vx4xp46c5qw5 has no running Gin/Blazor app
 after confirmed cleanup. Gin launch 28wEQ8YjGrOatLBek9P_5wwJ5Y-hjcu8 is stopped,
-with stored value 2. Its prior Blazor launch is also stopped, stored value 2.
+with stored value 2 in that evidence. The newer counter-probe regression retained 2,
+wrote 3, stopped/relaunched, retained 3 and wrote 4; current Gin stored value is 4.
+All later probe launches are stopped. Prior Blazor is also stopped, stored value 2.
 These previews stop at their 30-minute deadlines; no pending matrix build job.
 The local expired-session browser fixture and its products were stopped after
 validation. Its temporary tab17 is closed; no test fixture process remains. The title browser
@@ -155,7 +181,7 @@ fixture was also stopped and its tab18 closed after passing encoded/literal text
 
 CUA in-app browser 2: developerWide tab12 launch controls; stackQa6 tab13 completed Gin
 preparation; cloudLifecycle tab14 pending Restart confirmation; nativeGithubKeep
-tab10 existing sign-in handoff. Chrome browser 1: independentUser tab2083874416
+tab10 GitHub two-factor/SMS confirmation handoff. Chrome browser 1: independentUser tab2083874416
 is the verified native Google product. The cache-regression QA tab16 was closed after all eight browser checks. Reapply handoff/deliverable marks each turn.
 
 QA guest pods-fresh-matrix-01: /opt/pods, /work/stacks, /output; use

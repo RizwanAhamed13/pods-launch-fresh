@@ -1,0 +1,48 @@
+{
+  "testedAt": "2026-10-03T16:49:13.580Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "5kiCVdHbu0Wp7WaVnE-G0HbKPgsiC9cs",
+      "appId": "repo-32bb2b65f70a84def50a6fc2-00df7c09ea97-33bf34b1ce7d",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "33bf34b1ce7dd8649d01687b6221329b0e652f61a6c4048172a75a934a7f527c",
+      "images": [
+        {
+          "id": "sha256:84f17214a743f73259ff96da3c410086301f8f8a6ada72c495977c8bb3595ded",
+          "sha256": "e5612791e44596fd91a37d4364fa3d68e261bea0c69c6e8bcd9b6e010be5b061",
+          "bytes": 11650076
+        }
+      ],
+      "status": "ready",
+      "createdAt": 1791046137584,
+      "updatedAt": 1791046148317,
+      "expiresAt": 1791047937584,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791046138123,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791046148317,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 775,
+        "imagesMs": 54,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 2146,
+        "cacheHit": true
+      },
+      "readyAt": 1791046145147,
+      "deliveryMs": 7024,
+      "totalMs": 7563,
+      "testError": "Command failed: gh codespace ssh -c pods-launch-containers-69rw5vx4xp46c5qw5 -- node --input-type=module -e 'const base='\\''http://127.0.0.1:8080'\\'',previous=null,input=\"native worker 1\";\n    async function read(path,method='\\''GET'\\'',body){const r=await fetch(base+path,{method,headers:{'\\''Content-Type'\\'':'\\''application/json'\\''},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error('\\''Worker HTTP '\\''+r.status+'\\'' '\\''+path);return r;}\n    const page=await(await read('\\''/'\\'')).text(),retained=previous?await(await read('\\''/api/jobs/'\\''+encodeURIComponent(previous.id))).json():null;\n    const submitted=await(await read('\\''/api/jobs'\\'','\\''POST'\\'',{text:input})).json();\n    if(typeof submitted.id!=='\\''string'\\''||!submitted.id)throw new Error('\\''Worker did not return a job ID'\\'');\n    if(previous&&submitted.id===previous.id)throw new Error('\\''New work reused the previous job ID'\\'');\n    const deadline=Date.now()+20000;let completed;\n    do {completed=await(await read('\\''/api/jobs/'\\''+encodeURIComponent(submitted.id))).json();if(completed.state==='\\''complete'\\'')break;await new Promise(r=>setTimeout(r,200));}while(Date.now()<deadline);\n    const latest=await(await read('\\''/api/latest'\\'')).json();\n    console.log(JSON.stringify({productDocument:/<(html|title|h1)\\b/i.test(page),input,submittedId:submitted.id,retained,completed,latest}));'\nfile:///home/node/[eval1]:2\n    async function read(path,method='GET',body){const r=await fetch(base+path,{method,headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error('Worker HTTP '+r.status+' '+path);return r;}\n                                                                                                                                                                                                                             ^\n\nError: Worker HTTP 404 /api/jobs\n    at read (file:///home/node/[eval1]:2:222)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async file:///home/node/[eval1]:4:27\n\nNode.js v24.21.0\nshell closed: exit status 1\n"
+    }
+  ],
+  "scope": "Deliberate negative control: the new worker probe must reject healthy Gin, which has no worker API. This is expected probe rejection, not a worker application failure.",
+  "expectedRejection": true,
+  "cleanupConfirmed": {
+    "id": "5kiCVdHbu0Wp7WaVnE-G0HbKPgsiC9cs",
+    "status": "stopped",
+    "source": "Read-only control-plane launch record after the harness cleanup."
+  }
+}
