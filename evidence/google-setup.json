@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-10-03T04:30:30.248476+00:00",
+  "observedAt": "2026-10-03T05:24:52.693112+00:00",
   "projectId": "pods-launch-fresh-20261003",
   "oauthConfigurationCreated": true,
   "audience": "External",
@@ -15,9 +15,16 @@
     "name": "PODS Fresh Launch Web",
     "type": "Web application",
     "redirectUri": "https://collection-conferences-ages-clearly.trycloudflare.com/auth/google/callback",
-    "status": "prepared; creation and protected server storage awaiting approval"
+    "status": "Created by operator; credentials supplied as local JSON and installed on aswin"
   },
-  "oauthCredentialsInstalled": false,
+  "oauthCredentialsInstalled": true,
   "nativeBrowserJourneyVerified": false,
-  "source": "Google Cloud console visible UI"
+  "source": "Google Cloud console visible UI",
+  "serverGoogleOAuthReady": true,
+  "credentialStorage": {
+    "path": ".env",
+    "mode": "0600",
+    "trackedByGit": false
+  },
+  "browserAuthorizationStatus": "Account selected and sign-in completed; final Google Cloud access checkbox and Continue await user approval"
 }

@@ -6,7 +6,7 @@ The [browser workflow results](BROWSER-FLOW.md) cover the developer URL form, pr
 
 The developer API stage has [separate results](BUILD-API.md): 28 passing automated tests and a real repository URL submission through the deployed API, prepared in 7,831 ms. The earlier [preparation results](PREPARATION.md) cover automatic detection and build isolation. The original provider measurements below remain historical evidence; the complete real-provider browser journey is still unverified.
 
-The [provider onboarding handoff](OAUTH-SETUP.md) records completed Google OAuth branding, enabled Cloud Shell API, one saved test user and the declared scopes. The Google web client is prepared pending credential-creation approval; GitHub still needs two-factor sign-in. Neither provider OAuth client is installed yet, and native product-page validation remains outstanding.
+The [provider onboarding handoff](OAUTH-SETUP.md) records completed Google configuration and enabled Cloud Shell API. The operator-supplied web client is securely installed on aswin and Google OAuth is ready. The real browser flow has reached the final Google Cloud account-access consent; approval and native product-page validation remain outstanding. GitHub still needs two-factor sign-in and its OAuth client.
 
 ## Original prototype measurements
 
