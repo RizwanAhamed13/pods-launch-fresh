@@ -8,13 +8,15 @@ import {createApp} from '../src/server.mjs';
 
 test('compatibility separates provider evidence and excludes failed representatives',()=>{
   const html=renderCompatibility({fixtures:[
-    {fixture:'react',serverPassed:true,browserPassed:true,nativeProviderEvidence:['stack-react-google.json'],account:'private-account'},
-    {fixture:'angular',serverPassed:true,browserPassed:true,nativeProviderEvidence:['stack-angular-codespaces.json']},
+    {fixture:'react',serverPassed:true,browserPassed:true,nativeProviderEvidence:['stack-react-google.json'],nativeAcceptance:{googleBrowser:true},account:'private-account'},
+    {fixture:'angular',serverPassed:true,browserPassed:true,nativeProviderEvidence:['stack-angular-codespaces.json'],nativeAcceptance:{codespacesProtocol:true}},
+    {fixture:'lit',serverPassed:true,browserPassed:true,nativeProviderEvidence:['stack-lit-google-failed.json','stack-lit-codespaces-failed.json']},
     {fixture:'failed-fixture',serverPassed:false,browserPassed:false,nativeProviderEvidence:[]},
   ]});
-  assert.match(html,/2 representative apps tested/);assert.match(html,/1 passed native Google/);assert.match(html,/1 passed Codespaces/);
+  assert.match(html,/3 representative apps tested/);assert.match(html,/1 passed native Google/);assert.match(html,/1 passed Codespaces/);
   assert.match(html,/React<small>Browser frontends<\/small><\/th><td>Passed<\/td><td>Passed<\/td><td>Pending/);
   assert.match(html,/Angular<small>Browser frontends<\/small><\/th><td>Passed<\/td><td>Pending<\/td><td>Passed/);
+  assert.match(html,/Lit<small>Browser frontends<\/small><\/th><td>Passed<\/td><td>Pending<\/td><td>Pending/);
   assert.doesNotMatch(html,/private-account|failed-fixture|stack-react-google/);
   assert.match(html,/Codespaces browser sign-in and interaction remain pending/);
 });

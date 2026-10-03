@@ -80,7 +80,11 @@
           "evidence": "stack-matrix-01.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "angular-ssr",
@@ -117,7 +121,11 @@
           "status": "passed"
         }
       ],
-      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
+      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "aspnet",
@@ -191,7 +199,11 @@
           "evidence": "stack-matrix-16.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "bun",
@@ -218,7 +230,11 @@
           "status": "passed"
         }
       ],
-      "nativeProviderScope": "Native Cloud Shell browser WebSocket writes, reload and SQLite full restart passed after conflicting worker expired naturally. Codespaces authenticated SSH WebSocket/HTTP and SQLite restart passed; its native browser authorization remains pending. Initial failed Cloud Shell port conflict preserved."
+      "nativeProviderScope": "Native Cloud Shell browser WebSocket writes, reload and SQLite full restart passed after conflicting worker expired naturally. Codespaces authenticated SSH WebSocket/HTTP and SQLite restart passed; its native browser authorization remains pending. Initial failed Cloud Shell port conflict preserved.",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "deno",
@@ -258,7 +274,11 @@
           "evidence": "stack-matrix-02.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "echo",
@@ -343,7 +363,11 @@
           "status": "passed",
           "scope": "Existing verified /docs interface opens automatically and browser SQLite interaction passes."
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "fastify",
@@ -444,7 +468,11 @@
           "status": "passed"
         }
       ],
-      "runtimeBoundaryEvidence": "stack-mysql-runtime-boundary.json"
+      "runtimeBoundaryEvidence": "stack-mysql-runtime-boundary.json",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "flask-postgres",
@@ -462,7 +490,11 @@
           "evidence": "stack-matrix-01.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "flask-redis",
@@ -528,7 +560,11 @@
           "evidence": "stack-matrix-11-progress.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "go",
@@ -638,7 +674,11 @@
           "evidence": "stack-matrix-20.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "lit",
@@ -729,7 +769,11 @@
           "status": "passed"
         }
       ],
-      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
+      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "nuxt",
@@ -773,7 +817,11 @@
           "status": "passed"
         }
       ],
-      "recipeOptimizationEvidence": "stack-nuxt-standalone-comparison.json"
+      "recipeOptimizationEvidence": "stack-nuxt-standalone-comparison.json",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "phoenix",
@@ -828,7 +876,11 @@
           "status": "passed"
         }
       ],
-      "nativeProviderScope": "Native Cloud Shell browser Preact interaction, reload and full app restart retained localStorage values. Codespaces authenticated HTTP product shell and compiled entry passed on first and cached launch; native browser authorization/JavaScript interaction remain pending."
+      "nativeProviderScope": "Native Cloud Shell browser Preact interaction, reload and full app restart retained localStorage values. Codespaces authenticated HTTP product shell and compiled entry passed on first and cached launch; native browser authorization/JavaScript interaction remain pending.",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "quarkus",
@@ -857,7 +909,11 @@
         }
       ],
       "recipeOptimizationEvidence": "stack-jvm-runtime-comparison.json",
-      "nativeRuntimeRetest": "Noble JRE artifact pending; existing native evidence, when present, uses the previous runtime."
+      "nativeRuntimeRetest": "Noble JRE artifact pending; existing native evidence, when present, uses the previous runtime.",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "rails",
@@ -883,7 +939,11 @@
         }
       ],
       "recipeOptimizationEvidence": "stack-ruby-image-comparison.json",
-      "nativeProviderScope": "Original and optimized Rails artifacts prepared through real developer URL. Optimized artifact passes native Cloud Shell browser write/reload/full restart and Codespaces authenticated HTTP/SQLite restart with prior-version record retained. Native Codespaces browser sign-in remains pending."
+      "nativeProviderScope": "Original and optimized Rails artifacts prepared through real developer URL. Optimized artifact passes native Cloud Shell browser write/reload/full restart and Codespaces authenticated HTTP/SQLite restart with prior-version record retained. Native Codespaces browser sign-in remains pending.",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "react",
@@ -904,7 +964,11 @@
           "status": "passed"
         }
       ],
-      "nativePersistenceScope": "Browser localStorage only; native Codespaces evidence validates HTTP shell and compiled entry assets, not browser execution."
+      "nativePersistenceScope": "Browser localStorage only; native Codespaces evidence validates HTTP shell and compiled entry assets, not browser execution.",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "react-express-postgres",
@@ -922,7 +986,11 @@
           "evidence": "stack-matrix-03.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "react-router",
@@ -1002,7 +1070,11 @@
           "status": "passed"
         }
       ],
-      "nativeProviderScope": "Native Cloud Shell browser Solid interaction, reload and full app restart retained localStorage values. Codespaces authenticated HTTP product shell and compiled entry passed on first and cached launches; native Codespaces browser authorization/JavaScript interaction remain pending."
+      "nativeProviderScope": "Native Cloud Shell browser Solid interaction, reload and full app restart retained localStorage values. Codespaces authenticated HTTP product shell and compiled entry passed on first and cached launches; native Codespaces browser authorization/JavaScript interaction remain pending.",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "spring-boot",
@@ -1041,7 +1113,11 @@
       ],
       "persistenceScope": "SQLite since matrix30/browser30. Earlier matrix02/matrix15/browser02 tested a plain file.",
       "recipeOptimizationEvidence": "stack-jvm-runtime-comparison.json",
-      "nativeRuntimeRetest": "Noble JRE passed Google native browser and Codespaces authenticated HTTP/SQLite; native Codespaces browser remains pending."
+      "nativeRuntimeRetest": "Noble JRE passed Google native browser and Codespaces authenticated HTTP/SQLite; native Codespaces browser remains pending.",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "streamlit",
@@ -1079,7 +1155,11 @@
           "status": "passed"
         }
       ],
-      "nativeProviderScope": "Native Cloud Shell browser Svelte interaction, reload and full app restart retained localStorage values. Codespaces authenticated HTTP product shell and compiled entry passed after new compute provisioning and a cached app restart; native Codespaces browser authorization/JavaScript interaction remain pending."
+      "nativeProviderScope": "Native Cloud Shell browser Svelte interaction, reload and full app restart retained localStorage values. Codespaces authenticated HTTP product shell and compiled entry passed after new compute provisioning and a cached app restart; native Codespaces browser authorization/JavaScript interaction remain pending.",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "sveltekit",
@@ -1107,7 +1187,11 @@
           "status": "passed"
         }
       ],
-      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
+      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "symfony",
@@ -1139,7 +1223,11 @@
           "evidence": "stack-matrix-01.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "worker-redis",
@@ -1157,7 +1245,11 @@
           "evidence": "stack-matrix-17.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     }
   ]
 }

@@ -22,7 +22,7 @@ const labels = {
   deno:'Deno',bun:'Bun WebSocket + SQLite',phoenix:'Elixir / Phoenix','react-express-postgres':'React + Express + PostgreSQL','worker-redis':'Flask + Python worker + Redis',
 };
 const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const verified = (row, provider) => row.nativeProviderEvidence?.some(file => file.includes(provider)) === true;
+const verified = (row, provider) => row.nativeAcceptance?.[provider === 'google' ? 'googleBrowser' : 'codespacesProtocol'] === true;
 export function renderCompatibility(coverage) {
   const rows = coverage.fixtures.filter(row => row.serverPassed && row.browserPassed);
   const count = provider => rows.filter(row => verified(row, provider)).length;
