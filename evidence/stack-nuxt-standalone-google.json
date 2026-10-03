@@ -1,0 +1,81 @@
+{
+  "recordedAt": "2026-10-03T20:05:16.730562+00:00",
+  "scope": "Real Cloud Shell browser product after developer URL submission using optimized Nuxt recipe; both launches stopped.",
+  "results": [
+    {
+      "id": "SXV8IgY16vLylkVoAbZ1tuDpmA9o7r64",
+      "appId": "repo-17942c0277f8155e2cc154ce-f58a3e357955-8296b658d67e",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791057810679,
+      "providerReadyAt": 1791057813168,
+      "readyAt": 1791057834128,
+      "updatedAt": 1791057862374,
+      "environment": "default",
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 601,
+        "imagesMs": 16450,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 35,
+        "imageDownloadMs": 14358,
+        "imageLoadMs": 2042,
+        "runtimeReadyMs": 19227,
+        "cacheHit": false
+      },
+      "totalMs": 23449,
+      "deliveryMs": 20960
+    },
+    {
+      "id": "_D4sxdQi1yGp9q3IvgFQOGCX5SyFBQs5",
+      "appId": "repo-17942c0277f8155e2cc154ce-f58a3e357955-8296b658d67e",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791057872298,
+      "providerReadyAt": 1791057874720,
+      "readyAt": 1791057878199,
+      "updatedAt": 1791057903499,
+      "environment": "default",
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 184,
+        "imagesMs": 63,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 63,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2330,
+        "cacheHit": true
+      },
+      "totalMs": 5901,
+      "deliveryMs": 3479
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "image-absent",
+      "visibleMs": 24793,
+      "successfulClickObservedMs": 30901,
+      "before": 0,
+      "after": 1,
+      "afterReload": 0,
+      "timingScope": "Visibility measured continuously; successful click includes tool boundary and is an observation upper bound."
+    },
+    {
+      "scenario": "cached-relaunch",
+      "visibleMs": 6454,
+      "successfulClickMs": 6738,
+      "before": 0,
+      "after": 1,
+      "afterReload": 0,
+      "timingScope": "Visibility and first successful interaction measured continuously."
+    }
+  ],
+  "browserErrorOrWarningLogsAtFinalCheck": [],
+  "persistenceScope": "Transient client counter resets on reload as designed. No database claim.",
+  "passed": true
+}

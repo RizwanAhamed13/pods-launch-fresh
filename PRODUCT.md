@@ -134,3 +134,13 @@ increment; a later click worked. Codespaces reached health in 111.017s before a
 harness command syntax failure. The corrected command passed SSR and seven client
 asset checks on cached relaunches at 7.181s and 6.660s. All five previews stopped;
 initial failures remain in evidence. This counter resets on reload by design.
+
+Nuxt's conventional standalone packaging now removes build-only dependencies from
+its launch image. The representative artifact is 39.05% smaller and passes the
+real repository preparation and native provider checks. Cloud Shell product
+visibility measured 24.793s with an absent image and 6.454s cached; the cached
+counter accepted a click by 6.738s. Codespaces health measured 43.350s first and
+7.252s cached, with actual SSR/client assets checked. First-image launches still
+miss the 20-second target. Native Codespaces browser authorization/interaction
+and the remaining 40 native fixture checks remain pending. See the Nuxt standalone
+section of SUPPORT.md for exact evidence and scope.

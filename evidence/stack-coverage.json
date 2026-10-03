@@ -712,13 +712,16 @@
     {
       "fixture": "nuxt",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-24.json",
+      "serverEvidence": "stack-matrix-29.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-24.json",
+      "browserEvidence": "stack-nuxt-standalone-comparison.json",
       "nativeProviderEvidence": [
         "stack-nuxt-url.json",
         "stack-nuxt-google.json",
-        "stack-nuxt-codespaces.json"
+        "stack-nuxt-codespaces.json",
+        "stack-nuxt-standalone-url.json",
+        "stack-nuxt-standalone-google.json",
+        "stack-nuxt-standalone-codespaces.json"
       ],
       "attempts": [
         {
@@ -737,9 +740,18 @@
         {
           "evidence": "stack-matrix-24.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-nuxt-standalone-stale.json",
+          "status": "excluded",
+          "scope": "Source upload denied; stale recipe ran and is not optimization evidence."
+        },
+        {
+          "evidence": "stack-matrix-29.json",
+          "status": "passed"
         }
       ],
-      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
+      "recipeOptimizationEvidence": "stack-nuxt-standalone-comparison.json"
     },
     {
       "fixture": "phoenix",

@@ -80,7 +80,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **71 passing
+later passing attempts do not erase them. Automated coverage is **72 passing
 checks locally and on aswin**.
 
 ## Actual repository URL to native product
@@ -641,13 +641,29 @@ bootstrap imports, and a fresh Node process executes the serialized native comma
 All 71 automated checks pass locally and on aswin. Evidence:
 `evidence/stack-sveltekit-{url,google,codespaces}.json`.
 
-## Nuxt standalone artifact size
+## Nuxt standalone artifact size and native checks
 
 For conventional npm Nuxt projects starting `node .output/server/index.mjs`,
-PODS now packages the standalone production output and its bundled dependencies.
-Projects with custom start commands, pre/post start hooks, `.npmrc`, or other
-package managers retain the full-project recipe. The representative fixture's
-compressed image fell from132783437 to80930156bytes (39.05%) and passed isolated
-build, startup, restart, and browser interaction. Native provider measurements
-for this recipe are pending; size reduction alone does not prove20s readiness.
-See `evidence/stack-nuxt-standalone-comparison.json` and `stack-matrix-29.json`.
+PODS packages the standalone production output and its bundled dependencies.
+Custom start commands, pre/post start hooks, `.npmrc`, and other package managers
+retain the full-project recipe. The same fixture's compressed image fell from
+132,783,437 to 80,930,156 bytes (39.05%) and passed isolated build, startup,
+restart, and browser interaction. The fresh production URL build took 241.807s
+and produced an 80,930,828-byte image.
+
+| Optimized Nuxt scenario | Measured result |
+| --- | --- |
+| Google first image download | Health 23.449s; product visible 24.793s |
+| Google cached relaunch | Health 5.901s; visible 6.454s; successful click 6.738s |
+| Codespaces first image download | Health 43.350s, including 15.223s provider startup |
+| Codespaces cached relaunch | Health 7.252s |
+
+Google counter interaction and reload passed twice with no final console errors
+or warnings. The transient counter resets on reload; this is not database evidence.
+Codespaces returned the actual SSR document and client JavaScript on both launches;
+native Codespaces browser interaction remains pending. All four launches stopped.
+Google/Codespaces first image downloads took 14.358s/14.354s and did not overlap.
+Both first-image samples still exceed 20s. These measurements are not a controlled
+before/after latency comparison and do not establish a universal timing guarantee.
+Evidence: `stack-nuxt-standalone-{comparison,url,google,codespaces}.json` and
+`stack-matrix-29.json` in `evidence/`.

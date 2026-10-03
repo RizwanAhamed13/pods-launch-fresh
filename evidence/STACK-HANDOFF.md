@@ -11,7 +11,7 @@ Goal active. Do not claim universal support or complete provider/browser accepta
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
 - 4833 physical source lines: 2687 product/tooling, 1088 tests, 894 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 72 automated checks pass locally; deployment validation for the Nuxt recipe is next.
+- 72 automated checks pass locally and on aswin for Nuxt recipe c774ec5.
 - Native Google browser families: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
@@ -19,16 +19,32 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Same fifteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Current gate: Nuxt standalone packaging
+## Latest completed gate: optimized Nuxt native acceptance
 
-Canonical npm Nuxt builds now copy the standalone `.output` into a clean Node
-runtime. Custom start commands, lifecycle hooks, `.npmrc`, and other managers
-retain the full-project recipe. The same real fixture shrank from132783437 to
-80930156bytes (39.05%). Matrix29 passed build/start/restart; browser counter0→1,
-reload0 and clean error/warn logs passed. This fixture has no database.
-The first upload failed and matrix28 ran stale source; its result is explicitly
-excluded. Evidence: stack-nuxt-standalone-comparison.json and stack-matrix-29.json.
-Native Google/Codespaces latency measurements of the new recipe are pending.
+- Core c774ec5 is pushed and deployed. All 72 tests pass locally/aswin. Control
+  server remains b02fea1/PID806978; each isolated build copies fresh recipe source,
+  so no control-server restart was needed.
+- Canonical npm Nuxt builds copy standalone `.output` into a clean Node runtime.
+  Custom commands/hooks/`.npmrc`/other managers retain the full-project recipe.
+  Matrix29 image shrank 132783437→80930156 bytes (39.05%). Real build/start/restart
+  and browser counter 0→1, reload0 passed. The failed upload/stale matrix28 result
+  is explicitly excluded in stack-nuxt-standalone-stale.json.
+- Normal same-account quota reset allowed one developer form submission.
+  Build DORFY4Fqv6BE6yLTfupMStkezw9VBTEn prepared examples/stacks/nuxt at public f58a3e3
+  in241.807s, image80930828bytes. App repo-17942c0277f8155e2cc154ce-f58a3e357955-8296b658d67e.
+  Observer93193 ended0; no QA artifact imported into production.
+- Google image absent: health23.449s, visible24.793s; successful click observed
+  by30.901s includes tool boundary. Cached: health5.901s, visible6.454s,
+  successful click6.738s measured continuously. Counter0→1 and reload0 twice;
+  final error/warn logs empty. No DB persistence claim for this fixture.
+- Codespaces returned assigned69rw5vx4xp46c5qw5. First health43.350s includes
+  provider startup15.223s; cached7.252s. Actual SSR and client JS passed twice.
+  Harness31481 ended0. Native Codespaces browser remains pending.
+- Image downloads Google14.358s/Codespaces14.354s did not overlap. First-image
+  launches still exceed20s; cached samples are not guarantees. All4launches stopped;
+  final production read-only check confirmed no active builds or launches.
+- Evidence stack-nuxt-standalone-{comparison,url,google,codespaces}.json,
+  stack-matrix-29.json. Coverage remains55 isolated /15 native fixture families.
 
 ## Previous completed gate: SvelteKit native acceptance
 
@@ -257,15 +273,16 @@ Always verify PID file, cwd, cmdline
 and listener before targeted restart. Use scripts/serve.sh from the repository;
 Node/gh in /home/aswin/pods-tools/bin. Do not restart with active builds/launches.
 
-No live PODS apps after SvelteKit checks; data retained. Latest SvelteKit Codespace
+No live PODS apps after optimized Nuxt checks; data retained. Latest Nuxt Codespace
+pods-launch-containers-69rw5vx4xp46c5qw5. Latest SvelteKit Codespace
 pods-launch-containers-97qw56gjg47gf7vrv. Latest Next Codespace
 pods-launch-containers-69rw5vx4xp46c5qw5; API Codespace
 pods-launch-containers-97qw56gjg47gf7vrv; prior image-phase Codespace
 pods-launch-containers-69rw5vx4xp46c5qw5. API Google2/Codespaces4; earlier
 Google Django3/Rails2/Bun2, Codespaces Django4/Rails4/Bun2.
 
-CUA bindings: stackQa6 IAB2tab13 completed SvelteKit build; accountWorker IAB2tab12 stopped
-SvelteKit launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
+CUA bindings: stackQa6 IAB2tab13 completed optimized Nuxt build; accountWorker IAB2tab12 stopped
+optimized Nuxt launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
 connection; nativeGithubKeep IAB2tab10; cloudLifecycle IAB2tab14.
 After compaction call rewriteDocumentation; re-mark pending tabs. Locator timeouts
 do not cancel launches: never resubmit because an observation timed out.
@@ -273,12 +290,12 @@ do not cancel launches: never resubmit because an observation timed out.
 QA LXD pods-fresh-matrix-01, /opt/pods source, /work/stacks fixtures,/output results,
 /opt/node/bin/node uid/gid1000,PODS_ISOLATED_BUILD=1. Browser QA PID292107 (exec86855) listens
 8081 with PODS_QA_APP_PORT=18090 and catalog/output/evidence/browser-matrix.json.
-SIGTERM292107 stopped only its API runner (exec43462 completed0); SSH tunnel
+SIGTERM292107 most recently stopped the optimized Nuxt runner; SSH tunnel
 localhost18890 remains. Plain lxc cleanup inspection failed because its snap launcher could not create
 its DBus scope; bundled /snap/lxd/current/bin/lxc works with existing access.
-Fresh inventory after the Next probe confirms Docker empty and app ports18090/8080
+Fresh inventory after the optimized Nuxt probe confirms Docker empty and app ports18090/8080
 free. QA server292107 remains with its one-shot runner handler consumed; do not
-repeat SIGTERM blindly. API tab22 and Next tab23 closed.
+repeat SIGTERM blindly. API tab22, Next tab23, Nuxt tab24 closed.
 SQLite reads must use readonly mode and whitelist public fields. Never dump
 credentials or owner/identity/session values. Code graph project
 Users-rizwanahamed-Documents-ChatGPT-podsv2; targeted fallback for absent scripts.

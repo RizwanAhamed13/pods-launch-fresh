@@ -1,0 +1,60 @@
+{
+  "recordedAt": "2026-10-03T20:02:58.159401+00:00",
+  "scope": "Actual developer form submission after normal same-account quota availability; production isolated preparation, no imported QA artifact.",
+  "coreRevision": "c774ec5",
+  "quotaBefore": {
+    "accountRecent": 2,
+    "globalRecent": 2,
+    "activeBuilds": 0
+  },
+  "attempts": [
+    {
+      "id": "DORFY4Fqv6BE6yLTfupMStkezw9VBTEn",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/nuxt",
+        "key": "17942c0277f8155e2cc154ce"
+      },
+      "status": "ready",
+      "createdAt": 1791057523928,
+      "startedAt": 1791057523939,
+      "finishedAt": 1791057765746,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-17942c0277f8155e2cc154ce-f58a3e357955-8296b658d67e",
+      "app": {
+        "id": "repo-17942c0277f8155e2cc154ce-f58a3e357955-8296b658d67e",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "8296b658d67e7bd8c54f4415708e8bb551e1b9a8de03dcac7d8b64df808f07c8",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-17942c0277f8155e2cc154ce",
+        "images": [
+          {
+            "id": "sha256:28771928461bda52ad3edfda36724888112e5989405e3423b425eb3130651334",
+            "sha256": "76b18659e7ec132892d269317f487d7e645d93c575f856b92150196b3019349c",
+            "bytes": 80930828
+          }
+        ],
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/nuxt",
+          "revision": "f58a3e35795578fb1f036369ebdcdd992a074bf8"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "pods-launch-runtime-fresh"
+        },
+        "preparedAt": "2026-10-03T20:02:45.462Z"
+      }
+    }
+  ],
+  "buildMs": 241807
+}

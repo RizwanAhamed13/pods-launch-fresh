@@ -1,6 +1,6 @@
 {
   "recordedAt": "2026-10-03T19:53:50.874043+00:00",
-  "scope": "Same Nuxt fixture, changed automatic container recipe; artifact sizes and isolated build/start/restart are verified, native launch timings pending.",
+  "scope": "Same Nuxt fixture, changed automatic container recipe; artifact size, isolated build/start/restart/browser, fresh production preparation, Google native browser and Codespaces authenticated HTTP/SSR checked. Native Codespaces browser remains pending.",
   "recipeSha256": "b64c051805834e4c99787a4e38064eca3d213d7c1cdd0d5631bf95931fcedf7e",
   "beforeBytes": 132783437,
   "afterBytes": 80930156,
@@ -27,5 +27,17 @@
     "consoleWarnings": [],
     "persistence": "Transient counter resets after reload as designed; no database claim.",
     "cleanup": "Verified QA Docker containers empty and application ports 18090/8080 free after one stop signal."
-  }
+  },
+  "productionPreparation": {
+    "coreRevision": "c774ec5",
+    "evidence": "stack-nuxt-standalone-url.json",
+    "imageBytes": 80930828,
+    "buildMs": 241807
+  },
+  "nativeEvidence": [
+    "stack-nuxt-standalone-url.json",
+    "stack-nuxt-standalone-google.json",
+    "stack-nuxt-standalone-codespaces.json"
+  ],
+  "performanceConclusion": "Google image-absent product visible in24793ms, cached interaction6738ms. Codespaces request-to-health43350ms first and7252ms cached. First-image launches still exceed20s; no guarantee and no controlled before/after native latency claim."
 }

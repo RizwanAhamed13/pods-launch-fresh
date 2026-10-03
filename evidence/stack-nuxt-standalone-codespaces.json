@@ -1,0 +1,118 @@
+{
+  "testedAt": "2026-10-03T20:05:26.249Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "DPvjOAVehbqpQEUPkgOz6OAfqyqipodP",
+      "dataKey": "repo-17942c0277f8155e2cc154ce",
+      "appId": "repo-17942c0277f8155e2cc154ce-f58a3e357955-8296b658d67e",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "8296b658d67e7bd8c54f4415708e8bb551e1b9a8de03dcac7d8b64df808f07c8",
+      "images": [
+        {
+          "id": "sha256:28771928461bda52ad3edfda36724888112e5989405e3423b425eb3130651334",
+          "sha256": "76b18659e7ec132892d269317f487d7e645d93c575f856b92150196b3019349c",
+          "bytes": 80930828
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791057853100,
+      "updatedAt": 1791057896450,
+      "expiresAt": 1791059653100,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791057868323,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791057896450,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 851,
+        "imagesMs": 17288,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 29,
+        "imageDownloadMs": 14354,
+        "imageLoadMs": 2882,
+        "runtimeReadyMs": 21109,
+        "cacheHit": false
+      },
+      "readyAt": 1791057896450,
+      "deliveryMs": 28127,
+      "totalMs": 43350,
+      "ssrCheck": {
+        "fixture": "nuxt",
+        "productRendered": true,
+        "initialCounter": 0,
+        "scripts": [
+          {
+            "path": "/_nuxt/Xrz7lXV0.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 47938
+          }
+        ],
+        "passed": true,
+        "scope": "Authenticated HTTP server-rendered fixture and client entry assets; not browser hydration, interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "wfaZWeiwVLm7OL8QB9m-7wdy12G34z7R",
+      "dataKey": "repo-17942c0277f8155e2cc154ce",
+      "appId": "repo-17942c0277f8155e2cc154ce-f58a3e357955-8296b658d67e",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "8296b658d67e7bd8c54f4415708e8bb551e1b9a8de03dcac7d8b64df808f07c8",
+      "images": [
+        {
+          "id": "sha256:28771928461bda52ad3edfda36724888112e5989405e3423b425eb3130651334",
+          "sha256": "76b18659e7ec132892d269317f487d7e645d93c575f856b92150196b3019349c",
+          "bytes": 80930828
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791057907943,
+      "updatedAt": 1791057915195,
+      "expiresAt": 1791059707943,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791057908463,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791057915195,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 199,
+        "imagesMs": 68,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 68,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2490,
+        "cacheHit": true
+      },
+      "readyAt": 1791057915195,
+      "deliveryMs": 6732,
+      "totalMs": 7252,
+      "ssrCheck": {
+        "fixture": "nuxt",
+        "productRendered": true,
+        "initialCounter": 0,
+        "scripts": [
+          {
+            "path": "/_nuxt/Xrz7lXV0.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 47938
+          }
+        ],
+        "passed": true,
+        "scope": "Authenticated HTTP server-rendered fixture and client entry assets; not browser hydration, interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    }
+  ]
+}
