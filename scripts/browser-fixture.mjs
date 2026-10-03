@@ -15,6 +15,7 @@ const root = await mkdtemp(join(tmpdir(), 'pods-browser-'));
 const sourceManifest = await prepare('examples/notes', root);
 const artifact = await readFile(join(root, 'artifacts', sourceManifest.sha256 + '.gz'));
 const historyDelay = Number(process.env.PODS_FIXTURE_HISTORY_DELAY_MS || 0);
+const productTitle = process.env.PODS_FIXTURE_TITLE || 'Prepared notes';
 const runners = [];
 const processes = new Map();
 const requests = [], authorizations = [];
@@ -25,7 +26,7 @@ const adapter = {
   build: async (repository, update) => {
     for (const stage of ['fetching', 'compiling', 'verifying']) { update(stage); await sleep(600); }
     if (repository.name === 'unsupported') throw new Error('This application needs an unsupported runtime. Check the supported application matrix.');
-    return { bytes: artifact, manifest: { ...sourceManifest, id: `repo-${repository.key}`, name: 'Prepared notes', source: { url: repository.url, folder: repository.folder, revision: 'a'.repeat(40) }, verification: { documentPath: '/', status: 200, contentType: 'text/html', title: 'Prepared notes' } } };
+    return { bytes: artifact, manifest: { ...sourceManifest, id: `repo-${repository.key}`, name: 'Prepared notes', source: { url: repository.url, folder: repository.folder, revision: 'a'.repeat(40) }, verification: { documentPath: '/', status: 200, contentType: 'text/html', title: productTitle } } };
   },
 };
 function compute(provider) {

@@ -5,7 +5,14 @@ const page = route(location.pathname);
 let me, app, active, building, timer, autoOpen = false, busy = false, initializing = true;
 const selected = () => document.querySelector('input[name="provider"]:checked').value;
 const notice = text => { $('notice').textContent = text; $('notice').hidden = !text; };
-const title = item => item.verification?.title || item.name;
+const title = item => {
+  if (!item.verification?.title) return item.name;
+  // Prepared HTML titles contain character references. Escape literal markup
+  // before decoding, then callers render only text (never the decoded HTML).
+  const text = document.createElement('textarea');
+  text.innerHTML = item.verification.title.replaceAll('<', '&lt;');
+  return text.value;
+};
 const time = ms => `${(Math.max(0, ms) / 1000).toFixed(1)}s`;
 const storage = {
   get(key) { try { return sessionStorage.getItem(key); } catch { return null; } },

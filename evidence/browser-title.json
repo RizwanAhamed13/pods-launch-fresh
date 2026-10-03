@@ -1,0 +1,15 @@
+{
+  "scope": "Real PODS browser UI with loopback simulated preparation and authorization. Production regression observed in native Blazor artifact metadata.",
+  "before": "Blazor &#x2B; SQLite",
+  "fixtureInput": "Blazor &#x2B; SQLite &amp; &#128640; <b>literal</b> &lt;demo&gt;",
+  "expectedVisibleText": "Blazor + SQLite & 🚀 <b>literal</b> <demo>",
+  "checks": {
+    "preparationResult": true,
+    "launchHeading": true,
+    "launchButton": true,
+    "documentTitle": true,
+    "literalMarkupPreservedAsText": true,
+    "markupNodesInHeading": 0
+  },
+  "reproduce": "Run scripts/browser-fixture.mjs with PODS_FIXTURE_TITLE set to fixtureInput. Submit a repository in /develop, finish simulated authorization, and follow Try this version."
+}
