@@ -1,0 +1,114 @@
+{
+  "testedAt": "2026-10-03T18:27:16.873Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "2AQkk53afpKNzeZjKN1Qe1O1q2rjAt89",
+      "appId": "repo-17942c0277f8155e2cc154ce-00df7c09ea97-5a5b1d9df9e5",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "5a5b1d9df9e59562234fecd139f254007418fc1a5575f14b5cdd9e31b9103388",
+      "images": [
+        {
+          "id": "sha256:c5a3a7b5f4d0963af7c5b3806d24a8c92daed00c2c6407cec8897ec01c550be8",
+          "sha256": "a2a871f994dff9dd7cafce49a9d6b1ba14b92dcfca5e4c3c40aacc4cc413e93f",
+          "bytes": 132785944
+        }
+      ],
+      "status": "ready",
+      "createdAt": 1791051910548,
+      "updatedAt": 1791052011441,
+      "expiresAt": 1791053710548,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791051923717,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791052011441,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 809,
+        "imagesMs": 56193,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 70623,
+        "cacheHit": false
+      },
+      "readyAt": 1791052011441,
+      "deliveryMs": 87724,
+      "totalMs": 100893,
+      "ssrCheck": {
+        "productRendered": true,
+        "initialCounter": 0,
+        "scripts": [
+          {
+            "path": "/_nuxt/Xrz7lXV0.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 47938
+          }
+        ],
+        "passed": true,
+        "scope": "Authenticated HTTP server-rendered fixture and client entry assets; not browser hydration, interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "j6dkrHvPopoYXRuL4u2Gt7MsKDfX8i4V",
+      "appId": "repo-17942c0277f8155e2cc154ce-00df7c09ea97-5a5b1d9df9e5",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "5a5b1d9df9e59562234fecd139f254007418fc1a5575f14b5cdd9e31b9103388",
+      "images": [
+        {
+          "id": "sha256:c5a3a7b5f4d0963af7c5b3806d24a8c92daed00c2c6407cec8897ec01c550be8",
+          "sha256": "a2a871f994dff9dd7cafce49a9d6b1ba14b92dcfca5e4c3c40aacc4cc413e93f",
+          "bytes": 132785944
+        }
+      ],
+      "status": "ready",
+      "createdAt": 1791052019654,
+      "updatedAt": 1791052026455,
+      "expiresAt": 1791053819654,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791052020404,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791052026455,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 294,
+        "imagesMs": 72,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 1969,
+        "cacheHit": true
+      },
+      "readyAt": 1791052026455,
+      "deliveryMs": 6051,
+      "totalMs": 6801,
+      "ssrCheck": {
+        "productRendered": true,
+        "initialCounter": 0,
+        "scripts": [
+          {
+            "path": "/_nuxt/Xrz7lXV0.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 47938
+          }
+        ],
+        "passed": true,
+        "scope": "Authenticated HTTP server-rendered fixture and client entry assets; not browser hydration, interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "confirmedTerminalStates": [
+    {
+      "id": "2AQkk53afpKNzeZjKN1Qe1O1q2rjAt89",
+      "status": "stopped"
+    },
+    {
+      "id": "j6dkrHvPopoYXRuL4u2Gt7MsKDfX8i4V",
+      "status": "stopped"
+    }
+  ]
+}

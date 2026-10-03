@@ -20,6 +20,7 @@ const runners = [];
 const processes = new Map();
 const requests = [], authorizations = [];
 let expireEveryAction = false;
+let expireSessionEveryAction = false;
 let productPort = 19900;
 const adapter = {
   initialize: async () => {}, close: async () => {},
@@ -57,6 +58,11 @@ server.on('request', async (req, res) => {
   const url = new URL(req.url, origin);
   // Loopback QA controls only; these routes do not exist in the production server.
   const expireConnections = () => { for (const c of store.list('connection')) store.put('connection', c.id, { ...c, expiresAt: Date.now() - 1 }); };
+  const expireSessions = () => { for (const user of store.list('user')) store.put('user', user.id, { ...user, expiresAt: Date.now() - 1 }); };
+  if (req.method === 'POST' && url.pathname === '/fixture/expire-session') {
+    expireSessionEveryAction = url.searchParams.get('repeat') === '1'; expireSessions();
+    res.setHeader('Content-Type', 'application/json'); return res.end(JSON.stringify({ expired: true, expireSessionEveryAction }));
+  }
   if (req.method === 'POST' && url.pathname === '/fixture/expire-connections') {
     expireEveryAction = url.searchParams.get('repeat') === '1'; expireConnections();
     res.setHeader('Content-Type', 'application/json'); return res.end(JSON.stringify({ expired: true, expireEveryAction }));
@@ -70,6 +76,7 @@ server.on('request', async (req, res) => {
   }
   if (req.method === 'POST' && ['/api/builds', '/api/launches'].includes(url.pathname)) {
     if (expireEveryAction) expireConnections();
+    if (expireSessionEveryAction) expireSessions();
     res.once('finish', () => requests.push({ path: url.pathname, status: res.statusCode }));
   }
   if (req.method === 'GET' && ['/api/builds', '/api/launches'].includes(url.pathname)) await sleep(historyDelay);

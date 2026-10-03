@@ -52,8 +52,8 @@ test('API enforces browser ownership, CSRF, capability auth and idempotent launc
  const r=await fetch(origin+'/api/me'),cookie=r.headers.get('set-cookie').split(';')[0],me=await r.json();
  const request=(path,body,extra={})=>fetch(origin+path,{method:body===undefined?'GET':'POST',headers:{Cookie:cookie,'X-Pods-CSRF':me.csrf,'Content-Type':'application/json',...extra},body:body===undefined?undefined:JSON.stringify(body)});
  try{
- let r=await request('/api/connections/github',{token:'a'.repeat(30)},{'X-Pods-CSRF':'bad'});assert.equal(r.status,403);
- r=await request('/api/connections/github',{token:'a'.repeat(30)},{Origin:'https://evil.example'});assert.equal(r.status,403);
+ let r=await request('/api/connections/github',{token:'a'.repeat(30)},{'X-Pods-CSRF':'bad'});assert.equal(r.status,403);assert.equal((await r.json()).code,'SESSION_CHANGED');assert.equal(store.list('connection').length,0);
+ r=await request('/api/connections/github',{token:'a'.repeat(30)},{Origin:'https://evil.example'});assert.equal(r.status,403);assert.equal((await r.json()).code,undefined);assert.equal(store.list('connection').length,0);
  r=await request('/api/connections/github',{token:'a'.repeat(30)});assert.equal(r.status,200);
  r=await request('/api/launches',{provider:'github',appId:'field-notes'});assert.equal(r.status,202);const launch=await r.json();assert.equal(launch.tokenHash,undefined);assert.equal(launch.owner,undefined);
  r=await request('/api/launches',{provider:'github',appId:'field-notes'});assert.equal((await r.json()).id,launch.id);assert.equal(launchCount,1);

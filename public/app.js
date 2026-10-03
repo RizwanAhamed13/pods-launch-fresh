@@ -22,7 +22,7 @@ const storage = {
 async function api(path, options = {}) {
   const response = await fetch(path, { ...options, headers: { 'Content-Type': 'application/json', 'X-Pods-CSRF': me?.csrf || '', ...options.headers } });
   const result = await response.json();
-  if (!response.ok) throw Object.assign(new Error(result.error || 'The request could not be completed.'), { status: response.status });
+  if (!response.ok) throw Object.assign(new Error(result.error || 'The request could not be completed.'), { status: response.status, code: result.code });
   return result;
 }
 function element(tag, text, className) {
@@ -169,10 +169,10 @@ async function history() {
 }
 async function errorNotice(error, intent, reconnected) {
   setBusy(false); notice(error.message);
-  if (error.status === 401) {
+  if (error.status === 401 || error.status === 403 && error.code === 'SESSION_CHANGED') {
     try {
       me = await api('/api/me'); connections();
-      // Submission rejects expired authorization before creating work. Resume once,
+      // Submission rejects expired authorization or stale CSRF before creating work. Resume once,
       // carrying the limit through OAuth navigation so failed authorization cannot loop.
       if (intent && !reconnected) await ensureConnection({ ...intent, reconnected: true }, true);
     } catch { notice(error.message + ' Refresh the page to reconnect.'); }

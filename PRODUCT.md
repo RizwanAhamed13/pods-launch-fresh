@@ -81,3 +81,14 @@ application still requires a usable rendered interface. Native/GPU/mobile progra
 are outside the browser-compute delivery contract until a suitable interface and
 runtime exist. Do not represent a generic container capability as proof that every
 framework, arbitrary repository or external service works automatically.
+
+Nuxt now adds an eleventh native application family. Actual URL preparation took
+241.125s. Cloud Shell health took 64.995s image-absent and 6.865s cached; the cached
+native counter accepted a click in 7.936s continuously from launch. On the first
+launch an early SSR-visible click was ignored before hydration; a later click
+worked, and that failure is retained. Codespaces authenticated SSR and JavaScript
+asset checks passed at 100.893s resumed/image-absent and 6.801s cached. Native
+Codespaces browser interaction is still pending. Nuxt counter resets on reload
+by design. Both provider pairs were stopped. A precise stale-session CSRF
+rejection now preserves the intended action through one forced reconnection;
+local browser regression verifies recovery without duplicate jobs or loops.

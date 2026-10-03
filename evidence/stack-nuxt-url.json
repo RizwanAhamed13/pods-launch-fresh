@@ -1,0 +1,52 @@
+{
+  "scope": "Real developer form submission after normal build allowance opened; isolated preparation on aswin. Native provider evidence recorded separately.",
+  "attempts": [
+    {
+      "id": "LyS0ndmZTHrMBdMDra0Ms28ZOHNdJu08",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/nuxt",
+        "key": "17942c0277f8155e2cc154ce"
+      },
+      "status": "ready",
+      "createdAt": 1791051619314,
+      "startedAt": 1791051619469,
+      "finishedAt": 1791051860594,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-17942c0277f8155e2cc154ce-00df7c09ea97-5a5b1d9df9e5",
+      "app": {
+        "id": "repo-17942c0277f8155e2cc154ce-00df7c09ea97-5a5b1d9df9e5",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "5a5b1d9df9e59562234fecd139f254007418fc1a5575f14b5cdd9e31b9103388",
+        "bytes": 275,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-17942c0277f8155e2cc154ce",
+        "images": [
+          {
+            "id": "sha256:c5a3a7b5f4d0963af7c5b3806d24a8c92daed00c2c6407cec8897ec01c550be8",
+            "sha256": "a2a871f994dff9dd7cafce49a9d6b1ba14b92dcfca5e4c3c40aacc4cc413e93f",
+            "bytes": 132785944
+          }
+        ],
+        "productType": "web",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/nuxt",
+          "revision": "00df7c09ea971725adecb076d508f767fc6e1846"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "pods-launch-runtime-fresh"
+        },
+        "preparedAt": "2026-10-03T18:24:20.124Z"
+      }
+    }
+  ],
+  "buildMs": 241125
+}

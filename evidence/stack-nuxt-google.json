@@ -1,0 +1,78 @@
+{
+  "recordedAt": "2026-10-03T18:29:39.441289+00:00",
+  "scope": "Native Cloud Shell browser on actual Nuxt SSR product. Existing compute, image absent then cached. Counter state is transient by design; no database claim.",
+  "preparationEvidence": "stack-nuxt-url.json",
+  "attempts": [
+    {
+      "id": "5PAO5861gVD5pp-YBiUv4OpHS6M66CMn",
+      "appId": "repo-17942c0277f8155e2cc154ce-00df7c09ea97-5a5b1d9df9e5",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791051935015,
+      "updatedAt": 1791052046510,
+      "expiresAt": 1791053735015,
+      "providerReadyAt": 1791051937742,
+      "readyAt": 1791052000010,
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "lastSeenAt": 1791052046510,
+      "timings": {
+        "downloadMs": 701,
+        "imagesMs": 55911,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 60244,
+        "cacheHit": false
+      },
+      "environment": "default",
+      "stopRequested": true,
+      "storageMode": "persistent",
+      "totalMs": 64995
+    },
+    {
+      "id": "e_ISQtoaIO6C49XqThUeDr_FC6tmvYxV",
+      "appId": "repo-17942c0277f8155e2cc154ce-00df7c09ea97-5a5b1d9df9e5",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791052058809,
+      "updatedAt": 1791052082017,
+      "expiresAt": 1791053858809,
+      "providerReadyAt": 1791052061770,
+      "readyAt": 1791052065674,
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "lastSeenAt": 1791052082017,
+      "timings": {
+        "downloadMs": 426,
+        "imagesMs": 61,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 2556,
+        "cacheHit": true
+      },
+      "environment": "default",
+      "stopRequested": true,
+      "storageMode": "persistent",
+      "totalMs": 6865
+    }
+  ],
+  "browser": [
+    {
+      "launchId": "5PAO5861gVD5pp-YBiUv4OpHS6M66CMn",
+      "before": 0,
+      "earlyClickResult": 0,
+      "earlyClickFailed": true,
+      "afterLaterClick": 1,
+      "afterReload": 0,
+      "productVisibleObservedByMs": 65516,
+      "successfulInteractionObservedByMs": 94010,
+      "measurement": "Upper bounds with observation gaps; first SSR-visible click preceded hydration and was ignored. A later click worked."
+    },
+    {
+      "launchId": "e_ISQtoaIO6C49XqThUeDr_FC6tmvYxV",
+      "before": 0,
+      "afterClick": 1,
+      "afterReload": 0,
+      "productVisibleMs": 7642,
+      "interactionMs": 7936,
+      "measurement": "Continuous click-to-product and click-to-successful-interaction timing with bounded locator retries."
+    }
+  ],
+  "confirmedStopped": true
+}

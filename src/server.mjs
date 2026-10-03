@@ -104,7 +104,7 @@ export async function createApp(options={}) {
       const user=cookie(req,res);
       if(!['GET','HEAD'].includes(req.method)) {
         if(req.headers.origin&&req.headers.origin!==origin)throw fail(403,'Request origin rejected');
-        if(!same(req.headers['x-pods-csrf'],user.csrf))throw fail(403,'Refresh the page and try again.');
+        if(!same(req.headers['x-pods-csrf'],user.csrf))throw Object.assign(fail(403,'Your browser session changed. Reconnect to continue.'),{code:'SESSION_CHANGED'});
       }
       if(path==='/api/me'&&req.method==='GET')return json(200,{csrf:user.csrf,buildsEnabled:Boolean(builds&&!builds.closed&&!builds.fault),connections:Object.keys(providers).map(p=>{const c=store.get('connection',`${user.id}:${p}`);return {provider:p,connected:Boolean(c&&c.expiresAt>Date.now()),name:c?.name,oauthReady:Boolean(oauth[p]?.id&&oauth[p]?.secret)};}),apps:await apps()});
       if(path==='/api/builds'&&req.method==='GET')return json(200,builds?.list(user.id)||[]);
@@ -164,7 +164,7 @@ export async function createApp(options={}) {
       if(/^\/launch\/[a-z0-9-]+$/.test(path))allowed[path]='index.html';
       if(allowed[path]&&req.method==='GET'){res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html; charset=utf-8');return res.end(await readFile(join(base,'public',allowed[path])));}
       throw fail(404,'Not found');
-    } catch(e) { if(!res.headersSent)json(e.status||500,{error:e.status?e.message:'The request could not be completed. Check server configuration and retry.'});else res.end(); }
+    } catch(e) { if(!res.headersSent)json(e.status||500,{error:e.status?e.message:'The request could not be completed. Check server configuration and retry.',...(e.code==='SESSION_CHANGED'?{code:e.code}:{})});else res.end(); }
   });
   const sweep=setInterval(()=>{
     for(const s of store.list('launch')) {

@@ -1,0 +1,12 @@
+{
+  "recordedAt": "2026-10-03T18:29:39.441289+00:00",
+  "scope": "Actual production developer browser, before session recovery fix. No token, cookie or account identifiers retained.",
+  "observedMessage": "Refresh the page and try again.",
+  "causeConfirmed": "Server CSRF mismatch branch rejected the mutation before build creation.",
+  "underlyingSessionChangeCause": "Unknown; refresh showed disconnected compute accounts and empty draft.",
+  "serverBuildCreated": false,
+  "quota": "Original build window had already opened normally; no quota or identity manipulation.",
+  "manualRecovery": "Reloaded page, restored the same public repository and examples/stacks/nuxt folder, selected Google and completed ordinary existing-account OAuth. One Nuxt build was accepted.",
+  "acceptedBuild": "LyS0ndmZTHrMBdMDra0Ms28ZOHNdJu08",
+  "followupEvidence": "browser-session-recovery.json"
+}

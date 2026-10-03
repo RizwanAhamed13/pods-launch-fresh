@@ -1,0 +1,134 @@
+{
+  "recordedAt": "2026-10-03T18:29:39.441289+00:00",
+  "scope": "Real PODS browser UI/server with loopback simulated OAuth, providers and preparation; real local notes artifact, runner and storage. Not native provider evidence.",
+  "checks": [
+    {
+      "name": "Changed session preparation forces Google reauthorization and resumes exact draft",
+      "repository": "https://github.com/example/session-recovered",
+      "folder": "apps/new-draft",
+      "statuses": [
+        403,
+        202
+      ],
+      "newBuilds": 1,
+      "extraPrepareClicks": 0,
+      "passed": true
+    },
+    {
+      "name": "Repeated session changes stop after one OAuth recovery and retain draft",
+      "repository": "https://github.com/example/session-loop",
+      "folder": "apps/kept",
+      "statuses": [
+        403,
+        403
+      ],
+      "newBuilds": 0,
+      "recoveryAuthorizations": 1,
+      "passed": true
+    },
+    {
+      "name": "Changed GitHub launch session reconnects and automatically opens the selected working product",
+      "appId": "field-notes",
+      "statuses": [
+        403,
+        202
+      ],
+      "newLaunches": 1,
+      "extraLaunchClicks": 0,
+      "savedNoteAfterReload": "Recovered session product",
+      "passed": true
+    }
+  ],
+  "fixtureReport": {
+    "requests": [
+      {
+        "path": "/api/builds",
+        "status": 202
+      },
+      {
+        "path": "/api/builds",
+        "status": 403
+      },
+      {
+        "path": "/api/builds",
+        "status": 202
+      },
+      {
+        "path": "/api/builds",
+        "status": 403
+      },
+      {
+        "path": "/api/builds",
+        "status": 403
+      },
+      {
+        "path": "/api/launches",
+        "status": 202
+      },
+      {
+        "path": "/api/launches",
+        "status": 403
+      },
+      {
+        "path": "/api/launches",
+        "status": 202
+      }
+    ],
+    "authorizations": [
+      "google",
+      "google",
+      "google",
+      "github",
+      "github"
+    ],
+    "builds": [
+      {
+        "id": "8Nt3frVxZRqq-tCxettYRaxlObAbUcto",
+        "repository": {
+          "url": "https://github.com/example/session-recovered",
+          "owner": "example",
+          "name": "session-recovered",
+          "folder": "apps/new-draft",
+          "key": "a811fa14392aac3e32a9df96"
+        },
+        "status": "ready"
+      },
+      {
+        "id": "KCIJNUDduNi7_syjWKKetlHoWYw_yHxl",
+        "repository": {
+          "url": "https://github.com/example/baseline",
+          "owner": "example",
+          "name": "baseline",
+          "folder": "apps/old",
+          "key": "995b4f4534bb8ce5b5364b4e"
+        },
+        "status": "ready"
+      }
+    ],
+    "launches": [
+      {
+        "id": "KsPHieXI4thxwEk2Rapxxfr6vZ8bCRNK",
+        "appId": "field-notes",
+        "provider": "github",
+        "status": "stopped"
+      },
+      {
+        "id": "hYsxdmYOPYVR2UpFdTgLflRYn0QDKq0J",
+        "appId": "field-notes",
+        "provider": "github",
+        "status": "stopped"
+      }
+    ]
+  },
+  "automatedChecks": {
+    "localPassed": 56,
+    "badCsrfCreatesNoWork": true,
+    "originRejectionHasNoRecoveryCode": true
+  },
+  "reproduce": [
+    "Run PODS_FIXTURE_PORT=19889 node scripts/browser-fixture.mjs; authorize a simulated account and finish/stop its baseline preparation or launch.",
+    "Leave the loaded page connected. POST /fixture/expire-session using the test controller, then submit a new exact draft or launch once. Complete simulated authorization and verify automatic continuation.",
+    "Use ?repeat=1 to invalidate every submission. After one OAuth return the repeated 403 must stay on the page without creating work. Read /fixture/report for counts."
+  ],
+  "productionSessionExpiryForced": false
+}

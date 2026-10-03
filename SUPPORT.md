@@ -457,3 +457,35 @@ loading fell from 62.846s to 23.563s and resumed launch health from 104.115s to 
 these are separate observed runs, not a controlled benchmark or cold-launch
 guarantee. The uncached launches still exceed 20s.
 Evidence: `evidence/stack-rails-optimized-{url,google,codespaces}.json`.
+
+## Nuxt SSR native acceptance and session recovery
+
+The actual developer form prepared Nuxt in **241.125 seconds** and produced a
+126.6 MiB image. It then passed two native Cloud Shell browser launches and two
+Codespaces authenticated HTTP/JavaScript asset checks.
+
+| Nuxt scenario | Measured result |
+| --- | --- |
+| Cloud Shell, existing compute/image absent | Health 64.995s, including 55.911s image loading |
+| Cloud Shell, cached | Health 6.865s; actual counter visible 7.642s; successful browser interaction **7.936s** |
+| Codespaces, resumed/image absent | Health 100.893s, including 56.193s image loading |
+| Codespaces, cached | Health 6.801s; SSR counter and JavaScript entry fetch passed |
+
+The first Google page was visible by 65.516s, but its first click before client
+hydration did not change the counter. A later click worked by 94.010s; these are
+observation upper bounds with tool gaps, not continuous interaction measurements.
+The cached measurement was continuous and passed on its first click. Both
+launches reset the counter to zero on reload, as this fixture intentionally uses
+transient client state. This is not database durability evidence. All four
+previews were confirmed stopped. Codespaces browser hydration and authorization
+remain pending. See `evidence/stack-nuxt-{url,google,codespaces}.json`.
+
+The initial developer attempt was rejected for stale CSRF before any build was
+created. Ordinary reconnection then succeeded; the reason the original session
+changed is unknown. The browser now handles that precise rejection with one
+forced provider reconnection, preserving the intended repository, folder or app.
+CSRF and origin checks remain enforced, and arbitrary 403s do not trigger recovery.
+A local real-browser fixture verified preparation recovery, bounded repeated
+failure, and automatic launch into a working notes product with save/reload.
+Those provider/OAuth components were simulated. All 56 automated tests pass.
+See `evidence/browser-session-recovery.json` and `stack-nuxt-session-rejection.json`.

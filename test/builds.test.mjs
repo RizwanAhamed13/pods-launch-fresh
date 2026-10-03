@@ -185,7 +185,9 @@ test('submission API requires account authorization and CSRF, protects jobs, and
     assert.equal(store.list('build').length, 0); // Reauthorization can resume without duplicating work.
     assert.equal((await (await req('/api/me')).json()).connections.find(c => c.provider === 'github').connected, false);
     await req('/api/connections/github', { token: 'x'.repeat(30) });
-    assert.equal((await req('/api/builds', { url: repository.url }, { 'X-Pods-CSRF': 'bad' })).status, 403);
+    const staleCsrf = await req('/api/builds', { url: repository.url }, { 'X-Pods-CSRF': 'bad' });
+    assert.equal(staleCsrf.status, 403); assert.equal((await staleCsrf.json()).code, 'SESSION_CHANGED');
+    assert.equal(store.list('build').length, 0);
     assert.equal((await req('/api/builds', { url: 'http://localhost/' })).status, 400);
     const submitted = await req('/api/builds', { url: repository.url });
     assert.equal(submitted.status, 202);
