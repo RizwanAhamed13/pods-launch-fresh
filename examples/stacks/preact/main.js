@@ -1,0 +1,1 @@
+import {h,render} from 'preact';import {useState} from 'preact/hooks';function App(){const [n,set]=useState(Number(localStorage.count||0));return h('main',null,h('h1',null,'Preact counter'),h('p',{id:'value'},n),h('button',{onClick:()=>{localStorage.count=n+1;set(n+1)}},'Add one'))}render(h(App),document.querySelector('#app'));

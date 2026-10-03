@@ -2,6 +2,9 @@ import { createServer } from 'node:http';
 import { readFile, readdir, mkdir } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createReadStream } from 'node:fs';
+import { build as bundle } from 'esbuild';
+import { pipeline } from 'node:stream/promises';
 import { Store } from './store.mjs';
 import { uid, digest, same } from './util.mjs';
 import { providers as makeProviders } from './providers.mjs';
@@ -18,7 +21,7 @@ export async function createApp(options={}) {
   const repo = options.repo || process.env.PODS_RUNTIME_REPO || 'RizwanAhamed13/pods-launch-fresh';
   const secure = origin.startsWith('https://');
   const store = new Store(data, options.secret || process.env.PODS_SECRET);
-  const runner = await readFile(join(base,'src/runner.mjs'));
+  const runner = (await bundle({entryPoints:[join(base,'src/runner.mjs')],bundle:true,platform:'node',format:'esm',target:'node22',write:false})).outputFiles[0].contents;
   const providers = options.providers || makeProviders({repo,origin,runnerSha:digest(runner)});
   const jobs = new Map();
   const buildsEnabled = options.buildAdapter || process.env.PODS_BUILDS_ENABLED === '1';
@@ -67,10 +70,16 @@ export async function createApp(options={}) {
     try {
       if(path==='/health')return json(200,{ok:true});
       if(path==='/runner.mjs'&&req.method==='GET'){res.setHeader('Content-Type','text/javascript');return res.end(runner);}
-      const agent=/^\/api\/agent\/([A-Za-z0-9_-]{32})(?:\/(artifact))?$/.exec(path);
+      const agent=/^\/api\/agent\/([A-Za-z0-9_-]{32})(?:\/(artifact)(?:\/images\/([a-f0-9]{64}))?)?$/.exec(path);
       if(agent) {
         const s=store.get('launch',agent[1]), token=req.headers.authorization?.replace(/^Bearer /,'');
         if(!s||!same(digest(token||''),s.tokenHash)||s.expiresAt<Date.now())throw fail(401,'Launch authorization expired or invalid');
+        if(agent[3] && req.method==='GET') {
+          const image=s.images?.find(i=>i.sha256===agent[3]);
+          if(!image || ['failed','stopped'].includes(s.status))throw fail(404,'Prepared image unavailable');
+          res.writeHead(200,{'Content-Type':'application/gzip','Content-Length':image.bytes});
+          await pipeline(createReadStream(join(data,'images',image.sha256+'.gz')),res);return;
+        }
         if(agent[2]&&req.method==='GET'){if(['stopped','failed'].includes(s.status))throw fail(410,'Launch ended');res.setHeader('Content-Type','application/gzip');return res.end(await readFile(join(data,'artifacts',s.sha256+'.gz')));}
         if(!agent[2]&&req.method==='POST'){
           const event=await body(req);if(!statuses.has(event.status))throw fail(400,'Unknown agent state');
@@ -80,7 +89,7 @@ export async function createApp(options={}) {
           if(event.status!=='heartbeat')patch.status=event.status;
           if(event.status==='ready') { if(!s.providerReadyAt)throw fail(409,'Provider is not ready');patch.readyAt=s.readyAt||Date.now(); }
           if(event.status==='failed')patch.error=String(event.error||'Application failed').slice(0,250);
-          if(event.timings) {patch.timings={};for(const k of ['downloadMs','runtimeReadyMs'])if(Number.isFinite(event.timings[k])&&event.timings[k]>=0&&event.timings[k]<600000)patch.timings[k]=event.timings[k];patch.timings.cacheHit=event.timings.cacheHit===true;}
+          if(event.timings) {patch.timings={};for(const k of ['downloadMs','imagesMs','imageCacheHits','runtimeReadyMs'])if(Number.isFinite(event.timings[k])&&event.timings[k]>=0&&event.timings[k]<600000)patch.timings[k]=event.timings[k];patch.timings.cacheHit=event.timings.cacheHit===true;}
           // Preview URL is set from provider metadata, never accepted from the runner.
           update(s.id,patch);return json(200,{action:s.stopRequested?'stop':'continue'});
         }
@@ -135,9 +144,9 @@ export async function createApp(options={}) {
         const active=store.list('launch').find(s=>s.owner===user.id&&s.provider===b.provider&&!['failed','stopped'].includes(s.status)&&s.expiresAt>Date.now());
         if(active) {if(active.appId!==app.id)throw fail(409,'An application is already running on this provider. Stop it before starting another.');return json(200,publicLaunch(active));}
         const id=uid(),token=uid(),createdAt=Date.now();
-        const s={id,owner:user.id,appId:app.id,appName:app.name,provider:b.provider,sha256:app.sha256,status:'connecting',createdAt,updatedAt:createdAt,expiresAt:createdAt+30*60*1000,tokenHash:digest(token)};
+        const s={id,owner:user.id,appId:app.id,appName:app.name,provider:b.provider,sha256:app.sha256,images:app.images || [],status:'connecting',createdAt,updatedAt:createdAt,expiresAt:createdAt+30*60*1000,tokenHash:digest(token)};
         store.put('launch',id,s);
-        const config={id,appId:app.id,sha256:app.sha256,artifactUrl:`${origin}/api/agent/${id}/artifact`,callbackUrl:`${origin}/api/agent/${id}`,token,port:8080,expiresAt:s.expiresAt};
+        const config={id,appId:app.id,dataKey:app.dataKey || app.id,containerRuntime:app.runtime==='docker-linux-amd64',sha256:app.sha256,artifactUrl:`${origin}/api/agent/${id}/artifact`,callbackUrl:`${origin}/api/agent/${id}`,token,port:8080,expiresAt:s.expiresAt};
         const job=providers[b.provider].launch(store.open(c.token),config,patch=>update(id,patch)).then(result=>update(id,result)).catch(e=>{console.error('launch',id,e.message);update(id,{status:'failed',error:'Could not start your compute. '+String(e.message).slice(0,220)});}).finally(()=>jobs.delete(id));
         jobs.set(id,job);return json(202,publicLaunch(s));
       }

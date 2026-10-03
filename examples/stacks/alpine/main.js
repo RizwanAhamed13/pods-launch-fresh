@@ -1,0 +1,1 @@
+import Alpine from 'alpinejs';document.querySelector('#app').innerHTML=`<main x-data="{count:Number(localStorage.count||0)}"><h1>Alpine counter</h1><p id="value" x-text="count"></p><button @click="count++;localStorage.count=count">Add one</button></main>`;Alpine.start();

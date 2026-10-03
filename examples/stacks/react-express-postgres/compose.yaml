@@ -1,0 +1,31 @@
+services:
+  web:
+    build: ./frontend
+    ports: ["8080:8080"]
+    depends_on:
+      api: {condition: service_healthy}
+  api:
+    build: ./api
+    environment:
+      DATABASE_URL: postgres://preview:preview-fixture-only@db:5432/preview
+    depends_on:
+      db: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:8080/api/count').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: preview
+      POSTGRES_PASSWORD: preview-fixture-only
+      POSTGRES_DB: preview
+    volumes: ["records:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U preview -d preview"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+volumes:
+  records: {}

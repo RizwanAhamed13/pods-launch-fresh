@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { builtinModules } from 'node:module';
 import { digest, uid } from '../src/util.mjs';
 import { detectApplication, sourcePath } from '../src/detect.mjs';
+import { prepareContainer } from './prepare-container.mjs';
 
 const MAX_PAYLOAD = 50 * 1024 * 1024;
 const ignored = new Set(['node_modules', '.git', '.env', '.npmrc', '.netrc', '.ssh', '.aws']);
@@ -17,6 +18,7 @@ export async function prepare(source, dataDir = process.env.PODS_DATA || '.data'
   if (!config.name || !/^\/[a-zA-Z0-9/_-]*$/.test(config.healthPath || '') || config.healthPath.includes('//')) {
     throw new Error('Application name and HTTP health path are required.');
   }
+  if (config.kind === 'container') return prepareContainer(root,dataDir,config);
   const files = [];
   let encodedSize = 0;
   function include(path, bytes) {
@@ -52,14 +54,21 @@ export async function prepare(source, dataDir = process.env.PODS_DATA || '.data'
     await add(site, 'site');
   } else {
     const entry = await sourcePath(root, config.entry);
-    const result = await build({
+    let result;
+    try { result = await build({
       entryPoints: [entry.path], bundle: true, write: false, platform: 'node',
       format: 'cjs', target: 'node22', minify: true, metafile: true, logLevel: 'silent',
-    });
+    }); } catch (error) {
+      if(config.detected && config.package) return prepareContainer(root,dataDir,{...config,kind:'container',recipe:'node'});
+      throw error;
+    }
     const builtins = new Set(builtinModules.flatMap(x => [x, `node:${x}`]));
     for (const output of Object.values(result.metafile.outputs)) {
       for (const imp of output.imports) {
-        if (imp.external && !builtins.has(imp.path)) throw new Error(`Unbundled runtime dependency: ${imp.path}. Native dependencies are not supported yet.`);
+        if (imp.external && !builtins.has(imp.path)) {
+          if(config.detected && config.package) return prepareContainer(root,dataDir,{...config,kind:'container',recipe:'node'});
+          throw new Error(`Unbundled runtime dependency: ${imp.path}. Use an existing Dockerfile for this application.`);
+        }
       }
     }
     include('app.cjs', result.outputFiles[0].contents);

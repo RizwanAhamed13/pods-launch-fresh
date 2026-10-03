@@ -1,0 +1,330 @@
+[
+  {
+    "stack": "flask-sqlite",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 49848,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 13,
+      "imageCacheHits": 1,
+      "imagesMs": 36,
+      "runtimeReadyMs": 2469
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 4,
+      "imageCacheHits": 1,
+      "imagesMs": 36,
+      "runtimeReadyMs": 2391
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "htmlBytes": 428,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:ab8c6e0afdb1aa4e36cbad982e15f1e3f2e7af961cf59c76c0c1fcce0422e701",
+        "sha256": "fbcf158ef7909829d8fdbcc6f5cea7487564fa977f4d0dba9caffa5d385cc410",
+        "bytes": 51764922
+      }
+    ],
+    "sha256": "98b2b9f46d3be5a96c1ade52ead9a5b8a8be07539f3bf5ed352c66c5f15f13e1"
+  },
+  {
+    "stack": "flask-postgres",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 110179,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 11,
+      "imageCacheHits": 2,
+      "imagesMs": 94,
+      "runtimeReadyMs": 5795
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 4,
+      "imageCacheHits": 2,
+      "imagesMs": 90,
+      "runtimeReadyMs": 5584
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "htmlBytes": 430,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:d60332ecc2d58ec77207ab0bc0bab52c72ed5f068b2922190960353cd26e9a0d",
+        "sha256": "0b1c82502149056b8d5116f5d99aefb5413131de5decdab888ea9e304edfaf53",
+        "bytes": 56629362
+      },
+      {
+        "id": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+        "sha256": "3fc00a26627991f13bcb9daaadd844f87e02850cf00a356e0287010940d6cc01",
+        "bytes": 116544108
+      }
+    ],
+    "sha256": "043b35a524a445c9cd816b59352f0d193794a1934e69dd52d385f147bf1dd870"
+  },
+  {
+    "stack": "flask-redis",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 46959,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 9,
+      "imageCacheHits": 2,
+      "imagesMs": 97,
+      "runtimeReadyMs": 5638
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 2,
+      "imageCacheHits": 2,
+      "imagesMs": 98,
+      "runtimeReadyMs": 5574
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "htmlBytes": 427,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:8a879d2f4c86a704ea77f7e6242ee401b27432d29ea8d6076abd39b98e6e730c",
+        "sha256": "98fba446ba24075861f4e5476289956aa5d50724e51f563318bd2576cf556f35",
+        "bytes": 52233722
+      },
+      {
+        "id": "sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499",
+        "sha256": "bfdc962ecd6dca3b0a34035109f2fb30ac958a5948602330af5f73c639a10102",
+        "bytes": 16256101
+      }
+    ],
+    "sha256": "13a02f4a67606370ef4916d56a6c01358b474c069db35d45dacd2c8988edcec8"
+  },
+  {
+    "stack": "react",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 15761,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 115,
+      "runtimeReadyMs": 238
+    },
+    "repeat": {
+      "cacheHit": false,
+      "downloadMs": 115,
+      "runtimeReadyMs": 238
+    },
+    "persistence": null,
+    "htmlBytes": 179,
+    "runtime": "node22+",
+    "sha256": "25312833ce7fc425825f4442656cd4bef1c6ea68897c61dbe164244d95151870"
+  },
+  {
+    "stack": "angular",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 121253,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 29,
+      "runtimeReadyMs": 148
+    },
+    "repeat": {
+      "cacheHit": false,
+      "downloadMs": 29,
+      "runtimeReadyMs": 148
+    },
+    "persistence": null,
+    "htmlBytes": 199,
+    "runtime": "node22+",
+    "sha256": "fd7ffeb2c2974fee5173666ddc7a4f18384e9f40b97ac20fa6288a0be892fdc1"
+  },
+  {
+    "stack": "vue",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 6952,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 92,
+      "runtimeReadyMs": 216
+    },
+    "repeat": {
+      "cacheHit": false,
+      "downloadMs": 92,
+      "runtimeReadyMs": 216
+    },
+    "persistence": null,
+    "htmlBytes": 179,
+    "runtime": "node22+",
+    "sha256": "30c74ea076030dccbd63dfafd75fcbaebb5c5464129da841bdcb5dc707f24fdb"
+  },
+  {
+    "stack": "svelte",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 6808,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 13,
+      "runtimeReadyMs": 134
+    },
+    "repeat": {
+      "cacheHit": false,
+      "downloadMs": 13,
+      "runtimeReadyMs": 134
+    },
+    "persistence": null,
+    "htmlBytes": 179,
+    "runtime": "node22+",
+    "sha256": "c2611773269bca60a00a081753a88ba1737b2f3e29413da7fa733c21cfd35e79"
+  },
+  {
+    "stack": "solid",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 8130,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 10,
+      "runtimeReadyMs": 129
+    },
+    "repeat": {
+      "cacheHit": false,
+      "downloadMs": 10,
+      "runtimeReadyMs": 129
+    },
+    "persistence": null,
+    "htmlBytes": 179,
+    "runtime": "node22+",
+    "sha256": "8fd329781c5f9024f7e92b7fa1cdff3114ed4b09488c77531d87e26bbb32b755"
+  },
+  {
+    "stack": "preact",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 3368,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 40,
+      "runtimeReadyMs": 165
+    },
+    "repeat": {
+      "cacheHit": false,
+      "downloadMs": 40,
+      "runtimeReadyMs": 165
+    },
+    "persistence": null,
+    "htmlBytes": 179,
+    "runtime": "node22+",
+    "sha256": "c4a6185adae5d9710eb4ad968d8b5b17ecc3f9306365c5fcf573763ca198bb78"
+  },
+  {
+    "stack": "lit",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 11456,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 117,
+      "runtimeReadyMs": 239
+    },
+    "repeat": {
+      "cacheHit": false,
+      "downloadMs": 117,
+      "runtimeReadyMs": 239
+    },
+    "persistence": null,
+    "htmlBytes": 179,
+    "runtime": "node22+",
+    "sha256": "56f291e44a0cbecc17e8be02dc294b0c362d9e8cd35cd79f731182b421311793"
+  },
+  {
+    "stack": "alpine",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 3485,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 94,
+      "runtimeReadyMs": 216
+    },
+    "repeat": {
+      "cacheHit": false,
+      "downloadMs": 94,
+      "runtimeReadyMs": 216
+    },
+    "persistence": null,
+    "htmlBytes": 179,
+    "runtime": "node22+",
+    "sha256": "9a0031b1a63941b5e37e22b6fd18b40c6b71588624cf0e6be22bf2b8bbde09d6"
+  },
+  {
+    "stack": "express",
+    "status": "failed",
+    "error": "Unbundled runtime dependency: supports-color. Native dependencies are not supported yet."
+  },
+  {
+    "stack": "fastify",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 7545,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 105,
+      "runtimeReadyMs": 540
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 38,
+      "runtimeReadyMs": 263
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "htmlBytes": 310,
+    "runtime": "node22+",
+    "sha256": "e189ea49d139f5e2b4098be60f6355be17bfbeb4c9013ed4be85435c8631226d"
+  },
+  {
+    "stack": "koa",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 3004,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 92,
+      "runtimeReadyMs": 414
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 19,
+      "runtimeReadyMs": 241
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "htmlBytes": 302,
+    "runtime": "node22+",
+    "sha256": "4cf6f2739c10d5c7072c855ea4886a4ad8bd9fdafd5ac57cdcde898501700240"
+  }
+]

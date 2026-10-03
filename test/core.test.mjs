@@ -60,6 +60,13 @@ test('API enforces browser ownership, CSRF, capability auth and idempotent launc
  assert.equal((await fetch(origin+'/api/launches/'+launch.id)).status,404);
  assert.equal((await fetch(origin+'/api/agent/'+launch.id+'/artifact')).status,401);
  r=await fetch(origin+'/api/agent/'+launch.id+'/artifact',{headers:{Authorization:'Bearer '+config.token}});assert.equal(r.status,200);
+ const imageBytes=Buffer.from('prepared image bytes'),imageHash=digest(imageBytes);
+ await mkdir(join(root,'images'));await writeFile(join(root,'images',imageHash+'.gz'),imageBytes);
+ store.put('launch',launch.id,{...store.get('launch',launch.id),images:[{sha256:imageHash,bytes:imageBytes.length}]});
+ const imageUrl=origin+'/api/agent/'+launch.id+'/artifact/images/'+imageHash;
+ assert.equal((await fetch(imageUrl)).status,401);
+ r=await fetch(imageUrl,{headers:{Authorization:'Bearer '+config.token}});assert.equal(r.status,200);assert.deepEqual(Buffer.from(await r.arrayBuffer()),imageBytes);
+ assert.equal((await fetch(imageUrl.replace(imageHash,'f'.repeat(64)),{headers:{Authorization:'Bearer '+config.token}})).status,404);
  r=await fetch(origin+'/api/agent/'+launch.id,{method:'POST',headers:{Authorization:'Bearer '+config.token},body:JSON.stringify({status:'ready',previewUrl:'https://evil.example'})});assert.equal(r.status,200);
  const current=await(await request('/api/launches/'+launch.id)).json();assert.equal(current.previewUrl,'https://test-8080.app.github.dev');assert.ok(current.totalMs>=0);
  const persisted=await readFile(join(root,'pods.sqlite'));assert.ok(!persisted.includes(Buffer.from('a'.repeat(30))));

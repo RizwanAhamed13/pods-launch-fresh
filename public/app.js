@@ -70,7 +70,9 @@ function application() {
     value.append(link); row.append(element('dt', 'Source'), value); facts.append(row);
     const revision = element('div'); revision.append(element('dt', 'Version'), element('dd', app.source.revision.slice(0, 12))); facts.append(revision);
   }
-  const size = element('div'); size.append(element('dt', 'Prepared download'), element('dd', `${(app.bytes / 1024).toFixed(1)} KB`)); facts.append(size);
+  const downloadBytes = app.bytes + (app.images || []).reduce((sum, image) => sum + image.bytes, 0);
+  const downloadSize = downloadBytes >= 1024 * 1024 ? `${(downloadBytes / 1024 / 1024).toFixed(1)} MB` : `${(downloadBytes / 1024).toFixed(1)} KB`;
+  const size = element('div'); size.append(element('dt', 'Prepared download'), element('dd', downloadSize)); facts.append(size);
 }
 async function ensureConnection(intent) {
   if (me.connections.find(c => c.provider === intent.provider)?.connected) return true;
@@ -174,7 +176,7 @@ async function launch() {
 }
 async function prepare() {
   if (busy || !$('build-form').reportValidity()) return;
-  notice(''); const intent = { action: 'build', provider: 'github', url: $('repository').value.trim(), folder: $('folder').value.trim() };
+  notice(''); const intent = { action: 'build', provider: selected(), url: $('repository').value.trim(), folder: $('folder').value.trim() };
   if (!await ensureConnection(intent)) return;
   storage.remove('pods-pending'); setBusy(true); $('build-result').hidden = true;
   try { const state = await api('/api/builds', { method: 'POST', body: JSON.stringify(intent) }); showBuild(state); if (!ended(state.status)) poll('build'); }
@@ -210,8 +212,8 @@ try {
   $(page.view === 'develop' ? 'develop-nav' : 'browse-nav').setAttribute('aria-current', 'page');
   if (page.view === 'develop') {
     document.title = 'Prepare your application · PODS'; $('page-title').textContent = 'Prepare your app. Share the product.'; $('page-intro').textContent = 'Give PODS a repository URL. We’ll build it here, so others can try it on their own compute.';
-    $('action-title').textContent = 'Prepare with your account'; $('account-intro').textContent = 'Connect GitHub to start a preparation and keep track of your builds.';
-    $('github-label').textContent = 'GitHub account'; $('google-choice').hidden = true; $('target').hidden = true; $('compute-note').textContent = 'Preparation runs on the PODS server. It does not start or bill your Codespace.';
+    $('action-title').textContent = 'Prepare with your account'; $('account-intro').textContent = 'Connect Google or GitHub to start a preparation and keep track of your builds.';
+    $('github-label').textContent = 'GitHub account'; $('google-label').textContent = 'Google account'; $('target').hidden = true; $('compute-note').textContent = 'Preparation runs on the PODS server. Your compute starts only when you launch the product.';
   } else {
     $('page-title').textContent = page.view === 'launch' ? 'Make yourself at home.' : 'Prepared here. Running with you.';
     $('page-intro').textContent = page.view === 'launch' ? 'Loading this prepared application…' : 'Choose an application, connect your compute, and step into the product.';

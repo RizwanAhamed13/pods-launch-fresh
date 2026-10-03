@@ -1,0 +1,6 @@
+{
+  "name": "pods/counter",
+  "require": {
+    "php": "^8.3"
+  }
+}

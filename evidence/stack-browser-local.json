@@ -1,0 +1,109 @@
+{
+  "recordedAt": "2026-10-03T12:17:39.407Z",
+  "results": [
+    {
+      "stack": "react",
+      "before": 0,
+      "after": 1,
+      "reloaded": 1,
+      "passed": true,
+      "scope": "Prepared artifact on aswin through authenticated SSH tunnel; not native provider"
+    },
+    {
+      "stack": "angular",
+      "before": 1,
+      "after": 2,
+      "reloaded": 2,
+      "passed": true,
+      "scope": "Prepared artifact on aswin through authenticated SSH tunnel; not native provider"
+    },
+    {
+      "stack": "vue",
+      "before": 2,
+      "after": 3,
+      "reloaded": 3,
+      "passed": true,
+      "scope": "Prepared artifact on aswin through authenticated SSH tunnel; not native provider"
+    },
+    {
+      "stack": "svelte",
+      "before": 3,
+      "after": 4,
+      "reloaded": 4,
+      "passed": true,
+      "scope": "Prepared artifact on aswin through authenticated SSH tunnel; not native provider"
+    },
+    {
+      "stack": "solid",
+      "before": 4,
+      "after": 5,
+      "reloaded": 5,
+      "passed": true,
+      "scope": "Prepared artifact on aswin through authenticated SSH tunnel; not native provider"
+    },
+    {
+      "stack": "preact",
+      "before": 5,
+      "after": 6,
+      "reloaded": 6,
+      "passed": true,
+      "scope": "Prepared artifact on aswin through authenticated SSH tunnel; not native provider"
+    },
+    {
+      "stack": "lit",
+      "before": 6,
+      "after": 7,
+      "reloaded": 7,
+      "passed": true,
+      "scope": "Prepared artifact on aswin through authenticated SSH tunnel; not native provider"
+    },
+    {
+      "stack": "alpine",
+      "before": 7,
+      "after": 8,
+      "reloaded": 8,
+      "passed": true,
+      "scope": "Prepared artifact on aswin through authenticated SSH tunnel; not native provider"
+    },
+    {
+      "stack": "flask-postgres",
+      "before": 1,
+      "after": 2,
+      "reloaded": 2,
+      "passed": true,
+      "scope": "Prepared artifact on aswin through authenticated SSH tunnel; not native provider"
+    },
+    {
+      "stack": "flask-sqlite",
+      "before": 2,
+      "after": 3,
+      "reloaded": 3,
+      "passed": true,
+      "scope": "Prepared artifact on aswin through authenticated SSH tunnel; not native provider"
+    },
+    {
+      "stack": "flask-redis",
+      "before": 1,
+      "after": 2,
+      "reloaded": 2,
+      "passed": true,
+      "scope": "Prepared artifact on aswin through authenticated SSH tunnel; not native provider"
+    },
+    {
+      "stack": "fastify",
+      "before": 1,
+      "after": 2,
+      "reloaded": 2,
+      "passed": true,
+      "scope": "Prepared artifact on aswin through authenticated SSH tunnel; not native provider"
+    },
+    {
+      "stack": "koa",
+      "before": 1,
+      "after": 2,
+      "reloaded": 2,
+      "passed": true,
+      "scope": "Prepared artifact on aswin through authenticated SSH tunnel; not native provider"
+    }
+  ]
+}

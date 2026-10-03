@@ -1,0 +1,14 @@
+{
+  "name": "vue-counter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "8.3.2"
+  },
+  "dependencies": {
+    "vue": "3.5.43"
+  }
+}

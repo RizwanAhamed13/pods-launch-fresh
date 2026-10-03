@@ -1,0 +1,39 @@
+{
+  "services": {
+    "web": {
+      "build": ".",
+      "ports": [
+        "8080:8080"
+      ],
+      "depends_on": {
+        "db": {
+          "condition": "service_healthy"
+        }
+      }
+    },
+    "db": {
+      "image": "mysql:8.4",
+      "environment": {
+        "MYSQL_DATABASE": "pods",
+        "MYSQL_USER": "pods",
+        "MYSQL_PASSWORD": "preview-fixture-only",
+        "MYSQL_ROOT_PASSWORD": "preview-fixture-only"
+      },
+      "volumes": [
+        "records:/var/lib/mysql"
+      ],
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "mysql -h 127.0.0.1 -upods -ppreview-fixture-only pods -e \"SELECT 1\""
+        ],
+        "interval": "2s",
+        "timeout": "3s",
+        "retries": 40
+      }
+    }
+  },
+  "volumes": {
+    "records": {}
+  }
+}

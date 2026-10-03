@@ -1,0 +1,41 @@
+{
+  "services": {
+    "web": {
+      "build": ".",
+      "ports": [
+        "8080:8080"
+      ],
+      "depends_on": {
+        "db": {
+          "condition": "service_healthy"
+        }
+      },
+      "environment": {
+        "DATABASE_URL": "postgresql://pods:preview-fixture-only@db/pods"
+      }
+    },
+    "db": {
+      "image": "postgres:17-alpine",
+      "volumes": [
+        "records:/var/lib/postgresql/data"
+      ],
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "pg_isready -U pods -d pods"
+        ],
+        "interval": "1s",
+        "timeout": "2s",
+        "retries": 30
+      },
+      "environment": {
+        "POSTGRES_USER": "pods",
+        "POSTGRES_DB": "pods",
+        "POSTGRES_PASSWORD": "preview-fixture-only"
+      }
+    }
+  },
+  "volumes": {
+    "records": {}
+  }
+}

@@ -5,10 +5,12 @@ import { dirname, join } from 'node:path';
 import { homedir } from 'node:os';
 import { randomBytes } from 'node:crypto';
 import { command } from './util.mjs';
+import { decodeArtifact } from './runner.mjs';
+import { IMAGE_LIMIT } from './containers.mjs';
 
 const prefix = 'pods-fresh-job-';
 const jobName = name => /^pods-fresh-job-[a-f0-9]{24}$/.test(name);
-const base = 'pods-fresh-builder-base';
+const base = process.env.PODS_BUILDER_BASE || 'pods-fresh-builder-base';
 
 // This local authenticated LXD API keeps binary transfers bounded in memory and
 // rejects symlinks/directories. The container must be stopped before importing.
@@ -71,9 +73,11 @@ export class LxdBuilder {
       const all = JSON.parse(await this.cli(['list', prefix, '--format=json']));
       for (const instance of all) if (jobName(instance.name)) await this.remove(instance.name);
       const info = await this.metadata(base), c = info.expanded_config, d = info.expanded_devices;
+      const containers = base === 'pods-fresh-builder-v2';
       if (info.status !== 'Stopped' || c['security.privileged'] !== 'false' || c['security.idmap.isolated'] !== 'true' ||
-          c['limits.cpu'] !== '2' || c['limits.memory'] !== '2GiB' || c['limits.processes'] !== '256' ||
-          d.root?.pool !== 'pods-fresh-build-quota' || d.root?.size !== '4GiB' || d.eth0?.network !== 'podsbuildfresh' ||
+          c['limits.cpu'] !== '2' || c['limits.memory'] !== (containers?'4GiB':'2GiB') || c['limits.processes'] !== (containers?'512':'256') ||
+          d.root?.pool !== (containers?'pods-fresh-build-v2':'pods-fresh-build-quota') || d.root?.size !== (containers?'12GiB':'4GiB') || d.eth0?.network !== 'podsbuildfresh' ||
+          (containers && c['security.nesting']!=='true') ||
           Object.keys(d).sort().join(',') !== 'eth0,root' || info.profiles.length) {
         throw new Error('The builder base does not match the required isolation configuration. Run setup-builder.sh.');
       }
@@ -96,6 +100,7 @@ export class LxdBuilder {
       created = true;
       await this.cli(['copy', base, name, '--instance-only']);
       await this.cli(['start', name]);
+      if(base==='pods-fresh-builder-v2')await this.cli(['exec',name,'--','sh','-c','n=0; until docker info >/dev/null 2>&1; do n=$((n+1)); [ "$n" -le 30 ] || exit 1; sleep 1; done; chgrp 1000 /var/run/docker.sock']);
       let partial = '';
       await this.cli(['exec', name, '--user', '1000', '--group', '1000', '--cwd', '/work',
         '--env', 'HOME=/home/pods', '--env', 'PATH=/opt/node/bin:/usr/bin:/bin', '--env', 'PODS_ISOLATED_BUILD=1',
@@ -112,9 +117,11 @@ export class LxdBuilder {
       const info = await this.metadata(name);
       if (info.status !== 'Stopped') throw new Error('Build container did not stop before output import.');
       const path = '/1.0/instances/' + name + '/files?path=';
-      const metadata = await lxdRead(this.socket, path + '/output/result.json', 16384, true);
+      const metadata = await lxdRead(this.socket, path + '/output/result.json', 65536, true);
       const bytes = await lxdRead(this.socket, path + '/output/artifact.gz', 20 * 1024 * 1024, true);
-      return { manifest: JSON.parse(metadata), bytes };
+      const manifest=JSON.parse(metadata), artifact=decodeArtifact(bytes,manifest.sha256),blobs=[];
+      for(const image of artifact.containers?.images || [])blobs.push({sha256:image.sha256,bytes:await lxdRead(this.socket,path+'/output/images/'+image.sha256+'.gz',Math.min(image.bytes,IMAGE_LIMIT),true)});
+      return { manifest, bytes, blobs };
     } finally {
       try {
         if (created) {

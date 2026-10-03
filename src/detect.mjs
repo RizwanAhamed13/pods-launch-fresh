@@ -59,6 +59,29 @@ export async function detectApplication(source, overrides = {}) {
   const dependencies = { ...pkg?.dependencies, ...pkg?.devDependencies };
   const has = async path => Boolean((await sourcePath(root, path, { optional: true }))?.stat.isFile());
   const build = typeof pkg?.scripts?.build === 'string' ? 'build' : null;
+  for (const compose of ['compose.yaml','compose.yml','docker-compose.yml','docker-compose.yaml']) {
+    if (await has(compose)) return {...common,kind:'container',compose};
+  }
+  if (await has('Dockerfile')) return {...common,kind:'container',dockerfile:'Dockerfile'};
+  if ('@angular/core' in dependencies && !('@angular/ssr' in dependencies)) {
+    const angular = await readJSON(root,'angular.json');
+    const projects = Object.values(angular?.projects || {}).filter(p=>p.projectType==='application');
+    if (projects.length !== 1) throw new Error('Choose one Angular application; multiple projects need an existing Dockerfile.');
+    const options = (projects[0].architect || projects[0].targets)?.build?.options || {};
+    const production = (projects[0].architect || projects[0].targets)?.build?.configurations?.production || {};
+    const output = production.outputPath || options.outputPath;
+    const path = typeof output === 'string' ? output : output?.base;
+    if (!path || !build) throw new Error('Angular requires its normal build script and outputPath.');
+    return {...common,kind:'static',package:true,build,outputCandidates:[join(path,typeof output==='object' ? output.browser ?? 'browser' : 'browser'),path]};
+  }
+  if (['next','nuxt','@sveltejs/kit','@remix-run/node','@react-router/node','@angular/ssr'].some(d=>d in dependencies)) return {...common,kind:'container',recipe:'node'};
+  if ('astro' in dependencies) return {...common,kind:'container',recipe:'node'};
+  if (!pkg) {
+    for (const [file,recipe] of [['requirements.txt','python'],['pyproject.toml','python'],['go.mod','go'],['Cargo.toml','rust'],['pom.xml','maven'],['build.gradle','gradle'],['build.gradle.kts','gradle'],['composer.json','php'],['Gemfile','ruby'],['deno.json','deno'],['deno.jsonc','deno']]) {
+      if (await has(file)) return {...common,kind:'container',recipe};
+    }
+    if ((await readdir(root)).some(f=>f.endsWith('.csproj'))) return {...common,kind:'container',recipe:'dotnet'};
+  }
   const manager = String(pkg?.packageManager || 'npm').split('@')[0];
   if (pkg && manager !== 'npm') throw new Error(`This application uses ${manager}. Automatic preparation currently supports npm projects.`);
   const base = { ...common, package: Boolean(pkg), build };
@@ -66,12 +89,9 @@ export async function detectApplication(source, overrides = {}) {
     if (!build) throw new Error('This frontend needs a build script in its existing package.json.');
     return { ...base, kind: 'static', outputCandidates: 'react-scripts' in dependencies ? ['build'] : ['dist'] };
   }
-  if ('next' in dependencies || 'nuxt' in dependencies) {
-    throw new Error('This server-rendered framework needs a runtime adapter that is not available yet. No application was published.');
-  }
   const start = entryFromStart(pkg?.scripts?.start);
   if (pkg?.scripts?.start && !start) {
-    throw new Error('The start command could not be detected safely. Use a simple node/tsx/ts-node entrypoint in package.json, or an optional pods.json override.');
+    return {...base,kind:'container',recipe:'node'};
   }
   let entry = start;
   if (!entry && typeof pkg?.main === 'string' && await has(pkg.main)) entry = pkg.main;

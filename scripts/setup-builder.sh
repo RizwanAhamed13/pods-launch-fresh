@@ -28,8 +28,8 @@ if [ "$("$LXC" list "$BASE" --format csv -c s)" != RUNNING ]; then "$LXC" start 
 "$LXC" file push -r "$NODE_DIST" "$BASE/opt/"
 "$LXC" exec "$BASE" -- ln -sfn "/opt/$(basename "$NODE_DIST")" /opt/node
 "$LXC" file push package.json package-lock.json "$BASE/opt/pods/"
-"$LXC" file push src/detect.mjs src/repository.mjs src/runner.mjs src/util.mjs src/static-server.cjs "$BASE/opt/pods/src/"
-"$LXC" file push scripts/prepare.mjs scripts/build-worker.mjs "$BASE/opt/pods/scripts/"
+"$LXC" file push src/*.mjs src/static-server.cjs "$BASE/opt/pods/src/"
+"$LXC" file push scripts/prepare.mjs scripts/prepare-container.mjs scripts/build-worker.mjs "$BASE/opt/pods/scripts/"
 "$LXC" exec "$BASE" --env PATH=/opt/node/bin:/usr/bin:/bin -- npm ci --ignore-scripts --prefix /opt/pods --no-audit --no-fund
 "$LXC" exec "$BASE" -- install -d -o 1000 -g 1000 -m 0700 /work /output /home/pods
 "$LXC" exec "$BASE" -- /opt/node/bin/node --version

@@ -1,0 +1,1 @@
+<script>let count=$state(Number(localStorage.count||0));function add(){count++;localStorage.count=count}</script><h1>Svelte counter</h1><p id="value">{count}</p><button onclick={add}>Add one</button>

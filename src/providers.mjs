@@ -13,9 +13,10 @@ export function providers({ repo, origin, runnerSha, api = github, cloudRequest 
       async validate(token) { const u = await api('/user', token); if(!u.id||!u.login)throw new Error('GitHub account identity was unavailable. Reconnect your account.');return {id:String(u.id),name:u.login}; },
       async launch(token, config, update) {
         const found = await api(`/repos/${repo}/codespaces?per_page=100`, token);
-        const eligible = found.codespaces.filter(c => c.display_name === 'PODS launch');
+        const displayName = config.containerRuntime ? 'PODS launch containers' : 'PODS launch';
+        const eligible = found.codespaces.filter(c => c.display_name === displayName);
         let env = ['Available','Shutdown','Starting','Provisioning','Created','Queued','Awaiting','Updating','Rebuilding'].map(state => eligible.find(c => c.state === state)).find(Boolean);
-        if (!env) { await update({status:'provisioning'}); env = await api(`/repos/${repo}/codespaces`, token, {method:'POST',body:{ref:'main',display_name:'PODS launch',idle_timeout_minutes:15,retention_period_minutes:1440}}); }
+        if (!env) { await update({status:'provisioning'}); env = await api(`/repos/${repo}/codespaces`, token, {method:'POST',body:{ref:'main',display_name:displayName,idle_timeout_minutes:15,retention_period_minutes:1440}}); }
         else if (env.state === 'Shutdown') { await update({status:'provisioning'}); env = await api(`/user/codespaces/${env.name}/start`, token, {method:'POST'}); }
         await update({environment:env.name});
         const deadline = Date.now() + 240000;

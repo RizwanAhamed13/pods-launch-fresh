@@ -1,0 +1,1 @@
+<script setup>const count=ref(0)</script><template><main><h1>Nuxt counter</h1><p id="value">{{count}}</p><button @click="count++">Add one</button></main></template>

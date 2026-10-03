@@ -1,0 +1,1 @@
+"use client";import {useState} from 'react';export default function Page(){const [n,set]=useState(0);return <main><h1>Next.js counter</h1><p id="value">{n}</p><button onClick={()=>set(n+1)}>Add one</button></main>}

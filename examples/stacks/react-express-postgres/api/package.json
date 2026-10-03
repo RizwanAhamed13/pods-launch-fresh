@@ -1,0 +1,9 @@
+{
+  "name": "express-postgres-counter",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "express": "5.2.1",
+    "pg": "8.16.3"
+  }
+}

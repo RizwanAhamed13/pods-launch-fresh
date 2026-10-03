@@ -1,0 +1,15 @@
+{
+  "recordedAt": "2026-10-03T12:25:29.544Z",
+  "stack": "flask-postgres",
+  "source": "https://github.com/RizwanAhamed13/pods-launch-runtime-fresh/tree/ce433b05441c5de71b0aebcf3ade284271003e0d/examples/stacks/flask-postgres",
+  "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-a8b5cf7306c523deda321181-ce433b05441c-c986084e2034",
+  "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev/",
+  "developerFormBuild": true,
+  "nativeProvider": "google",
+  "before": 0,
+  "afterWriteAndReload": 1,
+  "dom": "- heading \"Flask + postgres counter\" [level=1]\n- paragraph: \"1\"\n- button \"Add one\"",
+  "warmObservedMs": 10621,
+  "afterStopAndRelaunch": 1,
+  "warmDom": "- heading \"Flask + postgres counter\" [level=1]\n- paragraph: \"1\"\n- button \"Add one\""
+}

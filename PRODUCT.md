@@ -39,3 +39,17 @@ The repository-URL workflow and the developer/user workflow are one product, not
 - A repeat user launch reuses the prepared artifact. Build time, provider startup, accepted-launch-to-health time, and browser-visible readiness are recorded separately.
 - The 20-second application-experience target is measured after authorization, including browser readiness. Warm and cold environments are reported separately; earlier request-to-health measurements do not prove this target.
 - Source, tests, deployment instructions and current evidence are pushed to the fresh GitHub repository and deployed on aswin.
+
+## Expanded goal: frontend, backend and database compatibility
+
+The user expanded the goal on 2026-10-03 to broad frontend/backend/application and
+database support, with one representative application tested per advertised stack.
+`SUPPORT.md` is the target matrix. Container recipes and an existing Dockerfile /
+Compose route extend beyond the original Node-only launcher. Each framework needs
+real build, meaningful interaction and provider evidence before the goal is complete.
+Database acceptance includes persistence after stop/relaunch and explicit provider
+storage durability. A JSON API is a valid product for an API application; a web
+application still requires a usable rendered interface. Native/GPU/mobile programs
+are outside the browser-compute delivery contract until a suitable interface and
+runtime exist. Do not represent a generic container capability as proof that every
+framework, arbitrary repository or external service works automatically.

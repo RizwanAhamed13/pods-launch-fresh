@@ -41,9 +41,10 @@ test('container output must match repository, integrity and HTML verification; p
     { sha256: '0'.repeat(64) }, { id: '../another' }, { bytes: 1 },
     { source: { ...result.manifest.source, url: 'https://evil.example' } },
     { source: { ...result.manifest.source, revision: 'main' } },
-    { verification: { ...result.manifest.verification, contentType: 'application/json' } },
+    { verification: { ...result.manifest.verification, contentType: 'text/plain' } },
     { verification: { ...result.manifest.verification, status: 500 } },
   ]) assert.throws(() => validateBuildOutput(repository, { ...result.manifest, ...mod }, result.bytes));
+  assert.equal(validateBuildOutput(repository,{...result.manifest,verification:{...result.manifest.verification,contentType:'application/json'}},result.bytes).productType,'api');
 });
 
 test('build queue serializes work, deduplicates retries, hides ownership and publishes immutable launch versions', async () => {

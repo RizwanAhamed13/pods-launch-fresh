@@ -1,0 +1,36 @@
+{
+  "services": {
+    "web": {
+      "build": ".",
+      "ports": [
+        "8080:8080"
+      ],
+      "depends_on": {
+        "db": {
+          "condition": "service_healthy"
+        }
+      }
+    },
+    "db": {
+      "image": "mongo:8.0",
+      "volumes": [
+        "records:/data/db"
+      ],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "mongosh",
+          "--quiet",
+          "--eval",
+          "db.adminCommand('ping')"
+        ],
+        "interval": "2s",
+        "timeout": "5s",
+        "retries": 30
+      }
+    }
+  },
+  "volumes": {
+    "records": {}
+  }
+}

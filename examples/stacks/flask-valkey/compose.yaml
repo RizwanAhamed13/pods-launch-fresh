@@ -1,0 +1,39 @@
+{
+  "services": {
+    "web": {
+      "build": ".",
+      "ports": [
+        "8080:8080"
+      ],
+      "depends_on": {
+        "db": {
+          "condition": "service_healthy"
+        }
+      }
+    },
+    "db": {
+      "image": "valkey/valkey:8-alpine",
+      "command": [
+        "valkey-server",
+        "--appendonly",
+        "yes"
+      ],
+      "volumes": [
+        "records:/data"
+      ],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "valkey-cli",
+          "ping"
+        ],
+        "interval": "1s",
+        "timeout": "2s",
+        "retries": 30
+      }
+    }
+  },
+  "volumes": {
+    "records": {}
+  }
+}

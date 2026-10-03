@@ -1,0 +1,1 @@
+import {createSignal} from 'solid-js';import {render} from 'solid-js/web';function App(){const [count,set]=createSignal(Number(localStorage.count||0));return <main><h1>Solid counter</h1><p id="value">{count()}</p><button onClick={()=>{localStorage.count=count()+1;set(count()+1)}}>Add one</button></main>}render(()=><App/>,document.querySelector('#app'));

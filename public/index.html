@@ -17,7 +17,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 <section id="catalog" aria-labelledby="catalog-title" hidden><h2 id="catalog-title">Ready to try</h2><div id="apps"><p>Loading prepared applications…</p></div></section>
 <div class="workspace" id="workspace" hidden>
 <section id="developer" aria-labelledby="repo-title" hidden>
-  <h2 id="repo-title">Start with your repository</h2><p class="muted">Public GitHub repositories. Node, TypeScript, Vite, React and static HTML are supported.</p>
+  <h2 id="repo-title">Start with your repository</h2><p class="muted">Public GitHub repositories. PODS detects frontend builds, conventional server projects and existing Dockerfile or Compose applications.</p>
   <form id="build-form"><label for="repository">GitHub repository URL</label><input id="repository" type="url" placeholder="https://github.com/you/your-app" autocomplete="url" maxlength="300" required aria-describedby="repository-help"><p id="repository-help" class="field-help">Use the repository’s main URL. PODS detects the build and start steps.</p><details class="folder-options"><summary>My application is inside a folder</summary><label for="folder">Application folder</label><input id="folder" placeholder="apps/web" maxlength="200" spellcheck="false"><p class="field-help">Leave this empty when the application is at the repository root.</p></details></form>
   <div class="how"><h3>One preparation. A link to the product.</h3><p>PODS builds on our server, checks the application’s page, and saves the result. People using your link receive that prepared version on their own compute.</p></div>
 </section>
@@ -29,7 +29,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   <h2 id="action-title">Choose where it runs</h2><p id="account-intro" class="muted">Your account. Your environment.</p>
   <fieldset id="providers"><legend class="sr-only">Compute provider</legend>
     <label class="provider"><input type="radio" name="provider" value="github" checked><span><strong id="github-label">GitHub Codespaces</strong><small id="github-status">Connect your GitHub account</small></span></label>
-    <label class="provider" id="google-choice"><input type="radio" name="provider" value="google"><span><strong>Google Cloud Shell</strong><small id="google-status">Connect your Google account</small></span></label>
+    <label class="provider" id="google-choice"><input type="radio" name="provider" value="google"><span><strong id="google-label">Google Cloud Shell</strong><small id="google-status">Connect your Google account</small></span></label>
   </fieldset>
   <p id="compute-note" class="compute-note">Uses your provider’s quota and billing. Apps stop after 30 minutes; a Codespace can remain running until its idle timeout.</p>
   <button id="prepare" type="submit" form="build-form" class="primary" hidden disabled>Prepare application</button><button id="launch" class="primary" disabled>Connect and open application</button>

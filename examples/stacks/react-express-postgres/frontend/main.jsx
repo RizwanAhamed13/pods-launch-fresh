@@ -1,0 +1,3 @@
+import React,{useEffect,useState} from 'react';
+import {createRoot} from 'react-dom/client';
+function App(){const [count,setCount]=useState(null);const [error,setError]=useState('');async function update(method='GET'){try{const r=await fetch('/api/count',{method});if(!r.ok)throw Error('Database request failed');setCount((await r.json()).count);}catch(e){setError(e.message);}}useEffect(()=>{update()},[]);return <main><h1>React + Express + PostgreSQL counter</h1><p id="value">{count===null?'Loading':count}</p><button onClick={()=>update('POST')}>Add one</button><p role="alert">{error}</p></main>;}createRoot(document.getElementById('root')).render(<App/>);

