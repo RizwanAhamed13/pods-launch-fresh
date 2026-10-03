@@ -1,0 +1,45 @@
+[
+  {
+    "stack": "nuxt",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 39097,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 12,
+      "imageCacheHits": 1,
+      "imageArchiveCacheHits": 0,
+      "imageCacheCheckMs": 45,
+      "imageDownloadMs": 0,
+      "imageLoadMs": 0,
+      "imagesMs": 45,
+      "runtimeReadyMs": 3024
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 4,
+      "imageCacheHits": 1,
+      "imageArchiveCacheHits": 0,
+      "imageCacheCheckMs": 45,
+      "imageDownloadMs": 0,
+      "imageLoadMs": 0,
+      "imagesMs": 45,
+      "runtimeReadyMs": 3011
+    },
+    "persistence": null,
+    "websocket": null,
+    "productType": "web",
+    "productPath": "/",
+    "responseBytes": 1236,
+    "htmlBytes": 1236,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:b0e5346dea7a41a86dc89609fdead423bfe1f73927d551bf6bdc254efbbeb6bf",
+        "sha256": "56f423ba76fb18bb4b606bee60cb4dc912474072a642ad6967256a3371a061a4",
+        "bytes": 80930156
+      }
+    ],
+    "sha256": "591c4622df0e6321c36156b0d86500a8868189e21e5b698cb73a325446a7e552"
+  }
+]

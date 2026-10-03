@@ -25,6 +25,11 @@ export async function containerRecipe(root, recipe) {
       const preparation = manager==='npm'
         ? `RUN export npm_config_cache=/tmp/pods-npm-cache && ${install}${scripts.build?' && npm run build':''} && rm -rf /tmp/pods-npm-cache\n`
         : `RUN ${install}\n${scripts.build?`RUN ${manager} run build\n`:''}`;
+      // Nitro's Node output includes its runtime dependencies. Preserve custom
+      // lifecycle hooks and launch commands through the full-project recipe.
+      if(manager==='npm' && 'nuxt' in dependencies && scripts.build && /^node\s+(?:\.\/)?\.output\/server\/index\.mjs$/.test(scripts[start].trim()) && !scripts['pre'+start] && !scripts['post'+start] && !await has('.npmrc')) {
+        return `FROM node:24-bookworm-slim AS build\n${common}${preparation}RUN test -f .output/server/index.mjs\nFROM node:24-bookworm-slim\nWORKDIR /app\nCOPY --from=build /app/.output ./.output\nCOPY --from=build /app/package.json ./package.json\nENV PORT=8080 HOST=0.0.0.0 PODS_APP_DATA=/data NODE_ENV=production\nEXPOSE 8080\n${command([manager,'run',start])}`;
+      }
       return `FROM ${manager==='bun'?'oven/bun:1':'node:24-bookworm-slim'}\n${common}${preparation}ENV NODE_ENV=production\n${command([manager,'run',start])}`;
     }
     case 'python': {

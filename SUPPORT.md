@@ -640,3 +640,14 @@ same-origin start/app entry assets. Negative controls reject incomplete or exter
 bootstrap imports, and a fresh Node process executes the serialized native command.
 All 71 automated checks pass locally and on aswin. Evidence:
 `evidence/stack-sveltekit-{url,google,codespaces}.json`.
+
+## Nuxt standalone artifact size
+
+For conventional npm Nuxt projects starting `node .output/server/index.mjs`,
+PODS now packages the standalone production output and its bundled dependencies.
+Projects with custom start commands, pre/post start hooks, `.npmrc`, or other
+package managers retain the full-project recipe. The representative fixture's
+compressed image fell from132783437 to80930156bytes (39.05%) and passed isolated
+build, startup, restart, and browser interaction. Native provider measurements
+for this recipe are pending; size reduction alone does not prove20s readiness.
+See `evidence/stack-nuxt-standalone-comparison.json` and `stack-matrix-29.json`.

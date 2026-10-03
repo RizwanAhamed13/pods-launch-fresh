@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { gzipSync } from 'node:zlib';
-import { mkdtemp, readFile, readdir, writeFile, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, readdir, writeFile, rm, realpath } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
@@ -52,6 +52,21 @@ test('Adonis and Nest preserve framework runtime files even with a direct node s
     const detected=await detectApplication(root);
     assert.equal(detected.kind,'container');assert.equal(detected.recipe,'node');
   }
+});
+
+test('Nuxt standalone packaging preserves the npm lifecycle and leaves custom runtimes intact',async t=>{
+  const root=await realpath(await mkdtemp(join(tmpdir(),'pods-nuxt-runtime-')));t.after(()=>rm(root,{recursive:true,force:true}));
+  const pkg={scripts:{build:'nuxt build',start:'node .output/server/index.mjs'},dependencies:{nuxt:'4.5.2'}};
+  const recipe=async value=>{await writeFile(join(root,'package.json'),JSON.stringify(value));return containerRecipe(root,'node');};
+  const optimized=await recipe(pkg);
+  assert.match(optimized,/COPY --from=build \/app\/\.output \.\/\.output/);
+  assert.match(optimized,/COPY --from=build \/app\/package.json/);assert.match(optimized,/CMD \["npm","run","start"\]/);
+  assert.match(await recipe({...pkg,scripts:{...pkg.scripts,start:'node ./.output/server/index.mjs'}}),/COPY --from=build/);
+  for(const scripts of [{...pkg.scripts,prestart:'node migrate.js'},{...pkg.scripts,poststart:'node cleanup.js'},{...pkg.scripts,start:'node custom-server.mjs'},{start:pkg.scripts.start}])
+    assert.doesNotMatch(await recipe({...pkg,scripts}),/COPY --from=build/);
+  assert.doesNotMatch(await recipe({...pkg,dependencies:{express:'5.1.0'}}),/COPY --from=build/);
+  await writeFile(join(root,'.npmrc'),'node-options=--enable-source-maps\n');
+  assert.doesNotMatch(await recipe(pkg),/COPY --from=build/);
 });
 
 const blob=Buffer.from('prepared image test data');

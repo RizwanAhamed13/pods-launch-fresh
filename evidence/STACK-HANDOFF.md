@@ -9,9 +9,9 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 4813 physical source lines: 2682 product/tooling, 1073 tests, 894 examples,
+- 4833 physical source lines: 2687 product/tooling, 1088 tests, 894 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 71 automated checks pass locally and on aswin after SvelteKit SSR helper95effd3.
+- 72 automated checks pass locally; deployment validation for the Nuxt recipe is next.
 - Native Google browser families: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
@@ -19,7 +19,18 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Same fifteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: SvelteKit native acceptance
+## Current gate: Nuxt standalone packaging
+
+Canonical npm Nuxt builds now copy the standalone `.output` into a clean Node
+runtime. Custom start commands, lifecycle hooks, `.npmrc`, and other managers
+retain the full-project recipe. The same real fixture shrank from132783437 to
+80930156bytes (39.05%). Matrix29 passed build/start/restart; browser counter0→1,
+reload0 and clean error/warn logs passed. This fixture has no database.
+The first upload failed and matrix28 ran stale source; its result is explicitly
+excluded. Evidence: stack-nuxt-standalone-comparison.json and stack-matrix-29.json.
+Native Google/Codespaces latency measurements of the new recipe are pending.
+
+## Previous completed gate: SvelteKit native acceptance
 
 - Core95effd3 pushed and synced. Only QA helper/tests changed; production runtime
   remainsb02fea1/PID806978, no restart needed. All71 tests pass local/aswin.

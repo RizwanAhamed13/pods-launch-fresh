@@ -1,0 +1,49 @@
+{
+  "scope": "Not an optimization pass: source upload failed with permission denied, so matrix-28 used the unchanged old recipe. Retained to avoid treating a stale run as new evidence.",
+  "uploadError": "cannot create /opt/pods/src/container-recipes.mjs: Permission denied",
+  "results": [
+    {
+      "stack": "nuxt",
+      "status": "passed",
+      "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+      "buildMs": 14276,
+      "first": {
+        "cacheHit": true,
+        "downloadMs": 8,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 42,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imagesMs": 42,
+        "runtimeReadyMs": 2517
+      },
+      "repeat": {
+        "cacheHit": true,
+        "downloadMs": 4,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 46,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imagesMs": 46,
+        "runtimeReadyMs": 2486
+      },
+      "persistence": null,
+      "websocket": null,
+      "productType": "web",
+      "productPath": "/",
+      "responseBytes": 1236,
+      "htmlBytes": 1236,
+      "runtime": "docker-linux-amd64",
+      "images": [
+        {
+          "id": "sha256:d4fb7793d3308ebb8602bd07a21d92449cc283c84b73eeefb68a86246219d999",
+          "sha256": "67650179e0232fde539788a03a5ff52046ca01bbb5b844d256b670628e5d7bc8",
+          "bytes": 132783437
+        }
+      ],
+      "sha256": "a363685e062e6e34e47c18f8c89de0f49417c25bd410824d73467081a68829fb"
+    }
+  ]
+}

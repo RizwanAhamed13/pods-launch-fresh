@@ -1,0 +1,31 @@
+{
+  "recordedAt": "2026-10-03T19:53:50.874043+00:00",
+  "scope": "Same Nuxt fixture, changed automatic container recipe; artifact sizes and isolated build/start/restart are verified, native launch timings pending.",
+  "recipeSha256": "b64c051805834e4c99787a4e38064eca3d213d7c1cdd0d5631bf95931fcedf7e",
+  "beforeBytes": 132783437,
+  "afterBytes": 80930156,
+  "savedBytes": 51853281,
+  "reductionPercent": 39.05,
+  "imageId": "sha256:b0e5346dea7a41a86dc89609fdead423bfe1f73927d551bf6bdc254efbbeb6bf",
+  "filesystem": {
+    "rootDependencies": false,
+    "buildDirectory": false,
+    "entry": true,
+    "runtimeDependencies": true,
+    "clientAssets": true,
+    "start": "node .output/server/index.mjs"
+  },
+  "matrixEvidence": "stack-matrix-29.json",
+  "excludedAttempt": "stack-nuxt-standalone-stale.json",
+  "upstreamContract": "https://nuxt.com/docs/4.x/getting-started/deployment",
+  "isolatedBrowser": {
+    "heading": "Nuxt",
+    "before": 0,
+    "afterClick": 1,
+    "afterReload": 0,
+    "consoleErrors": [],
+    "consoleWarnings": [],
+    "persistence": "Transient counter resets after reload as designed; no database claim.",
+    "cleanup": "Verified QA Docker containers empty and application ports 18090/8080 free after one stop signal."
+  }
+}
