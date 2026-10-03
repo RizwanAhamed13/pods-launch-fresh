@@ -38,7 +38,9 @@ Use `systemctl --user restart pods-launch-fresh.service` for later deployments,
 after checking for active work. `MainPID` is authoritative; the old manual PID
 file is not used by this service. Logs are available through
 `journalctl --user -u pods-launch-fresh.service`. Restart attempts are bounded to
-five starts per minute. Boot/logout persistence requires user lingering, which
+five starts per minute, using systemd’s
+[on-failure restart behavior](https://github.com/systemd/systemd/blob/main/man/systemd.service.xml).
+Boot/logout persistence requires user lingering, which
 is already enabled for aswin. This unit supervises the control plane only; the
 temporary tunnel and a stable public hostname still need a durable deployment.
 

@@ -209,3 +209,13 @@ mutations are never automatically repeated. Authorization and quota errors remai
 immediate. All 93 automated checks pass locally and on aswin. Current coverage:
 55 isolated fixtures,20 native fixtures,35 awaiting native acceptance; 5,274
 physical source lines under the documented scope. The broad goal remains active.
+
+
+The aswin control plane now runs as an enabled user service and recovered from a
+controlled idle-process failure in 3.257s without changing prepared-build records
+or reserved product addresses. Existing-session Google interaction and both
+Codespaces smoke launches passed after recovery. The tunnel/hostname and full
+host reboot remain outside this recovery evidence. Static compiled-asset checks
+now cover all eight frontend fixtures, preparing the remaining native tests.
+Coverage remains 55 isolated / 20 native / 35 pending; 93 checks pass on both
+machines and the scoped source count is 5,276 lines.

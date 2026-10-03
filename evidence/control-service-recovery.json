@@ -1,0 +1,75 @@
+{
+  "recordedAt": "2026-10-03T22:08:28.531482+00:00",
+  "revision": "0a6047b",
+  "systemdVersion": "systemd 259 (259.5-0ubuntu3.4)",
+  "unit": "deploy/pods-launch-fresh.service",
+  "unitSha256": "caa7f8688a1feb3358b57e2d5346c74e01a3fcd9a2b9f0de82d1a1e1eef8f7ed",
+  "migration": {
+    "previousManualPid": 895643,
+    "firstServicePid": 901184,
+    "activeBuilds": 0,
+    "activeLaunches": 0
+  },
+  "failureInjection": {
+    "signal": "SIGKILL",
+    "onlyVerifiedIdleServiceProcess": true,
+    "previousPid": 901184,
+    "recoveredPid": 901477,
+    "recoveryMs": 3257,
+    "publicHealth": 200,
+    "restartCount": 1
+  },
+  "persistence": {
+    "previewPortReservationsUnchanged": true,
+    "buildRecordsUnchanged": true,
+    "sqliteQuickCheck": "ok"
+  },
+  "service": {
+    "state": "active",
+    "enabled": "enabled",
+    "linger": "yes"
+  },
+  "scope": "Live process-failure recovery with no active launch/build. Host reboot, active-job crash recovery and tunnel recovery are not tested.",
+  "postRecoveryGoogle": {
+    "launch": {
+      "id": "ZBgjXdXnzNrNfQgqLX3U3KurykI6Ik0e",
+      "appId": "repo-b6a487ee32ba4a822c511ed3-9eee994ba7f7-30c74ea07603",
+      "provider": "google",
+      "port": 27260,
+      "createdAt": 1791065342233,
+      "updatedAt": 1791065359201,
+      "status": "stopped",
+      "providerReadyAt": 1791065345046,
+      "readyAt": 1791065347033,
+      "timings": {
+        "downloadMs": 261,
+        "runtimeReadyMs": 479,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 4800
+    },
+    "existingBrowserSessionPreserved": true,
+    "browser": {
+      "visibleMs": 8148,
+      "interactionMs": 8433,
+      "before": 2,
+      "afterWrite": 3,
+      "afterReload": 3,
+      "passed": true
+    },
+    "finalErrorOrWarningLogs": []
+  },
+  "postRecoveryCodespacesEvidence": "service-recovery-codespaces.json",
+  "oldManualPidFileRetired": true,
+  "finalAudit": {
+    "recordedAt": "2026-10-03T22:15:20.954155+00:00",
+    "service": {
+      "ActiveState": "active",
+      "MainPID": "901477",
+      "NRestarts": "1"
+    },
+    "activeBuilds": 0,
+    "activeLaunches": 0
+  }
+}

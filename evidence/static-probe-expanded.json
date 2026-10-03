@@ -1,0 +1,114 @@
+{
+  "recordedAt": "2026-10-03T22:13:19.867Z",
+  "scope": "Existing isolated QA artifacts on aswin, not native provider acceptance or a new build. Validates the expanded compiled-entry probe.",
+  "results": [
+    {
+      "fixture": "svelte",
+      "artifactSha256": "c2611773269bca60a00a081753a88ba1737b2f3e29413da7fa733c21cfd35e79",
+      "check": {
+        "fixture": "svelte",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-Pz6WuF9y.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 25441
+          }
+        ],
+        "passed": true,
+        "scope": "Authenticated HTTP product shell and compiled entry assets; not JavaScript execution, browser interaction or database persistence"
+      },
+      "stopped": true
+    },
+    {
+      "fixture": "preact",
+      "artifactSha256": "c4a6185adae5d9710eb4ad968d8b5b17ecc3f9306365c5fcf573763ca198bb78",
+      "check": {
+        "fixture": "preact",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-axAnAOMW.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 13629
+          }
+        ],
+        "passed": true,
+        "scope": "Authenticated HTTP product shell and compiled entry assets; not JavaScript execution, browser interaction or database persistence"
+      },
+      "stopped": true
+    },
+    {
+      "fixture": "solid",
+      "artifactSha256": "8fd329781c5f9024f7e92b7fa1cdff3114ed4b09488c77531d87e26bbb32b755",
+      "check": {
+        "fixture": "solid",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-MWot9r4j.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 10991
+          }
+        ],
+        "passed": true,
+        "scope": "Authenticated HTTP product shell and compiled entry assets; not JavaScript execution, browser interaction or database persistence"
+      },
+      "stopped": true
+    },
+    {
+      "fixture": "lit",
+      "artifactSha256": "56f291e44a0cbecc17e8be02dc294b0c362d9e8cd35cd79f731182b421311793",
+      "check": {
+        "fixture": "lit",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-WGRLEUsU.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 15621
+          }
+        ],
+        "passed": true,
+        "scope": "Authenticated HTTP product shell and compiled entry assets; not JavaScript execution, browser interaction or database persistence"
+      },
+      "stopped": true
+    },
+    {
+      "fixture": "alpine",
+      "artifactSha256": "9a0031b1a63941b5e37e22b6fd18b40c6b71588624cf0e6be22bf2b8bbde09d6",
+      "check": {
+        "fixture": "alpine",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-BzoVhwSd.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 55217
+          }
+        ],
+        "passed": true,
+        "scope": "Authenticated HTTP product shell and compiled entry assets; not JavaScript execution, browser interaction or database persistence"
+      },
+      "stopped": true
+    }
+  ],
+  "initialHarnessIssue": {
+    "message": "Invalid launch identity",
+    "cause": "Ad-hoc QA launch ID was shorter than the runner contract",
+    "applicationStarted": false,
+    "correction": "Use a UUID launch ID; all five real compiled artifacts subsequently passed."
+  },
+  "coreProbeRevision": "44df802",
+  "testScope": "All eight fixtures exercised in parameterized unit and serialized-command tests; these five newly enabled fixtures also exercised with real existing QA artifacts."
+}

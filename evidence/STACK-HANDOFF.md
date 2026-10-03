@@ -9,9 +9,9 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 5274 physical source lines: 2866 product/tooling, 1341 tests, 903 examples,
+- 5276 physical source lines: 2867 product/tooling, 1342 tests, 903 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 93 automated checks pass locally and on aswin at core172334f.
+- 93 automated checks pass locally and on aswin at core44df802.
 - Native Google browser fixtures: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
@@ -19,7 +19,61 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Same twenty fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: bounded provider recovery and native Vue
+## Latest completed gate: supervised control plane and expanded frontend checks
+
+- Core0a6047b adds deploy/pods-launch-fresh.service; systemd259 validation passed.
+  Installed at /home/aswin/.config/systemd/user/pods-launch-fresh.service, enabled
+  under the existing lingering user manager. Typeexec, Restarton-failure/3s,
+  five starts/minute limit,30sstop,UMask0077. No sudo/linger/security changes.
+  Temporary Cloudflare tunnel still manual PID2322522; stable DNS remains pending.
+- The manual control PID895643 was verified by cwd/cmdline/listener and idle
+  production records, then stopped cleanly. First servicePID901184. A second
+  idle check preceded one scoped SIGKILL of that verified process; systemd
+  recovered to localhealth200 in3257ms, publichealth200 afterward, NRestarts1.
+  Build records and preview-port reservations identical; SQLitequick_checkok.
+  Current observed servicePID901477, runtime0a6047b. Always query serviceMainPID;
+  DO NOT use old PID markers for lifecycle operations. Old pods-launch-server.pid
+  moved to /home/aswin/pods-launch-server.manual-retired.pid, contents895643.
+  Service is independent of SSH sessions; prior persistentexec47404 is retired.
+- For SSH user-manager commands set XDG_RUNTIME_DIR=/run/user/1000 and
+  DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus. Query/restart only
+  pods-launch-fresh.service. Unrelated existing services were not changed.
+  Always check active builds/launches before an intentional restart.
+- Post-recovery Google: original browser connection survived, Vue at same27260
+  retained2→3/reload3; visible8.148s, successfulinteraction8.433s. Stopped, final
+  browserwarn/errorlogs[]. Codespaces Vue health8.186s/7.095s, compiledentries
+  passed, bothstopped. Harness56825ended0. Evidencecontrol-service-recovery.json
+  and service-recovery-codespaces.json. Host reboot, active-work crash, tunnel
+  recovery and a new repository build under the service still need evidence.
+- Core44df802 extends serialized staticprobe toSvelte/Preact/Solid/Lit/Alpine.
+  All8frameworks exercised in unit and freshprocess tests, rejecting wrong
+  framework bundles, external/uncompiled asset URLs and unknown/prototype names.
+  All93testspasslocal/aswin. No runtimeappsource changed, so no extra restart.
+- Existing real QA artifacts for the5additions passed the new probe on local
+  guestport18092; eachstarted/stopped explicitly. BundlebytesSvelte25441,
+  Preact13629,Solid10991,Lit15621,Alpine55217. This is NOTnativeacceptance.
+  Evidence static-probe-expanded.json preserves initial ad-hoc harness issue:
+  launchID too short; corrected toUUID before any appstart. LXD file-push overwrite
+  of uid1000owned /tmpfile failed under protected_regular; updated via uid1000
+  lxc exec stdin instead. Do not relax file protection or change ownership.
+  Repro script /tmp/pods-static-expanded-run.mjs exists locally,aswin,andQAguest;
+  probe /tmp/pods-static-probe.mjs onaswin/guest. ExistingQAserveruntouched.
+  Harness37068ended0 afterretrievingevidence; allfiveprobeappsconfirmedstopped.
+- Production quota watcher is LIVE exec26541: readonly SQLite checkevery30s,
+  normal sameVuepreparer accountlimit3/global12/noactivebuild. It exitsavailable
+  once capacityopens, or after20minutes. At lastpollitreportedwaiting3/hour,
+  nextslot22:23:20.702UTC. Resume that same handle at mostonce/minute, do not
+  start duplicatewaiters. This is an explicit verified wait, not a stopped job.
+  Noquota changes, identityswitching, orQAartifactimports allowed.
+- Next: when26541reportsavailable, normal /develop submitSvelte folder under
+  public9eee994. This both advances35remainingnativefixtures and validates the
+  isolatedbuilder path under systemd. Staticprobe supportsSvelte directly.
+  NativeCodespacesbrowser andCloudShellRestart prompts remain pending; do not
+  repeat requests. Preserve4browserhandoffs. stackQa6tab13Vuepreparationcomplete,
+  accountWorkertab12stoppedVue(nowbrowsercount3), nativeGithubKeep10pending2FA,
+  cloudLifecycle14pendingRestart. Goalactive; previous turnmadeverifiedprogress.
+
+## Previous gate: bounded provider recovery and native Vue
 
 - Coredec153c committed/pushed/synced/deployed: Codespaces discovery/state reads
   retry up to3 for transient500/502/503/504/timeouts/known connection errors.

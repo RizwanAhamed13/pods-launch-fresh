@@ -939,3 +939,32 @@ lines** under `evidence/code-lines.json`. These are existing-compute observation
 not a cold-provisioning guarantee.
 
 Evidence: `evidence/stack-vue-{url,google,codespaces}.json`.
+
+## Control-plane service recovery and remaining frontend probes
+
+Core `0a6047b` adds an enabled systemd user service on aswin. A controlled
+SIGKILL of the verified idle service process triggered automatic recovery to
+local health in **3.257s**; the public health check also returned 200. SQLite
+integrity passed, and prepared-build records and preview-port reservations were
+unchanged. An existing Google browser session then launched Vue, retained its
+saved value 2, wrote 3, and retained 3 on reload; the continuous interaction took
+**8.433s**. Codespaces compiled-entry checks passed at **8.186s / 7.095s**. All
+three post-recovery launches stopped.
+
+The unit is enabled and user lingering was already active. Host reboot, crashes
+during active work, and tunnel recovery are not established by this idle-process
+test. The temporary public hostname still needs a durable deployment. Service
+`MainPID` replaces the retired manual PID file as the process authority.
+
+The static QA probe now recognizes Svelte, Preact, Solid, Lit and Alpine as well
+as React, Angular and Vue. It validates the expected mount, local compiled module
+URLs, JavaScript responses and fixture-specific product code. Wrong-framework
+bundles are rejected. All eight fixture variants pass unit/serialized-command
+checks, and the five additions pass against their existing real isolated artifacts.
+Those five results are **not native provider acceptance**. Coverage remains
+55 isolated fixtures / 20 native fixtures / 35 pending, with 93 automated checks
+passing locally and on aswin and **5,276 physical source lines** under the existing
+scope. The systemd unit is configuration and is excluded from that source count.
+
+Evidence: `evidence/control-service-recovery.json`,
+`evidence/service-recovery-codespaces.json`, `evidence/static-probe-expanded.json`.
