@@ -43,7 +43,10 @@ historical results remain in SUPPORT.md, PRODUCT.md and their evidence files.
 - Coverage explicit flags now24/24; isolated55; native31 pending. Runtime
   remains e5033d1,102passing checks,5,423source lines; no service restart required.
 - Next native candidate Alpine. Ordinary quota next opens23:44:08.679UTC;
-  fresh readonly availability check before submitting. No live quota watcher.
+  fresh readonly availability check before submitting. Watcher58240 is live,
+  started23:31:41UTC with a20minute bound; resume it instead of creating another.
+  The latest poll confirmed account3/global3/active0, same next-slot timestamp.
+  GitHub2FA remained pending on a fresh browser check this turn.
 
 ## Previous gate: public compatibility page
 
@@ -179,7 +182,8 @@ observation timed out; the action may already have completed.
   records(kind,id,value JSON), singular build/launch. Never print tokens, root
   owner/account/session/computeKey values. Build repository.owner is public repo owner.
 - /tmp/pods-native-quota-watch.py is a readonly bounded watcher, Svelte account
-  anchor NLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp. Existing66741 and66841 are finished. No live quota watcher.
+  anchor NLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp. Existing66741 and66841 are finished. Watcher58240 is live for the Alpine slot;
+  /tmp/pods-next-native-quota-watch.py,20minute bound,30second readonly sampling.
 - Latest Solid/Lit Codespace pods-launch-7vrw57jpjjppcww57 Available at inspection;
   Svelte/Preact pods-launch-jj497rpqpp7529v7 Shutdown. Container fixtures use
   pods-launch-containers-69rw5vx4xp46c5qw5 and97qw56gjg47gf7vrv. Recheck actual state.
