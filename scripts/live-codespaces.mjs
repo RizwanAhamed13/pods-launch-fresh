@@ -18,7 +18,7 @@ const workerCheck=process.env.PODS_WORKER_CHECK==='1';
 const websocketCheck=process.env.PODS_WEBSOCKET_CHECK==='1';
 const ssrCheck=process.env.PODS_SSR_CHECK==='1';
 const ssrFixture=process.env.PODS_SSR_FIXTURE||'nuxt';
-if(!['nuxt','next'].includes(ssrFixture)||(!ssrCheck&&process.env.PODS_SSR_FIXTURE))throw new Error('SSR fixture requires an enabled Nuxt or Next SSR check');
+if(!['nuxt','next','sveltekit'].includes(ssrFixture)||(!ssrCheck&&process.env.PODS_SSR_FIXTURE))throw new Error('SSR fixture requires an enabled Nuxt, Next or SvelteKit SSR check');
 if([counterCheck,workerCheck,websocketCheck,ssrCheck].filter(Boolean).length>1)throw new Error('Choose one fixture check: counter, worker, WebSocket or SSR');
 if((counterCheck||workerCheck||websocketCheck||ssrCheck)&&(provider!=='github'||process.env.PODS_SINGLE_LAUNCH==='1'))throw new Error('Fixture checking requires two Codespaces launches');
 let token='';for await(const b of process.stdin)token+=b;token=token.trim();

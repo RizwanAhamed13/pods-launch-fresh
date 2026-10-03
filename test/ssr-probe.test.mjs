@@ -5,7 +5,9 @@ import {execFile} from 'node:child_process';
 import {promisify} from 'node:util';
 import {probeSsrProduct,probeNuxtSsr,ssrProbeCommand} from '../scripts/probe-ssr.mjs';
 
-const markup=(fixture='next',src=fixture==='next'?'/_next/static/chunks/page.js':'/_nuxt/entry.js')=>`<html><h1>${fixture==='next'?'Next.js':'Nuxt'} counter</h1><p id="value">0</p><script src="${src}"></script></html>`;
+const markup=(fixture='next',src=fixture==='next'?'/_next/static/chunks/page.js':'/_nuxt/entry.js')=>fixture==='sveltekit'
+  ? '<html><h1>SvelteKit counter</h1><p id="value">0</p><script>import("./_app/immutable/entry/start.abc.js").then(async kit=>{const app=await import("./_app/immutable/entry/app.def.js");kit.start(app);});</script></html>'
+  : `<html><h1>${fixture==='next'?'Next.js':'Nuxt'} counter</h1><p id="value">0</p><script src="${src}"></script></html>`;
 async function serve(options,run){
   const requests=[];
   const server=createServer((req,res)=>{
@@ -18,10 +20,11 @@ async function serve(options,run){
   finally{server.closeAllConnections();await new Promise(resolve=>server.close(resolve));}
 }
 
-test('SSR probe checks rendered Next and Nuxt plus their real client entry requests',async()=>{
-  for(const fixture of ['next','nuxt'])await serve({page:markup(fixture)},async(base,requests)=>{
+test('SSR probe checks rendered Next, Nuxt and SvelteKit plus their real client entry requests',async()=>{
+  for(const fixture of ['next','nuxt','sveltekit'])await serve({page:markup(fixture)},async(base,requests)=>{
     const result=await probeSsrProduct(base,fixture);
-    assert.equal(result.passed,true);assert.equal(result.fixture,fixture);assert.equal(result.scripts.length,1);assert.equal(requests.length,2);
+    const entries=fixture==='sveltekit'?2:1;
+    assert.equal(result.passed,true);assert.equal(result.fixture,fixture);assert.equal(result.scripts.length,entries);assert.equal(requests.length,entries+1);
   });
   await serve({page:markup('nuxt')},async base=>assert.equal((await probeNuxtSsr(base)).fixture,'nuxt'));
 });
@@ -40,9 +43,14 @@ test('SSR probe refuses external and wrong-framework assets before any asset req
 test('SSR probe rejects unknown fixture before network access',async()=>{
   await assert.rejects(probeSsrProduct('http://127.0.0.1:1','unknown'),/Unknown SSR fixture/);
 });
-test('native SSR command executes in a fresh Node process for both frameworks',async()=>{
-  for(const fixture of ['next','nuxt'])await serve({page:markup(fixture)},async(base,requests)=>{
+test('SvelteKit probe rejects incomplete or external bootstrap imports before fetching assets',async()=>{
+  for(const page of [markup('sveltekit').replace('app.def.js','wrong.def.js'),markup('sveltekit').replace('"./_app/immutable/entry/start.abc.js"','"https://outside.invalid/_app/immutable/entry/start.abc.js"'),markup('sveltekit').replace('SvelteKit counter','Other counter')])
+    await serve({page},async(base,requests)=>{await assert.rejects(probeSsrProduct(base,'sveltekit'));assert.deepEqual(requests,['/']);});
+});
+test('native SSR command executes in a fresh Node process for all three frameworks',async()=>{
+  for(const fixture of ['next','nuxt','sveltekit'])await serve({page:markup(fixture)},async(base,requests)=>{
     const {stdout}=await promisify(execFile)(process.execPath,['--input-type=module','-e',ssrProbeCommand(fixture,base)],{timeout:10000});
-    const result=JSON.parse(stdout);assert.equal(result.fixture,fixture);assert.equal(result.passed,true);assert.equal(result.scripts.length,1);assert.equal(requests.length,2);
+    const entries=fixture==='sveltekit'?2:1;
+    const result=JSON.parse(stdout);assert.equal(result.fixture,fixture);assert.equal(result.passed,true);assert.equal(result.scripts.length,entries);assert.equal(requests.length,entries+1);
   });
 });

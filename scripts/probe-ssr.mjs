@@ -1,8 +1,8 @@
 // Serialized into an authorized Codespace. This checks our SSR fixtures over
 // HTTP; hydration and interaction still require a separate real browser check.
 export async function probeSsrProduct(base='http://127.0.0.1:8080',fixture='nuxt') {
-  if(!['nuxt','next'].includes(fixture))throw new Error('Unknown SSR fixture');
-  const heading=fixture==='next'?'Next\\.js counter':'Nuxt counter',prefix=fixture==='next'?'/_next/':'/_nuxt/';
+  if(!['nuxt','next','sveltekit'].includes(fixture))throw new Error('Unknown SSR fixture');
+  const [heading,prefix]={next:['Next\\.js counter','/_next/'],nuxt:['Nuxt counter','/_nuxt/'],sveltekit:['SvelteKit counter','/_app/immutable/entry/']}[fixture];
   async function read(url) {
     const response=await fetch(url,{redirect:'error',signal:AbortSignal.timeout(10000)});
     if(!response.ok)throw new Error('SSR fixture HTTP '+response.status);
@@ -11,9 +11,13 @@ export async function probeSsrProduct(base='http://127.0.0.1:8080',fixture='nuxt
   const root=new URL('/',base),response=await read(root),page=await response.text();
   const productRendered=new RegExp('<h1\\b[^>]*>'+heading+'<\\/h1>').test(page)&&/<p\b[^>]*\bid=["']value["'][^>]*>0<\/p>/.test(page);
   if(!response.headers.get('content-type')?.includes('text/html')||!productRendered)throw new Error('Expected server-rendered '+fixture+' counter was not found');
-  const sources=[...page.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi)].map(match=>new URL(match[1],root));
+  const paths=fixture==='sveltekit'
+    ? [...page.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)].flatMap(script=>[...script[1].matchAll(/\bimport\(\s*["']([^"']+)["']\s*\)/g)].map(match=>match[1]))
+    : [...page.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi)].map(match=>match[1]);
+  const sources=paths.map(path=>new URL(path,root));
   if(!sources.length||sources.length>16)throw new Error('Expected '+fixture+' client entry scripts were not found');
   if(sources.some(url=>url.origin!==root.origin||!url.pathname.startsWith(prefix)||!url.pathname.endsWith('.js')))throw new Error('Unexpected '+fixture+' client script URL');
+  if(fixture==='sveltekit'&&(!sources.some(url=>/^start\.[\w-]+\.js$/.test(url.pathname.slice(prefix.length)))||!sources.some(url=>/^app\.[\w-]+\.js$/.test(url.pathname.slice(prefix.length)))))throw new Error('SvelteKit start and app entries are required');
   const scripts=[];
   for(const url of sources) {
     const script=await read(url),contentType=script.headers.get('content-type')||'',body=await script.text();
