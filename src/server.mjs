@@ -146,7 +146,7 @@ export async function createApp(options={}) {
         const id=uid(),token=uid(),createdAt=Date.now();
         const s={id,owner:user.id,appId:app.id,appName:app.name,provider:b.provider,sha256:app.sha256,images:app.images || [],status:'connecting',createdAt,updatedAt:createdAt,expiresAt:createdAt+30*60*1000,tokenHash:digest(token)};
         store.put('launch',id,s);
-        const config={id,appId:app.id,dataKey:app.dataKey || app.id,containerRuntime:app.runtime==='docker-linux-amd64',sha256:app.sha256,artifactUrl:`${origin}/api/agent/${id}/artifact`,callbackUrl:`${origin}/api/agent/${id}`,token,port:8080,expiresAt:s.expiresAt};
+        const config={id,provider:b.provider,appId:app.id,dataKey:app.dataKey || app.id,containerRuntime:app.runtime==='docker-linux-amd64',sha256:app.sha256,artifactUrl:`${origin}/api/agent/${id}/artifact`,callbackUrl:`${origin}/api/agent/${id}`,token,port:8080,expiresAt:s.expiresAt};
         const job=providers[b.provider].launch(store.open(c.token),config,patch=>update(id,patch)).then(result=>update(id,result)).catch(e=>{console.error('launch',id,e.message);update(id,{status:'failed',error:'Could not start your compute. '+String(e.message).slice(0,220)});}).finally(()=>jobs.delete(id));
         jobs.set(id,job);return json(202,publicLaunch(s));
       }

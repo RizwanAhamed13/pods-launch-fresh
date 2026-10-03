@@ -1,0 +1,8 @@
+{
+  "name": "pods-bun-websocket",
+  "private": true,
+  "scripts": {
+    "build": "bun build --compile server.ts --outfile product",
+    "start": "./product"
+  }
+}

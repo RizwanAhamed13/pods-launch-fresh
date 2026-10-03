@@ -52,6 +52,7 @@ are measured separately. See `evidence/` for completed evidence.
 | Fastify + SQLite, Koa + SQLite | Passed, including DB restart | Passed | Pending |
 | Flask + SQLite, PostgreSQL, Redis | Passed, including DB restart | Passed | Pending |
 | express, fastapi, django, go, spring-boot, aspnet, php | Passed, including data restart | Pending | Pending |
+| Sinatra, Next.js, Nuxt, Flask + MySQL | Passed in the running second batch | Pending | Pending |
 | Other target rows above | Pending unless a newer evidence file records a pass | Pending | Pending |
 
 Server matrices are `evidence/stack-matrix-01.json` and
@@ -95,3 +96,19 @@ transfer took **189.456 seconds**; the repeat launch took **13.280 seconds** wit
 both images cached. The product port remains private. Native browser interaction
 is pending the user's GitHub browser sign-in; it is not counted as a browser pass.
 Evidence: `evidence/stack-codespaces-live.json`.
+
+## Database durability work
+
+The runner now keeps container data beneath Cloud Shell's persistent home and
+Codespaces' persistent `/workspaces` directory. Legacy Docker volume migration
+and volume metadata recreation passed against real PostgreSQL, retaining its
+record (`evidence/stack-storage-live.json`). Full provider VM replacement/rebuild
+verification remains pending. Unit coverage is now 44 passing checks.
+
+Storage boundaries follow the provider documentation:
+[Cloud Shell persistent home](https://docs.cloud.google.com/shell/docs/how-cloud-shell-works),
+[Codespaces rebuild lifecycle](https://docs.github.com/en/codespaces/about-codespaces/understanding-the-codespace-lifecycle).
+
+Additional fixtures staged for testing: Streamlit and Gradio with SQLite,
+compiled Deno, and compiled Bun with SQLite and WebSockets. Their presence in the
+fixture repository is not a support pass.

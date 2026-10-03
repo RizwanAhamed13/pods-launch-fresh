@@ -79,7 +79,7 @@ The 20-second target is measured, not promised. The UI separates:
 
 Cold VM provisioning, provider consent, image pulls, network throughput and authentication on the forwarded app URL can exceed 20 seconds. Reuse an already running environment for the fast path. GitHub's forwarded URL remains private. PODS links to the provider's authenticated preview; it does not expose a public app proxy.
 
-Stop application sends a stop request to the runner. It stops the app process group within a few seconds, preserving note data and the cached artifact. When the home volume is full, read-only or inaccessible, the runner uses a private directory under `/tmp` and explicitly reports temporary storage in both the launch UI and Field Notes. Such data does not survive an environment reset. No existing user files are deleted.
+Stop application sends a stop request to the runner. It stops the app process group within a few seconds, preserving note data and the cached artifact. Node previews can fall back to a private directory under `/tmp` when persistent storage is unavailable and explicitly report temporary storage. Container/database applications fail instead of silently opening an empty temporary database. No existing user files are deleted.
 
 Preview processes also stop after 30 minutes even if the control plane disappears. The Codespace itself remains running until its provider idle timeout (15 minutes requested by PODS), or until the user stops it in GitHub. Cloud Shell has no API stop operation. Billing and quota remain the user's responsibility.
 
@@ -134,11 +134,18 @@ unresolved environment values are rejected. Only the selected web service's port
 is forwarded; database ports remain private. Database migrations belong to the
 app's startup contract (the Django recipe runs its normal migrations).
 
-Named volumes are scoped to the source repository and application folder and
-survive app stop/relaunch and new artifact versions in the same Docker engine.
-They **do not yet have verified backup/restore across Cloud Shell VM replacement
-or a full Codespaces rebuild**. That durability gate remains open. App processes
-stop after the launch lifetime; volumes and image cache are retained.
+Named volumes are scoped to the source repository and application folder. Their
+files now live in managed directories under Cloud Shell's persistent home or
+Codespaces' `/workspaces/.pods-launch`. Docker volume metadata can be recreated
+without replacing those files. Legacy volumes are copied while the application
+is stopped, preserving database uid/gid; the original is retained. Source Compose
+host mounts are still rejected. Existing Node application data is also migrated
+to the persistent Codespaces workspace without overwriting newer records.
+
+Real PostgreSQL migration and volume metadata recreation have passed in the
+isolated QA environment. **A full native provider VM/rebuild test is still
+pending**; see `evidence/stack-storage-live.json`. App processes stop after the
+launch lifetime; volumes and image cache are retained.
 
 Limits: eight services, 512 MiB compressed per image, 1 GiB total image downloads,
 5 GiB stored images, 768 MiB memory/one CPU/256 processes per running service.

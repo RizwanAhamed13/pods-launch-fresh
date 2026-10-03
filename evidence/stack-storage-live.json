@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "scope": "Real isolated Docker/PostgreSQL: legacy migration and Docker volume metadata recreation; native provider VM/rebuild not yet exercised",
+  "before": 3,
+  "saved": 4,
+  "migrated": 4,
+  "updated": 5,
+  "afterMetadataRecreation": 5,
+  "timings": {
+    "cacheHit": true,
+    "downloadMs": 3,
+    "imageCacheHits": 2,
+    "imagesMs": 98,
+    "runtimeReadyMs": 6457
+  },
+  "storage": {
+    "device": "/output/flask-postgres/compute/volumes/pods-ae5d12f475fac6667354f1af/records/data",
+    "o": "bind",
+    "type": "none"
+  },
+  "at": "2026-10-03T12:57:47.887Z"
+}

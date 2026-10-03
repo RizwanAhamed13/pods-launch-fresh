@@ -23,10 +23,11 @@ export async function containerRecipe(root, recipe) {
         if(projects.length!==1)throw new Error('Django WSGI module is ambiguous; use the existing Dockerfile.');
         cmd=['sh','-c',`python manage.py migrate --noinput && exec gunicorn ${projects[0]}.wsgi:application --bind 0.0.0.0:8080`];
       } else if (/\bstreamlit\b/i.test(requirements)) cmd=['streamlit','run',await has('app.py')?'app.py':'main.py','--server.port=8080','--server.address=0.0.0.0'];
+      else if (/\bgradio\b/i.test(requirements)) cmd=['python',await has('app.py')?'app.py':'main.py'];
       else if (/\bfastapi\b/i.test(requirements)) cmd=['uvicorn',await has('main.py')?'main:app':'app:app','--host','0.0.0.0','--port','8080'];
       else if (/\bflask\b/i.test(requirements)) cmd=['gunicorn','app:app','--bind','0.0.0.0:8080'];
       else throw new Error('Python entrypoint cannot be inferred; an existing Dockerfile can declare it.');
-      return `FROM python:3.12-slim\n${common}RUN pip install --no-cache-dir ${await has('requirements.txt')?'-r requirements.txt':'.'} gunicorn uvicorn\n${command(cmd)}`;
+      return `FROM python:3.12-slim\n${common}ENV GRADIO_SERVER_NAME=0.0.0.0 GRADIO_SERVER_PORT=8080 GRADIO_ANALYTICS_ENABLED=False\nRUN pip install --no-cache-dir ${await has('requirements.txt')?'-r requirements.txt':'.'} gunicorn uvicorn\n${command(cmd)}`;
     }
     case 'go': return `FROM golang:1.24-bookworm AS build\n${common}RUN CGO_ENABLED=0 go build -o /product .\nFROM gcr.io/distroless/static-debian12\nCOPY --from=build /product /product\nENV PORT=8080 PODS_APP_DATA=/data\nEXPOSE 8080\n${command(['/product'])}`;
     case 'rust': return `FROM rust:1-bookworm AS build\n${common}RUN cargo build --release && find target/release -maxdepth 1 -type f -executable > /bins && test "$(wc -l < /bins)" = 1 && cp "$(cat /bins)" /product\nFROM debian:bookworm-slim\nRUN apt-get update && apt-get install -y --no-install-recommends ca-certificates libssl3 && rm -rf /var/lib/apt/lists/*\nCOPY --from=build /product /product\nENV PORT=8080 PODS_APP_DATA=/data\nEXPOSE 8080\n${command(['/product'])}`;

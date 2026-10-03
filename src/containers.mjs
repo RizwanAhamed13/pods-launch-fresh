@@ -69,6 +69,6 @@ export function docker(args, { cwd, timeout = 120000, env, output } = {}) {
     p.stdout.on('data', b => { result = (result + b).slice(-65536); output?.(b); });
     p.stderr.on('data', b => { error = (error + b).slice(-2048); });
     p.once('error', e => { clearTimeout(timer); reject(e); });
-    p.once('close', code => { clearTimeout(timer); code === 0 ? resolve(result.trim()) : reject(new Error(`Docker ${args[0]} failed (${code ?? 'timeout'}): ${error.slice(-800)}`)); });
+    p.once('close', code => { clearTimeout(timer); code === 0 ? resolve(result.trim()) : reject(new Error(`Docker ${args[0]} failed (${code ?? 'timeout'}): ${args[0] === 'build' ? result.slice(-4000) + '\n' : ''}${error.slice(-800)}`)); });
   });
 }

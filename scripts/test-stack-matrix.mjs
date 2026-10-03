@@ -41,7 +41,9 @@ for(const name of names){
       const reloaded=await fetch('http://127.0.0.1:8080/');
       if(!reloaded.ok)throw new Error('Product failed after restart');
     }
-    const result={stack:name,status:'passed',scope:'real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence',buildMs,first,repeat:running.timings,persistence,htmlBytes:page.length,runtime:manifest.runtime,images:manifest.images,sha256:manifest.sha256};
+    let websocket=null;
+    if(name==='bun')websocket=await new Promise((ok,fail)=>{const socket=new WebSocket('ws://127.0.0.1:8080/ws'),timer=setTimeout(()=>{socket.close();fail(new Error('WebSocket reply timed out'));},5000);socket.onopen=()=>socket.send('ping');socket.onmessage=e=>{clearTimeout(timer);socket.close();e.data==='pong'?ok('ping/pong passed'):fail(new Error('WebSocket reply mismatch'));};socket.onerror=()=>{clearTimeout(timer);fail(new Error('WebSocket connection failed'));};});
+    const result={stack:name,status:'passed',scope:'real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence',buildMs,first,repeat:running.timings,persistence,websocket,htmlBytes:page.length,runtime:manifest.runtime,images:manifest.images,sha256:manifest.sha256};
     evidence.push(result);await writeFile(join(output,'manifest.json'),JSON.stringify(manifest,null,2));console.log(JSON.stringify(result));
   }catch(e){evidence.push({stack:name,status:'failed',error:e.message});console.error(name,e.message);process.exitCode=1;}
   finally{await running?.stop();if(server)await new Promise(r=>server.close(r));await writeFile('/output/evidence/matrix.json',JSON.stringify(evidence,null,2));}

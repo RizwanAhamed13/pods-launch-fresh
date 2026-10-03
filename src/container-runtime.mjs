@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import { pipeline } from 'node:stream/promises';
 import { Transform } from 'node:stream';
 import { docker, runtimeCompose } from './containers.mjs';
+import { persistentVolumes } from './storage.mjs';
 
 async function fileHash(path) {
   const hash = createHash('sha256'); for await (const chunk of createReadStream(path)) hash.update(chunk); return hash.digest('hex');
@@ -43,7 +44,9 @@ export async function startContainers(plan, config, root, runDir, timings) {
   const dataKey = config.dataKey || config.appId;
   const project = 'pods-' + createHash('sha256').update(dataKey).digest('hex').slice(0,24);
   const file = join(runDir, 'compose.json');
-  await writeFile(file, JSON.stringify(runtimeCompose(plan, project, config.port || 8080)), {mode:0o600});
+  const compose = runtimeCompose(plan, project, config.port || 8080);
+  compose.volumes = await persistentVolumes(plan,project,root);
+  await writeFile(file, JSON.stringify(compose), {mode:0o600});
   const args = ['compose','--project-name',project,'--file',file];
   const stop = () => docker([...args,'down','--timeout','10','--remove-orphans'], {timeout:60000});
   try {

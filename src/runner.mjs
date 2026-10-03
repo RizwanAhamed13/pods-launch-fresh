@@ -2,13 +2,14 @@
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile, rename, unlink, mkdtemp, rm, lstat } from 'node:fs/promises';
 import { join, resolve, sep, isAbsolute } from 'node:path';
-import { homedir, tmpdir } from 'node:os';
+import { tmpdir } from 'node:os';
 import { gunzipSync } from 'node:zlib';
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { fileURLToPath } from 'node:url';
 import { validateContainers } from './containers.mjs';
 import { startContainers } from './container-runtime.mjs';
+import { storageRoot, applicationData } from './storage.mjs';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const sha = b => createHash('sha256').update(b).digest('hex');
 export function decodeArtifact(bytes, expected) {
@@ -30,7 +31,7 @@ export function decodeArtifact(bytes, expected) {
   if (!seen.has('app.cjs')) throw new Error('Missing application entrypoint');
   return artifact;
 }
-export async function run(config, { root = join(homedir(), '.local/share/pods-launch'), fallbackRoot = join(tmpdir(), `pods-launch-${process.getuid?.() || 'user'}`) } = {}) {
+export async function run(config, { root = storageRoot(config.provider), fallbackRoot = join(tmpdir(), `pods-launch-${process.getuid?.() || 'user'}`) } = {}) {
   if (!/^[a-z0-9-]{2,64}$/.test(config.appId) || !/^[A-Za-z0-9_-]{20,64}$/.test(config.id) || !/^[a-f0-9]{64}$/.test(config.sha256)) throw new Error('Invalid launch identity');
   if (config.dataKey !== undefined && !/^[a-z0-9-]{2,64}$/.test(config.dataKey)) throw new Error('Invalid application data identity');
   for (const value of [config.artifactUrl, config.callbackUrl]) { const u = new URL(value); if (u.protocol !== 'https:' && !(u.protocol === 'http:' && ['127.0.0.1','localhost'].includes(u.hostname))) throw new Error('HTTPS required'); }
@@ -64,6 +65,7 @@ export async function run(config, { root = join(homedir(), '.local/share/pods-la
     try { await writable(root); }
     catch (e) {
       if (!['ENOSPC','EDQUOT','EROFS','EACCES'].includes(e.code)) throw e;
+      if (config.containerRuntime) throw new Error('Persistent storage is unavailable. Free space or restore access before launching the database application.');
       root = fallbackRoot; await writable(root); storageMode = 'ephemeral';
     }
     await report('downloading');
@@ -79,6 +81,7 @@ export async function run(config, { root = join(homedir(), '.local/share/pods-la
       bytes = Buffer.concat(parts);
     }
     const artifact = decodeArtifact(bytes, config.sha256);
+    if (artifact.format === 2 && storageMode === 'ephemeral') throw new Error('Database applications require persistent storage; temporary storage would lose records.');
     if (!timings.cacheHit) { const tmp = cache + '.' + config.id; await writeFile(tmp, bytes, {mode:0o600}); await rename(tmp, cache); }
     timings.downloadMs = Math.round(performance.now() - start);
     runDir = await mkdtemp(join(root, 'run-'));
@@ -88,8 +91,8 @@ export async function run(config, { root = join(homedir(), '.local/share/pods-la
       await mkdir(resolve(target, '..'), { recursive: true });
       await writeFile(target, Buffer.from(file.data, 'base64'), { mode: 0o600 });
     }
-    const dataDir = join(root, 'data', config.dataKey || config.appId); await mkdir(dataDir, { recursive: true, mode: 0o700 });
     await new Promise((ok, fail) => { const s = createServer(); s.once('error', () => fail(new Error(`Port ${port} is already in use; stop the existing application first`))); s.listen(port, '0.0.0.0', () => s.close(ok)); });
+    const dataDir = await applicationData(root,config.dataKey || config.appId,config.provider === 'github' && root === storageRoot('github') ? storageRoot('google') : undefined);
     await report('starting');
     if (artifact.format === 2) {
       containers = await startContainers(artifact.containers, config, root, runDir, timings);

@@ -13,7 +13,7 @@ const callbacks=createServer(async(req,res)=>{
   for await(const chunk of req){}res.end('{}');
 });
 await new Promise(r=>callbacks.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+callbacks.address().port;
-createServer(async(req,res)=>{
+const browserServer=createServer(async(req,res)=>{
   const url=new URL(req.url,'http://localhost');
   if(url.pathname==='/_pods'){
     res.setHeader('Content-Type','text/html');return res.end('<!doctype html><title>Prepared stack QA</title><h1>Prepared stack QA</h1>'+results.map(r=>`<p><a href="/_pods/select?stack=${r.stack}">${r.stack}</a></p>`).join(''));
@@ -30,5 +30,17 @@ createServer(async(req,res)=>{
   if(!running){res.writeHead(302,{Location:'/_pods'});return res.end();}
   const upstream=request({hostname:'127.0.0.1',port:8080,path:req.url,method:req.method,headers:req.headers},reply=>{res.writeHead(reply.statusCode,reply.headers);reply.pipe(res);});
   upstream.on('error',e=>{if(!res.headersSent)res.statusCode=502;res.end(e.message);});req.pipe(upstream);
-}).listen(8081,'0.0.0.0');
+});
+browserServer.on('upgrade',(req,socket,head)=>{
+  if(!running){socket.destroy();return;}
+  const upstream=request({hostname:'127.0.0.1',port:8080,path:req.url,method:req.method,headers:req.headers});
+  upstream.on('upgrade',(reply,peer,upstreamHead)=>{
+    socket.write(`HTTP/1.1 ${reply.statusCode} ${reply.statusMessage}\r\n`+Object.entries(reply.headers).map(([k,v])=>`${k}: ${v}\r\n`).join('')+'\r\n');
+    if(head.length)peer.write(head);if(upstreamHead.length)socket.write(upstreamHead);
+    socket.on('error',()=>peer.destroy());peer.on('error',()=>socket.destroy());
+    socket.pipe(peer).pipe(socket);
+  });
+  upstream.on('response',()=>socket.destroy());upstream.on('error',()=>socket.destroy());upstream.end();
+});
+browserServer.listen(8081,'0.0.0.0');
 console.log('Browser stack QA listens on 8081');
