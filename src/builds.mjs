@@ -158,7 +158,7 @@ export class BuildManager {
       const published = await publishArtifact(this.data, manifest, result.bytes, result.blobs);
       this.update(id, { status: 'ready', finishedAt: Date.now(), app: published, launchUrl: this.origin + '/launch/' + published.id });
     } catch (error) {
-      this.update(id, { status: 'failed', finishedAt: Date.now(), error: String(error.message).slice(0, 500) });
+      this.update(id, { status: 'failed', finishedAt: Date.now(), error: String(error.message).slice(-500) });
       if (error.cleanupFailed) {
         this.fault = error.message;
         for (const queued of this.pending.splice(0)) this.update(queued, { status: 'failed', error: 'Preparation is unavailable while the operator restores builder isolation.' });

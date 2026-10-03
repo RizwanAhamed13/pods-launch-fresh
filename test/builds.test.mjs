@@ -133,12 +133,26 @@ test('LXD file import rejects symlinks, declared oversized files and streaming o
   } finally { await new Promise(resolve => server.close(resolve)); await rm(root, { recursive: true, force: true }); }
 });
 
+test('build failure retains the final diagnostic after verbose Docker progress', async () => {
+  const root=await temp(),store=new Store(root,'ab'.repeat(32));
+  const manager=new BuildManager({store,data:root,origin:'https://pods.example',adapter:{...idleAdapter,build:async()=>{throw new Error('Container starting\n'.repeat(100)+'database failed: incompatible kernel');}}});
+  try {
+    await manager.initialize();const build=manager.submit('a','github:one',{url:repository.url});
+    await waitFor(()=>!manager.running);
+    const result=manager.own('a',build.id);
+    assert.equal(result.status,'failed');assert.ok(result.error.length<=500);
+    assert.match(result.error,/database failed: incompatible kernel$/);
+  } finally {await manager.close();store.close();await rm(root,{recursive:true,force:true});}
+});
+
 test('worker failure always deletes its own container; cleanup errors fail closed', async () => {
   for (const cleanupFails of [false, true]) {
     const builder = new LxdBuilder();
-    let instance, deleted = false;
+    let instance, deleted = false;const staged=[];
     builder.cli = async args => {
       if (args[0] === 'copy') instance = args[2];
+      if (args[0] === 'file') {assert.deepEqual(args.slice(0,3),['file','push','--recursive']);assert.equal(args[4],instance+'/opt/pods/');staged.push(args[3].split('/').at(-1));}
+      if (args[0] === 'start') assert.deepEqual(staged,['src','scripts']);
       if (args[0] === 'exec') throw new Error('Build timed out');
       if (args[0] === 'list') return JSON.stringify([{ name: instance }]);
       if (args[0] === 'delete') { assert.equal(args[1], instance); deleted = true; if (cleanupFails) throw new Error('LXD unavailable'); }

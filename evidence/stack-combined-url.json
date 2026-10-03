@@ -1,0 +1,15 @@
+{
+  "testedAt": "2026-10-03T13:28:22.613837+00:00",
+  "status": "failed",
+  "scope": "Actual developer browser form, Google account connected, public repository URL plus application folder",
+  "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+  "folder": "examples/stacks/react-express-postgres",
+  "elapsedSeconds": 243.3,
+  "lastStage": "Checking the product page",
+  "error": "Docker compose exited 1 during verification; published error was truncated after database waiting progress. Exact terminal cause is not yet captured.",
+  "independentPassingEvidence": [
+    "stack-matrix-03.json",
+    "stack-browser-04.json"
+  ],
+  "followUp": "Preserve final error tail, deliver current worker into each build clone, retry native URL workflow after aswin returns. The cause of this preparation failure remains unconfirmed."
+}

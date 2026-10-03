@@ -1,0 +1,48 @@
+[
+  {
+    "stack": "react-express-postgres",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 151413,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 12,
+      "imageCacheHits": 3,
+      "imagesMs": 147,
+      "runtimeReadyMs": 8563
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 4,
+      "imageCacheHits": 3,
+      "imagesMs": 173,
+      "runtimeReadyMs": 9428
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 196,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:25143f28530403ddfd133a1288e7d0d2b6581e1b24d959744009dfc4e318a0c8",
+        "sha256": "6fd4e6f5a1e8d23ee31d7bbcf88a4cf99dde43afd74456d6e965eba287261b05",
+        "bytes": 26010203
+      },
+      {
+        "id": "sha256:1b9f4d9d538acabf0a22e84361c9ed7257206035eb13c6a63917571f9467a061",
+        "sha256": "d2586bcbdf7f9deb97afe65564ba930067ff6d7e781bb7879911651db9fe61f6",
+        "bytes": 83777503
+      },
+      {
+        "id": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+        "sha256": "3fc00a26627991f13bcb9daaadd844f87e02850cf00a356e0287010940d6cc01",
+        "bytes": 116544108
+      }
+    ],
+    "sha256": "e952de2271df55f3722d66c0fc5d012432d1b81301d65dd18895f31d5bea68f0"
+  }
+]

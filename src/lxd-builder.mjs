@@ -4,6 +4,7 @@ import { mkdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { homedir } from 'node:os';
 import { randomBytes } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 import { command } from './util.mjs';
 import { decodeArtifact } from './runner.mjs';
 import { IMAGE_LIMIT } from './containers.mjs';
@@ -11,6 +12,7 @@ import { IMAGE_LIMIT } from './containers.mjs';
 const prefix = 'pods-fresh-job-';
 const jobName = name => /^pods-fresh-job-[a-f0-9]{24}$/.test(name);
 const base = process.env.PODS_BUILDER_BASE || 'pods-fresh-builder-base';
+const toolsRoot = fileURLToPath(new URL('../', import.meta.url));
 
 // This local authenticated LXD API keeps binary transfers bounded in memory and
 // rejects symlinks/directories. The container must be stopped before importing.
@@ -99,6 +101,11 @@ export class LxdBuilder {
       // Mark before copy: interrupted clone operations also require cleanup.
       created = true;
       await this.cli(['copy', base, name, '--instance-only']);
+      // The base supplies compilers and dependencies; each stopped clone receives
+      // the deployed worker so fixes cannot silently use an older runner.
+      for (const folder of ['src','scripts']) {
+        await this.cli(['file','push','--recursive',join(toolsRoot,folder),`${name}/opt/pods/`]);
+      }
       await this.cli(['start', name]);
       if(base==='pods-fresh-builder-v2')await this.cli(['exec',name,'--','sh','-c','n=0; until docker info >/dev/null 2>&1; do n=$((n+1)); [ "$n" -le 30 ] || exit 1; sleep 1; done; chgrp 1000 /var/run/docker.sock']);
       let partial = '';

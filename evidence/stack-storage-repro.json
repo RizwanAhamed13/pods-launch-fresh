@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "scope": "Real isolated Docker/PostgreSQL: legacy migration and Docker volume metadata recreation; native provider checks are separate",
+  "identity": "storage-probe-03d176330f783492",
+  "before": 0,
+  "saved": 1,
+  "migrated": 1,
+  "updated": 2,
+  "afterMetadataRecreation": 2,
+  "timings": {
+    "cacheHit": true,
+    "downloadMs": 8,
+    "imageCacheHits": 2,
+    "imagesMs": 121,
+    "runtimeReadyMs": 7977
+  },
+  "storage": {
+    "device": "/output/storage-probe-03d176330f783492/volumes/pods-2a1be21482df9f51538454a9/records/data",
+    "o": "bind",
+    "type": "none"
+  },
+  "at": "2026-10-03T13:21:40.208Z"
+}

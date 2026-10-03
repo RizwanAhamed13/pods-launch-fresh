@@ -69,8 +69,10 @@ export async function buildSource(source, output, overrides = {}) {
     stage('verifying');
     running = await run({
       id: uid(), appId: manifest.id, sha256: manifest.sha256,
+      // Build verification must never claim a real application's durable volume.
+      dataKey: 'verify-' + uid().toLowerCase().replace(/[^a-z0-9]/g, ''),
       artifactUrl: origin + '/artifact', callbackUrl: origin + '/callback',
-      token: uid(), port: 8080, expiresAt: Date.now() + 60000,
+      token: uid(), port: 8080, expiresAt: Date.now() + 180000,
     }, { root: join(output, 'verification') });
     const page = await fetch('http://127.0.0.1:8080/', { signal: AbortSignal.timeout(5000), redirect: 'error' });
     const contentType = page.headers.get('content-type') || '';

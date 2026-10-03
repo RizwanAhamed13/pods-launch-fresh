@@ -23,7 +23,7 @@ for(const name of names){
       for await(const chunk of req){}res.end('{}');
     });
     await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+server.address().port;
-    const launch=()=>run({id:uid(),appId:name,sha256:manifest.sha256,artifactUrl:origin+'/artifact',callbackUrl:origin+'/callback',token:'fixture',port:8080,expiresAt:Date.now()+300000},{root:join(output,'compute')});
+    const launch=()=>run({id:uid(),appId:name,dataKey:'matrix-'+name,sha256:manifest.sha256,artifactUrl:origin+'/artifact',callbackUrl:origin+'/callback',token:'fixture',port:8080,expiresAt:Date.now()+300000},{root:join(output,'compute')});
     running=await launch();const first={...running.timings};
     const page=await fetch('http://127.0.0.1:8080/').then(r=>r.text());
     let persistence=null;

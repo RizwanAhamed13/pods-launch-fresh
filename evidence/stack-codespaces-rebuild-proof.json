@@ -1,0 +1,25 @@
+{
+  "testedAt": "2026-10-03T13:17:29.826500+00:00",
+  "scope": "Actual GitHub Codespaces full rebuild followed by PODS launch and SSH HTTP interaction; private native browser sign-in still pending",
+  "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+  "marker": {
+    "count": 2,
+    "beforeAt": "2026-10-03T13:03:11.847Z"
+  },
+  "before": {
+    "count": 2
+  },
+  "written": {
+    "count": 3
+  },
+  "after": {
+    "count": 3
+  },
+  "persistence": "PostgreSQL record preserved through gh codespace rebuild --full",
+  "launchEvidence": "stack-codespaces-rebuild-recovery.json",
+  "precedingFailures": [
+    "stack-codespaces-after-rebuild.json",
+    "stack-codespaces-rebuild-retry.json"
+  ],
+  "failureDiagnosis": "Control-plane restart omitted pods-tools/bin from PATH; gh was absent. Restart with scripts/serve.sh or its PATH restored delivery."
+}

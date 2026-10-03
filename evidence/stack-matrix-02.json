@@ -243,5 +243,232 @@
       }
     ],
     "sha256": "e9c83094ff32d5e08bd520963ee04c68674c957151e70986565d9b40bbb6a897"
+  },
+  {
+    "stack": "sinatra",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 201445,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 9,
+      "imageCacheHits": 1,
+      "imagesMs": 43,
+      "runtimeReadyMs": 2201
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 41,
+      "runtimeReadyMs": 2202
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "htmlBytes": 379,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:709fe550edf877e422f679a544c68b65f199f9659cc9c4d475c38f128c3f993f",
+        "sha256": "49b9baa55a33078c598468ebc19b3c93d1a7b26c36345d9577ee695d9caa5b6c",
+        "bytes": 216259334
+      }
+    ],
+    "sha256": "28f50ad2704aef28c71e9441090d0da0caae9a09edb8a65bc7e232cab92db38d"
+  },
+  {
+    "stack": "axum",
+    "status": "failed",
+    "error": "Docker build failed (101): DEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\nThe command '/bin/sh -c cargo build --release && find target/release -maxdepth 1 -type f -executable > /bins && test \"$(wc -l < /bins)\" = 1 && cp \"$(cat /bins)\" /product' returned a non-zero code: 101\n"
+  },
+  {
+    "stack": "next",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 144784,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 8,
+      "imageCacheHits": 1,
+      "imagesMs": 40,
+      "runtimeReadyMs": 2912
+    },
+    "repeat": {
+      "cacheHit": false,
+      "downloadMs": 8,
+      "imageCacheHits": 1,
+      "imagesMs": 40,
+      "runtimeReadyMs": 2912
+    },
+    "persistence": null,
+    "htmlBytes": 4818,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:e5faeaf2446dc0c4a3e92e658f97067a0a3f81c0a6efa512895c141b6ac89860",
+        "sha256": "5e1917f6fb31b65e9efc1123554feb20cb0744cee3de852a078df9cd5607f682",
+        "bytes": 295959364
+      }
+    ],
+    "sha256": "1823204251f783c89922f4e3ef40e6ca996fdaed1cf630cf5a3fc6c311581674"
+  },
+  {
+    "stack": "nuxt",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 603536,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 8,
+      "imageCacheHits": 1,
+      "imagesMs": 42,
+      "runtimeReadyMs": 2924
+    },
+    "repeat": {
+      "cacheHit": false,
+      "downloadMs": 8,
+      "imageCacheHits": 1,
+      "imagesMs": 42,
+      "runtimeReadyMs": 2924
+    },
+    "persistence": null,
+    "htmlBytes": 1236,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:69a151c4212c64ea5d65d8915c4f8c91e43cec585cd5c62f437857642ccd87ae",
+        "sha256": "4a60ebf411576c6c87dd17bf40d19ea19c467d21929ab86a348408c4b20b2377",
+        "bytes": 257080211
+      }
+    ],
+    "sha256": "fdd06a5e83c78ea5e0bf10ca9aca358fd0d97a20f5ad3f352b7cfb807e123c01"
+  },
+  {
+    "stack": "flask-mysql",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 162914,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 11,
+      "imageCacheHits": 2,
+      "imagesMs": 86,
+      "runtimeReadyMs": 10613
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 2,
+      "imagesMs": 85,
+      "runtimeReadyMs": 10490
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "htmlBytes": 427,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:9806b760d5ba16ddf2bfbcd92cc2a2196beb67f49594b102b05760a55e3711e7",
+        "sha256": "e2426b787ef9610e9f0e0c102629b841aa704b536dee0812bd8bc69b83ba0146",
+        "bytes": 57048381
+      },
+      {
+        "id": "sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242",
+        "sha256": "2d4532ed5147b9856dbaeae8df9642f8b90509058c16c81d877c0ce7d5379cc8",
+        "bytes": 239806377
+      }
+    ],
+    "sha256": "ee270c3184ec11e718615a82e92e30ffd5caaf9c85b14adc6a8455c76c64e816"
+  },
+  {
+    "stack": "flask-mariadb",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 91733,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 9,
+      "imageCacheHits": 2,
+      "imagesMs": 92,
+      "runtimeReadyMs": 8766
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 2,
+      "imagesMs": 120,
+      "runtimeReadyMs": 7142
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "htmlBytes": 429,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:65841b7b9bf20bc3b97801e99a3284dbd74219306bee6ca09f99a5f1615bb7c8",
+        "sha256": "ad5a93d9f8e5d8b28481e0440adf78ea3dbfab0ac60169c995e93006dc3c4889",
+        "bytes": 57049053
+      },
+      {
+        "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+        "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+        "bytes": 104507545
+      }
+    ],
+    "sha256": "f019c61ed78c8a6fd4556dbbc965411ae316c8bac08cbc1de567096120a728ad"
+  },
+  {
+    "stack": "flask-mongodb",
+    "status": "failed",
+    "error": "Docker compose failed (1):  Network pods-8f1430c26068f82b9a7780cf_default  Creating\n Network pods-8f1430c26068f82b9a7780cf_default  Created\n Volume pods-8f1430c26068f82b9a7780cf_records  Creating\n Volume pods-8f1430c26068f82b9a7780cf_records  Created\n Container pods-8f1430c26068f82b9a7780cf-db-1  Creating\n Container pods-8f1430c26068f82b9a7780cf-db-1  Created\n Container pods-8f1430c26068f82b9a7780cf-web-1  Creating\n Container pods-8f1430c26068f82b9a7780cf-web-1  Created\n Container pods-8f1430c26068f82b9a7780cf-db-1  Starting\n Container pods-8f1430c26068f82b9a7780cf-db-1  Started\n Container pods-8f1430c26068f82b9a7780cf-db-1  Waiting\n Container pods-8f1430c26068f82b9a7780cf-db-1  Error\ndependency failed to start: container pods-8f1430c26068f82b9a7780cf-db-1 exited (1)\n"
+  },
+  {
+    "stack": "flask-valkey",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 33356,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 7,
+      "imageCacheHits": 2,
+      "imagesMs": 81,
+      "runtimeReadyMs": 5628
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 4,
+      "imageCacheHits": 2,
+      "imagesMs": 87,
+      "runtimeReadyMs": 5876
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "htmlBytes": 428,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:95f1eaa8cf3241ca6878c87f4c10e8472b3e3be506e994386ce9026df4f4a776",
+        "sha256": "88daf514e4998bd0695411f8d15c2821e807253f2513961cd923ee45689b54ea",
+        "bytes": 52234156
+      },
+      {
+        "id": "sha256:081c2f5cb575efc901aa80ff9cdbd1ec6a301682fd35e1ebb4b0990a4a4a8507",
+        "sha256": "10943ffdaadac347af2c806367985ea88bd791101d7d1e0b68c55e40c93f2e7b",
+        "bytes": 17408415
+      }
+    ],
+    "sha256": "e631a8a2e603ab0d9fee2243afeec633c899010f1c6e599b407256b18199c330"
   }
 ]

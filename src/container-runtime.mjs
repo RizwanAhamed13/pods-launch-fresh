@@ -11,6 +11,18 @@ async function fileHash(path) {
   const hash = createHash('sha256'); for await (const chunk of createReadStream(path)) hash.update(chunk); return hash.digest('hex');
 }
 
+export async function launchCompose(args, stop, timings, execute = docker) {
+  const start = () => execute([...args,'up','--detach','--no-build','--pull','never','--wait','--wait-timeout','90'], {timeout:120000});
+  try { await start(); }
+  catch (e) {
+    // A resumed Docker-in-Docker daemon can retain a stale runc task. Recreate
+    // this application's containers once, preserving all database volumes.
+    if (!/OCI runtime create failed:.*container with given ID already exists/s.test(e.message)) throw e;
+    timings.runtimeRetries = 1;
+    await stop(); await start();
+  }
+}
+
 export async function startContainers(plan, config, root, runDir, timings) {
   await docker(['info','--format','{{.OSType}}/{{.Architecture}}']).then(platform => {
     if (!/^linux\/(?:x86_64|amd64)$/.test(platform)) throw new Error('This artifact requires a Linux amd64 Docker engine.');
@@ -50,7 +62,7 @@ export async function startContainers(plan, config, root, runDir, timings) {
   const args = ['compose','--project-name',project,'--file',file];
   const stop = () => docker([...args,'down','--timeout','10','--remove-orphans'], {timeout:60000});
   try {
-    await docker([...args,'up','--detach','--no-build','--pull','never','--wait','--wait-timeout','90'], {timeout:120000});
+    await launchCompose(args,stop,timings);
     return { stop, async alive() {
       const ids = await docker([...args,'ps','--quiet',plan.web]);
       if (!ids) return false;

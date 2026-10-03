@@ -1,0 +1,11 @@
+{
+  "observedAt": "2026-10-03T13:28:22.614330+00:00",
+  "tailscale": {
+    "localBackend": "Running",
+    "localOnline": true,
+    "aswinOnline": false,
+    "aswinLastSeen": "2026-10-03T13:30:00.1Z"
+  },
+  "ssh": "Connection to configured aswin port 2222 times out",
+  "impact": "Latest worker delivery/verification-identity fixes cannot be deployed or tested live. Browser QA SSH tunnel unavailable. Queued batch results require reconciliation when server returns."
+}

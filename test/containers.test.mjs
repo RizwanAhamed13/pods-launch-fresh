@@ -11,10 +11,21 @@ import { validateBuildOutput } from '../src/builds.mjs';
 import { detectApplication } from '../src/detect.mjs';
 import { parseRepository } from '../src/repository.mjs';
 import { digest } from '../src/util.mjs';
+import { launchCompose } from '../src/container-runtime.mjs';
 
 const blob=Buffer.from('prepared image test data');
 const image={id:'sha256:'+'a'.repeat(64),sha256:digest(blob),bytes:blob.length};
 function plan(){return {web:'web',port:8000,images:[image],services:{web:{image:image.id,depends_on:{db:'service_healthy'}},db:{image:image.id,volumes:[{name:'records',target:'/var/lib/db',readOnly:false}],healthcheck:{test:['CMD','check'],interval:'2s',timeout:'1s',retries:20}}}};}
+
+test('stale resumed container task retries once without rebuilding; other application failures do not retry',async()=>{
+  const events=[],timings={};let attempts=0;
+  await launchCompose(['compose','--project-name','test'],async()=>events.push('stop'),timings,async args=>{events.push(args);if(++attempts===1)throw new Error('OCI runtime create failed: runc create failed: container with given ID already exists');});
+  assert.equal(attempts,2);assert.equal(events[1],'stop');assert.equal(timings.runtimeRetries,1);
+  assert.ok(events[0].includes('--no-build'));assert.ok(!events.flat().includes('--volumes'));
+  let stopped=false;
+  await assert.rejects(()=>launchCompose([],async()=>{stopped=true;},{},async()=>{throw new Error('Database health failed');}),/Database health failed/);
+  assert.equal(stopped,false);
+});
 
 test('container artifact is integrity checked, bounded and rejects host access or missing dependencies',()=>{
   const value={format:2,runtime:'docker',healthPath:'/',containers:plan()};

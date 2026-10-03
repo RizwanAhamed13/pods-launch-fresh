@@ -1,0 +1,107 @@
+[
+  {
+    "stack": "express",
+    "status": "passed",
+    "before": 1,
+    "after": 2,
+    "reloaded": 2,
+    "scope": "Real artifact browser through SSH; not native provider"
+  },
+  {
+    "stack": "fastapi",
+    "status": "passed",
+    "before": 1,
+    "after": 2,
+    "reloaded": 2,
+    "scope": "Real artifact browser through SSH; not native provider"
+  },
+  {
+    "stack": "django",
+    "status": "passed",
+    "before": 1,
+    "after": 2,
+    "reloaded": 2,
+    "scope": "Real artifact browser through SSH; not native provider"
+  },
+  {
+    "stack": "go",
+    "status": "passed",
+    "before": 1,
+    "after": 2,
+    "reloaded": 2,
+    "scope": "Real artifact browser through SSH; not native provider"
+  },
+  {
+    "stack": "aspnet",
+    "status": "passed",
+    "before": 1,
+    "after": 2,
+    "reloaded": 2,
+    "scope": "Real artifact browser through SSH; not native provider"
+  },
+  {
+    "stack": "php",
+    "status": "passed",
+    "before": 1,
+    "after": 2,
+    "reloaded": 2,
+    "scope": "Real artifact browser through SSH; not native provider"
+  },
+  {
+    "stack": "spring-boot",
+    "status": "passed",
+    "before": 1,
+    "after": 2,
+    "reloaded": 2,
+    "scope": "Real artifact browser through SSH; not native provider",
+    "note": "Retested after extending bounded container application health deadline to 60 seconds."
+  },
+  {
+    "stack": "sinatra",
+    "status": "passed",
+    "before": 1,
+    "after": 2,
+    "reloaded": 2,
+    "scope": "Real artifact browser through SSH; not native provider"
+  },
+  {
+    "stack": "flask-mysql",
+    "status": "passed",
+    "before": 1,
+    "after": 2,
+    "reloaded": 2,
+    "scope": "Real artifact browser through SSH; not native provider"
+  },
+  {
+    "stack": "flask-mariadb",
+    "status": "passed",
+    "before": 1,
+    "after": 2,
+    "reloaded": 2,
+    "scope": "Real artifact browser through SSH; not native provider"
+  },
+  {
+    "stack": "flask-valkey",
+    "status": "passed",
+    "before": 1,
+    "after": 2,
+    "reloaded": 2,
+    "scope": "Real artifact browser through SSH; not native provider"
+  },
+  {
+    "stack": "next",
+    "status": "passed",
+    "before": 0,
+    "after": 1,
+    "reloaded": 0,
+    "scope": "Real SSR artifact, hydrated client counter and intentional state reset after reload; no database or native provider proof"
+  },
+  {
+    "stack": "nuxt",
+    "status": "passed",
+    "before": 0,
+    "after": 1,
+    "reloaded": 0,
+    "scope": "Real SSR artifact, hydrated client counter and intentional state reset after reload; no database or native provider proof"
+  }
+]

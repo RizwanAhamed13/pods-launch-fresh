@@ -13,7 +13,7 @@ npm ci --ignore-scripts
 npm run prepare:demo
 cp .env.example .env
 # Set PODS_SECRET, PODS_ORIGIN, PODS_RUNTIME_REPO and optional OAuth credentials.
-node --env-file=.env src/server.mjs
+./scripts/serve.sh
 ```
 
 Use a stable HTTPS URL for provider callbacks. `.env` and `.data` are deliberately ignored by Git. The deployed aswin preview uses a temporary Cloudflare tunnel; its hostname is not a durable production URL.
@@ -49,7 +49,7 @@ The builder uses esbuild to compile and bundle JavaScript/TypeScript into a prod
 
 `scripts/setup-builder.sh` prepares a fresh unprivileged LXD base container on aswin. It installs the pinned Node distribution and this repository's builder tools. Build containers have no control-plane filesystem mounts or provider credentials; the template limits memory to 2 GiB, CPU to two cores, processes to 256 and the root filesystem to 4 GiB in a dedicated 12 GiB Btrfs pool. Its network permits public HTTP/HTTPS while rejecting private, link-local and Tailscale destinations. LXD's baseline DNS/DHCP services remain available. The manager serializes jobs and holds a host kernel lock across processes because bridge ACLs do not isolate peers on the same bridge. [LXD ACL behavior](https://canonical.com/lxd/docs/latest/howto/network_acls/).
 
-`scripts/build-worker.mjs` accepts a public HTTPS GitHub repository URL and optional application folder. Inside a disposable clone of the base container, it fetches the source, records the commit, installs npm dependencies, runs the existing build script, packages the result and starts the artifact. Verification requires an actual HTML document or a valid JSON API at `/`; terminal output and generic plain-text responses are rejected. Browser rendering and interaction remain separate acceptance checks. It produces `artifact.gz` and `result.json`. The manager stops the container, reads only these bounded regular files through LXD, independently validates integrity and reconstructs public metadata, removes the container, then publishes the artifact and manifest atomically. A cleanup failure disables further jobs. This checks the product document, not all browser behavior or whether third-party code is trustworthy.
+`scripts/build-worker.mjs` accepts a public HTTPS GitHub repository URL and optional application folder. Each stopped disposable clone receives the deployed `src/` and `scripts/` before startup, so the base image cannot silently supply an older worker. Inside the clone, it fetches the source, records the commit, installs npm dependencies, runs the existing build script, packages the result and starts the artifact. Verification requires an actual HTML document or a valid JSON API at `/`; terminal output and generic plain-text responses are rejected. Browser rendering and interaction remain separate acceptance checks. It produces `artifact.gz` and `result.json`. The manager stops the container, reads only these bounded regular files through LXD, independently validates integrity and reconstructs public metadata, removes the container, then publishes the artifact and manifest atomically. A cleanup failure disables further jobs. This checks the product document, not all browser behavior or whether third-party code is trustworthy.
 
 After provisioning the builder, set `PODS_BUILDS_ENABLED=1` and restart the control plane. `GET /api/me` supplies the browser CSRF value. With a connected GitHub or Google account, submit `POST /api/builds` with `{ "url": "https://github.com/owner/repository", "folder": "", "provider": "github" }`, the session cookie and `X-Pods-CSRF` header. Poll the returned ID at `GET /api/builds/:id`; only its browser session can read it. Successful results contain the artifact metadata and a versioned `/launch/:appId` URL which a separate user can consume. `/api/launches` accepts that exact `appId`. OAuth return paths preserve the selected version. The browser selects that exact version, preserves the action through authorization, and navigates the same tab to the provider preview when the application is healthy. Returning from the product does not trigger a redirect loop.
 
@@ -109,7 +109,8 @@ Provider contracts: [Codespaces REST API](https://docs.github.com/en/rest/codesp
 Run `scripts/setup-builder-v2.sh` on aswin after the original builder setup, then
 set `PODS_BUILDER_BASE=pods-fresh-builder-v2`. This creates a separate 20 GiB Btrfs
 pool and an unprivileged LXD base with two CPUs, 4 GiB memory, 512 processes and a
-12 GiB root quota. Docker runs **inside that disposable LXD boundary**; the host
+12 GiB root quota. The deployed pool has been expanded to 40 GiB for the separate
+QA matrix guest; production guests retain the 12 GiB quota. Docker runs **inside that disposable LXD boundary**; the host
 Docker socket is never mounted. The worker can control only the nested engine.
 The network restrictions and serialized build admission remain in place.
 
@@ -142,10 +143,13 @@ is stopped, preserving database uid/gid; the original is retained. Source Compos
 host mounts are still rejected. Existing Node application data is also migrated
 to the persistent Codespaces workspace without overwriting newer records.
 
-Real PostgreSQL migration and volume metadata recreation have passed in the
-isolated QA environment. **A full native provider VM/rebuild test is still
-pending**; see `evidence/stack-storage-live.json`. App processes stop after the
-launch lifetime; volumes and image cache are retained.
+Real PostgreSQL migration and volume metadata recreation passed in isolated QA.
+The actual Codespace also retained its database through a full container rebuild:
+the record remained 2 and accepted a new write to 3 after PODS relaunched the
+application. See `evidence/stack-storage-live.json` and
+`evidence/stack-codespaces-rebuild-proof.json`. Cloud Shell VM replacement remains
+unverified. App processes stop after the launch lifetime; data directories and
+image cache are retained.
 
 Limits: eight services, 512 MiB compressed per image, 1 GiB total image downloads,
 5 GiB stored images, 768 MiB memory/one CPU/256 processes per running service.

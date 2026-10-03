@@ -50,17 +50,35 @@ are measured separately. See `evidence/` for completed evidence.
 | --- | --- | --- | --- |
 | React, Angular, Vue, Svelte, Solid, Preact, Lit, Alpine | Passed | Passed | Pending for these fixtures |
 | Fastify + SQLite, Koa + SQLite | Passed, including DB restart | Passed | Pending |
-| Flask + SQLite, PostgreSQL, Redis | Passed, including DB restart | Passed | Pending |
-| express, fastapi, django, go, spring-boot, aspnet, php | Passed, including data restart | Pending | Pending |
-| Sinatra, Next.js, Nuxt, Flask + MySQL | Passed in the running second batch | Pending | Pending |
+| Flask + SQLite, Redis | Passed, including DB restart | Passed | Pending |
+| Flask + PostgreSQL | Passed, including DB restart | Passed | Google native browser passed; Codespaces API/HTTP and full rebuild durability passed, browser sign-in pending |
+| Express, FastAPI, Django, Go, Spring Boot, ASP.NET Core, PHP, Sinatra | Passed, including data restart | Passed | Pending |
+| Next.js, Nuxt | Passed | Hydrated counter passed; client state intentionally resets on reload | Pending |
+| Flask + MySQL, MariaDB, Valkey | Passed, including DB restart | Passed | Pending |
+| React + Express + PostgreSQL | Passed, including DB restart | Passed | URL preparation failed in production verification; retry pending |
+| Axum + persistent file, Hono + SQLite, Astro SSR | Passed, including restart | Passed | Pending |
+| SvelteKit, React Router, NestJS | Passed, including restart | SvelteKit needs hydration retest; React Router clicked successfully but reload interrupted; NestJS pending | Pending |
+| MongoDB 8 | Failed on builder kernel; see constraint below | Pending | Pending |
 | Other target rows above | Pending unless a newer evidence file records a pass | Pending | Pending |
 
-Server matrices are `evidence/stack-matrix-01.json` and
-`evidence/stack-matrix-02.json` (the second batch is still running). Browser checks are in
-`evidence/stack-browser-local.json`; those ran against real prepared artifacts on
-aswin through an authenticated SSH tunnel. They are not Cloud Shell/Codespaces
-native preview results. Frontend reload persistence uses browser localStorage;
-backend fixtures exercise SQLite, PostgreSQL or Redis data on the runtime.
+Completed server matrices are `evidence/stack-matrix-01.json`,
+`evidence/stack-matrix-02.json`, `evidence/stack-matrix-03.json` and
+`evidence/stack-matrix-04.json`. These establish 33 unique application fixture
+passes. Later queued batches are recorded separately;
+initial failing attempts remain in the evidence. Browser checks are in
+`evidence/stack-browser-local.json`, `evidence/stack-browser-02.json` and
+`evidence/stack-browser-04.json`: 30 unique fixtures passed through an authenticated SSH tunnel to real aswin artifacts.
+Those are not native Cloud Shell/Codespaces preview results. Frontend fixtures
+use either localStorage or deliberately transient client state; backend fixtures
+exercise persistent files, SQLite or a private database service. The old batch02
+Next/Nuxt `repeat` timing equals the first launch because that harness version did
+not relaunch non-API fixtures; it must not be counted as a server restart check.
+
+MongoDB 8 currently refuses to start on aswin's Linux 7.0.0 kernel because of its
+known kernel/allocator incompatibility. MongoDB documents the affected range as
+6.19 through 7.0.13 and the fix in 7.0.14+. We retain that failure and test MongoDB
+7.0.45 independently; we do not disable MongoDB's startup guard.
+[MongoDB 8 release notes](https://www.mongodb.com/docs/v8.0/release-notes/8.0/).
 
 Implementation references: [Docker service model](https://docs.docker.com/reference/compose-file/services/),
 [dependency health and startup order](https://docs.docker.com/compose/how-tos/startup-order/),
@@ -102,13 +120,32 @@ Evidence: `evidence/stack-codespaces-live.json`.
 The runner now keeps container data beneath Cloud Shell's persistent home and
 Codespaces' persistent `/workspaces` directory. Legacy Docker volume migration
 and volume metadata recreation passed against real PostgreSQL, retaining its
-record (`evidence/stack-storage-live.json`). Full provider VM replacement/rebuild
-verification remains pending. Unit coverage is now 44 passing checks.
+record (`evidence/stack-storage-live.json`). A full native Codespaces rebuild also passed: PostgreSQL retained record 2
+and accepted a new write to 3 after PODS relaunched the app. Recovery took
+56.444 seconds, including 40.962 seconds loading images cleared by the rebuild.
+The preceding two failed dispatches were traced to the control plane missing
+`gh` from PATH; they are retained as failures, and deployment was corrected.
+See `evidence/stack-codespaces-rebuild-proof.json`. Cloud Shell VM replacement
+remains pending. Unit coverage is now 47 passing checks.
 
 Storage boundaries follow the provider documentation:
 [Cloud Shell persistent home](https://docs.cloud.google.com/shell/docs/how-cloud-shell-works),
 [Codespaces rebuild lifecycle](https://docs.github.com/en/codespaces/about-codespaces/understanding-the-codespace-lifecycle).
 
 Additional fixtures staged for testing: Streamlit and Gradio with SQLite,
-compiled Deno, and compiled Bun with SQLite and WebSockets. Their presence in the
+compiled Deno, compiled Bun with SQLite and WebSockets, MongoDB 7.0.45, and
+Gin/Echo/Fiber/Actix Web/Rocket. Their presence in the
 fixture repository is not a support pass.
+
+## Current verification hold
+
+Aswin went offline during the next stage. Its Tailscale peer reports offline and
+SSH times out. The last complete matrix is batch04. Streamlit encountered a
+verification/runtime volume identity collision in batch05; a separate build
+verification identity is implemented and passes local checks, but the live retry
+is pending. Production build clones now receive the deployed worker before they
+start, avoiding stale base-image scripts; that deployment change also needs its
+live LXD gate. The React/Express/PostgreSQL developer URL preparation reached
+verification and failed; its exact final error was truncated by the earlier
+error reporting. The retry must establish the cause and pass before the native
+workflow is claimed. See `evidence/stack-combined-url.json`.

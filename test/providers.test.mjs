@@ -36,6 +36,14 @@ test('Codespaces provisioning failure propagates without trying to execute a run
  const adapter=providers({repo:'owner/runtime',origin:'https://pods.example',runnerSha:'a'.repeat(64),pollMs:1,api:async(path,t,opts)=>{if(opts?.method==='POST')throw new Error('Quota exceeded');return {codespaces:[]};},exec:async()=>{executed=true;}});
  await assert.rejects(adapter.github.launch('token',{},()=>{}),/Quota exceeded/);assert.equal(executed,false);
 });
+test('a missing server GitHub CLI is diagnosed without retrying user compute',async()=>{
+ let executions=0;
+ const adapter=providers({repo:'owner/runtime',origin:'https://pods.example',runnerSha:'a'.repeat(64),pollMs:1,
+  api:async()=>({codespaces:[{name:'my-pods',display_name:'PODS launch',state:'Available'}]}),
+  exec:async()=>{executions++;throw Object.assign(new Error('spawn gh ENOENT'),{code:'ENOENT'});}});
+ await assert.rejects(adapter.github.launch('token',{},()=>{}),/GitHub CLI is unavailable on the PODS server/);
+ assert.equal(executions,1);
+});
 test('bootstrap quotes shell values and pins the runner before execution',()=>{
  const b=bootstrap({token:'abc'},"https://pods.example/'quoted",'b'.repeat(64));
  assert.match(b,/sha256sum -c -/);assert.match(b,/umask 077/);assert.match(b,/PODS_CONFIG/);assert.ok(b.indexOf('sha256sum')<b.indexOf('nohup'));assert.match(b,/'\\''quoted/);

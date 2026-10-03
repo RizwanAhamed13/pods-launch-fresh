@@ -102,7 +102,8 @@ export async function run(config, { root = storageRoot(config.provider), fallbac
     child.on('error', e => { appError = e.message; });
     }
     let healthy = false;
-    for (let n = 0; n < 100; n++) {
+    const healthDeadline = Math.min(Date.now() + (containers ? 60000 : 10000), config.expiresAt);
+    while (Date.now() < healthDeadline) {
       await sleep(100);
       if (child && (child.exitCode !== null || child.signalCode || !child.pid)) throw new Error('Application exited before becoming healthy');
       try { const res = await fetch(`http://127.0.0.1:${port}${artifact.healthPath}`, {signal:AbortSignal.timeout(1000)}); await res.body?.cancel(); if (res.ok) { healthy = true; break; } } catch {}
