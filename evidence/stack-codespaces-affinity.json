@@ -1,0 +1,43 @@
+{
+  "testedAt": "2026-10-03T19:39:38.130028+00:00",
+  "sourceCommit": "b02fea1",
+  "issue": "State-only Codespace selection could choose another environment instead of the one holding application data.",
+  "regressionBefore": {
+    "tests": 3,
+    "passed": 0,
+    "failed": 3
+  },
+  "after": {
+    "localTests": 70,
+    "aswinTests": 70,
+    "failed": 0
+  },
+  "environmentsBefore": [
+    {
+      "display_name": "PODS launch",
+      "name": "pods-launch-x59xprgvg76q246j",
+      "state": "Shutdown"
+    },
+    {
+      "display_name": "PODS launch containers",
+      "name": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "state": "Available"
+    },
+    {
+      "display_name": "PODS launch containers",
+      "name": "pods-launch-containers-97qw56gjg47gf7vrv",
+      "state": "Shutdown"
+    }
+  ],
+  "nativeEvidence": "stack-codespaces-affinity-live.json",
+  "nativeScope": "Authenticated SSH HTTP/SQLite; no native Codespaces browser claim.",
+  "persistedBindingConfirmed": true,
+  "activeLaunchesAfter": 0,
+  "serverPid": 806978,
+  "runnerSha256": "9ef8029d995e07421e5297aaa1b644fb145a54c838e0b2d2f6f38f0e356cfc3b",
+  "limitations": [
+    "A missing or incompatible saved Codespace fails explicitly; no automatic cross-environment data migration.",
+    "Historical affinity recovery needs a prior successful launch associated with a stable provider account.",
+    "Native Codespaces browser authorization remains pending."
+  ]
+}

@@ -9,9 +9,9 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 4723 physical source lines: 2650 product/tooling, 1015 tests, 894 examples,
+- 4801 physical source lines: 2678 product/tooling, 1065 tests, 894 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 67 automated checks pass locally and on aswin after serialized-probe fixfe3b3e9.
+- 70 automated checks pass locally and on aswin after Codespace affinity fixb02fea1.
 - Native Google browser families: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
@@ -19,7 +19,25 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Same fourteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: Next.js native acceptance
+## Latest completed gate: Codespace data affinity
+
+- Coreb02fea1 pushed, synced and deployed. Three regressions failed before the fix;
+  all70 tests pass on local/aswin after it. No runner changes.
+- Returning apps bind account + stable application data key to their Codespace.
+  Versions, browser sessions and server restart retain this mapping. Existing
+  successful launches with account identity migrate through their artifact data key.
+  Missing/unavailable/wrong-runtime environments fail without silently using empty
+  storage. Cross-environment data migration is not implemented.
+- Before native test:69rw5vx4xp46c5qw5 Available; original API97qw56gjg47gf7vrv Shutdown.
+  PODS correctly resumed97, verified old SQLite2 before writing3, stopped, relaunched,
+  read3 then wrote4. Both stopped. Resumed health53.049s (delivery35.240s); cached
+  health6.789s. Images already cached in both cases; no20s claim for resumed case.
+- Authenticated SSH HTTP/JSON API/documentation checks passed; native browser scope
+  remains pending. Harness93466 ended0. No active launches/builds/test observers.
+- Production PID806978, persistent exec86720; public health and unchanged runner
+  hash confirmed. Evidence stack-codespaces-affinity{,-live}.json.
+
+## Previous completed gate: Next.js native acceptance
 
 - Corefe3b3e9 pushed and synced. Production runtime remains4cf4370/PID784115;
   only native QA helpers/tests changed, no runtime restart needed.
@@ -199,17 +217,17 @@ Runner SHA75cfd87f58a02353b48a080ee480b9b5ac246e2e189474f57e318fa11fdc0a0f.
 ## Operational state
 
 Origin https://collection-conferences-ages-clearly.trycloudflare.com.
-Control server PID784115, persistent exec56803; PID file matches verified cwd.
-Deployment4cf4370 passed public health, runner hash and native API persistence
+Control server PID806978, persistent exec86720; PID file matches verified cwd.
+Deploymentb02fea1 passed public health, runner hash and native API persistence
 checks. The earlier structured CSRF checks remain in browser-session-recovery.json.
 Always verify PID file, cwd, cmdline
 and listener before targeted restart. Use scripts/serve.sh from the repository;
 Node/gh in /home/aswin/pods-tools/bin. Do not restart with active builds/launches.
 
-No live PODS apps after Next checks; data retained. Latest Next Codespace
+No live PODS apps after affinity checks; data retained. Latest Next Codespace
 pods-launch-containers-69rw5vx4xp46c5qw5; API Codespace
 pods-launch-containers-97qw56gjg47gf7vrv; prior image-phase Codespace
-pods-launch-containers-69rw5vx4xp46c5qw5. API Google2/Codespaces2; earlier
+pods-launch-containers-69rw5vx4xp46c5qw5. API Google2/Codespaces4; earlier
 Google Django3/Rails2/Bun2, Codespaces Django4/Rails4/Bun2.
 
 CUA bindings: stackQa6 IAB2tab13 completed Next build; accountWorker IAB2tab12 stopped

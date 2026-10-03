@@ -314,7 +314,9 @@
       "nativeProviderEvidence": [
         "stack-fastapi-api-url.json",
         "stack-fastapi-api-google.json",
-        "stack-fastapi-api-codespaces.json"
+        "stack-fastapi-api-codespaces.json",
+        "stack-codespaces-affinity.json",
+        "stack-codespaces-affinity-live.json"
       ],
       "attempts": [
         {

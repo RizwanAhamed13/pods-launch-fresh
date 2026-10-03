@@ -80,7 +80,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **67 passing
+later passing attempts do not erase them. Automated coverage is **70 passing
 checks locally and on aswin**.
 
 ## Actual repository URL to native product
@@ -596,3 +596,19 @@ All five launches stopped. Initial image transfers overlapped between providers:
 These are concurrent-test measurements, not isolated bandwidth benchmarks.
 No database durability claim applies to this transient-state fixture. Evidence:
 `evidence/stack-next-{url,google,codespaces,codespaces-first-attempt}.json`.
+
+
+## Codespace selection and retained databases
+
+A real regression showed that preferring any warm Codespace could route a returning
+application away from its existing data. PODS now saves the environment per compute
+account and stable application data key. Three regression tests failed before the
+fix; all 70 automated checks pass locally and on aswin after it.
+
+The native API replay started with its original Codespace stopped and a different
+Codespace available. PODS resumed the original, read the existing SQLite value 2,
+wrote 3, stopped, relaunched, read 3 and wrote 4. Both launches stopped cleanly.
+Readiness was 53.049s for resumed compute and 6.789s for the cached relaunch. These
+are authenticated SSH HTTP/SQLite checks; native Codespaces browser acceptance
+remains pending. See `evidence/stack-codespaces-affinity.json` and
+`evidence/stack-codespaces-affinity-live.json`.
