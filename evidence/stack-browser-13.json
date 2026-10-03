@@ -1,0 +1,26 @@
+[
+  {
+    "stack": "angular-ssr",
+    "status": "passed",
+    "verifiedAt": "2026-10-03T14:13:13.960965+00:00",
+    "scope": "Actual Angular SSR browser through SSH tunnel to aswin prepared artifact; native providers pending",
+    "heading": "Angular SSR counter",
+    "before": 1,
+    "afterClick": 2,
+    "afterReload": 2,
+    "database": "SQLite",
+    "artifactRestartEvidence": "stack-matrix-13.json"
+  },
+  {
+    "stack": "gradio",
+    "status": "passed",
+    "verifiedAt": "2026-10-03T14:14:37.784147+00:00",
+    "scope": "Actual Gradio browser through SSH tunnel to aswin prepared artifact; native providers pending",
+    "heading": "Gradio + SQLite",
+    "before": 0,
+    "afterClick": 1,
+    "afterReload": 1,
+    "afterArtifactRelaunch": 1,
+    "database": "SQLite"
+  }
+]

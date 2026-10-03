@@ -1,0 +1,66 @@
+[
+  {
+    "stack": "next",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 30354,
+    "first": {
+      "cacheHit": true,
+      "downloadMs": 6,
+      "imageCacheHits": 1,
+      "imagesMs": 45,
+      "runtimeReadyMs": 2843
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 4,
+      "imageCacheHits": 1,
+      "imagesMs": 51,
+      "runtimeReadyMs": 2817
+    },
+    "persistence": null,
+    "websocket": null,
+    "htmlBytes": 4818,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:e5faeaf2446dc0c4a3e92e658f97067a0a3f81c0a6efa512895c141b6ac89860",
+        "sha256": "5e1917f6fb31b65e9efc1123554feb20cb0744cee3de852a078df9cd5607f682",
+        "bytes": 295959364
+      }
+    ],
+    "sha256": "1823204251f783c89922f4e3ef40e6ca996fdaed1cf630cf5a3fc6c311581674"
+  },
+  {
+    "stack": "nuxt",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 25538,
+    "first": {
+      "cacheHit": true,
+      "downloadMs": 4,
+      "imageCacheHits": 1,
+      "imagesMs": 48,
+      "runtimeReadyMs": 2823
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 4,
+      "imageCacheHits": 1,
+      "imagesMs": 51,
+      "runtimeReadyMs": 3071
+    },
+    "persistence": null,
+    "websocket": null,
+    "htmlBytes": 1236,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:69a151c4212c64ea5d65d8915c4f8c91e43cec585cd5c62f437857642ccd87ae",
+        "sha256": "4a60ebf411576c6c87dd17bf40d19ea19c467d21929ab86a348408c4b20b2377",
+        "bytes": 257080211
+      }
+    ],
+    "sha256": "fdd06a5e83c78ea5e0bf10ca9aca358fd0d97a20f5ad3f352b7cfb807e123c01"
+  }
+]

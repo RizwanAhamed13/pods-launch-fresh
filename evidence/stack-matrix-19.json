@@ -1,0 +1,38 @@
+[
+  {
+    "stack": "quarkus",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 126410,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 11,
+      "imageCacheHits": 1,
+      "imagesMs": 47,
+      "runtimeReadyMs": 4936
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 4,
+      "imageCacheHits": 1,
+      "imagesMs": 48,
+      "runtimeReadyMs": 3893
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 388,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:2b79387b39c977ac127b6e5c3c737b7e6c21a08ab28ff87af158e023db4badaf",
+        "sha256": "12c24f55bde04bbf19aa855e6048970ed1169783b054111f0ecb4c21680ee63d",
+        "bytes": 144756244
+      }
+    ],
+    "sha256": "10771df9bdf52df90c00a57200b0ca0f61ef0323b1309e69bc3ed968dcb6849b"
+  }
+]

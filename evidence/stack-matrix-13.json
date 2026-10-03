@@ -1,0 +1,70 @@
+[
+  {
+    "stack": "angular-ssr",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 24225,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 12,
+      "imageCacheHits": 1,
+      "imagesMs": 43,
+      "runtimeReadyMs": 2953
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 43,
+      "runtimeReadyMs": 2688
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 1493,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:ac4960beaa5d390746894bc629cb14141cca2fd0525a7fe5659f2cad0fd12905",
+        "sha256": "6bc300c2e067782c161ddc295fd4563a4924f8ae6344a139995bab9018ebe32b",
+        "bytes": 249525833
+      }
+    ],
+    "sha256": "407dc6abc65e31d7296221ced689106bf31daa39feb6eb0e70a14e42b0634e60"
+  },
+  {
+    "stack": "gradio",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 33046,
+    "first": {
+      "cacheHit": true,
+      "downloadMs": 5,
+      "imageCacheHits": 1,
+      "imagesMs": 37,
+      "runtimeReadyMs": 6504
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 5,
+      "imageCacheHits": 1,
+      "imagesMs": 42,
+      "runtimeReadyMs": 5343
+    },
+    "persistence": null,
+    "websocket": null,
+    "htmlBytes": 10463,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:03cb6ed3259292b291c551157571553e91faf10e321e0e04a0a400291c017e5a",
+        "sha256": "99d522efb720e797807e71a2ecff168f5b6b83b82accb3fe70d9244e424db1fb",
+        "bytes": 151998146
+      }
+    ],
+    "sha256": "65b87616014292da12e7795b8f021979f1576a1121d3ae7459d8a4d18cf5c591"
+  }
+]

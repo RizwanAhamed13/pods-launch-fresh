@@ -1,0 +1,9 @@
+default: &default
+  adapter: sqlite3
+  database: <%= ENV.fetch('PODS_APP_DATA', '/data') %>/counter.sqlite
+  pool: 5
+  timeout: 5000
+production:
+  <<: *default
+development:
+  <<: *default

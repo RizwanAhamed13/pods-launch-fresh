@@ -1,0 +1,29 @@
+[
+  {
+    "stack": "adonis",
+    "status": "passed",
+    "title": "AdonisJS + SQLite",
+    "before": 1,
+    "afterWrite": 2,
+    "afterReload": 2,
+    "scope": "Real browser interaction through SSH tunnel to prepared framework container; native providers pending"
+  },
+  {
+    "stack": "symfony",
+    "status": "passed",
+    "title": "Symfony + SQLite",
+    "before": 1,
+    "afterWrite": 2,
+    "afterReload": 2,
+    "scope": "Real browser interaction through SSH tunnel to prepared framework container; native providers pending"
+  },
+  {
+    "stack": "rails",
+    "status": "passed",
+    "title": "Rails + SQLite",
+    "before": 1,
+    "afterWrite": 2,
+    "afterReload": 2,
+    "scope": "Real browser interaction through SSH tunnel to prepared framework container; native providers pending"
+  }
+]

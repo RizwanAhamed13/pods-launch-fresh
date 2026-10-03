@@ -1,0 +1,38 @@
+[
+  {
+    "stack": "phoenix",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 118782,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 10,
+      "imageCacheHits": 1,
+      "imagesMs": 40,
+      "runtimeReadyMs": 4471
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 5,
+      "imageCacheHits": 1,
+      "imagesMs": 40,
+      "runtimeReadyMs": 4313
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 522,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:b21152ef10862fed9b6fd780a2902590574df8e1522469df3ed050993daf4881",
+        "sha256": "a6ad3145a21075443653d81704e58ddeb94ea205881e98607331deee7f86e5a9",
+        "bytes": 166072256
+      }
+    ],
+    "sha256": "7308461467ce0b24285428c542b402856037ab0c4ca8420e4bb4d313bacc0e98"
+  }
+]

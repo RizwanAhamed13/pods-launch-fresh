@@ -1,0 +1,52 @@
+{
+  "scope": "Real developer URL to prepared Angular SSR artifact, then native Google browser product. Existing Google authorization automatically reconnected before preparation.",
+  "browser": {
+    "before": 0,
+    "afterWrite": 1,
+    "afterReload": 1,
+    "afterFullStopAndRelaunch": 1
+  },
+  "measuredWarmBrowser": {
+    "clickToSavedProductMs": 7223,
+    "savedValue": 1,
+    "method": "Wall clock from the launch click through native preview navigation and a visible saved-value assertion in one browser tool call."
+  },
+  "attempts": [
+    {
+      "id": "pH81M0-aVtzFtJtTAQ5ZIJN-4CddhwTI",
+      "status": "stopped",
+      "createdAt": 1791039625046,
+      "providerReadyAt": 1791039627790,
+      "readyAt": 1791039697335,
+      "error": null,
+      "timings": {
+        "downloadMs": 520,
+        "imagesMs": 61689,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 67480,
+        "cacheHit": false
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 72289
+    },
+    {
+      "id": "HJ3KS3jERRa-egsLp0AWppimxFrPAInC",
+      "status": "ready",
+      "createdAt": 1791039779107,
+      "providerReadyAt": 1791039781700,
+      "readyAt": 1791039784956,
+      "error": null,
+      "timings": {
+        "downloadMs": 246,
+        "imagesMs": 57,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 1960,
+        "cacheHit": true
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "totalMs": 5849
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+[
+  {
+    "stack": "actix",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 213403,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 14,
+      "imageCacheHits": 1,
+      "imagesMs": 37,
+      "runtimeReadyMs": 2533
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 36,
+      "runtimeReadyMs": 2478
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 381,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:44082f89d7ef7c8bfb60eefd0d6433bd304f723fcf8072c5ad0fff79e7b16aa7",
+        "sha256": "ce68d42dc91e41898f750e2032abdedcac2570b695b7f2e9ffbf0fbad8696b31",
+        "bytes": 33417325
+      }
+    ],
+    "sha256": "fb5950ff5e983739e52f688983f3ede11ffc29a3a4733b9e902a89fb681a321d"
+  },
+  {
+    "stack": "rocket",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 226826,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 10,
+      "imageCacheHits": 1,
+      "imagesMs": 42,
+      "runtimeReadyMs": 3036
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 33,
+      "runtimeReadyMs": 2709
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 383,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:88807539e201ebc9fd33fe6a1bb09b62dc0faf0d3b62bfd996c156c161f52485",
+        "sha256": "303579e7770c66770531909f74c33e8b7a880e4b27ff2dd0facefebcf3aa8a79",
+        "bytes": 33370009
+      }
+    ],
+    "sha256": "501979e7d63d7ebea4ee9cfc1db23c4b913b0a029d94c5a26aa0e805cfdd2f0f"
+  },
+  {
+    "stack": "deno",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 88374,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 10,
+      "imageCacheHits": 1,
+      "imagesMs": 37,
+      "runtimeReadyMs": 2920
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 37,
+      "runtimeReadyMs": 2714
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 369,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:6506e90c1e25ed4b6b9547fee5199e8ea027150d31e827ab5a48842e1c0011e2",
+        "sha256": "57dc4024bbac45b14cba1a7aac63428569f546a25bd2d429dc62324af27ddf2c",
+        "bytes": 61421310
+      }
+    ],
+    "sha256": "21f01a08587ef3bef871b7b953be04cc8c0fd9e0600ae5f5d9329f335fa3f376"
+  },
+  {
+    "stack": "bun",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 83235,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 10,
+      "imageCacheHits": 1,
+      "imagesMs": 61,
+      "runtimeReadyMs": 2881
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 41,
+      "runtimeReadyMs": 2792
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": "ping/pong passed",
+    "htmlBytes": 685,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:093a988c6e0f415a68ce5be08dc33500384c0106d5683ae6c375ed4fdb27c47d",
+        "sha256": "94294ec55a8ae907a279e609c204900eab9fca8503dc1652ce03a65e1be4d5cc",
+        "bytes": 65412861
+      }
+    ],
+    "sha256": "a72ff43a68c40949a1637def49a1fae45dd00337cbb89491e10788aaa6318bb9"
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "stack": "actix",
+    "status": "passed",
+    "title": "Actix counter",
+    "before": 1,
+    "afterWrite": 2,
+    "afterReload": 2,
+    "scope": "Real browser interaction through SSH tunnel to prepared aswin artifact; native provider pending"
+  },
+  {
+    "stack": "rocket",
+    "status": "passed",
+    "title": "Rocket counter",
+    "before": 1,
+    "afterWrite": 2,
+    "afterReload": 2,
+    "scope": "Real browser interaction through SSH tunnel to prepared aswin artifact; native provider pending"
+  },
+  {
+    "stack": "deno",
+    "status": "passed",
+    "title": "Deno persistent counter",
+    "before": 1,
+    "afterWrite": 2,
+    "afterReload": 2,
+    "scope": "Real browser interaction through SSH tunnel to prepared aswin artifact; native provider pending"
+  },
+  {
+    "stack": "bun",
+    "status": "passed",
+    "title": "Bun WebSocket + SQLite persistent counter",
+    "before": 1,
+    "afterFirstWebsocketWriteAndReload": 2,
+    "afterLiveWebsocketWrite": 3,
+    "afterReload": 3,
+    "scope": "Browser WebSocket click, visible pushed response and SQLite value retained on reload through SSH tunnel; native provider pending"
+  }
+]

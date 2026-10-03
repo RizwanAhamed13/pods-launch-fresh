@@ -1,0 +1,10 @@
+@page "/"
+@inject CounterStore Store
+<PageTitle>Blazor + SQLite</PageTitle>
+<h1>Blazor + SQLite</h1>
+<p>@value</p><button @onclick="Add">Add one</button>
+@code {
+  private int value;
+  protected override void OnInitialized(){value=Store.Value(false);}
+  private void Add(){value=Store.Value(true);}
+}

@@ -1,0 +1,10 @@
+import router from '@adonisjs/core/services/router';
+import { DatabaseSync } from 'node:sqlite';
+import { mkdirSync, readFileSync } from 'node:fs';
+const folder=process.env.PODS_APP_DATA || '/data';mkdirSync(folder,{recursive:true});
+const db=new DatabaseSync(folder+'/counter.sqlite');
+db.exec('CREATE TABLE IF NOT EXISTS counter(id INTEGER PRIMARY KEY,value INTEGER NOT NULL); INSERT OR IGNORE INTO counter VALUES(1,0)');
+const count=()=>({count:db.prepare('SELECT value FROM counter WHERE id=1').get().value});
+router.get('/',({response})=>response.type('html').send(readFileSync(new URL('../product.html',import.meta.url),'utf8')));
+router.get('/api/count',count);
+router.post('/api/count',()=>{db.exec('UPDATE counter SET value=value+1 WHERE id=1');return count()});

@@ -1,0 +1,11 @@
+[
+  {
+    "stack": "blazor",
+    "status": "passed",
+    "title": "Blazor + SQLite",
+    "before": 1,
+    "afterInteractiveServerEvent": 2,
+    "afterReload": 2,
+    "scope": "Real Blazor Server browser interaction through SSH proxy; SQLite restart separately passed in matrix16; native providers pending"
+  }
+]

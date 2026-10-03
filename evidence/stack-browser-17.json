@@ -1,0 +1,12 @@
+[
+  {
+    "stack": "worker-redis",
+    "status": "passed",
+    "title": "Background worker + Redis",
+    "input": "hello pods",
+    "completedResult": "HELLO PODS",
+    "afterReload": "HELLO PODS",
+    "afterFullArtifactRelaunch": "HELLO PODS",
+    "scope": "Real browser submits Redis job to separate Python worker; completed job persists. This does not establish exactly-once processing or recovery of in-flight jobs."
+  }
+]

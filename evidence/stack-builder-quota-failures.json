@@ -1,0 +1,20 @@
+[
+  {
+    "batch": 11,
+    "stack": "actix",
+    "status": "failed",
+    "recordedAt": "2026-10-03T14:07:03.991304+00:00",
+    "reason": "Isolated QA guest exceeded 30 GiB root quota; evidence write also failed",
+    "compiled": true,
+    "errorTail": ")).bind((\"0.0.0.0\",8080))?.run().await}\n  |       ^                                                                                                                                                                                ^\n  |\n  = note: `#[warn(unused_braces)]` (part of `#[warn(unused)]`) on by default\nhelp: remove these braces\n  |\n8 - #[actix_web::main]async fn main()->std::io::Result<()> {HttpServer::new(||App::new().route(\"/\",web::get().to(home)).route(\"/api/count\",web::get().to(read)).route(\"/api/count\",web::post().to(add))).bind((\"0.0.0.0\",8080))?.run().await}\n8 + #[actix_web::main]async fn main()->std::io::Result<()> HttpServer::new(||App::new().route(\"/\",web::get().to(home)).route(\"/api/count\",web::get().to(read)).route(\"/api/count\",web::post().to(add))).bind((\"0.0.0.0\",8080))?.run().await\n  |\n\n\u001b[0m\u001b[91mwarning: `pods-actix` (bin \"pods-actix\") generated 1 warning (run `cargo fix --bin \"pods-actix\" -p pods-actix` to apply 1 suggestion)\n    Finished `release` profile [optimized] target(s) in 3m 30s\n\u001b[0m\nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\nfailed to apply diff: mount callback failed on /var/lib/containerd/tmpmounts/containerd-mount490404013: write /var/lib/containerd/tmpmounts/containerd-mount490404013/app/target/release/deps/libtypenum-dffc4093d6876b28.rmeta: disk quota exceeded\n\nnode:internal/fs/promises:1345\n  return new FileHandle(await PromisePrototypeThen(\n                        ^\n\nError: Unknown system error -122: Unknown system error -122, open '/output/evidence/matrix.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async writeFile (node:internal/fs/promises:1965:14)\n    at async file:///opt/pods/scripts/test-stack-matrix.mjs:49:81 {\n  errno: -122,\n  code: 'Unknown system error -122',\n  syscall: 'open',\n  path: '/output/evidence/matrix.json'\n}\n\nNode.js v24.21.0\n"
+  },
+  {
+    "batch": 12,
+    "stack": "deno",
+    "status": "failed",
+    "recordedAt": "2026-10-03T14:07:03.991599+00:00",
+    "reason": "Isolated QA guest exceeded 30 GiB root quota; evidence write also failed",
+    "compiled": false,
+    "errorTail": "{\"status\":\"detecting\"}\n{\"status\":\"packaging\"}\ndeno Docker build failed (1): Sending build context to Docker daemon  4.608kB\n\n\nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\nError response from daemon: mkdir /var/lib/docker/tmp/docker-builder574757138: disk quota exceeded\n\nnode:internal/fs/promises:1345\n  return new FileHandle(await PromisePrototypeThen(\n                        ^\n\nError: Unknown system error -122: Unknown system error -122, open '/output/evidence/matrix.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async writeFile (node:internal/fs/promises:1965:14)\n    at async file:///opt/pods/scripts/test-stack-matrix.mjs:50:81 {\n  errno: -122,\n  code: 'Unknown system error -122',\n  syscall: 'open',\n  path: '/output/evidence/matrix.json'\n}\n\nNode.js v24.21.0\n"
+  }
+]

@@ -1,0 +1,11 @@
+[
+  {
+    "stack": "quarkus",
+    "status": "passed",
+    "title": "Quarkus + SQLite",
+    "before": 1,
+    "afterWrite": 2,
+    "afterReload": 2,
+    "scope": "Real browser interaction through SSH tunnel to prepared framework container; native providers pending"
+  }
+]

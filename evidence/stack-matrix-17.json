@@ -1,0 +1,43 @@
+[
+  {
+    "stack": "worker-redis",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 55542,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 11,
+      "imageCacheHits": 2,
+      "imagesMs": 99,
+      "runtimeReadyMs": 6642
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 5,
+      "imageCacheHits": 2,
+      "imagesMs": 147,
+      "runtimeReadyMs": 6599
+    },
+    "persistence": {
+      "jobId": "b9099dc26e4f4142bf7de5b745b880ce",
+      "result": "BACKGROUND WORK",
+      "afterRestart": "BACKGROUND WORK"
+    },
+    "websocket": null,
+    "htmlBytes": 698,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:08148318110bec06950918ae19c50d928c628d9287407b57dba7e7dc2fcc824d",
+        "sha256": "b7ca219abe2063eeb4c4a967fff7780d80caa41f85036785525ef07a9d392c72",
+        "bytes": 52236901
+      },
+      {
+        "id": "sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499",
+        "sha256": "bfdc962ecd6dca3b0a34035109f2fb30ac958a5948602330af5f73c639a10102",
+        "bytes": 16256101
+      }
+    ],
+    "sha256": "dcf51ebe65418be9d9bda738b6bb31aec6a0898c8db60bc5291660efea37baf5"
+  }
+]

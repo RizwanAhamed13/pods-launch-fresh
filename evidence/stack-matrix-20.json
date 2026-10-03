@@ -1,0 +1,74 @@
+[
+  {
+    "stack": "laravel",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 81976,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 12,
+      "imageCacheHits": 1,
+      "imagesMs": 60,
+      "runtimeReadyMs": 4169
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 62,
+      "runtimeReadyMs": 3724
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 522,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:2ba6338eebfe2be688690000338e5dd9a25062cafeaa7dd3ae7cf7f94f981f33",
+        "sha256": "a70d00349c4f00cb3b56044852b135d6b856fad217bb9b80576313de1c990ca9",
+        "bytes": 232845584
+      }
+    ],
+    "sha256": "5e39abd333e4a4aab19eb595bd66ef77be03526c07650eaf71c8f8730f19586a"
+  },
+  {
+    "stack": "adonis",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 17442,
+    "first": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 50,
+      "runtimeReadyMs": 3425
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 52,
+      "runtimeReadyMs": 2791
+    },
+    "persistence": {
+      "before": 2,
+      "saved": 3,
+      "afterRestart": 3
+    },
+    "websocket": null,
+    "htmlBytes": 524,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:0f42963212d80df8cbdfb665e7c7ea641c6a0aa361ae1e9dae05923e3b674547",
+        "sha256": "a3f224016e8963dcd5eb7d681070f6a30fe294a0e525240dceca3389f1fedda8",
+        "bytes": 89244462
+      }
+    ],
+    "sha256": "3a0d9c200197fcdb82c310d9809d3e985fcf95240b556a433bf72221aad09fc6"
+  }
+]

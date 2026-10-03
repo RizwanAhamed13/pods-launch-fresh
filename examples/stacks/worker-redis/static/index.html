@@ -1,0 +1,7 @@
+<!doctype html><html><title>Background worker + Redis</title><h1>Background worker + Redis</h1>
+<label>Text to process <input id="text" value="hello pods"></label><button id="run">Run job</button><p id="result">No completed jobs</p>
+<script>
+async function refresh(){const job=await(await fetch('/api/latest')).json();if(job.state)document.querySelector('#result').textContent=job.state==='complete'?job.result:'Processing';}
+document.querySelector('#run').onclick=async()=>{await fetch('/api/jobs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:document.querySelector('#text').value})});await refresh();};
+refresh();setInterval(refresh,500);
+</script></html>

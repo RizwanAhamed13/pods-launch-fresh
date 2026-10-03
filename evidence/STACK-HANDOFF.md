@@ -1,119 +1,70 @@
-# Broad stack goal checkpoint
+# Broad stack checkpoint
 
-Goal remains active and incomplete. Continue it; do not create a new goal or
-claim universal support. Core implementation checkpoint0950f62 is pushed and aswin matches it cleanly.
-This file records the remaining verification. Public fixture main5f376f6 is pushed.
+The existing goal remains active. Broad framework tests are complete; native
+provider coverage is narrower and must not be presented as universal support.
+Core repository: https://github.com/RizwanAhamed13/pods-launch-fresh.
+Public fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
+commit00df7c0 pushed. Local root: /Users/rizwanahamed/Documents/ChatGPT/podsv2.
+Aswin roots: /home/aswin/pods-launch-fresh and /home/aswin/pods-launch-runtime-fresh.
 
-## Verified at this checkpoint
+## Verified
 
-- 38 unique server build/artifact launch fixture passes: batches01–04, Streamlit08,
- MongoDB7 batch10, Gin/Echo/Fiber batch11 progress snapshot. Earlier failures stay.
-- 38 browser fixture passes across browser-local/02/04/08/10/11 evidence.
- SvelteKit, React Router and Nest browser retests passed after hydration.
- Streamlit SQLite0→1→reload1→full artifact relaunch1 passed through its WebSocket UI.
- MongoDB7/Gin/Echo/Fiber browser1→2→reload2 passed; server matrices prove restart.
-- 51 automated checks pass locally and in QA on aswin. The first QA full-suite
- attempt lacked public/ and examples/notes; the failed log is retained separately.
- Delivering these test prerequisites fixed it. No test expectations were weakened.
-- Source LOC3685:2291 product/tooling,129 browser tools,793 tests,472 examples.
- See code-lines.json for definition; recount after subsequent source changes.
+54 distinct fixtures passed real server builds, artifact launches and browser
+interaction. SUPPORT.md lists every family. stack-coverage.json maps fixtures to
+specific evidence and preserves failed attempts. Batch19 fixed Quarkus resolver
+thread exhaustion; batch20 fixed Laravel middleware and verified direct Adonis
+container detection; batch21 fixed Phoenix module order. All passed SQLite
+write/read/restart and browser reload. Batch22 closes Next/Nuxt's old harness gap
+with real artifact stop/relaunch. No matrix queues remain running.
 
-## Fixes deployed, with remaining verification
+52 automated checks pass locally and in the isolated aswin guest. Source LOC4110:
+2311 product/tooling,129 browser tools,802 tests,868 example sources. Includes
+extensionless PHP/Ruby entrypoints; see code-lines.json for exact scope.
 
-Aswin SSH recovered. Current worker/runtime source is deployed in core and QA.
-Production LXD clones receive current src/scripts before start; observed in a
-real production build. Verification uses unique verify-* storage identity and
-QA uses matrix-<stack>, avoiding old volume identity collisions.
+React + Express + PostgreSQL: real developer URL preparation144.175s; nativeGoogle
+product button and PostgreSQL persistence across stop/relaunch passed. Cold ready
+67.816s; cached9.281/9.585s. Browser heading10.876s, saved value observed by18.158s
+(upper bound includes tool-call gap). Codespaces cold/resumed87.033s,cached10.106s;
+authenticated HTTP/DB write/read passed. Its native browser still needs GitHub
+sign-in. Private preview remains private; do not weaken it to avoid sign-in.
 
-Docker image tags strip random nonalphanumeric separators; trailing dashes had
-broken Gradio/Deno/Bun intermittently. Registry transport failures retry once
-inside the same builder and original deadline; compile/auth/notfound do not.
-Node recipes choose start:prod or unique Angular serve:ssr:* production scripts.
+Angular SSR: real developer URL preparation208.096s; actual nativeGoogle Angular
+hydration/button/SQLite0→1→reload1→full stop/relaunch1 passed. Cold ready72.289s,
+cached ready5.849s, click-to-visible-saved-product7.223s measured in one browser
+call. Appid repo-ce3c167a84b230196d7bf924-5f376f60ed9c-5592c22c08f5.
+Native Angular remains running until its30-minute deadline.
 
-Angular SSR fixture22.2.1 compiled after using createRequire for node:sqlite;
-its next runtime failed400 because of an unapproved hostname. runtimeCompose now
-passes NG_ALLOWED_HOSTS containing localhost,127.0.0.1 and exact config.previewUrl
-hostname, preserving existing entries. Unit coverage passes; actual Angular
-runtime retry is queued in batch13. The running browser driver and control-plane
-runner bundle need restart to pick up these latest runtime changes before native
-Angular/browser testing. Do not claim this runtime gate passed yet.
+Historical Flask/PostgreSQL nativeGoogle browser and Codespaces API/full-rebuild
+durability also passed. Cloud Shell VM replacement remains unverified.
 
-Gradio batch10 failed a harness check because its /api/count404 JSON was mistaken
-for a counter API. Harness now requires response.ok. Batch13 is queued. Real
-Gradio browser/button/reload/full-relaunch SQLite proof remains required.
-MongoDB7.0.45 did not exist; corrected7.0.43 passed. MongoDB8 remains explicitly
-unsupported on builder kernel7.0.0; do not disable its startup guard.
+## Environment
 
-## Production React+Express+PostgreSQL URL workflow
+QA guest pods-fresh-matrix-01: /opt/pods, /work/stacks, /output.
+Use /snap/lxd/current/bin/lxc and /opt/node/bin/node, uid/gid1000, and
+PODS_ISOLATED_BUILD=1. PODS_MATRIX_BATCH gives atomic numbered evidence files.
+Pool pods-fresh-build-v2 is60GiB; QA root50GiB; production root remains12GiB.
+Watch capacity before new large builds. Do not prune unrelated work.
+Batch13–22 evidence is imported. Older batch11/12 quota failures are separately
+retained in stack-builder-quota-failures.json. Do not wait for those stale jobs.
 
-Failures retained: original243.3s truncated verification, then359.3s image CDN
-connection reset, then132.4s API exited1 during verification. Official base Node,
-nginx andPostgres images are now cached in stopped production builder.
-Deterministic diagnose-combined-start.mjs reproduces the PostgreSQL socket-only
-initialization race with an8s init script: old healthcheck launches API too early
-and fails ECONNREFUSED; TCP healthcheck passes. Evidence stack-postgres-readiness.
-Both PG fixtures now use pg_isready -h127.0.0.1 and are pushed in fixture5f376f6.
-Production retry from developer browser hit account preparation limit3/hour.
-Earliest prior failed build expires2026-10-03T14:19:31.833Z. Retry then; do not
-weaken/remove rate limiting or delete history. URL→native product remains pending.
+Browser driver session63767 uses appport18090; tunnel97981 exposes
+http://127.0.0.1:18890/_pods. Catalog has54 passes. CUA browser2:
+stackQa6 tab13 Phoenix counter2; developerWide tab12 nativeAngular count1.
+nativeGithubKeep tab10 remains the sign-in handoff; tab9 is an olderGoogletab.
+Call cua.rewriteDocumentation after compaction; mark retained tabs each turn.
 
-## Aswin / queue state
+Production https://collection-conferences-ages-clearly.trycloudflare.com,
+port8787, lastPID445141. Restart only with scripts/serve.sh (gh PATH), when no
+active build/dispatch. Never print .env, tokens, authorization codes or credentials.
+Core src/scripts/test changes are deployed to aswin and QA; active control-plane
+routes are unchanged. A final commit/push and clean aswin alignment follow this
+checkpoint; verify git status/HEAD before subsequent work.
 
-Core /home/aswin/pods-launch-fresh; local /Users/rizwanahamed/Documents/ChatGPT/podsv2.
-Public fixtures /home/aswin/pods-launch-runtime-fresh. SSH aswin works.
-PATH=/home/aswin/pods-tools/bin:$PATH; LXD=/snap/lxd/current/bin/lxc.
-Server lastPID365353, port8787; restart using scripts/serve.sh ONLY when no active
-build/dispatch. This restores gh in PATH. Never print .env, tokens or OAuth codes.
-Origin https://collection-conferences-ages-clearly.trycloudflare.com
+## Remaining goal gates
 
-QA guest pods-fresh-matrix-01, uid/gid1000; /work/stacks,/opt/pods,/output.
-Pool pods-fresh-build-v2 is40GiB, QA root30GiB; lastused30.10GiB before Rust builds.
-Watch capacity before adding more large frameworks. Host had50GiB free.
-Base pods-fresh-builder-v2 is STOPPED, root12GiB. Official image cache archive
-created for seeding remains /home/aswin/pods-base-images.tar and guest/output/
-pods-base-images.tar; these temporary copies may be removed if needed.
-
-Batch10 complete and imported: AngularSSRandGradio fail, Mongo7 pass.
-Batch11 currently running Actix then Rocket; Gin/Echo/Fiber passed. Host log
-/home/aswin/pods-matrix-11.log; only progress snapshot imported. Final will be
-/output/evidence/matrix-11.json. Queue session86389 then runs batch12 Deno/Bun,
-log pods-matrix-12.log, saves matrix-12.json. New queue session61830 waits for12
-then runs batch13 AngularSSR/Gradio, log pods-matrix-13.log andmatrix-13.json.
-Do not duplicate these tests or mislabel mutable matrix.json. Pull final numbered
-JSONs after completion, preserve failures, add passes to browser catalog.
-All queues pass PODS_ISOLATED_BUILD=1; old batch07 lacked it and never built.
-
-## Browser state
-
-Use CUA only; rewriteDocumentation after compaction. IABbrowser2.
-stackQa6 tab13 currentlyFiber counter2 at http://127.0.0.1:18890/.
-developerWide tab12 real/develop form, ReactExpressPG folder, shows rate-limit
-error. Connected Google. nativeGoogleKeep tab9 oldFlaskPGproduct; GitHubsign-in
-handoff tab10 remains pending. Tab11 is stale data:error URL: do not use it.
-
-SSH forwarding session97981: local18890→aswin127.0.0.1:18890→QA8081.
-Browser driver session50897; QA PID78053 observed, appport18090.
-Catalog /output/evidence/browser-matrix.json has38 passes, reloads everyselect.
-Driver was started before NG_ALLOWED_HOSTS runtime change; stop it and restart
-with PODS_QA_APP_PORT=18090 and PODS_QA_CATALOG pointing to that catalog before
-Angular testing. SIGTERM first invokes runner.stop and can leave driver alive;
-verify actual PID/port ownership before second termination. Do not kill matrix.
-
-## Native provider evidence / remaining work
-
-Google historicalFlaskPG app repo-a8b5cf7306c523deda321181-ce433b05441c-c986084e2034:
-cold63.897s; warm product observed10.621s; DB0→1→reload1→stop/relaunch1.
-Codespace pods-launch-containers-69rw5vx4xp46c5qw5 private8080:
-cold189.456s,warm13.280s,later12.595s. Full rebuild durability via API/SSH HTTP
-passed: record2survived→write3; recovery56.444s includes40.962s image reload.
-Native Codespaces browser remains at GitHub sign-in; earlier user question is
-pending. Do not request again or expose port publicly. Cloud Shell VM replacement
-is still unverified. These provider passes do not apply to every fixture.
-
-Next: finish11–13 and their browser gates; retry combined real developerURL after
-14:19:32Z, then one-click native product and database persistence. Deployed core Git HEAD
-0950f62 is aligned; .env/.data were preserved. Remaining explicit targets:
-Adonis,Quarkus,Micronaut,Ktor,Blazor,Laravel,Symfony,Rails,Phoenix and workers with
-web output. Existing Dockerfile/Compose is the broader extension contract.
-Native desktop/mobile/GPU/non-web interactive products are outside these browser
-provider environments. SUPPORT.md distinguishes tested/pending/unsupported.
+Native per-fixture provider coverage remains narrower than the54-framework QA
+matrix. Codespaces native browser requires the pending user sign-in. Do not repeat
+the already pending question or expose its port publicly. Cloud Shell VM replacement
+is still unverified. Cold launches exceed20seconds; report cached and cold timings
+separately. Existing Dockerfile/Compose is the extension contract for additional
+Linux web apps; native mobile/desktop/GPU applications need other environments.

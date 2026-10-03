@@ -1,0 +1,895 @@
+{
+  "scope": "Framework browser results use an SSH tunnel to real aswin artifacts. Native provider evidence applies only to named fixtures; Codespaces browser sign-in is pending. Failed historical attempts are preserved.",
+  "serverPassCount": 54,
+  "browserPassCount": 54,
+  "fixtures": [
+    {
+      "fixture": "actix",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-14.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-14.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-07.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-14.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "adonis",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-20.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-18.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-18.json",
+          "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-20.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "alpine",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-01.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-local.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-01.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "angular",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-01.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-local.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-01.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "angular-ssr",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-13.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-13.json",
+      "nativeProviderEvidence": [
+        "stack-angular-ssr-google.json"
+      ],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-09.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-10.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-13.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "aspnet",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-02.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-02.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "astro",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-04.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-04.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-04.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "axum",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-04.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-04.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-04.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "blazor",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-16.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-16.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-16.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "bun",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-14.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-14.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-05.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-08.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-14.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "deno",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-14.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-14.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-05.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-08.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-14.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "django",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-02.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-02.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "echo",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-11-progress.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-11.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-07.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-11-progress.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "express",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-02.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-02.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-01.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "fastapi",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-02.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-02.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "fastify",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-01.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-local.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-01.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "fiber",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-11-progress.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-11.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-07.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-11-progress.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "flask-mariadb",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-02.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-02.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "flask-mongodb",
+      "serverPassed": false,
+      "serverEvidence": null,
+      "browserPassed": false,
+      "browserEvidence": null,
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "failed"
+        }
+      ]
+    },
+    {
+      "fixture": "flask-mongodb7",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-10.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-10.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-06.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-09.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-10.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "flask-mysql",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-02.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-02.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "flask-postgres",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-01.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-local.json",
+      "nativeProviderEvidence": [
+        "stack-google-native.json",
+        "stack-codespaces-live.json",
+        "stack-codespaces-rebuild-proof.json"
+      ],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-01.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "flask-redis",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-01.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-local.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-01.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "flask-sqlite",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-01.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-local.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-01.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "flask-valkey",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-02.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-02.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "gin",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-11-progress.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-11.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-07.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-11-progress.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "go",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-02.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-02.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "gradio",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-13.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-13.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-05.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-08.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-10.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-13.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "hono",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-04.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-04.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-04.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "koa",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-01.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-local.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-01.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "ktor",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-15.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-15.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-15.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "laravel",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-20.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-20.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-18.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-20.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "lit",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-01.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-local.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-01.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "micronaut",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-15.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-15.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-15.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "nestjs",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-04.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-04.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-04.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "next",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-22.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-02.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-22.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "nuxt",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-22.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-02.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-22.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "phoenix",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-21.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-21.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-18.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-21.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "php",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-18.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-02.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-18.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "preact",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-01.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-local.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-01.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "quarkus",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-19.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-19.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-15.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-19.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "rails",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-18.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-18.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-18.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "react",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-01.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-local.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-01.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "react-express-postgres",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-03.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-04.json",
+      "nativeProviderEvidence": [
+        "stack-react-express-postgres-google.json",
+        "stack-react-express-postgres-codespaces.json",
+        "stack-react-express-postgres-codespaces-interaction.json"
+      ],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-03.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "react-router",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-04.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-04.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-04.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "rocket",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-14.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-14.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-07.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-14.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "sinatra",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-02.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-02.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "solid",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-01.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-local.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-01.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "spring-boot",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-15.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-02.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-02.json",
+          "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-15.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "streamlit",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-08.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-08.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-05.json",
+          "status": "failed"
+        },
+        {
+          "evidence": "stack-matrix-08.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "svelte",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-01.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-local.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-01.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "sveltekit",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-04.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-04.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-04.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "symfony",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-18.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-18.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-18.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "vue",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-01.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-local.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-01.json",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "fixture": "worker-redis",
+      "serverPassed": true,
+      "serverEvidence": "stack-matrix-17.json",
+      "browserPassed": true,
+      "browserEvidence": "stack-browser-17.json",
+      "nativeProviderEvidence": [],
+      "attempts": [
+        {
+          "evidence": "stack-matrix-17.json",
+          "status": "passed"
+        }
+      ]
+    }
+  ]
+}

@@ -74,7 +74,7 @@ export async function detectApplication(source, overrides = {}) {
     if (!path || !build) throw new Error('Angular requires its normal build script and outputPath.');
     return {...common,kind:'static',package:true,build,outputCandidates:[join(path,typeof output==='object' ? output.browser ?? 'browser' : 'browser'),path]};
   }
-  if (['next','nuxt','@sveltejs/kit','@remix-run/node','@react-router/node','@angular/ssr'].some(d=>d in dependencies)) return {...common,kind:'container',recipe:'node'};
+  if (['next','nuxt','@sveltejs/kit','@remix-run/node','@react-router/node','@angular/ssr','@adonisjs/core','@nestjs/core'].some(d=>d in dependencies)) return {...common,kind:'container',recipe:'node'};
   if ('astro' in dependencies) return {...common,kind:'container',recipe:'node'};
   if (!pkg) {
     for (const [file,recipe] of [['requirements.txt','python'],['pyproject.toml','python'],['go.mod','go'],['Cargo.toml','rust'],['pom.xml','maven'],['build.gradle','gradle'],['build.gradle.kts','gradle'],['composer.json','php'],['Gemfile','ruby'],['deno.json','deno'],['deno.jsonc','deno']]) {
@@ -123,5 +123,5 @@ export async function detectApplication(source, overrides = {}) {
     if (item.isDirectory() && !item.name.startsWith('.') && item.name !== 'node_modules' && await has(`${item.name}/package.json`)) nested.push(item.name);
   }
   if (nested.length) throw new Error(`The repository contains applications in ${nested.join(', ')}. Choose the application folder.`);
-  throw new Error('No supported web application was detected. This version detects Node/TypeScript servers, Vite/React frontends and static HTML sites.');
+  throw new Error('No supported web application was detected. Use a conventional Node, Python, JVM, Go, Rust, .NET, PHP or Ruby web project, a static site, or an existing Dockerfile/Compose application.');
 }

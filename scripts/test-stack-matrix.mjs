@@ -1,5 +1,5 @@
 // Run inside an isolated, disposable LXD matrix container after source delivery.
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, rename } from 'node:fs/promises';
 import { createReadStream } from 'node:fs';
 import { createServer } from 'node:http';
 import { join } from 'node:path';
@@ -9,6 +9,9 @@ import { uid } from '../src/util.mjs';
 
 const names=process.argv.slice(2);
 if(!names.length)throw new Error('Choose one or more stack fixtures.');
+const batch=process.env.PODS_MATRIX_BATCH;
+if(batch && !/^[a-z0-9-]+$/.test(batch))throw new Error('Invalid matrix batch identity');
+const evidenceFile='/output/evidence/matrix'+(batch?'-'+batch:'')+'.json';
 const evidence=[];await mkdir('/output/evidence',{recursive:true});
 for(const name of names){
   if(!/^[a-z0-9-]+$/.test(name))throw new Error('Invalid fixture');
@@ -28,7 +31,21 @@ for(const name of names){
     const page=await fetch('http://127.0.0.1:8080/').then(r=>r.text());
     let persistence=null;
     const before=await fetch('http://127.0.0.1:8080/api/count');
-    if(before.ok && before.headers.get('content-type')?.includes('application/json')){
+    if(name==='worker-redis'){
+      const submitted=await fetch('http://127.0.0.1:8080/api/jobs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:'background work'})});
+      if(submitted.status!==202)throw new Error('Background job was not accepted');
+      const {id}=await submitted.json();let job;
+      for(let attempt=0;attempt<40;attempt++){
+        job=await fetch('http://127.0.0.1:8080/api/jobs/'+id).then(r=>r.json());
+        if(job.state==='complete')break;
+        await new Promise(r=>setTimeout(r,250));
+      }
+      if(job?.result!=='BACKGROUND WORK')throw new Error('Background worker did not produce the expected result');
+      await running.stop();running=await launch();
+      const restored=await fetch('http://127.0.0.1:8080/api/jobs/'+id).then(r=>r.json());
+      if(restored.result!==job.result || restored.state!=='complete')throw new Error('Completed job was lost after restart');
+      persistence={jobId:id,result:job.result,afterRestart:restored.result};
+    }else if(before.ok && before.headers.get('content-type')?.includes('application/json')){
       const count=(await before.json()).count;
       if(!Number.isInteger(count))throw new Error('Counter endpoint returned an invalid count');
       const saved=await fetch('http://127.0.0.1:8080/api/count',{method:'POST'}).then(r=>r.json());
@@ -44,8 +61,8 @@ for(const name of names){
     }
     let websocket=null;
     if(name==='bun')websocket=await new Promise((ok,fail)=>{const socket=new WebSocket('ws://127.0.0.1:8080/ws'),timer=setTimeout(()=>{socket.close();fail(new Error('WebSocket reply timed out'));},5000);socket.onopen=()=>socket.send('ping');socket.onmessage=e=>{clearTimeout(timer);socket.close();e.data==='pong'?ok('ping/pong passed'):fail(new Error('WebSocket reply mismatch'));};socket.onerror=()=>{clearTimeout(timer);fail(new Error('WebSocket connection failed'));};});
-    const result={stack:name,status:'passed',scope:'real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence',buildMs,first,repeat:running.timings,persistence,websocket,htmlBytes:page.length,runtime:manifest.runtime,images:manifest.images,sha256:manifest.sha256};
+    const result={stack:name,status:'passed',scope:'real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately',buildMs,first,repeat:running.timings,persistence,websocket,htmlBytes:page.length,runtime:manifest.runtime,images:manifest.images,sha256:manifest.sha256};
     evidence.push(result);await writeFile(join(output,'manifest.json'),JSON.stringify(manifest,null,2));console.log(JSON.stringify(result));
   }catch(e){evidence.push({stack:name,status:'failed',error:e.message});console.error(name,e.message);process.exitCode=1;}
-  finally{await running?.stop();if(server)await new Promise(r=>server.close(r));await writeFile('/output/evidence/matrix.json',JSON.stringify(evidence,null,2));}
+  finally{await running?.stop();if(server)await new Promise(r=>server.close(r));await writeFile(evidenceFile+'.tmp',JSON.stringify(evidence,null,2));await rename(evidenceFile+'.tmp',evidenceFile);}
 }

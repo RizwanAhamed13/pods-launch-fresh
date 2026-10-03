@@ -1,0 +1,156 @@
+[
+  {
+    "stack": "adonis",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 82338,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 11,
+      "imageCacheHits": 1,
+      "imagesMs": 50,
+      "runtimeReadyMs": 2550
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 42,
+      "runtimeReadyMs": 2367
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 524,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:0f42963212d80df8cbdfb665e7c7ea641c6a0aa361ae1e9dae05923e3b674547",
+        "sha256": "a3f224016e8963dcd5eb7d681070f6a30fe294a0e525240dceca3389f1fedda8",
+        "bytes": 89244462
+      }
+    ],
+    "sha256": "3a0d9c200197fcdb82c310d9809d3e985fcf95240b556a433bf72221aad09fc6"
+  },
+  {
+    "stack": "laravel",
+    "status": "failed",
+    "error": "Application health check timed out"
+  },
+  {
+    "stack": "symfony",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 62962,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 10,
+      "imageCacheHits": 1,
+      "imagesMs": 51,
+      "runtimeReadyMs": 2801
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 62,
+      "runtimeReadyMs": 2622
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 522,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:efe0f95b8161337d20235b86a84ecb5f5db6d83a862b6643891159457fecd52b",
+        "sha256": "2a9d053e4344a2cf22ca1479d7b3667af7915cf3bfcf4309f08f2ac172e229c7",
+        "bytes": 225351307
+      }
+    ],
+    "sha256": "81b78431ad424b1b412bc73b3b44540d6bf01e98076eced7d532cdc37be2f817"
+  },
+  {
+    "stack": "rails",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 121945,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 7,
+      "imageCacheHits": 1,
+      "imagesMs": 48,
+      "runtimeReadyMs": 4792
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 48,
+      "runtimeReadyMs": 4274
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 518,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:16e22de8630d34ee69cba3cb89619979dcfe90df1a23de2da8797643c47e6a51",
+        "sha256": "ac69edb9254bd98e985f29849b524fc566c777fe146b11ead180949d5fc2e646",
+        "bytes": 251119273
+      }
+    ],
+    "sha256": "ce3ca279e0201eca87b22d39a7998fae0fffb5a21dac691c42af4bd91ee1813e"
+  },
+  {
+    "stack": "phoenix",
+    "status": "failed",
+    "error": "Docker build failed (1):  /etc/ssl/certs...\r\n0 added, 0 removed; done.\r\nRunning hooks in /etc/ca-certificates/update.d...\r\ndone.\r\n ---> Removed intermediate container c9bf014e1468\n ---> 92fe02698285\nStep 3/12 : WORKDIR /app\n ---> Running in 9622d1755d16\n ---> Removed intermediate container 9622d1755d16\n ---> 2dc8831c27cb\nStep 4/12 : ENV MIX_ENV=prod\n ---> Running in c5ac532ddabb\n ---> Removed intermediate container c5ac532ddabb\n ---> 2fa1043d240c\nStep 5/12 : COPY . .\n ---> 291cd9da09ca\nStep 6/12 : RUN mix local.hex --force && mix local.rebar --force && mix deps.get && mix compile && mix release\n ---> Running in d9d78b5551a8\n* creating /root/.mix/archives/hex-2.5.1\n* creating /root/.mix/elixir/1-18-otp-28/rebar3\nResolving Hex dependencies...\nResolution completed in 1.265s\nNew:\n  bandit 1.12.5\n  cc_precompiler 0.1.11\n  db_connection 2.10.2\n  decimal 3.1.1\n  ecto 3.14.2\n  ecto_sql 3.14.0\n  ecto_sqlite3 0.25.0\n  elixir_make 0.10.0\n  exqlite 0.42.0\n  hpax 1.1.0\n  jason 1.4.5\n  mime 2.0.7\n  phoenix 1.8.15\n  phoenix_pubsub 2.3.0\n  phoenix_template 1.1.0\n  plug 1.20.3\n  plug_crypto 2.2.0\n  telemetry 1.4.2\n  thousand_island 1.5.0\n  websock 0.5.3\n  websock_adapter 0.6.0\n* Getting phoenix (Hex package)\n* Getting bandit (Hex package)\n* Getting ecto_sql (Hex package)\n* Getting ecto_sqlite3 (Hex package)\n* Getting jason (Hex package)\n* Getting decimal (Hex package)\n* Getting ecto (Hex package)\n* Getting exqlite (Hex package)\n* Getting cc_precompiler (Hex package)\n* Getting db_connection (Hex package)\n* Getting elixir_make (Hex package)\n* Getting telemetry (Hex package)\n* Getting hpax (Hex package)\n* Getting plug (Hex package)\n* Getting thousand_island (Hex package)\n* Getting websock (Hex package)\n* Getting mime (Hex package)\n* Getting plug_crypto (Hex package)\n* Getting phoenix_pubsub (Hex package)\n* Getting phoenix_template (Hex package)\n* Getting websock_adapter (Hex package)\n==> mime\nCompiling 1 file (.ex)\nGenerated mime app\n==> plug_crypto\nCompiling 5 files (.ex)\nGenerated plug_crypto app\n==> hpax\nCompiling 4 files (.ex)\nGenerated hpax app\n==> elixir_make\nCompiling 8 files (.ex)\nGenerated elixir_make app\n==> decimal\nCompiling 4 files (.ex)\nGenerated decimal app\n==> jason\nCompiling 10 files (.ex)\nGenerated jason app\n==> phoenix_template\nCompiling 4 files (.ex)\nGenerated phoenix_template app\n==> pods_phoenix\n===> Analyzing applications...\n===> Compiling telemetry\n==> ecto\nCompiling 56 files (.ex)\nGenerated ecto app\n==> db_connection\nCompiling 18 files (.ex)\nGenerated db_connection app\n==> ecto_sql\nCompiling 25 files (.ex)\nGenerated ecto_sql app\n==> thousand_island\nCompiling 18 files (.ex)\nGenerated thousand_island app\n==> phoenix_pubsub\nCompiling 12 files (.ex)\nGenerated phoenix_pubsub app\n==> plug\nCompiling 1 file (.erl)\nCompiling 42 files (.ex)\nGenerated plug app\n==> cc_precompiler\nCompiling 3 files (.ex)\nGenerated cc_precompiler app\n==> exqlite\nDownloading precompiled NIF to /root/.cache/elixir_make/exqlite-nif-2.17-x86_64-linux-gnu-0.42.0.tar.gz\nCompiling 12 files (.ex)\nGenerated exqlite app\n==> ecto_sqlite3\nCompiling 5 files (.ex)\nGenerated ecto_sqlite3 app\n==> websock\nCompiling 1 file (.ex)\nGenerated websock app\n==> bandit\nCompiling 54 files (.ex)\nGenerated bandit app\n==> websock_adapter\nCompiling 4 files (.ex)\nGenerated websock_adapter app\n==> phoenix\nCompiling 75 files (.ex)\nGenerated phoenix app\n==> pods_phoenix\nCompiling 1 file (.ex)\n\u001b[91m\n== Compilation error in file lib/product.ex ==\n** (UndefinedFunctionError) function PodsPhoenix.Router.init/1 is undefined (module PodsPhoenix.Router is not available)\n    PodsPhoenix.Router.init([])\n    (plug 1.20.3) lib/plug/builder.ex:358: Plug.Builder.init_module_plug/4\n    (plug 1.20.3) lib/plug/builder.ex:339: anonymous fn/5 in Plug.Builder.compile/3\n    (elixir 1.18.4) lib/enum.ex:2546: Enum.\"-reduce/3-lists^foldl/2-0-\"/3\n    (plug 1.20.3) lib/plug/builder.ex:337: Plug.Builder.compile/3\n    (plug 1.20.3) expanding macro: Plug.Builder.__before_compile__/1\n    lib/product.ex:16: PodsPhoenix.Endpoint (module)\n\u001b[0m\nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\nThe command '/bin/sh -c mix local.hex --force && mix local.rebar --force && mix deps.get && mix compile && mix release' returned a non-zero code: 1\n"
+  },
+  {
+    "stack": "php",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 48639,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 8,
+      "imageCacheHits": 1,
+      "imagesMs": 54,
+      "runtimeReadyMs": 2634
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 53,
+      "runtimeReadyMs": 2826
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 371,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:4e5cd41ffc2547713f52f4c3b3eef33e544379bf547c14302ac0a9b3e8cbb54a",
+        "sha256": "347fe45e7cc6242cfaf9f2244dbb62b1b59027de186f903c61ea83ecd0c742fa",
+        "bytes": 222193162
+      }
+    ],
+    "sha256": "e5f7104a97fd9ce67a922c38e1fadfdbbc7701fdce46ac04d9162a844428da26"
+  }
+]

@@ -1,0 +1,79 @@
+{
+  "scope": "Native Google browser: real React UI plus Express and private PostgreSQL. User supplied public repository URL; server prepared artifact; one connected-account click automatically navigated to the actual product.",
+  "browser": {
+    "before": 0,
+    "afterWrite": 1,
+    "afterReload": 1,
+    "afterFullStopAndRelaunch": 1
+  },
+  "timingNote": "Timings below are control-plane start to ready. Browser was sampled after other work, so this trial does not establish an exact click-to-visible duration.",
+  "attempts": [
+    {
+      "id": "2PETksJgmqm2NztTOyxe93wkFENilqsg",
+      "status": "stopped",
+      "createdAt": 1791037737296,
+      "providerReadyAt": 1791037739768,
+      "readyAt": 1791037746577,
+      "error": null,
+      "timings": {
+        "downloadMs": 213,
+        "imagesMs": 228,
+        "imageCacheHits": 3,
+        "runtimeReadyMs": 5549,
+        "cacheHit": true
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "totalMs": 9281
+    },
+    {
+      "id": "a71kOaxf4wqczrwWWv8My_lMOthhfdO1",
+      "status": "stopped",
+      "createdAt": 1791037533237,
+      "providerReadyAt": 1791037535908,
+      "readyAt": 1791037601053,
+      "error": null,
+      "timings": {
+        "downloadMs": 543,
+        "imagesMs": 54699,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 63202,
+        "cacheHit": false
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "totalMs": 67816
+    },
+    {
+      "id": "bHAE8I6mtp7g0N6FByRYVm8oyzLucEYb",
+      "status": "failed",
+      "createdAt": 1791037469825,
+      "providerReadyAt": null,
+      "readyAt": null,
+      "error": "Could not start your compute. The operation was aborted due to timeout",
+      "timings": null,
+      "previewUrl": null
+    },
+    {
+      "id": "yfJoYHd1Az8OkldF89bMZG8wQptATLZe",
+      "status": "ready",
+      "createdAt": 1791038055172,
+      "providerReadyAt": 1791038057841,
+      "readyAt": 1791038064757,
+      "error": null,
+      "timings": {
+        "downloadMs": 267,
+        "imagesMs": 213,
+        "imageCacheHits": 3,
+        "runtimeReadyMs": 5626,
+        "cacheHit": true
+      },
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "totalMs": 9585
+    }
+  ],
+  "measuredWarmBrowser": {
+    "productHeadingVisibleMs": 10876,
+    "savedDatabaseValueObservedMs": 18158,
+    "savedValue": 1,
+    "method": "Wall clock from click; repeated bounded waits for native React heading, then saved value. Saved value time is an observation upper bound including the gap between browser tool calls."
+  }
+}

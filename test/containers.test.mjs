@@ -44,6 +44,15 @@ test('prepared Node servers select existing production scripts instead of Angula
   assert.match(await containerRecipe(root,'node'),/CMD \["npm","run","start:prod"\]/);
 });
 
+test('Adonis and Nest preserve framework runtime files even with a direct node start command',async t=>{
+  const root=await mkdtemp(join(tmpdir(),'pods-framework-runtime-'));t.after(()=>rm(root,{recursive:true,force:true}));
+  for(const dependency of ['@adonisjs/core','@nestjs/core']){
+    await writeFile(join(root,'package.json'),JSON.stringify({scripts:{start:'node bin/server.js'},dependencies:{[dependency]:'latest'}}));
+    const detected=await detectApplication(root);
+    assert.equal(detected.kind,'container');assert.equal(detected.recipe,'node');
+  }
+});
+
 const blob=Buffer.from('prepared image test data');
 const image={id:'sha256:'+'a'.repeat(64),sha256:digest(blob),bytes:blob.length};
 function plan(){return {web:'web',port:8000,images:[image],services:{web:{image:image.id,depends_on:{db:'service_healthy'}},db:{image:image.id,volumes:[{name:'records',target:'/var/lib/db',readOnly:false}],healthcheck:{test:['CMD','check'],interval:'2s',timeout:'1s',retries:20}}}};}

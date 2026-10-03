@@ -1,0 +1,51 @@
+{
+  "services": {
+    "web": {
+      "build": ".",
+      "ports": [
+        "8080:8080"
+      ],
+      "depends_on": {
+        "db": {
+          "condition": "service_healthy"
+        }
+      }
+    },
+    "worker": {
+      "build": ".",
+      "command": [
+        "python",
+        "worker.py"
+      ],
+      "depends_on": {
+        "db": {
+          "condition": "service_healthy"
+        }
+      }
+    },
+    "db": {
+      "image": "redis:7-alpine",
+      "command": [
+        "redis-server",
+        "--appendonly",
+        "yes"
+      ],
+      "volumes": [
+        "records:/data"
+      ],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "redis-cli",
+          "ping"
+        ],
+        "interval": "1s",
+        "timeout": "2s",
+        "retries": 30
+      }
+    }
+  },
+  "volumes": {
+    "records": {}
+  }
+}

@@ -1,0 +1,11 @@
+using PodsBlazor;
+using PodsBlazor.Components;
+var builder=WebApplication.CreateBuilder(args);
+builder.Services.AddRazorComponents().AddInteractiveServerComponents();
+builder.Services.AddSingleton<CounterStore>();
+var app=builder.Build();
+app.UseStaticFiles();app.UseAntiforgery();
+app.MapGet("/api/count",(CounterStore db)=>new {count=db.Value(false)});
+app.MapPost("/api/count",(CounterStore db)=>new {count=db.Value(true)});
+app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
+app.Run();

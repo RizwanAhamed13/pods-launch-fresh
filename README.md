@@ -20,7 +20,7 @@ Use a stable HTTPS URL for provider callbacks. `.env` and `.data` are deliberate
 
 ## Prepare an application
 
-PODS can detect a conventional Node/TypeScript server, a Vite/React frontend, or a static HTML site without a PODS configuration file. It reads an existing `package.json` start script or conventional server entrypoint, and collects conventional asset directories. Vite and React builds must produce their usual `dist` or `build` output. Unsupported or ambiguous projects fail with a specific explanation.
+PODS detects conventional frontend and backend projects without requiring a PODS configuration file. It reads existing package/build manifests, production start scripts, conventional entrypoints, Dockerfiles and supported Compose definitions. React, Angular, Vue and other browser frameworks are compiled on the server; server-rendered frameworks retain their prepared server runtime. Python, JVM, Go, Rust, .NET, PHP and Ruby projects use automatic container recipes where their conventions match. [SUPPORT.md](SUPPORT.md) lists the tested frameworks and the limits of each evidence layer. Unsupported or ambiguous projects fail with a specific explanation.
 
 For the trusted operator CLI, install/build the app's dependencies and run `node scripts/prepare.mjs /path/to/app`. This now detects supported apps automatically. The isolated URL build worker described below handles dependency installation and build scripts itself; the browser form at `/develop` submits the repository and displays preparation progress and its versioned launch link.
 
@@ -109,16 +109,23 @@ Provider contracts: [Codespaces REST API](https://docs.github.com/en/rest/codesp
 Run `scripts/setup-builder-v2.sh` on aswin after the original builder setup, then
 set `PODS_BUILDER_BASE=pods-fresh-builder-v2`. This creates a separate 20 GiB Btrfs
 pool and an unprivileged LXD base with two CPUs, 4 GiB memory, 512 processes and a
-12 GiB root quota. The deployed pool has been expanded to 40 GiB for the separate
-QA matrix guest; production guests retain the 12 GiB quota. Docker runs **inside that disposable LXD boundary**; the host
+12 GiB root quota. The deployed pool has been expanded to 60 GiB, with a 50 GiB
+root quota for the separate QA matrix guest; production guests retain the 12 GiB quota. Docker runs **inside that disposable LXD boundary**; the host
 Docker socket is never mounted. The worker can control only the nested engine.
 The network restrictions and serialized build admission remain in place.
 
 Existing Dockerfiles and a supported subset of Compose are detected before other
-recipes. Conventional Python, Go, Rust, Maven/Spring Boot, Gradle/Spring Boot,
+recipes. Conventional Python, Go, Rust, Maven JVM projects, Gradle/Spring Boot,
 .NET, PHP, Ruby and Node server projects have automatic recipes. This does not
 certify every framework or project in those language families. Ambiguous entry
 points, external secrets and unsupported Compose options fail explicitly.
+
+Maven preparation preserves Quarkus's complete fast-JAR directory or selects a
+single executable JAR, excluding Maven Shade's original copy. Quarkus dependency
+resolution uses its blocking task runner to remain within the builder's process
+limit. AdonisJS and NestJS retain their framework files instead of being treated
+as standalone bundled scripts. PHP recipes include the PDO, multibyte-string
+and XML extensions used by the tested Laravel and Symfony fixtures.
 
 Each service is built/pulled once on the server, pinned by its image ID, exported
 as a checksummed compressed image, and stored separately from the small launch

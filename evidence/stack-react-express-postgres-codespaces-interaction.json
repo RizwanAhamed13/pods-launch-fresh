@@ -1,0 +1,13 @@
+{
+  "scope": "HTTP interaction inside the real private Codespace; native browser sign-in pending",
+  "productTitlePresent": true,
+  "before": {
+    "count": 0
+  },
+  "afterWrite": {
+    "count": 1
+  },
+  "afterRead": {
+    "count": 1
+  }
+}

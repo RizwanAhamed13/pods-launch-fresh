@@ -1,0 +1,38 @@
+[
+  {
+    "stack": "blazor",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 81039,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 12,
+      "imageCacheHits": 1,
+      "imagesMs": 43,
+      "runtimeReadyMs": 2732
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 2,
+      "imageCacheHits": 1,
+      "imagesMs": 49,
+      "runtimeReadyMs": 2464
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 1816,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:9ffdf433e501e7517b0d8e8d69b10f1eb480c200786d332e6ba420c7c4165a1c",
+        "sha256": "b1a049eed36af49e9bb41d73ec940e532d5ca78173a0f9ee11ddf1f5ebc31ab3",
+        "bytes": 107538583
+      }
+    ],
+    "sha256": "efb7b0da6d789291ba6f255ffad710ac30a39ee391a58610ec605172bc76164e"
+  }
+]

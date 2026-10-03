@@ -1,0 +1,20 @@
+[
+  {
+    "stack": "micronaut",
+    "status": "passed",
+    "title": "Micronaut + SQLite",
+    "before": 1,
+    "afterWrite": 2,
+    "afterReload": 2,
+    "scope": "Real browser interaction through SSH tunnel to prepared JVM artifact; native provider pending"
+  },
+  {
+    "stack": "ktor",
+    "status": "passed",
+    "title": "Ktor + SQLite",
+    "before": 1,
+    "afterWrite": 2,
+    "afterReload": 2,
+    "scope": "Real browser interaction through SSH tunnel to prepared JVM artifact; native provider pending"
+  }
+]

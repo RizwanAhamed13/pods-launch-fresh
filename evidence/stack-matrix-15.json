@@ -1,0 +1,115 @@
+[
+  {
+    "stack": "quarkus",
+    "status": "failed",
+    "error": "Docker build failed (1): en2/org/junit/junit-bom/5.11.0-M2/junit-bom-5.11.0-M2.pom (5.7 kB at 211 kB/s)\n[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/3.4.0/maven-filtering-3.4.0.jar\n[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/3.4.0/maven-filtering-3.4.0.jar (56 kB at 1.7 MB/s)\n[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar\n[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/sonatype/plexus/plexus-build-api/0.0.7/plexus-build-api-0.0.7.jar\n[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/4.0.2/plexus-utils-4.0.2.jar\n[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.27/plexus-interpolation-1.27.jar\n[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-xml/3.0.1/plexus-xml-3.0.1.jar\n[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar (41 kB at 1.3 MB/s)\n[INFO] Downloading from central: https://repo.maven.apache.org/maven2/commons-io/commons-io/2.16.1/commons-io-2.16.1.jar\n[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/sonatype/plexus/plexus-build-api/0.0.7/plexus-build-api-0.0.7.jar (8.5 kB at 193 kB/s)\n[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-xml/3.0.1/plexus-xml-3.0.1.jar (94 kB at 1.1 MB/s)\n[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.27/plexus-interpolation-1.27.jar (86 kB at 810 kB/s)\n[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/commons-io/commons-io/2.16.1/commons-io-2.16.1.jar (509 kB at 2.8 MB/s)\n[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/4.0.2/plexus-utils-4.0.2.jar (193 kB at 1.0 MB/s)\n[INFO] Copying 1 resource from src/main/resources to target/classes\n[INFO] \n[INFO] --- quarkus:3.40.1:generate-code (default) @ pods-quarkus ---\n[INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/quarkus/platform/quarkus-bom-quarkus-platform-properties/3.40.1/quarkus-bom-quarkus-platform-properties-3.40.1.properties\n[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/quarkus/platform/quarkus-bom-quarkus-platform-properties/3.40.1/quarkus-bom-quarkus-platform-properties-3.40.1.properties (976 B at 26 kB/s)\n[48.349s][warning][os,thread] Failed to start thread \"Unknown thread\" - pthread_create failed (EAGAIN) for attributes: stacksize: 1024k, guardsize: 0k, detached.\n[48.350s][warning][os,thread] Failed to start the native thread for java.lang.Thread \"Thread-57\"\n[INFO] ------------------------------------------------------------------------\n[INFO] BUILD FAILURE\n[INFO] ------------------------------------------------------------------------\n[INFO] Total time:  46.671 s\n[INFO] Finished at: 2026-10-03T14:27:49Z\n[INFO] ------------------------------------------------------------------------\n[INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/quarkus/quarkus-rest-kotlin/3.40.1/quarkus-rest-kotlin-3.40.1.jar\n[INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/quarkus/quarkus-rest-data-hibernate-json-types/3.40.1/quarkus-rest-data-hibernate-json-types-3.40.1.jar\n[ERROR] unable to create native thread: possibly out of memory or process/resource limits reached -> [Help 1]\n[ERROR] \n[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.\n[ERROR] Re-run Maven using the -X switch to enable full debug logging.\n[ERROR] \n[ERROR] For more information about the errors and possible solutions, please read the following articles:\n[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/OutOfMemoryError\n\nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\nThe command '/bin/sh -c mvn -B -DskipTests package && mkdir /product && if [ -f target/quarkus-app/quarkus-run.jar ]; then cp -a target/quarkus-app/. /product/; else find target -maxdepth 1 -name '*.jar' ! -name 'original-*.jar' ! -name '*-sources.jar' ! -name '*-javadoc.jar' > /jars && test \"$(wc -l < /jars)\" = 1 && cp \"$(cat /jars)\" /product/app.jar; fi' returned a non-zero code: 1\n"
+  },
+  {
+    "stack": "micronaut",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 87301,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 10,
+      "imageCacheHits": 1,
+      "imagesMs": 41,
+      "runtimeReadyMs": 5051
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 7,
+      "imageCacheHits": 1,
+      "imagesMs": 40,
+      "runtimeReadyMs": 5024
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 392,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:eb007a4187bdf6e4494723a944830d769a6c01647971b6a6210aeb9a3438fd48",
+        "sha256": "157ac8f2742270ae9582962882d52f8994d6842ce895f0dcbbd0df7cbf7d6165",
+        "bytes": 140630981
+      }
+    ],
+    "sha256": "d47b81543faef495fa307118a735607b8bc5342ba6e113d9c5bb5169cf204655"
+  },
+  {
+    "stack": "ktor",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 130281,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 9,
+      "imageCacheHits": 1,
+      "imagesMs": 48,
+      "runtimeReadyMs": 3685
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 42,
+      "runtimeReadyMs": 3517
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 382,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:ce7945d45a5d1fecaec670d69d6f218ea78604b5ae9e196928cf2a22b8b68b41",
+        "sha256": "bcc29ed0d6adc06ff0192609ae866d9e49ea7c823fb37c29b6654817d3182b16",
+        "bytes": 154456045
+      }
+    ],
+    "sha256": "460b93d3e15f6877ce732601a02341b587767132e47507a4c14ff9b5b7a2c9b6"
+  },
+  {
+    "stack": "spring-boot",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 75573,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 12,
+      "imageCacheHits": 1,
+      "imagesMs": 45,
+      "runtimeReadyMs": 9785
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 55,
+      "runtimeReadyMs": 9633
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 387,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:f1acfdffdd5ec568edb2a4aeb04d1e1c31eeb9cbb7d2ce7a504ff69548909cb8",
+        "sha256": "769be1054fa34e71cbe7deba197834977474bcce0ac7e74bfc05454f2632cd32",
+        "bytes": 135006078
+      }
+    ],
+    "sha256": "6edd2ed227902c5d34335408f10c70d22ce8f8214f95150f69f3e1560f9e9287"
+  }
+]

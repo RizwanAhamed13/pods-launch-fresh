@@ -1,0 +1,48 @@
+{
+  "id": "NfFTHH3dzu72Og5ewlGhepW65l_5GWRS",
+  "repository": {
+    "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+    "owner": "rizwanahamed13",
+    "name": "pods-launch-runtime-fresh",
+    "folder": "examples/stacks/angular-ssr",
+    "key": "ce3c167a84b230196d7bf924"
+  },
+  "status": "ready",
+  "createdAt": 1791039351594,
+  "startedAt": 1791039351625,
+  "finishedAt": 1791039559721,
+  "app": {
+    "id": "repo-ce3c167a84b230196d7bf924-5f376f60ed9c-5592c22c08f5",
+    "name": "pods-launch-runtime-fresh",
+    "description": "",
+    "sha256": "5592c22c08f56b341ac5696ef56fd7032b95a3c635b0198e084469968dc3b7d2",
+    "bytes": 277,
+    "files": 0,
+    "healthPath": "/",
+    "applicationType": "container",
+    "runtime": "docker-linux-amd64",
+    "dataKey": "repo-ce3c167a84b230196d7bf924",
+    "images": [
+      {
+        "id": "sha256:6e6de8e5bf23359ac95e32cb5abc6dfc80c6a10cd933f4ac81d03ecc92b26955",
+        "sha256": "6a0fe4be74a758c5c97b696f7f2694ce73ac982061f9f910d7438e29c9262e8a",
+        "bytes": 249688924
+      }
+    ],
+    "productType": "web",
+    "source": {
+      "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+      "folder": "examples/stacks/angular-ssr",
+      "revision": "5f376f60ed9cf16a0ef47a2a9b251b5846b3df0f"
+    },
+    "verification": {
+      "documentPath": "/",
+      "status": 200,
+      "title": "Angular SSR counter"
+    },
+    "preparedAt": "2026-10-03T14:59:18.747Z"
+  },
+  "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-ce3c167a84b230196d7bf924-5f376f60ed9c-5592c22c08f5",
+  "preparationMs": 208096,
+  "scope": "Real developer browser form, public repository URL, isolated server preparation and versioned artifact; native provider evidence separate."
+}
