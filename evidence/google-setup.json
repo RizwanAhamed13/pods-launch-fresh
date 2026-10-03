@@ -1,0 +1,23 @@
+{
+  "observedAt": "2026-10-03T04:30:30.248476+00:00",
+  "projectId": "pods-launch-fresh-20261003",
+  "oauthConfigurationCreated": true,
+  "audience": "External",
+  "publishingStatus": "Testing",
+  "cloudShellApiStatus": "Enabled",
+  "testUserCount": 1,
+  "declaredScopes": [
+    "openid",
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/cloud-platform"
+  ],
+  "webClient": {
+    "name": "PODS Fresh Launch Web",
+    "type": "Web application",
+    "redirectUri": "https://collection-conferences-ages-clearly.trycloudflare.com/auth/google/callback",
+    "status": "prepared; creation and protected server storage awaiting approval"
+  },
+  "oauthCredentialsInstalled": false,
+  "nativeBrowserJourneyVerified": false,
+  "source": "Google Cloud console visible UI"
+}
