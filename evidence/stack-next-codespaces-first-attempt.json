@@ -1,0 +1,51 @@
+{
+  "testedAt": "2026-10-03T19:25:57.954Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "t9d4epbTGC2pU7eiKpXgkF-gkTo4wN9p",
+      "appId": "repo-dccd3e62a815c56abb62f51e-f58a3e357955-cc7cecf280c3",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "cc7cecf280c36d327cc700357efb2647d8651ad64790843047d0884ef7940659",
+      "images": [
+        {
+          "id": "sha256:00390d542dba569943a556d2b00110b93edee90f169c9dd3b992f6c4724df87a",
+          "sha256": "7a4614bbefcaec109e3a822e485d56bcac3da1b9011c33ee1a4af7793b8b3e91",
+          "bytes": 189767810
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791055436595,
+      "updatedAt": 1791055547612,
+      "expiresAt": 1791057236595,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791055449637,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791055547612,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 968,
+        "imagesMs": 78016,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 28,
+        "imageDownloadMs": 68372,
+        "imageLoadMs": 9578,
+        "runtimeReadyMs": 88232,
+        "cacheHit": false
+      },
+      "readyAt": 1791055547612,
+      "deliveryMs": 97975,
+      "totalMs": 111017,
+      "testError": "Command failed: gh codespace ssh -c pods-launch-containers-69rw5vx4xp46c5qw5 -- node --input-type=module -e 'console.log(JSON.stringify(await (async function probeSsrProduct(base='\\''http://127.0.0.1:8080'\\'',fixture='\\''nuxt'\\'') {\n  if(!['\\''nuxt'\\'','\\''next'\\''].includes(fixture))throw new Error('\\''Unknown SSR fixture'\\'');\n  const heading=fixture==='\\''next'\\''?'\\''Next\\\\.js counter'\\'':'\\''Nuxt counter'\\'',prefix=fixture==='\\''next'\\''?'\\''/_next/'\\'':'\\''/_nuxt/'\\'';\n  async function read(url) {\n    const response=await fetch(url,{redirect:'\\''error'\\'',signal:AbortSignal.timeout(10000)});\n    if(!response.ok)throw new Error('\\''SSR fixture HTTP '\\''+response.status);\n    return response;\n  }\n  const root=new URL('\\''/'\\'',base),response=await read(root),page=await response.text();\n  const productRendered=new RegExp('\\''<h1\\\\b[^>]*>'\\''+heading+'\\''<\\\\/h1>'\\'').test(page)&&/<p\\b[^>]*\\bid=[\"'\\'']value[\"'\\''][^>]*>0<\\/p>/.test(page);\n  if(!response.headers.get('\\''content-type'\\'')?.includes('\\''text/html'\\'')||!productRendered)throw new Error('\\''Expected server-rendered '\\''+fixture+'\\'' counter was not found'\\'');\n  const sources=[...page.matchAll(/<script\\b[^>]*\\bsrc=[\"'\\'']([^\"'\\'']+)[\"'\\''][^>]*>/gi)].map(match=>new URL(match[1],root));\n  if(!sources.length||sources.length>16)throw new Error('\\''Expected '\\''+fixture+'\\'' client entry scripts were not found'\\'');\n  if(sources.some(url=>url.origin!==root.origin||!url.pathname.startsWith(prefix)||!url.pathname.endsWith('\\''.js'\\'')))throw new Error('\\''Unexpected '\\''+fixture+'\\'' client script URL'\\'');\n  const scripts=[];\n  for(const url of sources) {\n    const script=await read(url),contentType=script.headers.get('\\''content-type'\\'')||'\\'''\\'',body=await script.text();\n    if(!/javascript|ecmascript/i.test(contentType)||!body.trim()||/^\\s*</.test(body))throw new Error('\\''SSR client entry did not return JavaScript'\\'');\n    scripts.push({path:url.pathname,status:script.status,contentType,bytes:new TextEncoder().encode(body).length});\n  }\n  return {fixture,productRendered,initialCounter:0,scripts,passed:true,scope:'\\''Authenticated HTTP server-rendered fixture and client entry assets; not browser hydration, interaction or database persistence'\\''};\n})(undefined,\"next\"))));'\nfile:///home/node/[eval1]:22\n})(undefined,\"next\"))));\n                      ^\n\nSyntaxError: Unexpected token ')'\n    at compileSourceTextModule (node:internal/modules/esm/utils:319:16)\n    at ModuleLoader.createModuleWrap (node:internal/modules/esm/loader:209:12)\n    at ModuleLoader.eval (node:internal/modules/esm/loader:247:23)\n    at node:internal/process/execution:77:24\n    at asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:11)\n    at Object.runEntryPointWithESMLoader (node:internal/modules/run_main:123:19)\n    at evalModuleEntryPoint (node:internal/process/execution:76:47)\n    at node:internal/main/eval_string:37:3\n\nNode.js v24.21.0\nshell closed: exit status 1\n",
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "failureClassification": "Harness-generated probe command had one extra closing parenthesis; application reached health but its HTTP product check did not run. Fixed in fe3b3e9 with fresh-process command regression.",
+  "limits": [
+    "First-image transfer overlapped the Cloud Shell test. Native Codespaces browser sign-in remains pending."
+  ]
+}

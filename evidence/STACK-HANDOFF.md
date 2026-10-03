@@ -9,47 +9,52 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 4712 physical source lines: 2648 product/tooling, 1006 tests, 894 examples,
+- 4723 physical source lines: 2650 product/tooling, 1015 tests, 894 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 66 automated checks pass locally and on aswin after SSR probe change52baf33.
+- 67 automated checks pass locally and on aswin after serialized-probe fixfe3b3e9.
 - Native Google browser families: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
-  FastAPI JSON API/SQLite: thirteen.
-- Same thirteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
+  FastAPI JSON API/SQLite, Next.js: fourteen.
+- Same fourteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## In progress: Next.js native gate
+## Latest completed gate: Next.js native acceptance
 
-- Core52baf33 pushed and synced to aswin. Runtime server remains4cf4370/PID784115;
-  only native QA helper/tests changed, so no restart needed.
-- New probeSsrProduct supports Next and Nuxt; probeNuxtSsr remains a default-Nuxt
-  alias. PODS_SSR_CHECK=1 PODS_SSR_FIXTURE=next activates Next in live-codespaces.
-- 66/66 checks pass both local/aswin. Five new negative/positive tests reject
-  wrong UI, missing scripts, HTTP failures, HTML-as-JS, external/wrong-framework
-  script paths and unknown fixture. Real optimized batch24 Next artifact passed
-  SSR counter and seven client scripts; evidence stack-next-ssr-probe.json.
-- Isolated QA Next run stopped, Docker ps empty, ports18090/8080 free. New QA tab23
-  closed. Always use /snap/lxd/current/bin/lxc, already the production default.
-  Plain lxc invokes a failing snap/DBus scope wrapper; no daemon or permission
-  problem. No sudo or host configuration changes needed.
-- Native Next has NOT been submitted or tested yet. Existing production DB query
-  confirmed no Next build. Form stackQa6 IAB2tab13 is staged with public repo and
-  examples/stacks/next, Google selected. Prepare another version has NOT clicked.
-- Normal quota observer exec25001 is live, /tmp/pods-wait-next-build.py. It reads
-  production DB anchored to previous FastAPI build.account, never changes it.
-  Last output19:10:30UTC: same-account3/global3/active0/readyfalse. Next ordinary
-  slot19:20:19UTC. Deadline15minutes; polls45s internally. Final ready evidence
-  will write evidence/stack-next-build-window.json (currently empty/in-flight).
-  Poll this same session; do not start another waiter or submit before eligible.
-- Once admitted, actual form submission→build observer→Google native browser and
-  Codespaces harness with PODS_SSR_CHECK=1 PODS_SSR_FIXTURE=next. Use evidence path
-  stack-next-codespaces.json and actual resulting app ID. Next transient counter
-  resets on reload by design; verify hydration/click and reset, not DB durability.
-- Current Google connection may expire near19:20UTC; ordinary same-account OAuth
-  can resume the preserved preparation. No user terminal/setup steps.
+- Corefe3b3e9 pushed and synced. Production runtime remains4cf4370/PID784115;
+  only native QA helpers/tests changed, no runtime restart needed.
+- Normal quota observer25001 ended0 at19:21:00UTC (account2/global2/active0).
+  Actual developer form submitted once19:21:13UTC. BuildlF4DerG-NV2azAXngA2jGX_7V7JeJhTW
+  prepared examples/stacks/next at publicf58a3e3 in117.854s. Observer61472 ended0.
+  App repo-dccd3e62a815c56abb62f51e-f58a3e357955-cc7cecf280c3; image189767810bytes.
+- Google existing compute/image absent: health88.177s, SSR visible89.243s. Initial
+  click left0; later click worked by110.539s, reload0. Cold observations include
+  tool gaps and retain first-click failure. No browser errors/warnings at later check.
+- Google cached: health6.817s, visible8.132s, successful click8.421s continuously;
+  reload0. Counter is transient by design; no database durability claim. Both stopped.
+- Codespaces first health111.017s then test harness failed before HTTP probe because
+  generated source had an extra closing parenthesis. Failed evidence preserved in
+  stack-next-codespaces-first-attempt.json. Harness55293 ended1, application stopped.
+- Fixfe3b3e9 centralizes ssrProbeCommand. A fresh-Node-process test executes the
+  exact generated command for Next/Nuxt. All67 checks pass local/aswin. No product
+  runtime changes. Corrected harness60585 ended0, cached health7.181/6.660s; both
+  SSR and all7client scripts pass, both stopped. Browser auth still pending.
+- Google image download68.586s/load10.195s; Codespaces68.372s/9.578s. First-image
+  transfers overlapped, so these are concurrent-test samples, not single-user
+  bandwidth measurements. All five Next launches confirmed stopped.
+- Evidence stack-next-{build-window,url,google,codespaces,codespaces-first-attempt}.json.
+  Scope55 isolated fixtures,14 native fixtures;41 remain without native evidence.
+- No observer or test harness still running. Current readonly account quota:
+  3 recent,0active; next ordinary slots19:33:57.530,19:58:39.208,20:21:13.019UTC
+  absent other submissions. Do not bypass quotas or switch identities.
+- Next available native family can proceed through the ordinary developer form.
+  Current form shows completed Next result; do not accidentally submit it again.
+- Potential next diagnostic: API used Codespace97qw56gjg47gf7vrv whereas Next
+  reused69rw5vx4xp46c5qw5. Inspect app/environment selection before assuming this
+  is a defect; determine whether a previously launched app retains its environment
+  and DB when more than one matching Codespace exists. No data-loss claim yet.
 
-## Latest completed gate: genuine JSON API native acceptance
+## Previous completed gate: genuine JSON API native acceptance
 
 - Runtime/source4cf4370 discovers a verified existing /docs Swagger interface only
   with bounded same-origin /openapi.json OpenAPI3 schema. JSON root remains the
@@ -181,11 +186,13 @@ Runner SHA75cfd87f58a02353b48a080ee480b9b5ac246e2e189474f57e318fa11fdc0a0f.
    production. Build limits bind provider identity independently of browser session.
 2. GitHub IABtab10 /sessions/two-factor/sms/confirm: user action already requested,
    no SMS/code sent. GitHub browser OAuth remains unconfigured. Keep preview private.
-3. Cloud Shell IABtab14 pending Restart confirmation: processes stop, VM replaced,
+3. Chrome GitHub fresh check redirected to login; temporary tab2083874427 closed.
+   IABtab10 is still awaiting Send SMS; no code sent.
+4. Cloud Shell IABtab14 pending Restart confirmation: processes stop, VM replaced,
    home remains. No approval; do not click Restart/reset or accept background
    Authorize modal. Codespaces full rebuild retained PostgreSQL; Cloud Shell VM
    replacement remains unverified.
-4. Native support for every remaining framework and durable deployment still pending.
+5. Native support for every remaining framework and durable deployment still pending.
    Cold image transfers frequently exceed20s. Cached samples are not a guarantee.
    Nuxt demonstrates SSR visibility can precede interactivity; retain this distinction.
 
@@ -199,13 +206,14 @@ Always verify PID file, cwd, cmdline
 and listener before targeted restart. Use scripts/serve.sh from the repository;
 Node/gh in /home/aswin/pods-tools/bin. Do not restart with active builds/launches.
 
-No live PODS apps after API checks; data retained. Latest API Codespace
+No live PODS apps after Next checks; data retained. Latest Next Codespace
+pods-launch-containers-69rw5vx4xp46c5qw5; API Codespace
 pods-launch-containers-97qw56gjg47gf7vrv; prior image-phase Codespace
 pods-launch-containers-69rw5vx4xp46c5qw5. API Google2/Codespaces2; earlier
 Google Django3/Rails2/Bun2, Codespaces Django4/Rails4/Bun2.
 
-CUA bindings: stackQa6 IAB2tab13 staged Next developer form; accountWorker IAB2tab12 stopped
-API launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
+CUA bindings: stackQa6 IAB2tab13 completed Next build; accountWorker IAB2tab12 stopped
+Next launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
 connection; nativeGithubKeep IAB2tab10; cloudLifecycle IAB2tab14.
 After compaction call rewriteDocumentation; re-mark pending tabs. Locator timeouts
 do not cancel launches: never resubmit because an observation timed out.

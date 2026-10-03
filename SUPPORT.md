@@ -80,7 +80,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **66 passing
+later passing attempts do not erase them. Automated coverage is **67 passing
 checks locally and on aswin**.
 
 ## Actual repository URL to native product
@@ -564,3 +564,29 @@ The first image took 9.537s to download on each provider, then 2.078s to load on
 Cloud Shell and 3.820s on Codespaces. Transfer dominated image preparation in
 these samples. These measurements do not establish a general launch-time bound.
 Evidence: `evidence/stack-fastapi-api-{url,google,codespaces}.json`.
+
+## Native Next.js workflow
+
+The actual developer form prepared Next.js from public revision `f58a3e357955`
+in **117.854s**, producing a 181.0 MiB image. Cloud Shell automatically opened
+the genuine Next.js counter. The cached launch displayed it in **8.132s** and
+completed a working button click in **8.421s**, measured continuously from launch.
+Reload resets its transient client state to zero by design.
+
+The first-image launch reached health in 88.177s. The SSR page was observed by
+89.243s, but the first click did not increment the counter. A later click worked
+by 110.539s; these cold browser observations include tool boundaries. This retains
+the distinction between a visible SSR page and working interaction.
+
+Codespaces first reached health in 111.017s, then its test command failed because
+the harness generated an extra closing parenthesis. The preview stopped, the
+command was fixed, and a regression now executes the generated command in a
+fresh Node process. Two subsequent cached launches reached health in 7.181s and
+6.660s; both verified the real SSR product and all seven JavaScript entry scripts.
+Native Codespaces browser authorization remains pending.
+
+All five launches stopped. Initial image transfers overlapped between providers:
+68.586s download / 10.195s load on Google, and 68.372s / 9.578s on Codespaces.
+These are concurrent-test measurements, not isolated bandwidth benchmarks.
+No database durability claim applies to this transient-state fixture. Evidence:
+`evidence/stack-next-{url,google,codespaces,codespaces-first-attempt}.json`.

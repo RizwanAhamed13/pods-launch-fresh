@@ -1,0 +1,54 @@
+{
+  "recordedAt": "2026-10-03T19:23:25.934992+00:00",
+  "scope": "Actual developer form submission after normal same-account build availability; production isolated preparation, no imported QA artifact.",
+  "attempts": [
+    {
+      "id": "lF4DerG-NV2azAXngA2jGX_7V7JeJhTW",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/next",
+        "key": "dccd3e62a815c56abb62f51e"
+      },
+      "status": "ready",
+      "createdAt": 1791055273019,
+      "startedAt": 1791055273029,
+      "finishedAt": 1791055390883,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-dccd3e62a815c56abb62f51e-f58a3e357955-cc7cecf280c3",
+      "app": {
+        "id": "repo-dccd3e62a815c56abb62f51e-f58a3e357955-cc7cecf280c3",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "cc7cecf280c36d327cc700357efb2647d8651ad64790843047d0884ef7940659",
+        "bytes": 275,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-dccd3e62a815c56abb62f51e",
+        "images": [
+          {
+            "id": "sha256:00390d542dba569943a556d2b00110b93edee90f169c9dd3b992f6c4724df87a",
+            "sha256": "7a4614bbefcaec109e3a822e485d56bcac3da1b9011c33ee1a4af7793b8b3e91",
+            "bytes": 189767810
+          }
+        ],
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/next",
+          "revision": "f58a3e35795578fb1f036369ebdcdd992a074bf8"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "pods-launch-runtime-fresh"
+        },
+        "preparedAt": "2026-10-03T19:23:10.210Z"
+      }
+    }
+  ],
+  "buildMs": 117854
+}
