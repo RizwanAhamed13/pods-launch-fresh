@@ -1,21 +1,21 @@
 # Broad stack goal checkpoint
 
 Goal remains active and incomplete. Continue it; do not create a new goal or
-claim universal support. Core parent commit4aa37af; this checkpoint contains
-further fixes/evidence. Public fixture main5f376f6 is pushed.
+claim universal support. Core implementation checkpoint0950f62 is pushed and aswin matches it cleanly.
+This file records the remaining verification. Public fixture main5f376f6 is pushed.
 
 ## Verified at this checkpoint
 
--38 unique server build/artifact launch fixture passes: batches01–04, Streamlit08,
+- 38 unique server build/artifact launch fixture passes: batches01–04, Streamlit08,
  MongoDB7 batch10, Gin/Echo/Fiber batch11 progress snapshot. Earlier failures stay.
--38 browser fixture passes across browser-local/02/04/08/10/11 evidence.
+- 38 browser fixture passes across browser-local/02/04/08/10/11 evidence.
  SvelteKit, React Router and Nest browser retests passed after hydration.
  Streamlit SQLite0→1→reload1→full artifact relaunch1 passed through its WebSocket UI.
  MongoDB7/Gin/Echo/Fiber browser1→2→reload2 passed; server matrices prove restart.
--51 automated checks pass locally and in QA on aswin. The first QA full-suite
+- 51 automated checks pass locally and in QA on aswin. The first QA full-suite
  attempt lacked public/ and examples/notes; the failed log is retained separately.
  Delivering these test prerequisites fixed it. No test expectations were weakened.
--Source LOC3685:2291 product/tooling,129 browser tools,793 tests,472 examples.
+- Source LOC3685:2291 product/tooling,129 browser tools,793 tests,472 examples.
  See code-lines.json for definition; recount after subsequent source changes.
 
 ## Fixes deployed, with remaining verification
@@ -111,8 +111,8 @@ pending. Do not request again or expose port publicly. Cloud Shell VM replacemen
 is still unverified. These provider passes do not apply to every fixture.
 
 Next: finish11–13 and their browser gates; retry combined real developerURL after
-14:19:32Z, then one-click native product and database persistence; align deployed
-GitHEAD with pushed core without removing .env/.data. Remaining explicit targets:
+14:19:32Z, then one-click native product and database persistence. Deployed core Git HEAD
+0950f62 is aligned; .env/.data were preserved. Remaining explicit targets:
 Adonis,Quarkus,Micronaut,Ktor,Blazor,Laravel,Symfony,Rails,Phoenix and workers with
 web output. Existing Dockerfile/Compose is the broader extension contract.
 Native desktop/mobile/GPU/non-web interactive products are outside these browser
