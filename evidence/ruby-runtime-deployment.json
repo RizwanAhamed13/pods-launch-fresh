@@ -1,0 +1,10 @@
+{
+  "commit": "3544609",
+  "server": "aswin",
+  "path": "/home/aswin/pods-launch-fresh",
+  "recipeSha256": "02e046edb6ddf97855ac872943328b702d534a88499cfd9479a44d583d1438bf",
+  "localTests": 56,
+  "aswinTests": 56,
+  "health": true,
+  "mechanism": "LxdBuilder copies current deployed src/scripts into every new isolated build. No control-plane restart required for the recipe-only change."
+}

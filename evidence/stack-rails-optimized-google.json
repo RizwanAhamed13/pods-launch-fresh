@@ -1,0 +1,74 @@
+{
+  "scope": "Native Cloud Shell browser on actual optimized Rails + SQLite product; launch-to-interaction measured continuously with bounded locator retries. Existing compute, first image absent then cached. Both confirmed stopped; full app restart persistence passed. Not a new VM lifecycle test.",
+  "recipeCommit": "3544609",
+  "preparationEvidence": "stack-rails-optimized-url.json",
+  "attempts": [
+    {
+      "id": "sIZFuKrIFCkPbBDcUZffqG-bC9yoKcbM",
+      "appId": "repo-7acf8b761b239213c2c6cd7c-00df7c09ea97-2a2459426f5c",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791050741085,
+      "updatedAt": 1791050795040,
+      "expiresAt": 1791052541085,
+      "providerReadyAt": 1791050744167,
+      "readyAt": 1791050773190,
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "lastSeenAt": 1791050795040,
+      "timings": {
+        "downloadMs": 561,
+        "imagesMs": 21973,
+        "imageCacheHits": 0,
+        "runtimeReadyMs": 27143,
+        "cacheHit": false
+      },
+      "environment": "default",
+      "stopRequested": true,
+      "storageMode": "persistent",
+      "totalMs": 32105
+    },
+    {
+      "id": "nW-hfqPsstwrm36E9UXfcsEFiGjU4POv",
+      "appId": "repo-7acf8b761b239213c2c6cd7c-00df7c09ea97-2a2459426f5c",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791050807950,
+      "updatedAt": 1791050827283,
+      "expiresAt": 1791052607950,
+      "providerReadyAt": 1791050810625,
+      "readyAt": 1791050817295,
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "lastSeenAt": 1791050827283,
+      "timings": {
+        "downloadMs": 347,
+        "imagesMs": 76,
+        "imageCacheHits": 1,
+        "runtimeReadyMs": 4709,
+        "cacheHit": true
+      },
+      "environment": "default",
+      "stopRequested": true,
+      "storageMode": "persistent",
+      "totalMs": 9345
+    }
+  ],
+  "browser": [
+    {
+      "launchId": "sIZFuKrIFCkPbBDcUZffqG-bC9yoKcbM",
+      "before": 0,
+      "afterClick": 1,
+      "afterReload": 1,
+      "savedRecordVisibleMs": 33931,
+      "interactionMs": 34230
+    },
+    {
+      "launchId": "nW-hfqPsstwrm36E9UXfcsEFiGjU4POv",
+      "before": 1,
+      "afterClick": 2,
+      "afterReload": 2,
+      "savedRecordVisibleMs": 10687,
+      "interactionMs": 10966
+    }
+  ],
+  "confirmedStopped": true
+}

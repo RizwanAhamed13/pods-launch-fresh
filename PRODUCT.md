@@ -35,7 +35,13 @@ write/read/full stop/relaunch (104.115 seconds resumed with its image absent,
 Ruby build/runtime split reduces isolated Rails and Sinatra image downloads by
 62.8% and 66.5%; both rebuilt applications pass SQLite restart and real browser
 write/reload checks. Rails also retained the earlier image's saved record.
-Native provider timings for the smaller images remain pending.
+The smaller Rails image then passed real URL preparation (390.875 seconds),
+native Cloud Shell browser write/reload/full restart, and Codespaces HTTP/SQLite
+persistence across the image upgrade. Cloud Shell completed a database write
+in 34.230 seconds image-absent and 10.966 seconds cached; Codespaces health took
+59.936 seconds resumed/image-absent and 9.112 seconds cached. Codespaces retained
+the original image's count 2 before writing 3, then retained 3 and wrote 4 on relaunch.
+All previews stopped. Sinatra native timing remains pending.
 
 ## Product Principles
 Build once. Keep user compute user-owned. Show honest progress and timings. Never label a local test as provider validation.

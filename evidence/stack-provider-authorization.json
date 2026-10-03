@@ -14,7 +14,7 @@
   "cloudShellReplacement": {
     "status": "awaiting_explicit_restart_confirmation",
     "observedDialog": "Restarting terminates the session and running processes, provisions a new VM, and preserves the home directory.",
-    "baseline": "Worker expired naturally; Bun native WebSocket/SQLite tests passed and stopped with count 2 saved. Previous worker jobs and fixture databases remain. VM replacement has not been approved or performed.",
+    "baseline": "Worker expired naturally; Bun native WebSocket/SQLite and optimized Rails native SQLite tests passed and stopped with count2 saved for each. Prior worker jobs and other fixture databases remain. VM replacement has not been approved or performed.",
     "actionTaken": "Restart confirmation dialog opened; final Restart not clicked."
   },
   "cloudShellBun": {

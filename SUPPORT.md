@@ -434,7 +434,26 @@ and Sinatra from **216,259,334 to 72,508,238 bytes (66.5%)**. Both passed artifa
 launch, SQLite write/read/full restart and actual browser write/reload. Rails
 also retained data from its previous image. Offline probes loaded PostgreSQL,
 SQLite and C++ shared libraries and verified compiler tools and gem download
-caches are absent. This is a measured size improvement; native provider speed
-for these new images remains unmeasured. Existing prepared versions are unchanged.
+caches are absent. This size improvement was subsequently retested natively for Rails below.
+Sinatra native provider speed remains unmeasured. Existing prepared versions are unchanged.
 See `evidence/stack-ruby-image-comparison.json`, `stack-ruby-runtime-audit.json`,
 `stack-matrix-25.json` and `stack-browser-25.json`.
+
+The optimized Rails version was then prepared through the actual developer form
+in **390.875 seconds**, producing a **93,312,249-byte (89.0 MiB)** image.
+
+| Optimized Rails scenario | Measured result |
+| --- | --- |
+| Cloud Shell, image absent on existing compute | Health 32.105s; saved record visible 33.931s; completed browser write 34.230s |
+| Cloud Shell, cached | Health 9.345s; retained record visible 10.687s; completed browser write 10.966s |
+| Codespaces, resumed/image absent | Health 59.936s; image loading 23.563s; earlier version's SQLite record 2 retained, then wrote 3 |
+| Codespaces, cached | Health 9.112s; retained 3, then wrote 4 |
+
+Both Google native browser launches passed write/reload and full application
+restart persistence. Both Codespaces authenticated HTTP launches passed product
+and database checks. All four previews stopped cleanly. Codespaces native browser
+authorization is still pending. Compared with the original Rails sample, image
+loading fell from 62.846s to 23.563s and resumed launch health from 104.115s to 59.936s;
+these are separate observed runs, not a controlled benchmark or cold-launch
+guarantee. The uncached launches still exceed 20s.
+Evidence: `evidence/stack-rails-optimized-{url,google,codespaces}.json`.

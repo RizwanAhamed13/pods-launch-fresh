@@ -213,7 +213,7 @@
           "status": "passed"
         }
       ],
-      "nativeProviderScope": "Codespaces authenticated SSH WebSocket/HTTP and SQLite restart passed. Native Cloud Shell attempt failed on another session\u2019s occupied port; native browser acceptance remains pending."
+      "nativeProviderScope": "Native Cloud Shell browser WebSocket writes, reload and SQLite full restart passed after conflicting worker expired naturally. Codespaces authenticated SSH WebSocket/HTTP and SQLite restart passed; its native browser authorization remains pending. Initial failed Cloud Shell port conflict preserved."
     },
     {
       "fixture": "deno",
@@ -774,7 +774,10 @@
       "browserEvidence": "stack-browser-25.json",
       "nativeProviderEvidence": [
         "stack-rails-url.json",
-        "stack-rails-codespaces.json"
+        "stack-rails-codespaces.json",
+        "stack-rails-optimized-url.json",
+        "stack-rails-optimized-google.json",
+        "stack-rails-optimized-codespaces.json"
       ],
       "attempts": [
         {
@@ -786,7 +789,8 @@
           "status": "passed"
         }
       ],
-      "recipeOptimizationEvidence": "stack-ruby-image-comparison.json"
+      "recipeOptimizationEvidence": "stack-ruby-image-comparison.json",
+      "nativeProviderScope": "Original and optimized Rails artifacts prepared through real developer URL. Optimized artifact passes native Cloud Shell browser write/reload/full restart and Codespaces authenticated HTTP/SQLite restart with prior-version record retained. Native Codespaces browser sign-in remains pending."
     },
     {
       "fixture": "react",

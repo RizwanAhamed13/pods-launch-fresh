@@ -1,5 +1,5 @@
 {
-  "scope": "Delivered compressed images in isolated QA; not measured provider speed improvement. Native Rails evidence uses the earlier image.",
+  "scope": "Delivered compressed images in isolated QA, followed by real URL/native provider retest for Rails. Original and optimized native samples are separate observed runs, not a controlled performance guarantee.",
   "results": [
     {
       "stack": "rails",
@@ -26,5 +26,17 @@
   ],
   "runtimeAudit": "stack-ruby-runtime-audit.json",
   "serverEvidence": "stack-matrix-25.json",
-  "browserEvidence": "stack-browser-25.json"
+  "browserEvidence": "stack-browser-25.json",
+  "nativeRails": {
+    "preparationEvidence": "stack-rails-optimized-url.json",
+    "googleEvidence": "stack-rails-optimized-google.json",
+    "codespacesEvidence": "stack-rails-optimized-codespaces.json",
+    "beforeBytes": 251128037,
+    "afterBytes": 93312249,
+    "beforeCodespacesImageLoadMs": 62846,
+    "afterCodespacesImageLoadMs": 23563,
+    "beforeCodespacesTotalMs": 104115,
+    "afterCodespacesTotalMs": 59936,
+    "oldVersionSQLiteRetained": true
+  }
 }
