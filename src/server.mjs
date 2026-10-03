@@ -10,6 +10,7 @@ import { uid, digest, same } from './util.mjs';
 import { providers as makeProviders } from './providers.mjs';
 import { BuildManager } from './builds.mjs';
 import { LxdBuilder } from './lxd-builder.mjs';
+import { renderCompatibility } from './compatibility.mjs';
 const base = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const statuses = new Set(['downloading','starting','ready','failed','stopped','heartbeat']);
 const returnPage = value => typeof value === 'string' && /^(?:\/|\/develop|\/launch\/[a-z0-9-]+)$/.test(value);
@@ -173,7 +174,8 @@ export async function createApp(options={}) {
       const launch=/^\/api\/launches\/([A-Za-z0-9_-]{32})(\/stop)?$/.exec(path);
       if(launch&&req.method==='GET'&&!launch[2])return json(200,publicLaunch(own(user,launch[1])));
       if(launch&&req.method==='POST'&&launch[2]) {const s=own(user,launch[1]);if(!['failed','stopped'].includes(s.status))update(s.id,{stopRequested:true});return json(200,{stopping:true});}
-      const allowed={'/':'index.html','/develop':'index.html','/app.js':'app.js','/flow.js':'flow.js','/style.css':'style.css'};
+      if(path==='/support'&&req.method==='GET'){res.setHeader('Content-Type','text/html; charset=utf-8');return res.end(renderCompatibility(JSON.parse(await readFile(join(base,'evidence/stack-coverage.json'),'utf8'))));}
+      const allowed={'/':'index.html','/develop':'index.html','/app.js':'app.js','/flow.js':'flow.js','/support.js':'support.js','/style.css':'style.css'};
       if(/^\/launch\/[a-z0-9-]+$/.test(path))allowed[path]='index.html';
       if(allowed[path]&&req.method==='GET'){res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html; charset=utf-8');return res.end(await readFile(join(base,'public',allowed[path])));}
       throw fail(404,'Not found');
