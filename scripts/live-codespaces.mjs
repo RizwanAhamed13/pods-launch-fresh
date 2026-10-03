@@ -47,8 +47,8 @@ async function probeEnvironment(environment,code) {
   const {stdout}=await exec('gh',['codespace','ssh','-c',environment,'--','node --input-type=module -e '+quoted],{timeout:60000,maxBuffer:65536});
   return JSON.parse(stdout);
 }
-async function probeCounter(environment) {
-  const code=`const base='http://127.0.0.1:8080';
+async function probeCounter(environment,base) {
+  const code=`const base=${JSON.stringify(base)};
     async function read(path,method='GET'){const r=await fetch(base+path,{method,signal:AbortSignal.timeout(15000)});if(!r.ok)throw new Error('Counter HTTP '+r.status);return r;}
     const response=await read('/'),contentType=response.headers.get('content-type')||'',page=await response.text(),before=await(await read('/api/count')).json();
     const expected=${JSON.stringify(previousCount??(expectedInitialCount===undefined?null:Number(expectedInitialCount)))};
@@ -63,8 +63,8 @@ async function probeCounter(environment) {
   previousCount=check.afterWrite;
   return check;
 }
-async function probeWorker(environment) {
-  const code=`const base='http://127.0.0.1:8080',previous=${JSON.stringify(previousJob||null)},input=${JSON.stringify('native worker '+results.length)};
+async function probeWorker(environment,base) {
+  const code=`const base=${JSON.stringify(base)},previous=${JSON.stringify(previousJob||null)},input=${JSON.stringify('native worker '+results.length)};
     async function read(path,method='GET',body){const r=await fetch(base+path,{method,headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(5000)});if(!r.ok)throw new Error('Worker HTTP '+r.status+' '+path);return r;}
     const page=await(await read('/')).text(),retained=previous?await(await read('/api/jobs/'+encodeURIComponent(previous.id))).json():null;
     const submitted=await(await read('/api/jobs','POST',{text:input})).json();
@@ -80,8 +80,8 @@ async function probeWorker(environment) {
   previousJob=check.completed;
   return check;
 }
-async function probeWebSocket(environment) {
-  const check=await probeEnvironment(environment,`console.log(JSON.stringify(await (${probeBunWebSocket.toString()})()));`);
+async function probeWebSocket(environment,base) {
+  const check=await probeEnvironment(environment,`console.log(JSON.stringify(await (${probeBunWebSocket.toString()})(${JSON.stringify(base)})));`);
   check.scope='Authenticated SSH WebSocket/HTTP on user compute; native provider browser/proxy tested separately';
   if(previousCount!==undefined){check.expectedAfterRelaunch=previousCount;check.passed=check.passed&&check.before===previousCount;}
   previousCount=check.afterRead;
@@ -108,13 +108,14 @@ try {
   const result={scenario:name,...launch};results.push(result);console.log(JSON.stringify({scenario:name,status:launch.status,totalMs:launch.totalMs,deliveryMs:launch.deliveryMs,timings:launch.timings,environment:launch.environment,storageMode:launch.storageMode,error:launch.error}));
   await persist();
   if(launch.status!=='ready')throw new Error(launch.error||'Launch failed');
+  const base=`http://127.0.0.1:${launch.port||8080}`;
   if(mysqlRuntimeCheck){result.mysqlRuntimeCheck=await probeEnvironment(launch.environment,mysqlRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id));await persist();}
   if(apiProduct&&new URL(launch.previewUrl).pathname!=='/docs')throw new Error('API product did not select its verified interface');
-  if(counterCheck){result.counterCheck=await probeCounter(launch.environment);await persist();if(!result.counterCheck.passed)throw new Error('Counter write/read/relaunch persistence failed');}
-  if(workerCheck){result.workerCheck=await probeWorker(launch.environment);await persist();if(!result.workerCheck.passed)throw new Error('Worker completion/relaunch persistence failed');}
-  if(websocketCheck){result.websocketCheck=await probeWebSocket(launch.environment);await persist();if(!result.websocketCheck.passed)throw new Error('WebSocket exchange/relaunch persistence failed');}
-  if(ssrCheck){result.ssrCheck=await probeEnvironment(launch.environment,ssrProbeCommand(ssrFixture));await persist();if(!result.ssrCheck.passed)throw new Error('SSR product/client assets failed');}
-  if(staticCheck){result.staticCheck=await probeEnvironment(launch.environment,staticProbeCommand(staticFixture));await persist();if(!result.staticCheck.passed)throw new Error('Static product/client assets failed');}
+  if(counterCheck){result.counterCheck=await probeCounter(launch.environment,base);await persist();if(!result.counterCheck.passed)throw new Error('Counter write/read/relaunch persistence failed');}
+  if(workerCheck){result.workerCheck=await probeWorker(launch.environment,base);await persist();if(!result.workerCheck.passed)throw new Error('Worker completion/relaunch persistence failed');}
+  if(websocketCheck){result.websocketCheck=await probeWebSocket(launch.environment,base);await persist();if(!result.websocketCheck.passed)throw new Error('WebSocket exchange/relaunch persistence failed');}
+  if(ssrCheck){result.ssrCheck=await probeEnvironment(launch.environment,ssrProbeCommand(ssrFixture,base));await persist();if(!result.ssrCheck.passed)throw new Error('SSR product/client assets failed');}
+  if(staticCheck){result.staticCheck=await probeEnvironment(launch.environment,staticProbeCommand(staticFixture,base));await persist();if(!result.staticCheck.passed)throw new Error('Static product/client assets failed');}
   if (process.env.PODS_KEEP_LAST === '1' && name === scenarios.at(-1)) { console.log('Live app left running until its 30-minute deadline: '+launch.previewUrl); break; }
   result.statusAfterStop=await stopLaunch(launch.id);await persist();
   currentLaunch=null;

@@ -1,11 +1,27 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { providers, bootstrap } from '../src/providers.mjs';
+import { providers as realProviders, bootstrap } from '../src/providers.mjs';
 import { createApp } from '../src/server.mjs';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
+// Provider orchestration tests isolate the separately tested tunnel registration.
+const providers=options=>realProviders({preparePreview:async()=>{},...options});
+test('providers use the assigned port in both the private preview and delivered runner config',async()=>{
+ const order=[],updates=[];let input;
+ const github=providers({repo:'owner/runtime',origin:'https://pods.example',runnerSha:'a'.repeat(64),api:async()=>({codespaces:[{name:'my-pods',display_name:'PODS launch',state:'Available'}]}),preparePreview:async options=>{order.push('private');assert.equal(options.port,23456);},exec:async(file,args,options)=>{order.push('runner');input=options.input;}}).github;
+ const gh=await github.launch('secret',{port:23456},p=>updates.push(p));
+ assert.deepEqual(order,['private','runner']);assert.equal(gh.previewUrl,'https://my-pods-23456.app.github.dev');assert.match(input,/"port":23456/);assert.ok(input.includes(gh.previewUrl));
+ const calls=[];
+ const google=providers({origin:'https://pods.example',runnerSha:'a'.repeat(64),cloudRequest:async url=>{calls.push(url);return url.endsWith(':start')?{done:true}:{sshHost:'127.0.0.1',sshPort:22,sshUsername:'test',webHost:'test.cloudshell.dev'};},exec:async(file,args,options)=>{if(file==='ssh-keygen')await writeFile(args.at(-1)+'.pub','ssh-rsa test-key');else input=options.input;}}).google;
+ const g=await google.launch('secret',{port:24567},p=>updates.push(p));
+ assert.equal(g.previewUrl,'https://24567-test.cloudshell.dev');assert.match(input,/"port":24567/);assert.ok(input.includes(g.previewUrl));assert.ok(calls.at(-1).endsWith(':removePublicKey'));
+});
+test('private preview registration failure prevents starting the Codespaces runner',async()=>{
+ let executed=false;const adapter=providers({repo:'owner/runtime',api:async()=>({codespaces:[{name:'my-pods',display_name:'PODS launch',state:'Available'}]}),preparePreview:async()=>{throw new Error('Preview unavailable');},exec:async()=>{executed=true;}});
+ await assert.rejects(adapter.github.launch('secret',{port:23456},()=>{}),/Preview unavailable/);assert.equal(executed,false);
+});
 test('Codespaces reuses only the configured PODS runtime and delivers over SSH stdin',async()=>{
  const calls=[],updates=[];const token='provider-secret';let execution;
  const adapter=providers({repo:'owner/runtime',origin:'https://pods.example',runnerSha:'a'.repeat(64),pollMs:1,api:async(path,t,opts)=>{calls.push([path,t,opts]);return {codespaces:[{name:'my-unrelated-work',display_name:'Other',state:'Available'},{name:'my-pods',display_name:'PODS launch',state:'Available'}]};},exec:async(file,args,opts)=>{execution={file,args,opts};}});

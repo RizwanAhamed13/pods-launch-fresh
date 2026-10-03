@@ -1,0 +1,34 @@
+{
+  "recordedAt": "2026-10-03T21:42:28.515041+00:00",
+  "scope": "App-specific provider preview origins. Native application acceptance still pending this implementation commit.",
+  "regression": {
+    "test": "test/preview-origin.test.mjs",
+    "before": "Failed: unrelated applications received the same same-environment-8080.app.github.dev origin.",
+    "after": "Passed: distinct products, stable versions, new browser sessions, history deletion and server restart.",
+    "setupFailure": "Initial test import pointed to src/prepare.mjs; corrected to scripts/prepare.mjs before running the actual regression."
+  },
+  "localTests": {
+    "command": "npm test",
+    "passed": 87,
+    "failed": 0
+  },
+  "codespaceCapability": {
+    "environment": "pods-launch-7vrw57jpjjppcww57",
+    "manualPort": 21081,
+    "visibility": "private",
+    "mappingRetainedAfterForwarderExit": true,
+    "helperPort": 21082,
+    "helperRegistrationMs": 4757,
+    "helperExited": true,
+    "scope": "CLI registration only; no product or native browser claim."
+  },
+  "sources": [
+    "https://docs.cloud.google.com/shell/docs/using-web-preview",
+    "https://github.com/cli/cli/blob/trunk/internal/codespaces/portforwarder/port_forwarder.go"
+  ],
+  "limitations": [
+    "Old shared-port browser storage remains at its old origin; no automatic ambiguous migration.",
+    "Provider hostname changes can still change browser origins.",
+    "Native acceptance pending."
+  ]
+}

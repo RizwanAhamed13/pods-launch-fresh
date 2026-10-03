@@ -57,7 +57,7 @@ The queue permits four pending/running jobs, one active job per connected accoun
 
 Private repository authorization remains pending. Container recipes support additional package managers and language families; individual framework/provider validation is tracked in SUPPORT.md. The full combined acceptance criteria are in `PRODUCT.md`.
 
-Apps must listen on `PORT` (8080), bind `0.0.0.0`, return HTTP 2xx from the health path, and write persistent files to `PODS_APP_DATA`. Lightweight Node runtime dependencies must bundle. Apps needing native modules, server framework runtimes or database services use the container path below. Working directory assets keep their relative paths. Artifacts are limited to 20 MiB compressed and 50 MiB unpacked.
+Apps must listen on the supplied `PORT` (assigned per application), bind `0.0.0.0`, return HTTP 2xx from the health path, and write persistent files to `PODS_APP_DATA`. Lightweight Node runtime dependencies must bundle. Apps needing native modules, server framework runtimes or database services use the container path below. Working directory assets keep their relative paths. Artifacts are limited to 20 MiB compressed and 50 MiB unpacked.
 
 ## Connect providers
 
@@ -78,6 +78,17 @@ The 20-second target is measured, not promised. The UI separates:
 - **App startup:** runner starts to local HTTP health success, including artifact download.
 
 Cold VM provisioning, provider consent, image pulls, network throughput and authentication on the forwarded app URL can exceed 20 seconds. Reuse an already running environment for the fast path. GitHub's forwarded URL remains private. PODS links to the provider's authenticated preview; it does not expose a public app proxy.
+
+Each app receives a stable private preview port (20000–29999) per compute account.
+The reservation follows its data key across artifact versions, browser sessions and
+control-server restarts. Collisions allocate another unused port; exhausted accounts
+fail without sharing an origin. Codespaces forwarding is registered and kept private
+before the runner starts. Container ports inside the image remain unchanged.
+Different apps therefore use different provider hostnames and browser storage.
+Existing database paths and saved Codespace affinity remain unchanged. Browser-only
+state previously stored at the shared port8080 origin remains there; PODS neither
+copies ambiguous state between apps nor deletes it. Host changes caused by provider
+VM replacement can still change browser storage origins.
 
 Stop application sends a stop request to the runner. It stops the app process group within a few seconds, preserving note data and the cached artifact. Node previews can fall back to a private directory under `/tmp` when persistent storage is unavailable and explicitly report temporary storage. Container/database applications fail instead of silently opening an empty temporary database. No existing user files are deleted.
 
