@@ -9,17 +9,53 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin /home/aswin/pods-launch-fresh.
 - 55 distinct real fixtures pass isolated build, artifact run and meaningful browser
   interaction. SUPPORT.md and stack-coverage.json retain exact evidence and failures.
-- 4972 physical source lines: 2756 product/tooling, 1149 tests, 903 examples,
+- 5053 physical source lines: 2793 product/tooling, 1193 tests, 903 examples,
   164 browser tools. Exclusions in code-lines.json.
-- 75 automated checks pass locally and on aswin for MySQL inspection helper01891c1.
+- 80 automated checks pass locally and on aswin for frontend inspection helper80efe8d.
 - Native Google browser fixtures: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
-  FastAPI JSON API/SQLite, Next.js, SvelteKit, Flask/MySQL, Spring Boot/SQLite: seventeen.
-- Same seventeen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
+  FastAPI JSON API/SQLite, Next.js, SvelteKit, Flask/MySQL, Spring Boot/SQLite, standalone React: eighteen.
+- Same eighteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Latest completed gate: Spring Boot SQLite and native acceptance
+## Latest completed gate: standalone React frontend native acceptance
+
+- Core80efe8d pushed/synced; all80 checks pass local/aswin. New opt-in static probe
+  validates React/Angular mount and compiled entry assets. Serialized fresh-Node
+  command and missing/external/HTML-fallback/unrelated asset failures are tested.
+- Actual isolated React and Angular artifacts passed. Initial Angular probe rejected
+  valid unhashed main.js; corrected and regression added. All attempts retained in
+  stack-static-probe-isolated.json. QA Angular stopped with one SIGTERM to292107;
+  handler consumed; tab26 closed. No control-server restart needed.
+- Quota observer32410 ended0 at20:58:48UTC (account2/global2/active0). Developer form
+  submitted once. BuildfNNk5J_JbyMgjq6C7KLK_RDz9-C9dYOf prepared public9eee994 in33.711s,
+  artifact103755bytes, runtimeNode22+, no Docker image. Observer66465 ended0.
+  App repo-ca40d6838dd2f00c7dba8311-9eee994ba7f7-25312833ce7f;
+  dataKey repo-ca40d6838dd2f00c7dba8311. No QA artifact import.
+- Google artifact absent/existing compute: health4.894s, actual React visible5.899s,
+  click0→1 at6.203s, reload1. Full stop. Cached: health4.904s, visible5.795s,
+  saved1 visible5.802s, click1→2 at6.104s, reload2. Both browser measurements
+  continuous; final error/warning logs empty. Both stopped. Browser localStorage
+  only, no backend DB persistence claim. Saved browser count2.
+- Codespacespods-launch-7vrw57jpjjppcww57: first health131.308s, provider124.768s,
+  delivery6.540s; cached health5.304s/delivery4.752s. Both authenticated HTTP
+  mount/compiled entry checks passed (219983bytes JS); not JavaScript execution.
+  Harness65462 ended0; both stopped. Native Codespaces browser remains pending.
+- Evidence stack-react-{url,google,codespaces}.json. Native18/55,37remaining.
+  Ready-compute samples pass20s; provider provisioning does not. Latest readonly
+  production audit builds0/launches0. No live test observers. Runtime remains
+  b02fea1/PID806978, source80efe8d synced; no runtime restart needed.
+- Browser tabs retained: stackQa6 tab13 developer React result, accountWorker
+  tab12 stopped React launcher, nativeGithubKeep tab10 pending GitHub2FA, and
+  cloudLifecycle tab14 pending CloudShellRestart approval. Do not repeat pending
+  authorization actions. Goal remains active; current and previous turns progressed.
+- Normal next account build slot should expire around21:22UTC (prior MySQL build).
+  Recheck authoritative quota before submission. Useful independent work while
+  waiting can target the measured first-image JVM transfer overhead; do not alter
+  limits, switch identities, or import QA artifacts into production.
+
+## Previous completed gate: Spring Boot SQLite and native acceptance
 
 - Core074fecd and public9eee994 pushed/synced. Spring Boot now uses real SQLite
   JDBC3.53.4.0; original matrix02/matrix15/browser02 only proved file persistence.

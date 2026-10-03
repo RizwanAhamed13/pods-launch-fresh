@@ -162,6 +162,18 @@ product visibility took 16.055s, retained data was visible by 16.704s, and a new
 write succeeded by 17.020s. Codespaces HTTP write/read/restart passed at 13.212s
 cached. First-image health took 46.554s/77.906s on Google/Codespaces, exceeding 20s.
 All four previews stopped with saved data retained. Native browser testing for
-Codespaces and 38 remaining native fixtures are still pending. Current source is
-4972 physical lines, including tests and examples; counting scope is recorded in
+Codespaces and the remaining native fixtures are still pending. Current source is
+5053 physical lines, including tests and examples; counting scope is recorded in
 `evidence/code-lines.json`.
+
+
+Standalone React adds the eighteenth fixture with native provider evidence.
+Repository preparation took 33.711s and produced a 103,755-byte compiled frontend.
+On existing Cloud Shell compute, actual React interactions succeeded in 6.203s
+with the artifact absent and 6.104s cached. Browser localStorage survived reload
+and full application relaunch. Codespaces provisioning made its first launch
+131.308s; cached health took 5.304s, with the product mount and compiled entry
+checked over authenticated HTTP. Native Codespaces browser interaction remains
+pending. All four previews stopped. Current coverage is 55 isolated fixtures and 18
+native fixtures; 37 native fixtures remain. All 80 automated checks pass locally
+and on aswin.

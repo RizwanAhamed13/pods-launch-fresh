@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **75 passing
+later passing attempts do not erase them. Automated coverage is **80 passing
 checks locally and on aswin**.
 
 ## Actual repository URL to native product
@@ -740,6 +740,51 @@ previews stopped; native Codespaces browser interaction remains pending.
 Evidence: `evidence/stack-spring-boot-{url,google,codespaces}.json` and
 `evidence/stack-{matrix,browser}-30.json`.
 
-**Current native coverage: 17 representative fixtures** have Google browser and
-Codespaces HTTP/protocol evidence; 38 of the 55 isolated fixtures remain to be
+
+
+## Frontend entry validation
+
+The optional native QA harness now validates React and Angular product mounts
+and their compiled JavaScript entry assets. It rejects missing bundles, HTML
+fallbacks, unrelated JavaScript, external entries and unknown fixtures. A fresh
+Node process executes the exact serialized command in regression tests. Both real
+isolated artifacts passed this probe; Angular's un-hashed `main.js` is valid.
+The initial overly strict hashed-filename check is retained as a QA probe failure
+in `evidence/stack-static-probe-isolated.json`.
+
+These HTTP checks do not execute JavaScript or establish browser interaction or
+database persistence. Real browser checks remain separate. Run with
+`PODS_STATIC_CHECK=1 PODS_STATIC_FIXTURE=react` (or `angular`) only for the explicit
+matching fixture through `scripts/live-codespaces.mjs`.
+
+
+## Standalone React frontend native acceptance
+
+The normal developer form prepared `examples/stacks/react` at public revision
+`9eee994` in **33.711 seconds**. The compiled frontend artifact is 103,755 bytes
+(101.3 KiB), runs through the Node22+ static runtime and requires no Docker image.
+
+| React scenario | Measured result |
+| --- | --- |
+| Cloud Shell, artifact absent on existing compute | Health 4.894s; React visible 5.899s; successful click 6.203s |
+| Cloud Shell, cached relaunch | Health 4.904s; React visible 5.795s; saved state visible 5.802s; successful click 6.104s |
+| Codespaces, first launch with provider provisioning | Health 131.308s, including 124.768s provider startup; delivery 6.540s |
+| Codespaces, cached relaunch | Health 5.304s; delivery 4.752s |
+
+Both Google browser measurements continuously cover launch click, actual React
+rendering and successful interaction. Counter 0→1/reload1 and full application
+stop/relaunch/read1→write2/reload2 passed. Final browser error/warning logs were
+empty. This fixture uses browser localStorage, not a backend database.
+
+Both Codespaces launches passed authenticated HTTP checks for the React mount
+and its actual compiled JavaScript entry (219,983 bytes uncompressed). These
+checks do not execute the frontend; native Codespaces browser authorization and
+interaction remain pending. All four previews stopped. Ready-compute samples
+meet 20s, while provider provisioning exceeds it. This is not a universal latency
+or VM replacement persistence guarantee.
+
+Evidence: `evidence/stack-react-{url,google,codespaces}.json`.
+
+**Current native coverage: 18 representative fixtures** have Google browser and
+Codespaces HTTP/protocol evidence; 37 of the 55 isolated fixtures remain to be
 checked natively. All Codespaces browser claims remain pending authorization.

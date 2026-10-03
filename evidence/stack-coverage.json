@@ -863,13 +863,18 @@
       "serverEvidence": "stack-matrix-01.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-local.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-react-url.json",
+        "stack-react-google.json",
+        "stack-react-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-01.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativePersistenceScope": "Browser localStorage only; native Codespaces evidence validates HTTP shell and compiled entry assets, not browser execution."
     },
     {
       "fixture": "react-express-postgres",

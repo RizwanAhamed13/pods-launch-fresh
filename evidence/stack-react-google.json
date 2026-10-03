@@ -1,0 +1,69 @@
+{
+  "recordedAt": "2026-10-03T21:01:55.851882+00:00",
+  "scope": "Actual React client rendering and interaction in the native Cloud Shell browser after developer URL preparation. Both previews stopped.",
+  "results": [
+    {
+      "id": "9TPeaVvRze27Y9qv7RAKVogXEq1KHyFQ",
+      "appId": "repo-ca40d6838dd2f00c7dba8311-9eee994ba7f7-25312833ce7f",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791061235949,
+      "providerReadyAt": 1791061238486,
+      "readyAt": 1791061240843,
+      "updatedAt": 1791061262045,
+      "environment": "default",
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 542,
+        "runtimeReadyMs": 757,
+        "cacheHit": false
+      },
+      "totalMs": 4894,
+      "deliveryMs": 2357
+    },
+    {
+      "id": "UZPONJtGuPcLLox_LtJSXYbqHJDoAg8T",
+      "appId": "repo-ca40d6838dd2f00c7dba8311-9eee994ba7f7-25312833ce7f",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791061270572,
+      "providerReadyAt": 1791061274035,
+      "readyAt": 1791061275476,
+      "updatedAt": 1791061293654,
+      "environment": "default",
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 201,
+        "runtimeReadyMs": 409,
+        "cacheHit": true
+      },
+      "totalMs": 4904,
+      "deliveryMs": 1441
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "first-native-launch",
+      "visibleMs": 5899,
+      "successfulClickMs": 6203,
+      "before": 0,
+      "after": 1,
+      "afterReload": 1
+    },
+    {
+      "scenario": "cached-relaunch",
+      "visibleMs": 5795,
+      "savedStateVisibleMs": 5802,
+      "successfulClickMs": 6104,
+      "before": 1,
+      "after": 2,
+      "afterReload": 2
+    }
+  ],
+  "timingScope": "Both browser measurements are continuous from the launch click through rendered React heading and successful button interaction.",
+  "browserErrorOrWarningLogsAtFinalCheck": [],
+  "persistenceScope": "Browser localStorage survived reload and full application stop/relaunch; no backend database or VM replacement durability claim.",
+  "passed": true
+}
