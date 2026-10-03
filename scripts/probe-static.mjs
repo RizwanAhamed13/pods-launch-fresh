@@ -1,20 +1,20 @@
 // Serialized into authorized user compute. Browser execution is tested separately.
 export async function probeStaticProduct(base='http://127.0.0.1:8080',fixture='react') {
-  if(!['react','angular'].includes(fixture))throw new Error('Unknown static fixture');
-  const root=new URL('/',base),heading=fixture==='react'?'React counter':'Angular counter';
+  if(!['react','angular','vue'].includes(fixture))throw new Error('Unknown static fixture');
+  const root=new URL('/',base),heading={react:'React counter',angular:'Angular counter',vue:'Vue counter'}[fixture];
   async function read(url) {
     const response=await fetch(url,{redirect:'error',signal:AbortSignal.timeout(10000)});
     if(!response.ok)throw new Error('Static fixture HTTP '+response.status);
     return response;
   }
   const response=await read(root),page=await response.text();
-  const mount=fixture==='react'?/<div\b[^>]*\bid=["']app["'][^>]*>/i:/<stack-counter\b[^>]*>/i;
+  const mount=fixture==='angular'?/<stack-counter\b[^>]*>/i:/<div\b[^>]*\bid=["']app["'][^>]*>/i;
   if(!response.headers.get('content-type')?.includes('text/html')||!mount.test(page))throw new Error('Expected '+fixture+' product mount was not found');
   const tags=[...page.matchAll(/<script\b[^>]*>/gi)].map(m=>m[0]);
   const entries=tags.filter(tag=>/\btype=["']module["']/i.test(tag)).map(tag=>tag.match(/\bsrc=["']([^"']+)["']/i)?.[1]);
   if(!entries.length||entries.length>16||entries.some(path=>!path))throw new Error('Compiled module entries were not found');
   const urls=entries.map(path=>new URL(path,root));
-  const assetPath=fixture==='react'?/^\/assets\/[\w.-]+\.js$/:/^\/(main|polyfills)(-[\w-]+)?\.js$/;
+  const assetPath=fixture==='angular'?/^\/(main|polyfills)(-[\w-]+)?\.js$/:/^\/assets\/[\w.-]+\.js$/;
   if(urls.some(url=>url.origin!==root.origin||!assetPath.test(url.pathname)))throw new Error('Unexpected compiled module URL');
   const scripts=[];let fixtureCode=false;
   for(const url of urls){
