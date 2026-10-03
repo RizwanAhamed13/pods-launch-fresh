@@ -1,0 +1,6 @@
+[
+  {"stack":"spring-boot","status":"passed","before":3,"after":4,"reloaded":4,"scope":"Real rebuilt Noble JRE artifact in the isolated aswin QA environment through authenticated SSH; not native provider evidence.","serverEvidence":"stack-matrix-31.json","browserErrorOrWarningLogsAtFinalCheck":[]},
+  {"stack":"quarkus","status":"passed","before":3,"after":4,"reloaded":4,"scope":"Real rebuilt Noble JRE artifact in the isolated aswin QA environment through authenticated SSH; not native provider evidence.","serverEvidence":"stack-matrix-31.json","browserErrorOrWarningLogsAtFinalCheck":[]},
+  {"stack":"micronaut","status":"passed","before":3,"after":4,"reloaded":4,"scope":"Real rebuilt Noble JRE artifact in the isolated aswin QA environment through authenticated SSH; not native provider evidence.","serverEvidence":"stack-matrix-31.json","browserErrorOrWarningLogsAtFinalCheck":[]},
+  {"stack":"ktor","status":"passed","before":3,"after":4,"reloaded":4,"scope":"Real rebuilt Noble JRE artifact in the isolated aswin QA environment through authenticated SSH; not native provider evidence.","serverEvidence":"stack-matrix-31.json","browserErrorOrWarningLogsAtFinalCheck":[]}
+]

@@ -1,0 +1,141 @@
+{
+  "scope": "Official registry metadata and real isolated prepared artifact comparison. Cached local runner timings do not measure first-image transfer or native provider performance.",
+  "sources": [
+    "https://adoptium.net/installation/containers",
+    "https://github.com/docker-library/official-images/blob/master/library/eclipse-temurin"
+  ],
+  "runtimeCandidates": [
+    {
+      "image": "eclipse-temurin:21-jre",
+      "digest": "sha256:80b6aebe2f990697ada73fdbe451c7e9ec5e4adbde7a1e3625bc665e3b2fc06e",
+      "compressedLayerBytes": 118045949
+    },
+    {
+      "image": "eclipse-temurin:21-jre-noble",
+      "digest": "sha256:7fd597bf48c8bb13a7a3fb227f8366dec0423f78775d4b4f7e30409204af8627",
+      "compressedLayerBytes": 102240278
+    },
+    {
+      "image": "eclipse-temurin:21-jre-ubi10-minimal",
+      "digest": "sha256:26cb64f3b7fe7a70eea2a927a18bcaadd6048e0ea1ee2841a23bc167093a0cd0",
+      "compressedLayerBytes": 125917977
+    }
+  ],
+  "builder": {
+    "image": "maven:3.9-eclipse-temurin-21-noble",
+    "sameDigestAsPreviousDefault": true,
+    "digest": "sha256:80034909d9a9f0b89d3d2c583f07f3b7650309bc4e6b886ad5b860b9e1bfa439"
+  },
+  "baselineArtifacts": [
+    {
+      "fixture": "spring-boot",
+      "evidence": "stack-matrix-30.json",
+      "imageBytes": 146984073,
+      "images": [
+        {
+          "id": "sha256:81b4271f3b543c5f05c666bf163ce97e82a7e98d5861e2938a763e4b1459c198",
+          "sha256": "e16393b48f9f9a75fe913b560d35c5cfdf370b0e0ef06a21822721548b00268b",
+          "bytes": 146984073
+        }
+      ]
+    },
+    {
+      "fixture": "quarkus",
+      "evidence": "stack-matrix-19.json",
+      "imageBytes": 144756244,
+      "images": [
+        {
+          "id": "sha256:2b79387b39c977ac127b6e5c3c737b7e6c21a08ab28ff87af158e023db4badaf",
+          "sha256": "12c24f55bde04bbf19aa855e6048970ed1169783b054111f0ecb4c21680ee63d",
+          "bytes": 144756244
+        }
+      ]
+    },
+    {
+      "fixture": "micronaut",
+      "evidence": "stack-matrix-15.json",
+      "imageBytes": 140630981,
+      "images": [
+        {
+          "id": "sha256:eb007a4187bdf6e4494723a944830d769a6c01647971b6a6210aeb9a3438fd48",
+          "sha256": "157ac8f2742270ae9582962882d52f8994d6842ce895f0dcbbd0df7cbf7d6165",
+          "bytes": 140630981
+        }
+      ]
+    },
+    {
+      "fixture": "ktor",
+      "evidence": "stack-matrix-15.json",
+      "imageBytes": 154456045,
+      "images": [
+        {
+          "id": "sha256:ce7945d45a5d1fecaec670d69d6f218ea78604b5ae9e196928cf2a22b8b68b41",
+          "sha256": "bcc29ed0d6adc06ff0192609ae866d9e49ea7c823fb37c29b6654817d3182b16",
+          "bytes": 154456045
+        }
+      ]
+    }
+  ],
+  "selectedRuntime": "eclipse-temurin:21-jre-noble",
+  "fullJreModuleEvidence": "stack-jvm-runtime-modules.json",
+  "serverEvidence": "stack-matrix-31.json",
+  "comparisons": [
+    {
+      "fixture": "spring-boot",
+      "beforeImageBytes": 146984073,
+      "afterImageBytes": 131468332,
+      "savedBytes": 15515741,
+      "reductionPercent": 10.56,
+      "firstReadyMsWithImageCached": 9441,
+      "repeatReadyMsWithImageCached": 9717,
+      "persistence": {
+        "before": 2,
+        "saved": 3,
+        "afterRestart": 3
+      }
+    },
+    {
+      "fixture": "quarkus",
+      "beforeImageBytes": 144756244,
+      "afterImageBytes": 129246400,
+      "savedBytes": 15509844,
+      "reductionPercent": 10.71,
+      "firstReadyMsWithImageCached": 4178,
+      "repeatReadyMsWithImageCached": 4084,
+      "persistence": {
+        "before": 2,
+        "saved": 3,
+        "afterRestart": 3
+      }
+    },
+    {
+      "fixture": "micronaut",
+      "beforeImageBytes": 140630981,
+      "afterImageBytes": 125122408,
+      "savedBytes": 15508573,
+      "reductionPercent": 11.03,
+      "firstReadyMsWithImageCached": 5620,
+      "repeatReadyMsWithImageCached": 5685,
+      "persistence": {
+        "before": 2,
+        "saved": 3,
+        "afterRestart": 3
+      }
+    },
+    {
+      "fixture": "ktor",
+      "beforeImageBytes": 154456045,
+      "afterImageBytes": 138945817,
+      "savedBytes": 15510228,
+      "reductionPercent": 10.04,
+      "firstReadyMsWithImageCached": 4712,
+      "repeatReadyMsWithImageCached": 4024,
+      "persistence": {
+        "before": 2,
+        "saved": 3,
+        "afterRestart": 3
+      }
+    }
+  ],
+  "nativeProviderRetest": "Pending: existing Spring Boot and Quarkus native evidence uses previous runtime artifacts."
+}

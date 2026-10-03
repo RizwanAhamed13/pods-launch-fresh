@@ -596,16 +596,22 @@
     {
       "fixture": "ktor",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-15.json",
+      "serverEvidence": "stack-matrix-31.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-15.json",
+      "browserEvidence": "stack-browser-31.json",
       "nativeProviderEvidence": [],
       "attempts": [
         {
           "evidence": "stack-matrix-15.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-31.json",
+          "status": "passed"
         }
-      ]
+      ],
+      "recipeOptimizationEvidence": "stack-jvm-runtime-comparison.json",
+      "nativeRuntimeRetest": "Noble JRE artifact pending; existing native evidence, when present, uses the previous runtime."
     },
     {
       "fixture": "laravel",
@@ -646,16 +652,22 @@
     {
       "fixture": "micronaut",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-15.json",
+      "serverEvidence": "stack-matrix-31.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-15.json",
+      "browserEvidence": "stack-browser-31.json",
       "nativeProviderEvidence": [],
       "attempts": [
         {
           "evidence": "stack-matrix-15.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-31.json",
+          "status": "passed"
         }
-      ]
+      ],
+      "recipeOptimizationEvidence": "stack-jvm-runtime-comparison.json",
+      "nativeRuntimeRetest": "Noble JRE artifact pending; existing native evidence, when present, uses the previous runtime."
     },
     {
       "fixture": "nestjs",
@@ -811,9 +823,9 @@
     {
       "fixture": "quarkus",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-19.json",
+      "serverEvidence": "stack-matrix-31.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-19.json",
+      "browserEvidence": "stack-browser-31.json",
       "nativeProviderEvidence": [
         "stack-quarkus-url.json",
         "stack-quarkus-google.json",
@@ -828,8 +840,14 @@
         {
           "evidence": "stack-matrix-19.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-31.json",
+          "status": "passed"
         }
-      ]
+      ],
+      "recipeOptimizationEvidence": "stack-jvm-runtime-comparison.json",
+      "nativeRuntimeRetest": "Noble JRE artifact pending; existing native evidence, when present, uses the previous runtime."
     },
     {
       "fixture": "rails",
@@ -972,9 +990,9 @@
     {
       "fixture": "spring-boot",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-30.json",
+      "serverEvidence": "stack-matrix-31.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-30.json",
+      "browserEvidence": "stack-browser-31.json",
       "nativeProviderEvidence": [
         "stack-spring-boot-url.json",
         "stack-spring-boot-google.json",
@@ -992,9 +1010,15 @@
         {
           "evidence": "stack-matrix-30.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-31.json",
+          "status": "passed"
         }
       ],
-      "persistenceScope": "SQLite since matrix30/browser30. Earlier matrix02/matrix15/browser02 tested a plain file."
+      "persistenceScope": "SQLite since matrix30/browser30. Earlier matrix02/matrix15/browser02 tested a plain file.",
+      "recipeOptimizationEvidence": "stack-jvm-runtime-comparison.json",
+      "nativeRuntimeRetest": "Noble JRE artifact pending; existing native evidence, when present, uses the previous runtime."
     },
     {
       "fixture": "streamlit",

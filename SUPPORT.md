@@ -788,3 +788,30 @@ Evidence: `evidence/stack-react-{url,google,codespaces}.json`.
 **Current native coverage: 18 representative fixtures** have Google browser and
 Codespaces HTTP/protocol evidence; 37 of the 55 isolated fixtures remain to be
 checked natively. All Codespaces browser claims remain pending authorization.
+
+## Smaller full Java runtime
+
+The automatic Maven recipe now uses the explicit Ubuntu Noble variants of the
+official Maven builder and Temurin 21 JRE. The builder resolves to the same image
+as before. The runtime keeps all 49 Java modules, with identical module versions;
+no application-specific module trimming is used. Gradle is unchanged.
+
+| Real application | Previous image archive | Rebuilt archive | Reduction |
+| --- | ---: | ---: | ---: |
+| Spring Boot + SQLite | 146,984,073 bytes | 131,468,332 bytes | 10.56% |
+| Quarkus + SQLite | 144,756,244 bytes | 129,246,400 bytes | 10.71% |
+| Micronaut + SQLite | 140,630,981 bytes | 125,122,408 bytes | 11.03% |
+| Ktor + SQLite | 154,456,045 bytes | 138,945,817 bytes | 10.04% |
+
+All four real server builds passed. Each retained its previous SQLite value 2
+after the artifact upgrade, wrote 3, and retained 3 after stop/relaunch. The browser
+then wrote 4 and retained 4 on reload, with no captured warnings or errors.
+The local runner already had the images; its 4–10 second readiness samples do
+not measure first-image download speed. Native provider retests of these smaller
+artifacts are pending; previous Spring Boot and Quarkus native results apply to
+their earlier images. The 20-second goal is still unproven for first-image JVM
+launches. Existing prepared artifacts are immutable and are not replaced.
+
+Evidence: `evidence/stack-matrix-31.json`, `evidence/stack-browser-31.json`,
+`evidence/stack-jvm-runtime-comparison.json`, and
+`evidence/stack-jvm-runtime-modules.json`.
