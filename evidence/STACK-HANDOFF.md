@@ -8,7 +8,9 @@ contains further fixes and evidence. Public runtime main is 45ccbd0 (pushed).
 
 Aswin went offline during this stage. Tailscale reports local backend Running,
 local Online=true, aswin Online=false; last seen 2026-10-03T13:30:00.1Z. Configured
-SSH host100.119.226.124 port2222 times out. An async user request to bring aswin
+SSH host100.119.226.124 port2222 times out. The public /health endpoint still
+returns {"ok":true}; this is a Tailscale/SSH path interruption, not proof that
+the host or queued jobs stopped. An async user request to bring aswin
 back online is pending. Do not ask again or treat timeout as permission.
 
 Two source transfers failed before receiving any bytes. Therefore the newest

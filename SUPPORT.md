@@ -139,8 +139,8 @@ fixture repository is not a support pass.
 
 ## Current verification hold
 
-Aswin went offline during the next stage. Its Tailscale peer reports offline and
-SSH times out. The last complete matrix is batch04. Streamlit encountered a
+Aswin became unreachable through Tailscale during the next stage. SSH times
+out, while the public control-plane health endpoint still responds. The last complete matrix is batch04. Streamlit encountered a
 verification/runtime volume identity collision in batch05; a separate build
 verification identity is implemented and passes local checks, but the live retry
 is pending. Production build clones now receive the deployed worker before they
