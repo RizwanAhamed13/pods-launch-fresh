@@ -42,35 +42,51 @@ export async function containersAlive(plan, args, execute = docker) {
   });
 }
 
+export async function prepareRuntimeImages(images, config, root, timings, execute = docker) {
+  const cache = join(root, 'images'); await mkdir(cache, {recursive:true,mode:0o700});
+  const started = performance.now();
+  Object.assign(timings, {imageCacheHits:0,imageArchiveCacheHits:0,imageCacheCheckMs:0,imageDownloadMs:0,imageLoadMs:0});
+  const measure = async (key, action) => {
+    const at = performance.now();
+    try { return await action(); } finally { timings[key] += performance.now() - at; }
+  };
+  try {
+    for (const image of images) {
+      const present = await measure('imageCacheCheckMs', () => execute(['image','inspect',image.id,'--format','{{.Id}}']).catch(() => ''));
+      if (present === image.id) { timings.imageCacheHits++; continue; }
+      const path = join(cache, image.sha256 + '.gz');
+      const valid = await measure('imageCacheCheckMs', () => stat(path).then(async s => s.size === image.bytes && await fileHash(path) === image.sha256).catch(() => false));
+      if (valid) timings.imageArchiveCacheHits++;
+      else await measure('imageDownloadMs', async () => {
+        const url = new URL(config.artifactUrl); url.pathname += '/images/' + image.sha256;
+        const response = await fetch(url, {headers:{Authorization:`Bearer ${config.token}`},signal:AbortSignal.timeout(180000),redirect:'error'});
+        if (!response.ok) throw new Error(`Prepared image download returned ${response.status}`);
+        const temp = path + '.' + config.id; let size = 0; const hash = createHash('sha256');
+        try {
+          await pipeline(response.body, new Transform({transform(chunk, _, done) { size += chunk.length; if (size > image.bytes) return done(new Error('Prepared image exceeds declared size')); hash.update(chunk); done(null, chunk); }}), createWriteStream(temp,{flags:'wx',mode:0o600}));
+          if (size !== image.bytes || hash.digest('hex') !== image.sha256) throw new Error('Prepared image integrity check failed');
+          await rename(temp, path);
+        } finally { await rm(temp,{force:true}); }
+      });
+      await measure('imageLoadMs', async () => {
+        await execute(['load','--input',path], {timeout:180000});
+        if (await execute(['image','inspect',image.id,'--format','{{.Id}}']) !== image.id) throw new Error('Loaded image identity mismatch');
+      });
+      // Docker's content store is the runtime cache; avoid retaining a second large copy.
+      await rm(path, {force:true});
+    }
+  } finally {
+    for (const key of ['imageCacheCheckMs','imageDownloadMs','imageLoadMs']) timings[key] = Math.round(timings[key]);
+    timings.imagesMs = Math.round(performance.now() - started);
+  }
+}
+
 export async function startContainers(plan, config, root, runDir, timings) {
   await docker(['info','--format','{{.OSType}}/{{.Architecture}}']).then(platform => {
     if (!/^linux\/(?:x86_64|amd64)$/.test(platform)) throw new Error('This artifact requires a Linux amd64 Docker engine.');
   });
   await docker(['compose','version']);
-  const cache = join(root, 'images'); await mkdir(cache, {recursive:true,mode:0o700});
-  const started = performance.now(); let hits = 0;
-  for (const image of plan.images) {
-    const present = await docker(['image','inspect',image.id,'--format','{{.Id}}']).catch(() => '');
-    if (present === image.id) { hits++; continue; }
-    const path = join(cache, image.sha256 + '.gz');
-    const valid = await stat(path).then(async s => s.size === image.bytes && await fileHash(path) === image.sha256).catch(() => false);
-    if (!valid) {
-      const url = new URL(config.artifactUrl); url.pathname += '/images/' + image.sha256;
-      const response = await fetch(url, {headers:{Authorization:`Bearer ${config.token}`},signal:AbortSignal.timeout(180000),redirect:'error'});
-      if (!response.ok) throw new Error(`Prepared image download returned ${response.status}`);
-      const temp = path + '.' + config.id; let size = 0; const hash = createHash('sha256');
-      try {
-        await pipeline(response.body, new Transform({transform(chunk, _, done) { size += chunk.length; if (size > image.bytes) return done(new Error('Prepared image exceeds declared size')); hash.update(chunk); done(null, chunk); }}), createWriteStream(temp,{flags:'wx',mode:0o600}));
-        if (size !== image.bytes || hash.digest('hex') !== image.sha256) throw new Error('Prepared image integrity check failed');
-        await rename(temp, path);
-      } finally { await rm(temp,{force:true}); }
-    }
-    await docker(['load','--input',path], {timeout:180000});
-    if (await docker(['image','inspect',image.id,'--format','{{.Id}}']) !== image.id) throw new Error('Loaded image identity mismatch');
-    // Docker's content store is the runtime cache; avoid retaining a second large copy.
-    await rm(path, {force:true});
-  }
-  timings.imageCacheHits = hits; timings.imagesMs = Math.round(performance.now() - started);
+  await prepareRuntimeImages(plan.images, config, root, timings);
   // Stable application identity preserves named volumes between artifact versions.
   const dataKey = config.dataKey || config.appId;
   const project = 'pods-' + createHash('sha256').update(dataKey).digest('hex').slice(0,24);

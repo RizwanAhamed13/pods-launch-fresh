@@ -95,7 +95,7 @@ export async function createApp(options={}) {
           if(event.status!=='heartbeat')patch.status=event.status;
           if(event.status==='ready') { if(!s.providerReadyAt)throw fail(409,'Provider is not ready');patch.readyAt=s.readyAt||Date.now(); }
           if(event.status==='failed')patch.error=String(event.error||'Application failed').slice(-500);
-          if(event.timings) {patch.timings={};for(const k of ['downloadMs','imagesMs','imageCacheHits','runtimeReadyMs','runtimeRetries'])if(Number.isFinite(event.timings[k])&&event.timings[k]>=0&&event.timings[k]<600000)patch.timings[k]=event.timings[k];patch.timings.cacheHit=event.timings.cacheHit===true;}
+          if(event.timings) {patch.timings={};for(const k of ['downloadMs','imagesMs','imageCacheHits','imageArchiveCacheHits','imageCacheCheckMs','imageDownloadMs','imageLoadMs','runtimeReadyMs','runtimeRetries'])if(Number.isFinite(event.timings[k])&&event.timings[k]>=0&&event.timings[k]<600000)patch.timings[k]=event.timings[k];patch.timings.cacheHit=event.timings.cacheHit===true;}
           // Preview URL is set from provider metadata, never accepted from the runner.
           update(s.id,patch);return json(200,{action:s.stopRequested?'stop':'continue'});
         }

@@ -67,8 +67,8 @@ test('API enforces browser ownership, CSRF, capability auth and idempotent launc
  assert.equal((await fetch(imageUrl)).status,401);
  r=await fetch(imageUrl,{headers:{Authorization:'Bearer '+config.token}});assert.equal(r.status,200);assert.deepEqual(Buffer.from(await r.arrayBuffer()),imageBytes);
  assert.equal((await fetch(imageUrl.replace(imageHash,'f'.repeat(64)),{headers:{Authorization:'Bearer '+config.token}})).status,404);
- r=await fetch(origin+'/api/agent/'+launch.id,{method:'POST',headers:{Authorization:'Bearer '+config.token},body:JSON.stringify({status:'ready',previewUrl:'https://evil.example'})});assert.equal(r.status,200);
- const current=await(await request('/api/launches/'+launch.id)).json();assert.equal(current.previewUrl,'https://test-8080.app.github.dev');assert.ok(current.totalMs>=0);
+ r=await fetch(origin+'/api/agent/'+launch.id,{method:'POST',headers:{Authorization:'Bearer '+config.token},body:JSON.stringify({status:'ready',previewUrl:'https://evil.example',timings:{imageDownloadMs:123,imageLoadMs:45,imageCacheCheckMs:6,imageArchiveCacheHits:1,imagesMs:174,imageCacheHits:-1,runtimeRetries:600000,unknown:'secret'}})});assert.equal(r.status,200);
+ const current=await(await request('/api/launches/'+launch.id)).json();assert.equal(current.previewUrl,'https://test-8080.app.github.dev');assert.ok(current.totalMs>=0);assert.deepEqual(current.timings,{imageDownloadMs:123,imageLoadMs:45,imageCacheCheckMs:6,imageArchiveCacheHits:1,imagesMs:174,cacheHit:false});
  const persisted=await readFile(join(root,'pods.sqlite'));assert.ok(!persisted.includes(Buffer.from('a'.repeat(30))));
  }finally{release();await pending;await sleep(10);await close(server);await rm(root,{recursive:true,force:true});}
 });

@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { gzipSync } from 'node:zlib';
-import { mkdtemp, writeFile, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, readdir, writeFile, rm } from 'node:fs/promises';
+import { createServer } from 'node:http';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { validateContainers, runtimeCompose } from '../src/containers.mjs';
@@ -11,7 +12,7 @@ import { validateBuildOutput } from '../src/builds.mjs';
 import { detectApplication } from '../src/detect.mjs';
 import { parseRepository } from '../src/repository.mjs';
 import { digest } from '../src/util.mjs';
-import { launchCompose, containersAlive } from '../src/container-runtime.mjs';
+import { launchCompose, containersAlive, prepareRuntimeImages } from '../src/container-runtime.mjs';
 import { containerRecipe } from '../src/container-recipes.mjs';
 
 test('base64url preparation identities ending in separators produce valid Docker repository names',()=>{
@@ -56,6 +57,45 @@ test('Adonis and Nest preserve framework runtime files even with a direct node s
 const blob=Buffer.from('prepared image test data');
 const image={id:'sha256:'+'a'.repeat(64),sha256:digest(blob),bytes:blob.length};
 function plan(){return {web:'web',port:8000,images:[image],services:{web:{image:image.id,depends_on:{db:'service_healthy'}},db:{image:image.id,volumes:[{name:'records',target:'/var/lib/db',readOnly:false}],healthcheck:{test:['CMD','check'],interval:'2s',timeout:'1s',retries:20}}}};}
+
+test('image delivery distinguishes verified download, archive reuse and installed-image reuse',async t=>{
+  const root=await mkdtemp(join(tmpdir(),'pods-image-phases-'));t.after(()=>rm(root,{recursive:true,force:true}));
+  let requests=0,loaded=false,loads=0;
+  const server=createServer((req,res)=>{requests++;assert.equal(req.url,'/artifact/images/'+image.sha256);assert.equal(req.headers.authorization,'Bearer test-capability');res.end(blob);});
+  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));t.after(()=>new Promise(resolve=>server.close(resolve)));
+  const config={id:'launch-one',artifactUrl:`http://127.0.0.1:${server.address().port}/artifact`,token:'test-capability'};
+  const execute=async args=>{if(args[0]==='load'){loads++;assert.deepEqual(await readFile(args[2]),blob);loaded=true;return '';}if(!loaded)throw new Error('image absent');return image.id;};
+  const cold={};await prepareRuntimeImages([image],config,root,cold,execute);
+  assert.equal(requests,1);assert.equal(loads,1);assert.equal(cold.imageCacheHits,0);assert.equal(cold.imageArchiveCacheHits,0);
+  for(const key of ['imagesMs','imageCacheCheckMs','imageDownloadMs','imageLoadMs'])assert.ok(Number.isInteger(cold[key])&&cold[key]>=0);
+  assert.deepEqual(await readdir(join(root,'images')),[]);
+  const warm={};await prepareRuntimeImages([image],config,root,warm,execute);
+  assert.equal(warm.imageCacheHits,1);assert.equal(warm.imageDownloadMs,0);assert.equal(warm.imageLoadMs,0);assert.equal(requests,1);assert.equal(loads,1);
+  loaded=false;await writeFile(join(root,'images',image.sha256+'.gz'),blob);
+  const archive={};await prepareRuntimeImages([image],config,root,archive,execute);
+  assert.equal(archive.imageArchiveCacheHits,1);assert.equal(archive.imageDownloadMs,0);assert.equal(requests,1);assert.equal(loads,2);
+  loaded=false;await writeFile(join(root,'images',image.sha256+'.gz'),Buffer.alloc(blob.length));
+  const corruptCache={};await prepareRuntimeImages([image],config,root,corruptCache,execute);
+  assert.equal(corruptCache.imageArchiveCacheHits,0);assert.equal(requests,2);assert.equal(loads,3);
+});
+
+test('image timing keeps integrity failures visible without loading unverified bytes',async t=>{
+  const root=await mkdtemp(join(tmpdir(),'pods-image-integrity-'));t.after(()=>rm(root,{recursive:true,force:true}));
+  let response=Buffer.alloc(blob.length),loads=0,loaded=false;
+  const server=createServer((req,res)=>res.end(response));
+  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));t.after(()=>new Promise(resolve=>server.close(resolve)));
+  const config={id:'launch-two',artifactUrl:`http://127.0.0.1:${server.address().port}/artifact`,token:'test-capability'};
+  const execute=async args=>{if(args[0]==='load'){loads++;loaded=true;return '';}if(!loaded)throw new Error('image absent');return 'sha256:'+'b'.repeat(64);};
+  for(const bytes of [Buffer.alloc(blob.length),blob.subarray(1),Buffer.concat([blob,Buffer.from('extra')])]){
+    response=bytes;const timings={};
+    await assert.rejects(prepareRuntimeImages([image],config,root,timings,execute),/integrity check failed|exceeds declared size/);
+    assert.equal(loads,0);assert.equal(timings.imageLoadMs,0);assert.ok(Number.isInteger(timings.imageDownloadMs));
+    assert.deepEqual(await readdir(join(root,'images')),[]);
+  }
+  response=blob;const timings={};
+  await assert.rejects(prepareRuntimeImages([image],config,root,timings,execute),/Loaded image identity mismatch/);
+  assert.equal(loads,1);assert.ok(Number.isInteger(timings.imageLoadMs));
+});
 
 test('runtime readiness requires the worker and healthy database even while the web service runs',async()=>{
   const p=plan();p.services.worker={image:image.id};
