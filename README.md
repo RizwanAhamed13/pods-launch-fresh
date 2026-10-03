@@ -103,6 +103,16 @@ The 20-second target is measured, not promised. The UI separates:
 - **Delivery:** provider reports ready to healthy callback, including SSH bootstrap.
 - **App startup:** runner starts to local HTTP health success, including artifact download.
 
+Launch records also save `compute.initialState` and `compute.observedAt` before
+startup, plus `creationRequestedAt` or `resumeRequestedAt` for Codespaces and
+`startRequestedAt` for Cloud Shell when requested. These are observed provider
+states and request timestamps, not inferred cold/warm labels. A missing state is
+`null`; earlier launch records are not backfilled. Artifact/image cache status is
+recorded separately in runner timings. Cloud Shell adds one environment read
+before its start operation; this measurement overhead is included in total time.
+State definitions: [Cloud Shell](https://cloud.google.com/shell/docs/reference/rest/v1/users.environments#State)
+and [Codespaces](https://docs.github.com/en/rest/codespaces/codespaces#get-a-codespace-for-the-authenticated-user).
+
 Cold VM provisioning, provider consent, image pulls, network throughput and authentication on the forwarded app URL can exceed 20 seconds. Reuse an already running environment for the fast path. GitHub's forwarded URL remains private. PODS links to the provider's authenticated preview; it does not expose a public app proxy.
 
 Codespaces discovery and state reads retry transient provider errors up to three

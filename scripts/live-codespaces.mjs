@@ -105,7 +105,7 @@ try {
    if(launch.status!==last){console.log(name+': '+launch.status);last=launch.status;}
    await new Promise(r=>setTimeout(r,3000));launch=await api('/api/launches/'+started.id);
   }
-  const result={scenario:name,...launch};results.push(result);console.log(JSON.stringify({scenario:name,status:launch.status,totalMs:launch.totalMs,deliveryMs:launch.deliveryMs,timings:launch.timings,environment:launch.environment,storageMode:launch.storageMode,error:launch.error}));
+  const result={scenario:name,...launch};results.push(result);console.log(JSON.stringify({scenario:name,status:launch.status,totalMs:launch.totalMs,deliveryMs:launch.deliveryMs,timings:launch.timings,compute:launch.compute,environment:launch.environment,storageMode:launch.storageMode,error:launch.error}));
   await persist();
   if(launch.status!=='ready')throw new Error(launch.error||'Launch failed');
   const base=`http://127.0.0.1:${launch.port||8080}`;

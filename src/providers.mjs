@@ -38,14 +38,16 @@ export function providers({ repo, origin, runnerSha, api = github, cloudRequest 
           env = ['Available','Shutdown','Starting','Provisioning','Created','Queued','Awaiting','Updating','Rebuilding','ShuttingDown'].map(state => eligible.find(c => c.state === state)).find(Boolean);
         }
         const deadline = Date.now() + provisionMs;
-        if (!env) { await update({status:'provisioning'}); env = await api(`/repos/${repo}/codespaces`, token, {method:'POST',body:{ref:'main',display_name:displayName,idle_timeout_minutes:15,retention_period_minutes:1440}}); }
+        const compute = {initialState:env?.state??null,observedAt:Date.now()};
+        if (!env) { compute.creationRequestedAt=Date.now(); await update({status:'provisioning',compute:{...compute}}); env = await api(`/repos/${repo}/codespaces`, token, {method:'POST',body:{ref:'main',display_name:displayName,idle_timeout_minutes:15,retention_period_minutes:1440}}); }
         let resumeRequested = false;
-        await update({environment:env.name});
+        await update({environment:env.name,compute:{...compute}});
         while (env.state !== 'Available') {
           if (Date.now() >= deadline) throw new Error('Codespace did not become available within the provisioning deadline. Retry from GitHub Codespaces.');
           if (['Failed','Deleted','Unavailable'].includes(env.state)) throw new Error(`Codespace is ${env.state}`);
           if (env.state === 'Shutdown' && !resumeRequested) {
-            await update({status:'provisioning'});
+            compute.resumeRequestedAt=Date.now();
+            await update({status:'provisioning',compute:{...compute}});
             resumeRequested = true;
             try { env = await api(`/user/codespaces/${env.name}/start`, token, {method:'POST'}); }
             catch(error) {
@@ -89,9 +91,11 @@ export function providers({ repo, origin, runnerSha, api = github, cloudRequest 
         const base = 'https://cloudshell.googleapis.com/v1/users/me/environments/default';
         let publicKey;
         try {
+          const initial = await cloudRequest(base,token);
+          const compute = {initialState:initial.state??null,observedAt:Date.now()};
           await exec('ssh-keygen', ['-q','-t','rsa','-b','3072','-N','','-f',join(directory,'key')]);
           publicKey = (await readFile(join(directory,'key.pub'),'utf8')).trim().split(' ').slice(0,2).join(' ');
-          await update({status:'provisioning'});
+          await update({status:'provisioning',compute:{...compute,startRequestedAt:Date.now()}});
           const op = await cloudRequest(base+':start', token, {method:'POST',body:{publicKeys:[publicKey]}});
           const deadline = Date.now()+240000;
           let result=op;
