@@ -24,9 +24,9 @@
     {
       "fixture": "adonis",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-20.json",
+      "serverEvidence": "stack-matrix-24.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-18.json",
+      "browserEvidence": "stack-browser-24.json",
       "nativeProviderEvidence": [],
       "attempts": [
         {
@@ -36,8 +36,18 @@
         {
           "evidence": "stack-matrix-20.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-23.json",
+          "status": "failed",
+          "scope": "QA invocation omitted the isolation marker; rejected before any build."
+        },
+        {
+          "evidence": "stack-matrix-24.json",
+          "status": "passed"
         }
-      ]
+      ],
+      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
     },
     {
       "fixture": "alpine",
@@ -70,9 +80,9 @@
     {
       "fixture": "angular-ssr",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-13.json",
+      "serverEvidence": "stack-matrix-24.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-13.json",
+      "browserEvidence": "stack-browser-24.json",
       "nativeProviderEvidence": [
         "stack-angular-ssr-google.json"
       ],
@@ -88,8 +98,18 @@
         {
           "evidence": "stack-matrix-13.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-23.json",
+          "status": "failed",
+          "scope": "QA invocation omitted the isolation marker; rejected before any build."
+        },
+        {
+          "evidence": "stack-matrix-24.json",
+          "status": "passed"
         }
-      ]
+      ],
+      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
     },
     {
       "fixture": "aspnet",
@@ -108,16 +128,26 @@
     {
       "fixture": "astro",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-04.json",
+      "serverEvidence": "stack-matrix-24.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-04.json",
+      "browserEvidence": "stack-browser-24.json",
       "nativeProviderEvidence": [],
       "attempts": [
         {
           "evidence": "stack-matrix-04.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-23.json",
+          "status": "failed",
+          "scope": "QA invocation omitted the isolation marker; rejected before any build."
+        },
+        {
+          "evidence": "stack-matrix-24.json",
+          "status": "passed"
         }
-      ]
+      ],
+      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
     },
     {
       "fixture": "axum",
@@ -568,23 +598,33 @@
     {
       "fixture": "nestjs",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-04.json",
+      "serverEvidence": "stack-matrix-24.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-04.json",
+      "browserEvidence": "stack-browser-24.json",
       "nativeProviderEvidence": [],
       "attempts": [
         {
           "evidence": "stack-matrix-04.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-23.json",
+          "status": "failed",
+          "scope": "QA invocation omitted the isolation marker; rejected before any build."
+        },
+        {
+          "evidence": "stack-matrix-24.json",
+          "status": "passed"
         }
-      ]
+      ],
+      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
     },
     {
       "fixture": "next",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-22.json",
+      "serverEvidence": "stack-matrix-24.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-02.json",
+      "browserEvidence": "stack-browser-24.json",
       "nativeProviderEvidence": [],
       "attempts": [
         {
@@ -594,15 +634,25 @@
         {
           "evidence": "stack-matrix-22.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-23.json",
+          "status": "failed",
+          "scope": "QA invocation omitted the isolation marker; rejected before any build."
+        },
+        {
+          "evidence": "stack-matrix-24.json",
+          "status": "passed"
         }
-      ]
+      ],
+      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
     },
     {
       "fixture": "nuxt",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-22.json",
+      "serverEvidence": "stack-matrix-24.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-02.json",
+      "browserEvidence": "stack-browser-24.json",
       "nativeProviderEvidence": [],
       "attempts": [
         {
@@ -612,8 +662,18 @@
         {
           "evidence": "stack-matrix-22.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-23.json",
+          "status": "failed",
+          "scope": "QA invocation omitted the isolation marker; rejected before any build."
+        },
+        {
+          "evidence": "stack-matrix-24.json",
+          "status": "passed"
         }
-      ]
+      ],
+      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
     },
     {
       "fixture": "phoenix",
@@ -737,16 +797,26 @@
     {
       "fixture": "react-router",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-04.json",
+      "serverEvidence": "stack-matrix-24.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-04.json",
+      "browserEvidence": "stack-browser-24.json",
       "nativeProviderEvidence": [],
       "attempts": [
         {
           "evidence": "stack-matrix-04.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-23.json",
+          "status": "failed",
+          "scope": "QA invocation omitted the isolation marker; rejected before any build."
+        },
+        {
+          "evidence": "stack-matrix-24.json",
+          "status": "passed"
         }
-      ]
+      ],
+      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
     },
     {
       "fixture": "rocket",
@@ -847,16 +917,26 @@
     {
       "fixture": "sveltekit",
       "serverPassed": true,
-      "serverEvidence": "stack-matrix-04.json",
+      "serverEvidence": "stack-matrix-24.json",
       "browserPassed": true,
-      "browserEvidence": "stack-browser-04.json",
+      "browserEvidence": "stack-browser-24.json",
       "nativeProviderEvidence": [],
       "attempts": [
         {
           "evidence": "stack-matrix-04.json",
           "status": "passed"
+        },
+        {
+          "evidence": "stack-matrix-23.json",
+          "status": "failed",
+          "scope": "QA invocation omitted the isolation marker; rejected before any build."
+        },
+        {
+          "evidence": "stack-matrix-24.json",
+          "status": "passed"
         }
-      ]
+      ],
+      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
     },
     {
       "fixture": "symfony",

@@ -1,0 +1,87 @@
+{
+  "verifiedAt": "2026-10-03T15:54:21.232508+00:00",
+  "scope": "Read-only filesystem probe in each freshly built image with network disabled; application startup and restart are separately covered by matrix-24.",
+  "probeCommand": "const fs=require('node:fs');console.log(JSON.stringify({temporaryCacheExists:fs.existsSync('/tmp/pods-npm-cache'),defaultNpmCacheExists:fs.existsSync('/root/.npm/_cacache'),dependenciesPresent:fs.existsSync('/app/node_modules')}))",
+  "checks": [
+    {
+      "temporaryCacheExists": false,
+      "defaultNpmCacheExists": false,
+      "dependenciesPresent": true,
+      "stack": "angular-ssr",
+      "imageId": "sha256:0339e59a440add184c02fac58060d0885eb733aa734f9ddd426ece01d412154d",
+      "compressedBytes": 148705722,
+      "uncompressedImageBytes": 149246592,
+      "passed": true
+    },
+    {
+      "temporaryCacheExists": false,
+      "defaultNpmCacheExists": false,
+      "dependenciesPresent": true,
+      "stack": "adonis",
+      "imageId": "sha256:66a0c4ca9b94eb92751962f7ac2b1562f21ca5f361b3d2401a4eafff5d616aa2",
+      "compressedBytes": 86305657,
+      "uncompressedImageBytes": 86724628,
+      "passed": true
+    },
+    {
+      "temporaryCacheExists": false,
+      "defaultNpmCacheExists": false,
+      "dependenciesPresent": true,
+      "stack": "nestjs",
+      "imageId": "sha256:89fd7d580e819690d83f072d5e582894bfb8ceda9a926b3dfbebf2b9ac2153e9",
+      "compressedBytes": 85225920,
+      "uncompressedImageBytes": 85643704,
+      "passed": true
+    },
+    {
+      "temporaryCacheExists": false,
+      "defaultNpmCacheExists": false,
+      "dependenciesPresent": true,
+      "stack": "next",
+      "imageId": "sha256:0d5d434fc0e864809d856b37e7a0f135fb3a6d371922a0b385564596718c0e96",
+      "compressedBytes": 189796208,
+      "uncompressedImageBytes": 190346150,
+      "passed": true
+    },
+    {
+      "temporaryCacheExists": false,
+      "defaultNpmCacheExists": false,
+      "dependenciesPresent": true,
+      "stack": "nuxt",
+      "imageId": "sha256:d4fb7793d3308ebb8602bd07a21d92449cc283c84b73eeefb68a86246219d999",
+      "compressedBytes": 132783437,
+      "uncompressedImageBytes": 133296232,
+      "passed": true
+    },
+    {
+      "temporaryCacheExists": false,
+      "defaultNpmCacheExists": false,
+      "dependenciesPresent": true,
+      "stack": "sveltekit",
+      "imageId": "sha256:b5bfc0f5cf20e058f90ceb901c9d762071c42c27becdb1dda719ef6e5d86e55e",
+      "compressedBytes": 103147292,
+      "uncompressedImageBytes": 103608269,
+      "passed": true
+    },
+    {
+      "temporaryCacheExists": false,
+      "defaultNpmCacheExists": false,
+      "dependenciesPresent": true,
+      "stack": "astro",
+      "imageId": "sha256:ba00867bf7546d6a81d17200a050b4d7d65b10b2ce8e1a5a0287f4d858e32f43",
+      "compressedBytes": 124914593,
+      "uncompressedImageBytes": 125447968,
+      "passed": true
+    },
+    {
+      "temporaryCacheExists": false,
+      "defaultNpmCacheExists": false,
+      "dependenciesPresent": true,
+      "stack": "react-router",
+      "imageId": "sha256:517eca007252e6abb49dd55cfb0625991bccff15ade1785e8c6a7adaca2ae754",
+      "compressedBytes": 100368478,
+      "uncompressedImageBytes": 100833279,
+      "passed": true
+    }
+  ]
+}

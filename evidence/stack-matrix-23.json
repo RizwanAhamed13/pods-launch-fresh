@@ -1,0 +1,42 @@
+[
+  {
+    "stack": "angular-ssr",
+    "status": "failed",
+    "error": "Repository builds must run as an unprivileged user in an isolated build container."
+  },
+  {
+    "stack": "adonis",
+    "status": "failed",
+    "error": "Repository builds must run as an unprivileged user in an isolated build container."
+  },
+  {
+    "stack": "nestjs",
+    "status": "failed",
+    "error": "Repository builds must run as an unprivileged user in an isolated build container."
+  },
+  {
+    "stack": "next",
+    "status": "failed",
+    "error": "Repository builds must run as an unprivileged user in an isolated build container."
+  },
+  {
+    "stack": "nuxt",
+    "status": "failed",
+    "error": "Repository builds must run as an unprivileged user in an isolated build container."
+  },
+  {
+    "stack": "sveltekit",
+    "status": "failed",
+    "error": "Repository builds must run as an unprivileged user in an isolated build container."
+  },
+  {
+    "stack": "astro",
+    "status": "failed",
+    "error": "Repository builds must run as an unprivileged user in an isolated build container."
+  },
+  {
+    "stack": "react-router",
+    "status": "failed",
+    "error": "Repository builds must run as an unprivileged user in an isolated build container."
+  }
+]

@@ -15,7 +15,7 @@ Public fixture commit: 00df7c0. Latest product fix: bb35fc0, pushed and deployed
   reusable artifact launches and browser interaction. See SUPPORT.md and
   stack-coverage.json; historical failures remain recorded.
 - 52 automated checks pass locally and on aswin. The current aswin rerun is recorded in
-  stack-unit-tests-aswin.txt. Source LOC 4149: 2347 product/tooling, 132 browser
+  stack-unit-tests-aswin.txt. Source LOC 4153: 2351 product/tooling, 132 browser
   tools, 802 tests, 868 example sources. code-lines.json defines the count.
 - React/Express/PostgreSQL, Angular SSR/SQLite, Flask/PostgreSQL,
   Quarkus/SQLite and Laravel/SQLite have native Google browser/product evidence. These results do
@@ -49,6 +49,15 @@ Public fixture commit: 00df7c0. Latest product fix: bb35fc0, pushed and deployed
   gates, optional PODS_COUNTER_CHECK=1 for fixture write/read/relaunch durability.
   Verified against the real Laravel Codespace. No product runtime source changes
   in this checkpoint; the prior 52-check product suite remains applicable.
+
+- npm container recipes now keep download caches temporary in the build layer.
+  All eight affected fixtures passed real rebuild/start/restart/browser checks
+  (matrix/browser24). Image probes confirm caches absent and dependencies
+  present. gzip reductions: Angular40.4%, Next35.9%, Nuxt48.3%, SvelteKit28.6%,
+  Astro36.7%, ReactRouter34.6%, Adonis3.3%, Nest2.4%. New native launch timing
+  is not yet proven; existing provider evidence uses previous immutable artifacts.
+  52 local automated checks passed (stack-npm-cache-unit-tests.txt). Batch23
+  retained the initial missing-isolation-marker QA invocation failure.
 
 ## Pending actions
 

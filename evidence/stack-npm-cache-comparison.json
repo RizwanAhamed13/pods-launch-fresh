@@ -1,0 +1,66 @@
+{
+  "scope": "Observed prepared gzip sizes for the same eight fixtures before/after npm cache removal. This is an artifact-size measurement, not provider latency. No runtime dependencies were pruned.",
+  "recipeSha256": "3188c777d4c94d937f436c16e62a0a7bf14ded724ef88f145a12a13eb02ed7d7",
+  "serverEvidence": "stack-matrix-24.json",
+  "browserEvidence": "stack-browser-24.json",
+  "filesystemEvidence": "stack-npm-cache-footprint.json",
+  "reproduce": "Inside the isolated unprivileged QA guest: PODS_ISOLATED_BUILD=1 PODS_MATRIX_BATCH=24 node scripts/test-stack-matrix.mjs angular-ssr adonis nestjs next nuxt sveltekit astro react-router. Compare its image bytes with stack-npm-cache-before.json; use the recorded image IDs and footprint probe for filesystem checks.",
+  "results": [
+    {
+      "stack": "angular-ssr",
+      "beforeBytes": 249525833,
+      "afterBytes": 148705722,
+      "savedBytes": 100820111,
+      "reductionPercent": 40.4
+    },
+    {
+      "stack": "adonis",
+      "beforeBytes": 89244462,
+      "afterBytes": 86305657,
+      "savedBytes": 2938805,
+      "reductionPercent": 3.29
+    },
+    {
+      "stack": "nestjs",
+      "beforeBytes": 87312600,
+      "afterBytes": 85225920,
+      "savedBytes": 2086680,
+      "reductionPercent": 2.39
+    },
+    {
+      "stack": "next",
+      "beforeBytes": 295959364,
+      "afterBytes": 189796208,
+      "savedBytes": 106163156,
+      "reductionPercent": 35.87
+    },
+    {
+      "stack": "nuxt",
+      "beforeBytes": 257080211,
+      "afterBytes": 132783437,
+      "savedBytes": 124296774,
+      "reductionPercent": 48.35
+    },
+    {
+      "stack": "sveltekit",
+      "beforeBytes": 144460493,
+      "afterBytes": 103147292,
+      "savedBytes": 41313201,
+      "reductionPercent": 28.6
+    },
+    {
+      "stack": "astro",
+      "beforeBytes": 197223907,
+      "afterBytes": 124914593,
+      "savedBytes": 72309314,
+      "reductionPercent": 36.66
+    },
+    {
+      "stack": "react-router",
+      "beforeBytes": 153410647,
+      "afterBytes": 100368478,
+      "savedBytes": 53042169,
+      "reductionPercent": 34.58
+    }
+  ]
+}

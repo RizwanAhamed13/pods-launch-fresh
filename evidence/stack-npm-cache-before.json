@@ -1,0 +1,220 @@
+[
+  {
+    "stack": "angular-ssr",
+    "manifest": {
+      "id": "angular-ssr",
+      "name": "angular-ssr",
+      "description": "",
+      "sha256": "407dc6abc65e31d7296221ced689106bf31daa39feb6eb0e70a14e42b0634e60",
+      "bytes": 276,
+      "runtime": "docker-linux-amd64",
+      "applicationType": "container",
+      "images": [
+        {
+          "id": "sha256:ac4960beaa5d390746894bc629cb14141cca2fd0525a7fe5659f2cad0fd12905",
+          "sha256": "6bc300c2e067782c161ddc295fd4563a4924f8ae6344a139995bab9018ebe32b",
+          "bytes": 249525833
+        }
+      ],
+      "detected": true,
+      "builtAt": "2026-10-03T14:08:18.153Z",
+      "verification": {
+        "documentPath": "/",
+        "status": 200,
+        "contentType": "text/html;charset=UTF-8",
+        "title": "Angular SSR counter",
+        "checkedAt": "2026-10-03T14:08:22.288Z"
+      }
+    },
+    "sizesKiB": "307904\t/root/.npm\n308460\t/app/node_modules\n2044\t/app/dist\n"
+  },
+  {
+    "stack": "adonis",
+    "manifest": {
+      "id": "adonis",
+      "name": "adonis",
+      "description": "",
+      "sha256": "3a0d9c200197fcdb82c310d9809d3e985fcf95240b556a433bf72221aad09fc6",
+      "bytes": 275,
+      "runtime": "docker-linux-amd64",
+      "applicationType": "container",
+      "images": [
+        {
+          "id": "sha256:0f42963212d80df8cbdfb665e7c7ea641c6a0aa361ae1e9dae05923e3b674547",
+          "sha256": "a3f224016e8963dcd5eb7d681070f6a30fe294a0e525240dceca3389f1fedda8",
+          "bytes": 89244462
+        }
+      ],
+      "detected": true,
+      "builtAt": "2026-10-03T14:58:58.922Z",
+      "verification": {
+        "documentPath": "/",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8",
+        "title": "AdonisJS + SQLite",
+        "checkedAt": "2026-10-03T14:59:03.182Z"
+      }
+    },
+    "sizesKiB": "4560\t/root/.npm\n18844\t/app/node_modules\n"
+  },
+  {
+    "stack": "nestjs",
+    "manifest": {
+      "id": "nestjs",
+      "name": "nestjs",
+      "description": "",
+      "sha256": "f63fbe3ed26dbc2a17e97999bd2c29247c97673cf5b62ad08867a1a9fa7a8a86",
+      "bytes": 275,
+      "runtime": "docker-linux-amd64",
+      "applicationType": "container",
+      "images": [
+        {
+          "id": "sha256:341e942e66903c31b13c36e821c06595347426fcf0ea97679ad329acd59b776e",
+          "sha256": "9220f3cb8c6392fb510ecafd29c36a659a5f3042af4388549d37f7ac8edeb81c",
+          "bytes": 87312600
+        }
+      ],
+      "detected": true,
+      "builtAt": "2026-10-03T13:22:09.204Z",
+      "verification": {
+        "documentPath": "/",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8",
+        "title": "NestJS counter",
+        "checkedAt": "2026-10-03T13:22:13.509Z"
+      }
+    },
+    "sizesKiB": "2608\t/root/.npm\n21312\t/app/node_modules\n"
+  },
+  {
+    "stack": "nuxt",
+    "manifest": {
+      "id": "nuxt",
+      "name": "nuxt",
+      "description": "",
+      "sha256": "fdd06a5e83c78ea5e0bf10ca9aca358fd0d97a20f5ad3f352b7cfb807e123c01",
+      "bytes": 275,
+      "runtime": "docker-linux-amd64",
+      "applicationType": "container",
+      "images": [
+        {
+          "id": "sha256:69a151c4212c64ea5d65d8915c4f8c91e43cec585cd5c62f437857642ccd87ae",
+          "sha256": "4a60ebf411576c6c87dd17bf40d19ea19c467d21929ab86a348408c4b20b2377",
+          "bytes": 257080211
+        }
+      ],
+      "detected": true,
+      "builtAt": "2026-10-03T15:02:55.480Z",
+      "verification": {
+        "documentPath": "/",
+        "status": 200,
+        "contentType": "text/html;charset=utf-8",
+        "title": "nuxt",
+        "checkedAt": "2026-10-03T15:02:58.695Z"
+      }
+    },
+    "sizesKiB": "608792\t/root/.npm\n202420\t/app/node_modules\n"
+  },
+  {
+    "stack": "sveltekit",
+    "manifest": {
+      "id": "sveltekit",
+      "name": "sveltekit",
+      "description": "",
+      "sha256": "c05fa06d488c6628e53d1de6a99809b14bb7b1688942a764c6e4185bbd36344e",
+      "bytes": 277,
+      "runtime": "docker-linux-amd64",
+      "applicationType": "container",
+      "images": [
+        {
+          "id": "sha256:7f215328cfbe4b12cebd1958ae8636a4bb99e4c3d56229383afbc554aad9e2c3",
+          "sha256": "aaf98cfe5c7fae7450fee2a9f4392898b0411675218ea3e4642bf067d86f872d",
+          "bytes": 144460493
+        }
+      ],
+      "detected": true,
+      "builtAt": "2026-10-03T13:09:18.879Z",
+      "verification": {
+        "documentPath": "/",
+        "status": 200,
+        "contentType": "text/html",
+        "title": "SvelteKit counter",
+        "checkedAt": "2026-10-03T13:09:21.596Z"
+      }
+    },
+    "sizesKiB": "167904\t/root/.npm\n71656\t/app/node_modules\n"
+  },
+  {
+    "stack": "astro",
+    "manifest": {
+      "id": "astro",
+      "name": "astro",
+      "description": "",
+      "sha256": "a4aa88f30e0585df6b8bcedb7ed4cbfc91fb21e1d799206b1ae0091dfa2e7de1",
+      "bytes": 276,
+      "runtime": "docker-linux-amd64",
+      "applicationType": "container",
+      "images": [
+        {
+          "id": "sha256:f870dd40a4298dc2729635c59fea2c9e8e756f4803a68c5325305b3c51ff6249",
+          "sha256": "4277fe1576134c73a0e5557ccd9dad1f9aed4a0fc4fab551c72538bda4078a7b",
+          "bytes": 197223907
+        }
+      ],
+      "detected": true,
+      "builtAt": "2026-10-03T13:15:19.036Z",
+      "verification": {
+        "documentPath": "/",
+        "status": 200,
+        "contentType": "text/html",
+        "title": "Astro counter",
+        "checkedAt": "2026-10-03T13:15:22.199Z"
+      }
+    },
+    "sizesKiB": "261172\t/root/.npm\n155472\t/app/node_modules\n444\t/app/dist\n"
+  },
+  {
+    "stack": "react-router",
+    "manifest": {
+      "id": "react-router",
+      "name": "react-router",
+      "description": "",
+      "sha256": "0baeb128d6b86baa7b0415ceb9805b62e34ddd94be41e39e81c2dadef5658515",
+      "bytes": 276,
+      "runtime": "docker-linux-amd64",
+      "applicationType": "container",
+      "images": [
+        {
+          "id": "sha256:42f14a904c78030823e4dd70ed9bff4facfe5730448bbbed2626f0bfdc073664",
+          "sha256": "2617fa76c7332c5dfca0c20bc029b764c840d2bef79aaf712b47ae0b65a4f0d6",
+          "bytes": 153410647
+        }
+      ],
+      "detected": true,
+      "builtAt": "2026-10-03T13:20:05.851Z",
+      "verification": {
+        "documentPath": "/",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8",
+        "title": "React Router counter",
+        "checkedAt": "2026-10-03T13:20:08.805Z"
+      }
+    },
+    "sizesKiB": "252016\t/root/.npm\n77464\t/app/node_modules\n"
+  },
+  {
+    "stack": "next",
+    "manifest": {
+      "id": "next",
+      "sha256": "1823204251f783c89922f4e3ef40e6ca996fdaed1cf630cf5a3fc6c311581674",
+      "images": [
+        {
+          "id": "sha256:e5faeaf2446dc0c4a3e92e658f97067a0a3f81c0a6efa512895c141b6ac89860",
+          "sha256": "5e1917f6fb31b65e9efc1123554feb20cb0744cee3de852a078df9cd5607f682",
+          "bytes": 295959364
+        }
+      ]
+    },
+    "scope": "Retained prepared manifest measured before the recipe change; no cache directory measurement for this fixture."
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "stack": "angular-ssr",
+    "status": "passed",
+    "artifactRestartSavedValue": 3,
+    "initialServerRenderedValue": 0,
+    "afterClick": 4,
+    "afterReload": 4,
+    "scope": "Rebuilt artifact using the npm cache change; native browser through authenticated SSH tunnel to isolated aswin QA, not a native provider launch.",
+    "artifactRestartEvidence": "stack-matrix-24.json"
+  },
+  {
+    "stack": "adonis",
+    "status": "passed",
+    "before": 4,
+    "afterClick": 5,
+    "afterReload": 5,
+    "scope": "Rebuilt artifact using the npm cache change; native browser through authenticated SSH tunnel to isolated aswin QA, not a native provider launch.",
+    "artifactRestartEvidence": "stack-matrix-24.json"
+  },
+  {
+    "stack": "nestjs",
+    "status": "passed",
+    "before": 2,
+    "afterClick": 3,
+    "afterReload": 3,
+    "scope": "Rebuilt artifact using the npm cache change; native browser through authenticated SSH tunnel to isolated aswin QA, not a native provider launch.",
+    "artifactRestartEvidence": "stack-matrix-24.json"
+  },
+  {
+    "stack": "next",
+    "status": "passed",
+    "before": 0,
+    "afterClick": 1,
+    "afterReload": 0,
+    "note": "Hydrated client counter intentionally resets on reload; no database.",
+    "scope": "Rebuilt artifact using the npm cache change; native browser through authenticated SSH tunnel to isolated aswin QA, not a native provider launch.",
+    "artifactRestartEvidence": "stack-matrix-24.json"
+  },
+  {
+    "stack": "nuxt",
+    "status": "passed",
+    "before": 0,
+    "afterClick": 1,
+    "afterReload": 0,
+    "note": "Hydrated client counter intentionally resets on reload; no database.",
+    "scope": "Rebuilt artifact using the npm cache change; native browser through authenticated SSH tunnel to isolated aswin QA, not a native provider launch.",
+    "artifactRestartEvidence": "stack-matrix-24.json"
+  },
+  {
+    "stack": "sveltekit",
+    "status": "passed",
+    "before": 1,
+    "afterClick": 2,
+    "afterReload": 2,
+    "note": "Client localStorage persistence; not backend database durability.",
+    "scope": "Rebuilt artifact using the npm cache change; native browser through authenticated SSH tunnel to isolated aswin QA, not a native provider launch.",
+    "artifactRestartEvidence": "stack-matrix-24.json"
+  },
+  {
+    "stack": "astro",
+    "status": "passed",
+    "before": 1,
+    "afterClick": 2,
+    "afterReload": 2,
+    "note": "SSR product and client localStorage persistence; not backend database durability.",
+    "scope": "Rebuilt artifact using the npm cache change; native browser through authenticated SSH tunnel to isolated aswin QA, not a native provider launch.",
+    "artifactRestartEvidence": "stack-matrix-24.json"
+  },
+  {
+    "stack": "react-router",
+    "status": "passed",
+    "before": 2,
+    "afterClick": 3,
+    "afterReload": 3,
+    "note": "Client localStorage persistence; not backend database durability.",
+    "scope": "Rebuilt artifact using the npm cache change; native browser through authenticated SSH tunnel to isolated aswin QA, not a native provider launch.",
+    "artifactRestartEvidence": "stack-matrix-24.json"
+  }
+]

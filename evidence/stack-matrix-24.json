@@ -1,0 +1,270 @@
+[
+  {
+    "stack": "angular-ssr",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 155011,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 12,
+      "imageCacheHits": 1,
+      "imagesMs": 45,
+      "runtimeReadyMs": 3112
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 46,
+      "runtimeReadyMs": 2740
+    },
+    "persistence": {
+      "before": 2,
+      "saved": 3,
+      "afterRestart": 3
+    },
+    "websocket": null,
+    "htmlBytes": 1493,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:0339e59a440add184c02fac58060d0885eb733aa734f9ddd426ece01d412154d",
+        "sha256": "3e57b35bfd43fd9d411a737c3da0ca88525eafe9f39a74bfa5b40d12214677dc",
+        "bytes": 148705722
+      }
+    ],
+    "sha256": "7d9940fa032abb2aa7128ffef7bf4007b187c8bc55ef1ad39b288fb9bc3cf2c2"
+  },
+  {
+    "stack": "adonis",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 33811,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 8,
+      "imageCacheHits": 1,
+      "imagesMs": 43,
+      "runtimeReadyMs": 3258
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 4,
+      "imageCacheHits": 1,
+      "imagesMs": 42,
+      "runtimeReadyMs": 3117
+    },
+    "persistence": {
+      "before": 3,
+      "saved": 4,
+      "afterRestart": 4
+    },
+    "websocket": null,
+    "htmlBytes": 524,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:66a0c4ca9b94eb92751962f7ac2b1562f21ca5f361b3d2401a4eafff5d616aa2",
+        "sha256": "e049c733510c1c5b8e6cc2d1b4e09b96668699c0cad5bd6e7ffa1616c8ce9b24",
+        "bytes": 86305657
+      }
+    ],
+    "sha256": "fad66754ed2bfcf41747cd8029bbffd83ea37a0ef6d0bd12d3e33443db87b55b"
+  },
+  {
+    "stack": "nestjs",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 34043,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 8,
+      "imageCacheHits": 1,
+      "imagesMs": 43,
+      "runtimeReadyMs": 3166
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 42,
+      "runtimeReadyMs": 3118
+    },
+    "persistence": {
+      "before": 1,
+      "saved": 2,
+      "afterRestart": 2
+    },
+    "websocket": null,
+    "htmlBytes": 416,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:89fd7d580e819690d83f072d5e582894bfb8ceda9a926b3dfbebf2b9ac2153e9",
+        "sha256": "ba261e7afec296e3f90e80a3b34b53e6bc0ba0df6c7d0ebb96cca9372cbe3831",
+        "bytes": 85225920
+      }
+    ],
+    "sha256": "7b9a90cc9d5ee55acbde87a5f68b481dc6d21b61ea4d44a42262a8f9c2e44146"
+  },
+  {
+    "stack": "next",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 104746,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 10,
+      "imageCacheHits": 1,
+      "imagesMs": 45,
+      "runtimeReadyMs": 3095
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 44,
+      "runtimeReadyMs": 3026
+    },
+    "persistence": null,
+    "websocket": null,
+    "htmlBytes": 4818,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:0d5d434fc0e864809d856b37e7a0f135fb3a6d371922a0b385564596718c0e96",
+        "sha256": "a4a8f52d19de6724c5abcbf58172a5e2c48810aac9098ec9a877c66571ea985b",
+        "bytes": 189796208
+      }
+    ],
+    "sha256": "133e3d8d687ad51a195390d7271e228acff7888a89fffec278a5a4c5496a7bc1"
+  },
+  {
+    "stack": "nuxt",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 177640,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 10,
+      "imageCacheHits": 1,
+      "imagesMs": 44,
+      "runtimeReadyMs": 2385
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 47,
+      "runtimeReadyMs": 2411
+    },
+    "persistence": null,
+    "websocket": null,
+    "htmlBytes": 1236,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:d4fb7793d3308ebb8602bd07a21d92449cc283c84b73eeefb68a86246219d999",
+        "sha256": "67650179e0232fde539788a03a5ff52046ca01bbb5b844d256b670628e5d7bc8",
+        "bytes": 132783437
+      }
+    ],
+    "sha256": "a363685e062e6e34e47c18f8c89de0f49417c25bd410824d73467081a68829fb"
+  },
+  {
+    "stack": "sveltekit",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 53328,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 9,
+      "imageCacheHits": 1,
+      "imagesMs": 44,
+      "runtimeReadyMs": 2941
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 8,
+      "imageCacheHits": 1,
+      "imagesMs": 98,
+      "runtimeReadyMs": 2689
+    },
+    "persistence": null,
+    "websocket": null,
+    "htmlBytes": 1619,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:b5bfc0f5cf20e058f90ceb901c9d762071c42c27becdb1dda719ef6e5d86e55e",
+        "sha256": "5abafcefe456acaa3951665d790f36cc19a94b150e10cb4ced3525b6fd8e21cc",
+        "bytes": 103147292
+      }
+    ],
+    "sha256": "317df0e2b4ebf1c74ddee69e8cd7987afd13f7ef31558ccd0227fc3649316eb2"
+  },
+  {
+    "stack": "astro",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 102706,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 8,
+      "imageCacheHits": 1,
+      "imagesMs": 48,
+      "runtimeReadyMs": 2912
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 45,
+      "runtimeReadyMs": 2788
+    },
+    "persistence": null,
+    "websocket": null,
+    "htmlBytes": 473,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:ba00867bf7546d6a81d17200a050b4d7d65b10b2ce8e1a5a0287f4d858e32f43",
+        "sha256": "af5abb554329022cda5e59d3670c66e768e225169d9daeebdd60abd3f81a8dc8",
+        "bytes": 124914593
+      }
+    ],
+    "sha256": "58b8f6175336d5eccff13617a72af5cd061e88c2bb846825b4e6de3bec31589d"
+  },
+  {
+    "stack": "react-router",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and restart; browser/provider interactions recorded separately",
+    "buildMs": 61073,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 8,
+      "imageCacheHits": 1,
+      "imagesMs": 53,
+      "runtimeReadyMs": 2808
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 7,
+      "imageCacheHits": 1,
+      "imagesMs": 45,
+      "runtimeReadyMs": 2726
+    },
+    "persistence": null,
+    "websocket": null,
+    "htmlBytes": 2061,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:517eca007252e6abb49dd55cfb0625991bccff15ade1785e8c6a7adaca2ae754",
+        "sha256": "b9a29736936b28e1cc6af628591f27a026c2fc9c493672e6908548b862f9b8d5",
+        "bytes": 100368478
+      }
+    ],
+    "sha256": "fc3321fce18b8e95853e1bbfc0b691a71410f4aacb77543ccb608d2073129d4e"
+  }
+]

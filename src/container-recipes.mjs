@@ -21,7 +21,11 @@ export async function containerRecipe(root, recipe) {
       const manager = String(pkg.packageManager || 'npm').split('@')[0];
       if (!['npm','pnpm','yarn','bun'].includes(manager)) throw new Error('Unknown Node package manager');
       const install = manager==='npm' ? (await has('package-lock.json') ? 'npm ci' : 'npm install') : manager==='bun' ? 'bun install --frozen-lockfile' : `corepack enable && ${manager} install --frozen-lockfile`;
-      return `FROM ${manager==='bun'?'oven/bun:1':'node:24-bookworm-slim'}\n${common}RUN ${install}\n${pkg.scripts.build?`RUN ${manager} run build\n`:''}ENV NODE_ENV=production\n${command([manager,'run',start])}`;
+      // Remove npm's download cache in the layer that creates it; retain installed dependencies.
+      const preparation = manager==='npm'
+        ? `RUN export npm_config_cache=/tmp/pods-npm-cache && ${install}${scripts.build?' && npm run build':''} && rm -rf /tmp/pods-npm-cache\n`
+        : `RUN ${install}\n${scripts.build?`RUN ${manager} run build\n`:''}`;
+      return `FROM ${manager==='bun'?'oven/bun:1':'node:24-bookworm-slim'}\n${common}${preparation}ENV NODE_ENV=production\n${command([manager,'run',start])}`;
     }
     case 'python': {
       const requirements = await has('requirements.txt') ? await text('requirements.txt') : await text('pyproject.toml');

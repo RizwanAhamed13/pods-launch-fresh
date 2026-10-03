@@ -189,6 +189,33 @@ is **not configured** (`oauthReady: false`); its tested API path uses an explici
 preview token connection. Native GitHub sign-in and configured PODS GitHub OAuth
 are both required before claiming the complete Codespaces one-click flow.
 
+## Smaller prepared npm containers
+
+Generated npm containers now install and build with a temporary download cache,
+then remove that cache in the same Docker layer. Installed dependencies and
+build output are retained. Existing Dockerfiles and other package managers are
+unchanged. Eight affected real fixtures were rebuilt, launched, restarted and
+exercised in the browser after this change; all passed.
+
+| Fixture | Previous gzip MiB | New gzip MiB | Reduction |
+| --- | ---: | ---: | ---: |
+| angular-ssr | 238.0 | 141.8 | 40.4% |
+| adonis | 85.1 | 82.3 | 3.3% |
+| nestjs | 83.3 | 81.3 | 2.4% |
+| next | 282.2 | 181.0 | 35.9% |
+| nuxt | 245.2 | 126.6 | 48.4% |
+| sveltekit | 137.8 | 98.4 | 28.6% |
+| astro | 188.1 | 119.1 | 36.7% |
+| react-router | 146.3 | 95.7 | 34.6% |
+
+Filesystem probes inside all eight new images confirm the temporary npm cache
+and default download cache are absent, with installed dependencies still present.
+The 52 automated checks also pass. These size reductions do not yet establish
+new native-provider launch timings; the provider timings above refer to their
+original immutable artifacts. See `evidence/stack-npm-cache-comparison.json`,
+`stack-npm-cache-footprint.json`, `stack-matrix-24.json` and `stack-browser-24.json`.
+The rejected QA invocation is retained in `stack-matrix-23.json`.
+
 ## Database durability
 
 Container data lives beneath Cloud Shell's persistent home or Codespaces'
