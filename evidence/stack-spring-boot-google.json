@@ -1,0 +1,82 @@
+{
+  "recordedAt": "2026-10-03T20:50:08.865011+00:00",
+  "scope": "Real Cloud Shell browser Spring Boot product, SQLite write/read and full application restart after developer URL submission; both launches stopped.",
+  "results": [
+    {
+      "id": "POU5zgOZ2VU8F61f6ekIpItGOvoPIBPa",
+      "appId": "repo-8a9b80c77f2897d8664a184b-9eee994ba7f7-ec5c6a995625",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791060470628,
+      "providerReadyAt": 1791060473312,
+      "readyAt": 1791060517182,
+      "updatedAt": 1791060538977,
+      "environment": "default",
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 545,
+        "imagesMs": 30245,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 37,
+        "imageDownloadMs": 26566,
+        "imageLoadMs": 3612,
+        "runtimeReadyMs": 41817,
+        "cacheHit": false
+      },
+      "totalMs": 46554,
+      "deliveryMs": 43870
+    },
+    {
+      "id": "6uoAwDznG0wpdJ7vKKnNqzLpmm4DuOI9",
+      "appId": "repo-8a9b80c77f2897d8664a184b-9eee994ba7f7-ec5c6a995625",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791060552066,
+      "providerReadyAt": 1791060555117,
+      "readyAt": 1791060567330,
+      "updatedAt": 1791060592136,
+      "environment": "default",
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 182,
+        "imagesMs": 60,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 59,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 10970,
+        "cacheHit": true
+      },
+      "totalMs": 15264,
+      "deliveryMs": 12213
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "image-absent",
+      "visibleObservedMs": 50010,
+      "successfulClickObservedMs": 50332,
+      "before": 0,
+      "after": 1,
+      "afterReload": 1,
+      "timingScope": "Observed across a bounded wait and tool boundary; visibility and interaction are upper bounds."
+    },
+    {
+      "scenario": "cached-relaunch",
+      "visibleMs": 16055,
+      "savedDataVisibleMs": 16704,
+      "successfulClickMs": 17020,
+      "before": 1,
+      "after": 2,
+      "afterReload": 2,
+      "timingScope": "Continuous observation from launch click through visibility, restored database read and successful write."
+    }
+  ],
+  "browserErrorOrWarningLogsAtFinalCheck": [],
+  "persistenceScope": "SQLite-backed counter read before write, retained through full application stop and relaunch, read again before second write. No provider VM replacement claim.",
+  "passed": true
+}

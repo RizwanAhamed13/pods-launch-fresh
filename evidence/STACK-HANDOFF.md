@@ -15,22 +15,41 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - Native Google browser fixtures: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
-  FastAPI JSON API/SQLite, Next.js, SvelteKit, Flask/MySQL: sixteen.
-- Same sixteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
+  FastAPI JSON API/SQLite, Next.js, SvelteKit, Flask/MySQL, Spring Boot/SQLite: seventeen.
+- Same seventeen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Current gate: Spring Boot SQLite correction and native acceptance
+## Latest completed gate: Spring Boot SQLite and native acceptance
 
-- Public fixtures9eee994 replaces the Spring Boot plain-file counter with real
-  SQLite JDBC3.53.4.0. Original matrix02/matrix15/browser02 are file persistence
-  evidence only; SUPPORT and coverage explicitly correct that scope.
-- Matrix30 passed: build94.027s, runtime9.930s/repeat9.640s, record0→1/restart1.
-  Actual browser1→2/reload2; direct SQLite format/integrity/value inspection passed.
-  Evidence stack-matrix-30.json and stack-browser-30.json. QA app stopped; server
-  PID292107 remains. QA tab25 may close. No product control runtime change.
-- Read-only quota observer16268 ended0 at20:40:46UTC with account2/global2/active0.
-  Normal developer submission and native provider acceptance are next; no native
-  Spring Boot claim yet. Isolated build exec93455 ended0. Public push45606 ended0.
+- Core074fecd and public9eee994 pushed/synced. Spring Boot now uses real SQLite
+  JDBC3.53.4.0; original matrix02/matrix15/browser02 only proved file persistence.
+  Matrix30: build94.027s, runtime9.930s/repeat9.640s, record0→1/restart1.
+  Browser1→2/reload2 and direct SQLite format/integrity/value inspection passed.
+  Evidence stack-matrix-30.json / stack-browser-30.json. Build93455 ended0.
+- Normal quota observer16268 ended0 at20:40:46UTC (account2/global2/active0).
+  Developer form submitted exactly once; buildShYiVdNQT5uXf91B0wTFC62SZfAAXTK_
+  prepared public9eee994 in196.106s. URLobserver15516 ended0. No QA artifact import.
+  App repo-8a9b80c77f2897d8664a184b-9eee994ba7f7-ec5c6a995625;
+  stable dataKey repo-8a9b80c77f2897d8664a184b, image146983923bytes.
+- Cloud Shell image absent: health46.554s; product observed50.010s/write50.332s
+  (upper bounds including tool boundary). Counter0→1/reload1. Full app stop.
+  Cached continuous observation: health15.264s, product16.055s, saved1 visible
+  16.704s, write1→2 at17.020s; reload2. Error/warning logs empty. Both stopped.
+- Codespaces69rw5vx4xp46c5qw5: first health77.906s (provider12.273s), cached13.212s.
+  Authenticated HTTP counter0→1/read1, stop/relaunch, read1 before write2/read2.
+  Harness71915 ended0; both stopped. Native Codespaces browser remains pending.
+- Downloads Google26.566s/Codespaces26.559s did not overlap. First-image launches
+  exceed20s; cached samples are not guarantees. No provider VM replacement claim.
+- Evidence stack-spring-boot-{url,google,codespaces}.json. Native17/55,38remaining.
+  Last readonly production audit: builds0/launches0. Saved native SQLite2/2.
+  No live test observers. QA Docker empty; browser QA serverPID292107 still up,
+  its app stop handler consumed. QA tab25 closed. Control server remains
+  b02fea1/PID806978; no runtime restart needed. Next fixture may proceed when
+  normal account quota permits (next older Nuxt slot expires about20:58UTC).
+- Browser tabs to retain: stackQa6 tab13 developer Spring result, accountWorker
+  tab12 stopped Spring launcher, nativeGithubKeep tab10 pending GitHub2FA, and
+  cloudLifecycle tab14 pending CloudShellRestart approval. Do not repeat pending
+  authorization actions. Goal remains active, no blocked condition this turn.
 
 ## Previous completed gate: MySQL native database acceptance
 

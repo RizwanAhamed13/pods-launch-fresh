@@ -124,7 +124,7 @@ write completed at 26.383s; the cached retained-value read completed at 14.489s.
 SQLite writes survived browser reload and full application restart. Codespaces
 HTTP/API/documentation checks passed at 156.195s with a new environment and
 9.734s cached, retaining SQLite across restart. Its native browser test remains
-pending. All four previews stopped. Source is 4723 physical lines under the scope
+pending. All four previews stopped. At that checkpoint, source was 4723 physical lines under the scope
 recorded in `evidence/code-lines.json`; this includes tests and example apps.
 
 Next.js adds the fourteenth fixture with native-provider evidence. Real URL
@@ -151,5 +151,17 @@ URL preparation took191.104s. Cloud Shell restored its saved database record by
 write/read/restart checks passed, with its cached health at10.393s. Its actual
 runtime exposed only product port8080 and retained the same durable MySQL volume.
 First-image health took103.340s on Google and146.425s on Codespaces, both over20s.
-All four test launches stopped. Native Codespaces browser interaction and39 remaining
-native fixture checks are still pending. Exact timing scope is in SUPPORT.md.
+All four test launches stopped. The remaining native checks and Codespaces browser
+authorization are tracked in SUPPORT.md.
+
+
+Spring Boot + SQLite is the seventeenth fixture with native provider evidence.
+Its previous counter used a plain file; the corrected fixture now uses a verified
+SQLite database. Normal repository preparation took 196.106s. Cloud Shell cached
+product visibility took 16.055s, retained data was visible by 16.704s, and a new
+write succeeded by 17.020s. Codespaces HTTP write/read/restart passed at 13.212s
+cached. First-image health took 46.554s/77.906s on Google/Codespaces, exceeding 20s.
+All four previews stopped with saved data retained. Native browser testing for
+Codespaces and 38 remaining native fixtures are still pending. Current source is
+4972 physical lines, including tests and examples; counting scope is recorded in
+`evidence/code-lines.json`.

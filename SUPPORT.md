@@ -709,6 +709,37 @@ loading took 22.859s on Google and 43.681s on Codespaces. Both first launches mi
 check does not claim persistence through provider VM replacement/rebuild.
 Evidence: `evidence/stack-mysql-{url,google,codespaces}.json`.
 
-**Current native coverage: 16 representative fixtures** have Google browser and
-Codespaces HTTP/protocol evidence; 39 of the 55 isolated fixtures remain to be
+
+
+## Spring Boot SQLite correction and native acceptance
+
+The previous Spring Boot representative used a plain file. The fixture now uses
+SQLite JDBC 3.53.4.0 and creates its database under the persistent application data
+directory. The old results remain historical file-persistence evidence. Matrix30
+and browser30 verify the rebuilt artifact, database signature/integrity, a saved
+record across restart, and browser write/reload.
+
+The normal developer form prepared public revision `9eee994` in **196.106 seconds**
+and saved a 146,983,923-byte image (140.2 MiB). The Google first-image launch took
+46.554s to health. Product visibility and a successful write were observed by
+50.010s/50.332s across a tool boundary; these are upper bounds. The cached launch
+was measured continuously: health 15.264s, product visible 16.055s, retained SQLite
+record visible 16.704s and a successful new write 17.020s. Browser writes 0→1/reload1,
+full application stop/relaunch, read1 before write2/reload2 passed. Both previews
+stopped; final browser error/warning logs were empty.
+
+The first image download took 26.566s and Docker loading 3.612s. Its first launch
+missed 20s; the cached sample passed, without establishing a universal guarantee.
+This tests application restart persistence, not replacement of the provider VM.
+Codespaces authenticated HTTP checks independently passed: initial0 → write1 →
+read1, full stop/relaunch → read1 before write2 → read2. First-image health took
+77.906s, including 12.273s provider startup; cached health took 13.212s. Downloads
+on Google/Codespaces took 26.566s/26.559s and did not overlap. Both Codespaces
+previews stopped; native Codespaces browser interaction remains pending.
+
+Evidence: `evidence/stack-spring-boot-{url,google,codespaces}.json` and
+`evidence/stack-{matrix,browser}-30.json`.
+
+**Current native coverage: 17 representative fixtures** have Google browser and
+Codespaces HTTP/protocol evidence; 38 of the 55 isolated fixtures remain to be
 checked natively. All Codespaces browser claims remain pending authorization.

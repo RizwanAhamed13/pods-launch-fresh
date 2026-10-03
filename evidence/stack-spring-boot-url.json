@@ -1,0 +1,61 @@
+{
+  "recordedAt": "2026-10-03T20:47:20.289390+00:00",
+  "scope": "Actual developer form after normal same-account quota availability; production isolated preparation, no imported QA artifact.",
+  "coreRevision": "074fecd",
+  "quotaBefore": {
+    "accountRecent": 2,
+    "globalRecent": 2,
+    "activeBuilds": 0,
+    "observedAt": "2026-10-03T20:40:46.634050+00:00"
+  },
+  "attempts": [
+    {
+      "id": "ShYiVdNQT5uXf91B0wTFC62SZfAAXTK_",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/spring-boot",
+        "key": "8a9b80c77f2897d8664a184b"
+      },
+      "status": "ready",
+      "createdAt": 1791060224834,
+      "startedAt": 1791060224845,
+      "finishedAt": 1791060420951,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-8a9b80c77f2897d8664a184b-9eee994ba7f7-ec5c6a995625",
+      "app": {
+        "id": "repo-8a9b80c77f2897d8664a184b-9eee994ba7f7-ec5c6a995625",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "ec5c6a995625c7cac25dd370e46be57f85f72c2788130d6f80cb547c269dd0c6",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-8a9b80c77f2897d8664a184b",
+        "images": [
+          {
+            "id": "sha256:1584865f5d8355ba9e8a726f8151931a0a9c6ff67c7dfff8e4ef013d6cac2983",
+            "sha256": "d51fdba270dc9301b1f61c607ed7ad61508b7df262e4f37ac2f03d13d7a4dfff",
+            "bytes": 146983923
+          }
+        ],
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/spring-boot",
+          "revision": "9eee994ba7f70d1793bc449573ddb36e01003818"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Spring Boot counter"
+        },
+        "preparedAt": "2026-10-03T20:47:00.430Z"
+      }
+    }
+  ],
+  "buildMs": 196106
+}
