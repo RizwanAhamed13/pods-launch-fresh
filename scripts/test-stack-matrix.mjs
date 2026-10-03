@@ -28,8 +28,9 @@ for(const name of names){
     const page=await fetch('http://127.0.0.1:8080/').then(r=>r.text());
     let persistence=null;
     const before=await fetch('http://127.0.0.1:8080/api/count');
-    if(before.headers.get('content-type')?.includes('application/json')){
+    if(before.ok && before.headers.get('content-type')?.includes('application/json')){
       const count=(await before.json()).count;
+      if(!Number.isInteger(count))throw new Error('Counter endpoint returned an invalid count');
       const saved=await fetch('http://127.0.0.1:8080/api/count',{method:'POST'}).then(r=>r.json());
       if(saved.count!==count+1)throw new Error('Counter write/read failed');
       await running.stop();running=await launch();

@@ -1,0 +1,176 @@
+✔ container output must match repository, integrity and HTML verification; published metadata is reconstructed (4.818898ms)
+✔ build queue serializes work, deduplicates retries, hides ownership and publishes immutable launch versions (568.238496ms)
+✔ account limits survive new browser sessions; queue limits reject overload and restart marks unfinished jobs failed (412.462471ms)
+✔ invalid artifacts do not publish; cleanup failure disables further jobs (258.372809ms)
+✔ LXD file import rejects symlinks, declared oversized files and streaming overflow (33.162098ms)
+✔ build failure retains the final diagnostic after verbose Docker progress (245.642605ms)
+✔ worker failure always deletes its own container; cleanup errors fail closed (6.11558ms)
+✖ submission API requires account authorization and CSRF, protects jobs, and launches the selected immutable version (730.901649ms)
+✔ base64url preparation identities ending in separators produce valid Docker repository names (1.857156ms)
+✔ image preparation retries only transient transport failures once within its original deadline (2.116129ms)
+✔ prepared Node servers select existing production scripts instead of Angular or Nest development servers (24.530252ms)
+✔ stale resumed container task retries once without rebuilding; other application failures do not retry (1.034599ms)
+✔ container artifact is integrity checked, bounded and rejects host access or missing dependencies (3.988316ms)
+✔ runtime exposes only the product, never rebuilds/pulls, and keeps named database volumes (1.13329ms)
+✔ Angular SSR receives the exact provider preview host and local health hosts at runtime (1.654888ms)
+✔ Compose detects the web service, database dependency, explicit defaults and portable storage (2.422211ms)
+✔ publication verifies every separate image and binds data identity to the repository folder (3.064507ms)
+✔ Angular browser output, SSR and non-Node runtimes use the correct preparation paths (42.355648ms)
+✖ server build is reusable, deterministic and bundles TypeScript (12.362056ms)
+✔ artifact corruption, path escapes, collisions and wrong formats fail closed (6.67761ms)
+✔ stored provider credentials are authenticated ciphertext (185.418765ms)
+✖ real prepared app starts, saves data on compute, stops, and reuses artifact cache (2.126399ms)
+✔ unhealthy app never reports ready; inherited provider tokens do not reach app (187.840266ms)
+✖ API enforces browser ownership, CSRF, capability auth and idempotent launches (1.259854ms)
+✖ unwritable home falls back to session storage and reports its durability (1.690903ms)
+✔ detects and bundles a TypeScript server and its assets without pods.json (66.149444ms)
+✔ detects a generated Node entrypoint before build, but packaging requires its output (14.191388ms)
+✔ detects Vite frontend output and rejects missing build output (26.248516ms)
+✔ plain static artifact serves its actual page, assets and client routes on compute (255.506856ms)
+✔ detection reports ambiguity and never executes a shell start command (10.41842ms)
+✔ entrypoints and asset directories cannot escape through paths or symlinks (17.822607ms)
+node:internal/modules/esm/resolve:272
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/opt/pods/public/flow.js' imported from /opt/pods/test/flow.test.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:272:11)
+    at moduleResolve (node:internal/modules/esm/resolve:879:10)
+    at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+    at #resolve (node:internal/modules/esm/loader:687:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:276:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:381:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///opt/pods/public/flow.js'
+}
+
+Node.js v24.21.0
+✖ test/flow.test.mjs (348.916567ms)
+✔ Codespaces reuses only the configured PODS runtime and delivers over SSH stdin (2.635073ms)
+✔ a running PODS Codespace is preferred over an older provisioning or stopped environment (0.537396ms)
+✔ retrying a pending PODS Codespace waits for it instead of creating another environment (18.48157ms)
+✔ Codespaces provisioning failure propagates without trying to execute a runner (1.884692ms)
+✔ a missing server GitHub CLI is diagnosed without retrying user compute (0.842294ms)
+✔ bootstrap quotes shell values and pins the runner before execution (0.229293ms)
+✔ OAuth uses PKCE and session-bound single-use state; callback never exposes token (629.563883ms)
+✖ expired or swept OAuth state returns to the original product and provider without exchanging the code (330.289277ms)
+✔ repository identity is stable and accepts an optional application folder (2.113827ms)
+✔ repository input rejects local addresses, credentials, URL tricks and escaping folders (1.243236ms)
+✔ repository build worker refuses execution outside its isolated environment (0.758908ms)
+✔ fresh containers wait for DNS and report a bounded failure if networking never starts (0.997445ms)
+✔ provider storage uses persistent workspaces and migrates only the selected application once (28.328337ms)
+✔ managed storage rejects traversal and symlink destinations (5.478495ms)
+✔ database files survive loss of Docker volume metadata and legacy data is retained (14.319464ms)
+✔ wrong volume identity and interrupted migration fail without creating an empty replacement (9.14601ms)
+ℹ tests 48
+ℹ suites 0
+ℹ pass 41
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6447.99011
+
+✖ failing tests:
+
+test at test/builds.test.mjs:167:1
+✖ submission API requires account authorization and CSRF, protects jobs, and launches the selected immutable version (730.901649ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  500 !== 200
+
+      at TestContext.<anonymous> (file:///opt/pods/test/builds.test.mjs:191:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 500,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/core.test.mjs:17:1
+✖ server build is reusable, deterministic and bundles TypeScript (12.362056ms)
+  Error: ENOENT: no such file or directory, realpath '/opt/pods/examples/notes'
+      at async realpath (node:internal/fs/promises:1889:10)
+      at async prepare (file:///opt/pods/scripts/prepare.mjs:15:16)
+      at async TestContext.<anonymous> (file:///opt/pods/test/core.test.mjs:18:38)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'realpath',
+    path: '/opt/pods/examples/notes'
+  }
+
+test at test/core.test.mjs:29:1
+✖ real prepared app starts, saves data on compute, stops, and reuses artifact cache (2.126399ms)
+  Error: ENOENT: no such file or directory, realpath '/opt/pods/examples/notes'
+      at async realpath (node:internal/fs/promises:1889:10)
+      at async prepare (file:///opt/pods/scripts/prepare.mjs:15:16)
+      at async TestContext.<anonymous> (file:///opt/pods/test/core.test.mjs:30:35)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'realpath',
+    path: '/opt/pods/examples/notes'
+  }
+
+test at test/core.test.mjs:48:1
+✖ API enforces browser ownership, CSRF, capability auth and idempotent launches (1.259854ms)
+  Error: ENOENT: no such file or directory, realpath '/opt/pods/examples/notes'
+      at async realpath (node:internal/fs/promises:1889:10)
+      at async prepare (file:///opt/pods/scripts/prepare.mjs:15:16)
+      at async TestContext.<anonymous> (file:///opt/pods/test/core.test.mjs:49:26)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'realpath',
+    path: '/opt/pods/examples/notes'
+  }
+
+test at test/core.test.mjs:75:1
+✖ unwritable home falls back to session storage and reports its durability (1.690903ms)
+  Error: ENOENT: no such file or directory, realpath '/opt/pods/examples/notes'
+      at async realpath (node:internal/fs/promises:1889:10)
+      at async prepare (file:///opt/pods/scripts/prepare.mjs:15:16)
+      at async TestContext.<anonymous> (file:///opt/pods/test/core.test.mjs:76:35)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'realpath',
+    path: '/opt/pods/examples/notes'
+  }
+
+test at test/flow.test.mjs:1:1
+✖ test/flow.test.mjs (348.916567ms)
+  'test failed'
+
+test at test/providers.test.mjs:69:1
+✖ expired or swept OAuth state returns to the original product and provider without exchanging the code (330.289277ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'application/json'
+  - 'text/html; charset=utf-8'
+
+      at TestContext.<anonymous> (file:///opt/pods/test/providers.test.mjs:90:11)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'application/json',
+    expected: 'text/html; charset=utf-8',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

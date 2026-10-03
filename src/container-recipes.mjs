@@ -9,11 +9,19 @@ export async function containerRecipe(root, recipe) {
   switch (recipe) {
     case 'node': {
       const pkg = JSON.parse(await text('package.json'));
-      if (!pkg.scripts?.start) throw new Error('Server framework needs its existing production start script.');
+      const scripts = pkg.scripts || {}, dependencies = {...pkg.dependencies,...pkg.devDependencies};
+      let start = scripts['start:prod'] ? 'start:prod' : 'start';
+      if ('@angular/ssr' in dependencies) {
+        const servers = Object.keys(scripts).filter(name => /^serve:ssr(?::[a-zA-Z0-9_.-]+)?$/.test(name));
+        if (servers.length > 1) throw new Error('Choose one Angular SSR application; multiple production servers need an existing Dockerfile.');
+        if (servers.length === 1) start = servers[0];
+        else if (/\bng\s+serve\b/.test(scripts[start] || '')) throw new Error('Angular SSR needs its production serve:ssr script; ng serve rebuilds on user compute.');
+      }
+      if (typeof scripts[start] !== 'string' || !scripts[start].trim()) throw new Error('Server framework needs its existing production start script.');
       const manager = String(pkg.packageManager || 'npm').split('@')[0];
       if (!['npm','pnpm','yarn','bun'].includes(manager)) throw new Error('Unknown Node package manager');
       const install = manager==='npm' ? (await has('package-lock.json') ? 'npm ci' : 'npm install') : manager==='bun' ? 'bun install --frozen-lockfile' : `corepack enable && ${manager} install --frozen-lockfile`;
-      return `FROM ${manager==='bun'?'oven/bun:1':'node:24-bookworm-slim'}\n${common}RUN ${install}\n${pkg.scripts.build?`RUN ${manager} run build\n`:''}ENV NODE_ENV=production\n${command([manager,'run','start'])}`;
+      return `FROM ${manager==='bun'?'oven/bun:1':'node:24-bookworm-slim'}\n${common}RUN ${install}\n${pkg.scripts.build?`RUN ${manager} run build\n`:''}ENV NODE_ENV=production\n${command([manager,'run',start])}`;
     }
     case 'python': {
       const requirements = await has('requirements.txt') ? await text('requirements.txt') : await text('pyproject.toml');

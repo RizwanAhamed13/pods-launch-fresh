@@ -8,9 +8,25 @@ import { pipeline } from 'node:stream/promises';
 import { docker, validateContainers, IMAGE_LIMIT } from '../src/containers.mjs';
 import { containerRecipe } from '../src/container-recipes.mjs';
 import { sourcePath } from '../src/detect.mjs';
-import { digest, uid } from '../src/util.mjs';
+import { digest, uid, sleep } from '../src/util.mjs';
+
+// Retry transport failures inside the same builder so downloaded layers survive.
+// The original deadline still bounds both attempts; compile/auth errors are final.
+export async function prepareImage(args, options, invoke = docker, wait = sleep) {
+  const deadline = Date.now() + options.timeout;
+  try { return await invoke(args, options); }
+  catch (error) {
+    if (!['build','pull'].includes(args[0]) || !/connection reset by peer|TLS handshake timeout|i\/o timeout|unexpected EOF/i.test(error.message) || deadline-Date.now() <= 1000) throw error;
+    if (args[0] === 'build' && !/failed to (?:copy|fetch|resolve reference)|(?:read|dial) tcp|TLS handshake timeout|i\/o timeout/i.test(error.message)) throw error;
+    await wait(1000);
+    const timeout = deadline-Date.now();
+    if (timeout <= 0) throw error;
+    return invoke(args, {...options, timeout});
+  }
+}
 
 const slug = /^[a-z][a-z0-9_-]{0,62}$/;
+export const preparedImageTag = (id = uid()) => 'pods-prepared-' + id.toLowerCase().replace(/[^a-z0-9]/g, '');
 function interpolate(value) {
   if(typeof value !== 'string')return value;
   return value.replace(/\$\{([^}]+)\}/g, (_,expr) => {
@@ -72,12 +88,12 @@ export async function prepareContainer(root, data, config) {
       let file;
       if(config.recipe){file=join(scratch,'Dockerfile');await writeFile(file,await containerRecipe(root,config.recipe));}
       else file=(await sourcePath(context,b.dockerfile||'Dockerfile')).path;
-      const tag='pods-prepared-'+uid().toLowerCase().replace(/_/g,'-');
+      const tag=preparedImageTag();
       const args=['build','--platform','linux/amd64','--tag',tag,'--file',file];
       if(b.target){if(!slug.test(b.target))throw new Error('Invalid build stage');args.push('--target',b.target);}
       for(const [k,v] of Object.entries(b.args||{})){if(!/^[A-Za-z_][A-Za-z0-9_]*$/.test(k)||typeof v!=='string')throw new Error('Build arguments must have explicit string values');args.push('--build-arg',k+'='+interpolate(v));}
-      args.push(context);await docker(args,{timeout:600000});service.image=tag;
-    } else await docker(['pull','--platform','linux/amd64',service.image],{timeout:300000});
+      args.push(context);await prepareImage(args,{timeout:600000});service.image=tag;
+    } else await prepareImage(['pull','--platform','linux/amd64',service.image],{timeout:300000});
     const info=JSON.parse(await docker(['image','inspect',service.image]))[0];
     if(info.Os!=='linux'||info.Architecture!=='amd64')throw new Error('Prepared image must target Linux amd64.');
     service.image=info.Id;

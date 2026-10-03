@@ -56,7 +56,7 @@ export async function startContainers(plan, config, root, runDir, timings) {
   const dataKey = config.dataKey || config.appId;
   const project = 'pods-' + createHash('sha256').update(dataKey).digest('hex').slice(0,24);
   const file = join(runDir, 'compose.json');
-  const compose = runtimeCompose(plan, project, config.port || 8080);
+  const compose = runtimeCompose(plan, project, config.port || 8080, config.previewUrl);
   compose.volumes = await persistentVolumes(plan,project,root);
   await writeFile(file, JSON.stringify(compose), {mode:0o600});
   const args = ['compose','--project-name',project,'--file',file];

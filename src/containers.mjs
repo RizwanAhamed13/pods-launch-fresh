@@ -38,7 +38,7 @@ export function validateContainers(plan) {
   return plan;
 }
 
-export function runtimeCompose(plan, project, port) {
+export function runtimeCompose(plan, project, port, previewUrl) {
   validateContainers(plan);
   if (!/^pods-[a-f0-9]{24}$/.test(project)) throw new Error('Invalid runtime project');
   const services = {}, volumes = {};
@@ -55,7 +55,13 @@ export function runtimeCompose(plan, project, port) {
       ...(service.depends_on ? {depends_on: Object.fromEntries(Object.entries(service.depends_on).map(([k,condition]) => [k,{condition}]))} : {}),
       volumes: (service.volumes || []).map(v => { volumes[v.name] = {}; return {type:'volume',source:v.name,target:v.target,read_only:v.readOnly}; }),
     };
-    if (key === plan.web) services[key].ports = [{target:plan.port,published:String(port),host_ip:'0.0.0.0',protocol:'tcp'}];
+    if (key === plan.web) {
+      services[key].ports = [{target:plan.port,published:String(port),host_ip:'0.0.0.0',protocol:'tcp'}];
+      // Angular SSR uses its documented runtime allowlist for per-user preview hosts.
+      const hosts = [services[key].environment.NG_ALLOWED_HOSTS, 'localhost', '127.0.0.1'];
+      if (previewUrl) hosts.push(new URL(previewUrl).hostname);
+      services[key].environment.NG_ALLOWED_HOSTS = hosts.filter(Boolean).join(',');
+    }
   }
   return { name: project, services, volumes };
 }

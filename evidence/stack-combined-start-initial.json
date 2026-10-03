@@ -1,0 +1,25 @@
+{
+  "project": "pods-d35bee9880dcb7d72704e7c3",
+  "startedAt": "2026-10-03T13:49:40.490Z",
+  "status": "passed",
+  "services": [
+    {
+      "service": "web",
+      "status": "running",
+      "exitCode": 0,
+      "logs": "web-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration\nweb-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/\nweb-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh\nweb-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf\nweb-1  | 10-listen-on-ipv6-by-default.sh: info: /etc/nginx/conf.d/default.conf differs from the packaged version\nweb-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh\nweb-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh\nweb-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh\nweb-1  | /docker-entrypoint.sh: Configuration complete; ready for start up\nweb-1  | 2026/10/03 13:50:03 [notice] 1#1: using the \"epoll\" event method\nweb-1  | 2026/10/03 13:50:03 [notice] 1#1: nginx/1.29.8\nweb-1  | 2026/10/03 13:50:03 [notice] 1#1: built by gcc 15.2.0 (Alpine 15.2.0) \nweb-1  | 2026/10/03 13:50:03 [notice] 1#1: OS: Linux 7.0.0-30-generic\nweb-1  | 2026/10/03 13:50:03 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:1048576\nweb-1  | 2026/10/03 13:50:03 [notice] 1#1: start worker processes\nweb-1  | 2026/10/03 13:50:03 [notice] 1#1: start worker process 30\nweb-1  | 2026/10/03 13:50:03 [notice] 1#1: start worker process 31"
+    },
+    {
+      "service": "api",
+      "status": "running",
+      "exitCode": 0,
+      "logs": ""
+    },
+    {
+      "service": "db",
+      "status": "running",
+      "exitCode": 0,
+      "logs": "db-1  | server started\ndb-1  | CREATE DATABASE\ndb-1  | \ndb-1  | \ndb-1  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*\ndb-1  | \ndb-1  | 2026-10-03 13:49:52.550 UTC [78] LOG:  received fast shutdown request\ndb-1  | waiting for server to shut down....2026-10-03 13:49:52.579 UTC [78] LOG:  aborting any active transactions\ndb-1  | 2026-10-03 13:49:52.587 UTC [78] LOG:  background worker \"logical replication launcher\" (PID 84) exited with exit code 1\ndb-1  | 2026-10-03 13:49:52.588 UTC [79] LOG:  shutting down\ndb-1  | 2026-10-03 13:49:52.618 UTC [79] LOG:  checkpoint starting: shutdown immediate\ndb-1  | 2026-10-03 13:49:52.785 UTC [96] FATAL:  the database system is shutting down\ndb-1  | .2026-10-03 13:49:53.856 UTC [103] FATAL:  the database system is shutting down\ndb-1  | .2026-10-03 13:49:54.928 UTC [109] FATAL:  the database system is shutting down\ndb-1  | .2026-10-03 13:49:56.004 UTC [116] FATAL:  the database system is shutting down\ndb-1  | .2026-10-03 13:49:57.075 UTC [123] FATAL:  the database system is shutting down\ndb-1  | .2026-10-03 13:49:58.138 UTC [79] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.058 s, sync=5.345 s, total=5.551 s; sync files=301, longest=0.041 s, average=0.018 s; distance=4266 kB, estimate=4266 kB; lsn=0/191E810, redo lsn=0/191E810\ndb-1  | 2026-10-03 13:49:58.144 UTC [130] FATAL:  the database system is shutting down\ndb-1  | 2026-10-03 13:49:58.152 UTC [78] LOG:  database system is shut down\ndb-1  |  done\ndb-1  | server stopped\ndb-1  | \ndb-1  | PostgreSQL init process complete; ready for start up.\ndb-1  | \ndb-1  | 2026-10-03 13:49:58.370 UTC [1] LOG:  starting PostgreSQL 17.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit\ndb-1  | 2026-10-03 13:49:58.370 UTC [1] LOG:  listening on IPv4 address \"0.0.0.0\", port 5432\ndb-1  | 2026-10-03 13:49:58.370 UTC [1] LOG:  listening on IPv6 address \"::\", port 5432\ndb-1  | 2026-10-03 13:49:58.483 UTC [1] LOG:  listening on Unix socket \"/var/run/postgresql/.s.PGSQL.5432\"\ndb-1  | 2026-10-03 13:49:58.521 UTC [134] LOG:  database system was shut down at 2026-10-03 13:49:58 UTC\ndb-1  | 2026-10-03 13:49:58.547 UTC [1] LOG:  database system is ready to accept connections"
+    }
+  ]
+}

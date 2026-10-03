@@ -1,0 +1,53 @@
+[
+  {
+    "stack": "angular-ssr",
+    "status": "failed",
+    "error": "Application health check timed out"
+  },
+  {
+    "stack": "gradio",
+    "status": "failed",
+    "error": "Counter write/read failed"
+  },
+  {
+    "stack": "flask-mongodb7",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 137135,
+    "first": {
+      "cacheHit": false,
+      "downloadMs": 11,
+      "imageCacheHits": 2,
+      "imagesMs": 91,
+      "runtimeReadyMs": 8039
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 2,
+      "imagesMs": 88,
+      "runtimeReadyMs": 8075
+    },
+    "persistence": {
+      "before": 0,
+      "saved": 1,
+      "afterRestart": 1
+    },
+    "websocket": null,
+    "htmlBytes": 429,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:2dc733972b687ffbc2449b2d463f2e9132d662d62e3d8ad7d397eb18fb6f08a1",
+        "sha256": "d8a5d68f3274e44a8e352f273fb118e566dde5031466134f0d6e602a267846b0",
+        "bytes": 54842451
+      },
+      {
+        "id": "sha256:1f995ad6fdb93244a1addab1b58f934a0bc2f5643c38e02f5e9d7f0c7d227a7b",
+        "sha256": "5bb0b4ddadfd4088ffb7ac924243b8b706b668ca367a89fc963dc1d5876327c5",
+        "bytes": 295857191
+      }
+    ],
+    "sha256": "a998ebd8609ae2452012ffcfff88f32af53124445f1404e4187534ee05632c03"
+  }
+]

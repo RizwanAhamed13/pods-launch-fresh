@@ -57,17 +57,21 @@ are measured separately. See `evidence/` for completed evidence.
 | Flask + MySQL, MariaDB, Valkey | Passed, including DB restart | Passed | Pending |
 | React + Express + PostgreSQL | Passed, including DB restart | Passed | URL preparation failed in production verification; retry pending |
 | Axum + persistent file, Hono + SQLite, Astro SSR | Passed, including restart | Passed | Pending |
-| SvelteKit, React Router, NestJS | Passed, including restart | SvelteKit needs hydration retest; React Router clicked successfully but reload interrupted; NestJS pending | Pending |
+| SvelteKit, React Router, NestJS | Passed, including restart | Passed | Pending |
+| Streamlit + SQLite | Passed; HTTP page and restart | Passed; real dashboard interaction and SQLite record retained across full artifact relaunch | Pending |
+| Gin, Echo, Fiber | Passed, including persistent record restart | Passed; write and reload | Pending |
+| Flask + MongoDB 7.0.43 | Passed, including database restart | Passed; write and reload | Pending |
 | MongoDB 8 | Failed on builder kernel; see constraint below | Pending | Pending |
 | Other target rows above | Pending unless a newer evidence file records a pass | Pending | Pending |
 
 Completed server matrices are `evidence/stack-matrix-01.json`,
 `evidence/stack-matrix-02.json`, `evidence/stack-matrix-03.json` and
-`evidence/stack-matrix-04.json`. These establish 33 unique application fixture
+`evidence/stack-matrix-04.json` plus Streamlit in batch08, MongoDB7 in batch10 and Gin/Echo/Fiber in the
+batch11 progress snapshot. These establish 38 unique application fixture
 passes. Later queued batches are recorded separately;
 initial failing attempts remain in the evidence. Browser checks are in
 `evidence/stack-browser-local.json`, `evidence/stack-browser-02.json` and
-`evidence/stack-browser-04.json`: 30 unique fixtures passed through an authenticated SSH tunnel to real aswin artifacts.
+`evidence/stack-browser-04.json` and `evidence/stack-browser-08.json` / `evidence/stack-browser-10.json` / `evidence/stack-browser-11.json`: 38 unique fixtures passed through an authenticated SSH tunnel to real aswin artifacts.
 Those are not native Cloud Shell/Codespaces preview results. Frontend fixtures
 use either localStorage or deliberately transient client state; backend fixtures
 exercise persistent files, SQLite or a private database service. The old batch02
@@ -77,7 +81,7 @@ not relaunch non-API fixtures; it must not be counted as a server restart check.
 MongoDB 8 currently refuses to start on aswin's Linux 7.0.0 kernel because of its
 known kernel/allocator incompatibility. MongoDB documents the affected range as
 6.19 through 7.0.13 and the fix in 7.0.14+. We retain that failure and test MongoDB
-7.0.45 independently; we do not disable MongoDB's startup guard.
+7.0.43 independently; we do not disable MongoDB's startup guard.
 [MongoDB 8 release notes](https://www.mongodb.com/docs/v8.0/release-notes/8.0/).
 
 Implementation references: [Docker service model](https://docs.docker.com/reference/compose-file/services/),
@@ -126,26 +130,48 @@ and accepted a new write to 3 after PODS relaunched the app. Recovery took
 The preceding two failed dispatches were traced to the control plane missing
 `gh` from PATH; they are retained as failures, and deployment was corrected.
 See `evidence/stack-codespaces-rebuild-proof.json`. Cloud Shell VM replacement
-remains pending. Unit coverage is now 47 passing checks.
+remains pending. Unit coverage is now 51 passing checks, locally and on aswin.
 
 Storage boundaries follow the provider documentation:
 [Cloud Shell persistent home](https://docs.cloud.google.com/shell/docs/how-cloud-shell-works),
 [Codespaces rebuild lifecycle](https://docs.github.com/en/codespaces/about-codespaces/understanding-the-codespace-lifecycle).
 
-Additional fixtures staged for testing: Streamlit and Gradio with SQLite,
-compiled Deno, compiled Bun with SQLite and WebSockets, MongoDB 7.0.45, and
-Gin/Echo/Fiber/Actix Web/Rocket. Their presence in the
-fixture repository is not a support pass.
+Additional fixtures under test: Angular SSR, Gradio with SQLite, compiled Deno,
+compiled Bun with SQLite and WebSockets, and Gin/Echo/Fiber/Actix Web/Rocket.
+Their presence in the fixture repository is not a support pass.
 
-## Current verification hold
+## Current verification work
 
-Aswin became unreachable through Tailscale during the next stage. SSH times
-out, while the public control-plane health endpoint still responds. The last complete matrix is batch04. Streamlit encountered a
-verification/runtime volume identity collision in batch05; a separate build
-verification identity is implemented and passes local checks, but the live retry
-is pending. Production build clones now receive the deployed worker before they
-start, avoiding stale base-image scripts; that deployment change also needs its
-live LXD gate. The React/Express/PostgreSQL developer URL preparation reached
-verification and failed; its exact final error was truncated by the earlier
-error reporting. The retry must establish the cause and pass before the native
-workflow is claimed. See `evidence/stack-combined-url.json`.
+Aswin's SSH connection recovered, and current worker/runtime fixes are deployed.
+Production clones demonstrably receive the current worker. The combined
+React/Express/PostgreSQL URL preparation hit a registry connection reset, then
+reached verification after official base-image caching. Its API exited before
+the web service started. A deterministic reproduction exposed premature
+PostgreSQL socket readiness during initialization: the backend failed with
+ECONNREFUSED. Waiting for TCP passed the same reproduction. Both PostgreSQL
+fixtures now use that check. The production URL retry encountered the existing
+hourly preparation limit and remains pending; it is not a native workflow pass.
+See `evidence/stack-postgres-readiness.json` and the retained URL failure evidence.
+
+Build verification now uses its own storage identity. Streamlit's original
+volume collision was resolved and its dashboard/SQLite persistence passed.
+Random image names ending in invalid separators have a deterministic regression
+case and corrected generation. Registry transport failures retry once inside
+the same builder and original deadline. Missing images, authorization failures
+and ordinary compile errors do not trigger that retry.
+
+MongoDB7 now uses the verified 7.0.43 tag and passes its real database tests.
+One Go/Rust batch was invoked without the required isolated-build flag and failed
+before building; the corrected batch is running. Initial failures remain in the
+numbered matrix evidence. Gradio's JSON 404 response exposed a harness error:
+API counter checks now require a successful response; its actual dashboard and
+persistence still need browser verification.
+
+Angular SSR now compiles with Node's SQLite builtin. Its next run exposed a
+host-header rejection. The runner supplies Angular's documented NG_ALLOWED_HOSTS
+with loopback health hosts and the exact per-user preview hostname, preserving
+existing application entries. It does not add a wildcard. Runtime verification
+of this correction is queued. PODS chooses existing Angular serve:ssr:* and Node
+start:prod scripts, preventing accidental development-server launch.
+[Angular server-rendering guide](https://angular.dev/guide/ssr),
+[Angular host configuration](https://angular.dev/best-practices/security#configuring-allowed-hosts).

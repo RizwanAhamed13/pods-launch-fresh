@@ -1,0 +1,22 @@
+[
+  {
+    "stack": "streamlit",
+    "status": "failed",
+    "error": "Application volume points to unexpected storage"
+  },
+  {
+    "stack": "gradio",
+    "status": "failed",
+    "error": "Application volume points to unexpected storage"
+  },
+  {
+    "stack": "deno",
+    "status": "failed",
+    "error": "Docker build failed (1): Sending build context to Docker daemon  4.608kB\r\r\nStep 1/9 : FROM denoland/deno:2.4.5 AS build\n2.4.5: Pulling from denoland/deno\n5a0cdefad6e4: Pulling fs layer\n112172c80402: Pulling fs layer\nc59e6ef4d5b7: Pulling fs layer\nccc190b1c3ae: Pulling fs layer\n20bc96008c29: Pulling fs layer\n060d12cd43f0: Pulling fs layer\n060d12cd43f0: Download complete\n5a0cdefad6e4: Download complete\nc59e6ef4d5b7: Download complete\n20bc96008c29: Download complete\n\nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\nfailed to copy: read tcp 10.238.91.100:58290->18.66.41.121:443: read: connection reset by peer\n"
+  },
+  {
+    "stack": "bun",
+    "status": "failed",
+    "error": "Docker build failed (1): Sending build context to Docker daemon  5.632kB\r\r\nStep 1/9 : FROM oven/bun:1.4.2 AS build\n1.4.2: Pulling from oven/bun\n44136fa355b3: Download complete\n1b4f41477e9a: Pulling fs layer\n27ee9a825048: Pulling fs layer\ndd000cfe5146: Pulling fs layer\n1ba340e2e4f4: Pulling fs layer\nc1bdc9ba2b9e: Pulling fs layer\n995f23d6717f: Pulling fs layer\nccb86fd70cf1: Pulling fs layer\n1b4f41477e9a: Download complete\ndd000cfe5146: Download complete\nc1bdc9ba2b9e: Download complete\n995f23d6717f: Download complete\n\nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\nfailed to copy: read tcp 10.238.91.100:45994->18.66.41.54:443: read: connection reset by peer\n"
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "stack": "flask-mongodb7",
+    "status": "passed",
+    "testedAt": "2026-10-03T13:58:20.854764+00:00",
+    "scope": "Real browser through authenticated SSH tunnel to aswin prepared artifact; native providers pending",
+    "heading": "Flask + mongodb counter",
+    "before": 1,
+    "afterClick": 2,
+    "afterReload": 2,
+    "database": "MongoDB 7.0.43",
+    "artifactRestartEvidence": "stack-matrix-10.json"
+  }
+]

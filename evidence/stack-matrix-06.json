@@ -1,0 +1,7 @@
+[
+  {
+    "stack": "flask-mongodb7",
+    "status": "failed",
+    "error": "Docker pull failed (1): Error response from daemon: failed to resolve reference \"docker.io/library/mongo:7.0.45\": docker.io/library/mongo:7.0.45: not found\n"
+  }
+]

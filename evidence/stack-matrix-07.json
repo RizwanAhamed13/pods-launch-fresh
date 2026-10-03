@@ -1,0 +1,27 @@
+[
+  {
+    "stack": "gin",
+    "status": "failed",
+    "error": "Repository builds must run as an unprivileged user in an isolated build container."
+  },
+  {
+    "stack": "echo",
+    "status": "failed",
+    "error": "Repository builds must run as an unprivileged user in an isolated build container."
+  },
+  {
+    "stack": "fiber",
+    "status": "failed",
+    "error": "Repository builds must run as an unprivileged user in an isolated build container."
+  },
+  {
+    "stack": "actix",
+    "status": "failed",
+    "error": "Repository builds must run as an unprivileged user in an isolated build container."
+  },
+  {
+    "stack": "rocket",
+    "status": "failed",
+    "error": "Repository builds must run as an unprivileged user in an isolated build container."
+  }
+]

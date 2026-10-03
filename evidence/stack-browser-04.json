@@ -25,9 +25,20 @@
   },
   {
     "stack": "sveltekit",
-    "status": "failed",
-    "error": "Error: Error: Playwright selector deadline exceeded\nlocator.waitFor(visible) timed out for selector #value >> internal:has-text=/^1$/\nLocator diagnostics: {\"kind\":\"no_matches\",\"action\":\"waitFor\",\"locator\":\"#value >> internal:has-text=/^1$/\",\"matchCount\":0,\"matches\":[],\"visibleCount\":0,\"truncated\":false}",
-    "note": "First counter interaction did not update before the deadline. Retest after client hydration is required; not a browser pass."
+    "status": "passed",
+    "note": "Fresh browser tab after tunnel restoration; heading SvelteKit counter confirmed, Add one 0\u21921, reload retained1.",
+    "before": 0,
+    "afterClick": 1,
+    "afterReload": 1,
+    "verifiedAt": "2026-10-03T13:34:55.292677+00:00",
+    "previousAttempts": [
+      {
+        "stack": "sveltekit",
+        "status": "failed",
+        "error": "Error: Error: Playwright selector deadline exceeded\nlocator.waitFor(visible) timed out for selector #value >> internal:has-text=/^1$/\nLocator diagnostics: {\"kind\":\"no_matches\",\"action\":\"waitFor\",\"locator\":\"#value >> internal:has-text=/^1$/\",\"matchCount\":0,\"matches\":[],\"visibleCount\":0,\"truncated\":false}",
+        "note": "First counter interaction did not update before the deadline. Retest after client hydration is required; not a browser pass."
+      }
+    ]
   },
   {
     "stack": "astro",
@@ -39,12 +50,32 @@
   },
   {
     "stack": "react-router",
-    "status": "incomplete",
-    "error": "Error: Error: Playwright selector deadline exceeded\nlocator.waitFor(visible) timed out for selector #value >> internal:has-text=/^1$/\nLocator diagnostics: {\"kind\":\"no_matches\",\"action\":\"waitFor\",\"locator\":\"#value >> internal:has-text=/^1$/\",\"matchCount\":0,\"matches\":[],\"visibleCount\":0,\"truncated\":false}",
-    "interactionAfterHydration": {
-      "before": 0,
-      "after": 1
-    },
-    "note": "First click had no effect before client hydration. A later browser click displayed 1. Reload verification was interrupted when aswin and the SSH tunnel went offline; no reload pass is claimed."
+    "status": "passed",
+    "note": "Fresh browser selection; React Router counter heading confirmed, Add one1\u21922, reload retained2.",
+    "before": 1,
+    "afterClick": 2,
+    "afterReload": 2,
+    "verifiedAt": "2026-10-03T13:35:21.915669+00:00",
+    "previousAttempts": [
+      {
+        "stack": "react-router",
+        "status": "incomplete",
+        "error": "Error: Error: Playwright selector deadline exceeded\nlocator.waitFor(visible) timed out for selector #value >> internal:has-text=/^1$/\nLocator diagnostics: {\"kind\":\"no_matches\",\"action\":\"waitFor\",\"locator\":\"#value >> internal:has-text=/^1$/\",\"matchCount\":0,\"matches\":[],\"visibleCount\":0,\"truncated\":false}",
+        "interactionAfterHydration": {
+          "before": 0,
+          "after": 1
+        },
+        "note": "First click had no effect before client hydration. A later browser click displayed 1. Reload verification was interrupted when aswin and the SSH tunnel went offline; no reload pass is claimed."
+      }
+    ]
+  },
+  {
+    "stack": "nestjs",
+    "status": "passed",
+    "before": 0,
+    "afterClick": 1,
+    "afterReload": 1,
+    "verifiedAt": "2026-10-03T13:35:46.216123+00:00",
+    "note": "NestJS counter heading, real API interaction and reload retained1; isolated QA artifact, not native provider evidence."
   }
 ]

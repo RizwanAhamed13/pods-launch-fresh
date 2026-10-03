@@ -1,0 +1,7 @@
+{
+  "stack": "angular-ssr",
+  "image": "sha256:ac4960beaa5d390746894bc629cb14141cca2fd0525a7fe5659f2cad0fd12905",
+  "httpStatus": 400,
+  "body": "Header \"host\" with value \"127.0.0.1:18092\" is not allowed.",
+  "logs": "> angular-ssr-counter@0.0.0 serve:ssr:angular-ssr\n> node dist/angular-ssr/server/server.mjs"
+}

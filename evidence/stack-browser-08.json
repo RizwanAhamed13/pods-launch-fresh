@@ -1,0 +1,12 @@
+[
+  {
+    "stack": "streamlit",
+    "status": "passed",
+    "before": 0,
+    "afterClick": 1,
+    "afterReload": 1,
+    "afterArtifactRelaunch": 1,
+    "verifiedAt": "2026-10-03T13:46:38.926690+00:00",
+    "scope": "Real Streamlit browser UI over its WebSocket session through SSH; SQLite persisted across full container stop/relaunch. Not native provider evidence."
+  }
+]

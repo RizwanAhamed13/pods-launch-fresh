@@ -1,0 +1,13 @@
+{
+  "testedAt": "2026-10-03T13:57:11.196522+00:00",
+  "status": "failed",
+  "scope": "Authenticated developer URL form, fresh production LXD clone with cached official base images",
+  "repository": "https://github.com/RizwanAhamed13/pods-launch-runtime-fresh",
+  "folder": "examples/stacks/react-express-postgres",
+  "elapsedSeconds": 132.4,
+  "stage": "verifying",
+  "error": "API container exited with status 1 after database health passed",
+  "diagnosis": "A separate deterministic reproduction confirms socket-only PostgreSQL initialization can trigger premature health. Original production container logs were not retained.",
+  "reproduction": "stack-postgres-readiness.json",
+  "followUp": "Fixture health checks now wait for TCP; retry original repository URL after push."
+}

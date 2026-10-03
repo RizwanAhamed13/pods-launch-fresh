@@ -1,0 +1,12 @@
+{
+  "testedAt": "2026-10-03T13:44:10.007699+00:00",
+  "status": "failed",
+  "scope": "Real authenticated developer browser form, fresh production LXD clone with deployed worker",
+  "repository": "https://github.com/RizwanAhamed13/pods-launch-runtime-fresh",
+  "folder": "examples/stacks/react-express-postgres",
+  "elapsedSeconds": 359.3,
+  "stage": "packaging",
+  "error": "Docker base image layer download failed to copy: read tcp: connection reset by peer",
+  "workerDeliveryVerified": true,
+  "followUp": "Bounded transient download retry implemented; cache existing official Node/nginx/PostgreSQL base images in builder and retry the original URL workflow."
+}

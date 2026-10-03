@@ -1,0 +1,35 @@
+[
+  {
+    "stack": "gin",
+    "status": "passed",
+    "verifiedAt": "2026-10-03T14:04:15.271458+00:00",
+    "scope": "Browser over authenticated SSH tunnel to real aswin artifact; native providers pending",
+    "heading": "Gin counter",
+    "before": 1,
+    "afterClick": 2,
+    "afterReload": 2,
+    "artifactRestartEvidence": "stack-matrix-11-progress.json"
+  },
+  {
+    "stack": "echo",
+    "status": "passed",
+    "verifiedAt": "2026-10-03T14:04:15.271458+00:00",
+    "scope": "Browser over authenticated SSH tunnel to real aswin artifact; native providers pending",
+    "heading": "Echo counter",
+    "before": 1,
+    "afterClick": 2,
+    "afterReload": 2,
+    "artifactRestartEvidence": "stack-matrix-11-progress.json"
+  },
+  {
+    "stack": "fiber",
+    "status": "passed",
+    "verifiedAt": "2026-10-03T14:04:15.271458+00:00",
+    "scope": "Browser over authenticated SSH tunnel to real aswin artifact; native providers pending",
+    "heading": "Fiber counter",
+    "before": 1,
+    "afterClick": 2,
+    "afterReload": 2,
+    "artifactRestartEvidence": "stack-matrix-11-progress.json"
+  }
+]

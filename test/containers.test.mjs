@@ -5,13 +5,44 @@ import { mkdtemp, writeFile, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { validateContainers, runtimeCompose } from '../src/containers.mjs';
-import { normalizeCompose } from '../scripts/prepare-container.mjs';
+import { normalizeCompose, prepareImage, preparedImageTag } from '../scripts/prepare-container.mjs';
 import { decodeArtifact } from '../src/runner.mjs';
 import { validateBuildOutput } from '../src/builds.mjs';
 import { detectApplication } from '../src/detect.mjs';
 import { parseRepository } from '../src/repository.mjs';
 import { digest } from '../src/util.mjs';
 import { launchCompose } from '../src/container-runtime.mjs';
+import { containerRecipe } from '../src/container-recipes.mjs';
+
+test('base64url preparation identities ending in separators produce valid Docker repository names',()=>{
+  for(const id of ['ohnantgou5lpvrk7fgehgxkxkifa3i0-','_ABC__def_','prefix--suffix-']){
+    assert.match(preparedImageTag(id),/^[a-z0-9]+(?:(?:[._]|__|-+)[a-z0-9]+)*$/);
+  }
+});
+
+test('image preparation retries only transient transport failures once within its original deadline',async()=>{
+  const args=['build','--tag','fixture','.'], calls=[];
+  const result=await prepareImage(args,{timeout:10000},async(a,o)=>{calls.push({a,o});if(calls.length===1)throw new Error('failed to copy: read tcp: connection reset by peer');return 'prepared';},async()=>{});
+  assert.equal(result,'prepared');assert.equal(calls.length,2);assert.deepEqual(calls[1].a,args);assert.ok(calls[1].o.timeout<=10000&&calls[1].o.timeout>0);
+  for(const message of ['image: not found','access denied','TypeScript compilation failed']){
+    let attempts=0;await assert.rejects(()=>prepareImage(['pull','missing'],{timeout:10000},async()=>{attempts++;throw new Error(message);},async()=>{}));assert.equal(attempts,1);
+  }
+  let attempts=0;await assert.rejects(()=>prepareImage(['pull','fixture'],{timeout:10000},async()=>{attempts++;throw new Error('unexpected EOF');},async()=>{}),/unexpected EOF/);assert.equal(attempts,2);
+  attempts=0;await assert.rejects(()=>prepareImage(args,{timeout:10000},async()=>{attempts++;throw new Error('Parse error: unexpected EOF');},async()=>{}),/unexpected EOF/);assert.equal(attempts,1);
+});
+
+test('prepared Node servers select existing production scripts instead of Angular or Nest development servers',async t=>{
+  const root=await mkdtemp(join(tmpdir(),'pods-production-start-'));t.after(()=>rm(root,{recursive:true,force:true}));
+  const pkg={scripts:{build:'ng build',start:'ng serve','serve:ssr:product':'node dist/product/server/server.mjs'},dependencies:{'@angular/ssr':'22.2.1'}};
+  const save=()=>writeFile(join(root,'package.json'),JSON.stringify(pkg));await save();
+  assert.match(await containerRecipe(root,'node'),/CMD \["npm","run","serve:ssr:product"\]/);
+  pkg.scripts['serve:ssr:other']='node dist/other/server/server.mjs';await save();
+  await assert.rejects(()=>containerRecipe(root,'node'),/multiple production servers/);
+  delete pkg.scripts['serve:ssr:other'];delete pkg.scripts['serve:ssr:product'];await save();
+  await assert.rejects(()=>containerRecipe(root,'node'),/ng serve rebuilds/);
+  pkg.dependencies={'@nestjs/core':'11'};pkg.scripts={build:'nest build',start:'nest start','start:prod':'node dist/main.js'};await save();
+  assert.match(await containerRecipe(root,'node'),/CMD \["npm","run","start:prod"\]/);
+});
 
 const blob=Buffer.from('prepared image test data');
 const image={id:'sha256:'+'a'.repeat(64),sha256:digest(blob),bytes:blob.length};
@@ -41,6 +72,16 @@ test('runtime exposes only the product, never rebuilds/pulls, and keeps named da
   assert.equal(a.services.db.pull_policy,'never');assert.deepEqual(a.volumes,b.volumes);assert.deepEqual(a.volumes,{records:{}});
   assert.equal(a.services.web.depends_on.db.condition,'service_healthy');
   assert.deepEqual(a.services.db.security_opt,['no-new-privileges:true']);
+});
+
+test('Angular SSR receives the exact provider preview host and local health hosts at runtime',()=>{
+  const p=plan();p.services.web.environment={NG_ALLOWED_HOSTS:'existing.example'};
+  for(const url of ['https://8080-cs-example.cloudshell.dev/','https://example-8080.app.github.dev/']){
+    const compose=runtimeCompose(p,'pods-'+'d'.repeat(24),8080,url);
+    assert.deepEqual(compose.services.web.environment.NG_ALLOWED_HOSTS.split(','),['existing.example','localhost','127.0.0.1',new URL(url).hostname]);
+    assert.equal(compose.services.db.environment.NG_ALLOWED_HOSTS,undefined);
+  }
+  assert.equal(runtimeCompose(plan(),'pods-'+'d'.repeat(24),8080).services.web.environment.NG_ALLOWED_HOSTS,'localhost,127.0.0.1');
 });
 
 test('Compose detects the web service, database dependency, explicit defaults and portable storage',()=>{

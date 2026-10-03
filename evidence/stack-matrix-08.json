@@ -1,0 +1,49 @@
+[
+  {
+    "stack": "streamlit",
+    "status": "passed",
+    "scope": "real isolated server build, artifact launch, HTTP product and API interaction; not native provider browser evidence",
+    "buildMs": 20735,
+    "first": {
+      "cacheHit": true,
+      "downloadMs": 6,
+      "imageCacheHits": 1,
+      "imagesMs": 63,
+      "runtimeReadyMs": 3746
+    },
+    "repeat": {
+      "cacheHit": true,
+      "downloadMs": 3,
+      "imageCacheHits": 1,
+      "imagesMs": 41,
+      "runtimeReadyMs": 3173
+    },
+    "persistence": null,
+    "websocket": null,
+    "htmlBytes": 6463,
+    "runtime": "docker-linux-amd64",
+    "images": [
+      {
+        "id": "sha256:bf4bbc6f8f044667adf39aa425c700be23d72982b5cb65ab4a3ca8f239668c88",
+        "sha256": "8fd20bc8e2ab386b5a8f6156ce83e850d18615511ce268b2a880af13d40b4168",
+        "bytes": 182156450
+      }
+    ],
+    "sha256": "3f0e05893c1f60cb45bb811343f39e3df2023c0e2fccbd82aae50dc57c711ff6"
+  },
+  {
+    "stack": "gradio",
+    "status": "failed",
+    "error": "Docker build failed (125): \nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\ninvalid argument \"pods-prepared-ohnantgou5lpvrk7fgehgxkxkifa3i0-\" for \"-t, --tag\" flag: invalid reference format\n\nUsage:  docker build [OPTIONS] PATH | URL | -\n\nRun 'docker build --help' for more information\n"
+  },
+  {
+    "stack": "deno",
+    "status": "failed",
+    "error": "Docker build failed (125): \nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\ninvalid argument \"pods-prepared-esmtmgxcelwl-5fqk3kd-ieh-rdysep-\" for \"-t, --tag\" flag: invalid reference format\n\nUsage:  docker build [OPTIONS] PATH | URL | -\n\nRun 'docker build --help' for more information\n"
+  },
+  {
+    "stack": "bun",
+    "status": "failed",
+    "error": "Docker build failed (125): \nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\ninvalid argument \"pods-prepared-sy-dmxlxura-z22g8xqtmbkixfazuqi-\" for \"-t, --tag\" flag: invalid reference format\n\nUsage:  docker build [OPTIONS] PATH | URL | -\n\nRun 'docker build --help' for more information\n"
+  }
+]
