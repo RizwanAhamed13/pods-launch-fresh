@@ -7,6 +7,7 @@ import {probeSsrProduct,probeNuxtSsr,ssrProbeCommand} from '../scripts/probe-ssr
 
 const markup=(fixture='next',src=fixture==='next'?'/_next/static/chunks/page.js':'/_nuxt/entry.js')=>fixture==='sveltekit'
   ? '<html><h1>SvelteKit counter</h1><p id="value">0</p><script>import("./_app/immutable/entry/start.abc.js").then(async kit=>{const app=await import("./_app/immutable/entry/app.def.js");kit.start(app);});</script></html>'
+  : fixture==='react-router'?'<html><h1>React Router counter</h1><p id="value">0</p><script type="module">import * as route0 from "/assets/root-abc.js";import("/assets/entry.client-def.js");</script></html>'
   : `<html><h1>${fixture==='next'?'Next.js':'Nuxt'} counter</h1><p id="value">0</p><script src="${src}"></script></html>`;
 async function serve(options,run){
   const requests=[];
@@ -20,10 +21,10 @@ async function serve(options,run){
   finally{server.closeAllConnections();await new Promise(resolve=>server.close(resolve));}
 }
 
-test('SSR probe checks rendered Next, Nuxt and SvelteKit plus their real client entry requests',async()=>{
-  for(const fixture of ['next','nuxt','sveltekit'])await serve({page:markup(fixture)},async(base,requests)=>{
+test('SSR probe checks rendered Next, Nuxt, SvelteKit and React Router plus their client entry requests',async()=>{
+  for(const fixture of ['next','nuxt','sveltekit','react-router'])await serve({page:markup(fixture)},async(base,requests)=>{
     const result=await probeSsrProduct(base,fixture);
-    const entries=fixture==='sveltekit'?2:1;
+    const entries=['sveltekit','react-router'].includes(fixture)?2:1;
     assert.equal(result.passed,true);assert.equal(result.fixture,fixture);assert.equal(result.scripts.length,entries);assert.equal(requests.length,entries+1);
   });
   await serve({page:markup('nuxt')},async base=>assert.equal((await probeNuxtSsr(base)).fixture,'nuxt'));
@@ -47,12 +48,16 @@ test('SvelteKit probe rejects incomplete or external bootstrap imports before fe
   for(const page of [markup('sveltekit').replace('app.def.js','wrong.def.js'),markup('sveltekit').replace('"./_app/immutable/entry/start.abc.js"','"https://outside.invalid/_app/immutable/entry/start.abc.js"'),markup('sveltekit').replace('SvelteKit counter','Other counter')])
     await serve({page},async(base,requests)=>{await assert.rejects(probeSsrProduct(base,'sveltekit'));assert.deepEqual(requests,['/']);});
 });
-test('native SSR command executes in a fresh Node process for all three frameworks',async()=>{
-  for(const fixture of ['next','nuxt','sveltekit'])await serve({page:markup(fixture)},async(base,requests)=>{
+test('native SSR command executes in a fresh Node process for all external-client frameworks',async()=>{
+  for(const fixture of ['next','nuxt','sveltekit','react-router'])await serve({page:markup(fixture)},async(base,requests)=>{
     const {stdout}=await promisify(execFile)(process.execPath,['--input-type=module','-e',ssrProbeCommand(fixture,base)],{timeout:10000});
-    const entries=fixture==='sveltekit'?2:1;
+    const entries=['sveltekit','react-router'].includes(fixture)?2:1;
     const result=JSON.parse(stdout);assert.equal(result.fixture,fixture);assert.equal(result.passed,true);assert.equal(result.scripts.length,entries);assert.equal(requests.length,entries+1);
   });
+});
+test('React Router probe rejects missing entries, non-module imports and external assets before fetching scripts',async()=>{
+  for(const page of [markup('react-router').replace('root-abc.js','wrong-abc.js'),markup('react-router').replace('entry.client-def.js','wrong-def.js'),markup('react-router').replace(' type="module"',''),markup('react-router').replace('/assets/entry.client-def.js','https://outside.invalid/assets/entry.client-def.js')])
+    await serve({page},async(base,requests)=>{await assert.rejects(probeSsrProduct(base,'react-router'));assert.deepEqual(requests,['/']);});
 });
 const astroMarkup=(timestamp=new Date().toISOString())=>`<html><h1>Astro counter</h1><p id="value">0</p><button id="add">Add one</button><p>Rendered on server: ${timestamp}</p><script>document.querySelector('#add').onclick=()=>{};</script></html>`;
 test('Astro probe verifies fresh server rendering and inline client delivery in a separate process',async()=>{

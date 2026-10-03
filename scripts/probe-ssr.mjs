@@ -1,8 +1,8 @@
 // Serialized into an authorized Codespace. This checks our SSR fixtures over
 // HTTP; hydration and interaction still require a separate real browser check.
 export async function probeSsrProduct(base='http://127.0.0.1:8080',fixture='nuxt') {
-  if(!['nuxt','next','sveltekit','astro'].includes(fixture))throw new Error('Unknown SSR fixture');
-  const [heading,prefix]={next:['Next\\.js counter','/_next/'],nuxt:['Nuxt counter','/_nuxt/'],sveltekit:['SvelteKit counter','/_app/immutable/entry/'],astro:['Astro counter',null]}[fixture];
+  if(!['nuxt','next','sveltekit','astro','react-router'].includes(fixture))throw new Error('Unknown SSR fixture');
+  const [heading,prefix]={next:['Next\\.js counter','/_next/'],nuxt:['Nuxt counter','/_nuxt/'],sveltekit:['SvelteKit counter','/_app/immutable/entry/'],astro:['Astro counter',null],'react-router':['React Router counter','/assets/']}[fixture];
   async function read(url) {
     const response=await fetch(url,{redirect:'error',signal:AbortSignal.timeout(10000)});
     if(!response.ok)throw new Error('SSR fixture HTTP '+response.status);
@@ -23,13 +23,16 @@ export async function probeSsrProduct(base='http://127.0.0.1:8080',fixture='nuxt
     if(!repeat.headers.get('content-type')?.includes('text/html')||!first||!second||Date.parse(second)<=Date.parse(first)||Math.abs(Date.parse(first)-observedAt)>30000||Math.abs(Date.parse(second)-observedAt)>30000)throw new Error('Astro response was not freshly server-rendered');
     return {fixture,productRendered,initialCounter:0,inlineClient,scripts:[],dynamicRender:{first,second,passed:true},passed:true,scope:'Authenticated HTTP fresh server-rendered Astro fixture and inline client delivery; not browser execution, interaction or database persistence'};
   }
-  const paths=fixture==='sveltekit'
+  const paths=fixture==='react-router'
+    ? [...page.matchAll(/<script\b[^>]*\btype=["']module["'][^>]*>([\s\S]*?)<\/script>/gi)].flatMap(script=>[...script[1].matchAll(/\bimport\(\s*["']([^"']+)["']\s*\)|\bimport\s+(?:\*\s+as\s+\w+\s+from\s+)?["']([^"']+)["']/g)].map(match=>match[1]||match[2]))
+    : fixture==='sveltekit'
     ? [...page.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)].flatMap(script=>[...script[1].matchAll(/\bimport\(\s*["']([^"']+)["']\s*\)/g)].map(match=>match[1]))
     : [...page.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi)].map(match=>match[1]);
   const sources=paths.map(path=>new URL(path,root));
   if(!sources.length||sources.length>16)throw new Error('Expected '+fixture+' client entry scripts were not found');
   if(sources.some(url=>url.origin!==root.origin||!url.pathname.startsWith(prefix)||!url.pathname.endsWith('.js')))throw new Error('Unexpected '+fixture+' client script URL');
   if(fixture==='sveltekit'&&(!sources.some(url=>/^start\.[\w-]+\.js$/.test(url.pathname.slice(prefix.length)))||!sources.some(url=>/^app\.[\w-]+\.js$/.test(url.pathname.slice(prefix.length)))))throw new Error('SvelteKit start and app entries are required');
+  if(fixture==='react-router'&&(!sources.some(url=>/^root-[\w-]+\.js$/.test(url.pathname.slice(prefix.length)))||!sources.some(url=>/^entry\.client-[\w-]+\.js$/.test(url.pathname.slice(prefix.length)))))throw new Error('React Router root and client entries are required');
   const scripts=[];
   for(const url of sources) {
     const script=await read(url),contentType=script.headers.get('content-type')||'',body=await script.text();
