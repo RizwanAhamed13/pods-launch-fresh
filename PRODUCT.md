@@ -277,3 +277,13 @@ checks. Native pass labels require explicit acceptance flags; failed test record
 cannot create a pass. The page states the remaining browser, performance and
 application-type limits. Revision e5033d1 passed102tests locally/aswin and public
 browser checks. Source totals5,423lines; coverage remains55isolated/23native.
+
+
+Standalone Lit adds native fixture 24. Ordinary URL preparation took 47.476s.
+The actual Cloud Shell product appeared in 7.398s on first delivery and 5.441s
+cached, with successful interactions in 7.886s/5.735s. Counter state survived
+reload, full application restart and nested URL entry. Codespaces passed compiled
+asset and route checks at 28.477s/8.116s; browser execution remains pending. All
+four launches stopped and port 26163 remained private. Current coverage is
+55 isolated / 24 native Google browser / 24 Codespaces HTTP-protocol / 31 pending.
+The public compatibility page reflects the explicit acceptance flags.

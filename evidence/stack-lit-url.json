@@ -1,0 +1,54 @@
+{
+  "recordedAt": "2026-10-03T23:28:55.688740+00:00",
+  "controlRevision": "e5033d1",
+  "checkoutRevision": "0b8ef5d",
+  "scope": "Actual developer form after the same-account quota watcher confirmed availability; production isolated preparation under the supervised control service. No imported QA artifact.",
+  "quotaBefore": {
+    "accountRecent": 2,
+    "globalRecent": 2,
+    "activeBuilds": 0
+  },
+  "attempts": [
+    {
+      "id": "sST4jHNOQFTVuYUaiStxtPmk74OBbrP9",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/lit",
+        "key": "b2cd87ee9e8063ac61d2b4e0"
+      },
+      "status": "ready",
+      "createdAt": 1791069874464,
+      "startedAt": 1791069874477,
+      "finishedAt": 1791069921953,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-b2cd87ee9e8063ac61d2b4e0-9eee994ba7f7-56f291e44a0c",
+      "app": {
+        "id": "repo-b2cd87ee9e8063ac61d2b4e0-9eee994ba7f7-56f291e44a0c",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "56f291e44a0cbecc17e8be02dc294b0c362d9e8cd35cd79f731182b421311793",
+        "bytes": 10615,
+        "files": 3,
+        "healthPath": "/",
+        "applicationType": "static",
+        "runtime": "node22+",
+        "dataKey": "repo-b2cd87ee9e8063ac61d2b4e0",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/lit",
+          "revision": "9eee994ba7f70d1793bc449573ddb36e01003818"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "PODS counter"
+        },
+        "preparedAt": "2026-10-03T23:25:21.947Z"
+      }
+    }
+  ],
+  "buildMs": 47476
+}

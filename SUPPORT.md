@@ -86,8 +86,8 @@ or in-flight crash recovery.
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
 later passing attempts do not erase them. Automated coverage is **102 passing
-checks locally and on aswin**. Native coverage is 23 Google browser fixtures and
-23 Codespaces HTTP/protocol fixtures; 32 await native acceptance. Codespaces
+checks locally and on aswin**. Native coverage is 24 Google browser fixtures and
+24 Codespaces HTTP/protocol fixtures; 31 await native acceptance. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1132,3 +1132,35 @@ keyboard clearing, the public footer link and narrow-screen overflow were checke
 A controlled idle service restart passed health and SQLite integrity checks;
 public HTTPS HTML exactly matched the current evidence-backed rendering.
 Source totals5,423physical lines. Evidence: `evidence/public-compatibility.json`.
+
+
+## Standalone Lit native acceptance
+
+The actual developer form prepared the Lit fixture in **47.476 seconds**, producing
+a **10,615-byte** artifact at public revision `9eee994ba7f7`. It used ordinary
+preparation capacity; no QA artifact was imported into production.
+
+| Measurement | Observed result |
+| --- | --- |
+| Cloud Shell, artifact absent on existing compute | Health 5.136s; Lit visible 7.398s; successful click 7.886s |
+| Cloud Shell, cached after full app stop | Health 4.727s; Lit visible 5.441s; successful click 5.735s |
+| Codespaces, first delivery including environment preparation | Health 28.477s; delivery 12.680s |
+| Codespaces, cached relaunch | Health 8.116s; delivery 7.135s |
+
+Google browser interaction changed the counter 0→1, retained 1 after reload and
+full application stop/relaunch, then changed it to 2. Direct entry at
+`/pods-spa-check/nested` rendered the product, changed 2→3 and retained 3 after
+reload. This is browser localStorage persistence, not database durability.
+
+Both Codespaces launches served the real 15,621-byte compiled Lit entry, resolved
+its assets at the nested URL and returned 404 for a missing asset. These are
+authenticated HTTP checks; native browser execution remains pending. Initial
+provider state was not captured, so the first timing is not classified as a
+confirmed cold or resumed VM. Port 26163 was private, all four launches stopped,
+and the final production audit found no active builds or launches.
+
+Coverage is **55 isolated browser fixtures**, **24 native Google browser fixtures**
+and **24 Codespaces HTTP/protocol fixtures**, with **31** awaiting native acceptance.
+Source and automated-check totals remain **5,423 physical lines** and **102 passing
+checks** from runtime revision `e5033d1`; this gate changed evidence and documentation.
+Evidence: `evidence/stack-lit-{url,google,codespaces}.json`.

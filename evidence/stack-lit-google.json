@@ -1,0 +1,81 @@
+{
+  "recordedAt": "2026-10-03T23:28:55.688740+00:00",
+  "controlRevision": "e5033d1",
+  "frontendRevision": "e5033d1",
+  "scope": "Actual Lit browser rendering and interaction at the native Cloud Shell preview. Browser localStorage persistence, not a backend database.",
+  "results": [
+    {
+      "id": "0j-C7mzb_GCHgLntwSxr5zHM1oifDxwe",
+      "appId": "repo-b2cd87ee9e8063ac61d2b4e0-9eee994ba7f7-56f291e44a0c",
+      "provider": "google",
+      "port": 26163,
+      "createdAt": 1791069953153,
+      "updatedAt": 1791069967823,
+      "status": "stopped",
+      "providerReadyAt": 1791069955692,
+      "readyAt": 1791069958289,
+      "timings": {
+        "downloadMs": 585,
+        "runtimeReadyMs": 972,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 5136,
+      "deliveryMs": 2597
+    },
+    {
+      "id": "E-JGmEbkHBce-5-40dE2_j1nvFwZZRyv",
+      "appId": "repo-b2cd87ee9e8063ac61d2b4e0-9eee994ba7f7-56f291e44a0c",
+      "provider": "google",
+      "port": 26163,
+      "createdAt": 1791069974200,
+      "updatedAt": 1791070003334,
+      "status": "stopped",
+      "providerReadyAt": 1791069977222,
+      "readyAt": 1791069978927,
+      "timings": {
+        "downloadMs": 357,
+        "runtimeReadyMs": 602,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 4727,
+      "deliveryMs": 1705
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "first-launch",
+      "visibleMs": 7398,
+      "interactionMs": 7886,
+      "before": 0,
+      "afterWrite": 1,
+      "afterReload": 1,
+      "passed": true
+    },
+    {
+      "scenario": "repeat-launch",
+      "visibleMs": 5441,
+      "interactionMs": 5735,
+      "before": 1,
+      "afterWrite": 2,
+      "afterReload": 2,
+      "passed": true
+    }
+  ],
+  "nestedRouteCheck": {
+    "path": "/pods-spa-check/nested",
+    "before": 2,
+    "afterWrite": 3,
+    "afterReload": 3,
+    "passed": true
+  },
+  "timingScope": "Continuous launch-click through meaningful interaction in a single browser tool call. Existing user compute; first artifact absent, then cached. Health totalMs and deliveryMs derived from persisted timestamps.",
+  "browserErrorOrWarningLogsAtFinalCheck": [],
+  "passed": true,
+  "finalProductionAudit": {
+    "at": "2026-10-03T23:28:31.687717+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0
+  }
+}

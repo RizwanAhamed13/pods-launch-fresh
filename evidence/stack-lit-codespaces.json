@@ -1,0 +1,123 @@
+{
+  "testedAt": "2026-10-03T23:26:32.477Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "Ef7x4BaMHFtsbSbVIT4hq5F7G1mD6tqU",
+      "dataKey": "repo-b2cd87ee9e8063ac61d2b4e0",
+      "port": 26163,
+      "appId": "repo-b2cd87ee9e8063ac61d2b4e0-9eee994ba7f7-56f291e44a0c",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "56f291e44a0cbecc17e8be02dc294b0c362d9e8cd35cd79f731182b421311793",
+      "images": [],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791069938308,
+      "updatedAt": 1791069966785,
+      "expiresAt": 1791071738308,
+      "environment": "pods-launch-7vrw57jpjjppcww57",
+      "providerReadyAt": 1791069954105,
+      "previewUrl": "https://pods-launch-7vrw57jpjjppcww57-26163.app.github.dev",
+      "lastSeenAt": 1791069966785,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 1264,
+        "runtimeReadyMs": 1887,
+        "cacheHit": false
+      },
+      "readyAt": 1791069966785,
+      "deliveryMs": 12680,
+      "totalMs": 28477,
+      "staticCheck": {
+        "fixture": "lit",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-WGRLEUsU.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 15621
+          }
+        ],
+        "spaRoute": {
+          "path": "/pods-spa-check/nested",
+          "status": 200,
+          "documentMatches": true,
+          "entriesResolve": true
+        },
+        "missingAssetStatus": 404,
+        "passed": true,
+        "scope": "Authenticated HTTP product shell, compiled entry assets and nested route document; not JavaScript execution, browser interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "WvHuJc3DW9dSe-fj5ETv2DBJIyvON4tK",
+      "dataKey": "repo-b2cd87ee9e8063ac61d2b4e0",
+      "port": 26163,
+      "appId": "repo-b2cd87ee9e8063ac61d2b4e0-9eee994ba7f7-56f291e44a0c",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "56f291e44a0cbecc17e8be02dc294b0c362d9e8cd35cd79f731182b421311793",
+      "images": [],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791069974041,
+      "updatedAt": 1791069982157,
+      "expiresAt": 1791071774041,
+      "environment": "pods-launch-7vrw57jpjjppcww57",
+      "providerReadyAt": 1791069975022,
+      "previewUrl": "https://pods-launch-7vrw57jpjjppcww57-26163.app.github.dev",
+      "lastSeenAt": 1791069982157,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 316,
+        "runtimeReadyMs": 555,
+        "cacheHit": true
+      },
+      "readyAt": 1791069982157,
+      "deliveryMs": 7135,
+      "totalMs": 8116,
+      "staticCheck": {
+        "fixture": "lit",
+        "productMount": true,
+        "fixtureCode": true,
+        "scripts": [
+          {
+            "path": "/assets/index-WGRLEUsU.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 15621
+          }
+        ],
+        "spaRoute": {
+          "path": "/pods-spa-check/nested",
+          "status": 200,
+          "documentMatches": true,
+          "entriesResolve": true
+        },
+        "missingAssetStatus": 404,
+        "passed": true,
+        "scope": "Authenticated HTTP product shell, compiled entry assets and nested route document; not JavaScript execution, browser interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "privatePortCheck": {
+    "checkedAt": "2026-10-03T23:28:55.688740+00:00",
+    "port": 26163,
+    "visibility": "private",
+    "passed": true
+  },
+  "scope": "Authenticated SSH HTTP product shell, compiled Lit entry assets, nested URL entry and missing-asset handling on native user compute; native Codespaces browser sign-in and JavaScript execution remain pending.",
+  "firstLaunchComputeScope": "Included environment preparation; the initial provider API state was not captured.",
+  "finalProductionAudit": {
+    "at": "2026-10-03T23:28:31.687717+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0
+  }
+}

@@ -13,18 +13,39 @@ historical results remain in SUPPORT.md, PRODUCT.md and their evidence files.
 - aswin: /home/aswin/pods-launch-fresh; SSH alias aswin.
 - 55 real isolated app fixtures pass build, artifact run and meaningful browser
   interaction. stack-coverage.json records precise scope and historical failures.
-- 23 fixtures pass native Google browser interaction and Codespaces authenticated
+- 24 fixtures pass native Google browser interaction and Codespaces authenticated
   HTTP/protocol checks. Codespaces native browser authorization remains pending.
-- 32 remaining native fixtures: actix, adonis, alpine, aspnet, astro, axum, deno,
+- 31 remaining native fixtures: actix, adonis, alpine, aspnet, astro, axum, deno,
   echo, express, fastapi, fastify, fiber, flask-mariadb, flask-mongodb7, flask-redis,
-  flask-sqlite, flask-valkey, go, gradio, hono, koa, ktor, lit, micronaut, nestjs,
+  flask-sqlite, flask-valkey, go, gradio, hono, koa, ktor, micronaut, nestjs,
   phoenix, php, react-router, rocket, sinatra, streamlit, symfony.
 - 5,423 physical source lines: 2,940 product/tooling, 1,416 tests, 903 examples,
   164 browser tools. code-lines.json states the exclusions.
 - Latest source/runtime e5033d1: 102 automated checks passed locally/aswin.
   MainPID938367. Public /support verified in browser and over HTTPS.
 
-## Latest completed gate: public compatibility page
+## Latest completed gate: native Lit
+
+- Actual developer form submitted once after quota watcher66841 ended0, with
+  account2/global2/active0 at23:24:12UTC. Build47.476s; artifact10,615bytes,
+  public9eee994. No quota changes, alternate identities or QA imports.
+- App repo-b2cd87ee9e8063ac61d2b4e0-9eee994ba7f7-56f291e44a0c; port26163.
+  Google first health5.136s, visible7.398s, interaction7.886s; cached
+  health4.727s, visible5.441s, interaction5.735s. Browser localStorage0→1,
+  full app stop/relaunch retained1→2. Nested URL rendered and2→3/reload3.
+- Codespaces harness26088 ended0, environment7vrw57jpjjppcww57. First
+  health28.477s/delivery12.680s/cachefalse, repeat8.116s/7.135s/cachetrue.
+  Both compiled entry/nested URL/missing asset checks passed. Initial provider
+  state unrecorded. Browser sign-in/JavaScript execution remains pending.
+- All four launches stopped, provider port26163 private. Final readonly audit
+ 23:28:31UTC: activebuild0/launch0. Evidence stack-lit-{url,google,codespaces}.json,
+  whitelisted capture /tmp/pods-lit-production-evidence.json.
+- Coverage explicit flags now24/24; isolated55; native31 pending. Runtime
+  remains e5033d1,102passing checks,5,423source lines; no service restart required.
+- Next native candidate Alpine. Ordinary quota next opens23:44:08.679UTC;
+  fresh readonly availability check before submitting. No live quota watcher.
+
+## Previous gate: public compatibility page
 
 - Source/runtime e5033d1, MainPID938367; public /support is linked in the footer.
   Filterable55rows, independent23Googlebrowser/23Codespacesprotocol acceptance.
@@ -42,8 +63,7 @@ historical results remain in SUPPORT.md, PRODUCT.md and their evidence files.
   the explicit acceptance flags. Last restart23:22:01UTC, health359ms.
 - Local fixture23250/PID10324 ended0; tab29supportQa is now the public /support
   page marked deliverable. Viewport restored. No QA guest changes this gate.
-- Quota watcher66841 remains LIVE; nextordinaryslot23:23:54.313UTC. Lit draft is
-  ready in stackQa6. Do not duplicate watcher or submit before capacity opens.
+- Quota watcher66841 later finished0 and Lit completed; see latest gate above.
 
 ## Previous gate: nested SPA entrypoint acceptance
 
@@ -125,10 +145,11 @@ After compaction call cua.rewriteDocumentation, then reuse bindings. Mark pendin
 workflow tabs for handoff each turn. Never repeat a launch/build because a readonly
 observation timed out; the action may already have completed.
 
-- stackQa6: IAB2tab13, Lit draft, no ready result; Prepare application button.
+- stackQa6: IAB2tab13, Alpine draft staged after Lit acceptance; not submitted.
   Exact ready region label is `Your application is ready to share.` (with period).
-- accountWorker: IAB2tab12, stopped Solid launcher; browser localStorage count3.
-  CUA solidLaunchUrl, solidBrowserChecks and solidBrowserLogs retain evidence.
+- accountWorker: IAB2tab12, stopped Lit launcher; browser localStorage count3.
+  CUA litLaunchUrl, litBrowserChecks, litNestedCheck and litBrowserLogs retain evidence.
+- supportQa: IAB2tab29, public /support deliverable, counts24/24 after evidence sync.
 - nativeGithubKeep: IAB2tab10, still pending two-factor authentication at this gate.
   User action already requested; no SMS/code sent. GitHub browser OAuth unconfigured.
   Keep previews private; do not send another authorization request.
@@ -158,8 +179,8 @@ observation timed out; the action may already have completed.
   records(kind,id,value JSON), singular build/launch. Never print tokens, root
   owner/account/session/computeKey values. Build repository.owner is public repo owner.
 - /tmp/pods-native-quota-watch.py is a readonly bounded watcher, Svelte account
-  anchor NLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp. Existing66741 is finished; next watcher66841 is live with a20minute bound.
-- Latest Solid Codespace pods-launch-7vrw57jpjjppcww57 Available at inspection;
+  anchor NLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp. Existing66741 and66841 are finished. No live quota watcher.
+- Latest Solid/Lit Codespace pods-launch-7vrw57jpjjppcww57 Available at inspection;
   Svelte/Preact pods-launch-jj497rpqpp7529v7 Shutdown. Container fixtures use
   pods-launch-containers-69rw5vx4xp46c5qw5 and97qw56gjg47gf7vrv. Recheck actual state.
 - QA guest pods-fresh-matrix-01: direct /snap/lxd/current/bin/lxc, /opt/pods source,
@@ -173,7 +194,7 @@ observation timed out; the action may already have completed.
 
 ## Remaining completion gates
 
-Continue the32native fixtures and preserve separate health/visible/interactive
+Continue the31native fixtures and preserve separate health/visible/interactive
 measurements, first artifact/image delivery versus cached and cold compute.
 Native Codespaces browser interaction/OAuth, Cloud Shell VM replacement persistence,
 durable DNS/tunnel and cold20s are unproven. Many cold/container cases exceed20s.
