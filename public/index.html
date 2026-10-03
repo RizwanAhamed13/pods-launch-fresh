@@ -15,7 +15,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 <section class="intro"><h1 id="page-title">Loading PODS…</h1><p id="page-intro"></p></section>
 <p id="notice" role="alert" hidden></p>
 <section id="catalog" aria-labelledby="catalog-title" hidden><h2 id="catalog-title">Ready to try</h2><div id="apps"><p>Loading prepared applications…</p></div></section>
-<div class="workspace" id="workspace" hidden>
+<p id="loading" role="status">Loading your account and recent activity…</p>
+<div class="workspace" id="workspace" hidden inert aria-busy="true">
 <section id="developer" aria-labelledby="repo-title" hidden>
   <h2 id="repo-title">Start with your repository</h2><p class="muted">Public GitHub repositories. PODS detects frontend builds, conventional server projects and existing Dockerfile or Compose applications.</p>
   <form id="build-form"><label for="repository">GitHub repository URL</label><input id="repository" type="url" placeholder="https://github.com/you/your-app" autocomplete="url" maxlength="300" required aria-describedby="repository-help"><p id="repository-help" class="field-help">Use the repository’s main URL. PODS detects the build and start steps.</p><details class="folder-options"><summary>My application is inside a folder</summary><label for="folder">Application folder</label><input id="folder" placeholder="apps/web" maxlength="200" spellcheck="false"><p class="field-help">Leave this empty when the application is at the repository root.</p></details></form>

@@ -2,7 +2,7 @@ import { ended, providerName, route, appForRoute, pendingForPage, previewAddress
 
 const $ = id => document.getElementById(id);
 const page = route(location.pathname);
-let me, app, active, building, timer, autoOpen = false, busy = false;
+let me, app, active, building, timer, autoOpen = false, busy = false, initializing = true;
 const selected = () => document.querySelector('input[name="provider"]:checked').value;
 const notice = text => { $('notice').textContent = text; $('notice').hidden = !text; };
 const title = item => item.verification?.title || item.name;
@@ -37,10 +37,11 @@ function connections() {
 }
 function setBusy(value) {
   busy = value;
-  $('launch').disabled = value || !app;
-  $('prepare').disabled = value || !me?.buildsEnabled;
-  $('repository').readOnly = value; $('folder').readOnly = value;
-  document.querySelectorAll('input[name="provider"]').forEach(input => { input.disabled = value; });
+  const locked = value || initializing;
+  $('launch').disabled = locked || !app;
+  $('prepare').disabled = locked || !me?.buildsEnabled;
+  $('repository').readOnly = locked; $('folder').readOnly = locked;
+  document.querySelectorAll('input[name="provider"]').forEach(input => { input.disabled = locked; });
 }
 function catalogue() {
   $('apps').replaceChildren();
@@ -226,13 +227,14 @@ try {
   const expectedProvider = query.has('error') && ['github', 'google'].includes(query.get('provider')) ? query.get('provider') : pending?.provider;
   if (pending) { provider(pending.provider); if (pending.action === 'build') { $('repository').value = pending.url; $('folder').value = pending.folder; } }
   if (page.view === 'launch' && expectedProvider) provider(expectedProvider);
-  connections(); setBusy(false); const rows = await history();
+  connections(); const rows = await history();
   if (page.view === 'develop' && rows.length) { const current = rows.find(row => !ended(row.status)) || rows[0]; showBuild(current); if (!ended(current.status)) poll('build'); }
   if (page.view === 'launch' && app) {
     let saved; try { saved = JSON.parse(storage.get('pods-active')); } catch {}
     const current = rows.find(row => row.appId === app.id && (!expectedProvider || row.provider === expectedProvider) && !['failed', 'stopped'].includes(row.status));
     if (current) { provider(current.provider); connections(); autoOpen = saved?.id === current.id && saved?.autoOpen === true; showLaunch(current); if (!ended(current.status)) poll('launch'); }
   }
+  initializing = false; $('workspace').inert = false; $('workspace').removeAttribute('aria-busy'); $('loading').hidden = true; setBusy(busy);
   if (query.has('error')) {
     storage.remove('pods-pending');
     const account = pending ? (pending.action === 'build' ? 'GitHub' : providerName(pending.provider)) + ': ' : '';
@@ -245,4 +247,4 @@ try {
     else await launch();
   }
   if (query.has('error') || query.has('connected')) window.history.replaceState(null, '', location.pathname);
-} catch (error) { notice('Could not load PODS. Refresh this page to retry. ' + error.message); }
+} catch (error) { $('loading').hidden = true; notice('Could not load PODS. Refresh this page to retry. ' + error.message); }

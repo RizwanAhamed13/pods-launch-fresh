@@ -1,4 +1,4 @@
-// Deterministic browser QA only. Provider authorization and compute are simulated.
+// Deterministic browser QA only. Preparation and provider authorization/compute are simulated.
 // No real account tokens, provider calls or billing are used by this loopback server.
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -7,12 +7,14 @@ import { randomBytes } from 'node:crypto';
 import { createApp } from '../src/server.mjs';
 import { run } from '../src/runner.mjs';
 import { sleep } from '../src/util.mjs';
+import { prepare } from './prepare.mjs';
 
 const port = Number(process.env.PODS_FIXTURE_PORT || 19888);
 const origin = `http://127.0.0.1:${port}`;
 const root = await mkdtemp(join(tmpdir(), 'pods-browser-'));
-const artifact = await readFile('.data/preparation-evidence/vite-artifact.gz');
-const sourceManifest = JSON.parse(await readFile('evidence/isolated-vite.json'));
+const sourceManifest = await prepare('examples/notes', root);
+const artifact = await readFile(join(root, 'artifacts', sourceManifest.sha256 + '.gz'));
+const historyDelay = Number(process.env.PODS_FIXTURE_HISTORY_DELAY_MS || 0);
 const runners = [];
 const processes = new Map();
 let productPort = 19900;
@@ -20,8 +22,8 @@ const adapter = {
   initialize: async () => {}, close: async () => {},
   build: async (repository, update) => {
     for (const stage of ['fetching', 'compiling', 'verifying']) { update(stage); await sleep(600); }
-    if (repository.name === 'unsupported') throw new Error('This application needs an unsupported runtime. Choose a Node, Vite or static web application.');
-    return { bytes: artifact, manifest: { ...sourceManifest, id: `repo-${repository.key}`, name: 'Prepared counter', source: { url: repository.url, folder: repository.folder, revision: 'a'.repeat(40) } } };
+    if (repository.name === 'unsupported') throw new Error('This application needs an unsupported runtime. Check the supported application matrix.');
+    return { bytes: artifact, manifest: { ...sourceManifest, id: `repo-${repository.key}`, name: 'Prepared notes', source: { url: repository.url, folder: repository.folder, revision: 'a'.repeat(40) }, verification: { documentPath: '/', status: 200, contentType: 'text/html', title: 'Prepared notes' } } };
   },
 };
 function compute(provider) {
@@ -50,6 +52,7 @@ const handler = server.listeners('request')[0];
 server.removeAllListeners('request');
 server.on('request', async (req, res) => {
   const url = new URL(req.url, origin);
+  if (req.method === 'GET' && ['/api/builds', '/api/launches'].includes(url.pathname)) await sleep(historyDelay);
   const authorization = /^\/fixture\/authorize\/(github|google)$/.exec(url.pathname);
   if (authorization) {
     const callback = `/auth/${authorization[1]}/callback?state=${encodeURIComponent(url.searchParams.get('state'))}`;

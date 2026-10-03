@@ -1,0 +1,37 @@
+{
+  "scope": "Deterministic browser regression using simulated preparation and providers, real PODS browser UI and server; not native provider evidence",
+  "historyDelayMs": 15000,
+  "observedBeforeFix": "During real developer navigation, account/history hydration overwrote entered repository/folder and reset folder expansion.",
+  "checks": [
+    {
+      "name": "controls stay inactive during delayed initial history",
+      "passed": true,
+      "observed": {
+        "workspaceInertAttribute": "",
+        "workspaceAriaBusy": "true",
+        "prepareEnabled": false
+      }
+    },
+    {
+      "name": "authorization resumes original preparation after delayed hydration",
+      "passed": true,
+      "repository": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+      "folder": "examples/notes"
+    },
+    {
+      "name": "completed history is restored before inputs become available",
+      "passed": true,
+      "workspaceInertAttribute": null
+    },
+    {
+      "name": "distinct repository and folder submitted after hydration remain selected",
+      "passed": true,
+      "repository": "https://github.com/example/form-regression",
+      "folder": "examples/stacks/react",
+      "launchPath": "/launch/repo-b36a68d27d84169e07822ae4-aaaaaaaaaaaa-960b7c74edbd",
+      "result": "Your application is ready to share."
+    }
+  ],
+  "reproduce": "PODS_FIXTURE_HISTORY_DELAY_MS=15000 node scripts/browser-fixture.mjs; open /develop, complete simulated preparation, reload and observe loading lock, then submit a distinct repository/folder.",
+  "fixtureRepair": "The old fixture required an untracked Vite archive. It now prepares the checked-in notes example locally. Initial replacement omitted simulated product-verification metadata and was rejected; corrected fixture then passed both preparations."
+}
