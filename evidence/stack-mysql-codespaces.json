@@ -1,0 +1,148 @@
+{
+  "testedAt": "2026-10-03T20:32:17.325Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "9T5WYwcmtxF4JUu7iv5y817uyqcWX5X9",
+      "dataKey": "repo-92ea628b6475df117d05b393",
+      "appId": "repo-92ea628b6475df117d05b393-f58a3e357955-d9f33af13065",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "d9f33af130650c1e499b6bd138bb618bcd33155684c49d705b0a7bcb6e09eac1",
+      "images": [
+        {
+          "id": "sha256:a486201e40c464010f9ae1155671f2933aa1e517e2a7d8f4ef6bb433cc4c2009",
+          "sha256": "7b6c6da574b7bae290dd990b62041433a1daa94d6380f433284c7cd84912dce9",
+          "bytes": 57047581
+        },
+        {
+          "id": "sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242",
+          "sha256": "2d4532ed5147b9856dbaeae8df9642f8b90509058c16c81d877c0ce7d5379cc8",
+          "bytes": 239806377
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791059344228,
+      "updatedAt": 1791059490653,
+      "expiresAt": 1791061144228,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791059357040,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791059490653,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 1076,
+        "imagesMs": 97471,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 62,
+        "imageDownloadMs": 53700,
+        "imageLoadMs": 43681,
+        "runtimeReadyMs": 116540,
+        "cacheHit": false
+      },
+      "readyAt": 1791059490653,
+      "deliveryMs": 133613,
+      "totalMs": 146425,
+      "mysqlRuntimeCheck": {
+        "passed": true,
+        "project": "pods-3368ff2bf9c3f3a1342985d0",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          8080
+        ],
+        "volume": "pods-3368ff2bf9c3f3a1342985d0_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Read-only Docker boundary and volume inspection on Codespaces; record persistence is verified separately through HTTP before and after restart."
+      },
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 0,
+        "afterWrite": 1,
+        "afterRead": 1,
+        "passed": true,
+        "expectedInitialCount": 0
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "2Qv-94E5R8NrQ9h_GR2UNz-6YMMAssTu",
+      "dataKey": "repo-92ea628b6475df117d05b393",
+      "appId": "repo-92ea628b6475df117d05b393-f58a3e357955-d9f33af13065",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "d9f33af130650c1e499b6bd138bb618bcd33155684c49d705b0a7bcb6e09eac1",
+      "images": [
+        {
+          "id": "sha256:a486201e40c464010f9ae1155671f2933aa1e517e2a7d8f4ef6bb433cc4c2009",
+          "sha256": "7b6c6da574b7bae290dd990b62041433a1daa94d6380f433284c7cd84912dce9",
+          "bytes": 57047581
+        },
+        {
+          "id": "sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242",
+          "sha256": "2d4532ed5147b9856dbaeae8df9642f8b90509058c16c81d877c0ce7d5379cc8",
+          "bytes": 239806377
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791059508834,
+      "updatedAt": 1791059519227,
+      "expiresAt": 1791061308834,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "providerReadyAt": 1791059509464,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-8080.app.github.dev",
+      "lastSeenAt": 1791059519227,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 170,
+        "imagesMs": 110,
+        "imageCacheHits": 2,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 110,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 4447,
+        "cacheHit": true
+      },
+      "readyAt": 1791059519227,
+      "deliveryMs": 9763,
+      "totalMs": 10393,
+      "mysqlRuntimeCheck": {
+        "passed": true,
+        "project": "pods-3368ff2bf9c3f3a1342985d0",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          8080
+        ],
+        "volume": "pods-3368ff2bf9c3f3a1342985d0_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Read-only Docker boundary and volume inspection on Codespaces; record persistence is verified separately through HTTP before and after restart."
+      },
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 1,
+        "afterWrite": 2,
+        "afterRead": 2,
+        "passed": true,
+        "expectedAfterRelaunch": 1
+      },
+      "statusAfterStop": "stopped"
+    }
+  ]
+}

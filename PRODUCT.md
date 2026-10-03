@@ -142,5 +142,14 @@ visibility measured 24.793s with an absent image and 6.454s cached; the cached
 counter accepted a click by 6.738s. Codespaces health measured 43.350s first and
 7.252s cached, with actual SSR/client assets checked. First-image launches still
 miss the 20-second target. Native Codespaces browser authorization/interaction
-and the remaining 40 native fixture checks remain pending. See the Nuxt standalone
+and the remaining native fixture checks remain pending. See the Nuxt standalone
 section of SUPPORT.md for exact evidence and scope.
+
+Flask + MySQL is the sixteenth fixture with native-provider evidence. Developer
+URL preparation took191.104s. Cloud Shell restored its saved database record by
+11.458s and accepted a new write by11.742s on cached relaunch. Codespaces HTTP
+write/read/restart checks passed, with its cached health at10.393s. Its actual
+runtime exposed only product port8080 and retained the same durable MySQL volume.
+First-image health took103.340s on Google and146.425s on Codespaces, both over20s.
+All four test launches stopped. Native Codespaces browser interaction and39 remaining
+native fixture checks are still pending. Exact timing scope is in SUPPORT.md.

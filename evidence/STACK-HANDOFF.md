@@ -12,38 +12,48 @@ Goal active. Do not claim universal support or complete provider/browser accepta
 - 4963 physical source lines: 2756 product/tooling, 1149 tests, 894 examples,
   164 browser tools. Exclusions in code-lines.json.
 - 75 automated checks pass locally and on aswin for MySQL inspection helper01891c1.
-- Native Google browser families: Flask/PostgreSQL, React/Express/PostgreSQL,
+- Native Google browser fixtures: Flask/PostgreSQL, React/Express/PostgreSQL,
   Angular SSR/SQLite, Quarkus/SQLite, Laravel/SQLite, Blazor/SQLite, Gin/file,
   Flask/Python worker/Redis, Bun WebSocket/SQLite, Rails/SQLite, Nuxt, Django/SQLite,
-  FastAPI JSON API/SQLite, Next.js, SvelteKit: fifteen.
-- Same fifteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
+  FastAPI JSON API/SQLite, Next.js, SvelteKit, Flask/MySQL: sixteen.
+- Same sixteen fixtures have Codespaces authenticated SSH HTTP/protocol checks;
   native Codespaces browser authorization and interaction remain pending.
 
-## Current gate: MySQL native database acceptance
+## Latest completed gate: MySQL native database acceptance
 
-- Next fixture is examples/stacks/flask-mysql on public f58a3e3. Its isolated
-  build/browser and counter persistence already passed; native provider acceptance
-  is pending. Do not repeat those passing checks without a specific concern.
-- Added scripts/probe-mysql-runtime.mjs plus optional PODS_MYSQL_RUNTIME_CHECK=1
-  to the explicit Codespaces harness. Requires PODS_COUNTER_CHECK=1 and the exact
-  MySQL fixture folder. It checks both running containers, healthy private DB,
-  only product port8080, and the application-owned MySQL volume in /workspaces.
-  Docker inspect selects bounded fields and never reads environment variables.
-- Tests reject published3306/33060, host networking, extra product ports, unhealthy
-  or missing containers, and missing/wrong/ephemeral storage. Serialized remote
-  command executes in a fresh Node process with a controlled Docker fixture.
-- Real isolated MySQL probe passed: write0→1, stop/restart, read1, healthy DB,
-  no DB host ports, durable workspace volume. Evidence stack-mysql-runtime-boundary.json.
-  Test script scripts/test-mysql-runtime-live.mjs, exec81946 ended0. QA ports8080/18090
-  free, Docker empty. Unique test volume data retained under /workspaces/.pods-launch.
-- Read-only quota observer exec64106 is live, polls once/minute, exits when ordinary
-  same-account/global quota permits submission. It only reads production SQLite.
-  Resume/poll this handle; do not start a duplicate or infer completion from timeout.
-- Native MySQL data and boundary checks remain pending. Same-account preparation
-  limit currently3/hour; next slot2026-10-03T20:21:13.019Z. Do not bypass quota,
-  switch identities, or import QA artifacts into production.
+- Core b7ddcde pushed/synced; 75 tests pass locally/aswin. No product runtime change
+  or restart needed; server remains b02fea1/PID806978. MySQL helper is opt-in QA.
+- Normal same-account quota permitted one developer form submission: observer64106
+  completed0. BuildLPhG2-vSjBWYE0vUgp5YE9dcLhyPR25C prepared examples/stacks/flask-mysql
+  at public f58a3e3 in191.104s. Observer58565 ended0. No QA artifact import.
+  App repo-92ea628b6475df117d05b393-f58a3e357955-d9f33af13065;
+  dataKey repo-92ea628b6475df117d05b393, 2 images total296853958bytes.
+- Google image absent: health103.340s. Product observed128.146s/first successful
+  write128.437s are upper bounds after bounded waits/tool boundary. Counter0→1,
+  reload1, full app/database stop. Cached: health10.848s, visible11.352s,
+  restored record1 by11.458s, write1→2 by11.742s continuously; reload2.
+  Final browser error/warn logs empty; both launches stopped.
+- Codespaces69rw5vx4xp46c5qw5: health146.425s first (provider12.812s),10.393s cached.
+  Native HTTP checks write0→1, stop/relaunch, read1 before write2, read2.
+  Docker boundary inspection passes twice: healthy web/db, only product8080
+  published, no DB host ports, same records-disk-v1 MySQL volume backed by its
+  /workspaces application directory. Harness52170 completed0; both stopped.
+- Image downloads53.700s each did not overlap; loads Google22.859s/Codespaces43.681s.
+  First launches miss20s; cached samples are not guarantees. Native CS browser and
+  provider VM replacement/rebuild are not proven by this MySQL test.
+- Evidence stack-mysql-{url,google,codespaces}.json. Coverage55 isolated /16 native
+  fixtures;39 native fixtures remain. Final production read-only check: no active
+  builds or launches. Saved MySQL Google2/Codespaces2.
+- Prior isolated boundary probe passed with a Codespaces-shaped workspace path;
+  scope is explicitly QA. Evidence stack-mysql-runtime-boundary.json, real script
+  scripts/test-mysql-runtime-live.mjs; exec81946 ended0. QA Docker empty and ports
+  8080/18090 free; unique test volume remains in /workspaces/.pods-launch.
+- Reproduce native QA with PODS_COUNTER_CHECK=1 PODS_EXPECT_INITIAL_COUNT=<saved>
+  PODS_MYSQL_RUNTIME_CHECK=1 and an unused PODS_EVIDENCE_FILE. Helper requires the
+  explicit examples/stacks/flask-mysql folder and two Codespaces launches. It reads
+  bounded Docker metadata, never container environment variables.
 
-## Latest completed gate: optimized Nuxt native acceptance
+## Previous completed gate: optimized Nuxt native acceptance
 
 - Core c774ec5 is pushed and deployed. All 72 tests pass locally/aswin. Control
   server remains b02fea1/PID806978; each isolated build copies fresh recipe source,
@@ -297,7 +307,8 @@ Always verify PID file, cwd, cmdline
 and listener before targeted restart. Use scripts/serve.sh from the repository;
 Node/gh in /home/aswin/pods-tools/bin. Do not restart with active builds/launches.
 
-No live PODS apps after optimized Nuxt checks; data retained. Latest Nuxt Codespace
+No live PODS apps after MySQL checks; data retained. Latest MySQL Codespace
+pods-launch-containers-69rw5vx4xp46c5qw5. Latest Nuxt Codespace
 pods-launch-containers-69rw5vx4xp46c5qw5. Latest SvelteKit Codespace
 pods-launch-containers-97qw56gjg47gf7vrv. Latest Next Codespace
 pods-launch-containers-69rw5vx4xp46c5qw5; API Codespace
@@ -305,8 +316,8 @@ pods-launch-containers-97qw56gjg47gf7vrv; prior image-phase Codespace
 pods-launch-containers-69rw5vx4xp46c5qw5. API Google2/Codespaces4; earlier
 Google Django3/Rails2/Bun2, Codespaces Django4/Rails4/Bun2.
 
-CUA bindings: stackQa6 IAB2tab13 has MySQL folder staged, not submitted; accountWorker IAB2tab12 stopped
-optimized Nuxt launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
+CUA bindings: stackQa6 IAB2tab13 completed MySQL preparation; accountWorker IAB2tab12 stopped
+MySQL launcher; independentUser Chrome1tab2083874416 prior failed Bun/expired
 connection; nativeGithubKeep IAB2tab10; cloudLifecycle IAB2tab14.
 After compaction call rewriteDocumentation; re-mark pending tabs. Locator timeouts
 do not cancel launches: never resubmit because an observation timed out.

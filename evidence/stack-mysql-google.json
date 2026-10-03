@@ -1,0 +1,82 @@
+{
+  "recordedAt": "2026-10-03T20:30:42.928522+00:00",
+  "scope": "Real Cloud Shell browser product, MySQL write/read and full web/database restart after developer URL submission; both launches stopped.",
+  "results": [
+    {
+      "id": "qlee1gqFnOs9ndUJG6uWsCBQiVqDn9vr",
+      "appId": "repo-92ea628b6475df117d05b393-f58a3e357955-d9f33af13065",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791059202177,
+      "providerReadyAt": 1791059205054,
+      "readyAt": 1791059305517,
+      "updatedAt": 1791059371003,
+      "environment": "default",
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 448,
+        "imagesMs": 76768,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 72,
+        "imageDownloadMs": 53700,
+        "imageLoadMs": 22859,
+        "runtimeReadyMs": 98524,
+        "cacheHit": false
+      },
+      "totalMs": 103340,
+      "deliveryMs": 100463
+    },
+    {
+      "id": "6IJdq7h9UDuybwo0SKwBDElzyI26TgDW",
+      "appId": "repo-92ea628b6475df117d05b393-f58a3e357955-d9f33af13065",
+      "provider": "google",
+      "status": "stopped",
+      "createdAt": 1791059380862,
+      "providerReadyAt": 1791059383565,
+      "readyAt": 1791059391710,
+      "updatedAt": 1791059426469,
+      "environment": "default",
+      "previewUrl": "https://8080-cs-946902242202-default.cs-asia-southeast1-palm.cloudshell.dev",
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 201,
+        "imagesMs": 138,
+        "imageCacheHits": 2,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 138,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 6760,
+        "cacheHit": true
+      },
+      "totalMs": 10848,
+      "deliveryMs": 8145
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "image-absent",
+      "visibleObservedMs": 128146,
+      "successfulClickObservedMs": 128437,
+      "before": 0,
+      "after": 1,
+      "afterReload": 1,
+      "timingScope": "Observed after bounded waits and a tool boundary; visibility and interaction are upper bounds."
+    },
+    {
+      "scenario": "cached-relaunch",
+      "visibleMs": 11352,
+      "savedDataVisibleMs": 11458,
+      "successfulClickMs": 11742,
+      "before": 1,
+      "after": 2,
+      "afterReload": 2,
+      "timingScope": "Continuous observation from launch click through visibility, restored database read and successful write."
+    }
+  ],
+  "browserErrorOrWarningLogsAtFinalCheck": [],
+  "persistenceScope": "MySQL-backed counter read before write, retained through full app/database stop and relaunch, read again before second write. No provider VM replacement claim.",
+  "passed": true
+}

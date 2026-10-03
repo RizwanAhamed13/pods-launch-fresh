@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-03T20:25:35.237681+00:00",
+  "scope": "Actual developer form after normal same-account quota availability; production isolated preparation, no imported QA artifact.",
+  "coreRevision": "b7ddcde",
+  "quotaBefore": {
+    "accountRecent": 2,
+    "globalRecent": 2,
+    "activeBuilds": 0
+  },
+  "attempts": [
+    {
+      "id": "LPhG2-vSjBWYE0vUgp5YE9dcLhyPR25C",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/flask-mysql",
+        "key": "92ea628b6475df117d05b393"
+      },
+      "status": "ready",
+      "createdAt": 1791058932854,
+      "startedAt": 1791058932864,
+      "finishedAt": 1791059123968,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-92ea628b6475df117d05b393-f58a3e357955-d9f33af13065",
+      "app": {
+        "id": "repo-92ea628b6475df117d05b393-f58a3e357955-d9f33af13065",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "d9f33af130650c1e499b6bd138bb618bcd33155684c49d705b0a7bcb6e09eac1",
+        "bytes": 586,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-92ea628b6475df117d05b393",
+        "images": [
+          {
+            "id": "sha256:a486201e40c464010f9ae1155671f2933aa1e517e2a7d8f4ef6bb433cc4c2009",
+            "sha256": "7b6c6da574b7bae290dd990b62041433a1daa94d6380f433284c7cd84912dce9",
+            "bytes": 57047581
+          },
+          {
+            "id": "sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242",
+            "sha256": "2d4532ed5147b9856dbaeae8df9642f8b90509058c16c81d877c0ce7d5379cc8",
+            "bytes": 239806377
+          }
+        ],
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/flask-mysql",
+          "revision": "f58a3e35795578fb1f036369ebdcdd992a074bf8"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "PODS stack counter"
+        },
+        "preparedAt": "2026-10-03T20:25:22.933Z"
+      }
+    }
+  ],
+  "buildMs": 191104
+}

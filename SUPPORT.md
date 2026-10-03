@@ -668,16 +668,42 @@ before/after latency comparison and do not establish a universal timing guarante
 Evidence: `stack-nuxt-standalone-{comparison,url,google,codespaces}.json` and
 `stack-matrix-29.json` in `evidence/`.
 
-## MySQL native acceptance preparation
+## MySQL native URL, product and persistence acceptance
 
-A new read-only runtime probe checks the actual Docker service network, verifies
-that no MySQL port is published, and verifies the database mount points to its
-application volume under the durable Codespaces workspace. It avoids reading
-container environment variables. Tests reject exposed ports, host networking,
-unhealthy containers, missing/wrong volumes, and temporary storage.
+The real developer form prepared `examples/stacks/flask-mysql` at public fixture
+revision `f58a3e3` in **191.104 seconds**. It saved separate prebuilt web and MySQL
+images totaling 296,853,958 bytes (283.1 MiB). No QA artifact was imported and the
+normal account/global build limits remained in effect.
 
-The probe passed against a real MySQL container in the isolated aswin QA guest:
-counter0→1 survived a complete app/database stop and restart, both database health
-checks passed, and only product port8080 was published. This is isolated evidence,
-not a native Codespaces result. See `evidence/stack-mysql-runtime-boundary.json`.
-Native MySQL URL preparation and provider acceptance remain pending.
+| MySQL scenario | Measured result |
+| --- | --- |
+| Cloud Shell, images absent | Health 103.340s; product and first write observed by 128.437s |
+| Cloud Shell, cached relaunch | Health 10.848s; product visible 11.352s; retained record visible 11.458s; successful write 11.742s |
+| Codespaces, images absent | Health 146.425s, including 12.812s provider startup |
+| Codespaces, cached relaunch | Health 10.393s |
+
+The first Google browser observation includes a tool boundary and is an upper
+bound, not exact visibility latency. The cached browser measurement is continuous.
+Google wrote0→1, reloaded1, stopped the full application/database, relaunched and
+read1 before writing2 and reloading2. Final console error/warning logs were empty.
+Codespaces authenticated HTTP checks independently wrote0→1, stopped/relaunched,
+read1 before writing2, then read2. All four launches stopped; data was retained.
+Native Codespaces browser authorization and interaction remain pending.
+
+The native Codespaces runtime probe passed on both launches: the database was
+healthy on the application's network, no database port was published, only product
+port8080 was published, and the same MySQL volume used its durable `/workspaces`
+application directory. The probe selects bounded Docker metadata and avoids
+reading environment variables. Its tests reject exposed ports, host networking,
+unhealthy containers, wrong volumes and temporary storage. The earlier real
+isolated probe is recorded separately in `stack-mysql-runtime-boundary.json`.
+
+First-image downloads took 53.700s on each provider and did not overlap; Docker
+loading took 22.859s on Google and 43.681s on Codespaces. Both first launches miss
+20 seconds. Cached samples pass that target but are not a guarantee, and this
+check does not claim persistence through provider VM replacement/rebuild.
+Evidence: `evidence/stack-mysql-{url,google,codespaces}.json`.
+
+**Current native coverage: 16 representative fixtures** have Google browser and
+Codespaces HTTP/protocol evidence; 39 of the 55 isolated fixtures remain to be
+checked natively. All Codespaces browser claims remain pending authorization.
