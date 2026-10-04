@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-10-04T05:19:51.015681+00:00",
+  "baseRevision": "ff674df",
+  "scope": "Go net/http fixture: compiled Linux x64 executable and Go module/build identity, read-only saved file counter, private product boundary and durable workspace volume. Unit checks are separate from real artifact and native acceptance. This does not test a database.",
+  "referenceSources": [
+    "https://go.dev/src/debug/buildinfo/buildinfo.go"
+  ],
+  "fullSuite": [
+    {
+      "environment": "local",
+      "tests": 171,
+      "passed": 171,
+      "failed": 0,
+      "outputSha256": "16f5817776da368784b2fb07948f94fc8e27f64eeff82db159b853fa3797aa83"
+    },
+    {
+      "environment": "isolated-aswin-linux",
+      "tests": 171,
+      "passed": 171,
+      "failed": 0,
+      "outputSha256": "28cadc72670aa4a94fe2fe243a5dd91450706e46c088b4aabf8f30998e927e2d"
+    }
+  ]
+}

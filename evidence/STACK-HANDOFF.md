@@ -23,10 +23,10 @@ VM replacement durability, or a universal 20-second cold launch.
   pending authorization. The16 fixtures awaiting native acceptance are:
   actix, aspnet, axum, deno, echo, fiber, go, gradio,
   ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
-- Current full suite:166/166 passed locally and in isolated aswin QA after
-  Valkey inspection tooling. Logs /tmp/pods-valkey-full-{local,qa}.txt.
+- Current full suite:171/171 passed locally and in isolated aswin QA after
+  Go executable inspection tooling. Logs /tmp/pods-go-full-{local,qa}.txt.
   The previous SQLite native acceptance was published4bb9326.
-- Physical code:6,567 lines =3,430 product/tooling +2,040 tests +933 examples
+- Physical code:6,679 lines =3,485 product/tooling +2,097 tests +933 examples
   +164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
   files; includes .astro. Running provider revision5dde1e5, PID1063107,
   runner SHA2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486.
@@ -770,3 +770,23 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   support DOM at05:11:38.186UTC verified55/39/39, Flask+Valkey allpassed and the
   Codespaces browser pending notice. Compatibility checks3/3passed. No live
   watcher/build/test remains; next Go fixture is unstarted. Goal active.
+
+
+## Go executable inspection and isolated preflight
+
+- Added a bounded, read-only fixture probe for Go compiled executable identity,
+  ELF Linux x64 format, module, CGO setting, saved counter and persistent volume.
+  It copies fixed files from the scratch container; no compiler or shell is run
+  inside the application. Temporary inspection files are removed on failure.
+- Five focused tests passed; full suites171/171 passed locally and in isolated
+  aswin QA. Candidate /output/go-candidate-ff674df in pods-fresh-matrix-01.
+- Real stored artifact preflight at05:16:31.705UTC passed0→1→2 across full stops,
+  including empty chunked POST. Binary Go1.24.13, module pods.example/counter,
+  CGO disabled, binary SHAab7ed61fe289d418445cdbb4dc440a1f1121224d6d1559f8052b75f53631fb13.
+  Scoped test containers/volume/storage removed; shared runtime/cache retained.
+- Evidence stack-go-chunked-probe.{json,mjs} and stack-go-runtime-probe-tests.json.
+  Native Go acceptance is pending. Ordinary quota watcher8312 remains live;
+  expected next slot05:27:14.305UTC. Developer form examples/stacks/go is
+  unsubmitted. Do not create a second watcher or bypass normal quotas.
+- Source6679 lines; coverage55/39/39 unchanged. Existing GitHub2FA, provider VM
+  replacement and stable-hostname inputs remain pending. Goal remains active.

@@ -1,0 +1,90 @@
+{
+  "recordedAt": "2026-10-04T05:16:31.705Z",
+  "scope": "Isolated real Go artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+  "dataKey": "go-chunked-2292049e2339a448",
+  "project": "pods-b9a0cf927d5419ff4a494741",
+  "artifactSha256": "271ba117af75f9fedd7ad09cd2d5e8bb85f8c1ca257b627aff800af54081719d",
+  "images": [
+    {
+      "id": "sha256:da8d3df064d11a633a1a5f91784a7b6ab7e9fce714afa10cfc582de678a4d034",
+      "sha256": "cf982d29ac07b544a1e801e0eb4d07bcd99bb8b61e7c97ad9b958036fe960ade",
+      "bytes": 4755837
+    }
+  ],
+  "sourceSha256": "ff07abed124691a67b54c3a24ab5e16249ffccb762c91fb59a3aa779be8c8244",
+  "records": [
+    {
+      "compiledRuntime": {
+        "passed": true,
+        "project": "pods-b9a0cf927d5419ff4a494741",
+        "services": [
+          "web"
+        ],
+        "runtime": "Go",
+        "version": "go1.24.13",
+        "module": "pods.example/counter",
+        "binaryFormat": "ELF-linux-x64",
+        "binarySha256": "ab7ed61fe289d418445cdbb4dc440a1f1121224d6d1559f8052b75f53631fb13",
+        "binaryBytes": 8419315,
+        "cgoEnabled": false,
+        "savedCount": 1,
+        "volume": "pods-b9a0cf927d5419ff4a494741_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          18095
+        ],
+        "databaseHostPorts": [],
+        "scope": "Isolated aswin guest: compiled Go executable/module, saved file counter, product port and persistent bind volume; not database or native provider evidence."
+      },
+      "scenario": "first-launch",
+      "before": 0,
+      "post": {
+        "status": 200,
+        "count": 1
+      },
+      "afterRead": 1,
+      "transferEncoding": "chunked",
+      "contentType": null
+    },
+    {
+      "compiledRuntime": {
+        "passed": true,
+        "project": "pods-b9a0cf927d5419ff4a494741",
+        "services": [
+          "web"
+        ],
+        "runtime": "Go",
+        "version": "go1.24.13",
+        "module": "pods.example/counter",
+        "binaryFormat": "ELF-linux-x64",
+        "binarySha256": "ab7ed61fe289d418445cdbb4dc440a1f1121224d6d1559f8052b75f53631fb13",
+        "binaryBytes": 8419315,
+        "cgoEnabled": false,
+        "savedCount": 2,
+        "volume": "pods-b9a0cf927d5419ff4a494741_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          18095
+        ],
+        "databaseHostPorts": [],
+        "scope": "Isolated aswin guest: compiled Go executable/module, saved file counter, product port and persistent bind volume; not database or native provider evidence."
+      },
+      "scenario": "full-relaunch",
+      "before": 1,
+      "post": {
+        "status": 200,
+        "count": 2
+      },
+      "afterRead": 2,
+      "transferEncoding": "chunked",
+      "contentType": null
+    }
+  ],
+  "passed": true,
+  "cleanup": {
+    "containersStopped": true,
+    "probeVolumeRemoved": true,
+    "probeStorageDirectoriesRemoved": true,
+    "sharedRuntimeAndCacheRetained": true
+  }
+}

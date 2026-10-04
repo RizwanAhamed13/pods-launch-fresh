@@ -1928,3 +1928,24 @@ Evidence: `stack-flask-valkey-{url,google,codespaces,audit}.json`. Current cover
 **55 isolated / 39 Google browser / 39 Codespaces protocol**, **16** native
 fixtures pending. Source: **6,567 physical lines**; full suites **166/166** locally
 and in isolated aswin Linux QA remain valid.
+
+
+## Go compiled runtime inspection and transport preflight
+
+Added a read-only acceptance probe for the Go net/http fixture. It inspects the
+running container command and copied compiled binary, verifies Linux x64 ELF,
+Go build metadata and module identity, and checks the product's saved file counter
+and persistent storage. It does not require a shell or compiler in the scratch
+runtime. Tests reject changed executables, modules, storage, ports and malformed
+metadata, and verify cleanup on failure and standalone command serialization.
+
+The real stored artifact passed an empty chunked POST and a full application
+stop/relaunch: **0→1→2**, with actual **Go 1.24.13**, CGO disabled and module
+`pods.example/counter`. Scoped test containers, volume and storage were removed.
+This is file persistence evidence, not a database or provider VM replacement test.
+
+Evidence: `stack-go-chunked-probe.{json,mjs}` and
+`stack-go-runtime-probe-tests.json`. Full suites: **171/171** locally and in
+isolated aswin Linux QA. Source: **6,679 physical lines**. Native coverage remains
+**55 isolated / 39 Google browser / 39 Codespaces protocol** until native Go
+acceptance completes.
