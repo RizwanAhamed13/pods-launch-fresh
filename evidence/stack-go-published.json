@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-04T05:36:13.152Z",
+  "acceptanceRevision": "43fb3e8",
+  "url": "https://collection-conferences-ages-clearly.trycloudflare.com/support",
+  "scope": "Rendered public compatibility page after native Go evidence synchronization. Browser DOM verification, not a new product launch.",
+  "isolatedFixtures": 55,
+  "googleBrowserFixtures": 40,
+  "codespacesProtocolFixtures": 40,
+  "goRow": "Go net/http Go Passed Passed Passed",
+  "codespacesBrowserPendingNoticePresent": true,
+  "compatibilityChecks": {
+    "tests": 3,
+    "passed": 3,
+    "failed": 0
+  }
+}
