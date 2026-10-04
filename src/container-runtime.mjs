@@ -3,7 +3,7 @@ import { createReadStream, createWriteStream } from 'node:fs';
 import { mkdir, stat, rename, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { pipeline } from 'node:stream/promises';
-import { Transform } from 'node:stream';
+import { Readable, Transform } from 'node:stream';
 import { docker, runtimeCompose } from './containers.mjs';
 import { persistentVolumes, storageRoot } from './storage.mjs';
 import { transitionApplicationData } from './storage-transition.mjs';
@@ -47,61 +47,83 @@ export async function containersAlive(plan, args, execute = docker) {
 }
 
 export async function prepareRuntimeImages(images, config, root, timings, execute = docker, fetcher = fetch) {
+  if (new Set(images.map(image => image.sha256)).size !== images.length) throw new Error('Conflicting prepared image archives');
   const cache = join(root, 'images'); await mkdir(cache, {recursive:true,mode:0o700});
   const started = performance.now();
   Object.assign(timings, {imageCacheHits:0,imageArchiveCacheHits:0,imageCacheCheckMs:0,imageDownloadMs:0,imageLoadMs:0,imageCdnDownloads:0,imageCdnFallbacks:0,imageCdnMs:0,imageOriginDownloads:0,imageCdnRangeAttempts:0,imageCdnRangeDownloads:0});
   delete timings.imageCdnLastFailure;
+  const controller = new AbortController();
+  let next = 0, failure, loading = Promise.resolve();
+  const fail = error => { failure ||= error; controller.abort(failure); };
   const measure = async (key, action) => {
     const at = performance.now();
     try { return await action(); } finally { timings[key] += performance.now() - at; }
   };
-  try {
-    for (const image of images) {
-      const present = await measure('imageCacheCheckMs', () => execute(['image','inspect',image.id,'--format','{{.Id}}']).catch(() => ''));
-      if (present === image.id) { timings.imageCacheHits++; continue; }
-      const path = join(cache, image.sha256 + '.gz');
-      const valid = await measure('imageCacheCheckMs', () => stat(path).then(async s => s.size === image.bytes && await fileHash(path) === image.sha256).catch(() => false));
-      if (valid) timings.imageArchiveCacheHits++;
-      else await measure('imageDownloadMs', async () => {
-        const url = new URL(config.artifactUrl); url.pathname += '/images/' + image.sha256;
-        const origin = direct => fetcher(url, {headers:{Authorization:`Bearer ${config.token}`,...(direct?{'X-PODS-Image-Delivery':'direct'}:{})},signal:AbortSignal.timeout(180000),redirect:'manual'});
-        const save = async response => {
-          if (response.status !== 200) { await response.body?.cancel().catch(() => {}); throw new ImageTransferError(`Prepared image download returned ${response.status}`, 'http', response.status); }
-          const temp = path + '.' + config.id; let size = 0; const hash = createHash('sha256');
-          try {
-            await pipeline(response.body, new Transform({transform(chunk, _, done) { size += chunk.length; if (size > image.bytes) return done(new ImageTransferError('Prepared image exceeds declared size', 'size')); hash.update(chunk); done(null, chunk); }}), createWriteStream(temp,{flags:'wx',mode:0o600}));
-            if (size !== image.bytes) throw new ImageTransferError('Prepared image integrity check failed', 'size');
-            if (hash.digest('hex') !== image.sha256) throw new ImageTransferError('Prepared image integrity check failed', 'integrity');
-            await rename(temp, path);
-          } finally { await rm(temp,{force:true}); }
-        };
-        let response = await origin(true);
-        if (response.status === 307) {
-          const location = trustedImageUrl(response.headers.get('location'));
-          await response.body?.cancel().catch(() => {});
-          if (!location) throw new Error('Prepared image redirect rejected');
-          let cdnSignal;
-          try {
-            await measure('imageCdnMs', async () => {
-              if (image.bytes < 32 * 1024 ** 2) { cdnSignal = AbortSignal.timeout(30000); return save(await fetcher(location, {signal:cdnSignal,redirect:'error'})); }
-              timings.imageCdnRangeAttempts++;
-              const temp = path + '.' + config.id;
-              await downloadImageRanges(location, image, temp, fetcher);
-              try { await rename(temp, path); } finally { await rm(temp, {force:true}); }
-              timings.imageCdnRangeDownloads++;
-            });
-            timings.imageCdnDownloads++; return;
-          } catch (error) { timings.imageCdnFallbacks++; timings.imageCdnLastFailure = imageFailureDetails(error, cdnSignal); response = await origin(false); }
-        }
-        await save(response); timings.imageOriginDownloads++;
-      });
-      await measure('imageLoadMs', async () => {
+  const prepare = async image => {
+    controller.signal.throwIfAborted();
+    const present = await measure('imageCacheCheckMs', () => execute(['image','inspect',image.id,'--format','{{.Id}}']).catch(() => ''));
+    if (present === image.id) { timings.imageCacheHits++; return; }
+    const path = join(cache, image.sha256 + '.gz');
+    const valid = await measure('imageCacheCheckMs', () => stat(path).then(async s => s.size === image.bytes && await fileHash(path) === image.sha256).catch(() => false));
+    if (valid) timings.imageArchiveCacheHits++;
+    else await measure('imageDownloadMs', async () => {
+      const url = new URL(config.artifactUrl); url.pathname += '/images/' + image.sha256;
+      const origin = direct => fetcher(url, {headers:{Authorization:`Bearer ${config.token}`,...(direct?{'X-PODS-Image-Delivery':'direct'}:{})},signal:AbortSignal.any([controller.signal, AbortSignal.timeout(180000)]),redirect:'manual'});
+      const save = async response => {
+        if (response.status !== 200) { await response.body?.cancel().catch(() => {}); throw new ImageTransferError(`Prepared image download returned ${response.status}`, 'http', response.status); }
+        if (!response.body) throw new ImageTransferError('Prepared image integrity check failed', 'size');
+        const temp = path + '.' + config.id; let size = 0, created = false; const hash = createHash('sha256');
+        const output = createWriteStream(temp,{flags:'wx',mode:0o600});
+        output.once('open', () => { created = true; });
+        try {
+          await pipeline(Readable.fromWeb(response.body), new Transform({transform(chunk, _, done) { size += chunk.length; if (size > image.bytes) return done(new ImageTransferError('Prepared image exceeds declared size', 'size')); hash.update(chunk); done(null, chunk); }}), output, {signal:controller.signal});
+          if (size !== image.bytes) throw new ImageTransferError('Prepared image integrity check failed', 'size');
+          if (hash.digest('hex') !== image.sha256) throw new ImageTransferError('Prepared image integrity check failed', 'integrity');
+          await rename(temp, path);
+        } finally { if (created) await rm(temp,{force:true}); }
+      };
+      let response = await origin(true);
+      if (response.status === 307) {
+        const location = trustedImageUrl(response.headers.get('location'));
+        await response.body?.cancel().catch(() => {});
+        if (!location) throw new Error('Prepared image redirect rejected');
+        let cdnSignal;
+        try {
+          await measure('imageCdnMs', async () => {
+            if (image.bytes < 32 * 1024 ** 2) { cdnSignal = AbortSignal.any([controller.signal, AbortSignal.timeout(30000)]); return save(await fetcher(location, {signal:cdnSignal,redirect:'error'})); }
+            timings.imageCdnRangeAttempts++;
+            const temp = path + '.' + config.id;
+            await downloadImageRanges(location, image, temp, fetcher, controller.signal);
+            try { await rename(temp, path); } finally { await rm(temp, {force:true}); }
+            timings.imageCdnRangeDownloads++;
+          });
+          timings.imageCdnDownloads++; return;
+        } catch (error) { controller.signal.throwIfAborted(); timings.imageCdnFallbacks++; timings.imageCdnLastFailure = imageFailureDetails(error, cdnSignal); response = await origin(false); }
+      }
+      await save(response); timings.imageOriginDownloads++;
+    });
+    // A worker retains its slot until load finishes, bounding prefetched files.
+    const load = loading.then(async () => {
+      controller.signal.throwIfAborted();
+      try { await measure('imageLoadMs', async () => {
         await execute(['load','--input',path], {timeout:180000});
         if (await execute(['image','inspect',image.id,'--format','{{.Id}}']) !== image.id) throw new Error('Loaded image identity mismatch');
-      });
-      // Docker's content store is the runtime cache; avoid retaining a second large copy.
-      await rm(path, {force:true});
+      }); } catch (error) { fail(error); throw error; }
+    });
+    loading = load.catch(() => {});
+    await load;
+    // Docker's content store is the runtime cache; avoid retaining a second large copy.
+    await rm(path, {force:true});
+  };
+  const worker = async () => {
+    while (!failure && next < images.length) {
+      try { await prepare(images[next++]); } catch (error) { fail(error); }
     }
+  };
+  try {
+    // Two image slots; range requests stay bounded per image and loads serialize.
+    await Promise.all(Array.from({length:Math.min(2, images.length)}, worker));
+    if (failure) throw failure;
   } finally {
     for (const key of ['imageCacheCheckMs','imageDownloadMs','imageLoadMs','imageCdnMs']) timings[key] = Math.round(timings[key]);
     timings.imagesMs = Math.round(performance.now() - started);

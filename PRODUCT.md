@@ -15,7 +15,7 @@ Provider authorization is required. Conventional public GitHub applications can 
 
 Cold provisioning and uncached image transfer are measured separately from cached launch. User compute remains owned and billed by the user's provider. Persistent container data is stored under Cloud Shell's home or Codespaces' `/workspaces`; provider lifecycle durability requires separate evidence.
 ## Evidence on Hand
-As of 2026-10-04, 284 automated checks pass locally and in isolated aswin Linux QA.
+As of 2026-10-04, 292 automated checks pass locally and in isolated aswin Linux QA.
 The matrix records 55 passing representative applications: isolated server build,
 prepared-artifact launch and browser interaction, plus 55 native Cloud Shell
 browser acceptances and 55 Codespaces HTTP/protocol acceptances. The historical
@@ -27,7 +27,15 @@ launches still exceed the 20-second product target in several measured cases;
 cached and cold observations remain separate. A stable production hostname and
 Cloud Shell VM-replacement durability also remain open. Database acceptance
 covers the recorded write/read/stop/relaunch scenarios, not arbitrary migrations
-or power-loss guarantees. Current source totals 8,875 scoped physical lines.
+or power-loss guarantees. Current source totals 9,012 scoped physical lines.
+
+The image preparation pipeline now holds at most two images in flight and loads
+verified archives into Docker serially. Eight new tests cover overlap, bounded
+prefetch, transfer cancellation, integrity and staging-file preservation. A small
+isolated comparison with real prepared bytes and Docker loads averaged21.570s
+before/16.043s after (25.6% less image-preparation time). It uses synthetic cache
+misses against equally warmed Docker content and does not establish native launch
+speed. See [pipeline evidence](evidence/stack-image-pipeline-comparison.json).
 
 The deployed browser client recovers transient status-read failures without
 repeating creation or product writes. It now polls every 250 ms during delivery
@@ -38,7 +46,7 @@ product/reload/full-stop/relaunch acceptance passed: cached product visible in
 9.877s, button write in 10.598s. A suspended-compute run with no cached image and
 a CDN fallback took 54.875s to health; its click-to-product time was not measured.
 Use [SUPPORT.md](SUPPORT.md), [fixture coverage](evidence/stack-coverage.json),
-[tests](evidence/stack-image-migration-tests.json),
+[tests](evidence/stack-image-pipeline-tests.json),
 [controlled comparison](evidence/stack-browser-handoff-comparison.json),
 [native browser evidence](evidence/stack-browser-handoff-native.json) and the
 [current checkpoint](evidence/STACK-HANDOFF.md) for exact scope and limitations.

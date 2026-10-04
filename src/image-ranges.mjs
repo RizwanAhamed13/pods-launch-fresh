@@ -1,17 +1,18 @@
 import { createHash } from 'node:crypto';
 import { createReadStream } from 'node:fs';
 import { open, rm, stat } from 'node:fs/promises';
-import { Writable } from 'node:stream';
+import { Readable, Writable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 import { ImageTransferError, imageFailureDetails } from './image-transfer-error.mjs';
 import { trustedImageUrl } from './artifact-url.mjs';
 
 // Four bounded requests share a deadline. Docker only receives the complete,
 // verified archive after every range and the final whole-file hash have passed.
-export async function downloadImageRanges(url, image, path, fetcher = fetch) {
+export async function downloadImageRanges(url, image, path, fetcher = fetch, parentSignal) {
   if (!trustedImageUrl(url) || !/^[a-f0-9]{64}$/.test(image.sha256) || !Number.isSafeInteger(image.bytes) || image.bytes < 1 || image.bytes > 512 * 1024 ** 2) throw new Error('Invalid image range request');
   const controller = new AbortController();
-  const signal = AbortSignal.any([controller.signal, AbortSignal.timeout(30000)]);
+  const signal = AbortSignal.any([controller.signal, AbortSignal.timeout(30000), ...(parentSignal ? [parentSignal] : [])]);
+  signal.throwIfAborted();
   const count = image.bytes >= 64 * 1024 ** 2 ? 8 : 4;
   const width = Math.ceil(image.bytes / count), ranges = [];
   for (let start = 0; start < image.bytes; start += width) ranges.push({start, end:Math.min(start + width, image.bytes) - 1});
@@ -25,7 +26,7 @@ export async function downloadImageRanges(url, image, path, fetcher = fetch) {
           await response.body?.cancel().catch(() => {}); throw new ImageTransferError('Prepared image range response mismatch', response.status !== 206 ? 'http' : 'range-metadata', response.status);
         }
         let bytes = 0;
-        await pipeline(response.body, new Writable({write(chunk, _, done) {
+        await pipeline(Readable.fromWeb(response.body), new Writable({write(chunk, _, done) {
           if (bytes + chunk.length > end - start + 1) return done(new ImageTransferError('Prepared image range exceeds declared size', 'size'));
           const position = start + bytes; bytes += chunk.length;
           (async () => {

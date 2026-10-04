@@ -1,40 +1,38 @@
 # Broad stack checkpoint
 
 Goal active and incomplete: developer URL → isolated aswin build → reusable artifact
-→ authorized user compute → real usable product. Latest completed gate: migrate
-an existing React + Express + PostgreSQL artifact into private CDN delivery and
-verify the actual native Google product, private dependencies and persistence.
-First-image health48.805s misses20s; cached product9.938s/write10.339s passed.
-51 of59 prepared images remain unmapped. Broader first-image performance and
-native Codespaces browser acceptance remain open. No source change in this gate.
+→ authorized user compute → real usable product. Latest implementation gate:
+bounded image preparation with two image slots, serialized verified Docker loads,
+shared cancellation, owned partial-file cleanup and preservation of first failure.
+292/292 checks pass locally and in isolated Linux. Controlled image preparation
+averaged21.570s before/16.043s after (25.6% reduction). Deployment/native acceptance
+of this candidate is pending at this commit; no new universal latency claim.
 
 ## Current verified state
 
-- Local /Users/rizwanahamed/Documents/ChatGPT/podsv2.
-- aswin /home/aswin/pods-launch-fresh; SSH alias aswin.
-- Core https://github.com/RizwanAhamed13/pods-launch-fresh.
-- Fixtures https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
-  pin d6da2ed780aec8ae0178fc181f1d24113c322e15.
-- 55 representative apps passed isolated build/artifact/browser, 55 native Google
-  browser and 55 Codespaces HTTP/protocol paths. Seven DB/service families. See
-  SUPPORT.md and stack-coverage.json; not every version or arbitrary repository.
-  Native Codespaces browser remains unverified. Unknown secrets/schema/migrations
-  require developer inputs. Desktop/mobile/GPU/non-web products excluded.
-- 284/284 full checks locally (26.797s) and isolated aswin Linux (58.301s);
-  stack-image-migration-tests.json. All 341 candidate input hashes independently
-  verified in /output/image-migration-candidate-a6d8caa-final. A first final-suite
-  staging upload failed before tests; retry used a new filename with identical
-  bytes. No passing source checks were repeated without a change.
-- Scope: 8875 physical source lines = 4160 product/tooling + 3604 tests
-  + 933 examples + 178 browser tools. Archived diagnostic probes excluded.
-- Migration implementation 1654372c0fb829bc7639e32034b30df12184c1df.
-  Runtime implementation remains394abe666fca7c9ad209be7269825ea73c50a3a9;
-  server PID1560797; served runner SHA
-  5172cf839d6c5287b8688bc028859c254757a9c056e435f23c817701d26172d8.
-  Operator CLI requires no runtime restart. Protected configuration and all
-  immutable artifact/image inventories preserved.
-- Post-native audit2026-10-04T15:35:21.410303+00:00: same PID/runner,
-  health200, SQLiteok, zero active builds/launches. Evidence-only sync needs no restart.
+- Local /Users/rizwanahamed/Documents/ChatGPT/podsv2; aswin
+  /home/aswin/pods-launch-fresh. Core github.com/RizwanAhamed13/pods-launch-fresh.
+  Fixture repo pods-launch-runtime-fresh, general pin
+  d6da2ed780aec8ae0178fc181f1d24113c322e15; React combined app uses5f376f60ed9c.
+- 55 representative apps passed isolated build/artifact/browser,55 native Google
+  browser and55 Codespaces HTTP/protocol paths. Seven DB/service families.
+  Native Codespaces browser sign-in/interaction remains unverified. See SUPPORT.md;
+  not every framework version, arbitrary repository or non-web product is covered.
+- Tests stack-image-pipeline-tests.json:292/292 local26.503s/Linux64.895s.
+  Final candidate /output/image-pipeline-final-candidate-55737b2,343 verified inputs.
+  Four selected regressions fail unchanged55737b2 baseline. Initial focused failure
+  identified stalled web-stream cancellation; Readable.fromWeb fixes direct and
+  range bodies. Empty HTTP200 response now fails before staging-file creation.
+- Scope9012 physical source lines =4183 product/tooling +3718 tests +933 examples
+  +178 browser tools. Exact scope in code-lines.json; archived probes excluded.
+- stack-image-pipeline-comparison.json: ABBA,3images226330909bytes, aggregate20MiB/s
+  loopback HTTP, real Docker29.1.3 loads, equally warmed Docker content, synthetic
+  image-cache misses. Candidate peak2requests/1load. Not CDN/native/product timing.
+  Prepared archives and existing Docker cache preserved; owned trial folders removed.
+- Before deployment: runtime394abe666fca7c9ad209be7269825ea73c50a3a9,
+  server PID1560797, runnerSHA5172cf839d6c5287b8688bc028859c254757a9c056e435f23c817701d26172d8.
+  BaselineHEAD55737b2888d773c3b06bfe7b9b2c79a495f82761. Health200/SQLiteok/zero active.
+ 59 distinct prepared images,8 mappings,51 unmapped totaling5339086704bytes.
 
 ## Latest completed multi-service gate
 
@@ -156,18 +154,13 @@ native Codespaces browser acceptance remain open. No source change in this gate.
 
 ## Next bounded gate and pending inputs
 
-- Next bounded implementation gate: evaluate a resource-bounded image download
-  pipeline. Current prepareRuntimeImages awaits each complete inspect/download/
-  load cycle sequentially; the three-image native case spends37.624s there.
-  Overlap a small bounded number of verified downloads with serialized Docker
-  loads. Preserve full SHA/size checks before load, Docker identity validation,
-  existing range/deadline/fallback behavior, safe temporary file cleanup and
-  cancellation/failure semantics. No user cache clearing or quota changes.
-  Use controlled representative comparison and meaningful failure regressions
-  before deployment; then a normal native multi-image case with actual cache state.
-  No pipeline improvement is implemented or proven yet.
-- Refresh the code graph for this checkout before implementation discovery;
-  project pods-launch-fresh currently has an older index missing runtime modules.
+- Next: protect/restart the validated runtime and verify normal native Google
+  React + Express + PostgreSQL launch, write, reload, stop and relaunch using its
+  existing cached images. Then select an existing multi-image app whose images
+  are actually absent for ordinary first-image acceptance; do not clear caches.
+  Broader CDN migration is still51 images, one explicit app selection per gate.
+- Code graph refreshed for current checkout as pods-launch-current (fast index).
+  Earlier pods-launch-fresh graph is stale.
 - Operator migration/idempotency and native FastAPI/full-stack persistence gates
   are complete. Do not rerun the55-app matrix or completed284 checks absent source
   changes or a new failure. Do not mass-upload the remaining5.339GB as a substitute

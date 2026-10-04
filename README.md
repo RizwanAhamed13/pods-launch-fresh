@@ -253,7 +253,13 @@ of at least 64 MiB use eight concurrent byte ranges; images from 32 to 64 MiB us
 four. All ranges share a deadline; each
 response must match its exact range and size, and the assembled file must match
 the complete image hash. A failed range cancels the other requests and falls back
-to the authorized aswin source. Smaller images use one CDN request. Legacy
+to the authorized aswin source. Smaller images use one CDN request. The launcher
+prepares at most two images at once and loads verified archives into Docker one
+at a time. Each image keeps its slot until its load finishes, bounding prefetched
+archives and the total to at most sixteen simultaneous CDN range requests. A
+terminal image failure cancels peer transfers, awaits partial-file cleanup and
+preserves the first error. Peer cancellation does not trigger an origin retry.
+Legacy
 runners keep their original download path. GitHub may return a binary response
 instead of a redirect; that case also uses aswin. Signed links inherit GitHub's
 expiry and are not persisted; stopping a launch does not revoke a link already
@@ -262,6 +268,9 @@ issued, but it still stops the application. See the
 Native timing fields distinguish `imageCdnDownloads`, `imageCdnFallbacks`,
 `imageCdnMs`, `imageOriginDownloads`, `imageCdnRangeAttempts` and
 `imageCdnRangeDownloads`; they do not replace end-to-end product timing.
+`imagesMs` measures wall time for image preparation. Download, cache-check and CDN
+durations sum individual work and can overlap, so adding them does not reconstruct
+wall time. `imageLoadMs` sums the serialized loads.
 
 Single Node process and local SQLite on persistent disk. Repository builds require a connected account, CSRF authorization and the isolated builder. Browser sessions last 24 hours. Provider credentials are not refreshed automatically: reconnect on expiry. A restart fails in-flight provisioning explicitly; ready agents continue heartbeats. Only one active app per browser/provider is allowed; selecting a different app while one is active returns an explicit conflict. Use provider controls to stop an environment immediately. This is a working prototype, not a completed public service: GitHub browser OAuth configuration, the remaining native provider/framework validation, durable DNS, stronger abuse controls and monitoring remain follow-up work. Google OAuth and representative native product journeys are verified; see SUPPORT.md for precise coverage.
 

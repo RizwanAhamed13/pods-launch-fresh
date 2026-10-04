@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **284 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **292 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
@@ -186,6 +186,24 @@ interaction met 20s, and no new transfer failure reproduced.
 That inventory recorded 59 distinct prepared images with 4 stored CDN mappings;
 55 older images (5.620GB total) used origin. These are image counts, not framework
 counts. The following migration gate adds one mapping without rebuilding.
+
+## Bounded image preparation
+
+The launcher now prepares at most two images concurrently while serializing Docker
+loads. Downloads may overlap a load, but each image retains its slot until that
+load finishes. Full archive size/hash and Docker identity checks remain required.
+A terminal failure cancels peer transfers, awaits cleanup and avoids an origin
+retry caused solely by peer cancellation.
+
+[292 local and isolated Linux checks](evidence/stack-image-pipeline-tests.json)
+include eight new concurrency, cancellation and file-preservation regressions.
+The [controlled comparison](evidence/stack-image-pipeline-comparison.json) used the
+existing React + Express + PostgreSQL images (226,330,909 bytes), real Docker loads,
+a shared 20 MiB/s HTTP limit and four alternating samples. Image preparation
+averaged **21.570s before / 16.043s after**, a **25.6% reduction**. Docker content
+was equally warmed and image-cache misses were simulated for each sample. This is
+an isolated scheduling comparison, not native provider or full-product timing.
+The 20-second product target remains unproven for general first-image launches.
 
 ## Existing-artifact delivery migration
 

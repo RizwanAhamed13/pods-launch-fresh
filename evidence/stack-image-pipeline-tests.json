@@ -1,0 +1,106 @@
+{
+  "recordedAt": "2026-10-04T15:50:29.946317+00:00",
+  "baseRevision": "55737b2888d773c3b06bfe7b9b2c79a495f82761",
+  "scope": "Two bounded image slots with serialized verified Docker loads and shared transfer cancellation; no new framework or native-provider acceptance inferred.",
+  "runs": [
+    {
+      "tests": 292,
+      "pass": 292,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "platform": "local",
+      "durationMs": 26502.594417,
+      "logSha256": "8dfbddb6d71a3cd35dd55764638e2871e7eeb158d03a694d34540e579bddf90f"
+    },
+    {
+      "tests": 292,
+      "pass": 292,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "platform": "isolated-aswin-linux",
+      "durationMs": 64895.490474,
+      "logSha256": "fc5acc0302c8fb949fe0187b3ff61cac491c668e1e6befb0c62965961b04b8db"
+    }
+  ],
+  "isolatedSnapshot": {
+    "candidate": "/output/image-pipeline-final-candidate-55737b2",
+    "verifiedFiles": 343,
+    "archiveSha256": "18b4fe789aa5e575ab294b9c5168950c914d8b830b9a6cd2fbfebdb4342351ae",
+    "manifestSha256": "8d5efc32bc9ec0c4ded03919d0d54451fb39f7c9df6c6a6b4829433346673392",
+    "baselineArchiveSha256": "2bcaf313091422789295334e7216b83d387015aa8417974c9d1818b2fd86694b"
+  },
+  "sourceHashes": {
+    "src/container-runtime.mjs": "e7ddcc035adce6d089bbcb834bf5785f1ab03ed6f51e36d281402f0b1567fdb7",
+    "src/image-ranges.mjs": "8ff7e761dba9da48eae4285645e4f7351cd78b098e38b90cc86caed9adf42678",
+    "src/image-transfer-error.mjs": "2612d0c065aca6a4486e8227b31f3187b8ce8a7785bfea189e4d1bcceacdc519",
+    "src/containers.mjs": "202c6791faf6c6ec5b20098c95319aaee0ba1f7066d7aaf64c23a18d43bae48d",
+    "src/runner.mjs": "de3680794b58f02d4e912810164e79049559fe994556501ec6969bd3cf3dafde",
+    "test/image-pipeline.test.mjs": "718b9f7002059d420fbe63e9e82dd8e2d8485713c9def8f7013f890cfba4dff4",
+    "test/image-ranges.test.mjs": "90768d7a43f6915a7940c59b1ee5af1660c400939085c41d8f9c1356433ff4b4",
+    "test/image-delivery.test.mjs": "fbfa27588fb3f888baab4f7db7c1d222672f5c6e68385f445248d87c7e73619e",
+    "evidence/probes/image-pipeline-benchmark.mjs": "5c7480229e76866b4499576d1fbaae7224207cdd1a38e266131a3b2a81589671"
+  },
+  "baselineRegressionSubset": {
+    "tests": 4,
+    "pass": 0,
+    "fail": 4,
+    "cancelled": 0,
+    "skipped": 0,
+    "platform": "baseline-selected-regressions",
+    "durationMs": 2142.448166,
+    "logSha256": "8a90052f10ebe76c4c8481b591617970568a16a255252ca931f611960288ad85"
+  },
+  "baselineSelectedTests": [
+    "two image slots",
+    "pre-aborted",
+    "conflicting",
+    "existing temporary"
+  ],
+  "baselineScope": "Four tests from the initial six-test regression file were executed against unchanged baseline source; all four failed. This is not an all-eight baseline claim.",
+  "targetedIntermediate": {
+    "tests": 45,
+    "pass": 45,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "platform": "local-intermediate-focused",
+    "durationMs": 1945.326541,
+    "logSha256": "4907ed774753e38f24c14f84714b3377f900aa08328cc6cf3ca8702677a01ddb"
+  },
+  "intermediateFullRuns": [
+    {
+      "tests": 291,
+      "pass": 291,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "platform": "local-intermediate",
+      "durationMs": 26449.359792,
+      "logSha256": "8ece4028bb52c39c4a6af9e6b77cbb8b3ee7f3246a69d1b03f49589f51d038ea"
+    },
+    {
+      "tests": 291,
+      "pass": 291,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "platform": "isolated-linux-intermediate",
+      "durationMs": 58587.578018,
+      "logSha256": "5b365f6a410fe43f12d66891fdda570540e22cd282e14f01bd9c66ee56cf54ad"
+    }
+  ],
+  "initialFinding": "Focused run: 43 passes and one cancelled test exposed a pending web-readable body not cancelled by pipeline. A minimal isolated reproduction confirmed Readable.fromWeb makes cancellation settle. Both direct and ranged paths now use it. Final review added empty-response rejection before opening a staging file.",
+  "initialFocusedLogSha256": "79424088f06e6af82e609562878c5e273b82f914d1d1704a0981ee5ba0ed0373",
+  "regressions": [
+    "Two transfer slots overlap download with load, bound queued archives and serialize Docker loads.",
+    "Corrupt peer cancels stalled direct body, preserves first failure and removes partial files.",
+    "Docker failure cancels peer ranges without origin fallback; verified retry archive and unrelated file survive.",
+    "Pre-aborted range group creates no file or request.",
+    "Duplicate archive identities fail before external work.",
+    "Exclusive staging-file creation failure preserves pre-existing file.",
+    "Empty HTTP 200 body creates no temporary file.",
+    "Parent cancellation stops all stalled range bodies and removes partial archive."
+  ]
+}
