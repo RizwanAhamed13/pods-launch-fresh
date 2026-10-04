@@ -240,8 +240,9 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   and adonisSecondLogs (empty) persist. measureAdonisCounter records page/read/
   write timing and reload;50sec deadline. Never duplicate a launch on timeout.
   stopPreparedProduct confirms full stop. History may briefly lag its refresh.
-- supportQa: IAB2 tab29, public support deliverable; refresh after publication to
-  verify55/33/33 and Adonis allPassed. Native CS browser warning must remain visible.
+- supportQa: IAB2 tab29, public support deliverable. After d1c23f1 was pushed
+  and synced to aswin, native DOM verified55/33/33, Adonis allPassed and the
+  visible Codespaces browser-pending warning. Compatibility3 tests passed.
 - nativeGithubKeep: IAB2 tab10; freshly checked this turn, still Two-factor
   authentication. User already asked; no SMS/code sent. Do not repeat question.
 - cloudLifecycle: IAB2 tab14; previous Restart confirmation and
@@ -299,6 +300,8 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   temporaryvolume/rootremoved. Original30273 wrong-title assertion and40077
   uploadownershipfailure were probe-only; no product code changed. Evidence
   stack-adonis-chunked-probe.{json,mjs}. No temporary probes remain live.
+- Evidence checkpoint d1c23f1 is pushed and synced; docs/evidence only, so no
+  service restart. Compatibility3 tests and probe syntax check passed.
 - Normal quota remains3/account/hour and12/global/hour. No watcher currently
   live; refresh readonly quota before selecting the next native fixture. Do not
   create duplicate builds, switch identities, or import QA artifacts to production.
