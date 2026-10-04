@@ -435,3 +435,5 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 - Next: submit form once quota available, wait production build, Google real UI
   0→1→2 with reload/fullstop, native CLI with counter+MariaDB flags and expected0,
   privateport/health/idle audits, then update native counts only on actual success.
+
+- Tooling/evidence published6dc10b3 to GitHub and aswin. Audit 2026-10-04T03:42:00.334127+00:00: health200, SQLiteok, 0activebuild/launch, samePID1063107 and runnerSHA. Recorder checkoutRevision updated6dc10b3. Native MariaDB still unsubmitted; watcher35120 and browser draft preserved.
