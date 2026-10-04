@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-04T06:55:37.479332+00:00",
+  "controlRevision": "5dde1e5",
+  "checkoutRevision": "3e649556cc05c40d2b51c2c19ac0c0decb2d9b1d",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T06:46:23.426435+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T06:47:08.510Z",
+  "attempts": [
+    {
+      "id": "4B46HatXXWeLKVuL-6a4loMsOCSjBjD0",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/axum",
+        "key": "090a15b8300374b3b69cde64"
+      },
+      "status": "ready",
+      "createdAt": 1791096429357,
+      "startedAt": 1791096429392,
+      "finishedAt": 1791096700680,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-090a15b8300374b3b69cde64-d6da2ed780ae-e9d2012dfcc0",
+      "app": {
+        "id": "repo-090a15b8300374b3b69cde64-d6da2ed780ae-e9d2012dfcc0",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "e9d2012dfcc0a13588a557f61e43a83670e5570ef9d34681a36f51ac8c15e2a5",
+        "bytes": 275,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-090a15b8300374b3b69cde64",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/axum",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Axum counter"
+        },
+        "preparedAt": "2026-10-04T06:51:40.565Z",
+        "images": [
+          {
+            "id": "sha256:263315dc5ef84ab31de3d8c52873e44bfb0b3895f11406d829c47e69f4e00e08",
+            "sha256": "bf23bc11dbf879b8dd997225731d9d0f0916dd2c11683a19be5d7fbccf5d0e8b",
+            "bytes": 32230478
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 271288
+}

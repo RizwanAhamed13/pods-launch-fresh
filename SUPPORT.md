@@ -85,8 +85,8 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **179 passing checks in full local and isolated aswin QA runs**. Native coverage is 43 Google browser fixtures and
-43 Codespaces HTTP/protocol fixtures; 12 still lack at least one native acceptance path. Codespaces
+later passing attempts do not erase them. Automated coverage is **179 passing checks in full local and isolated aswin QA runs**. Native coverage is 44 Google browser fixtures and
+44 Codespaces HTTP/protocol fixtures; 11 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Native launch performance
@@ -155,12 +155,19 @@ a stable production hostname remains a deployment requirement.
   [Cloud Shell browser](evidence/stack-actix-google.json), and
   [Codespaces product and file persistence](evidence/stack-actix-codespaces.json).
   Both paths retained the counter across full application stop/relaunch.
+- Axum native acceptance: [developer build](evidence/stack-axum-url.json),
+  [Cloud Shell browser](evidence/stack-axum-google.json), and
+  [Codespaces product and file persistence](evidence/stack-axum-codespaces.json).
+  Both paths retained the counter across full application stop/relaunch.
 - [Rust and ASP.NET transport preflight](evidence/stack-counter-transport-preflight.json)
   checks empty chunked POST and full-restart file persistence on isolated compute.
   These checks do not add native-provider acceptance.
 - [Shared file-counter probe preflight](evidence/stack-file-counter-runtime-preflight.json)
   verifies the native inspection helper against real Rust and ASP.NET artifacts.
   These isolated checks do not add native-provider coverage.
+- [Gradio and Streamlit protocol preflight](evidence/stack-dashboard-protocol-preflight.json)
+  verifies real dashboard protocol writes and SQLite persistence after a full
+  restart in isolated QA. Native provider acceptance remains pending for both.
 - [Full-suite result](evidence/stack-file-counter-runtime-tests.json): **179/179**
   checks passed locally and in isolated aswin Linux QA.
 - [Physical source count](evidence/code-lines.json): **6,814 lines**, including

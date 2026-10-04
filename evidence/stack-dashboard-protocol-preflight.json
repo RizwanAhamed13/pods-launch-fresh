@@ -1,0 +1,313 @@
+{
+  "recordedAt": "2026-10-04T06:54:42.796322+00:00",
+  "baseRevision": "3e649556cc05c40d2b51c2c19ac0c0decb2d9b1d",
+  "scope": "Pinned Gradio and Streamlit artifacts: real protocol writes, independent read-only SQLite verification and full stop/relaunch in isolated aswin QA. This prototype is not integrated into the native Codespaces harness and does not increase native acceptance counts.",
+  "sourceHashes": {
+    "src/runner.mjs": "de3680794b58f02d4e912810164e79049559fe994556501ec6969bd3cf3dafde",
+    "src/container-runtime.mjs": "51c866cf69fab25476f0cb286747db4c5f2aaa34c2e093b9580444970d970374",
+    "src/storage-transition.mjs": "4bf7ba7c9489cb1d2afbe372ac54e1d37c0dc3a9fe48a34f13f6bcc6300dc161",
+    "src/containers.mjs": "1c1a811c983f666d7a4c222bd115a56268263d28e6737133e6d84ab451a57eba",
+    "evidence/stack-dashboard-protocol-live.mjs": "d94673b450cf79242a89ff5cb2790844517c94028959b3dcc4619b6d29614374",
+    "evidence/stack-streamlit-protocol-live.py": "80054e7f93e02325db96386fab1e9b5a3a22a860bc44cc6ef59dde79bf04e50c"
+  },
+  "interfaceDiscovery": [
+    {
+      "recordedAt": "2026-10-04T06:44:08.018Z",
+      "fixture": "gradio",
+      "scope": "Read-only interface discovery on isolated real artifacts; not interaction or native-provider acceptance.",
+      "artifactSha256": "65b87616014292da12e7795b8f021979f1576a1121d3ae7459d8a4d18cf5c591",
+      "dataKey": "gradio-interface-cc42e7f6be9f4f7c",
+      "project": "pods-d8cf46f9b4d7b03fd773fdef",
+      "details": {
+        "version": "6.29.1",
+        "apiPrefix": "/gradio_api",
+        "dependencies": [
+          {
+            "id": 0,
+            "api_name": "increment",
+            "inputs": [],
+            "outputs": [
+              2
+            ],
+            "targets": [
+              [
+                3,
+                "click"
+              ]
+            ],
+            "api_visibility": "public"
+          },
+          {
+            "id": 1,
+            "api_name": "read",
+            "inputs": [],
+            "outputs": [
+              2
+            ],
+            "targets": [
+              [
+                0,
+                "load"
+              ]
+            ],
+            "api_visibility": "public"
+          }
+        ],
+        "components": [
+          {
+            "id": 1,
+            "type": "markdown",
+            "value": "# Gradio + SQLite"
+          },
+          {
+            "id": 2,
+            "type": "number",
+            "label": "Saved count",
+            "value": 0
+          },
+          {
+            "id": 3,
+            "type": "button",
+            "value": "Add one"
+          },
+          {
+            "id": 4,
+            "type": "form"
+          }
+        ]
+      },
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T06:44:17.265Z",
+      "fixture": "streamlit",
+      "scope": "Read-only interface discovery on isolated real artifacts; not interaction or native-provider acceptance.",
+      "artifactSha256": "3f0e05893c1f60cb45bb811343f39e3df2023c0e2fccbd82aae50dc57c711ff6",
+      "dataKey": "streamlit-interface-c8661e89c4b7a099",
+      "project": "pods-eee69606471db9cde8db1e53",
+      "details": {
+        "version": "1.65.0",
+        "BackMsg": [
+          "clear_cache",
+          "set_run_on_save",
+          "stop_script",
+          "rerun_script",
+          "load_git_info",
+          "debug_disconnect_websocket",
+          "debug_shutdown_runtime",
+          "file_urls_request",
+          "app_heartbeat",
+          "backend_operation_request",
+          "debug_last_backmsg_id"
+        ],
+        "ClientState": [
+          "query_string",
+          "widget_states",
+          "page_script_hash",
+          "page_name",
+          "fragment_id",
+          "is_auto_rerun",
+          "cached_message_hashes",
+          "context_info",
+          "is_history_navigation"
+        ],
+        "ForwardMsg": [
+          "hash",
+          "metadata",
+          "new_session",
+          "delta",
+          "page_info_changed",
+          "page_config_changed",
+          "script_finished",
+          "git_info_changed",
+          "page_profile",
+          "session_status_changed",
+          "session_event",
+          "navigation",
+          "page_not_found",
+          "file_urls_response",
+          "auto_rerun",
+          "stop_auto_rerun",
+          "logo",
+          "auth_redirect",
+          "parent_message",
+          "ref_hash",
+          "heartbeat_ack",
+          "backend_operation_response",
+          "debug_last_backmsg_id"
+        ]
+      },
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    }
+  ],
+  "results": [
+    {
+      "recordedAt": "2026-10-04T06:47:28.702Z",
+      "fixture": "gradio",
+      "scope": "Real isolated artifact protocol interaction and SQLite persistence across complete application stop/relaunch. Not browser or native-provider acceptance.",
+      "artifactSha256": "65b87616014292da12e7795b8f021979f1576a1121d3ae7459d8a4d18cf5c591",
+      "dataKey": "gradio-protocol-05d75ccbfb087fab",
+      "project": "pods-7e7af7fb898a2063a11c4353",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "result": {
+            "passed": true,
+            "version": "6.29.1",
+            "protocol": "Gradio named endpoint and SSE completion",
+            "before": 0,
+            "afterWrite": 1,
+            "afterRead": 1
+          },
+          "database": {
+            "engine": "SQLite",
+            "version": "3.46.1",
+            "integrity": "ok",
+            "rows": 1,
+            "savedCount": 1
+          }
+        },
+        {
+          "scenario": "full-relaunch",
+          "result": {
+            "passed": true,
+            "version": "6.29.1",
+            "protocol": "Gradio named endpoint and SSE completion",
+            "before": 1,
+            "afterWrite": 2,
+            "afterRead": 2
+          },
+          "database": {
+            "engine": "SQLite",
+            "version": "3.46.1",
+            "integrity": "ok",
+            "rows": 1,
+            "savedCount": 2
+          }
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T06:53:07.955Z",
+      "fixture": "streamlit",
+      "scope": "Real isolated artifact protocol interaction and SQLite persistence across complete application stop/relaunch. Not browser or native-provider acceptance.",
+      "artifactSha256": "3f0e05893c1f60cb45bb811343f39e3df2023c0e2fccbd82aae50dc57c711ff6",
+      "dataKey": "streamlit-protocol-0047ea862dfeb1c5",
+      "project": "pods-11ae5f54b3610504fee220f1",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "result": {
+            "passed": true,
+            "version": "1.65.0",
+            "protocol": "Streamlit binary WebSocket widget interaction",
+            "heading": "Streamlit + SQLite",
+            "before": 0,
+            "afterWrite": 1,
+            "afterReconnect": 1
+          },
+          "database": {
+            "engine": "SQLite",
+            "version": "3.46.1",
+            "integrity": "ok",
+            "rows": 1,
+            "savedCount": 1
+          }
+        },
+        {
+          "scenario": "full-relaunch",
+          "result": {
+            "passed": true,
+            "version": "1.65.0",
+            "protocol": "Streamlit binary WebSocket widget interaction",
+            "heading": "Streamlit + SQLite",
+            "before": 1,
+            "afterWrite": 2,
+            "afterReconnect": 2
+          },
+          "database": {
+            "engine": "SQLite",
+            "version": "3.46.1",
+            "integrity": "ok",
+            "rows": 1,
+            "savedCount": 2
+          }
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    }
+  ],
+  "attemptNotes": [
+    {
+      "fixture": "streamlit",
+      "status": "probe failed before successful protocol acceptance",
+      "reason": "Initial probe assumed Tornado, which Streamlit 1.65.0 no longer installs. Installed metadata showed websockets 17.1; changed probe to its async client.",
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "fixture": "streamlit",
+      "status": "probe transfer failed; previous probe ran again",
+      "reason": "LXC file push could not overwrite the uid1000 temporary file. Transferred as its owner, required set -e and compared local/remote SHA256 before subsequent execution.",
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "fixture": "streamlit",
+      "status": "probe failed while decoding metric",
+      "reason": "Metric protobuf uses body rather than value. Read installed Metric/Heading descriptors and corrected the probe.",
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    }
+  ],
+  "reproduction": {
+    "qaGuest": "pods-fresh-matrix-01",
+    "runtimeCandidate": "/output/file-counter-candidate-3e0c04b",
+    "copyScripts": {
+      "stack-dashboard-protocol-live.mjs": "/tmp/pods-dashboard-protocol-preflight.mjs",
+      "stack-streamlit-protocol-live.py": "/tmp/pods-streamlit-protocol.py"
+    },
+    "run": "As uid1000: /opt/node/bin/node /tmp/pods-dashboard-protocol-preflight.mjs gradio, then streamlit, serially. Pinned artifacts and image archives must exist at /output/<fixture>.",
+    "cleanup": "Each script stops its application and removes its named volume and launch metadata. Separately remove only the recorded unique dataKey/project directories after confirming no corresponding containers/volumes; leave shared runtime/image cache intact."
+  },
+  "pending": [
+    "Harden fixture protocol helpers and add targeted negative tests before integrating native Codespaces checks.",
+    "Run actual developer builds and Google product browser/Codespaces protocol acceptance for both fixtures.",
+    "Native Codespaces browser authorization remains pending."
+  ]
+}

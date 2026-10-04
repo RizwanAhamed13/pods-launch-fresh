@@ -2161,3 +2161,64 @@ Evidence: `stack-actix-{url,google,codespaces,audit}.json`. Coverage is now
 **55 isolated / 43 Google browser / 43 Codespaces protocol**, with **12** native
 fixtures pending. Full suite **179/179** and source **6,814 lines** remain valid;
 this acceptance changed only evidence and documentation.
+
+
+## Gradio and Streamlit protocol preflight
+
+Pinned isolated artifacts passed real network interaction and full application
+stop/relaunch. Gradio6.29.1 used named read/increment endpoints and SSE completion;
+Streamlit1.65.0 used binary WebSocket widget messages, rerun completion and a fresh
+WebSocket reconnection. Both wrote0→1→2; independent read-only SQLite3.46.1 queries
+confirmed one saved row and quick_check=ok after each write. No direct SQL writes
+or app-function imports substituted for the product interaction.
+
+The Streamlit probe initially assumed absent Tornado and an incorrect Metric
+protobuf field. Installed package metadata and descriptors identified websockets
+17.1 and Metric.body. A failed temporary-file transfer also reran the old probe;
+subsequent transfers used the file owner, set -e and matching SHA256 verification.
+The evidence retains these failed probe attempts and scoped cleanup results.
+All probe containers, named volumes and uniquely identified storage directories
+were removed; shared runtime/image caches remain.
+
+Evidence: stack-dashboard-protocol-preflight.json, with exact executed scripts
+stack-dashboard-protocol-live.mjs and stack-streamlit-protocol-live.py. These are
+QA prototypes, not native harness integration, new browser acceptance, or proof
+of provider preview WebSocket forwarding. Native counts are unchanged by this
+preflight. Harden reusable helpers, add meaningful negative tests and integrate
+them into live-codespaces before Gradio/Streamlit native acceptance. Full179 and
+source6814 remain valid because only evidence/documentation changed.
+
+
+## Axum native product acceptance
+
+The actual developer form prepared `examples/stacks/axum` from fixture
+revision `d6da2ed780ae` in **271.288 seconds** after ordinary same-account
+quota availability. Artifact `e9d2012dfcc0a13588a557f61e43a83670e5570ef9d34681a36f51ac8c15e2a5` contains **32,230,478 image bytes**.
+No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell RUNNING, first image delivery | Server healthy 13.457s; product visible 14.683s; counter read 15.137s; button write 15.444s |
+| Cloud Shell cached relaunch | Server healthy 6.313s; product visible 7.512s; saved value restored 7.625s; next write 8.007s |
+| Codespaces initially Shutdown | Server healthy 38.168s; delivery/startup 23.123s; image cache hits 0 |
+| Codespaces cached relaunch | Server healthy 8.285s; authenticated HTTP write/read and saved-file inspection passed |
+
+Google browser buttons, reloads and full application stops verified **0→1→2**
+without console warnings or errors. Product visibility matched its h1.
+Codespaces authenticated HTTP verified the same sequence. Direct inspection
+checked the recipe command, single web service, project network, assigned product
+port **24931** and persistent workspace volume. The copied file counter matched
+each write. This check does not independently identify the framework version;
+the pinned source and real server build identify the prepared fixture.
+
+Both Google launches completed and stopped before Codespaces tests began. All
+four launches ended stopped; the Codespaces product port remained private.
+Audit at 2026-10-04T06:55:37.619880+00:00 confirmed health200, SQLite integrity ok, no active
+builds/launches and unchanged service PID/runner SHA. These are file-persistence
+and fixture-specific timing results. Native Codespaces browser interaction and
+VM replacement durability remain unverified.
+
+Evidence: `stack-axum-{url,google,codespaces,audit}.json`. Coverage is now
+**55 isolated / 44 Google browser / 44 Codespaces protocol**, with **11** native
+fixtures pending. Full suite **179/179** and source **6,814 lines** remain valid;
+this acceptance changed only evidence and documentation.

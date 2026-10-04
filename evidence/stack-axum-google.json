@@ -1,0 +1,109 @@
+{
+  "recordedAt": "2026-10-04T06:55:37.479332+00:00",
+  "scope": "axum fixture: real Google Cloud Shell product browser button, reload, full app stop/relaunch and retained file data.",
+  "results": [
+    {
+      "id": "DJh2cZVMggy3CrCQby_W73zWZMhClpk_",
+      "appId": "repo-090a15b8300374b3b69cde64-d6da2ed780ae-e9d2012dfcc0",
+      "provider": "google",
+      "port": 24931,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791096739162,
+        "startRequestedAt": 1791096739524,
+        "startAcceptedAt": 1791096741323
+      },
+      "createdAt": 1791096738569,
+      "updatedAt": 1791096780914,
+      "providerReadyAt": 1791096741766,
+      "readyAt": 1791096752026,
+      "timings": {
+        "downloadMs": 453,
+        "imagesMs": 6333,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 31,
+        "imageDownloadMs": 5354,
+        "imageLoadMs": 941,
+        "runtimeReadyMs": 8421,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 13457,
+      "deliveryMs": 10260
+    },
+    {
+      "id": "hlOMwyf6F-moxi9bmiuJnIzRK01hUXrH",
+      "appId": "repo-090a15b8300374b3b69cde64-d6da2ed780ae-e9d2012dfcc0",
+      "provider": "google",
+      "port": 24931,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791096786666,
+        "startRequestedAt": 1791096786895,
+        "startAcceptedAt": 1791096788915
+      },
+      "createdAt": 1791096786201,
+      "updatedAt": 1791096812235,
+      "providerReadyAt": 1791096789444,
+      "readyAt": 1791096792514,
+      "timings": {
+        "downloadMs": 193,
+        "imagesMs": 47,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 46,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 1826,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 6313,
+      "deliveryMs": 3070
+    }
+  ],
+  "browserChecks": [
+    {
+      "startedAt": "2026-10-04T06:52:18.276Z",
+      "visibleMs": 14683,
+      "stateRestoredMs": 15137,
+      "before": 0,
+      "afterWrite": 1,
+      "interactionMs": 15444,
+      "afterReload": 1,
+      "passed": true,
+      "stopRequestedAt": "2026-10-04T06:52:49.245Z",
+      "statusAfterStop": "stopped"
+    },
+    {
+      "startedAt": "2026-10-04T06:53:06.017Z",
+      "visibleMs": 7512,
+      "stateRestoredMs": 7625,
+      "before": 1,
+      "afterWrite": 2,
+      "interactionMs": 8007,
+      "afterReload": 2,
+      "passed": true,
+      "stopRequestedAt": "2026-10-04T06:53:20.258Z",
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "browserErrorOrWarningLogs": [
+    [],
+    []
+  ],
+  "persistenceScope": "Counter file written through native product UI survives full application stop/relaunch; does not prove replacement of the Cloud Shell VM.",
+  "passed": true,
+  "cleanupAudit": {
+    "at": "2026-10-04T06:55:37.479332+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 24931,
+    "codespacesPreviewVisibility": "private"
+  },
+  "performanceContext": "Cloud Shell first and cached browser launches completed and stopped before either Codespaces launch began. These provider checks were sequential; unrelated network traffic was not controlled."
+}

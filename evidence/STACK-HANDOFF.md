@@ -17,11 +17,11 @@ VM replacement durability, or a universal 20-second cold launch.
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
   saved format changes on actual environment capabilities.
-- Coverage:55 isolated build/artifact/browser passes;43 Google native browser
-  and43 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+- Coverage:55 isolated build/artifact/browser passes;44 Google native browser
+  and44 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Native Codespaces browser checks remain
-  pending authorization. The12 fixtures awaiting native acceptance are:
-  aspnet, axum, deno, gradio, ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
+  pending authorization. The11 fixtures awaiting native acceptance are:
+  aspnet, deno, gradio, ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
 - Current full suite:179/179 passed locally and in isolated aswin QA after
   Rust/ASP.NET file-counter inspection tooling. Logs /tmp/pods-file-counter-full-{local,qa}.txt.
   The previous SQLite native acceptance was published4bb9326.
@@ -1011,3 +1011,44 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   same build identity, covering the existing10-minute worker timeout and cleanup.
   Keep product-h1 timing and provider tests sequential. Source6814/full179.
   Existing GitHub2FA/VMreplacement/stablehostname inputs remain pending.
+
+
+## Gradio and Streamlit protocol preflight
+
+Pinned isolated artifacts passed real network interaction and full application
+stop/relaunch. Gradio6.29.1 used named read/increment endpoints and SSE completion;
+Streamlit1.65.0 used binary WebSocket widget messages, rerun completion and a fresh
+WebSocket reconnection. Both wrote0→1→2; independent read-only SQLite3.46.1 queries
+confirmed one saved row and quick_check=ok after each write. No direct SQL writes
+or app-function imports substituted for the product interaction.
+
+The Streamlit probe initially assumed absent Tornado and an incorrect Metric
+protobuf field. Installed package metadata and descriptors identified websockets
+17.1 and Metric.body. A failed temporary-file transfer also reran the old probe;
+subsequent transfers used the file owner, set -e and matching SHA256 verification.
+The evidence retains these failed probe attempts and scoped cleanup results.
+All probe containers, named volumes and uniquely identified storage directories
+were removed; shared runtime/image caches remain.
+
+Evidence: stack-dashboard-protocol-preflight.json, with exact executed scripts
+stack-dashboard-protocol-live.mjs and stack-streamlit-protocol-live.py. These are
+QA prototypes, not native harness integration, new browser acceptance, or proof
+of provider preview WebSocket forwarding. Native counts are unchanged by this
+preflight. Harden reusable helpers, add meaningful negative tests and integrate
+them into live-codespaces before Gradio/Streamlit native acceptance. Full179 and
+source6814 remain valid because only evidence/documentation changed.
+
+
+## Axum native acceptance checkpoint
+
+- Build 4B46HatXXWeLKVuL-6a4loMsOCSjBjD0 submitted 2026-10-04T06:47:08.510Z, ready after 271288ms.
+  App repo-090a15b8300374b3b69cde64-d6da2ed780ae-e9d2012dfcc0; image bytes 32230478.
+- Google first/cached health13457/6313ms, product visible14683/7512ms,
+  write15444/8007ms. Counter0→1→2, reloads passed, console clean, both stopped.
+- Codespaces existing environment pods-launch-containers-97qw56gjg47gf7vrv; first
+  Shutdown health38168ms/delivery23123ms, cached8285ms.
+  Saved file counters1/2, exact recipe command, durablevolume/privateport24931.
+- Audit 2026-10-04T06:55:37.619880+00:00: health200/integrityok/zero active, unchangedPID1063107/runnerSHA.
+  All four launches stopped; no service restart. Coverage55/44/44;11nativepending.
+  Source6814/full179 unchanged. Existing GitHub2FA/VMreplacement/stablehostname
+  inputs remain pending. Goal active and progressing.
