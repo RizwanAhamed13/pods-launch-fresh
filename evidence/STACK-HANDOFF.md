@@ -13,7 +13,8 @@ VM replacement durability or universal launches under20s without evidence.
 - Fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
   pinned revision d6da2ed780aec8ae0178fc181f1d24113c322e15.
 - Latest native acceptance: Ktor + SQLite; stack-ktor-{url,google,codespaces,audit}.json.
-  Current acceptance checkpoint is ready for publication verification at55/51/51.
+  Acceptance revisionff6ff6d pushed and synced. Public support verified55/51/51
+  at09:17:15UTC; Ktor row shows all three passes. Evidence stack-ktor-published.json.
 - Coverage:55 isolated build/artifact/browser passes;51 Google native browser
   and51 Codespaces authenticated HTTP/protocol passes. All8static frontends,
   6SSR,6Node,4Go,3Rust,2.NET and7database-family representatives pass native paths.

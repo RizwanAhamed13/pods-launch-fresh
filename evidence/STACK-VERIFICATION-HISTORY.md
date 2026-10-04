@@ -2585,3 +2585,11 @@ physical source **7,128 lines** remain valid; this acceptance changed only
 evidence and documentation. App `repo-acd8cc8280c3ab2983d8e2b5-d6da2ed780ae-8664bd05ad3e`; preserve saved native counters2.
 
 Browser measurement note: The first write completed at the end of a bounded browser observation window; interactionMs was recorded on the resumed observation and is an upper bound.
+
+Ktor acceptance revision `ff6ff6d` was pushed and synced to aswin. Public `/support`
+DOM verified **55 isolated / 51 Google browser / 51 Codespaces protocol** at
+**2026-10-04T09:17:15.655Z**, with all three Ktor row checks passed. Compatibility
+checks passed **3/3**; no product implementation changed and the existing
+**189/189** full-suite result remains applicable. Publication evidence:
+`stack-ktor-published.json`. Next native gate: Micronaut after ordinary quota is
+available (next slot observed as09:29:51.926UTC; recheck before submission).
