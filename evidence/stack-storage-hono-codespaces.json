@@ -1,0 +1,110 @@
+{
+  "testedAt": "2026-10-04T02:24:23.596Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "-8SXT6xyxpZ5L7gekRIuE618716rURd3",
+      "dataKey": "repo-ed8c5f1d6937fe793390cb79",
+      "port": 25759,
+      "appId": "repo-ed8c5f1d6937fe793390cb79-d6da2ed780ae-6bb59210268a",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "6bb59210268add349aa1e3ca6519073ed94c78a0b6a4bd2750da2c8400ef8bc0",
+      "images": [],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791080606478,
+      "updatedAt": 1791080635865,
+      "expiresAt": 1791082406478,
+      "environment": "pods-launch-jj497rpqpp7529v7",
+      "compute": {
+        "initialState": "Shutdown",
+        "observedAt": 1791080607096,
+        "resumeRequestedAt": 1791080607201
+      },
+      "providerReadyAt": 1791080621472,
+      "previewUrl": "https://pods-launch-jj497rpqpp7529v7-25759.app.github.dev",
+      "lastSeenAt": 1791080635865,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 320,
+        "runtimeReadyMs": 1025,
+        "cacheHit": true
+      },
+      "readyAt": 1791080635865,
+      "deliveryMs": 14393,
+      "totalMs": 29387,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 2,
+        "afterWrite": 3,
+        "afterRead": 3,
+        "passed": true,
+        "expectedInitialCount": 2
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "lU27Vf19CX1QyAOVN0kN5zBEKM7yCD7T",
+      "dataKey": "repo-ed8c5f1d6937fe793390cb79",
+      "port": 25759,
+      "appId": "repo-ed8c5f1d6937fe793390cb79-d6da2ed780ae-6bb59210268a",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "6bb59210268add349aa1e3ca6519073ed94c78a0b6a4bd2750da2c8400ef8bc0",
+      "images": [],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791080646170,
+      "updatedAt": 1791080653775,
+      "expiresAt": 1791082446170,
+      "environment": "pods-launch-jj497rpqpp7529v7",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791080646660
+      },
+      "providerReadyAt": 1791080646802,
+      "previewUrl": "https://pods-launch-jj497rpqpp7529v7-25759.app.github.dev",
+      "lastSeenAt": 1791080653775,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 666,
+        "runtimeReadyMs": 1041,
+        "cacheHit": true
+      },
+      "readyAt": 1791080653775,
+      "deliveryMs": 6973,
+      "totalMs": 7605,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 3,
+        "afterWrite": 4,
+        "afterRead": 4,
+        "passed": true,
+        "expectedAfterRelaunch": 3
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "controlRevision": "77cf3407a6a7d4f1a7417e04d2348d3d5cbff472",
+  "scope": "Same-format Hono bundle regression after runner storage update. Authenticated HTTP data persistence, not native Codespaces browser or cross-format acceptance.",
+  "cleanupAudit": {
+    "recordedAt": "2026-10-04T02:24:43.123781+00:00",
+    "pid": 1032728,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+    "revision": "77cf3407a6a7d4f1a7417e04d2348d3d5cbff472",
+    "codespacesPreviewPort": 25759,
+    "codespacesPreviewVisibility": "private"
+  }
+}

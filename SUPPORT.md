@@ -1541,3 +1541,13 @@ VM replacement durability. Native format-transition acceptance and saved Codespa
 runtime-label adaptation remain pending, so the smaller Express bundle is still
 experimental. Source count: **5,867 physical lines**. Evidence and reproduction:
 `stack-express-automatic-transition-probe.{json,mjs}`.
+
+The updated runner was deployed at revision `77cf340`. Native Cloud Shell
+same-format regression retained existing Hono and Express SQLite values 2→3,
+including reload; successful browser writes took 8.754s and 9.481s on ready
+compute. Codespaces Hono HTTP regression retained 2→3, then 3→4 across a full
+stop/relaunch: resumed compute took 29.387s to health; already available compute
+took 7.605s. Both paths used cached artifacts. All regression launches stopped,
+health stayed 200, SQLite integrity passed, and the Codespaces port remained
+private. These checks do not establish native cross-format migration. Evidence:
+`stack-storage-deployment.json`, `stack-storage-hono-codespaces.json`.

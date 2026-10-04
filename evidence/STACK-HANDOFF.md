@@ -14,8 +14,8 @@ VM replacement durability, or a universal 20-second cold launch.
   revision d6da2ed780aec8ae0178fc181f1d24113c322e15.
 - Koa native acceptance was published at d7dbc22 and verified on the public
   support page (55/30/30, Koa all passed, Codespaces browser pending warning).
-  Hono transport preflight was published176a79a. This milestone adds Hono native
-  acceptance and an explicit Express storage-copy prototype. Runtime remains5e5b4a0.
+  Hono transport preflight was published at 176a79a; native acceptance at
+  3102caf. Runtime 77cf340 now adds automatic storage format migration.
 - Coverage: 55 isolated build/artifact/browser passes; 31 Google native browser
   and 31 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Every native Codespaces browser check
@@ -28,7 +28,7 @@ VM replacement durability, or a universal 20-second cold launch.
   baseline114 remains historical. No need to rerun unchanged passing checks.
 - Physical code: 5,867 lines = 3,182 product/tooling + 1,588 tests + 933 examples
   + 164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
-  files; includes .astro. New storage handoff changes the runner; deployment validation follows.
+  files; includes .astro. Storage handoff is deployed; native same-format regressions follow below.
 
 ## Current storage migration implementation
 
@@ -56,6 +56,27 @@ VM replacement durability, or a universal 20-second cold launch.
   bundling are NOT enabled/verified by this change. Keep packaging unchanged.
   Multi-service or conflicting data requires explicit migration. Backups
   remain; retention policy and power-loss durability are not proven.
+
+## Storage deployment and native regression
+
+- Runtime 77cf340 deployed 2026-10-04 02:22:17.800750 UTC after fresh idle
+  audit: builds0/launches0, SQLite quick_check ok, matching service PID/cwd/port.
+  New service PID1032728; health200; bundled runner SHA256
+  2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486.
+- Native Google Hono bundle retained value2→3 and reload3: page8357ms,
+  saved record8471ms, successful write8754ms; health6971, delivery2993.
+  Native Google Express container retained2→3 and reload3: page9085ms,
+  saved record9200ms, write9481ms; health7769, delivery4247. Both initial
+  compute RUNNING, console errors/warnings0, explicit full stops confirmed.
+- Evidence stack-storage-deployment.json; these are same-format regression
+  checks, not native cross-format migration acceptance. Current Google values:
+  Hono3, Express3. Codespaces Hono regression session20241 ended0, preserved
+  2→3 then full stop/relaunch3→4. First Shutdown health29387ms/delivery14393;
+  cached Available health7605/delivery6973. Both stopped; native browser
+  remains pending. Evidence stack-storage-hono-codespaces.json.
+- Audit02:24:43.123781UTC: health200, activebuild0/launch0, servicePID1032728,
+  SQLite quick_check ok, Codespaces Hono port25759 private. Current Hono
+  Codespaces value4; do not reset stored records.
 
 ## Previous native gate: Koa acceptance
 

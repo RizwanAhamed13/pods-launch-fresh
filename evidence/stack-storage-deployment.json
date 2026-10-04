@@ -1,0 +1,136 @@
+{
+  "recordedAt": "2026-10-04T02:23:52.268356+00:00",
+  "scope": "Updated production runner deployment and native Google same-format regression. Existing values retained; no cross-format native migration claimed.",
+  "controlRevision": "77cf3407a6a7d4f1a7417e04d2348d3d5cbff472",
+  "before": {
+    "recordedAt": "2026-10-04T02:22:11.394769+00:00",
+    "pid": 946172,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "9ef8029d995e07421e5297aaa1b644fb145a54c838e0b2d2f6f38f0e356cfc3b",
+    "revision": "77cf3407a6a7d4f1a7417e04d2348d3d5cbff472"
+  },
+  "after": {
+    "recordedAt": "2026-10-04T02:22:17.800750+00:00",
+    "pid": 1032728,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+    "revision": "77cf3407a6a7d4f1a7417e04d2348d3d5cbff472"
+  },
+  "googleRegressions": [
+    {
+      "fixture": "hono",
+      "runtimeFormat": "bundle",
+      "launch": {
+        "id": "KjmfGMW23FEkFwp9SLcjCZcvEqatFqs2",
+        "appId": "repo-ed8c5f1d6937fe793390cb79-d6da2ed780ae-6bb59210268a",
+        "provider": "google",
+        "port": 25759,
+        "status": "stopped",
+        "compute": {
+          "initialState": "RUNNING",
+          "observedAt": 1791080547930,
+          "startRequestedAt": 1791080548648
+        },
+        "createdAt": 1791080547338,
+        "updatedAt": 1791080557821,
+        "providerReadyAt": 1791080551316,
+        "readyAt": 1791080554309,
+        "timings": {
+          "downloadMs": 352,
+          "runtimeReadyMs": 887,
+          "cacheHit": true
+        },
+        "storageMode": "persistent",
+        "totalMs": 6971,
+        "deliveryMs": 2993
+      },
+      "browser": {
+        "startedAt": "2026-10-04T02:22:26.500Z",
+        "visibleMs": 8357,
+        "stateRestoredMs": 8471,
+        "before": 2,
+        "afterWrite": 3,
+        "interactionMs": 8754,
+        "afterReload": 3,
+        "passed": true,
+        "consoleErrors": [],
+        "stopped": true
+      }
+    },
+    {
+      "fixture": "express",
+      "runtimeFormat": "container",
+      "launch": {
+        "id": "emTDSjkcuz1a4xEL4akwQyWw7MdfQHlX",
+        "appId": "repo-6c2ac75a42b5f46c775a3028-9eee994ba7f7-53e4f5be199d",
+        "provider": "google",
+        "port": 24378,
+        "status": "stopped",
+        "compute": {
+          "initialState": "RUNNING",
+          "observedAt": 1791080580496,
+          "startRequestedAt": 1791080580770
+        },
+        "createdAt": 1791080579906,
+        "updatedAt": 1791080592149,
+        "providerReadyAt": 1791080583428,
+        "readyAt": 1791080587675,
+        "timings": {
+          "downloadMs": 184,
+          "imagesMs": 80,
+          "imageCacheHits": 1,
+          "imageArchiveCacheHits": 0,
+          "imageCacheCheckMs": 79,
+          "imageDownloadMs": 0,
+          "imageLoadMs": 0,
+          "runtimeReadyMs": 2914,
+          "cacheHit": true
+        },
+        "storageMode": "persistent",
+        "totalMs": 7769,
+        "deliveryMs": 4247
+      },
+      "browser": {
+        "startedAt": "2026-10-04T02:22:59.724Z",
+        "visibleMs": 9085,
+        "stateRestoredMs": 9200,
+        "before": 2,
+        "afterWrite": 3,
+        "interactionMs": 9481,
+        "afterReload": 3,
+        "passed": true,
+        "consoleErrors": [],
+        "stopped": true
+      }
+    }
+  ],
+  "passed": true,
+  "cleanupAudit": {
+    "recordedAt": "2026-10-04T02:24:43.123781+00:00",
+    "pid": 1032728,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+    "revision": "77cf3407a6a7d4f1a7417e04d2348d3d5cbff472",
+    "codespacesPreviewPort": 25759,
+    "codespacesPreviewVisibility": "private"
+  },
+  "codespacesRegressionEvidence": "stack-storage-hono-codespaces.json"
+}
