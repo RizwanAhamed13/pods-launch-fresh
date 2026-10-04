@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **225 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **239 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
@@ -217,10 +217,26 @@ A [four-sample command experiment](evidence/stack-bootstrap-overlap-probes.json)
 found that opening SSH while checking private preview access reduced their combined
 time from 5.492–6.897s sequentially to 3.788–3.871s. The probe withheld all script
 bytes until the port was confirmed private, verified the same runner file, and
-never started an application. Production still uses the sequential path. This
-candidate needs cancellation, deadline, privacy-gate and native application checks;
+never started an application. Production was still sequential at that checkpoint.
+The candidate required cancellation, deadline, privacy-gate and native application checks;
 the small sample does not establish a full-launch speedup. A separate inline runner
 transfer comparison saved only 0.371s on average and is not prioritized.
+
+The gated SSH overlap is now deployed and passes [239 local/Linux checks](evidence/stack-ssh-overlap-tests.json),
+including real child-process cancellation/reaping, separate wait/delivery deadlines,
+privacy failures, retries and server shutdown. All bootstrap/config bytes remain
+withheld until private preview setup succeeds. A waiting transport has a 65-second
+limit; preview setup retains its 60-second budget and each delivery attempt gets
+its own 60 seconds. The three-attempt limit and saved compute identity are preserved.
+
+[Two native cached launches](evidence/stack-ssh-overlap-native.json), both initially
+Available, became healthy in **9.788s and 8.597s**. Combined preview and bootstrap
+time was 4.755s and 3.587s; those intervals include overlapping SSH setup and must
+not be summed with it again. Authenticated product HTTP writes, online SQLite
+integrity inspection and full stop/relaunch passed, retaining values 10→11→12.
+The product port stayed private and no database port was exposed. Both launches
+finished and stopped. These samples do not establish a universal speedup, first-image
+performance, cold-compute performance or native Codespaces browser interaction.
 
 ## Persistence and operational limits
 

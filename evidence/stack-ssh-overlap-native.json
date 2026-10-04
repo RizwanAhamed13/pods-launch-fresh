@@ -1,0 +1,220 @@
+{
+  "recordedAt": "2026-10-04T12:55:43.479700+00:00",
+  "controlRevision": "b9be57529da667a2276ff9198172f779dbc5a6ab",
+  "scope": "Two native Codespaces launches with private-preview-gated SSH overlap; observed compute states recorded separately. Same cached prepared Micronaut + SQLite image.",
+  "app": {
+    "id": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-ed14d4bc3ecb",
+    "dataKey": "repo-2caafe8ea7f268fe237b7cab",
+    "source": {
+      "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+      "folder": "examples/stacks/micronaut",
+      "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+    },
+    "images": [
+      {
+        "id": "sha256:aff321e8ef7d58dfbf54fc8b72eac7ac5fa77fb1b54f97d8b2913b8f504d7a0b",
+        "sha256": "48ac2bcef4a719876140d74b81474917545c48a15ae316252f31b466246f6d3d",
+        "bytes": 125122053
+      }
+    ]
+  },
+  "results": [
+    {
+      "id": "yWrSD74ZTS4fbMM7A_tYSBFov227b9-V",
+      "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-ed14d4bc3ecb",
+      "provider": "github",
+      "port": 26630,
+      "status": "stopped",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791118469047,
+        "previewRequestedAt": 1791118469073,
+        "transportRequestedAt": 1791118469082,
+        "previewReadyAt": 1791118472048,
+        "bootstrapRequestedAt": 1791118472048,
+        "bootstrapAttempts": 1,
+        "bootstrapDeliveredAt": 1791118473828
+      },
+      "createdAt": 1791118468570,
+      "updatedAt": 1791118493950,
+      "providerReadyAt": 1791118469064,
+      "readyAt": 1791118478358,
+      "timings": {
+        "downloadMs": 671,
+        "imagesMs": 42,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 42,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 4466,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 9788,
+      "deliveryMs": 9294,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 10,
+        "afterWrite": 11,
+        "afterRead": 11,
+        "passed": true,
+        "expectedInitialCount": 10
+      },
+      "sqliteFileRuntimeCheck": {
+        "passed": true,
+        "fixtureProfile": "micronaut",
+        "project": "pods-c0dc0ca6fa37c8352e216af2",
+        "services": [
+          "web"
+        ],
+        "databaseEngine": "SQLite",
+        "inspectionEngineVersion": "3.53.4",
+        "integrity": "ok",
+        "savedCount": 11,
+        "sourceFiles": [
+          "counter.sqlite"
+        ],
+        "snapshotFiles": [
+          "counter.sqlite"
+        ],
+        "applicationPaused": false,
+        "applicationStayedRunning": true,
+        "volume": "pods-c0dc0ca6fa37c8352e216af2_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          26630
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+      },
+      "stageMs": {
+        "beforeProviderReady": 494,
+        "previewRegistration": 2975,
+        "bootstrapAfterPrivateConfirmation": 1780,
+        "afterBootstrapUntilHealthy": 4530,
+        "betweenStages": 9
+      },
+      "overlapMs": {
+        "sshOpenedBeforePreviewReady": 2966,
+        "previewAndBootstrapCombined": 4755
+      }
+    },
+    {
+      "id": "QvvSkur3my2d0ntybSdTxMXWFaY85O_V",
+      "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-ed14d4bc3ecb",
+      "provider": "github",
+      "port": 26630,
+      "status": "stopped",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791118494869,
+        "previewRequestedAt": 1791118494894,
+        "transportRequestedAt": 1791118494903,
+        "previewReadyAt": 1791118497666,
+        "bootstrapRequestedAt": 1791118497666,
+        "bootstrapAttempts": 1,
+        "bootstrapDeliveredAt": 1791118498481
+      },
+      "createdAt": 1791118494394,
+      "updatedAt": 1791118515564,
+      "providerReadyAt": 1791118494885,
+      "readyAt": 1791118502991,
+      "timings": {
+        "downloadMs": 578,
+        "imagesMs": 43,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 43,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 4452,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 8597,
+      "deliveryMs": 8106,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 11,
+        "afterWrite": 12,
+        "afterRead": 12,
+        "passed": true,
+        "expectedAfterRelaunch": 11
+      },
+      "sqliteFileRuntimeCheck": {
+        "passed": true,
+        "fixtureProfile": "micronaut",
+        "project": "pods-c0dc0ca6fa37c8352e216af2",
+        "services": [
+          "web"
+        ],
+        "databaseEngine": "SQLite",
+        "inspectionEngineVersion": "3.53.4",
+        "integrity": "ok",
+        "savedCount": 12,
+        "sourceFiles": [
+          "counter.sqlite"
+        ],
+        "snapshotFiles": [
+          "counter.sqlite"
+        ],
+        "applicationPaused": false,
+        "applicationStayedRunning": true,
+        "volume": "pods-c0dc0ca6fa37c8352e216af2_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          26630
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+      },
+      "stageMs": {
+        "beforeProviderReady": 491,
+        "previewRegistration": 2772,
+        "bootstrapAfterPrivateConfirmation": 815,
+        "afterBootstrapUntilHealthy": 4510,
+        "betweenStages": 9
+      },
+      "overlapMs": {
+        "sshOpenedBeforePreviewReady": 2763,
+        "previewAndBootstrapCombined": 3587
+      }
+    }
+  ],
+  "nativeBrowserVerified": false,
+  "cachedImageOnly": true,
+  "existingPreparedArtifactReused": true,
+  "persistenceScope": "Native authenticated product HTTP writes10\u219211\u219212, full application stop/relaunch and online SQLite integrity inspection with the application running. Provider VM replacement and power-loss durability are separate.",
+  "timingScope": "Stage timestamps use the PODS server clock. SSH connection establishment overlaps preview registration; bootstrapAfterPrivateConfirmation is the remaining interval after release, not total SSH duration. The five stageMs values partition time to server readiness; overlapMs and runner.runtimeReadyMs must not be added again. Small sequential native sample, not a controlled whole-launch benchmark or first-image result.",
+  "testEvidence": "stack-ssh-overlap-tests.json",
+  "deploymentEvidence": "stack-ssh-overlap-deployment.json",
+  "cleanupAudit": {
+    "recordedAt": "2026-10-04T12:55:37.171570+00:00",
+    "pid": 1492167,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "be6b31d3791059d5833b20f2b7bdac6c7f99d78e00d4fd0c1ab3c7f0d688cc64",
+    "revision": "b9be57529da667a2276ff9198172f779dbc5a6ab"
+  },
+  "passed": true
+}

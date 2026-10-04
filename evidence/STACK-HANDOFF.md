@@ -1,10 +1,10 @@
 # Broad stack checkpoint
 
 Goal active and incomplete. Developer URL → isolated aswin build → reusable
-artifact → authorized user compute → actual usable product. This turn added
-Codespaces stage observations, passed225 local/Linux checks, deployed and measured
-cold/warm native launches. A private-port-gated SSH overlap probe passed and is the
-next implementation candidate; the production launch is still sequential.
+artifact → authorized user compute → actual usable product. This turn implemented
+private-preview-gated Codespaces SSH overlap, passed239 local/Linux checks, deployed
+and verified two real cached launches with SQLite persistence. Production now opens
+SSH while preparing the private preview and releases bootstrap only after success.
 Do not mark the goal complete or blocked: meaningful work remains possible.
 
 ## Current verified state
@@ -19,16 +19,16 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   Seven database/service families are covered. Matrix records tested representatives,
   not every version or arbitrary application. Unknown secrets/schema/migrations
   still require developer inputs; desktop/mobile/GPU/non-web products are excluded.
-- Full suite225/225 local and isolated Linux; stack-codespace-timings-tests.json verifies
-  all330 snapshot input hashes. Current scoped source7,904physical lines:
-  3,945product/tooling +2,862tests +933examples +164browser tools. Archived diagnostic
+- Full suite239/239 local and isolated Linux; stack-ssh-overlap-tests.json verifies
+  all334 snapshot input hashes. Current scoped source8,135physical lines:
+  4,014product/tooling +3,024tests +933examples +164browser tools. Archived diagnostic
   reproducers in evidence/probes are outside that source-count scope.
-- Runtime/control05d46e8af24f3a79c2ae0c4529d3af9666621fb6, PID1483932.
-  Preview provider helper7a28920; providers.mjs05d46e8, builder2553fc8, storage77cf340.
+- Runtime/controlb9be57529da667a2276ff9198172f779dbc5a6ab, PID1492167.
+  Preview provider helper7a28920; providers/server/deferred-command b9be575, builder2553fc8, storage77cf340.
   RunnerSHAbe6b31d3791059d5833b20f2b7bdac6c7f99d78e00d4fd0c1ab3c7f0d688cc64.
-- Deployment stack-codespace-timings-deployment.json: health200, SQLiteok, idle,
+- Deployment stack-ssh-overlap-deployment.json: health200, SQLiteok, idle,
   preserved57images/131artifacts, unchanged .env and unchanged runner. No restart for docs.
-- Latest idle audit2026-10-04T12:46:37.276731+00:00: health200, SQLiteok,
+- Latest idle audit2026-10-04T12:55:37.171570+00:00: health200, SQLiteok,
   zero active builds/launches. All accepted launches stopped. No jobs running.
 
 ## Latest native gate
@@ -58,7 +58,7 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   Authenticated product HTTP and SQLite online backup passed4→5→6;
   integrityok, private product26630, no exposed DB port, no pause, fully stopped.
 - Range gate ended at count6 both. Current counts after the preview fix:
-  Google8, Codespaces10 after the latest Codespaces observations below. Never reset data or
+  Google8, Codespaces12 after the latest Codespaces overlap acceptance below. Never reset data or
   rerun an old expected value.
 - stack-cdn-range-native.json validates source hashes, unique IDs, build/image
   identity, first-cache-miss/repeat-hit, successful ranges/no fallback, persistence
@@ -128,7 +128,7 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   Probe/audit credentials stayed only in server memory. No account/token/private
   preview values are saved in public evidence.
 
-## Completed Codespaces measurements and next implementation
+## Prior Codespaces measurements
 
 - Source05d46e8 adds previewRequestedAt/previewReadyAt, bootstrapRequestedAt/
   bootstrapDeliveredAt/bootstrapAttempts and optional compatibility timestamps to
@@ -160,19 +160,54 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   then releasing the harmless probe only after private confirmation, measured
  3.788/3.871s combined versus serial6.897/5.492s. All ports private, bytes withheld
   until confirmed, identical SHA, no runner executed. Small sample, not a full-launch
-  guarantee. Existing production path remains sequential.
-- NEXT: implement overlapping transport establishment with a strict release gate.
-  Never send bootstrap/config bytes or start the runner before private verification.
-  Preserve3 SSH attempts and their failure handling; cancel/reap the waiting child
-  on preview errors, deadline, shutdown or early SSH failure. Preserve separate
-  preview and post-release delivery budgets; do not let slow preview exhaust the
-  whole delivery budget or add unbounded waits. Test these failure boundaries,
-  then full suites, deploy and real product/database acceptance. Afterwards run an
-  ordinary new developer build to measure first-image delivery on ready compute.
+  guarantee. Production was sequential at this checkpoint; see the implementation below.
 - Validator /tmp/pods-record-codespace-timings-native.py; inputs
   /tmp/pods-codespace-timings-*.json. Both command probe workers completed normally.
 - Existing questions about GitHub browser2FA, stable hostname and destructive
   provider VM-replacement testing remain pending. Do not repeat or infer approval.
+
+## Completed gated SSH overlap and next gate
+
+- Sourceb9be575 introduces deferred-command.mjs: spawn gh/SSH with empty open stdin,
+  then send the existing SHA-pinned bootstrap only after private preview success.
+  Each command owns its process group. Cancellation kills that group and awaits
+  close. Early exits (including zero before release) are failures, ENOENT remains
+  actionable, and remote output is omitted from errors. Server closeResources
+  awaits provider cleanup before closing SQLite; late updates during shutdown are
+  ignored. Abrupt process exit additionally kills active transport groups.
+- Pre-release wait65s; preview60s unchanged; post-release delivery60s per attempt,
+  three attempts maximum on the same compute. Slow preview does not consume the
+  post-release budget. All retries follow private preview success. compute gains
+  transportRequestedAt; bootstrapRequestedAt still means after private confirmation.
+- stack-ssh-overlap-tests.json:239/239 local and isolated Linux,334 snapshot hashes.
+  Fourteen new tests include actual child processes, descendants, withheld/released
+  stdin, early exits, separate deadline budgets, retries, privacy failure, missing
+  gh, shutdown cleanup and observer failure. Existing provider mocks use an explicit
+  test-only gated transport adapter. One initial test fixture used an invalid test
+  secret and failed Store validation; corrected fixture passes the full suites.
+- stack-ssh-overlap-deployment.json: health200/SQLiteok,PID1492167,57images and
+  131artifacts preserved, unchanged.env, unchanged46494-byte runner. No data/cache reset.
+- stack-ssh-overlap-native.json: yWrSD74ZTS4fbMM7A_tYSBFov227b9-V and
+  QvvSkur3my2d0ntybSdTxMXWFaY85O_V both initiallyAvailable, cached image hit1,
+  no image download. Healthy9.788s/8.597s. Before provider readiness494/491ms;
+  preview2975/2772ms; post-private bootstrap1780/815ms; after-bootstrap4530/4510ms;
+  between-stage gaps9ms each. Combined preview/bootstrap4755/3587ms. SSH opened
+  2966/2763ms before preview confirmation. Do not double-count overlapping intervals.
+- Authenticated product HTTP writes10→11→12, full stop/relaunch, online SQLite
+  integrityok/private26630/noDBports/no pause passed. Both launches fully stopped,
+  session auth disconnected, health/SQLite/idle audit passed. Google remains8.
+  Native Codespaces browser remains pending; these cached observations do not prove
+  a controlled speedup or first-image/cold-compute performance.
+- NEXT: run an ordinary fresh developer URL build and measure ready-compute
+  first-image delivery after the Google key and Codespaces overlap improvements.
+  Existing first-image results predate these changes. Do not clear caches, import
+  QA artifacts, bypass quotas, switch accounts or conflate repeat-image and cold
+  machine measurements. Use real product/persistence acceptance and record the
+  actual cache/compute states. Pending browser2FA/stable-hostname/VM-replacement
+  questions remain unchanged; do not repeat them or infer approval.
+- Logs /tmp/pods-ssh-overlap-full-{local,qa}.txt; native worker completed normally.
+  Validators /tmp/pods-record-ssh-overlap-{tests,native}.py; source manifest and
+  deployment/native/audit inputs /tmp/pods-ssh-overlap-*.json.
 
 ## Operational constraints and evidence
 
@@ -187,16 +222,16 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
 - Push first, then sync with gh auth token piped to ssh aswin and temporary GH_TOKEN,
   helper /home/aswin/pods-tools/bin/gh auth git-credential, git pull --ff-only.
 - Codespace pods-launch-containers-69rw5vx4xp46c5qw5. All native saved data retained.
-  Streamlit counters2both, Symfony Google2/Codespaces3, Micronaut Google8/Codespaces10.
+  Streamlit counters2both, Symfony Google2/Codespaces3, Micronaut Google8/Codespaces12.
 - Preserve older failures: Streamlit initial storage limit/build and403 origin,
   Symfony pause/liveness conflict. See STACK-VERIFICATION-HISTORY.md and individual
   receipts. SQLite inspections now use online backup, never pause the app.
 - QAguest pods-fresh-matrix-01, /snap/lxd/current/bin/lxc, uid/gid1000,
   Node/opt/node/bin/node, deps/opt/pods/node_modules. Current verified candidate
-  /output/codespace-timings-candidate-dc0b25b. Always --disable-stdin for lxc exec overSSH;
+  /output/ssh-overlap-candidate-4e39e61. Always --disable-stdin for lxc exec overSSH;
   earlier setup without it consumed script input and was not counted as a test.
   Keep QAserverPID292107, ports18090/8081/18890, shared caches and runtime.
-- Full test logs /tmp/pods-codespace-timings-full-local.txt and /tmp/pods-codespace-timings-full-qa.txt.
+- Full test logs /tmp/pods-ssh-overlap-full-local.txt and /tmp/pods-ssh-overlap-full-qa.txt.
   Latest validator /tmp/pods-record-preview-budget-native.py; inputs
   /tmp/pods-preview-budget-*.json. Prior validator /tmp/pods-record-range-native.py. Preserve failure input pods-range-codespaces-failed-raw.json.
 - Browser1: stackQa6/tab1 stopped newMicronaut, echoTab/tab2 stopped warmup,
