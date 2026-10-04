@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **146 passing checks in full local and isolated aswin QA runs**. Native coverage is 34 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **150 passing checks in full local and isolated aswin QA runs**. Native coverage is 34 Google browser fixtures and
 34 Codespaces HTTP/protocol fixtures; 21 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
@@ -1726,3 +1726,27 @@ Evidence: `stack-fastapi-{url,google,codespaces}.json`. A separate isolated
 persistence through a full relaunch with the current runner. It is not counted
 as native acceptance. Coverage is now 55 isolated / 34 Google browser / 34
 Codespaces HTTP-protocol, with 21 native fixtures still pending.
+
+
+## MariaDB engine and persistence validation
+
+The native acceptance helper now follows the application's assigned product
+port and performs a read-only SQL inspection of the MariaDB fixture. It verifies
+that the database is healthy and private, uses the application's persistent
+volume, reports a MariaDB server version, and contains the value saved through
+the product. Fresh-process serialization and rejection cases are automated.
+
+All **150 checks passed locally and in isolated aswin Linux QA**. An additional
+real-artifact preflight confirmed **MariaDB 11.4.13** and counter **0→1→2** across
+a full stop/relaunch, using the empty chunked POST sent by the browser proxy.
+The disposable containers, volume and application storage were removed; shared
+runtime caches were retained. This is isolated execution evidence. Flask with
+MariaDB still awaits native Google browser and Codespaces protocol acceptance;
+coverage remains **55 / 34 / 34**, with **21** native fixtures pending.
+
+Current scoped source totals **6,207 physical lines**. Evidence:
+`stack-mariadb-runtime-probe-tests.json` and
+`stack-flask-mariadb-chunked-probe.{json,mjs}`. The native CLI opt-in is
+`PODS_COUNTER_CHECK=1 PODS_MARIADB_RUNTIME_CHECK=1` and is restricted to the
+explicit MariaDB fixture; its SQL queries never read credentials out of the
+container.

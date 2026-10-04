@@ -403,3 +403,35 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   existing MySQL runtime inspection must not be misattributed to MariaDB.
 - Watcher35120 last confirmedlive: own3/global3/active0; nextordinaryslot
   03:45:44.827UTC. Poll the samehandle. No other jobs/apps remain running.
+
+
+## MariaDB runtime inspection and isolated preflight
+
+- Added scripts/probe-mariadb-runtime.mjs, restricted native CLI flag
+  PODS_MARIADB_RUNTIME_CHECK=1 with PODS_COUNTER_CHECK=1. Inspects actual
+  MariaDB version and product-saved counter using fixed SELECT queries, private
+  DB boundaries and durable Codespaces volume. Credentials never leave db.
+- Shared MySQL inspection now accepts the assigned product port instead of
+  assuming8080. Four new cases, including fresh-process serialized execution.
+  Full150/150passed local and isolated QA; logs /tmp/pods-mariadb-full-{local,qa}.txt.
+  QA snapshot /output/mariadb-candidate-9d9e1b6. No provider/runner edits/restart.
+- Actual isolated preflight15936 ended0, recorded03:38:51.158UTC. Stored artifact
+  f019c61e… and sourcecd4b48fa… verified. MariaDB11.4.13, privateDB, selected
+  volume, chunkedPOST and fullstop/relaunch0→1→2 passed. Cleanup80326 ended0:
+  unique containers/volume/storage removed, sharedruntime/cache retained.
+  Evidence stack-flask-mariadb-chunked-probe.{json,mjs}, not native acceptance.
+- Source6207lines=3283product/tooling+1827tests+933examples+164browsertools.
+  Coverage unchanged55/34/34,21nativepending.
+- Quota watcher35120 remains the only pending native gate; ordinaryslot
+  03:45:44.827UTC. Resume samehandle; no alternate accounts/quota overrides.
+- Browser stackQa6/tab13 remains the unsubmitted MariaDB preparation form.
+  measureMariadbCounter helper uses exact heading "Flask + mariadb counter",
+  #value and Addone; first native launch expected0, fullrelaunch expected1.
+  50s observation deadline may need continuing the same launch for image delivery.
+- /tmp/pods-capture-native.py allowlist includes flask-mariadb. Recorder template
+  /tmp/pods-record-flask-mariadb.py expects twoGoogle/twoCSstopped launches;
+  update checkoutRevision to the newly published tooling commit before use.
+  It requires actual MariaDB runtime checks in both CS results.
+- Next: submit form once quota available, wait production build, Google real UI
+  0→1→2 with reload/fullstop, native CLI with counter+MariaDB flags and expected0,
+  privateport/health/idle audits, then update native counts only on actual success.

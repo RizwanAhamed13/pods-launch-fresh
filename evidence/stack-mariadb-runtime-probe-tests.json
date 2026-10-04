@@ -1,0 +1,21 @@
+{
+  "recordedAt": "2026-10-04T03:39:30.596294+00:00",
+  "baseRevision": "9d9e1b6",
+  "scope": "Assigned product-port and read-only MariaDB engine/record inspection; four new automated cases, including fresh-process serialized probe. Full suite rerun in both environments. Native provider and browser acceptance recorded separately.",
+  "fullSuite": [
+    {
+      "environment": "local",
+      "tests": 150,
+      "passed": 150,
+      "failed": 0,
+      "outputSha256": "c8791d5470ec7d1c8efdf46dc5d26b7662902cbb7eb00412f4d81cbf207d2a57"
+    },
+    {
+      "environment": "isolated-aswin-linux",
+      "tests": 150,
+      "passed": 150,
+      "failed": 0,
+      "outputSha256": "a2c21562178c0c3565ae24644f650876b24b5d2f1899ff8f89412d4705731e53"
+    }
+  ]
+}

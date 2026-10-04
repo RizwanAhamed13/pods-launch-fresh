@@ -15,7 +15,7 @@ Provider authorization is required. Conventional public GitHub applications can 
 
 Cold provisioning and uncached image transfer are measured separately from cached launch. User compute remains owned and billed by the user's provider. Persistent container data is stored under Cloud Shell's home or Codespaces' `/workspaces`; provider lifecycle durability requires separate evidence.
 ## Evidence on Hand
-The current implementation has 146 passing automated checks in full local and isolated aswin QA runs. Native acceptance currently covers 34 Cloud Shell browser fixtures and 34 Codespaces HTTP/protocol fixtures; native Codespaces browser sign-in and interaction remain pending. All 55 distinct stack fixtures have real server-build, reusable-artifact launch and meaningful browser-interaction evidence. Hono, Koa and Fastify's corrected fixture passed native Google browser and Codespaces HTTP persistence checks; Fastify's original Google preview POST failure is retained as evidence. The fixtures cover frontend, SSR, backend, database and worker combinations; they do not represent 55 different frameworks. Database fixtures have write/read/stop/relaunch checks. See `evidence/stack-coverage.json`, numbered stack matrix/browser evidence, and `SUPPORT.md` for the exact scope and retained failures.
+The current implementation has 150 passing automated checks in full local and isolated aswin QA runs. Native acceptance currently covers 34 Cloud Shell browser fixtures and 34 Codespaces HTTP/protocol fixtures; native Codespaces browser sign-in and interaction remain pending. All 55 distinct stack fixtures have real server-build, reusable-artifact launch and meaningful browser-interaction evidence. Hono, Koa and Fastify's corrected fixture passed native Google browser and Codespaces HTTP persistence checks; Fastify's original Google preview POST failure is retained as evidence. The fixtures cover frontend, SSR, backend, database and worker combinations; they do not represent 55 different frameworks. Database fixtures have write/read/stop/relaunch checks. See `evidence/stack-coverage.json`, numbered stack matrix/browser evidence, and `SUPPORT.md` for the exact scope and retained failures.
 
 Real developer repository submissions and native Cloud Shell product interactions pass for Flask + PostgreSQL, React + Express + PostgreSQL, Angular SSR + SQLite, Quarkus + SQLite, Laravel + SQLite, Blazor Server + SQLite, and the Go Gin persistent-file counter. Angular's cached launch displayed its usable product and saved record in 7.223 seconds; its uncached launch took 72.289 seconds to health. These observations do not establish a universal 20-second cold-launch guarantee. The optimized npm recipe excludes download caches while retaining installed dependencies. All eight affected fixtures were rebuilt and retested. Its new Angular artifact showed saved data in the native Cloud Shell product in 8.312 seconds cached and took 61.933 seconds uncached to health; the old artifact’s SQLite record survived the upgrade.
 
@@ -393,7 +393,7 @@ environment and its unique SSH key, without sending another start request. The
 146-test suite passes locally and in isolated QA. Native Express regression kept
 SQLite data across full stops on both providers; the Google product appeared in
 7.220s and 5.227s. Timeout recovery itself is covered by injected failures, with
-the original native failure preserved. Current source totals 6,120 physical lines.
+the original native failure preserved. Source at that milestone totaled 6,120 physical lines.
 
 
 FastAPI + SQLite adds native fixture 34. Normal URL preparation took 71.888s.
@@ -405,3 +405,11 @@ so the uncached samples show the remaining image-transfer cost. All four preview
 stopped and the product port remained private. Current coverage 55/34/34 leaves
 21 native fixtures, plus Codespaces native browser acceptance and the other
 explicit completion gates, pending.
+
+
+MariaDB's acceptance tooling now verifies the actual engine and saved SQL record,
+private database ports, durable volume, and the assigned product port. A real
+isolated MariaDB 11.4.13 artifact preserved 0→1→2 across a full stop/relaunch.
+All 150 automated checks pass locally and in isolated Linux QA. Current source
+is 6,207 physical lines. Native MariaDB acceptance remains pending; the matrix
+stays at 55 isolated / 34 Google browser / 34 Codespaces protocol fixtures.

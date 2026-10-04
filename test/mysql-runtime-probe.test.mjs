@@ -34,6 +34,13 @@ test('MySQL runtime evidence inspects only the selected project and redacts raw 
   assert.ok(calls.filter(x=>x[0]==='inspect'||x[0]==='volume').every(x=>x.includes('--format')));
   assert.doesNotMatch(JSON.stringify(calls),/\.Env|\.Config\}\}/);assert.doesNotMatch(JSON.stringify(result),/\/workspaces\/|preview-fixture-only/);
 });
+test('MySQL runtime evidence follows the assigned product port and rejects mismatches',async()=>{
+  const data=fixture();data.containers[0].ports['8080/tcp'][0].HostPort='23456';
+  const result=await probeMysqlRuntime(key,executor(data),{port:23456});
+  assert.deepEqual(result.productHostPorts,[23456]);
+  await assert.rejects(probeMysqlRuntime(key,executor(data)),/product port/);
+  await assert.rejects(probeMysqlRuntime(key,async()=>assert.fail('Invalid port must not execute'),{port:0}),/Invalid product port/);
+});
 test('MySQL runtime evidence rejects exposed, unhealthy and nonpersistent databases',async()=>{
   const changes=[
     d=>{d.ids+='\n'+'c'.repeat(12);},

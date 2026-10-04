@@ -1,0 +1,91 @@
+{
+  "recordedAt": "2026-10-04T03:38:51.158Z",
+  "scope": "Isolated real MariaDB artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+  "dataKey": "flask-mariadb-chunked-5d3d78ab208a02f2",
+  "project": "pods-e3e9619314a7f453b690e433",
+  "artifactSha256": "f019c61ed78c8a6fd4556dbbc965411ae316c8bac08cbc1de567096120a728ad",
+  "images": [
+    {
+      "id": "sha256:65841b7b9bf20bc3b97801e99a3284dbd74219306bee6ca09f99a5f1615bb7c8",
+      "sha256": "ad5a93d9f8e5d8b28481e0440adf78ea3dbfab0ac60169c995e93006dc3c4889",
+      "bytes": 57049053
+    },
+    {
+      "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+      "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+      "bytes": 104507545
+    }
+  ],
+  "sourceSha256": "cd4b48fa609985b6788daa95c7782d7cb300413e8405476d964a9c64fb63c836",
+  "records": [
+    {
+      "database": {
+        "passed": true,
+        "project": "pods-e3e9619314a7f453b690e433",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          18095
+        ],
+        "volume": "pods-e3e9619314a7f453b690e433_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Isolated aswin guest: actual MariaDB version, saved SQL record, private ports and persistent bind volume; not a native provider launch.",
+        "databaseEngine": "MariaDB",
+        "version": "11.4.13-MariaDB-ubu2404",
+        "versionComment": "mariadb.org binary distribution",
+        "savedCount": 1
+      },
+      "scenario": "first-launch",
+      "before": 0,
+      "post": {
+        "status": 200,
+        "count": 1
+      },
+      "afterRead": 1,
+      "transferEncoding": "chunked",
+      "contentType": null
+    },
+    {
+      "database": {
+        "passed": true,
+        "project": "pods-e3e9619314a7f453b690e433",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          18095
+        ],
+        "volume": "pods-e3e9619314a7f453b690e433_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Isolated aswin guest: actual MariaDB version, saved SQL record, private ports and persistent bind volume; not a native provider launch.",
+        "databaseEngine": "MariaDB",
+        "version": "11.4.13-MariaDB-ubu2404",
+        "versionComment": "mariadb.org binary distribution",
+        "savedCount": 2
+      },
+      "scenario": "full-relaunch",
+      "before": 1,
+      "post": {
+        "status": 200,
+        "count": 2
+      },
+      "afterRead": 2,
+      "transferEncoding": "chunked",
+      "contentType": null
+    }
+  ],
+  "passed": true,
+  "cleanup": {
+    "containersStopped": true,
+    "probeVolumeRemoved": true,
+    "probeStorageDirectoriesRemoved": true,
+    "sharedRuntimeAndCacheRetained": true
+  }
+}
