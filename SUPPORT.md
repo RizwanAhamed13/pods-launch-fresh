@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **239 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **240 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
@@ -237,6 +237,35 @@ integrity inspection and full stop/relaunch passed, retaining values 10→11→1
 The product port stayed private and no database port was exposed. Both launches
 finished and stopped. These samples do not establish a universal speedup, first-image
 performance, cold-compute performance or native Codespaces browser interaction.
+
+The latest [ordinary developer URL build and native acceptance](evidence/stack-fresh-image-native.json)
+exercise a new Micronaut + SQLite image after both provider optimizations.
+Preparation took 218.662s on the server. Google reconnection returned to the
+developer page and automatically continued the build; the finished launch link
+opened the real application without terminal or configuration steps.
+
+| Provider | Initial compute | New image: healthy | New image: product visible | Cached: healthy | Cached: product visible |
+| --- | --- | --- | --- | --- | --- |
+| Google Cloud Shell | Running | 20.323s | 21.115s | 9.044s | 10.291s |
+| GitHub Codespaces | Available | 20.633s | Unverified | 8.946s | Unverified |
+
+Both providers reported an image cache miss on the first launch and a hit on
+the repeat. Existing Docker layers and other caches were preserved. A separate
+cached Google launch kept compute ready and is excluded from these timings.
+Image download/load took 7.506s/2.834s on Google and 6.507s/3.401s on Codespaces.
+These are sequential integration samples, not an empty-machine benchmark or a
+guaranteed speedup. **The 20-second first-image product target remains unmet.**
+
+Google browser writes and reloads retained values 8→9→10 across full stops;
+Codespaces authenticated product HTTP and SQLite online integrity checks retained
+12→13→14. Every launch stopped successfully. Codespaces browser interaction,
+provider VM replacement and power-loss durability remain separate, unverified gates.
+
+This acceptance also uncovered and fixed an account-page initialization regression:
+the provider API accidentally exposed its shutdown helper as a compute choice.
+It now returns only Google and GitHub. A [real API/document regression and the full
+240-check local/Linux suite](evidence/stack-provider-bootstrap-tests.json) pass;
+the developer page and automatic reconnection/build continuation were verified live.
 
 ## Persistence and operational limits
 

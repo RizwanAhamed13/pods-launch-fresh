@@ -1,10 +1,10 @@
 # Broad stack checkpoint
 
 Goal active and incomplete. Developer URL → isolated aswin build → reusable
-artifact → authorized user compute → actual usable product. This turn implemented
-private-preview-gated Codespaces SSH overlap, passed239 local/Linux checks, deployed
-and verified two real cached launches with SQLite persistence. Production now opens
-SSH while preparing the private preview and releases bootstrap only after success.
+artifact → authorized user compute → actual usable product. Latest gate fixed a
+developer-page bootstrap regression, passed240 local/Linux checks, and completed
+an ordinary fresh URL build plus four native first-image/cached launches. All
+functional checks passed; first-image launches still exceed the20s target.
 Do not mark the goal complete or blocked: meaningful work remains possible.
 
 ## Current verified state
@@ -19,16 +19,17 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   Seven database/service families are covered. Matrix records tested representatives,
   not every version or arbitrary application. Unknown secrets/schema/migrations
   still require developer inputs; desktop/mobile/GPU/non-web products are excluded.
-- Full suite239/239 local and isolated Linux; stack-ssh-overlap-tests.json verifies
-  all334 snapshot input hashes. Current scoped source8,135physical lines:
-  4,014product/tooling +3,024tests +933examples +164browser tools. Archived diagnostic
+- Full suite240/240 local and isolated Linux; stack-provider-bootstrap-tests.json verifies
+  all335 snapshot input hashes. Current scoped source8,160physical lines:
+  4,014product/tooling +3,049tests +933examples +164browser tools. Archived diagnostic
   reproducers in evidence/probes are outside that source-count scope.
-- Runtime/controlb9be57529da667a2276ff9198172f779dbc5a6ab, PID1492167.
-  Preview provider helper7a28920; providers/server/deferred-command b9be575, builder2553fc8, storage77cf340.
+- Runtime/controle189ffd4f5eaef7d475ad719c98e8103c22edbbe, PID1496582.
+  Servere189ffd; preview helper7a28920; providers/deferred-command b9be575,
+  builder2553fc8, storage77cf340.
   RunnerSHAbe6b31d3791059d5833b20f2b7bdac6c7f99d78e00d4fd0c1ab3c7f0d688cc64.
-- Deployment stack-ssh-overlap-deployment.json: health200, SQLiteok, idle,
+- Deployment stack-provider-bootstrap-deployment.json: health200, SQLiteok, idle,
   preserved57images/131artifacts, unchanged .env and unchanged runner. No restart for docs.
-- Latest idle audit2026-10-04T12:55:37.171570+00:00: health200, SQLiteok,
+- Latest idle audit2026-10-04T13:09:43.577994+00:00: health200, SQLiteok,
   zero active builds/launches. All accepted launches stopped. No jobs running.
 
 ## Latest native gate
@@ -58,7 +59,7 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   Authenticated product HTTP and SQLite online backup passed4→5→6;
   integrityok, private product26630, no exposed DB port, no pause, fully stopped.
 - Range gate ended at count6 both. Current counts after the preview fix:
-  Google8, Codespaces12 after the latest Codespaces overlap acceptance below. Never reset data or
+  Google10, Codespaces14 after the latest fresh-image acceptance below. Never reset data or
   rerun an old expected value.
 - stack-cdn-range-native.json validates source hashes, unique IDs, build/image
   identity, first-cache-miss/repeat-hit, successful ranges/no fallback, persistence
@@ -198,16 +199,53 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   session auth disconnected, health/SQLite/idle audit passed. Google remains8.
   Native Codespaces browser remains pending; these cached observations do not prove
   a controlled speedup or first-image/cold-compute performance.
-- NEXT: run an ordinary fresh developer URL build and measure ready-compute
-  first-image delivery after the Google key and Codespaces overlap improvements.
-  Existing first-image results predate these changes. Do not clear caches, import
-  QA artifacts, bypass quotas, switch accounts or conflate repeat-image and cold
-  machine measurements. Use real product/persistence acceptance and record the
-  actual cache/compute states. Pending browser2FA/stable-hostname/VM-replacement
-  questions remain unchanged; do not repeat them or infer approval.
+- That gate's next fresh developer build is now complete; see the next section.
 - Logs /tmp/pods-ssh-overlap-full-{local,qa}.txt; native worker completed normally.
   Validators /tmp/pods-record-ssh-overlap-{tests,native}.py; source manifest and
   deployment/native/audit inputs /tmp/pods-ssh-overlap-*.json.
+
+## Latest developer bootstrap fix and fresh-image acceptance
+
+- A fresh developer page failed with `Cannot set properties of null (setting textContent)`.
+  b9be575 added enumerable providers.close; /api/me enumerated it with github/google.
+  The UI had no close-status element. e189ffd explicitly selects github/google
+  for public connection choices, preserving lifecycle cleanup. The real createApp
+  regression fails before the fix and passes after; full240 local/Linux checks pass.
+  Inputs335hashes verified. Evidence stack-provider-bootstrap-tests.json and
+  stack-provider-bootstrap-deployment.json. No runner/build/provider sequencing change.
+- Ordinary UI build UgVTF4smV7Ve6LSORWKFB-hcO4HoO-5D,218.662s, finished ready.
+  Google reconnection automatically resumed preparation. No manual terminal/config,
+  quota bypass, account switch or imported QA artifact. Same pinned Micronaut source.
+  New app repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-eadd466d0702;
+  image125120183bytes, IDsha256:f8d81d6e3808af84557aaae2b5f93e794e77bc30cd3736d102041ef4a8fe2d3d,
+  archiveSHA8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f.
+  Permanent private asset609862985/release402982733; preserve it and older assets.
+- stack-fresh-image-native.json validates new image/archive identity, live build,
+  first cache miss/repeat hit, ranges/no fallback, source hashes, persistence and
+  final idle audit. Existing Docker layers and other caches were retained.
+  Old cached Google warmup R_a_g8o6yelX7VoPAGFg00IPZZ6VbPGU read8, made no write,
+  stopped and is excluded from new-image timings. No Codespaces warmup needed.
+- Google first T3RKNpCJwukKSt-XRlYtoJx7jRJB6xCa: RUNNING,healthy20.323s,
+  product21.115s, download7.506s/load2.834s. Cached tY7pnOpMXQYQVfP7fwvmi_tzgb22TZ4i:
+  healthy9.044s,product10.291s. Native browser button/reload/fullstop/relaunch8→9→10.
+- Codespaces first _9L7vJtVnwp5m7f54Ge00iPFdHn16p82: Available,healthy20.633s,
+  download6.507s/load3.401s. Cached b0EXpCld3RIjf-1o2FFiJm4OG_SQQRsf:
+  Available,healthy8.946s. Authenticated product HTTP/online SQLite integrity
+  passed12→13→14, private26630/noDBports/no pause. Native browser remains unverified.
+- All four launches stopped. Native worker24669 and buildwatch30800 finished0.
+  An idle audit attempted while acceptance was running rejected activeLaunches1;
+  the worker was not rerun. Final audit health200/SQLiteok/zeroactive passed.
+  These small samples do not prove an SLA. First-image20s product target is unmet.
+- NEXT: assess the measured first-image costs before another implementation change.
+  Image download/load adds about10s; cached paths already pass20s in these samples.
+  Preserve measurement definitions, private preview gating, existing data and
+  image integrity. Do not repeatedly rebuild/retest unchanged code to seek a pass.
+  Pending GitHub browser2FA, stable-hostname and destructive VM-replacement questions
+  are unchanged; do not repeat or infer approval. Goal remains active/incomplete.
+- Validator /tmp/pods-record-fresh-image-native.py; raw inputs/logs
+  /tmp/pods-fresh-image-*.json, /tmp/pods-fresh-image-codespaces.log,
+  /tmp/pods-provider-bootstrap-{before,full-local,full-qa}.txt. Raw Codespaces data
+  includes private preview values; do not publish it. Public receipts are whitelisted.
 
 ## Operational constraints and evidence
 
@@ -222,24 +260,23 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
 - Push first, then sync with gh auth token piped to ssh aswin and temporary GH_TOKEN,
   helper /home/aswin/pods-tools/bin/gh auth git-credential, git pull --ff-only.
 - Codespace pods-launch-containers-69rw5vx4xp46c5qw5. All native saved data retained.
-  Streamlit counters2both, Symfony Google2/Codespaces3, Micronaut Google8/Codespaces12.
+  Streamlit counters2both, Symfony Google2/Codespaces3, Micronaut Google10/Codespaces14.
 - Preserve older failures: Streamlit initial storage limit/build and403 origin,
   Symfony pause/liveness conflict. See STACK-VERIFICATION-HISTORY.md and individual
   receipts. SQLite inspections now use online backup, never pause the app.
 - QAguest pods-fresh-matrix-01, /snap/lxd/current/bin/lxc, uid/gid1000,
   Node/opt/node/bin/node, deps/opt/pods/node_modules. Current verified candidate
-  /output/ssh-overlap-candidate-4e39e61. Always --disable-stdin for lxc exec overSSH;
+  /output/provider-bootstrap-candidate-814e173. Always --disable-stdin for lxc exec overSSH;
   earlier setup without it consumed script input and was not counted as a test.
   Keep QAserverPID292107, ports18090/8081/18890, shared caches and runtime.
-- Full test logs /tmp/pods-ssh-overlap-full-local.txt and /tmp/pods-ssh-overlap-full-qa.txt.
-  Latest validator /tmp/pods-record-preview-budget-native.py; inputs
-  /tmp/pods-preview-budget-*.json. Prior validator /tmp/pods-record-range-native.py. Preserve failure input pods-range-codespaces-failed-raw.json.
+- Full test logs /tmp/pods-provider-bootstrap-full-local.txt and /tmp/pods-provider-bootstrap-full-qa.txt.
+  Latest validator /tmp/pods-record-fresh-image-native.py. Preserve failure input
+  pods-range-codespaces-failed-raw.json and historical receipts.
 - Browser1: stackQa6/tab1 stopped newMicronaut, echoTab/tab2 stopped warmup,
   mongodbSupport/tab3 supportmatrix. Re-markHandoff each turn, after compaction
-  cua.rewriteDocumentation first. micronautRangeGoogle stores two browser records,
-  micronautRangeWarmup stores setup, micronautRangeLaunchUrl is current link.
+  cua.rewriteDocumentation first. freshImageGoogleFirst/freshImageGoogleCached store
+  the latest records, freshImageWarmup stores setup, freshImageLaunchUrl is current link.
   Micronaut controls: h1 'Micronaut + SQLite', #value, button 'Add one'.
 - Browser handles retain continueSqliteFramework and stopNativeCounter helpers.
-  googleReadyAcceptance contains both latest native Google records; current saved count8.
-  Worker sessions20376(Linux),17528(native),10429(deploy) are terminal.
-  The first hanging negative-test session30407 was stopped explicitly. No jobs running.
+  Current saved count10. Native worker24669, watcher30800 and audit1249 are terminal.
+  No jobs running. Docs-only pushes do not require restarting the healthy service.
