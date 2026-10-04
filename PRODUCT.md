@@ -15,7 +15,7 @@ Provider authorization is required. Conventional public GitHub applications can 
 
 Cold provisioning and uncached image transfer are measured separately from cached launch. User compute remains owned and billed by the user's provider. Persistent container data is stored under Cloud Shell's home or Codespaces' `/workspaces`; provider lifecycle durability requires separate evidence.
 ## Evidence on Hand
-As of 2026-10-04, 264 automated checks pass locally and in isolated aswin Linux QA.
+As of 2026-10-04, 270 automated checks pass locally and in isolated aswin Linux QA.
 The matrix records 55 passing representative applications: isolated server build,
 prepared-artifact launch and browser interaction, plus 55 native Cloud Shell
 browser acceptances and 55 Codespaces HTTP/protocol acceptances. The historical
@@ -27,13 +27,20 @@ launches still exceed the 20-second product target in several measured cases;
 cached and cold observations remain separate. A stable production hostname and
 Cloud Shell VM-replacement durability also remain open. Database acceptance
 covers the recorded write/read/stop/relaunch scenarios, not arbitrary migrations
-or power-loss guarantees. Current source totals 8,546 scoped physical lines.
+or power-loss guarantees. Current source totals 8,597 scoped physical lines.
 
-The latest deployed browser client recovers transient status-read failures without
-repeating creation or product writes. Controlled browser failures and native
-Google product/reload/full-stop/relaunch acceptance passed. Use [SUPPORT.md](SUPPORT.md),
-[fixture coverage](evidence/stack-coverage.json), [tests](evidence/stack-codespace-preview-poll-tests.json),
-[native browser evidence](evidence/stack-browser-recovery-native.json) and the
+The deployed browser client recovers transient status-read failures without
+repeating creation or product writes. It now polls every 250 ms during delivery
+and startup, retaining normal build/provisioning/stop cadence and failure backoff.
+In a small controlled browser comparison, readiness detection averaged 153.5 ms
+versus 811 ms; status reads increased from four to seven per launch. Native Google
+product/reload/full-stop/relaunch acceptance passed: cached product visible in
+9.877s, button write in 10.598s. A suspended-compute run with no cached image and
+a CDN fallback took 54.875s to health; its click-to-product time was not measured.
+Use [SUPPORT.md](SUPPORT.md), [fixture coverage](evidence/stack-coverage.json),
+[tests](evidence/stack-browser-handoff-tests.json),
+[controlled comparison](evidence/stack-browser-handoff-comparison.json),
+[native browser evidence](evidence/stack-browser-handoff-native.json) and the
 [current checkpoint](evidence/STACK-HANDOFF.md) for exact scope and limitations.
 
 The latest backend change reduces the Codespaces preview polling interval to

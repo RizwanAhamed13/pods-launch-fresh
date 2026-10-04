@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **264 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **270 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
@@ -116,6 +116,26 @@ passed authenticated product HTTP and online SQLite integrity checks, retaining
 19 → 20 → 21 through full application stops. Initially stopped compute took
 43.431s to application health; the already-available relaunch took 9.663s.
 These checks add neither first-image timing nor native browser acceptance.
+
+## Browser readiness handoff
+
+The browser polls every 250 ms during delivery/downloading/startup; build,
+provisioning and stop polling stay at 1,000 ms, with existing failure backoff.
+A [controlled browser comparison](evidence/stack-browser-handoff-comparison.json)
+measured health-to-readiness-response delays of 726/896 ms before and 138/169 ms
+after, with four versus seven status reads per launch. Real client/server/runner
+and product save/reload/relaunch were exercised; provider and authorization were
+simulated. These two samples per variant do not establish a native speedup.
+Six new actual-client cases join the [270 passing local/Linux checks](evidence/stack-browser-handoff-tests.json).
+
+[Native Google browser integration](evidence/stack-browser-handoff-native.json)
+preserved SQLite 14 → 15 → 16 across writes, reloads and full application stops.
+The first run resumed SUSPENDED compute with no image cache and fell back from
+CDN to origin: 54.875s to health, with click-to-product time unmeasured. The RUNNING,
+cached relaunch reached health in 9.333s and showed the product in 9.877s from the
+browser action, completing a write in 10.598s. The client was deployed without a
+server restart; all launches stopped. First-image 20s and native Codespaces
+browser acceptance remain open. The fallback cause was not diagnosed in this gate.
 
 ## Native launch performance
 
@@ -485,9 +505,9 @@ a stable production hostname remains a deployment requirement.
   a consistent database snapshot, resumes it, then queries the private copy.
   The reported SQLite version belongs to the inspector, not the application
   driver. These isolated checks do not add native-provider acceptance.
-- [Full-suite result](evidence/stack-browser-recovery-tests.json): **264/264**
+- [Full-suite result](evidence/stack-browser-handoff-tests.json): **270/270**
   checks passed locally and in isolated aswin Linux QA.
-- [Physical source count](evidence/code-lines.json): **8,546 lines**, including
+- [Physical source count](evidence/code-lines.json): **8,597 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)

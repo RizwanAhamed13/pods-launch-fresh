@@ -1,0 +1,214 @@
+{
+  "recordedAt": "2026-10-04T14:46:35.021172+00:00",
+  "implementationRevision": "d0c22e5893540fc23acc7113ebb252682ce5171e",
+  "scope": "Native Google Cloud Shell browser integration of deployed adaptive startup polling with existing prepared Micronaut + SQLite artifact. Automatic product navigation, button write/reload and full stop/relaunch verified. No new build, imported artifact, manual cache clearing or service restart. Existing authorization refreshed automatically before first launch.",
+  "testEvidence": "stack-browser-handoff-tests.json",
+  "controlledComparisonEvidence": "stack-browser-handoff-comparison.json",
+  "preparationEvidence": "stack-eight-ranges-native.json",
+  "buildId": "L2AiK3hVAKYytXputQXo0R8rWt6bDhVs",
+  "app": {
+    "id": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-5a4e0078fab4",
+    "name": "pods-launch-runtime-fresh",
+    "description": "",
+    "sha256": "5a4e0078fab423a273bfb59f898bdd3dc979dfd8546128a2fa6926b4afddb378",
+    "bytes": 275,
+    "files": 0,
+    "healthPath": "/",
+    "applicationType": "container",
+    "runtime": "docker-linux-amd64",
+    "dataKey": "repo-2caafe8ea7f268fe237b7cab",
+    "productType": "web",
+    "productPath": "/",
+    "source": {
+      "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+      "folder": "examples/stacks/micronaut",
+      "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+    },
+    "verification": {
+      "documentPath": "/",
+      "status": 200,
+      "title": "Micronaut + SQLite"
+    },
+    "preparedAt": "2026-10-04T13:23:50.360Z",
+    "images": [
+      {
+        "id": "sha256:93833ac2bd1aba9e02930473fcf3ec224408db1bcb52fe955fac0d8a54821e9b",
+        "sha256": "8faad71cec12d7fc05acdf90ed38536da406e90b740430a9af3742b8fd21b5a7",
+        "bytes": 125123048
+      }
+    ]
+  },
+  "results": [
+    {
+      "id": "qM8sRUCKYU8_tJfr5ZcnpzSD6ezNaQec",
+      "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-5a4e0078fab4",
+      "provider": "google",
+      "port": 26630,
+      "status": "stopped",
+      "compute": {
+        "initialState": "SUSPENDED",
+        "observedAt": 1791125061892,
+        "startRequestedAt": 1791125062114,
+        "startAcceptedAt": 1791125065007
+      },
+      "createdAt": 1791125061439,
+      "updatedAt": 1791125129302,
+      "providerReadyAt": 1791125072595,
+      "readyAt": 1791125116314,
+      "timings": {
+        "downloadMs": 272,
+        "imagesMs": 34056,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 33,
+        "imageDownloadMs": 27421,
+        "imageLoadMs": 6578,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 1,
+        "imageCdnMs": 3515,
+        "imageOriginDownloads": 1,
+        "imageCdnRangeAttempts": 1,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 41470,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 54875,
+      "deliveryMs": 43719,
+      "browser": {
+        "provider": "google",
+        "observationStartedAt": "2026-10-04T14:44:35.784Z",
+        "observationStartedMs": 1791125075784,
+        "productObservedAtMs": 1791125117013,
+        "before": 14,
+        "writeRequestedAt": "2026-10-04T14:45:17.451Z",
+        "afterWrite": 15,
+        "reloadRequestedAt": "2026-10-04T14:45:17.733Z",
+        "reloadCompleted": true,
+        "afterReload": 15,
+        "passed": true,
+        "stopRequestedAt": "2026-10-04T14:45:25.877Z",
+        "statusAfterStop": "stopped",
+        "clickToProductMs": null,
+        "timingScope": "Observation began after authorization refresh and launch creation; click-to-product timing was not measured."
+      }
+    },
+    {
+      "id": "aZ1rUMGwg5HwPb18ZR8DS1Xae9x-3iUs",
+      "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-5a4e0078fab4",
+      "provider": "google",
+      "port": 26630,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791125134375,
+        "keyRegistrationRequestedAt": 1791125134758,
+        "keyRegistrationAcceptedAt": 1791125135954
+      },
+      "createdAt": 1791125133846,
+      "updatedAt": 1791125149898,
+      "providerReadyAt": 1791125136413,
+      "readyAt": 1791125143179,
+      "timings": {
+        "downloadMs": 194,
+        "imagesMs": 58,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 57,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 5517,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 9333,
+      "deliveryMs": 6766,
+      "browser": {
+        "provider": "google",
+        "startedAt": "2026-10-04T14:45:33.624Z",
+        "startedMs": 1791125133624,
+        "visibleMs": 9877,
+        "before": 15,
+        "stateRestoredMs": 10321,
+        "writeRequestedAt": "2026-10-04T14:45:43.945Z",
+        "afterWrite": 16,
+        "interactionMs": 10598,
+        "reloadRequestedAt": "2026-10-04T14:45:44.222Z",
+        "reloadCompleted": true,
+        "afterReload": 16,
+        "passed": true,
+        "stopRequestedAt": "2026-10-04T14:45:48.485Z",
+        "statusAfterStop": "stopped",
+        "timingScope": "Continuous browser action start through automatic product navigation, write and reload."
+      }
+    }
+  ],
+  "allAttemptsPassed": true,
+  "functionalAcceptancePassed": true,
+  "deployment": {
+    "recordedAt": "2026-10-04T14:43:59.133346+00:00",
+    "before": {
+      "recordedAt": "2026-10-04T14:43:40.821630+00:00",
+      "pid": 1542671,
+      "cwd": "/home/aswin/pods-launch-fresh",
+      "command": "node --env-file=.env src/server.mjs",
+      "listenerMatches": true,
+      "sqliteQuickCheck": "ok",
+      "activeBuilds": 0,
+      "activeLaunches": 0,
+      "health": 200,
+      "runnerSha256": "be41ee8a471d684705100e8353a1d7cc34ea1e8d89b2575a6e155f1d50eef13d",
+      "revision": "25faa8e9adc99d2fb89462447a8f04539347c1f9"
+    },
+    "after": {
+      "recordedAt": "2026-10-04T14:43:57.823125+00:00",
+      "pid": 1542671,
+      "cwd": "/home/aswin/pods-launch-fresh",
+      "command": "node --env-file=.env src/server.mjs",
+      "listenerMatches": true,
+      "sqliteQuickCheck": "ok",
+      "activeBuilds": 0,
+      "activeLaunches": 0,
+      "health": 200,
+      "runnerSha256": "be41ee8a471d684705100e8353a1d7cc34ea1e8d89b2575a6e155f1d50eef13d",
+      "revision": "d0c22e5893540fc23acc7113ebb252682ce5171e"
+    },
+    "servedClient": {
+      "status": 200,
+      "clientSha256": "9d17d3df52a587d8a8e3169daf9f68c3eaa002bf8d16482d5e64c548c29e4d2b",
+      "matchesTestedSource": true
+    },
+    "serverRestarted": false
+  },
+  "cleanupAudit": {
+    "recordedAt": "2026-10-04T14:45:58.195375+00:00",
+    "pid": 1542671,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "be41ee8a471d684705100e8353a1d7cc34ea1e8d89b2575a6e155f1d50eef13d",
+    "revision": "d0c22e5893540fc23acc7113ebb252682ce5171e"
+  },
+  "sourceHashes": {
+    "public/app.js": "9d17d3df52a587d8a8e3169daf9f68c3eaa002bf8d16482d5e64c548c29e4d2b",
+    "scripts/browser-fixture.mjs": "8fbd28920806e3ca94a8ead896a0257484aa018f3fede1d96c4c8ac1e0862eeb",
+    "test/browser-polling.test.mjs": "a420e49f36c22746a4f7d28608270b12dc90ae735c1e371810b860060f3e0e95"
+  },
+  "limitations": [
+    "First launch started with suspended compute and no cached image; the CDN range attempt fell back to origin. Health took54875ms; click-to-product timing was not captured. Cause of CDN fallback was not diagnosed in this gate.",
+    "Second launch had RUNNING compute and cached image: health9333ms, observed product9877ms, write10598ms from browser action start. No controlled native before/after speedup claim.",
+    "Saved SQLite value14 survived the observed suspended-compute start; writes15 and16 survived reload and full application stop/relaunch. No destructive VM-replacement, arbitrary migration or power-loss guarantee.",
+    "Native Codespaces browser acceptance remains pending; this client change was tested with simulated Codespaces in the controlled comparison.",
+    "The universal20s/first-image target remains unmet."
+  ]
+}
