@@ -36,6 +36,12 @@ isolated comparison with real prepared bytes and Docker loads averaged21.570s
 before/16.043s after (25.6% less image-preparation time). It uses synthetic cache
 misses against equally warmed Docker content and does not establish native launch
 speed. See [pipeline evidence](evidence/stack-image-pipeline-comparison.json).
+The validated pipeline is deployed. Native Google React + Express + PostgreSQL
+passed cached launch, write, reload and full stop/relaunch, retaining3→4→5.
+Continuous cached product/write timing was9.852s/10.148s; native first-image
+pipeline timing remains pending. Both previews are stopped. See
+[native acceptance](evidence/stack-image-pipeline-native.json).
+
 
 The deployed browser client recovers transient status-read failures without
 repeating creation or product writes. It now polls every 250 ms during delivery

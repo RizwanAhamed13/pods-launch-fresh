@@ -1,0 +1,195 @@
+{
+  "recordedAt": "2026-10-04T15:56:16.347186+00:00",
+  "revision": "f87b2e0effd2fd68a1143f46bf174deba17a7492",
+  "runnerSha256": "999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0",
+  "fixture": "react-express-postgres",
+  "build": {
+    "id": "auCrc3RBfSqCcIZz_83YwGOLRLwc6fZL",
+    "repository": {
+      "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+      "owner": "rizwanahamed13",
+      "name": "pods-launch-runtime-fresh",
+      "folder": "examples/stacks/react-express-postgres",
+      "key": "12b64d343d1a4578791b29c6"
+    },
+    "status": "ready",
+    "createdAt": 1791037240496,
+    "startedAt": 1791037240526,
+    "finishedAt": 1791037384671,
+    "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-12b64d343d1a4578791b29c6-5f376f60ed9c-2d9d982df706",
+    "app": {
+      "id": "repo-12b64d343d1a4578791b29c6-5f376f60ed9c-2d9d982df706",
+      "name": "pods-launch-runtime-fresh",
+      "description": "",
+      "sha256": "2d9d982df7061fabea8585bec0a4701a14ded74becc9b05a4285de61fcbcb29d",
+      "bytes": 803,
+      "files": 0,
+      "healthPath": "/",
+      "applicationType": "container",
+      "runtime": "docker-linux-amd64",
+      "dataKey": "repo-12b64d343d1a4578791b29c6",
+      "productType": "web",
+      "source": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "folder": "examples/stacks/react-express-postgres",
+        "revision": "5f376f60ed9cf16a0ef47a2a9b251b5846b3df0f"
+      },
+      "verification": {
+        "documentPath": "/",
+        "status": 200,
+        "title": "React + Express + PostgreSQL"
+      },
+      "preparedAt": "2026-10-03T14:23:03.495Z",
+      "images": [
+        {
+          "id": "sha256:7b1b27c0ddf739338357eed60469ce64ae9a075b0fde1cf1d4010593bac89748",
+          "sha256": "77fa07caf5cbd82cbc480de1e5eb5cc3e2b4e1a80259425603af848e7936f534",
+          "bytes": 26010276
+        },
+        {
+          "id": "sha256:88f8da757a26de7dd7c85ab2b1e1aa53231f90614ae94c51cdb50a53395b8b23",
+          "sha256": "64c2555c8aa9e51f4202627bcee34799ed920c58cb46d1ef180bb905e7f06381",
+          "bytes": 83776525
+        },
+        {
+          "id": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+          "sha256": "3fc00a26627991f13bcb9daaadd844f87e02850cf00a356e0287010940d6cc01",
+          "bytes": 116544108
+        }
+      ]
+    }
+  },
+  "launches": [
+    {
+      "id": "IpLp-1W5jd_YChSsJICIS3KxA8DFYXy7",
+      "appId": "repo-12b64d343d1a4578791b29c6-5f376f60ed9c-2d9d982df706",
+      "provider": "google",
+      "port": 21747,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791129234161,
+        "keyRegistrationRequestedAt": 1791129234232,
+        "keyRegistrationAcceptedAt": 1791129235435
+      },
+      "createdAt": 1791129233728,
+      "updatedAt": 1791129269654,
+      "providerReadyAt": 1791129235904,
+      "readyAt": 1791129243430,
+      "timings": {
+        "downloadMs": 241,
+        "imagesMs": 171,
+        "imageCacheHits": 3,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 245,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 5684,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 9702,
+      "deliveryMs": 7526
+    },
+    {
+      "id": "-KmEdKtt6NV9CLSRFCyuSDifhSUkAwat",
+      "appId": "repo-12b64d343d1a4578791b29c6-5f376f60ed9c-2d9d982df706",
+      "provider": "google",
+      "port": 21747,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791129276371,
+        "keyRegistrationRequestedAt": 1791129276707,
+        "keyRegistrationAcceptedAt": 1791129277904
+      },
+      "createdAt": 1791129275803,
+      "updatedAt": 1791129305147,
+      "providerReadyAt": 1791129278338,
+      "readyAt": 1791129285009,
+      "timings": {
+        "downloadMs": 232,
+        "imagesMs": 161,
+        "imageCacheHits": 3,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 234,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 5610,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 9206,
+      "deliveryMs": 6671
+    }
+  ],
+  "browser": [
+    {
+      "launchId": "IpLp-1W5jd_YChSsJICIS3KxA8DFYXy7",
+      "observationStartedAt": "2026-10-04T15:54:03.564Z",
+      "timingScope": "Observation began after automatic OAuth return and launch; click-to-product timing not measured",
+      "before": 3,
+      "afterWrite": 4,
+      "afterReload": 4,
+      "reloadCompleted": true,
+      "writeRequestedAt": "2026-10-04T15:54:03.948Z",
+      "stopRequestedAt": "2026-10-04T15:54:15.576Z",
+      "statusAfterStop": "stopped",
+      "passed": true
+    },
+    {
+      "launchId": "-KmEdKtt6NV9CLSRFCyuSDifhSUkAwat",
+      "startedAt": "2026-10-04T15:54:35.625Z",
+      "timingScope": "Continuous Open-button click to actual product and write",
+      "visibleMs": 9852,
+      "stateRestoredMs": 9862,
+      "interactionMs": 10148,
+      "before": 4,
+      "afterWrite": 5,
+      "afterReload": 5,
+      "reloadCompleted": true,
+      "writeRequestedAt": "2026-10-04T15:54:45.487Z",
+      "stopRequestedAt": "2026-10-04T15:54:52.334Z",
+      "statusAfterStop": "stopped",
+      "passed": true
+    }
+  ],
+  "authorization": "Existing one-hour Google connection expired before validation. Normal Google OAuth reconnect refreshed the same existing authorization and automatically resumed launch. No credentials entered or scope expansion.",
+  "verification": [
+    "Actual React product h1 and button were exercised.",
+    "PostgreSQL values 3 to 4 to 5 survived page reloads and complete application stop/relaunch.",
+    "Both native launches initially RUNNING, all three images cached, no image downloads or loads.",
+    "Both previews fully stopped; post-test service healthy with zero active builds or launches."
+  ],
+  "limitations": [
+    "This gate verifies deployed cached-image product compatibility, not native transfer overlap or first-image performance.",
+    "First browser click-to-product timing was not measured across OAuth refresh. Only second launch has continuous product timing.",
+    "No direct database-container boundary reinspection in this gate; previous native inspection remains separately recorded.",
+    "Native Codespaces browser, general first-image 20-second behavior, stable production hostname and VM-replacement durability remain unverified."
+  ],
+  "audit": {
+    "recordedAt": "2026-10-04T15:55:15.005770+00:00",
+    "pid": 1589423,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0",
+    "revision": "f87b2e0effd2fd68a1143f46bf174deba17a7492"
+  }
+}

@@ -205,6 +205,16 @@ was equally warmed and image-cache misses were simulated for each sample. This i
 an isolated scheduling comparison, not native provider or full-product timing.
 The 20-second product target remains unproven for general first-image launches.
 
+The [protected deployment](evidence/stack-image-pipeline-deployment.json) preserved
+all 59 prepared images, 135 artifact files and configuration. [Native Google
+regression acceptance](evidence/stack-image-pipeline-native.json) passed two cached
+React + Express + PostgreSQL launches and retained values **3 → 4 → 5** through
+reloads and a complete stop. The second launch reached health in9.206s, showed the
+actual product in9.852s and completed its button write in10.148s. First-launch
+browser timing was not measured across token refresh. These cached results do
+not measure transfer overlap or establish first-image performance.
+
+
 ## Existing-artifact delivery migration
 
 The operator command documented in [README.md](README.md) verifies one explicitly
@@ -643,7 +653,7 @@ a stable production hostname remains a deployment requirement.
   a consistent database snapshot, resumes it, then queries the private copy.
   The reported SQLite version belongs to the inspector, not the application
   driver. These isolated checks do not add native-provider acceptance.
-- [Full-suite result](evidence/stack-browser-handoff-tests.json): **270/270**
+- [Full-suite result](evidence/stack-image-pipeline-tests.json): **292/292**
   checks passed locally and in isolated aswin Linux QA.
 - [Physical source count](evidence/code-lines.json): **8,597 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated

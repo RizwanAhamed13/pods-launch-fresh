@@ -5,8 +5,8 @@ Goal active and incomplete: developer URL → isolated aswin build → reusable 
 bounded image preparation with two image slots, serialized verified Docker loads,
 shared cancellation, owned partial-file cleanup and preservation of first failure.
 292/292 checks pass locally and in isolated Linux. Controlled image preparation
-averaged21.570s before/16.043s after (25.6% reduction). Deployment/native acceptance
-of this candidate is pending at this commit; no new universal latency claim.
+averaged21.570s before/16.043s after (25.6% reduction). Protected deployment and native cached Google product acceptance passed.
+No new universal or native first-image latency claim.
 
 ## Current verified state
 
@@ -29,10 +29,27 @@ of this candidate is pending at this commit; no new universal latency claim.
   loopback HTTP, real Docker29.1.3 loads, equally warmed Docker content, synthetic
   image-cache misses. Candidate peak2requests/1load. Not CDN/native/product timing.
   Prepared archives and existing Docker cache preserved; owned trial folders removed.
-- Before deployment: runtime394abe666fca7c9ad209be7269825ea73c50a3a9,
-  server PID1560797, runnerSHA5172cf839d6c5287b8688bc028859c254757a9c056e435f23c817701d26172d8.
-  BaselineHEAD55737b2888d773c3b06bfe7b9b2c79a495f82761. Health200/SQLiteok/zero active.
- 59 distinct prepared images,8 mappings,51 unmapped totaling5339086704bytes.
+- Deployed runtimef87b2e0effd2fd68a1143f46bf174deba17a7492, serverPID1589423,
+  runnerSHA999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0.
+  Deployment preserved59images/135artifactfiles/.env. Post-native audit15:55:15UTC:
+  health200/SQLiteok/zero active. Baseline55737b2 retained in test/benchmark evidence.
+- 59 distinct prepared images,8 mappings,51 unmapped totaling5339086704bytes.
+
+## Latest deployed pipeline acceptance
+
+- stack-image-pipeline-deployment.json and stack-image-pipeline-native.json.
+- Google connection expired at its normal one-hour boundary. Reconnect through
+  existing Google OAuth refreshed the same grant and automatically resumed launch.
+  No manual credential entry or scope change; initial selector wait retained as
+  token-expiry discovery, not a launcher regression. First click-to-product timing
+  across reconnect was not measured.
+- IpLp-1W5jd_YChSsJICIS3KxA8DFYXy7: RUNNING,3 cached images, health9702ms,
+  PostgreSQL3→4/reload4/full stop. No image download/load.
+- -KmEdKtt6NV9CLSRFCyuSDifhSUkAwat: RUNNING,3 cached images, health9206ms,
+  continuous product9852ms/write10148ms, PostgreSQL4→5/reload5/full stop.
+- New runtime is functionally verified on native Google with cached multi-service
+  app; uncached native transfer overlap and20s first-image acceptance remain pending.
+  No database boundary reinspection here; previous exact runtime evidence retained.
 
 ## Latest completed multi-service gate
 
@@ -154,15 +171,14 @@ of this candidate is pending at this commit; no new universal latency claim.
 
 ## Next bounded gate and pending inputs
 
-- Next: protect/restart the validated runtime and verify normal native Google
-  React + Express + PostgreSQL launch, write, reload, stop and relaunch using its
-  existing cached images. Then select an existing multi-image app whose images
-  are actually absent for ordinary first-image acceptance; do not clear caches.
+- Next: select an existing multi-image app whose images are actually absent for
+  ordinary native first-image acceptance of the deployed pipeline; do not clear
+  caches. Flask + MariaDB/MySQL is a candidate, subject to live cache-state proof.
   Broader CDN migration is still51 images, one explicit app selection per gate.
 - Code graph refreshed for current checkout as pods-launch-current (fast index).
   Earlier pods-launch-fresh graph is stale.
 - Operator migration/idempotency and native FastAPI/full-stack persistence gates
-  are complete. Do not rerun the55-app matrix or completed284 checks absent source
+  are complete. Do not rerun the55-app matrix or completed292 checks absent source
   changes or a new failure. Do not mass-upload the remaining5.339GB as a substitute
   for improving measured launch behavior.
 - Existing unmet observations: Google first-image health19377ms, product20667ms;
