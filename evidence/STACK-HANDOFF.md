@@ -17,12 +17,12 @@ VM replacement durability, or a universal 20-second cold launch.
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
   saved format changes on actual environment capabilities.
-- Coverage:55 isolated build/artifact/browser passes;36 Google native browser
-  and36 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+- Coverage:55 isolated build/artifact/browser passes;37 Google native browser
+  and37 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Native Codespaces browser checks remain
-  pending authorization. The19 fixtures awaiting native acceptance are:
-  actix, aspnet, axum, deno, echo, fiber, flask-redis, flask-sqlite, flask-valkey,
-  go, gradio, ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
+  pending authorization. The18 fixtures awaiting native acceptance are:
+  actix, aspnet, axum, deno, echo, fiber, flask-sqlite, flask-valkey, go, gradio,
+  ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
 - Current full suite:158/158 passed locally and in isolated aswin QA after
   Redis inspection tooling. Logs /tmp/pods-redis-full-{local,qa}.txt.
   The previous MongoDB native acceptance was published9a23260.
@@ -583,3 +583,37 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   Audit04:23:04.541397UTC: health200,SQLiteok,0activebuild/launch, unchanged
   PID1063107/runner. RecordercheckoutRevisionb456a45. Watcher51589 remains
   the only live pending process; current native Redis build is still unsubmitted.
+
+## Native Flask + Redis acceptance
+
+- Previous goalturn made progress: Redis tooling158tests and isolatedpreflight
+  published0c92739. This turn completed its native acceptance, not just a wait.
+- Quota watcher51589 ended0 at04:26:23.637408UTC, account2/global2/active0.
+  Form submitted once04:27:08.563Z. BuildhV73j798hC85RtzQisFj7G76uxPGlsrS
+  started04:27:14.316Z,118038ms; sourced6da2ed, images68490982bytes. App
+  repo-d8736f25efbce90e5fa77fbd-d6da2ed780ae-da66fa0f6a33, port21397.
+  Buildwatch99056 ended0. No quota bypass or imported QA artifact.
+- Google firstRUNNING health24321/delivery20673ms, no imagescached;
+  download11493/load2879, page25912/read26184/write26482. CachedRUNNING
+  health8434/delivery4789,page9861/read9973/write10280. Actual UI0→1→2,
+  reloads1/2, fullstops, no browserwarnings/errors. Startacceptedtimestampsboth.
+- Codespaces41609 ended0. FirstShutdown resumed12554ms;1imagecached,
+  health51877/delivery39323,download9059/load2952. CachedAvailable
+  health10722/delivery10087. HTTP0→1→2/fullstops; directRedis7.4.11,
+  build40ff01a501d8e4b6,AOFenabled/writeOK,privatehealthyDB,durablevolume,
+  key1/2 verified. Native Codespaces browser remains pendingauthorization.
+- Google first/cached tests fully stopped before Codespaces started. Performance
+  is sequential but unrelated traffic not controlled. Cache states differ; do
+  not claim the Codespaces first launch downloaded bothimages.
+- Finalcapture04:34:06.026630UTC and audit04:34:09.195324UTC: all4stopped,
+  0activebuild/launch,health200,SQLiteok,privateport21397,
+  PID1063107/runnerunchanged, checkout0c92739/provider5dde1e5.
+- Evidence stack-flask-redis-{url,google,codespaces,audit}.json; coverage55/37/37,
+  18nativepending. Source6384unchanged and full158/158tests remainvalid.
+- BrowserstackQa6/tab1completedRedispreparation. RedisTab aliasesmongodbTab/tab2,
+  nowstoppedRedislauncher; continueRedis/redisChecks/redisLogs1/2 retained.
+  CurrentRedisnativecounter2onbothproviders. No build/launch/quota watcher live.
+- Next bounded gate: Flask + SQLite. NativeCounterprotocol alreadyavailable;
+  review isolated preflight and then ordinaryquota→actualURLbuild→bothproviders.
+  No new fixture build or quota watcher started. Existing GitHub2FA, Cloud Shell
+  VMreplacementapproval and stablehostnamequestions remainpending; do not repeat.

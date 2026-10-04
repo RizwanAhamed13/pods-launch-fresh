@@ -1,0 +1,107 @@
+{
+  "recordedAt": "2026-10-04T04:34:06.026630+00:00",
+  "scope": "Flask + Redis fixture: real Google Cloud Shell product browser button, reload, full app stop/relaunch and retained Redis data.",
+  "results": [
+    {
+      "id": "HrKs7cdvVF1_a01M3dAuR7uGZ2VkwEY-",
+      "appId": "repo-d8736f25efbce90e5fa77fbd-d6da2ed780ae-da66fa0f6a33",
+      "provider": "google",
+      "port": 21397,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791088201541,
+        "startRequestedAt": 1791088201834,
+        "startAcceptedAt": 1791088203978
+      },
+      "createdAt": 1791088201092,
+      "updatedAt": 1791088244654,
+      "providerReadyAt": 1791088204740,
+      "readyAt": 1791088225413,
+      "timings": {
+        "downloadMs": 560,
+        "imagesMs": 14455,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 70,
+        "imageDownloadMs": 11493,
+        "imageLoadMs": 2879,
+        "runtimeReadyMs": 18838,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 24321,
+      "deliveryMs": 20673
+    },
+    {
+      "id": "xO407kDmoFpyB-GLNMt8SoPzPDeaQ5J5",
+      "appId": "repo-d8736f25efbce90e5fa77fbd-d6da2ed780ae-da66fa0f6a33",
+      "provider": "google",
+      "port": 21397,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791088249888,
+        "startRequestedAt": 1791088250509,
+        "startAcceptedAt": 1791088252514
+      },
+      "createdAt": 1791088249318,
+      "updatedAt": 1791088282908,
+      "providerReadyAt": 1791088252963,
+      "readyAt": 1791088257752,
+      "timings": {
+        "downloadMs": 197,
+        "imagesMs": 139,
+        "imageCacheHits": 2,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 139,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 3749,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 8434,
+      "deliveryMs": 4789
+    }
+  ],
+  "browserChecks": [
+    {
+      "startedAt": "2026-10-04T04:30:00.902Z",
+      "visibleMs": 25912,
+      "stateRestoredMs": 26184,
+      "before": 0,
+      "afterWrite": 1,
+      "interactionMs": 26482,
+      "afterReload": 1,
+      "passed": true,
+      "statusAfterStop": "stopped"
+    },
+    {
+      "startedAt": "2026-10-04T04:30:49.104Z",
+      "visibleMs": 9861,
+      "stateRestoredMs": 9973,
+      "before": 1,
+      "afterWrite": 2,
+      "interactionMs": 10280,
+      "afterReload": 2,
+      "passed": true,
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "browserErrorOrWarningLogs": [
+    [],
+    []
+  ],
+  "persistenceScope": "Redis document written through native product UI survives full application stop/relaunch; does not prove replacement of the Cloud Shell VM.",
+  "passed": true,
+  "cleanupAudit": {
+    "at": "2026-10-04T04:34:06.026630+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 21397,
+    "codespacesPreviewVisibility": "private"
+  },
+  "performanceContext": "Cloud Shell first and cached browser launches completed and stopped before either Codespaces launch began. These provider checks were sequential; unrelated network traffic was not controlled."
+}

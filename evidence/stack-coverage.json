@@ -581,13 +581,22 @@
       "serverEvidence": "stack-matrix-01.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-local.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-flask-redis-url.json",
+        "stack-flask-redis-google.json",
+        "stack-flask-redis-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-01.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      },
+      "nativeProviderScope": "Flask + Redis passed native Google product button, reload and Redis retention across full stop/relaunch. Codespaces authenticated HTTP product, writes and full restart persistence passed. Native Codespaces browser interaction remains pending."
     },
     {
       "fixture": "flask-sqlite",

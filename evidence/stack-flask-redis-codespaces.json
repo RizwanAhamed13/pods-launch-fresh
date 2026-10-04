@@ -1,0 +1,181 @@
+{
+  "testedAt": "2026-10-04T04:33:09.628Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "PboP4YvhNiYpzDaUMsNF5a49i5ZyddHZ",
+      "dataKey": "repo-d8736f25efbce90e5fa77fbd",
+      "port": 21397,
+      "appId": "repo-d8736f25efbce90e5fa77fbd-d6da2ed780ae-da66fa0f6a33",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "da66fa0f6a336a50d7681bdded64fa3dea40b2a9cea1e659b99cd85d0b0a4681",
+      "images": [
+        {
+          "id": "sha256:396fd2be72e8e1ca536d3472babaab71236de332dc4c16f8ebfcd6311f98a96b",
+          "sha256": "82737192df1509d560884e4b5ff2590ee6848a122a7292363201e0e4ba2e865c",
+          "bytes": 52234881
+        },
+        {
+          "id": "sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499",
+          "sha256": "bfdc962ecd6dca3b0a34035109f2fb30ac958a5948602330af5f73c639a10102",
+          "bytes": 16256101
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791088296811,
+      "updatedAt": 1791088348688,
+      "expiresAt": 1791090096811,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Shutdown",
+        "observedAt": 1791088297377,
+        "resumeRequestedAt": 1791088297523
+      },
+      "providerReadyAt": 1791088309365,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-21397.app.github.dev",
+      "lastSeenAt": 1791088348688,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 1708,
+        "imagesMs": 12274,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 242,
+        "imageDownloadMs": 9059,
+        "imageLoadMs": 2952,
+        "runtimeReadyMs": 19246,
+        "cacheHit": false
+      },
+      "readyAt": 1791088348688,
+      "deliveryMs": 39323,
+      "totalMs": 51877,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 0,
+        "afterWrite": 1,
+        "afterRead": 1,
+        "passed": true,
+        "expectedInitialCount": 0
+      },
+      "redisRuntimeCheck": {
+        "passed": true,
+        "project": "pods-659a27354b0b9ccee02e4f1f",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          21397
+        ],
+        "volume": "pods-659a27354b0b9ccee02e4f1f_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Read-only inspection of private Docker boundaries, durable Codespaces storage, Redis engine, append-only persistence and the counter saved through the product. Browser execution is separate.",
+        "databaseEngine": "Redis",
+        "version": "7.4.11",
+        "buildId": "40ff01a501d8e4b6",
+        "appendOnly": true,
+        "appendOnlyWriteStatus": "ok",
+        "savedCount": 1
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "LBMbMAvg2ejHTQ_Noes06JFmtGAXHM5q",
+      "dataKey": "repo-d8736f25efbce90e5fa77fbd",
+      "port": 21397,
+      "appId": "repo-d8736f25efbce90e5fa77fbd-d6da2ed780ae-da66fa0f6a33",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "da66fa0f6a336a50d7681bdded64fa3dea40b2a9cea1e659b99cd85d0b0a4681",
+      "images": [
+        {
+          "id": "sha256:396fd2be72e8e1ca536d3472babaab71236de332dc4c16f8ebfcd6311f98a96b",
+          "sha256": "82737192df1509d560884e4b5ff2590ee6848a122a7292363201e0e4ba2e865c",
+          "bytes": 52234881
+        },
+        {
+          "id": "sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499",
+          "sha256": "bfdc962ecd6dca3b0a34035109f2fb30ac958a5948602330af5f73c639a10102",
+          "bytes": 16256101
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791088365822,
+      "updatedAt": 1791088376544,
+      "expiresAt": 1791090165822,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791088366400
+      },
+      "providerReadyAt": 1791088366457,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-21397.app.github.dev",
+      "lastSeenAt": 1791088376544,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 657,
+        "imagesMs": 111,
+        "imageCacheHits": 2,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 111,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 3937,
+        "cacheHit": true
+      },
+      "readyAt": 1791088376544,
+      "deliveryMs": 10087,
+      "totalMs": 10722,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 1,
+        "afterWrite": 2,
+        "afterRead": 2,
+        "passed": true,
+        "expectedAfterRelaunch": 1
+      },
+      "redisRuntimeCheck": {
+        "passed": true,
+        "project": "pods-659a27354b0b9ccee02e4f1f",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          21397
+        ],
+        "volume": "pods-659a27354b0b9ccee02e4f1f_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Read-only inspection of private Docker boundaries, durable Codespaces storage, Redis engine, append-only persistence and the counter saved through the product. Browser execution is separate.",
+        "databaseEngine": "Redis",
+        "version": "7.4.11",
+        "buildId": "40ff01a501d8e4b6",
+        "appendOnly": true,
+        "appendOnlyWriteStatus": "ok",
+        "savedCount": 2
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "performanceContext": "Cloud Shell first and cached browser launches completed and stopped before either Codespaces launch began. These provider checks were sequential; unrelated network traffic was not controlled.",
+  "cleanupAudit": {
+    "at": "2026-10-04T04:34:06.026630+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 21397,
+    "codespacesPreviewVisibility": "private"
+  },
+  "persistenceScope": "Authenticated HTTP Redis write/read and full stop/relaunch on user compute; native Codespaces browser execution remains pending."
+}

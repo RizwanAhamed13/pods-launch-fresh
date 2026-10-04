@@ -85,8 +85,8 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **158 passing checks in full local and isolated aswin QA runs**. Native coverage is 36 Google browser fixtures and
-36 Codespaces HTTP/protocol fixtures; 19 still lack at least one native acceptance path. Codespaces
+later passing attempts do not erase them. Automated coverage is **158 passing checks in full local and isolated aswin QA runs**. Native coverage is 37 Google browser fixtures and
+37 Codespaces HTTP/protocol fixtures; 18 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1865,3 +1865,38 @@ Evidence: `stack-redis-runtime-probe-tests.json` and
 `stack-flask-redis-chunked-probe.{json,mjs}`. Opt-in:
 `PODS_COUNTER_CHECK=1 PODS_REDIS_RUNTIME_CHECK=1`. Current source totals
 **6,384 physical lines**; native coverage remains **55 / 36 / 36**.
+
+## Native Flask + Redis acceptance
+
+The actual developer form prepared `examples/stacks/flask-redis` at public
+revision `d6da2ed780ae` in **118.038s**, after ordinary same-account quota became
+available. Its web and database images total **68,490,982 bytes** (65.3 MiB).
+
+| Native path | Observed result |
+| --- | --- |
+| Cloud Shell, running compute / both images absent | Health 24.321s; product visible 25.912s; saved value visible 26.184s; successful button interaction 26.482s |
+| Cloud Shell, cached after full stop | Health 8.434s; product visible 9.861s; saved value visible 9.973s; successful interaction 10.280s |
+| Codespaces, resumed / one image already cached | Health 51.877s; authenticated product write/read and direct Redis record verification passed |
+| Codespaces, cached after full stop | Health 10.722s; retained 1, wrote 2, and verified the saved key |
+
+Both providers passed counter **0→1→2** across full application stop/relaunch.
+Google used the actual product button and page reload on both launches, with
+no browser warnings or errors. Read-only Codespaces inspection confirmed
+**Redis 7.4.11**, build `40ff01a501d8e4b6`, enabled append-only persistence with
+successful writes, private healthy database containers, and durable application
+storage. The product preview port **21397** remained private.
+
+The provider tests ran sequentially. First-image downloads took **11.493s** on
+Google and **9.059s** on Codespaces, with different cache states as shown above.
+Codespaces provider startup took **12.554s**, then delivery/startup took **39.323s**.
+Both first-launch samples exceed 20 seconds; cached launches met the target.
+Native Codespaces browser interaction, power-loss durability and Cloud Shell VM
+replacement remain outside this evidence.
+
+All four previews stopped. The audit at **2026-10-04 04:34:09 UTC** found zero
+active builds or launches, HTTP 200, SQLite integrity OK, and the unchanged
+supervised server and runner. Evidence:
+`stack-flask-redis-{url,google,codespaces,audit}.json`. Coverage is now
+**55 isolated / 37 Google browser / 37 Codespaces protocol**, with **18** native
+fixtures pending. Source remains **6,384 physical lines** and the most recent
+full suites remain **158/158** locally and in isolated aswin QA.
