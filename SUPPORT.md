@@ -85,8 +85,8 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **150 passing checks in full local and isolated aswin QA runs**. Native coverage is 34 Google browser fixtures and
-34 Codespaces HTTP/protocol fixtures; 21 still lack at least one native acceptance path. Codespaces
+later passing attempts do not erase them. Automated coverage is **150 passing checks in full local and isolated aswin QA runs**. Native coverage is 35 Google browser fixtures and
+35 Codespaces HTTP/protocol fixtures; 20 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1740,9 +1740,8 @@ All **150 checks passed locally and in isolated aswin Linux QA**. An additional
 real-artifact preflight confirmed **MariaDB 11.4.13** and counter **0→1→2** across
 a full stop/relaunch, using the empty chunked POST sent by the browser proxy.
 The disposable containers, volume and application storage were removed; shared
-runtime caches were retained. This is isolated execution evidence. Flask with
-MariaDB still awaits native Google browser and Codespaces protocol acceptance;
-coverage remains **55 / 34 / 34**, with **21** native fixtures pending.
+runtime caches were retained. This is isolated execution evidence. Native Google browser and Codespaces protocol acceptance subsequently passed
+as recorded below. Coverage is **55 / 35 / 35**, with **20** native fixtures pending.
 
 Current scoped source totals **6,207 physical lines**. Evidence:
 `stack-mariadb-runtime-probe-tests.json` and
@@ -1750,3 +1749,39 @@ Current scoped source totals **6,207 physical lines**. Evidence:
 `PODS_COUNTER_CHECK=1 PODS_MARIADB_RUNTIME_CHECK=1` and is restricted to the
 explicit MariaDB fixture; its SQL queries never read credentials out of the
 container.
+
+
+## Native Flask + MariaDB workflow
+
+The developer URL form prepared `examples/stacks/flask-mariadb` at source
+`d6da2ed780ae` in **149.216 seconds**, producing **161,554,380 bytes** of reusable
+application and database images. This was a normal production build after the
+same account's quota opened, not an imported QA artifact.
+
+| Native scenario | Server health | Actual product evidence |
+| --- | ---: | --- |
+| Cloud Shell RUNNING, images absent | 72.528s | Page 74.783s; saved record visible 74.794s; button write 75.087s |
+| Cloud Shell RUNNING, cached full relaunch | 12.110s | Page 13.221s; saved record restored 13.336s; next write 13.628s |
+| Codespaces Shutdown → resumed, images absent | 101.232s | Authenticated HTTP product, write/read and SQL record passed |
+| Codespaces Available, cached full relaunch | 11.325s | Retained record, next write/read and SQL record passed |
+
+Both providers preserved **0→1→2** across a full application stop/relaunch.
+Cloud Shell reloads retained each saved value and captured no browser warnings
+or errors. Codespaces additionally confirmed **MariaDB 11.4.13**, a healthy
+private database, and the application's durable workspace volume through direct
+read-only inspection. The product preview port23877 remained private. All four
+previews stopped; the final production audit found no active builds or launches,
+HTTP200, SQLite integrity OK, and the unchanged server PID and runner hash.
+
+Codespaces required **12.235s** to resume its existing environment; delivery and
+startup after provider readiness took **88.997s**. Cloud Shell delivery and
+startup took **69.507s**. First-image downloads alone took **45.605s** on Codespaces
+and **44.123s** on Cloud Shell. These first-image samples exceed the 20-second
+target, including the Google sample on already-running compute. Cached launches
+met the target. Native Codespaces browser interaction and Cloud Shell VM
+replacement durability remain separate, unverified gates.
+
+Evidence: `stack-flask-mariadb-{url,google,codespaces}.json`. Coverage is now
+**55 isolated / 35 Google browser / 35 Codespaces protocol**, with **20** fixtures
+still awaiting native acceptance. Source remains **6,207** physical lines and
+the most recent full suites remain **150/150** in both environments.

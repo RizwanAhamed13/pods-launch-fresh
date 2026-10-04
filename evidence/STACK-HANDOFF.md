@@ -437,3 +437,35 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   privateport/health/idle audits, then update native counts only on actual success.
 
 - Tooling/evidence published6dc10b3 to GitHub and aswin. Audit 2026-10-04T03:42:00.334127+00:00: health200, SQLiteok, 0activebuild/launch, samePID1063107 and runnerSHA. Recorder checkoutRevision updated6dc10b3. Native MariaDB still unsubmitted; watcher35120 and browser draft preserved.
+
+
+## Native Flask + MariaDB acceptance
+
+- Previous goalturn made progress: real isolated MariaDB preflight and new
+  validated native inspection tooling published. This turn closed its native gate.
+- Quota watcher35120 ended0 at03:45:51.976031UTC, sameaccount2/global2/active0.
+  Form submitted once03:45:56.774Z. Build1pmZzhTBO07D4txVxTeO_vbt9rtjdS6O,
+  server149216ms, source d6da2ed, images161554380bytes. App
+  repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403, port23877.
+- Google firstRUNNING: health72528/delivery69507ms, images52155/download44123,
+  page74783/read74794/write75087. Initial bounded browser observation returned
+  pending; continued the same launch (no restart). CachedRUNNING after fullstop:
+  health12110/delivery8482, page13221/read13336/write13628. Real UI0→1→2,
+  reloads1/2, bothstopped, no browserwarn/error. Bothacceptedstarttimestamps.
+- Codespaces45104 ended0: same saved containerprofile. FirstShutdown resumed
+  in12235ms; health101232/delivery88997, images53849/download45605ms.
+  CachedAvailable health11325/delivery10739. HTTPcounter0→1→2/fullstops and
+  directSQL MariaDB11.4.13 record1/2, healthyprivateDB,durablevolume passed.
+  NativeCodespaces browser remainspending2FA. No new authorization requests.
+- Finalcapture03:51:54.829673UTC and productionaudit03:51:54.908911UTC:
+  all4launchesstopped,0activebuild/launch,health200,SQLiteok,privateport23877,
+  PID1063107/runnerunchanged, checkoutaa23f50/provider5dde1e5.
+- Evidence stack-flask-mariadb-{url,google,codespaces}.json and compatibility
+  row nowgoogleBrowser/codespacesProtocoltrue. Counts55/35/35,20nativepending.
+  Source6207lines unchanged; full150/150tests from preceding tooling gate.
+- Browser accountWorker/tab12 retains stoppedMariaDBlauncher; stackQa6/tab13
+  completedMariaDBpreparation. mariadbLaunchUrl, mariadbBrowserChecks/Logs,
+  measureMariadbCounter and continueMariadbCounter retained. CurrentMariaDB
+  counter2onbothproviders. Temporary isolated preflight alreadycleaned.
+- Native watch/build/capture/audit handles terminal. No next quota watcher
+  started yet; select the next pending fixture and stage its ordinary form.

@@ -1,0 +1,176 @@
+{
+  "testedAt": "2026-10-04T03:51:20.695Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "z-9YoGQ-Ch_nH7d1JaSgTEp4_UJERHmc",
+      "dataKey": "repo-46d8ac316f3e95857ce28b48",
+      "port": 23877,
+      "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "04f62fea5403e11a5262471ed1fe76b0f279775263de7a047c1e3f550f445cf7",
+      "images": [
+        {
+          "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+          "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+          "bytes": 57046835
+        },
+        {
+          "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+          "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+          "bytes": 104507545
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791085731552,
+      "updatedAt": 1791085832784,
+      "expiresAt": 1791087531552,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Shutdown",
+        "observedAt": 1791085731958,
+        "resumeRequestedAt": 1791085731999
+      },
+      "providerReadyAt": 1791085743787,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-23877.app.github.dev",
+      "lastSeenAt": 1791085832784,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 1089,
+        "imagesMs": 53849,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 63,
+        "imageDownloadMs": 45605,
+        "imageLoadMs": 8145,
+        "runtimeReadyMs": 74557,
+        "cacheHit": false
+      },
+      "readyAt": 1791085832784,
+      "deliveryMs": 88997,
+      "totalMs": 101232,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 0,
+        "afterWrite": 1,
+        "afterRead": 1,
+        "passed": true,
+        "expectedInitialCount": 0
+      },
+      "mariadbRuntimeCheck": {
+        "passed": true,
+        "project": "pods-76af0e05174a24d8a64394b0",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          23877
+        ],
+        "volume": "pods-76af0e05174a24d8a64394b0_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Read-only inspection of private Docker boundaries, durable Codespaces storage, MariaDB server version and the record saved through the product. Browser execution is separate.",
+        "databaseEngine": "MariaDB",
+        "version": "11.4.13-MariaDB-ubu2404",
+        "versionComment": "mariadb.org binary distribution",
+        "savedCount": 1
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "v8547IZxMunuFbPF0zOfA6V7n2ZjS4w-",
+      "dataKey": "repo-46d8ac316f3e95857ce28b48",
+      "port": 23877,
+      "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "04f62fea5403e11a5262471ed1fe76b0f279775263de7a047c1e3f550f445cf7",
+      "images": [
+        {
+          "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+          "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+          "bytes": 57046835
+        },
+        {
+          "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+          "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+          "bytes": 104507545
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791085846341,
+      "updatedAt": 1791085860857,
+      "expiresAt": 1791087646341,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791085846910
+      },
+      "providerReadyAt": 1791085846927,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-23877.app.github.dev",
+      "lastSeenAt": 1791085860856,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 168,
+        "imagesMs": 106,
+        "imageCacheHits": 2,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 106,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 4417,
+        "cacheHit": true
+      },
+      "readyAt": 1791085857666,
+      "deliveryMs": 10739,
+      "totalMs": 11325,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 1,
+        "afterWrite": 2,
+        "afterRead": 2,
+        "passed": true,
+        "expectedAfterRelaunch": 1
+      },
+      "mariadbRuntimeCheck": {
+        "passed": true,
+        "project": "pods-76af0e05174a24d8a64394b0",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          23877
+        ],
+        "volume": "pods-76af0e05174a24d8a64394b0_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Read-only inspection of private Docker boundaries, durable Codespaces storage, MariaDB server version and the record saved through the product. Browser execution is separate.",
+        "databaseEngine": "MariaDB",
+        "version": "11.4.13-MariaDB-ubu2404",
+        "versionComment": "mariadb.org binary distribution",
+        "savedCount": 2
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "cleanupAudit": {
+    "at": "2026-10-04T03:51:54.829673+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 23877,
+    "codespacesPreviewVisibility": "private"
+  },
+  "persistenceScope": "Authenticated HTTP MariaDB write/read and full stop/relaunch on user compute; native Codespaces browser execution remains pending."
+}

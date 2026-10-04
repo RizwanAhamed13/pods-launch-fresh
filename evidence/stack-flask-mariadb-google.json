@@ -1,0 +1,104 @@
+{
+  "recordedAt": "2026-10-04T03:51:54.829673+00:00",
+  "scope": "Flask + MariaDB fixture: real Google Cloud Shell product browser button, reload, full app stop/relaunch and retained MariaDB data.",
+  "results": [
+    {
+      "id": "_CXn6b7Sy9TsbqRpoZO60qvPs8ImVzUA",
+      "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+      "provider": "google",
+      "port": 23877,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791085741534,
+        "startRequestedAt": 1791085741677,
+        "startAcceptedAt": 1791085743477
+      },
+      "createdAt": 1791085740895,
+      "updatedAt": 1791085826537,
+      "providerReadyAt": 1791085743916,
+      "readyAt": 1791085813423,
+      "timings": {
+        "downloadMs": 693,
+        "imagesMs": 52155,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 64,
+        "imageDownloadMs": 44123,
+        "imageLoadMs": 7943,
+        "runtimeReadyMs": 67560,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 72528,
+      "deliveryMs": 69507
+    },
+    {
+      "id": "V_g7t22N6PxB0vOjhBU49UHrbXpOjCB3",
+      "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+      "provider": "google",
+      "port": 23877,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791085831561,
+        "startRequestedAt": 1791085831825,
+        "startAcceptedAt": 1791085834179
+      },
+      "createdAt": 1791085830959,
+      "updatedAt": 1791085853154,
+      "providerReadyAt": 1791085834587,
+      "readyAt": 1791085843069,
+      "timings": {
+        "downloadMs": 234,
+        "imagesMs": 128,
+        "imageCacheHits": 2,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 128,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 6720,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 12110,
+      "deliveryMs": 8482
+    }
+  ],
+  "browserChecks": [
+    {
+      "startedAt": "2026-10-04T03:49:00.687Z",
+      "visibleMs": 74783,
+      "stateRestoredMs": 74794,
+      "before": 0,
+      "afterWrite": 1,
+      "interactionMs": 75087,
+      "afterReload": 1,
+      "passed": true
+    },
+    {
+      "startedAt": "2026-10-04T03:50:30.792Z",
+      "visibleMs": 13221,
+      "stateRestoredMs": 13336,
+      "before": 1,
+      "afterWrite": 2,
+      "interactionMs": 13628,
+      "afterReload": 2,
+      "passed": true
+    }
+  ],
+  "browserErrorOrWarningLogs": [
+    [],
+    []
+  ],
+  "persistenceScope": "MariaDB record written through native product UI survives full application stop/relaunch; does not prove replacement of the Cloud Shell VM.",
+  "passed": true,
+  "cleanupAudit": {
+    "at": "2026-10-04T03:51:54.829673+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 23877,
+    "codespacesPreviewVisibility": "private"
+  }
+}

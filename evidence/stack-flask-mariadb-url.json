@@ -1,0 +1,83 @@
+{
+  "recordedAt": "2026-10-04T03:51:54.829673+00:00",
+  "controlRevision": "5dde1e5",
+  "checkoutRevision": "aa23f50",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T03:45:51.976031+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T03:45:56.774Z",
+  "attempts": [
+    {
+      "id": "1pmZzhTBO07D4txVxTeO_vbt9rtjdS6O",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/flask-mariadb",
+        "key": "46d8ac316f3e95857ce28b48"
+      },
+      "status": "ready",
+      "createdAt": 1791085557733,
+      "startedAt": 1791085557745,
+      "finishedAt": 1791085706961,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+      "app": {
+        "id": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "04f62fea5403e11a5262471ed1fe76b0f279775263de7a047c1e3f550f445cf7",
+        "bytes": 589,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-46d8ac316f3e95857ce28b48",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/flask-mariadb",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "PODS stack counter"
+        },
+        "preparedAt": "2026-10-04T03:48:26.402Z",
+        "images": [
+          {
+            "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+            "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+            "bytes": 57046835
+          },
+          {
+            "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+            "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+            "bytes": 104507545
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 149216,
+  "productionAudit": {
+    "recordedAt": "2026-10-04T03:51:54.908911+00:00",
+    "pid": 1063107,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+    "revision": "aa23f5082a274de4526368453055fd07abfa6780"
+  }
+}

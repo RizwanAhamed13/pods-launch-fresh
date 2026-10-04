@@ -15,7 +15,7 @@ Provider authorization is required. Conventional public GitHub applications can 
 
 Cold provisioning and uncached image transfer are measured separately from cached launch. User compute remains owned and billed by the user's provider. Persistent container data is stored under Cloud Shell's home or Codespaces' `/workspaces`; provider lifecycle durability requires separate evidence.
 ## Evidence on Hand
-The current implementation has 150 passing automated checks in full local and isolated aswin QA runs. Native acceptance currently covers 34 Cloud Shell browser fixtures and 34 Codespaces HTTP/protocol fixtures; native Codespaces browser sign-in and interaction remain pending. All 55 distinct stack fixtures have real server-build, reusable-artifact launch and meaningful browser-interaction evidence. Hono, Koa and Fastify's corrected fixture passed native Google browser and Codespaces HTTP persistence checks; Fastify's original Google preview POST failure is retained as evidence. The fixtures cover frontend, SSR, backend, database and worker combinations; they do not represent 55 different frameworks. Database fixtures have write/read/stop/relaunch checks. See `evidence/stack-coverage.json`, numbered stack matrix/browser evidence, and `SUPPORT.md` for the exact scope and retained failures.
+The current implementation has 150 passing automated checks in full local and isolated aswin QA runs. Native acceptance currently covers 35 Cloud Shell browser fixtures and 35 Codespaces HTTP/protocol fixtures; native Codespaces browser sign-in and interaction remain pending. All 55 distinct stack fixtures have real server-build, reusable-artifact launch and meaningful browser-interaction evidence. Hono, Koa and Fastify's corrected fixture passed native Google browser and Codespaces HTTP persistence checks; Fastify's original Google preview POST failure is retained as evidence. The fixtures cover frontend, SSR, backend, database and worker combinations; they do not represent 55 different frameworks. Database fixtures have write/read/stop/relaunch checks. See `evidence/stack-coverage.json`, numbered stack matrix/browser evidence, and `SUPPORT.md` for the exact scope and retained failures.
 
 Real developer repository submissions and native Cloud Shell product interactions pass for Flask + PostgreSQL, React + Express + PostgreSQL, Angular SSR + SQLite, Quarkus + SQLite, Laravel + SQLite, Blazor Server + SQLite, and the Go Gin persistent-file counter. Angular's cached launch displayed its usable product and saved record in 7.223 seconds; its uncached launch took 72.289 seconds to health. These observations do not establish a universal 20-second cold-launch guarantee. The optimized npm recipe excludes download caches while retaining installed dependencies. All eight affected fixtures were rebuilt and retested. Its new Angular artifact showed saved data in the native Cloud Shell product in 8.312 seconds cached and took 61.933 seconds uncached to health; the old artifact’s SQLite record survived the upgrade.
 
@@ -411,5 +411,16 @@ MariaDB's acceptance tooling now verifies the actual engine and saved SQL record
 private database ports, durable volume, and the assigned product port. A real
 isolated MariaDB 11.4.13 artifact preserved 0→1→2 across a full stop/relaunch.
 All 150 automated checks pass locally and in isolated Linux QA. Current source
-is 6,207 physical lines. Native MariaDB acceptance remains pending; the matrix
-stays at 55 isolated / 34 Google browser / 34 Codespaces protocol fixtures.
+is 6,207 physical lines. Native MariaDB acceptance subsequently passed as recorded below.
+
+
+Flask + MariaDB adds native fixture35. The actual repository form built the
+reusable web/database images in149.216s. Cloud Shell preserved database values
+0→1→2 through button writes, reloads and full stops. First-image write took75.087s;
+cached saved-data restoration took13.336s and the next write13.628s. Codespaces
+resumed stopped compute and reached health in101.232s, then11.325s on cached
+relaunch; product HTTP, persistence and direct MariaDB11.4.13 record inspection
+passed. Both services and their saved data ran on user compute. The database
+had no host port and the product preview stayed private. All four previews
+stopped. Coverage is55/35/35 with20nativefixtures remaining; first-image latency
+and the previously documented browser/VM-replacement/hosting gates remain open.
