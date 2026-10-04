@@ -2011,3 +2011,40 @@ Evidence: `stack-{echo,fiber}-chunked-probe.json`,
 Full suites: **173/173** locally and isolated Linux QA. Source: **6,703 lines**.
 Native coverage remains **55 isolated / 40 Google browser / 40 Codespaces
 protocol** until the next native acceptance gate.
+
+
+## Echo native product acceptance
+
+The actual developer form prepared `examples/stacks/echo` from fixture revision
+`d6da2ed780ae` in **163.464 seconds** after ordinary quota availability. Artifact
+`dc5e8406d26e9c1aebb0161d973f96983ca054a37a7d0756e66de04363c37c8a` contains
+**5,835,598 image bytes**. No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell RUNNING, first image delivery | Server healthy 8.590s; product visible 10.545s; counter read 10.892s; button write 11.206s |
+| Cloud Shell cached relaunch | Server healthy 5.989s; product visible 6.519s; saved value restored 6.527s; next write 6.821s |
+| Codespaces initially Shutdown | Server healthy 29.707s; delivery/startup 15.005s; no cached image |
+| Codespaces cached relaunch | Server healthy 8.303s; authenticated HTTP write/read and compiled framework inspection passed |
+
+Cloud Shell browser buttons and reloads verified **0→1→2**, retaining the first
+counter across a complete application stop/relaunch. No console warnings or
+errors were observed. Visibility checks matched the product h1, not the similarly
+named heading on the launcher page.
+
+Codespaces authenticated HTTP verified the same counter sequence. Fixed read-only
+inspection confirmed **Echo 5.4.0** (`github.com/labstack/echo/v5`), compiled with
+**Go 1.26.8**, module `pods.example/echo`, Linux x64 ELF, CGO disabled, and the
+saved file counter. Persistent workspace storage was verified; product port
+**23473** remains private. This fixture uses a file rather than a database.
+
+Both Google runs stopped before Codespaces tests began. All four launches ended
+stopped. Final audit: HTTP200, SQLite integrity `ok`, no active build or launch,
+unchanged service PID and runner SHA. The stopped Codespace exceeded20s; cached
+and running-compute measurements are fixture-specific. Codespaces browser
+interaction and provider VM replacement remain unverified.
+
+Evidence: `stack-echo-{url,google,codespaces,audit}.json`. Coverage is now
+**55 isolated / 41 Google browser / 41 Codespaces protocol**; **14** native
+fixtures remain pending. Full suite173/173 and source6,703 lines remain valid;
+this acceptance step changed only evidence and documentation.

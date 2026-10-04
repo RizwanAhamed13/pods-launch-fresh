@@ -17,11 +17,11 @@ VM replacement durability, or a universal 20-second cold launch.
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
   saved format changes on actual environment capabilities.
-- Coverage:55 isolated build/artifact/browser passes;40 Google native browser
-  and40 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+- Coverage:55 isolated build/artifact/browser passes;41 Google native browser
+  and41 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Native Codespaces browser checks remain
-  pending authorization. The15 fixtures awaiting native acceptance are:
-  actix, aspnet, axum, deno, echo, fiber, gradio,
+  pending authorization. The14 fixtures awaiting native acceptance are:
+  actix, aspnet, axum, deno, fiber, gradio,
   ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
 - Current full suite:173/173 passed locally and in isolated aswin QA after
   Go/Echo/Fiber inspection tooling. Logs /tmp/pods-go-framework-full-{local,qa}.txt.
@@ -856,3 +856,31 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   Existing pending user inputs remain unchanged. Goal active and progressing.
 
 - Echo/Fiber tooling published03b4d70 and synchronized to aswin. Audit at2026-10-04T05:41:49.213586+00:00 confirmed health200/integrityok/zero active builds and launches, unchangedPID1063107/runnerSHA. No service restart. Watcher84364 remains live; Echo form unsubmitted.
+
+
+## Echo native acceptance complete
+
+- Previous goal turn progressed: Echo/Fiber inspection and isolated artifact
+  verification published5134036. Watcher84364 ended0 at05:46:16.043UTC;
+  developer submitted once at05:46:20.811UTC. Observer80186 ended0; build
+  kdF4J0MHnwejP8UXiu2sggKlN52Wmj5N took163464ms. Source d6da2ed780ae,
+  apprepo-f80c85ed6b4f1aaef3985a2a-d6da2ed780ae-dc5e8406d26e, imagebytes5835598.
+- Google actual product0→1→2, reloads and full stops passed; no console warnings
+  or errors. Both RUNNING. First/no image cache: health8590ms, visible10545ms,
+  record10892ms, write11206ms. Cached: health5989ms, visible6519ms,
+  restored6527ms, write6821ms. Product h1 selected, excluding launcher heading.
+- Codespaces90007: existing97qw56gjg47gf7vrv, firstShutdown health29707ms,
+  delivery15005ms/no image cache. CachedAvailable health8303ms/delivery7734ms.
+  Direct compiled metadata confirms Echo5.4.0, Go1.26.8, Linuxx64/CGOdisabled,
+  modulepods.example/echo, dependencygithub.com/labstack/echo/v5. BinarySHA
+  36ae597112737f851fa9dbff182d6d31498f4c175951c6e12e343c80c8702593.
+  HTTPcounter0→1→2 and copied file match across fullstops; persistent workspace
+  volume, productport23473 private. This is file data, not database evidence.
+- Both Google runs stopped before Codespaces began. Allfourlaunchesstopped.
+  Audit05:52:13.182UTC: health200/integrityok, activebuild0/launch0,
+  PID1063107 andrunnerSHAunchanged. No service restart. Evidence
+  stack-echo-{url,google,codespaces,audit}.json. Source6703/full173 unchanged.
+- Coverage55/41/41;14nativepending. Fiber's isolated preflight is already passed;
+  its native gate is unstarted. Check ordinary quota before preparing it.
+  Existing GitHub2FA/VMreplacement/stablehostname inputs staypending.
+  Goal active and progressing; do not repeat passing full suites without changes.

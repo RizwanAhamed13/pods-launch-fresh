@@ -1,0 +1,177 @@
+{
+  "testedAt": "2026-10-04T05:51:52.151Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "vgj62QKjQwDcWRumFR0QPC8h7NjY923j",
+      "dataKey": "repo-f80c85ed6b4f1aaef3985a2a",
+      "port": 23473,
+      "appId": "repo-f80c85ed6b4f1aaef3985a2a-d6da2ed780ae-dc5e8406d26e",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "dc5e8406d26e9c1aebb0161d973f96983ca054a37a7d0756e66de04363c37c8a",
+      "images": [
+        {
+          "id": "sha256:9842aa771e89caa4bf31002c201a94a54eeb89faf9d2ccabd05132620b3c2f12",
+          "sha256": "b08577f267f766d7582aadc0366d22c6359ac888afff1d9b27b9681d9b3d1c51",
+          "bytes": 5835598
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791093042061,
+      "updatedAt": 1791093071768,
+      "expiresAt": 1791094842061,
+      "environment": "pods-launch-containers-97qw56gjg47gf7vrv",
+      "compute": {
+        "initialState": "Shutdown",
+        "observedAt": 1791093042504,
+        "resumeRequestedAt": 1791093042525
+      },
+      "providerReadyAt": 1791093056763,
+      "previewUrl": "https://pods-launch-containers-97qw56gjg47gf7vrv-23473.app.github.dev",
+      "lastSeenAt": 1791093071768,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 994,
+        "imagesMs": 1478,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 27,
+        "imageDownloadMs": 490,
+        "imageLoadMs": 958,
+        "runtimeReadyMs": 4522,
+        "cacheHit": false
+      },
+      "readyAt": 1791093071768,
+      "deliveryMs": 15005,
+      "totalMs": 29707,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 0,
+        "afterWrite": 1,
+        "afterRead": 1,
+        "passed": true,
+        "expectedInitialCount": 0
+      },
+      "goRuntimeCheck": {
+        "passed": true,
+        "project": "pods-d8a0989104e6d6a62e762ba2",
+        "services": [
+          "web"
+        ],
+        "runtime": "Go",
+        "version": "go1.26.8",
+        "module": "pods.example/echo",
+        "framework": "Echo",
+        "frameworkVersion": "v5.4.0",
+        "frameworkDependency": "github.com/labstack/echo/v5",
+        "binaryFormat": "ELF-linux-x64",
+        "binarySha256": "36ae597112737f851fa9dbff182d6d31498f4c175951c6e12e343c80c8702593",
+        "binaryBytes": 9225480,
+        "cgoEnabled": false,
+        "savedCount": 1,
+        "volume": "pods-d8a0989104e6d6a62e762ba2_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          23473
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only inspection of the compiled Go fixture, saved file counter and durable Codespaces volume. This is not database, power-loss or VM replacement evidence."
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "vGR1PGTYUeTb5RaT1T8eGdb0OvihFL5h",
+      "dataKey": "repo-f80c85ed6b4f1aaef3985a2a",
+      "port": 23473,
+      "appId": "repo-f80c85ed6b4f1aaef3985a2a-d6da2ed780ae-dc5e8406d26e",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "dc5e8406d26e9c1aebb0161d973f96983ca054a37a7d0756e66de04363c37c8a",
+      "images": [
+        {
+          "id": "sha256:9842aa771e89caa4bf31002c201a94a54eeb89faf9d2ccabd05132620b3c2f12",
+          "sha256": "b08577f267f766d7582aadc0366d22c6359ac888afff1d9b27b9681d9b3d1c51",
+          "bytes": 5835598
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791093088079,
+      "updatedAt": 1791093096382,
+      "expiresAt": 1791094888079,
+      "environment": "pods-launch-containers-97qw56gjg47gf7vrv",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791093088628
+      },
+      "providerReadyAt": 1791093088648,
+      "previewUrl": "https://pods-launch-containers-97qw56gjg47gf7vrv-23473.app.github.dev",
+      "lastSeenAt": 1791093096382,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 166,
+        "imagesMs": 57,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 57,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 1772,
+        "cacheHit": true
+      },
+      "readyAt": 1791093096382,
+      "deliveryMs": 7734,
+      "totalMs": 8303,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 1,
+        "afterWrite": 2,
+        "afterRead": 2,
+        "passed": true,
+        "expectedAfterRelaunch": 1
+      },
+      "goRuntimeCheck": {
+        "passed": true,
+        "project": "pods-d8a0989104e6d6a62e762ba2",
+        "services": [
+          "web"
+        ],
+        "runtime": "Go",
+        "version": "go1.26.8",
+        "module": "pods.example/echo",
+        "framework": "Echo",
+        "frameworkVersion": "v5.4.0",
+        "frameworkDependency": "github.com/labstack/echo/v5",
+        "binaryFormat": "ELF-linux-x64",
+        "binarySha256": "36ae597112737f851fa9dbff182d6d31498f4c175951c6e12e343c80c8702593",
+        "binaryBytes": 9225480,
+        "cgoEnabled": false,
+        "savedCount": 2,
+        "volume": "pods-d8a0989104e6d6a62e762ba2_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          23473
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only inspection of the compiled Go fixture, saved file counter and durable Codespaces volume. This is not database, power-loss or VM replacement evidence."
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "performanceContext": "Cloud Shell first and cached browser launches completed and stopped before either Codespaces launch began. These provider checks were sequential; unrelated network traffic was not controlled.",
+  "cleanupAudit": {
+    "at": "2026-10-04T05:52:09.819159+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 23473,
+    "codespacesPreviewVisibility": "private"
+  },
+  "persistenceScope": "Authenticated HTTP Echo write/read and full stop/relaunch on user compute; native Codespaces browser execution remains pending."
+}
