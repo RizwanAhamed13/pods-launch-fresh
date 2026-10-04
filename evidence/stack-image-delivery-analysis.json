@@ -1,7 +1,7 @@
 {
   "scope": "Four recent single-image fixtures, first observation only, with both image and archive caches absent. Historical observations, not a controlled network benchmark or a provider comparison. Effective MB/s uses decimal megabytes and includes HTTP, hashing and disk writes. Image load includes Docker load and identity inspection. Nested timings must not be added to serverHealthyMs or runtimeReadyMs. This analysis adds no native acceptance or latency guarantee.",
   "sourceHashes": {
-    "stack-native-timings.json": "6f7760880cbb7209c6ebc787363ef329c14afe1e131d41a44d931f1a4e1d770e",
+    "stack-native-timings.json": "90191b019eab6d5ae5048650529047089862458def5d30244f7c30f239079008",
     "stack-gradio-url.json": "fabb6f2d867e602467b4d310d74d1b590699511d55d1f90d1db9f459e128de81",
     "stack-gradio-google.json": "d93115c2a52393d1cd50ff10a07895e1beeda2bdc6db615550f4ce64ca7e9451",
     "stack-gradio-codespaces.json": "b713e485c74d44ce9b62c7cbe21053ece6d880de40cbc13b36256969aeb86ee9",

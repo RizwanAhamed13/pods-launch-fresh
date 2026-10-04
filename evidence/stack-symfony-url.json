@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-04T11:10:17.525432+00:00",
+  "controlRevision": "2cad8f8",
+  "checkoutRevision": "2cad8f84ba740fc27c31a83b11cfd1cd195b5b02",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T10:48:03.765863+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T10:48:21.149Z",
+  "attempts": [
+    {
+      "id": "H1m7K4froQMKGlra2eI7Lq_O9fcC435a",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/symfony",
+        "key": "bdbeb86d4b833ee806fd8cfc"
+      },
+      "status": "ready",
+      "createdAt": 1791110901922,
+      "startedAt": 1791110901935,
+      "finishedAt": 1791111151593,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-bdbeb86d4b833ee806fd8cfc-d6da2ed780ae-598786262608",
+      "app": {
+        "id": "repo-bdbeb86d4b833ee806fd8cfc-d6da2ed780ae-598786262608",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "59878626260823a78c7f05fe6267a70d1fc72bff889fa648e3934214a87a8916",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-bdbeb86d4b833ee806fd8cfc",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/symfony",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Symfony + SQLite"
+        },
+        "preparedAt": "2026-10-04T10:52:30.780Z",
+        "images": [
+          {
+            "id": "sha256:5a4cedd7f8ba2fa0d1bbf7e08449985c6ca5028f37c06aa14bb3cb4945b60588",
+            "sha256": "004ed1b605b6175e9f67a57fdb2fc8ec3c80516202795974bb7f53d26a45f84f",
+            "bytes": 225348539
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 249658
+}

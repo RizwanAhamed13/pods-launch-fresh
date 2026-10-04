@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-04T10:53:26.663844+00:00",
+  "controlRevision": "a1df278",
+  "checkoutRevision": "2cad8f84ba740fc27c31a83b11cfd1cd195b5b02",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T10:30:48.673544+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T10:31:11.262Z",
+  "attempts": [
+    {
+      "id": "l9Yj0TocaLN4eJfZyJBTo80py9PuCS04",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/streamlit",
+        "key": "239d840381e192f76f9bfb38"
+      },
+      "status": "ready",
+      "createdAt": 1791109877261,
+      "startedAt": 1791109877402,
+      "finishedAt": 1791110059423,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-239d840381e192f76f9bfb38-d6da2ed780ae-de72e4c02c1c",
+      "app": {
+        "id": "repo-239d840381e192f76f9bfb38-d6da2ed780ae-de72e4c02c1c",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "de72e4c02c1c7e0f2ebbcd91a0df752dafe940700a1e7c4b8bcaffed9824e2b7",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-239d840381e192f76f9bfb38",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/streamlit",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Streamlit"
+        },
+        "preparedAt": "2026-10-04T10:34:18.768Z",
+        "images": [
+          {
+            "id": "sha256:4333bb2c5d0253a18a30cba565e5d3ecbb65289352481f3d055b4f09e6968ef5",
+            "sha256": "cc34c07a95f3d389140a328bff6e16b8858a392f6c7fe94e2a9a6e7d4f0f39ac",
+            "bytes": 182163684
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 182021
+}

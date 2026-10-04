@@ -1,0 +1,36 @@
+{
+  "recordedAt": "2026-10-04T11:08:22.386596+00:00",
+  "baseRevision": "2cad8f84ba740fc27c31a83b11cfd1cd195b5b02",
+  "sourceHashes": {
+    "scripts/probe-sqlite-file-runtime.mjs": "4dbcda4b72421aa0af9074b00ceb3896c6444d3dac9be75f2f4cf93a3ee87cc8",
+    "test/sqlite-file-runtime-probe.test.mjs": "0e1823331fe2047c0aa7d372e5bb0cde06ecf82895fd1031eb1c575deebbcf7e",
+    "evidence/stack-sqlite-online-live.mjs": "48b3c1b06ee91fb2d46f94fc6d53706e1d8550f108b4016c9c4cd1853146b49c"
+  },
+  "qaCandidate": "/output/sqlite-online-candidate-2cad8f8",
+  "snapshotManifestSha256": "29ce6793069e34633f6b2a8c0296fabdcfaf72320b8957468db27737ee5cc97f",
+  "snapshotFilesMatched": 323,
+  "scope": "Test harness only. Replace container pause/copy with SQLite online backup from a read-only source connection. Production liveness and runner are unchanged. Validate committed WAL data, unchanged source values, allowed files, runtime/storage/port boundaries, application liveness and standalone serialization.",
+  "fullSuite": [
+    {
+      "environment": "local",
+      "tests": 193,
+      "pass": 193,
+      "fail": 0,
+      "outputSha256": "4af1247ba08b725a4dd44e0b19aaed0fd6d80d4b286950cca4f224afb1eb967f"
+    },
+    {
+      "environment": "isolated-aswin-linux",
+      "tests": 193,
+      "pass": 193,
+      "fail": 0,
+      "outputSha256": "7045ded5fc6d74a541802a0ad5c881c67aba114fb66cc02d1153c3d995fe6491"
+    }
+  ],
+  "verificationCorrections": [
+    {
+      "result": "Initial expectation of a single temporary snapshot file was too narrow: SQLite creates private WAL/SHM files when inspecting the backup. Record actual snapshot files and allow the bounded SQLite set; final local/Linux suites passed.",
+      "outputSha256": "befa2b131a8451211be09691dafab127f76a395e610eced3e2972c1ec9a62958"
+    }
+  ],
+  "sqliteApiReference": "https://nodejs.org/api/sqlite.html#sqlitebackupsource-db-path-options"
+}

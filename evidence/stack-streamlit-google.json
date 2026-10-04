@@ -1,0 +1,113 @@
+{
+  "recordedAt": "2026-10-04T10:53:26.663844+00:00",
+  "scope": "streamlit fixture: real Google Cloud Shell product browser button, reload, full app stop/relaunch and retained SQLite data.",
+  "results": [
+    {
+      "id": "I_8js0caGH9imnf6HN_ryMq_ljILEng3",
+      "appId": "repo-239d840381e192f76f9bfb38-d6da2ed780ae-de72e4c02c1c",
+      "provider": "google",
+      "port": 23312,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791110725112,
+        "startRequestedAt": 1791110725442,
+        "startAcceptedAt": 1791110727383
+      },
+      "createdAt": 1791110724474,
+      "updatedAt": 1791110768867,
+      "providerReadyAt": 1791110727848,
+      "readyAt": 1791110731748,
+      "timings": {
+        "downloadMs": 294,
+        "imagesMs": 60,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 59,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2238,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 7274,
+      "deliveryMs": 3900
+    },
+    {
+      "id": "VG0ScU9y9gZ1kZlTXPwBsn-pJEVrOZzO",
+      "appId": "repo-239d840381e192f76f9bfb38-d6da2ed780ae-de72e4c02c1c",
+      "provider": "google",
+      "port": 23312,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791110770728,
+        "startRequestedAt": 1791110770944,
+        "startAcceptedAt": 1791110772896
+      },
+      "createdAt": 1791110770176,
+      "updatedAt": 1791110792698,
+      "providerReadyAt": 1791110773314,
+      "readyAt": 1791110776523,
+      "timings": {
+        "downloadMs": 209,
+        "imagesMs": 68,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 67,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2193,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 6347,
+      "deliveryMs": 3209
+    }
+  ],
+  "browserChecks": [
+    {
+      "startedAt": "2026-10-04T10:45:23.698Z",
+      "visibleMs": 10009,
+      "before": 0,
+      "stateRestoredMs": 31457,
+      "afterWrite": 1,
+      "interactionMs": 31750,
+      "afterReload": 1,
+      "passed": true,
+      "measurementNote": "Saved-count read and first write timings include deliberate DOM inspection after the heading became visible; they are observation upper bounds, not minimum app readiness.",
+      "stopRequestedAt": "2026-10-04T10:46:06.130Z",
+      "statusAfterStop": "stopped"
+    },
+    {
+      "startedAt": "2026-10-04T10:46:10.029Z",
+      "visibleMs": 8191,
+      "before": 1,
+      "stateRestoredMs": 17869,
+      "afterWrite": 2,
+      "interactionMs": 18137,
+      "afterReload": 2,
+      "passed": true,
+      "stopRequestedAt": "2026-10-04T10:46:29.614Z",
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "browserErrorOrWarningLogs": [
+    [],
+    []
+  ],
+  "persistenceScope": "SQLite counter written through native product UI survives full application stop/relaunch; does not prove replacement of the Cloud Shell VM.",
+  "passed": true,
+  "cleanupAudit": {
+    "at": "2026-10-04T10:53:26.663844+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 23312,
+    "codespacesPreviewVisibility": "private"
+  },
+  "failedAttemptEvidence": "stack-streamlit-browser-failure.json",
+  "runtimeRevision": "2cad8f8",
+  "firstSuccessfulBrowserAttemptWasImageCached": true,
+  "performanceContext": "Cloud Shell first successful and repeat browser launches completed and stopped before either Codespaces launch began. These provider checks were sequential; unrelated network traffic was not controlled. The initial uncached Cloud Shell attempt failed to render; both successful Google retries reused its installed image. This is not evidence of an uncached browser launch under 20 seconds. Codespaces testing overlapped Symfony server preparation; this was not an isolated throughput benchmark."
+}

@@ -85,9 +85,9 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **193 passing checks in full local and isolated aswin QA runs**. Native coverage is 53 Google browser fixtures and
-53 Codespaces HTTP/protocol fixtures; 2 still lack at least one native acceptance path. Codespaces
-native browser authorization and interaction remain pending.
+later passing attempts do not erase them. Automated coverage is **193 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
+Codespaces native browser authorization and interaction remain pending.
 
 ## Native launch performance
 
@@ -208,6 +208,14 @@ a stable production hostname remains a deployment requirement.
   [Cloud Shell browser](evidence/stack-phoenix-google.json), and
   [Codespaces HTTP and SQLite snapshot inspection](evidence/stack-phoenix-codespaces.json).
   Both paths retained the saved count across full application stop/relaunch.
+- Streamlit native acceptance: [developer build](evidence/stack-streamlit-url.json),
+  [Cloud Shell browser](evidence/stack-streamlit-google.json), and
+  [Codespaces dashboard protocol and SQLite inspection](evidence/stack-streamlit-codespaces.json).
+  Both paths retained the saved count across full application stop/relaunch.
+- Symfony native acceptance: [developer build](evidence/stack-symfony-url.json),
+  [Cloud Shell browser](evidence/stack-symfony-google.json), and
+  [Codespaces HTTP and SQLite snapshot inspection](evidence/stack-symfony-codespaces.json).
+  Both paths retained the saved count across full application stop/relaunch.
 - [Rust and ASP.NET transport preflight](evidence/stack-counter-transport-preflight.json)
   checks empty chunked POST and full-restart file persistence on isolated compute.
   These checks do not add native-provider acceptance.
@@ -216,8 +224,7 @@ a stable production hostname remains a deployment requirement.
   These isolated checks do not add native-provider coverage.
 - [Gradio and Streamlit protocol preflight](evidence/stack-dashboard-protocol-preflight.json)
   verifies real dashboard protocol writes and SQLite persistence after a full
-  restart in isolated QA. Gradio native evidence is linked above; Streamlit
-  native provider acceptance remains pending.
+  restart in isolated QA. Native Gradio and Streamlit evidence is linked above.
 - [Shared dashboard helper](evidence/stack-dashboard-helper-preflight.json) verifies
   the exact serialized native harness against real Gradio and Streamlit artifacts.
   Native provider acceptance uses separate runs and evidence.
@@ -226,18 +233,17 @@ a stable production hostname remains a deployment requirement.
   full stops. These isolated checks do not add native-provider acceptance.
 - [Ktor, Micronaut, Phoenix and Symfony transport preflight](evidence/stack-sqlite-framework-transport-preflight.json)
   verifies proxy-style requests and saved records after full application stops.
-  Ktor, Micronaut and Phoenix native evidence is linked above. Symfony native
-  provider acceptance remains pending.
+  Native evidence for all four frameworks is linked above.
 - [SQLite framework inspection preflight](evidence/stack-sqlite-file-preflight.json)
   independently queries saved SQLite records for Ktor, Micronaut, Phoenix and
   Symfony, including Phoenix WAL data, after product writes and full restarts.
-  This opt-in test helper briefly pauses its explicit fixture container to copy
+  This earlier test helper briefly paused its explicit fixture container to copy
   a consistent database snapshot, resumes it, then queries the private copy.
   The reported SQLite version belongs to the inspector, not the application
   driver. These isolated checks do not add native-provider acceptance.
-- [Full-suite result](evidence/stack-streamlit-origin-tests.json): **193/193**
+- [Full-suite result](evidence/stack-sqlite-online-tests.json): **193/193**
   checks passed locally and in isolated aswin Linux QA.
-- [Physical source count](evidence/code-lines.json): **7,213 lines**, including
+- [Physical source count](evidence/code-lines.json): **7,216 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)
@@ -246,8 +252,8 @@ a stable production hostname remains a deployment requirement.
 Streamlit native preparation hit the shared prepared-image storage budget before
 publication; [the failed attempt](evidence/stack-streamlit-storage-failure.json) is
 retained. The operator budget is now configurable, with [192 passing local and
-isolated Linux checks](evidence/stack-image-budget-tests.json). Streamlit and
-Symfony still require native acceptance; no coverage pass was added for this fix.
+isolated Linux checks](evidence/stack-image-budget-tests.json). The storage-budget
+change itself added no native acceptance; subsequent fixture checks are recorded separately.
 The [deployment audit](evidence/stack-image-budget-deployment.json) confirms an
 8 GiB budget on aswin with existing images and artifacts preserved.
 
@@ -256,4 +262,14 @@ attempt showed an empty dashboard and WebSocket errors. The [failed browser atte
 is retained separately from HTTP readiness. An [isolated Streamlit 1.65 origin test](evidence/stack-streamlit-origin-probe.json)
 reproduced a 403 behind a rewritten Host header. Setting the exact provider preview
 hostname accepted that origin and kept an unrelated origin rejected, with CORS and
-XSRF enabled. Native acceptance remains pending a browser retry of this runtime fix.
+XSRF enabled. The native browser retry now passes button writes, reload and full restart;
+its two successful runs used the image cached by the failed first attempt.
+
+The first Symfony Codespaces run exposed a test-harness race: pausing its container
+for database copying could trigger normal runtime liveness failure. That
+[failed attempt](evidence/stack-symfony-snapshot-failure.json) is retained. The probe
+now uses a SQLite online backup without pausing the application; [four real framework
+checks](evidence/stack-sqlite-online-preflight.json) reproduced the old conflict and
+passed continuous liveness, committed WAL reads and restart persistence with the
+new method. The [193-check local/Linux suite](evidence/stack-sqlite-online-tests.json)
+passes; production runtime health checks are unchanged.

@@ -1,0 +1,479 @@
+{
+  "recordedAt": "2026-10-04T11:08:22.386596+00:00",
+  "baseRevision": "2cad8f84ba740fc27c31a83b11cfd1cd195b5b02",
+  "sourceHashes": {
+    "scripts/probe-sqlite-file-runtime.mjs": "4dbcda4b72421aa0af9074b00ceb3896c6444d3dac9be75f2f4cf93a3ee87cc8",
+    "test/sqlite-file-runtime-probe.test.mjs": "0e1823331fe2047c0aa7d372e5bb0cde06ecf82895fd1031eb1c575deebbcf7e",
+    "evidence/stack-sqlite-online-live.mjs": "48b3c1b06ee91fb2d46f94fc6d53706e1d8550f108b4016c9c4cd1853146b49c"
+  },
+  "qaCandidate": "/output/sqlite-online-candidate-2cad8f8",
+  "snapshotManifestSha256": "29ce6793069e34633f6b2a8c0296fabdcfaf72320b8957468db27737ee5cc97f",
+  "snapshotFilesMatched": 323,
+  "scope": "Isolated real Ktor, Micronaut, Phoenix and Symfony artifacts; old pause returns false from production containersAlive; online snapshots remain healthy during repeated real liveness checks. Database writes, committed WAL reads and full stop/relaunch persistence passed; scoped temporary data removed. No native provider acceptance inferred.",
+  "fullSuite": [
+    {
+      "environment": "local",
+      "tests": 193,
+      "pass": 193,
+      "fail": 0,
+      "outputSha256": "4af1247ba08b725a4dd44e0b19aaed0fd6d80d4b286950cca4f224afb1eb967f"
+    },
+    {
+      "environment": "isolated-aswin-linux",
+      "tests": 193,
+      "pass": 193,
+      "fail": 0,
+      "outputSha256": "7045ded5fc6d74a541802a0ad5c881c67aba114fb66cc02d1153c3d995fe6491"
+    }
+  ],
+  "verificationCorrections": [
+    {
+      "result": "Initial expectation of a single temporary snapshot file was too narrow: SQLite creates private WAL/SHM files when inspecting the backup. Record actual snapshot files and allow the bounded SQLite set; final local/Linux suites passed.",
+      "outputSha256": "befa2b131a8451211be09691dafab127f76a395e610eced3e2972c1ec9a62958"
+    }
+  ],
+  "sqliteApiReference": "https://nodejs.org/api/sqlite.html#sqlitebackupsource-db-path-options",
+  "results": [
+    {
+      "recordedAt": "2026-10-04T11:06:12.868Z",
+      "fixture": "ktor",
+      "scope": "Isolated real framework artifact and exact serialized native SQLite file helper; real HTTP write/read, independent SQLite snapshot integrity and saved-row query, online backup while continuous production liveness checks remain healthy and full restart retention. Not a native provider or new browser acceptance test.",
+      "dataKey": "ktor-sqlite-snapshot-ccf030bc82e756cf",
+      "project": "pods-8678ad4a0d2a8c4f7193bc59",
+      "legacyPauseAlive": false,
+      "artifactSha256": "49296597e69e533a327361f5dc38f89f282c8d0757c29c74754b3563c3bfa780",
+      "images": [
+        {
+          "id": "sha256:cc93a149db93551a987664b392449f677e3e601ecabc206995174e8c6ff273ce",
+          "sha256": "4de9a478c90ed83b0a99203bd183330cdd3d189461dca69ebd95f3f24823d092",
+          "bytes": 138945817
+        }
+      ],
+      "sourceSha256": "8f94b8e355f4506a68070ccc7e25af162bd683cb885f106d21d0dcf4a8a34b78",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "afterInspection": 1,
+          "liveChecks": 3,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "ktor",
+            "project": "pods-8678ad4a0d2a8c4f7193bc59",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 1,
+            "sourceFiles": [
+              "counter.sqlite"
+            ],
+            "snapshotFiles": [
+              "counter.sqlite"
+            ],
+            "applicationPaused": false,
+            "applicationStayedRunning": true,
+            "volume": "pods-8678ad4a0d2a8c4f7193bc59_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+          }
+        },
+        {
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "afterInspection": 2,
+          "liveChecks": 3,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "ktor",
+            "project": "pods-8678ad4a0d2a8c4f7193bc59",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 2,
+            "sourceFiles": [
+              "counter.sqlite"
+            ],
+            "snapshotFiles": [
+              "counter.sqlite"
+            ],
+            "applicationPaused": false,
+            "applicationStayedRunning": true,
+            "volume": "pods-8678ad4a0d2a8c4f7193bc59_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+          }
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageCleanupPending": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T11:06:29.588Z",
+      "fixture": "micronaut",
+      "scope": "Isolated real framework artifact and exact serialized native SQLite file helper; real HTTP write/read, independent SQLite snapshot integrity and saved-row query, online backup while continuous production liveness checks remain healthy and full restart retention. Not a native provider or new browser acceptance test.",
+      "dataKey": "micronaut-sqlite-snapshot-317440426f8f6cd7",
+      "project": "pods-528add7270abc22615c2942a",
+      "legacyPauseAlive": false,
+      "artifactSha256": "e8d70b34f83d2437c0a79b10ce6d95f5169f378aa84fca5464d182043ebf997b",
+      "images": [
+        {
+          "id": "sha256:d026024db53948c0a716e275a0b0b975db3a8ed2a9364a5a5ce091233fba6eba",
+          "sha256": "87d911df4f774d07285f706edbc7d33b0172652059fa56cef3e76fd5792b776e",
+          "bytes": 125122408
+        }
+      ],
+      "sourceSha256": "3d4d4aa5b6bb0067d93ab03630d6e6d1e8786256a954f892463395f956b629d5",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "afterInspection": 1,
+          "liveChecks": 3,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "micronaut",
+            "project": "pods-528add7270abc22615c2942a",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 1,
+            "sourceFiles": [
+              "counter.sqlite"
+            ],
+            "snapshotFiles": [
+              "counter.sqlite"
+            ],
+            "applicationPaused": false,
+            "applicationStayedRunning": true,
+            "volume": "pods-528add7270abc22615c2942a_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+          }
+        },
+        {
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "afterInspection": 2,
+          "liveChecks": 3,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "micronaut",
+            "project": "pods-528add7270abc22615c2942a",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 2,
+            "sourceFiles": [
+              "counter.sqlite"
+            ],
+            "snapshotFiles": [
+              "counter.sqlite"
+            ],
+            "applicationPaused": false,
+            "applicationStayedRunning": true,
+            "volume": "pods-528add7270abc22615c2942a_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+          }
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageCleanupPending": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T11:06:46.965Z",
+      "fixture": "phoenix",
+      "scope": "Isolated real framework artifact and exact serialized native SQLite file helper; real HTTP write/read, independent SQLite snapshot integrity and saved-row query, online backup while continuous production liveness checks remain healthy and full restart retention. Not a native provider or new browser acceptance test.",
+      "dataKey": "phoenix-sqlite-snapshot-4d4da1c049359dab",
+      "project": "pods-9845e4bac085cbc494258361",
+      "legacyPauseAlive": false,
+      "artifactSha256": "7308461467ce0b24285428c542b402856037ab0c4ca8420e4bb4d313bacc0e98",
+      "images": [
+        {
+          "id": "sha256:b21152ef10862fed9b6fd780a2902590574df8e1522469df3ed050993daf4881",
+          "sha256": "a6ad3145a21075443653d81704e58ddeb94ea205881e98607331deee7f86e5a9",
+          "bytes": 166072256
+        }
+      ],
+      "sourceSha256": "2e144615570aaa27bb6e8ef60ebf3bddac7e21ad6d1b1d8cfab2fb03789f00f9",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "afterInspection": 1,
+          "liveChecks": 3,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "phoenix",
+            "project": "pods-9845e4bac085cbc494258361",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 1,
+            "sourceFiles": [
+              "counter.sqlite",
+              "counter.sqlite-shm",
+              "counter.sqlite-wal"
+            ],
+            "snapshotFiles": [
+              "counter.sqlite",
+              "counter.sqlite-shm",
+              "counter.sqlite-wal"
+            ],
+            "applicationPaused": false,
+            "applicationStayedRunning": true,
+            "volume": "pods-9845e4bac085cbc494258361_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+          }
+        },
+        {
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "afterInspection": 2,
+          "liveChecks": 3,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "phoenix",
+            "project": "pods-9845e4bac085cbc494258361",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 2,
+            "sourceFiles": [
+              "counter.sqlite",
+              "counter.sqlite-shm",
+              "counter.sqlite-wal"
+            ],
+            "snapshotFiles": [
+              "counter.sqlite",
+              "counter.sqlite-shm",
+              "counter.sqlite-wal"
+            ],
+            "applicationPaused": false,
+            "applicationStayedRunning": true,
+            "volume": "pods-9845e4bac085cbc494258361_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+          }
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageCleanupPending": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T11:07:17.952Z",
+      "fixture": "symfony",
+      "scope": "Isolated real framework artifact and exact serialized native SQLite file helper; real HTTP write/read, independent SQLite snapshot integrity and saved-row query, online backup while continuous production liveness checks remain healthy and full restart retention. Not a native provider or new browser acceptance test.",
+      "dataKey": "symfony-sqlite-snapshot-af588f8eb9343ea7",
+      "project": "pods-d29e4a2d5d200b7f1a330985",
+      "legacyPauseAlive": false,
+      "artifactSha256": "81b78431ad424b1b412bc73b3b44540d6bf01e98076eced7d532cdc37be2f817",
+      "images": [
+        {
+          "id": "sha256:efe0f95b8161337d20235b86a84ecb5f5db6d83a862b6643891159457fecd52b",
+          "sha256": "2a9d053e4344a2cf22ca1479d7b3667af7915cf3bfcf4309f08f2ac172e229c7",
+          "bytes": 225351307
+        }
+      ],
+      "sourceSha256": "405d631ffa88a53f55192cfe6022918a87407151584ebeb971fb28f1930c5e8e",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "afterInspection": 1,
+          "liveChecks": 3,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "symfony",
+            "project": "pods-d29e4a2d5d200b7f1a330985",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 1,
+            "sourceFiles": [
+              "counter.sqlite"
+            ],
+            "snapshotFiles": [
+              "counter.sqlite"
+            ],
+            "applicationPaused": false,
+            "applicationStayedRunning": true,
+            "volume": "pods-d29e4a2d5d200b7f1a330985_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+          }
+        },
+        {
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "afterInspection": 2,
+          "liveChecks": 3,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "symfony",
+            "project": "pods-d29e4a2d5d200b7f1a330985",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 2,
+            "sourceFiles": [
+              "counter.sqlite"
+            ],
+            "snapshotFiles": [
+              "counter.sqlite"
+            ],
+            "applicationPaused": false,
+            "applicationStayedRunning": true,
+            "volume": "pods-d29e4a2d5d200b7f1a330985_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+          }
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageCleanupPending": true
+      }
+    }
+  ],
+  "cleanup": {
+    "fixtures": {
+      "ktor": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      },
+      "micronaut": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      },
+      "phoenix": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      },
+      "symfony": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    "temporarySnapshotsRemaining": 0
+  }
+}

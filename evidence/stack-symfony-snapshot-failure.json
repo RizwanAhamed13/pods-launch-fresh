@@ -1,0 +1,119 @@
+{
+  "testedAt": "2026-10-04T10:59:08.832Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "Pkj_d40BgwUQpwjbkofrHHXZ9uV5Gs0-",
+      "dataKey": "repo-bdbeb86d4b833ee806fd8cfc",
+      "port": 20841,
+      "appId": "repo-bdbeb86d4b833ee806fd8cfc-d6da2ed780ae-598786262608",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "59878626260823a78c7f05fe6267a70d1fc72bff889fa648e3934214a87a8916",
+      "images": [
+        {
+          "id": "sha256:5a4cedd7f8ba2fa0d1bbf7e08449985c6ca5028f37c06aa14bb3cb4945b60588",
+          "sha256": "004ed1b605b6175e9f67a57fdb2fc8ec3c80516202795974bb7f53d26a45f84f",
+          "bytes": 225348539
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791111378129,
+      "updatedAt": 1791111444894,
+      "expiresAt": 1791113178129,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791111378561
+      },
+      "providerReadyAt": 1791111378579,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-20841.app.github.dev",
+      "lastSeenAt": 1791111444894,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 965,
+        "imagesMs": 48376,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 42,
+        "imageDownloadMs": 41146,
+        "imageLoadMs": 7143,
+        "runtimeReadyMs": 56669,
+        "cacheHit": false
+      },
+      "readyAt": 1791111444894,
+      "deliveryMs": 66315,
+      "totalMs": 66765,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 0,
+        "afterWrite": 1,
+        "afterRead": 1,
+        "passed": true,
+        "expectedInitialCount": 0
+      },
+      "sqliteFileRuntimeCheck": {
+        "passed": true,
+        "fixtureProfile": "symfony",
+        "project": "pods-548547e9f4c5bf449f7cf523",
+        "services": [
+          "web"
+        ],
+        "databaseEngine": "SQLite",
+        "inspectionEngineVersion": "3.53.4",
+        "integrity": "ok",
+        "savedCount": 1,
+        "snapshotFiles": [
+          "counter.sqlite"
+        ],
+        "applicationResumed": true,
+        "volume": "pods-548547e9f4c5bf449f7cf523_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          20841
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only query of a private database snapshot copied while the fixture container was paused, including WAL when present. Container resumed before querying. SQLite version describes the inspector, not the application driver. No application SQL or file was changed; VM replacement and power-loss durability are separate."
+      },
+      "testError": "Application stop was not confirmed; repeat test aborted",
+      "cleanupError": "Application stop was not confirmed; repeat test aborted"
+    }
+  ],
+  "outcome": "failed-native-liveness-during-snapshot",
+  "recordedAt": "2026-10-04T11:02:18.444481+00:00",
+  "productionState": {
+    "id": "Pkj_d40BgwUQpwjbkofrHHXZ9uV5Gs0-",
+    "appId": "repo-bdbeb86d4b833ee806fd8cfc-d6da2ed780ae-598786262608",
+    "provider": "github",
+    "port": 20841,
+    "status": "failed",
+    "compute": {
+      "initialState": "Available",
+      "observedAt": 1791111378561
+    },
+    "createdAt": 1791111378129,
+    "updatedAt": 1791111457252,
+    "providerReadyAt": 1791111378579,
+    "readyAt": 1791111444894,
+    "timings": {
+      "downloadMs": 965,
+      "imagesMs": 48376,
+      "imageCacheHits": 0,
+      "imageArchiveCacheHits": 0,
+      "imageCacheCheckMs": 42,
+      "imageDownloadMs": 41146,
+      "imageLoadMs": 7143,
+      "runtimeReadyMs": 56669,
+      "cacheHit": false
+    },
+    "storageMode": "persistent",
+    "totalMs": 66765,
+    "deliveryMs": 66315
+  },
+  "productionError": "An application service stopped or became unhealthy. Launch it again.",
+  "cleanupObservation": "Scoped docker ps --all found no remaining container for project pods-548547e9f4c5bf449f7cf523. Saved counter remains 1; do not reset.",
+  "analysis": "The inspection helper pauses the fixture while copying SQLite/WAL. containersAlive explicitly rejects paused state. Product and database checks passed, but stop was not confirmed because the runner had already reported failed. Native acceptance remains pending a non-pausing inspection and successful restart pair."
+}

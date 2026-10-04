@@ -1402,7 +1402,11 @@
       "serverEvidence": "stack-matrix-08.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-08.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-streamlit-url.json",
+        "stack-streamlit-google.json",
+        "stack-streamlit-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-05.json",
@@ -1412,7 +1416,12 @@
           "evidence": "stack-matrix-08.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      },
+      "nativeProviderScope": "streamlit passed native Google product button, reload and SQLite retention across full stop/relaunch. Codespaces dashboard product protocol, writes, saved SQLite inspection and full restart persistence passed. Native Codespaces browser interaction remains pending."
     },
     {
       "fixture": "svelte",
@@ -1476,13 +1485,22 @@
       "serverEvidence": "stack-matrix-18.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-18.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-symfony-url.json",
+        "stack-symfony-google.json",
+        "stack-symfony-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-18.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      },
+      "nativeProviderScope": "symfony passed native Google product button, reload and SQLite retention across full stop/relaunch. Codespaces product HTTP, writes, saved SQLite snapshot inspection and full restart persistence passed. Native Codespaces browser interaction remains pending."
     },
     {
       "fixture": "vue",

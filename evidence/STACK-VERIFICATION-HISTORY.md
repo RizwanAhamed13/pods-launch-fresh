@@ -2714,3 +2714,87 @@ See stack-image-budget-{deployment,published}.json. Source now7190physical lines
 Next ordinary build slot was2026-10-04T10:30:30.874000+00:00. Recheck availability,
 then retry Streamlit through the actual form and complete both native paths.
 No active watcher remains. Goal remains active and incomplete.
+
+
+## Streamlit native dashboard acceptance
+
+The real developer form prepared `examples/stacks/streamlit` from source revision
+`d6da2ed780ae` after ordinary same-account quota availability. Server preparation
+took **182.021s**; saved artifact `de72e4c02c1c7e0f2ebbcd91a0df752dafe940700a1e7c4b8bcaffed9824e2b7` contains
+**182,163,684 image bytes**. No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell initially RUNNING, first successful retry (image cached) | Healthy 7.274s; product visible 10.009s; saved count read 31.457s; button write 31.750s |
+| Cloud Shell cached relaunch | Healthy 6.347s; visible 8.191s; saved count restored 17.869s; next write 18.137s |
+| Codespaces initially Shutdown | Healthy 90.361s; delivery/startup 77.708s |
+| Codespaces cached relaunch | Healthy 8.900s; protocol write/read, SQLite integrity and saved row passed |
+
+Cloud Shell verified the real dashboard h1, saved-count control, Add one button,
+reload and full application stop/relaunch: **0→1→2**, with no console warnings
+or errors. Codespaces exercised the framework protocol, verified the same
+sequence and directly queried the actual SQLite file. Framework version
+**1.65.0**, SQLite version **3.46.1**, database
+integrity and saved rows were recorded. The checks verified one web service,
+its project network, persistent workspace volume and private product port
+**23312**. No database port was published.
+
+Both Google runs finished and stopped before Codespaces testing began. All four
+accepted launches and the earlier failed Google attempt ended stopped. Audit at 2026-10-04T10:53:26.744021+00:00 confirmed health200, SQLite
+integrity ok, zero active builds/launches and unchanged service PID/runner SHA.
+The initial uncached Google attempt failed to render and is retained in
+`stack-streamlit-browser-failure.json`; both successful Google attempts used its
+installed image. Codespaces testing overlapped Symfony server preparation.
+These timings describe this fixture and observed compute/cache states. Native
+Codespaces browser execution and provider VM replacement durability remain
+unverified.
+
+Evidence: `stack-streamlit-{url,google,codespaces,audit}.json`. Coverage now
+**55 isolated / 54 Google browser / 54 Codespaces protocol**, with
+**1** native fixtures pending. Full suite **193/193** and
+physical source **7,213 lines** remain valid; this acceptance changed only
+evidence and documentation. App `repo-239d840381e192f76f9bfb38-d6da2ed780ae-de72e4c02c1c`; preserve saved native counters2.
+
+Browser measurement note: Saved-count read and first write timings include deliberate DOM inspection after the heading became visible; they are observation upper bounds, not minimum app readiness.
+
+
+## Symfony native SQLite acceptance
+
+The real developer form prepared `examples/stacks/symfony` from source revision
+`d6da2ed780ae` after ordinary same-account quota availability. Server preparation
+took **249.658s**; saved artifact `59878626260823a78c7f05fe6267a70d1fc72bff889fa648e3934214a87a8916` contains
+**225,348,539 image bytes**. No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell initially RUNNING, first delivery | Healthy 56.123s; product visible 58.118s; saved count read 58.136s; button write 58.427s |
+| Cloud Shell cached relaunch | Healthy 6.743s; visible 7.549s; saved count restored 7.663s; next write 7.948s |
+| Codespaces initially Available, first successful retry (image cached) | Healthy 9.450s; delivery/startup 9.032s |
+| Codespaces cached relaunch | Healthy 8.651s; HTTP write/read, SQLite integrity and saved row passed |
+
+Cloud Shell verified the real product h1, saved-count control and increment button,
+reload and full application stop/relaunch: **0→1→2**, with no console warnings
+or errors. Codespaces preserved the earlier saved value and verified **1→2→3** through
+product HTTP, full stop/relaunch and SQLite online backup. Its earlier uncached
+attempt saved0→1 but failed liveness during the old pausing inspection; that
+attempt is retained in `stack-symfony-snapshot-failure.json`. The new inspection
+uses a read-only source connection, includes committed WAL data, and leaves the
+application running. Inspector SQLite **3.53.4**, integrity and saved
+rows were recorded; this is the inspector version, not the application's driver.
+The checks verified the exact compiled/runtime startup command, one web service,
+its project network, persistent workspace volume and private product port
+**20841**. No database port was published.
+
+Both Google runs finished and stopped before Codespaces testing began. All four
+accepted launches ended stopped. The earlier failed Codespaces attempt is terminal
+and its container was independently confirmed absent. Audit at 2026-10-04T11:10:17.655891+00:00 confirmed health200, SQLite
+integrity ok, zero active builds/launches and unchanged service PID/runner SHA.
+These timings describe this fixture and observed compute/cache states. Native
+Codespaces browser execution and provider VM replacement durability remain
+unverified.
+
+Evidence: `stack-symfony-{url,google,codespaces,audit}.json`. Coverage now
+**55 isolated / 55 Google browser / 55 Codespaces protocol**, with
+**0** native fixtures pending. Full suite **193/193** and
+physical source **7,216 lines** remain valid; this acceptance changed only
+evidence and documentation. App `repo-bdbeb86d4b833ee806fd8cfc-d6da2ed780ae-598786262608`; preserve Google saved counter2 and Codespaces saved counter3.

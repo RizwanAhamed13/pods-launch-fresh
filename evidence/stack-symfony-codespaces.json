@@ -1,0 +1,182 @@
+{
+  "testedAt": "2026-10-04T11:09:28.190Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "l4b1V2_C3ma3u6Px4uTaOUPx9LDXiWmy",
+      "dataKey": "repo-bdbeb86d4b833ee806fd8cfc",
+      "port": 20841,
+      "appId": "repo-bdbeb86d4b833ee806fd8cfc-d6da2ed780ae-598786262608",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "59878626260823a78c7f05fe6267a70d1fc72bff889fa648e3934214a87a8916",
+      "images": [
+        {
+          "id": "sha256:5a4cedd7f8ba2fa0d1bbf7e08449985c6ca5028f37c06aa14bb3cb4945b60588",
+          "sha256": "004ed1b605b6175e9f67a57fdb2fc8ec3c80516202795974bb7f53d26a45f84f",
+          "bytes": 225348539
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791112103558,
+      "updatedAt": 1791112113008,
+      "expiresAt": 1791113903558,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791112103959
+      },
+      "providerReadyAt": 1791112103976,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-20841.app.github.dev",
+      "lastSeenAt": 1791112113008,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 557,
+        "imagesMs": 69,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 69,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2416,
+        "cacheHit": true
+      },
+      "readyAt": 1791112113008,
+      "deliveryMs": 9032,
+      "totalMs": 9450,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 1,
+        "afterWrite": 2,
+        "afterRead": 2,
+        "passed": true,
+        "expectedInitialCount": 1
+      },
+      "sqliteFileRuntimeCheck": {
+        "passed": true,
+        "fixtureProfile": "symfony",
+        "project": "pods-548547e9f4c5bf449f7cf523",
+        "services": [
+          "web"
+        ],
+        "databaseEngine": "SQLite",
+        "inspectionEngineVersion": "3.53.4",
+        "integrity": "ok",
+        "savedCount": 2,
+        "sourceFiles": [
+          "counter.sqlite"
+        ],
+        "snapshotFiles": [
+          "counter.sqlite"
+        ],
+        "applicationPaused": false,
+        "applicationStayedRunning": true,
+        "volume": "pods-548547e9f4c5bf449f7cf523_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          20841
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "N_pragLQvxo5Fs5TUzf2wpXPIUlhO10z",
+      "dataKey": "repo-bdbeb86d4b833ee806fd8cfc",
+      "port": 20841,
+      "appId": "repo-bdbeb86d4b833ee806fd8cfc-d6da2ed780ae-598786262608",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "59878626260823a78c7f05fe6267a70d1fc72bff889fa648e3934214a87a8916",
+      "images": [
+        {
+          "id": "sha256:5a4cedd7f8ba2fa0d1bbf7e08449985c6ca5028f37c06aa14bb3cb4945b60588",
+          "sha256": "004ed1b605b6175e9f67a57fdb2fc8ec3c80516202795974bb7f53d26a45f84f",
+          "bytes": 225348539
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791112136139,
+      "updatedAt": 1791112144790,
+      "expiresAt": 1791113936139,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791112136759
+      },
+      "providerReadyAt": 1791112136776,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-20841.app.github.dev",
+      "lastSeenAt": 1791112144790,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 214,
+        "imagesMs": 68,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 68,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2155,
+        "cacheHit": true
+      },
+      "readyAt": 1791112144790,
+      "deliveryMs": 8014,
+      "totalMs": 8651,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 2,
+        "afterWrite": 3,
+        "afterRead": 3,
+        "passed": true,
+        "expectedAfterRelaunch": 2
+      },
+      "sqliteFileRuntimeCheck": {
+        "passed": true,
+        "fixtureProfile": "symfony",
+        "project": "pods-548547e9f4c5bf449f7cf523",
+        "services": [
+          "web"
+        ],
+        "databaseEngine": "SQLite",
+        "inspectionEngineVersion": "3.53.4",
+        "integrity": "ok",
+        "savedCount": 3,
+        "sourceFiles": [
+          "counter.sqlite"
+        ],
+        "snapshotFiles": [
+          "counter.sqlite"
+        ],
+        "applicationPaused": false,
+        "applicationStayedRunning": true,
+        "volume": "pods-548547e9f4c5bf449f7cf523_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          20841
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "failedAttemptEvidence": "stack-symfony-snapshot-failure.json",
+  "firstSuccessfulProtocolAttemptWasImageCached": true,
+  "performanceContext": "Cloud Shell first and cached browser launches completed and stopped before either Codespaces launch began. These provider checks were sequential; unrelated network traffic was not controlled. The first uncached Codespaces attempt saved 0 to 1 but failed liveness during the old pausing SQLite probe. Successful retries preserve that row and verify 1 to 2 to 3 with online backup, without resetting data. Both successful Codespaces retries used the installed image.",
+  "cleanupAudit": {
+    "at": "2026-10-04T11:10:17.525432+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 20841,
+    "codespacesPreviewVisibility": "private"
+  },
+  "persistenceScope": "Authenticated native product HTTP write/read and read-only SQLite snapshot inspection and full stop/relaunch on user compute; native Codespaces browser execution remains pending."
+}

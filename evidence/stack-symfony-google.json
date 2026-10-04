@@ -1,0 +1,115 @@
+{
+  "recordedAt": "2026-10-04T11:10:17.525432+00:00",
+  "scope": "symfony fixture: real Google Cloud Shell product browser button, reload, full app stop/relaunch and retained SQLite data.",
+  "results": [
+    {
+      "id": "dxN83R_vX75Qi2esdhGazcobLPeIXZuS",
+      "appId": "repo-bdbeb86d4b833ee806fd8cfc-d6da2ed780ae-598786262608",
+      "provider": "google",
+      "port": 20841,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791111254575,
+        "startRequestedAt": 1791111254873,
+        "startAcceptedAt": 1791111256957
+      },
+      "createdAt": 1791111253975,
+      "updatedAt": 1791111335815,
+      "providerReadyAt": 1791111257373,
+      "readyAt": 1791111310098,
+      "timings": {
+        "downloadMs": 513,
+        "imagesMs": 47587,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 44,
+        "imageDownloadMs": 41096,
+        "imageLoadMs": 6404,
+        "runtimeReadyMs": 50788,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 56123,
+      "deliveryMs": 52725
+    },
+    {
+      "id": "If3mLBz9Chx3CHB2ZhHlAMbQvEfCvPIa",
+      "appId": "repo-bdbeb86d4b833ee806fd8cfc-d6da2ed780ae-598786262608",
+      "provider": "google",
+      "port": 20841,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791111336988,
+        "startRequestedAt": 1791111337144,
+        "startAcceptedAt": 1791111339373
+      },
+      "createdAt": 1791111336510,
+      "updatedAt": 1791111362965,
+      "providerReadyAt": 1791111339783,
+      "readyAt": 1791111343253,
+      "timings": {
+        "downloadMs": 212,
+        "imagesMs": 73,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 72,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2182,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 6743,
+      "deliveryMs": 3470
+    }
+  ],
+  "browserChecks": [
+    {
+      "startedAt": "2026-10-04T10:54:13.785Z",
+      "visibleMs": 58118,
+      "before": 0,
+      "stateRestoredMs": 58136,
+      "writeRequestedAt": "2026-10-04T10:55:11.921Z",
+      "afterWrite": 1,
+      "interactionMs": 58427,
+      "reloadRequestedAt": "2026-10-04T10:55:12.212Z",
+      "reloadCompleted": true,
+      "afterReload": 1,
+      "passed": true,
+      "stopRequestedAt": "2026-10-04T10:55:22.393Z",
+      "statusAfterStop": "stopped"
+    },
+    {
+      "startedAt": "2026-10-04T10:55:36.364Z",
+      "visibleMs": 7549,
+      "before": 1,
+      "stateRestoredMs": 7663,
+      "writeRequestedAt": "2026-10-04T10:55:44.028Z",
+      "afterWrite": 2,
+      "interactionMs": 7948,
+      "reloadRequestedAt": "2026-10-04T10:55:44.313Z",
+      "reloadCompleted": true,
+      "afterReload": 2,
+      "passed": true,
+      "stopRequestedAt": "2026-10-04T10:55:49.713Z",
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "browserErrorOrWarningLogs": [
+    [],
+    []
+  ],
+  "persistenceScope": "SQLite counter written through native product UI survives full application stop/relaunch; does not prove replacement of the Cloud Shell VM.",
+  "passed": true,
+  "cleanupAudit": {
+    "at": "2026-10-04T11:10:17.525432+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 20841,
+    "codespacesPreviewVisibility": "private"
+  },
+  "performanceContext": "Cloud Shell first and cached browser launches completed and stopped before either Codespaces launch began. These provider checks were sequential; unrelated network traffic was not controlled. The first uncached Codespaces attempt saved 0 to 1 but failed liveness during the old pausing SQLite probe. Successful retries preserve that row and verify 1 to 2 to 3 with online backup, without resetting data. Both successful Codespaces retries used the installed image."
+}
