@@ -2462,3 +2462,38 @@ this acceptance changed only evidence and documentation.
 - Real pinned Ktor/Micronaut/Phoenix/Symfony artifacts passed0→1→2, exact serialized helper, SQLite quick_check, copied saved row and product response after resume. Full stop/relaunch retained each counter. Phoenix copied main/WAL/SHM; the others copied the checkpointed database. Evidence `stack-sqlite-file-{live.mjs,preflight.json,tests.json,audit.json}`.
 - All scoped test containers, named volumes and storage directories removed, retaining shared runtime/cache and unrelated QA work. Audit 2026-10-04T08:24:19.882384+00:00: health200/integrityok/zeroactive, unchangedPID1063107/runnerSHA. QA source candidate `/output/sqlite-file-candidate-a6a7f5d`.
 - Product source count now7128 physical lines. Native acceptance stays55/48/48; all7 remaining native fixtures still pending. Deno draft/watcher37339 unchanged; ordinary slot08:29:35UTC.
+
+
+## Deno native product acceptance
+
+The actual developer form prepared `examples/stacks/deno` from fixture
+revision `d6da2ed780ae` in **145.456 seconds** after ordinary same-account
+quota availability. Artifact `26bac45acce90f173c53ae38a2599c4565aab830fde4096cf368c29ef2672473` contains **61,421,201 image bytes**.
+No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell RUNNING, first image delivery | Server healthy 20.835s; product visible 22.944s; counter read 22.957s; button write 23.245s |
+| Cloud Shell cached relaunch | Server healthy 6.789s; product visible 7.835s; saved value restored 7.951s; next write 8.233s |
+| Codespaces initially Shutdown | Server healthy 53.678s; delivery/startup 38.833s; image cache hits 0 |
+| Codespaces cached relaunch | Server healthy 8.944s; authenticated HTTP write/read and saved-file inspection passed |
+
+Google browser buttons, reloads and full application stops verified **0→1→2**
+without console warnings or errors. Product visibility matched its h1.
+Codespaces authenticated HTTP verified the same sequence. Direct inspection
+checked the recipe command, single web service, project network, assigned product
+port **23310** and persistent workspace volume. The copied file counter matched
+each write. This check does not independently identify the framework version;
+the pinned source and real server build identify the prepared fixture.
+
+Both Google launches completed and stopped before Codespaces tests began. All
+four launches ended stopped; the Codespaces product port remained private.
+Audit at 2026-10-04T08:36:33.712331+00:00 confirmed health200, SQLite integrity ok, no active
+builds/launches and unchanged service PID/runner SHA. These are file-persistence
+and fixture-specific timing results. Native Codespaces browser interaction and
+VM replacement durability remain unverified.
+
+Evidence: `stack-deno-{url,google,codespaces,audit}.json`. Coverage is now
+**55 isolated / 49 Google browser / 49 Codespaces protocol**, with **6** native
+fixtures pending. Full suite **189/189** and source **7,128 lines** remain valid;
+this acceptance changed only evidence and documentation.

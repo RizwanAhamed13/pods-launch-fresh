@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-04T08:36:33.797164+00:00",
+  "controlRevision": "5dde1e5",
+  "checkoutRevision": "28083b6f69cd623eaa66d4bca8338a2c68ea4834",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T08:29:40.030448+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T08:29:45.596Z",
+  "attempts": [
+    {
+      "id": "GLISoHttNJg6Rcn-od35Ei5wa4j0yhtL",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/deno",
+        "key": "850a8e4568f756cc3f4117ae"
+      },
+      "status": "ready",
+      "createdAt": 1791102591926,
+      "startedAt": 1791102592084,
+      "finishedAt": 1791102737540,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-850a8e4568f756cc3f4117ae-d6da2ed780ae-26bac45acce9",
+      "app": {
+        "id": "repo-850a8e4568f756cc3f4117ae-d6da2ed780ae-26bac45acce9",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "26bac45acce90f173c53ae38a2599c4565aab830fde4096cf368c29ef2672473",
+        "bytes": 277,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-850a8e4568f756cc3f4117ae",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/deno",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Deno persistent counter"
+        },
+        "preparedAt": "2026-10-04T08:32:17.324Z",
+        "images": [
+          {
+            "id": "sha256:2731904c533fa0b706761316fd037f846f9707e6ab1f5935b07e1fec2573df69",
+            "sha256": "7fca465c23e396cdc101cbb4e1d43a111b8975305a4503533befadc7827365ea",
+            "bytes": 61421201
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 145456
+}

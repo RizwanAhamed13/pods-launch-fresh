@@ -296,7 +296,11 @@
       "serverEvidence": "stack-matrix-14.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-14.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-deno-url.json",
+        "stack-deno-google.json",
+        "stack-deno-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-05.json",
@@ -310,7 +314,12 @@
           "evidence": "stack-matrix-14.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      },
+      "nativeProviderScope": "deno passed native Google product button, reload and file retention across full stop/relaunch. Codespaces authenticated HTTP product, writes, saved file inspection and full restart persistence passed. Native Codespaces browser interaction remains pending."
     },
     {
       "fixture": "django",

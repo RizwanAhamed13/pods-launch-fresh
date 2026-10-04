@@ -85,8 +85,8 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **189 passing checks in full local and isolated aswin QA runs**. Native coverage is 48 Google browser fixtures and
-48 Codespaces HTTP/protocol fixtures; 7 still lack at least one native acceptance path. Codespaces
+later passing attempts do not erase them. Automated coverage is **189 passing checks in full local and isolated aswin QA runs**. Native coverage is 49 Google browser fixtures and
+49 Codespaces HTTP/protocol fixtures; 6 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Native launch performance
@@ -180,6 +180,10 @@ a stable production hostname remains a deployment requirement.
 - Sinatra native acceptance: [developer build](evidence/stack-sinatra-url.json),
   [Cloud Shell browser](evidence/stack-sinatra-google.json), and
   [Codespaces product and file persistence](evidence/stack-sinatra-codespaces.json).
+  Both paths retained the counter across full application stop/relaunch.
+- Deno native acceptance: [developer build](evidence/stack-deno-url.json),
+  [Cloud Shell browser](evidence/stack-deno-google.json), and
+  [Codespaces product and file persistence](evidence/stack-deno-codespaces.json).
   Both paths retained the counter across full application stop/relaunch.
 - [Rust and ASP.NET transport preflight](evidence/stack-counter-transport-preflight.json)
   checks empty chunked POST and full-restart file persistence on isolated compute.

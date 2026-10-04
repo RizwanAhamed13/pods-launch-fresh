@@ -1,0 +1,159 @@
+{
+  "testedAt": "2026-10-04T08:36:13.858Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "j7widYvf7Xg0TjRzM4gfNKQFXXjd7j5u",
+      "dataKey": "repo-850a8e4568f756cc3f4117ae",
+      "port": 23310,
+      "appId": "repo-850a8e4568f756cc3f4117ae-d6da2ed780ae-26bac45acce9",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "26bac45acce90f173c53ae38a2599c4565aab830fde4096cf368c29ef2672473",
+      "images": [
+        {
+          "id": "sha256:2731904c533fa0b706761316fd037f846f9707e6ab1f5935b07e1fec2573df69",
+          "sha256": "7fca465c23e396cdc101cbb4e1d43a111b8975305a4503533befadc7827365ea",
+          "bytes": 61421201
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791102862970,
+      "updatedAt": 1791102916648,
+      "expiresAt": 1791104662970,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Shutdown",
+        "observedAt": 1791102863524,
+        "resumeRequestedAt": 1791102863611
+      },
+      "providerReadyAt": 1791102877815,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-23310.app.github.dev",
+      "lastSeenAt": 1791102916648,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 1037,
+        "imagesMs": 13550,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 45,
+        "imageDownloadMs": 10785,
+        "imageLoadMs": 2705,
+        "runtimeReadyMs": 17920,
+        "cacheHit": false
+      },
+      "readyAt": 1791102916648,
+      "deliveryMs": 38833,
+      "totalMs": 53678,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 0,
+        "afterWrite": 1,
+        "afterRead": 1,
+        "passed": true,
+        "expectedInitialCount": 0
+      },
+      "fileCounterRuntimeCheck": {
+        "passed": true,
+        "fixtureProfile": "deno",
+        "project": "pods-fc2af39e32e763b24e0fe220",
+        "services": [
+          "web"
+        ],
+        "savedCount": 1,
+        "volume": "pods-fc2af39e32e763b24e0fe220_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          23310
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "3gcu2LVwDmSeNxWllJNwkfWz-HEeEt0M",
+      "dataKey": "repo-850a8e4568f756cc3f4117ae",
+      "port": 23310,
+      "appId": "repo-850a8e4568f756cc3f4117ae-d6da2ed780ae-26bac45acce9",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "26bac45acce90f173c53ae38a2599c4565aab830fde4096cf368c29ef2672473",
+      "images": [
+        {
+          "id": "sha256:2731904c533fa0b706761316fd037f846f9707e6ab1f5935b07e1fec2573df69",
+          "sha256": "7fca465c23e396cdc101cbb4e1d43a111b8975305a4503533befadc7827365ea",
+          "bytes": 61421201
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791102941112,
+      "updatedAt": 1791102950057,
+      "expiresAt": 1791104741112,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791102941668
+      },
+      "providerReadyAt": 1791102941720,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-23310.app.github.dev",
+      "lastSeenAt": 1791102950056,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 253,
+        "imagesMs": 41,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 41,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 1796,
+        "cacheHit": true
+      },
+      "readyAt": 1791102950056,
+      "deliveryMs": 8336,
+      "totalMs": 8944,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 1,
+        "afterWrite": 2,
+        "afterRead": 2,
+        "passed": true,
+        "expectedAfterRelaunch": 1
+      },
+      "fileCounterRuntimeCheck": {
+        "passed": true,
+        "fixtureProfile": "deno",
+        "project": "pods-fc2af39e32e763b24e0fe220",
+        "services": [
+          "web"
+        ],
+        "savedCount": 2,
+        "volume": "pods-fc2af39e32e763b24e0fe220_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          23310
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "performanceContext": "Cloud Shell first and cached browser launches completed and stopped before either Codespaces launch began. These provider checks were sequential; unrelated network traffic was not controlled.",
+  "cleanupAudit": {
+    "at": "2026-10-04T08:36:33.797164+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 23310,
+    "codespacesPreviewVisibility": "private"
+  },
+  "persistenceScope": "Authenticated HTTP file counter write/read and full stop/relaunch on user compute; native Codespaces browser execution remains pending."
+}

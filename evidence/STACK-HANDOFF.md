@@ -25,11 +25,11 @@ VM replacement durability, or a universal 20-second cold launch.
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
   saved format changes on actual environment capabilities.
-- Coverage:55 isolated build/artifact/browser passes;48 Google native browser
-  and48 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+- Coverage:55 isolated build/artifact/browser passes;49 Google native browser
+  and49 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Native Codespaces browser checks remain
-  pending authorization. The7 fixtures awaiting native acceptance are:
-  deno, gradio, ktor, micronaut, phoenix, streamlit, symfony.
+  pending authorization. The6 fixtures awaiting native acceptance are:
+  gradio, ktor, micronaut, phoenix, streamlit, symfony.
 - Current full suite:189/189 passed locally and in isolated aswin QA after
   SQLite snapshot helper. Logs /tmp/pods-sqlite-file-full-{local,qa}.txt.
   The previous SQLite native acceptance was published4bb9326.
@@ -1328,3 +1328,18 @@ The temporary file-counter documentation helper now invokes it automatically.
 - Real pinned Ktor/Micronaut/Phoenix/Symfony artifacts passed0→1→2, exact serialized helper, SQLite quick_check, copied saved row and product response after resume. Full stop/relaunch retained each counter. Phoenix copied main/WAL/SHM; the others copied the checkpointed database. Evidence `stack-sqlite-file-{live.mjs,preflight.json,tests.json,audit.json}`.
 - All scoped test containers, named volumes and storage directories removed, retaining shared runtime/cache and unrelated QA work. Audit 2026-10-04T08:24:19.882384+00:00: health200/integrityok/zeroactive, unchangedPID1063107/runnerSHA. QA source candidate `/output/sqlite-file-candidate-a6a7f5d`.
 - Product source count now7128 physical lines. Native acceptance stays55/48/48; all7 remaining native fixtures still pending. Deno draft/watcher37339 unchanged; ordinary slot08:29:35UTC.
+
+
+## Deno native acceptance checkpoint
+
+- Build GLISoHttNJg6Rcn-od35Ei5wa4j0yhtL submitted 2026-10-04T08:29:45.596Z, ready after 145456ms.
+  App repo-850a8e4568f756cc3f4117ae-d6da2ed780ae-26bac45acce9; image bytes 61421201.
+- Google first/cached health20835/6789ms, product visible22944/7835ms,
+  write23245/8233ms. Counter0→1→2, reloads passed, console clean, both stopped.
+- Codespaces existing environment pods-launch-containers-69rw5vx4xp46c5qw5; first
+  Shutdown health53678ms/delivery38833ms, cached8944ms.
+  Saved file counters1/2, exact recipe command, durablevolume/privateport23310.
+- Audit 2026-10-04T08:36:33.712331+00:00: health200/integrityok/zero active, unchangedPID1063107/runnerSHA.
+  All four launches stopped; no service restart. Coverage55/49/49;6nativepending.
+  Source7128/full189 unchanged. Existing GitHub2FA/VMreplacement/stablehostname
+  inputs remain pending. Goal active and progressing.
