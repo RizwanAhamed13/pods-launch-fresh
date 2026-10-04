@@ -121,7 +121,7 @@ test('runner downloads signed assets without forwarding either authorization hea
 });
 
 test('failed, expired, truncated, oversized or corrupt CDN downloads fall back once to authorized local bytes', async t => {
-  for (const failure of ['network','expired','truncated','oversized','corrupt']) {
+  for (const failure of ['network','expired','truncated','oversized','corrupt','timeout','storage']) {
     let originCalls=0,cdnCalls=0;
     const timings=await runtime(t,async(url,options)=>{
       if(String(url).startsWith('https://pods.example/')){
@@ -130,11 +130,16 @@ test('failed, expired, truncated, oversized or corrupt CDN downloads fall back o
         assert.equal(options.headers['X-PODS-Image-Delivery'],undefined);return new Response(blob);
       }
       cdnCalls++;assert.equal(options.headers,undefined);
-      if(failure==='network')throw new Error('network unavailable');
+      if(failure==='network')throw new Error('SECRET network unavailable '+signed);
+      if(failure==='timeout')throw new DOMException('SECRET '+signed,'TimeoutError');
+      if(failure==='storage')throw Object.assign(new Error('SECRET private path'),{code:'ENOSPC'});
       if(failure==='expired')return new Response(null,{status:403});
       return new Response(failure==='truncated'?blob.subarray(1):failure==='oversized'?Buffer.concat([blob,blob]):Buffer.alloc(blob.length));
     });
     assert.equal(originCalls,2);assert.equal(cdnCalls,1);assert.equal(timings.imageCdnDownloads,0);assert.equal(timings.imageCdnFallbacks,1);assert.equal(timings.imageOriginDownloads,1);
+    const reason={network:'transfer',expired:'http',truncated:'size',oversized:'size',corrupt:'integrity',timeout:'timeout',storage:'storage'}[failure];
+    assert.deepEqual(timings.imageCdnLastFailure,{reason,...(failure==='expired'?{httpStatus:403}:{})});
+    assert.doesNotMatch(JSON.stringify(timings),/SECRET|sig=|server-only-token|launch-only-token/);
   }
 });
 
@@ -173,6 +178,20 @@ test('server authorizes image membership before resolution, preserves legacy dow
   for(mode of ['failure','missing','unsafe']){response=await fetch(url,options);assert.equal(response.status,200);assert.deepEqual(Buffer.from(await response.arrayBuffer()),blob);}
   response=await fetch(url.replace(/\/artifact\/images\/.*$/,''),{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({status:'starting',timings:{imageCdnRangeAttempts:1,imageCdnRangeDownloads:1,unknownSignedUrl:signed,imageCdnMs:-1}})});
   assert.equal(response.status,200);assert.deepEqual(app.store.get('launch',id).timings,{imageCdnRangeAttempts:1,imageCdnRangeDownloads:1,cacheHit:false});
+  for(const [failure,expected] of [
+    [{reason:'http',httpStatus:503,url:signed,message:'SECRET body'},{reason:'http',httpStatus:503}],
+    [{reason:'range-metadata',httpStatus:206},{reason:'range-metadata'}],
+    [{reason:'timeout',httpStatus:403},{reason:'timeout'}],
+    [{reason:'http',httpStatus:600},{reason:'http'}],
+    [{reason:'http',httpStatus:'403'},{reason:'http'}],
+    [{reason:'http',httpStatus:403.5},{reason:'http'}],
+    [{reason:signed,httpStatus:403},undefined],
+    ['SECRET '+signed,undefined],
+  ]) {
+    response=await fetch(url.replace(/\/artifact\/images\/.*$/,''),{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({status:'starting',timings:{imageCdnLastFailure:failure}})});
+    assert.equal(response.status,200);assert.deepEqual(app.store.get('launch',id).timings,{cacheHit:false,...(expected?{imageCdnLastFailure:expected}:{})});
+    assert.doesNotMatch(JSON.stringify(app.store.get('launch',id).timings),/SECRET|sig=/);
+  }
   mode='revoke';assert.equal((await fetch(url,options)).status,410);
   const resolved=resolutions;assert.equal((await fetch(url,options)).status,404);assert.equal(resolutions,resolved);
   app.store.put('launch',id,{...launch,stopRequested:true});assert.equal((await fetch(url,options)).status,404);assert.equal(resolutions,resolved);

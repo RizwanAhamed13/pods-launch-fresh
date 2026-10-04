@@ -13,6 +13,7 @@ import { LxdBuilder } from './lxd-builder.mjs';
 import { renderCompatibility } from './compatibility.mjs';
 import { GitHubImageDelivery } from './image-delivery.mjs';
 import { trustedImageUrl } from './artifact-url.mjs';
+import { imageFailureReasons } from './image-transfer-error.mjs';
 const base = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const statuses = new Set(['downloading','starting','ready','failed','stopped','heartbeat']);
 const returnPage = value => typeof value === 'string' && /^(?:\/|\/develop|\/launch\/[a-z0-9-]+)$/.test(value);
@@ -113,7 +114,14 @@ export async function createApp(options={}) {
           if(event.status!=='heartbeat')patch.status=event.status;
           if(event.status==='ready') { if(!s.providerReadyAt)throw fail(409,'Provider is not ready');patch.readyAt=s.readyAt||Date.now(); }
           if(event.status==='failed')patch.error=String(event.error||'Application failed').slice(-500);
-          if(event.timings) {patch.timings={};for(const k of ['downloadMs','imagesMs','imageCacheHits','imageArchiveCacheHits','imageCacheCheckMs','imageDownloadMs','imageLoadMs','imageCdnDownloads','imageCdnFallbacks','imageCdnMs','imageOriginDownloads','imageCdnRangeAttempts','imageCdnRangeDownloads','runtimeReadyMs','runtimeRetries'])if(Number.isFinite(event.timings[k])&&event.timings[k]>=0&&event.timings[k]<600000)patch.timings[k]=event.timings[k];patch.timings.cacheHit=event.timings.cacheHit===true;}
+          if(event.timings) {
+            patch.timings={};for(const k of ['downloadMs','imagesMs','imageCacheHits','imageArchiveCacheHits','imageCacheCheckMs','imageDownloadMs','imageLoadMs','imageCdnDownloads','imageCdnFallbacks','imageCdnMs','imageOriginDownloads','imageCdnRangeAttempts','imageCdnRangeDownloads','runtimeReadyMs','runtimeRetries'])if(Number.isFinite(event.timings[k])&&event.timings[k]>=0&&event.timings[k]<600000)patch.timings[k]=event.timings[k];patch.timings.cacheHit=event.timings.cacheHit===true;
+            const failure=event.timings.imageCdnLastFailure;
+            if(imageFailureReasons.includes(failure?.reason)) {
+              patch.timings.imageCdnLastFailure={reason:failure.reason};
+              if(failure.reason==='http'&&Number.isInteger(failure.httpStatus)&&failure.httpStatus>=100&&failure.httpStatus<=599)patch.timings.imageCdnLastFailure.httpStatus=failure.httpStatus;
+            }
+          }
           // Preview URL is set from provider metadata, never accepted from the runner.
           update(s.id,patch);return json(200,{action:s.stopRequested?'stop':'continue'});
         }

@@ -75,7 +75,13 @@ test('range status, offsets, totals, length and full-file digest are enforced wi
       if(failure==='oversized')part.body=Buffer.concat([part.body,Buffer.from([0])]);
       if(failure==='corrupt')part.body=Buffer.alloc(part.body.length);
       return new Response(part.body,{status:206,headers:part.headers});
-    }),/range transfer failed|integrity check failed/,failure);
+    }),error=>{
+      assert.match(error.message,/range transfer failed|integrity check failed/);
+      const reason={'ignored-range':'http',expired:'http',redirect:'http',offset:'range-metadata',total:'range-metadata',length:'range-metadata',truncated:'size',oversized:'size',corrupt:'integrity',network:'transfer'}[failure];
+      assert.equal(error.reason,reason,failure);
+      if(reason==='http')assert.equal(error.httpStatus,{'ignored-range':200,expired:403,redirect:302}[failure]);
+      return true;
+    },failure);
     assert.deepEqual(await readdir(root),[],failure);
   }
 });
@@ -88,6 +94,26 @@ test('one rejected range aborts pending peers before closing and removing the ou
     return new Promise((resolve,reject)=>options.signal.addEventListener('abort',()=>{aborted++;reject(new Error('Canceled'));},{once:true}));
   }),/range transfer failed/);
   assert.equal(requests,4);assert.equal(aborted,3);assert.deepEqual(await readdir(root),[]);
+});
+
+test('a later range HTTP failure is retained instead of earlier peers cancellation errors',async t=>{
+  const root=await temporary(t);let requests=0,aborted=0;
+  await assert.rejects(downloadImageRanges(signed,image,join(root,'image.gz'),async(_,options)=>{
+    if(++requests===3)return new Response('SECRET response body',{status:503});
+    return new Promise((resolve,reject)=>options.signal.addEventListener('abort',()=>{aborted++;reject(new DOMException('SECRET '+signed,'AbortError'));},{once:true}));
+  }),error=>{
+    assert.equal(error.reason,'http');assert.equal(error.httpStatus,503);
+    assert.doesNotMatch(error.message+JSON.stringify(error),/SECRET|sig=|release-assets/);return true;
+  });
+  assert.equal(requests,4);assert.equal(aborted,3);assert.deepEqual(await readdir(root),[]);
+});
+
+test('range timeout classification survives peer aborts and cleans temporary bytes',async t=>{
+  const root=await temporary(t);
+  await assert.rejects(downloadImageRanges(signed,image,join(root,'image.gz'),async()=>{
+    throw new DOMException('SECRET '+signed,'TimeoutError');
+  }),error=>{assert.equal(error.reason,'timeout');assert.doesNotMatch(JSON.stringify(error),/SECRET|sig=/);return true;});
+  assert.deepEqual(await readdir(root),[]);
 });
 
 test('invalid range inputs and existing destinations never fetch, overwrite or delete unrelated bytes',async t=>{
@@ -121,5 +147,6 @@ for(const mode of ['ranges','origin-fallback','corrupt-both'])test(`large runtim
   assert.equal(rangeCalls,4);assert.equal(originCalls,mode==='ranges'?1:2);assert.equal(loads,mode==='corrupt-both'?0:1);
   assert.equal(timings.imageCdnRangeAttempts,1);assert.equal(timings.imageCdnRangeDownloads,mode==='ranges'?1:0);
   assert.equal(timings.imageCdnFallbacks,mode==='ranges'?0:1);assert.equal(timings.imageOriginDownloads,mode==='origin-fallback'?1:0);
+  assert.deepEqual(timings.imageCdnLastFailure,mode==='ranges'?undefined:{reason:'http',httpStatus:403});
   assert.deepEqual(await readdir(join(root,'images')),[]);
 });

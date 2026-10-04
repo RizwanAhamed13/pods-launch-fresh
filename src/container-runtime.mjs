@@ -9,6 +9,7 @@ import { persistentVolumes, storageRoot } from './storage.mjs';
 import { transitionApplicationData } from './storage-transition.mjs';
 import { trustedImageUrl } from './artifact-url.mjs';
 import { downloadImageRanges } from './image-ranges.mjs';
+import { ImageTransferError, imageFailureDetails } from './image-transfer-error.mjs';
 
 async function fileHash(path) {
   const hash = createHash('sha256'); for await (const chunk of createReadStream(path)) hash.update(chunk); return hash.digest('hex');
@@ -49,6 +50,7 @@ export async function prepareRuntimeImages(images, config, root, timings, execut
   const cache = join(root, 'images'); await mkdir(cache, {recursive:true,mode:0o700});
   const started = performance.now();
   Object.assign(timings, {imageCacheHits:0,imageArchiveCacheHits:0,imageCacheCheckMs:0,imageDownloadMs:0,imageLoadMs:0,imageCdnDownloads:0,imageCdnFallbacks:0,imageCdnMs:0,imageOriginDownloads:0,imageCdnRangeAttempts:0,imageCdnRangeDownloads:0});
+  delete timings.imageCdnLastFailure;
   const measure = async (key, action) => {
     const at = performance.now();
     try { return await action(); } finally { timings[key] += performance.now() - at; }
@@ -64,11 +66,12 @@ export async function prepareRuntimeImages(images, config, root, timings, execut
         const url = new URL(config.artifactUrl); url.pathname += '/images/' + image.sha256;
         const origin = direct => fetcher(url, {headers:{Authorization:`Bearer ${config.token}`,...(direct?{'X-PODS-Image-Delivery':'direct'}:{})},signal:AbortSignal.timeout(180000),redirect:'manual'});
         const save = async response => {
-          if (response.status !== 200) { await response.body?.cancel().catch(() => {}); throw new Error(`Prepared image download returned ${response.status}`); }
+          if (response.status !== 200) { await response.body?.cancel().catch(() => {}); throw new ImageTransferError(`Prepared image download returned ${response.status}`, 'http', response.status); }
           const temp = path + '.' + config.id; let size = 0; const hash = createHash('sha256');
           try {
-            await pipeline(response.body, new Transform({transform(chunk, _, done) { size += chunk.length; if (size > image.bytes) return done(new Error('Prepared image exceeds declared size')); hash.update(chunk); done(null, chunk); }}), createWriteStream(temp,{flags:'wx',mode:0o600}));
-            if (size !== image.bytes || hash.digest('hex') !== image.sha256) throw new Error('Prepared image integrity check failed');
+            await pipeline(response.body, new Transform({transform(chunk, _, done) { size += chunk.length; if (size > image.bytes) return done(new ImageTransferError('Prepared image exceeds declared size', 'size')); hash.update(chunk); done(null, chunk); }}), createWriteStream(temp,{flags:'wx',mode:0o600}));
+            if (size !== image.bytes) throw new ImageTransferError('Prepared image integrity check failed', 'size');
+            if (hash.digest('hex') !== image.sha256) throw new ImageTransferError('Prepared image integrity check failed', 'integrity');
             await rename(temp, path);
           } finally { await rm(temp,{force:true}); }
         };
@@ -77,9 +80,10 @@ export async function prepareRuntimeImages(images, config, root, timings, execut
           const location = trustedImageUrl(response.headers.get('location'));
           await response.body?.cancel().catch(() => {});
           if (!location) throw new Error('Prepared image redirect rejected');
+          let cdnSignal;
           try {
             await measure('imageCdnMs', async () => {
-              if (image.bytes < 32 * 1024 ** 2) return save(await fetcher(location, {signal:AbortSignal.timeout(30000),redirect:'error'}));
+              if (image.bytes < 32 * 1024 ** 2) { cdnSignal = AbortSignal.timeout(30000); return save(await fetcher(location, {signal:cdnSignal,redirect:'error'})); }
               timings.imageCdnRangeAttempts++;
               const temp = path + '.' + config.id;
               await downloadImageRanges(location, image, temp, fetcher);
@@ -87,7 +91,7 @@ export async function prepareRuntimeImages(images, config, root, timings, execut
               timings.imageCdnRangeDownloads++;
             });
             timings.imageCdnDownloads++; return;
-          } catch { timings.imageCdnFallbacks++; response = await origin(false); }
+          } catch (error) { timings.imageCdnFallbacks++; timings.imageCdnLastFailure = imageFailureDetails(error, cdnSignal); response = await origin(false); }
         }
         await save(response); timings.imageOriginDownloads++;
       });

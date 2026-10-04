@@ -1,0 +1,286 @@
+{
+  "recordedAt": "2026-10-04T14:58:09.467102+00:00",
+  "baseRevision": "f1412a45f4ed4359cd7c961b1de07256e4decf2d",
+  "triggerEvidence": "stack-browser-handoff-native.json",
+  "triggerLaunchId": "qM8sRUCKYU8_tJfr5ZcnpzSD6ezNaQec",
+  "triggerFacts": {
+    "initialComputeState": "SUSPENDED",
+    "imageCacheHits": 0,
+    "imageCdnFallbacks": 1,
+    "imageCdnRangeAttempts": 1,
+    "imageCdnMs": 3515,
+    "imageDownloadMs": 27421,
+    "healthMs": 54875
+  },
+  "headersOnAswin": {
+    "recordedAt": "2026-10-04T14:49:58.783Z",
+    "host": "aswin",
+    "assetId": 609893443,
+    "image": {
+      "sha256": "8faad71cec12d7fc05acdf90ed38536da406e90b740430a9af3742b8fd21b5a7",
+      "bytes": 125123048
+    },
+    "observations": [
+      {
+        "phase": "private-repository",
+        "status": 200,
+        "elapsedMs": 533,
+        "headers": {
+          "date": "Sun, 04 Oct 2026 14:49:58 GMT",
+          "age": null,
+          "cache-control": "private, max-age=60, s-maxage=60",
+          "content-range": null,
+          "content-length": null,
+          "content-type": "application/json; charset=utf-8",
+          "x-cache": null,
+          "x-cache-hits": null,
+          "retry-after": null
+        }
+      },
+      {
+        "phase": "asset-redirect",
+        "status": 302,
+        "elapsedMs": 370,
+        "headers": {
+          "date": "Sun, 04 Oct 2026 14:49:58 GMT",
+          "age": null,
+          "cache-control": null,
+          "content-range": null,
+          "content-length": "0",
+          "content-type": "text/html;charset=utf-8",
+          "x-cache": null,
+          "x-cache-hits": null,
+          "retry-after": null
+        }
+      },
+      {
+        "phase": "cdn-range-headers",
+        "requestedRange": "bytes=0-0",
+        "status": 206,
+        "elapsedMs": 602,
+        "headers": {
+          "date": "Sun, 04 Oct 2026 14:49:59 GMT",
+          "age": "0",
+          "cache-control": null,
+          "content-range": "bytes 0-0/125123048",
+          "content-length": "1",
+          "content-type": "application/octet-stream",
+          "x-cache": "HIT, MISS",
+          "x-cache-hits": "2, 0",
+          "retry-after": null
+        }
+      },
+      {
+        "phase": "cdn-range-headers",
+        "requestedRange": "bytes=1-1",
+        "status": 206,
+        "elapsedMs": 662,
+        "headers": {
+          "date": "Sun, 04 Oct 2026 14:50:00 GMT",
+          "age": "1",
+          "cache-control": null,
+          "content-range": "bytes 1-1/125123048",
+          "content-length": "1",
+          "content-type": "application/octet-stream",
+          "x-cache": "HIT, HIT",
+          "x-cache-hits": "2, 1",
+          "retry-after": null
+        }
+      },
+      {
+        "phase": "cdn-range-headers",
+        "requestedRange": "bytes=0-15640380",
+        "status": 206,
+        "elapsedMs": 151,
+        "headers": {
+          "date": "Sun, 04 Oct 2026 14:50:00 GMT",
+          "age": "1",
+          "cache-control": null,
+          "content-range": "bytes 0-15640380/125123048",
+          "content-length": "15640381",
+          "content-type": "application/octet-stream",
+          "x-cache": "HIT, HIT",
+          "x-cache-hits": "2, 2",
+          "retry-after": null
+        }
+      }
+    ],
+    "redirectResolved": true,
+    "applicationStarted": false,
+    "cacheCleared": false,
+    "redirect": {
+      "host": "release-assets.githubusercontent.com",
+      "pathSha256": "e76f33b9cde6521737eb48f92c2bb8cfc9a122a12f82426d8d38bebdc4c32021",
+      "expiresAt": "2026-10-04T15:47:19Z"
+    }
+  },
+  "nativeGoogleTransfer": {
+    "startedAt": "2026-10-04T14:52:28.573Z",
+    "provider": "google",
+    "applicationStarted": false,
+    "productionChanged": false,
+    "initialState": "RUNNING",
+    "initialPublicKeyCount": 9,
+    "redirectExpiresAt": "2026-10-04T15:47:12Z",
+    "diagnosticStage": "parse-receipt",
+    "transfer": {
+      "startedAt": "2026-10-04T14:52:32.756Z",
+      "image": {
+        "sha256": "8faad71cec12d7fc05acdf90ed38536da406e90b740430a9af3742b8fd21b5a7",
+        "bytes": 125123048
+      },
+      "observations": [
+        {
+          "requestedRange": "bytes=0-15640380",
+          "status": 206,
+          "headersMs": 145,
+          "headers": {
+            "date": "Sun, 04 Oct 2026 14:52:32 GMT",
+            "age": "476",
+            "content-range": "bytes 0-15640380/125123048",
+            "content-length": "15640381",
+            "x-cache": "MISS, HIT",
+            "x-cache-hits": "0, 0"
+          }
+        },
+        {
+          "requestedRange": "bytes=15640381-31280761",
+          "status": 206,
+          "headersMs": 52,
+          "headers": {
+            "date": "Sun, 04 Oct 2026 14:52:32 GMT",
+            "age": "476",
+            "content-range": "bytes 15640381-31280761/125123048",
+            "content-length": "15640381",
+            "x-cache": "MISS, HIT",
+            "x-cache-hits": "0, 0"
+          }
+        },
+        {
+          "requestedRange": "bytes=31280762-46921142",
+          "status": 206,
+          "headersMs": 69,
+          "headers": {
+            "date": "Sun, 04 Oct 2026 14:52:32 GMT",
+            "age": "476",
+            "content-range": "bytes 31280762-46921142/125123048",
+            "content-length": "15640381",
+            "x-cache": "MISS, HIT",
+            "x-cache-hits": "0, 0"
+          }
+        },
+        {
+          "requestedRange": "bytes=46921143-62561523",
+          "status": 206,
+          "headersMs": 75,
+          "headers": {
+            "date": "Sun, 04 Oct 2026 14:52:32 GMT",
+            "age": "476",
+            "content-range": "bytes 46921143-62561523/125123048",
+            "content-length": "15640381",
+            "x-cache": "MISS, HIT",
+            "x-cache-hits": "0, 0"
+          }
+        },
+        {
+          "requestedRange": "bytes=62561524-78201904",
+          "status": 206,
+          "headersMs": 59,
+          "headers": {
+            "date": "Sun, 04 Oct 2026 14:52:32 GMT",
+            "age": "476",
+            "content-range": "bytes 62561524-78201904/125123048",
+            "content-length": "15640381",
+            "x-cache": "MISS, HIT",
+            "x-cache-hits": "0, 0"
+          }
+        },
+        {
+          "requestedRange": "bytes=78201905-93842285",
+          "status": 206,
+          "headersMs": 267,
+          "headers": {
+            "date": "Sun, 04 Oct 2026 14:52:33 GMT",
+            "age": "476",
+            "content-range": "bytes 78201905-93842285/125123048",
+            "content-length": "15640381",
+            "x-cache": "MISS, HIT",
+            "x-cache-hits": "0, 0"
+          }
+        },
+        {
+          "requestedRange": "bytes=93842286-109482666",
+          "status": 206,
+          "headersMs": 72,
+          "headers": {
+            "date": "Sun, 04 Oct 2026 14:52:32 GMT",
+            "age": "476",
+            "content-range": "bytes 93842286-109482666/125123048",
+            "content-length": "15640381",
+            "x-cache": "MISS, HIT",
+            "x-cache-hits": "0, 0"
+          }
+        },
+        {
+          "requestedRange": "bytes=109482667-125123047",
+          "status": 206,
+          "headersMs": 66,
+          "headers": {
+            "date": "Sun, 04 Oct 2026 14:52:32 GMT",
+            "age": "476",
+            "content-range": "bytes 109482667-125123047/125123048",
+            "content-length": "15640381",
+            "x-cache": "MISS, HIT",
+            "x-cache-hits": "0, 0"
+          }
+        }
+      ],
+      "applicationStarted": false,
+      "existingCachesChanged": false,
+      "verifiedBytes": 125123048,
+      "integrityVerified": true,
+      "passed": true,
+      "elapsedMs": 5532,
+      "ownedTemporaryDirectoryRemoved": true
+    },
+    "completed": true,
+    "finalState": "RUNNING",
+    "keyRemoved": true,
+    "existingKeysPreserved": true,
+    "finalPublicKeyCount": 9,
+    "localKeyRemoved": true,
+    "finishedAt": "2026-10-04T14:52:40.314Z"
+  },
+  "invalidFirstProbe": {
+    "startedAt": "2026-10-04T14:51:31.594Z",
+    "provider": "google",
+    "applicationStarted": false,
+    "productionChanged": false,
+    "initialState": "RUNNING",
+    "initialPublicKeyCount": 9,
+    "redirectExpiresAt": "2026-10-04T15:34:53Z",
+    "completed": false,
+    "error": "Diagnostic failed; inspect sanitized status without repeating the transfer",
+    "finalState": "RUNNING",
+    "keyRemoved": true,
+    "existingKeysPreserved": true,
+    "finalPublicKeyCount": 9,
+    "localKeyRemoved": true,
+    "finishedAt": "2026-10-04T14:51:37.363Z"
+  },
+  "firstProbeLimitation": "First diagnostic exited1 without a valid transfer receipt; its cause was not retained. Key cleanup and existing-key preservation were confirmed. The completed second probe used production Node22+ discovery instead of a bare node command. Do not infer that the initial attempt performed a successful transfer.",
+  "conclusion": "The current private redirect and ranges work. Exact baseline eight-range code verified the existing125123048-byte archive on RUNNING Cloud Shell in5532ms. The historical fallback cause remains unknown because production discarded the underlying error; add sanitized failure categories before drawing conclusions or changing transfer policy.",
+  "limitations": [
+    "The same existing asset and warm CDN paths were used; headers include cache HIT observations. This is not a cold CDN benchmark or first-image product acceptance.",
+    "Transfer probe does not load Docker, launch an application, write database data or measure full launch time.",
+    "No existing cache was cleared. Ephemeral diagnostic keys and owned temporary transfer files were removed; nine pre-existing public keys were preserved.",
+    "The native transfer used baseline code. Candidate diagnostics are verified by current tests and separate deployment/integration checks."
+  ],
+  "probes": {
+    "evidence/probes/image-fallback-headers.mjs": "b398be4fd5fbbbb3c506992b65408c3404a4332262cb3ace24ad3ebb195726f4",
+    "evidence/probes/image-fallback-google.mjs": "57d07c450d38a53098cdfdb246a9989082283ccc222b6034816b1e7587dbab91",
+    "evidence/probes/image-fallback-download.mjs": "5d0ba481e2a21adfca1d00b87f4802b7ebd8ac2feb7c3958885545d6efa697f7"
+  },
+  "executedBaselineBundleSha256": "5176b999249d1ad1682869b933307038bf217bdb5535ee1a60555823b5a22587",
+  "baselineRangeSourceSha256": "47dfbb654c11f8e47347db4a3f13d6b5707fd245511e3ee9d65df2ac5d6b772f"
+}

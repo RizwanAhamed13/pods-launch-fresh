@@ -1,0 +1,55 @@
+{
+  "recordedAt": "2026-10-04T14:58:09.467102+00:00",
+  "baseRevision": "f1412a45f4ed4359cd7c961b1de07256e4decf2d",
+  "runs": [
+    {
+      "platform": "local",
+      "tests": 272,
+      "pass": 272,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 27788.921708,
+      "logSha256": "e104484d3415a3632f65a1f3ed58cf76c8dae3a5ea91d5ce7217835b602c46b0"
+    },
+    {
+      "platform": "isolated-aswin-linux",
+      "tests": 272,
+      "pass": 272,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 57708.522844,
+      "logSha256": "721c4989ac82c3c302b12b67369c7ea78d00f0326daa38ed8f8ccdec07afea54"
+    }
+  ],
+  "targetedRegressionsOnBaseline": {
+    "tests": 21,
+    "pass": 14,
+    "fail": 7
+  },
+  "isolatedSnapshot": {
+    "candidate": "/output/cdn-fallback-candidate-f1412a4",
+    "verifiedFiles": 338,
+    "archiveSha256": "723b57721e14b5adc6e7ae0b089e0059c796d8e58e7d0c4fafccb394ae91a127",
+    "manifestSha256": "bfe8e7b8c948214101c6d1d5330cd03cb8cb1eec01cae31704cea18a47b3ee80"
+  },
+  "sourceHashes": {
+    "src/image-transfer-error.mjs": "2612d0c065aca6a4486e8227b31f3187b8ce8a7785bfea189e4d1bcceacdc519",
+    "src/image-ranges.mjs": "0b6afc433304f74af11422cfb45a7ac4fce40f211a8a13ea60c0c1bf975319b0",
+    "src/container-runtime.mjs": "9d938b7aa5f38af7a18668a203feda57fe7417cfe5c3d699c0e944719bd06571",
+    "src/server.mjs": "edea7d0722f329f4d42e8e5006c3837a970d2ff6619b649c37b540cdc79477d5",
+    "test/image-ranges.test.mjs": "90768d7a43f6915a7940c59b1ee5af1660c400939085c41d8f9c1356433ff4b4",
+    "test/image-delivery.test.mjs": "fbfa27588fb3f888baab4f7db7c1d222672f5c6e68385f445248d87c7e73619e"
+  },
+  "scope": "Observability only: retain a fixed failure category and optional HTTP status in timings.imageCdnLastFailure. Keep current range parallelism,30s shared transfer deadline, peer cancellation, byte/hash verification, single origin fallback and Docker identity gate. No raw upstream message, URL, header, body or credential is retained in launch telemetry.",
+  "coverage": [
+    "HTTP statuses, wrong offsets/totals/lengths, incomplete/oversized bodies, hash failures and generic transfer failures produce distinct fixed categories.",
+    "A non-first rejected range retains its HTTP503 cause even when earlier-index peers abort.",
+    "Timeout category survives peer cancellation and cleanup.",
+    "Serial CDN timeout/storage/HTTP/size/integrity/generic failures preserve one authorized origin fallback and verify exact bytes before load.",
+    "Server callback accepts only enumerated reasons and integer HTTP100..599; unknown fields, signed URLs, arbitrary strings and invalid statuses are dropped.",
+    "All existing launcher, provider, build, browser, database and isolation checks pass on both platforms."
+  ],
+  "diagnosticEvidence": "stack-cdn-fallback-diagnostic.json"
+}
