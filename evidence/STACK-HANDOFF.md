@@ -20,7 +20,8 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
   actix, adonis, aspnet, axum, deno, echo, fastapi, fastify, fiber, flask-mariadb, flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, hono, koa, ktor, micronaut, nestjs, phoenix, php, rocket, sinatra, streamlit, symfony.
 - All eight static frontend and all six SSR fixtures pass both acceptance paths.
   Codespaces native browser interaction remains pending for every fixture.
-- Latest tooling source18026bb:114 automated tests pass locally/aswin. Logs
+- Current code/evidence checkpointa74cabd; local/aswin synced.
+- Full-suite baseline18026bb:114 automated tests pass locally/aswin. Logs
   /tmp/pods-ssr-complete-tests-{local,aswin}.txt. Live runtime remains5e5b4a0.
   Source updates only native QA scripts/tests; no runtime restart was necessary.
 - 5,622 physical source lines:3,033 product/tooling,1,492 tests,933 examples,
@@ -126,8 +127,9 @@ Mark pending workflow tabs each turn; no duplicate launch/build after read timeo
   expected0 then1 after fullstop. Use newrecordarray to preserve originalfailure.
 - stopPreparedProduct(tab,url) confirmsstop. History can briefly lag whileits
   existingasync request finishes; no evidencedhistorybug.
-- supportQa:IAB2tab29,public support deliverable. Needs fresh verification after
-  this gate's push:55isolated/28Google/29Codespaces;FastifyGooglePending,CS passed.
+- supportQa:IAB2tab29,public support deliverable. Aftera74cabd sync, browser
+  verified55isolated/28Google/29Codespaces;FastifyGooglePending,CS passed; native
+  Codespaces browser warning remains visible. No runtime restart was needed.
 - nativeGithubKeep: IAB2tab10, pending GitHub two-factor authentication; fresh
   read00:40UTC still2FA. User action already requested. No SMS/code sent.
 - cloudLifecycle: IAB2tab14, Cloud Shell Restart confirmation pending. No approval
