@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **179 passing checks in full local and isolated aswin QA runs**. Native coverage is 44 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **184 passing checks in full local and isolated aswin QA runs**. Native coverage is 44 Google browser fixtures and
 44 Codespaces HTTP/protocol fixtures; 11 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
@@ -168,9 +168,12 @@ a stable production hostname remains a deployment requirement.
 - [Gradio and Streamlit protocol preflight](evidence/stack-dashboard-protocol-preflight.json)
   verifies real dashboard protocol writes and SQLite persistence after a full
   restart in isolated QA. Native provider acceptance remains pending for both.
-- [Full-suite result](evidence/stack-file-counter-runtime-tests.json): **179/179**
+- [Shared dashboard helper](evidence/stack-dashboard-helper-preflight.json) verifies
+  the exact serialized native harness against real Gradio and Streamlit artifacts.
+  Their native provider acceptance still needs separate runs.
+- [Full-suite result](evidence/stack-dashboard-helper-tests.json): **184/184**
   checks passed locally and in isolated aswin Linux QA.
-- [Physical source count](evidence/code-lines.json): **6,814 lines**, including
+- [Physical source count](evidence/code-lines.json): **6,994 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)

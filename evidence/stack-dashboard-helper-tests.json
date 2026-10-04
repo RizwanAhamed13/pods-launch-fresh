@@ -1,0 +1,53 @@
+{
+  "recordedAt": "2026-10-04T07:03:57.605378+00:00",
+  "baseRevision": "ada4194",
+  "sourceHashes": {
+    "src/runner.mjs": "de3680794b58f02d4e912810164e79049559fe994556501ec6969bd3cf3dafde",
+    "src/container-runtime.mjs": "51c866cf69fab25476f0cb286747db4c5f2aaa34c2e093b9580444970d970374",
+    "src/storage-transition.mjs": "4bf7ba7c9489cb1d2afbe372ac54e1d37c0dc3a9fe48a34f13f6bcc6300dc161",
+    "src/containers.mjs": "1c1a811c983f666d7a4c222bd115a56268263d28e6737133e6d84ab451a57eba",
+    "scripts/live-codespaces.mjs": "cb7b79657054a7996aa71a85bac6e0ad0a0478a14e0f55b03f4cef985eaa7cfc",
+    "scripts/probe-dashboard.mjs": "1aebd67bcf35180920399594bd2d35b06ce16d069dd0892ba741173aae09f2bd",
+    "scripts/probe-streamlit.py": "6002ee64f90b7afc74352dd0a62a1914b4b55fa9522362d19d1ac3cae88440a6",
+    "test/dashboard-probe.test.mjs": "5e63e6f4593c65c7689e92994f1f5efd15597160f352ae4e36f3c7d53aa8daf8",
+    "evidence/stack-dashboard-helper-live.mjs": "d0fc1320d7fb7122a429a19290803016e3cc48dc3ac88f8c665b44ba87d2db9c"
+  },
+  "qaCandidate": "/output/dashboard-candidate-ada4194",
+  "snapshotManifestSha256": "f67e1d31c9e0b0c7875d21f2a1c7c9dd64bc9895bb066b660e675a269e52876a",
+  "snapshotFilesMatched": 320,
+  "scope": "Opt-in Gradio/Streamlit native harness integration, protocol and SQLite persistence checks, five focused tests and full suites. Product runtime/provider behavior unchanged.",
+  "fullSuite": [
+    {
+      "environment": "local",
+      "tests": 184,
+      "pass": 184,
+      "fail": 0,
+      "outputSha256": "8e272b3b3b180845dac40e9fcd54ec681ad9b68f56f5837bfdca53a8adead6c3"
+    },
+    {
+      "environment": "isolated-aswin-linux",
+      "tests": 184,
+      "pass": 184,
+      "fail": 0,
+      "outputSha256": "744ba27d0c1ba1a93cff77ccf968608ce8bd50feaa9ddb176e45058fcda4e171"
+    }
+  ],
+  "earlierIncompleteSnapshotAttempts": [
+    {
+      "environment": "isolated-aswin-linux",
+      "reason": "QA snapshot omitted public assets and compatibility evidence; fixture helper itself passed.",
+      "tests": 181,
+      "pass": 176,
+      "fail": 5,
+      "outputSha256": "1cc0a5e56a5dad2fc027b59af082b46a3e10dd1f802eb995d572bfce633f0dab"
+    },
+    {
+      "environment": "isolated-aswin-linux",
+      "reason": "Public assets restored, but required compatibility data was still absent. Full snapshot manifest checked before final suite.",
+      "tests": 184,
+      "pass": 182,
+      "fail": 2,
+      "outputSha256": "4ab1611e4c75405e86a35c6ddabe53e20eb075d5b3039652027e7696a97de631"
+    }
+  ]
+}

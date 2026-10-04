@@ -1,0 +1,199 @@
+{
+  "recordedAt": "2026-10-04T07:03:57.605378+00:00",
+  "baseRevision": "ada4194",
+  "sourceHashes": {
+    "src/runner.mjs": "de3680794b58f02d4e912810164e79049559fe994556501ec6969bd3cf3dafde",
+    "src/container-runtime.mjs": "51c866cf69fab25476f0cb286747db4c5f2aaa34c2e093b9580444970d970374",
+    "src/storage-transition.mjs": "4bf7ba7c9489cb1d2afbe372ac54e1d37c0dc3a9fe48a34f13f6bcc6300dc161",
+    "src/containers.mjs": "1c1a811c983f666d7a4c222bd115a56268263d28e6737133e6d84ab451a57eba",
+    "scripts/live-codespaces.mjs": "cb7b79657054a7996aa71a85bac6e0ad0a0478a14e0f55b03f4cef985eaa7cfc",
+    "scripts/probe-dashboard.mjs": "1aebd67bcf35180920399594bd2d35b06ce16d069dd0892ba741173aae09f2bd",
+    "scripts/probe-streamlit.py": "6002ee64f90b7afc74352dd0a62a1914b4b55fa9522362d19d1ac3cae88440a6",
+    "test/dashboard-probe.test.mjs": "5e63e6f4593c65c7689e92994f1f5efd15597160f352ae4e36f3c7d53aa8daf8",
+    "evidence/stack-dashboard-helper-live.mjs": "d0fc1320d7fb7122a429a19290803016e3cc48dc3ac88f8c665b44ba87d2db9c"
+  },
+  "qaCandidate": "/output/dashboard-candidate-ada4194",
+  "snapshotManifestSha256": "f67e1d31c9e0b0c7875d21f2a1c7c9dd64bc9895bb066b660e675a269e52876a",
+  "snapshotFilesMatched": 320,
+  "scope": "Exact serialized native acceptance helper on pinned real Gradio/Streamlit artifacts in isolated aswin QA. Does not add native-provider or browser acceptance.",
+  "results": [
+    {
+      "recordedAt": "2026-10-04T07:00:48.767Z",
+      "fixture": "gradio",
+      "scope": "Serialized native dashboard helper on real isolated artifacts, protocol interaction and SQLite persistence across complete application stop/relaunch. Not browser or native-provider acceptance.",
+      "artifactSha256": "65b87616014292da12e7795b8f021979f1576a1121d3ae7459d8a4d18cf5c591",
+      "dataKey": "gradio-protocol-5cdfbe9f61d44a2b",
+      "project": "pods-f07f2ba777151476e05f12d8",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "result": {
+            "version": "6.29.1",
+            "protocol": "Gradio named endpoint and SSE completion",
+            "before": 0,
+            "afterWrite": 1,
+            "afterRead": 1,
+            "passed": true,
+            "fixture": "gradio",
+            "project": "pods-f07f2ba777151476e05f12d8",
+            "productDocument": true,
+            "database": {
+              "engine": "SQLite",
+              "version": "3.46.1",
+              "integrity": "ok",
+              "rowCount": 1,
+              "savedCount": 1
+            },
+            "volume": "pods-f07f2ba777151476e05f12d8_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18096
+            ],
+            "databaseHostPorts": [],
+            "scope": "Real dashboard protocol interaction on user compute and read-only SQLite inspection. Browser/provider preview forwarding and VM replacement are separate checks."
+          },
+          "database": {
+            "engine": "SQLite",
+            "version": "3.46.1",
+            "integrity": "ok",
+            "rowCount": 1,
+            "savedCount": 1
+          }
+        },
+        {
+          "scenario": "full-relaunch",
+          "result": {
+            "version": "6.29.1",
+            "protocol": "Gradio named endpoint and SSE completion",
+            "before": 1,
+            "afterWrite": 2,
+            "afterRead": 2,
+            "passed": true,
+            "fixture": "gradio",
+            "project": "pods-f07f2ba777151476e05f12d8",
+            "productDocument": true,
+            "database": {
+              "engine": "SQLite",
+              "version": "3.46.1",
+              "integrity": "ok",
+              "rowCount": 1,
+              "savedCount": 2
+            },
+            "volume": "pods-f07f2ba777151476e05f12d8_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18096
+            ],
+            "databaseHostPorts": [],
+            "scope": "Real dashboard protocol interaction on user compute and read-only SQLite inspection. Browser/provider preview forwarding and VM replacement are separate checks."
+          },
+          "database": {
+            "engine": "SQLite",
+            "version": "3.46.1",
+            "integrity": "ok",
+            "rowCount": 1,
+            "savedCount": 2
+          }
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T07:01:07.205Z",
+      "fixture": "streamlit",
+      "scope": "Serialized native dashboard helper on real isolated artifacts, protocol interaction and SQLite persistence across complete application stop/relaunch. Not browser or native-provider acceptance.",
+      "artifactSha256": "3f0e05893c1f60cb45bb811343f39e3df2023c0e2fccbd82aae50dc57c711ff6",
+      "dataKey": "streamlit-protocol-86fdc7524e5ab28d",
+      "project": "pods-772db721a79fa28700d4a5e6",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "result": {
+            "passed": true,
+            "version": "1.65.0",
+            "protocol": "Streamlit binary WebSocket widget interaction",
+            "heading": "Streamlit + SQLite",
+            "before": 0,
+            "afterWrite": 1,
+            "afterReconnect": 1,
+            "afterRead": 1,
+            "fixture": "streamlit",
+            "project": "pods-772db721a79fa28700d4a5e6",
+            "productDocument": true,
+            "database": {
+              "engine": "SQLite",
+              "version": "3.46.1",
+              "integrity": "ok",
+              "rowCount": 1,
+              "savedCount": 1
+            },
+            "volume": "pods-772db721a79fa28700d4a5e6_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18096
+            ],
+            "databaseHostPorts": [],
+            "scope": "Real dashboard protocol interaction on user compute and read-only SQLite inspection. Browser/provider preview forwarding and VM replacement are separate checks."
+          },
+          "database": {
+            "engine": "SQLite",
+            "version": "3.46.1",
+            "integrity": "ok",
+            "rowCount": 1,
+            "savedCount": 1
+          }
+        },
+        {
+          "scenario": "full-relaunch",
+          "result": {
+            "passed": true,
+            "version": "1.65.0",
+            "protocol": "Streamlit binary WebSocket widget interaction",
+            "heading": "Streamlit + SQLite",
+            "before": 1,
+            "afterWrite": 2,
+            "afterReconnect": 2,
+            "afterRead": 2,
+            "fixture": "streamlit",
+            "project": "pods-772db721a79fa28700d4a5e6",
+            "productDocument": true,
+            "database": {
+              "engine": "SQLite",
+              "version": "3.46.1",
+              "integrity": "ok",
+              "rowCount": 1,
+              "savedCount": 2
+            },
+            "volume": "pods-772db721a79fa28700d4a5e6_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18096
+            ],
+            "databaseHostPorts": [],
+            "scope": "Real dashboard protocol interaction on user compute and read-only SQLite inspection. Browser/provider preview forwarding and VM replacement are separate checks."
+          },
+          "database": {
+            "engine": "SQLite",
+            "version": "3.46.1",
+            "integrity": "ok",
+            "rowCount": 1,
+            "savedCount": 2
+          }
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    }
+  ]
+}

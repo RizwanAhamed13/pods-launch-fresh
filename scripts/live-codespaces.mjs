@@ -13,12 +13,16 @@ import { valkeyRuntimeProbeCommand } from './probe-valkey-runtime.mjs';
 import { sqliteRuntimeProbeCommand } from './probe-sqlite-runtime.mjs';
 import { goRuntimeProbeCommand } from './probe-go-runtime.mjs';
 import { fileCounterRuntimeProbeCommand } from './probe-file-counter-runtime.mjs';
+import { dashboardProbeCommand } from './probe-dashboard.mjs';
 import { staticProbeCommand } from './probe-static.mjs';
 const exec = promisify(execFile);
 const provider=process.argv[3]||'github';if(!['github','google'].includes(provider))throw new Error('Unknown provider');
 const origin=process.argv[2];if(!origin)throw new Error('Supply the PODS URL');
 // Opt-in checks only for our fixtures; requires gh signed in to the same account.
 const counterCheck=process.env.PODS_COUNTER_CHECK==='1';
+const dashboardFixture=process.env.PODS_DASHBOARD_FIXTURE;
+const dashboardCheck=dashboardFixture!==undefined;
+if(dashboardCheck&&!['gradio','streamlit'].includes(dashboardFixture))throw new Error('Choose a supported dashboard fixture');
 const mysqlRuntimeCheck=process.env.PODS_MYSQL_RUNTIME_CHECK==='1';
 const mariadbRuntimeCheck=process.env.PODS_MARIADB_RUNTIME_CHECK==='1';
 const mongodbRuntimeCheck=process.env.PODS_MONGODB_RUNTIME_CHECK==='1';
@@ -37,7 +41,7 @@ if(goRuntimeCheck&&!counterCheck)throw new Error('Go runtime inspection requires
 if(fileCounterRuntimeCheck&&!counterCheck)throw new Error('File counter inspection requires the counter fixture check');
 const apiProduct=process.env.PODS_API_PRODUCT==='1';
 const expectedInitialCount=process.env.PODS_EXPECT_INITIAL_COUNT;
-if(expectedInitialCount!==undefined&&(!counterCheck||!/^\d+$/.test(expectedInitialCount)||!Number.isSafeInteger(Number(expectedInitialCount))))throw new Error('Expected initial count requires a nonnegative integer and counter fixture checking');
+if(expectedInitialCount!==undefined&&(!(counterCheck||dashboardCheck)||!/^\d+$/.test(expectedInitialCount)||!Number.isSafeInteger(Number(expectedInitialCount))))throw new Error('Expected initial count requires a nonnegative integer and counter or dashboard fixture checking');
 if(apiProduct&&!counterCheck)throw new Error('API product checking requires the counter fixture check');
 const workerCheck=process.env.PODS_WORKER_CHECK==='1';
 const websocketCheck=process.env.PODS_WEBSOCKET_CHECK==='1';
@@ -47,8 +51,8 @@ const staticCheck=process.env.PODS_STATIC_CHECK==='1';
 const staticFixture=process.env.PODS_STATIC_FIXTURE||'react';
 if(!['react','angular','vue','svelte','preact','solid','lit','alpine'].includes(staticFixture)||(!staticCheck&&process.env.PODS_STATIC_FIXTURE))throw new Error('Static fixture requires an enabled supported frontend check');
 if(!['nuxt','next','sveltekit','astro','react-router'].includes(ssrFixture)||(!ssrCheck&&process.env.PODS_SSR_FIXTURE))throw new Error('SSR fixture requires an enabled supported SSR check');
-if([counterCheck,workerCheck,websocketCheck,ssrCheck,staticCheck].filter(Boolean).length>1)throw new Error('Choose one fixture check: counter, worker, WebSocket, SSR or static');
-if((counterCheck||workerCheck||websocketCheck||ssrCheck||staticCheck)&&(provider!=='github'||process.env.PODS_SINGLE_LAUNCH==='1'))throw new Error('Fixture checking requires two Codespaces launches');
+if([counterCheck,workerCheck,websocketCheck,ssrCheck,staticCheck,dashboardCheck].filter(Boolean).length>1)throw new Error('Choose one fixture check: counter, worker, WebSocket, SSR, static or dashboard');
+if((counterCheck||workerCheck||websocketCheck||ssrCheck||staticCheck||dashboardCheck)&&(provider!=='github'||process.env.PODS_SINGLE_LAUNCH==='1'))throw new Error('Fixture checking requires two Codespaces launches');
 let token='';for await(const b of process.stdin)token+=b;token=token.trim();
 const initial=await fetch(origin+'/api/me'),cookie=initial.headers.get('set-cookie').split(';')[0],me=await initial.json();
 async function api(path,method='GET',body){const r=await fetch(origin+path,{method,headers:{Cookie:cookie,'X-Pods-CSRF':me.csrf,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(30000)});const d=await r.json();if(!r.ok)throw new Error(d.error);return d;}
@@ -65,15 +69,16 @@ if(goRuntimeCheck&&!['go','echo','fiber'].some(fixture=>selectedApp.source?.fold
 if(fileCounterRuntimeCheck&&!['actix','axum','rocket','aspnet'].some(fixture=>selectedApp.source?.folder==='examples/stacks/'+fixture))throw new Error('File counter inspection is restricted to its explicit fixtures');
 if(staticCheck&&selectedApp.source?.folder!=='examples/stacks/'+staticFixture)throw new Error('Static inspection is restricted to its explicit fixture');
 if(ssrCheck&&selectedApp.source?.folder!=='examples/stacks/'+ssrFixture)throw new Error('SSR inspection is restricted to its explicit fixture');
+if(dashboardCheck&&selectedApp.source?.folder!=='examples/stacks/'+dashboardFixture)throw new Error('Dashboard inspection is restricted to its explicit fixture');
 const evidencePath=process.env.PODS_EVIDENCE_FILE||`evidence/${provider}.json`;
 await api('/api/connections/'+provider,'POST',{token});token='';
 const results=[];
 const persist=()=>writeFile(evidencePath,JSON.stringify({testedAt:new Date().toISOString(),origin,results},null,2));
 let previousCount, previousJob, currentLaunch;
-async function probeEnvironment(environment,code) {
+async function probeEnvironment(environment,code,timeout=60000) {
   if(!/^[a-z0-9-]+$/.test(environment||''))throw new Error('Invalid Codespace environment');
   const quoted="'"+code.replaceAll("'","'\\''")+"'";
-  const {stdout}=await exec('gh',['codespace','ssh','-c',environment,'--','node --input-type=module -e '+quoted],{timeout:60000,maxBuffer:65536});
+  const {stdout}=await exec('gh',['codespace','ssh','-c',environment,'--','node --input-type=module -e '+quoted],{timeout,maxBuffer:65536});
   return JSON.parse(stdout);
 }
 async function probeCounter(environment,base) {
@@ -141,6 +146,7 @@ try {
   if(mysqlRuntimeCheck){result.mysqlRuntimeCheck=await probeEnvironment(launch.environment,mysqlRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080}));await persist();}
   if(apiProduct&&new URL(launch.previewUrl).pathname!=='/docs')throw new Error('API product did not select its verified interface');
   if(counterCheck){result.counterCheck=await probeCounter(launch.environment,base);await persist();if(!result.counterCheck.passed)throw new Error('Counter write/read/relaunch persistence failed');}
+  if(dashboardCheck){result.dashboardCheck=await probeEnvironment(launch.environment,dashboardProbeCommand(selectedApp.dataKey||selectedApp.id,{fixture:dashboardFixture,port:launch.port||8080,expectedCount:previousCount??Number(expectedInitialCount??0)}),90000);await persist();if(!result.dashboardCheck.passed)throw new Error('Dashboard interaction/relaunch persistence failed');previousCount=result.dashboardCheck.afterRead;}
   if(mariadbRuntimeCheck){result.mariadbRuntimeCheck=await probeEnvironment(launch.environment,mariadbRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
   if(mongodbRuntimeCheck){result.mongodbRuntimeCheck=await probeEnvironment(launch.environment,mongodbRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
   if(redisRuntimeCheck){result.redisRuntimeCheck=await probeEnvironment(launch.environment,redisRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}

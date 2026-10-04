@@ -2222,3 +2222,32 @@ Evidence: `stack-axum-{url,google,codespaces,audit}.json`. Coverage is now
 **55 isolated / 44 Google browser / 44 Codespaces protocol**, with **11** native
 fixtures pending. Full suite **179/179** and source **6,814 lines** remain valid;
 this acceptance changed only evidence and documentation.
+
+
+## Shared dashboard native acceptance helper
+
+- scripts/probe-dashboard.mjs and probe-streamlit.py implement real Gradio6.29.1
+  named endpoint/SSE and Streamlit1.65.0 binary WebSocket widget interactions.
+  The probe validates the single container/project network, assigned product
+  port and persistent workspace volume before interaction, then checks the
+  actual SQLite file read-only. Responses, process time and message sizes are
+  bounded. Saved value must match before a new write and after reconnect/read.
+- scripts/live-codespaces.mjs now supports PODS_DASHBOARD_FIXTURE=gradio or
+  streamlit with PODS_EXPECT_INITIAL_COUNT=0. It restricts the source folder,
+  enforces two Codespaces launches, rejects mixed fixture modes and records
+  dashboardCheck. The second launch requires the first saved value. Browser
+  preview forwarding/interaction remains a separate acceptance gate.
+- Five focused tests cover invalid identities/boundaries/ports/volumes, stale
+  values before writes, failed/malformed/duplicate SSE events, oversized replies,
+  wrong Streamlit results and corrupt/inconsistent SQLite. A fresh subprocess
+  tests self-contained serialization with the embedded Python protocol.
+- Full184/184 passed locally and in isolated Linux. Initial Linux snapshots
+  omitted public assets and then compatibility data; failed results/hashes are
+  retained in stack-dashboard-helper-tests.json. Final snapshot matched every
+  manifest file before execution. No local passing suite was unnecessarily rerun.
+- Real pinned Gradio/Streamlit artifacts passed the exact serialized helper
+  with0→1→2 across full application stops. All scoped containers/volumes/storage
+  removed. Candidate/output/dashboard-candidate-ada4194 remains with dependencies
+  linked to/opt/pods/node_modules. Evidence stack-dashboard-helper-{live.mjs,
+  preflight.json,tests.json}. Source6994lines; native coverage unchanged55/44/44
+  by this tooling. No product runtime/provider changes or service restart.
