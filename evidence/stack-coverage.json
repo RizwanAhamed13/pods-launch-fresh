@@ -405,7 +405,10 @@
       "nativeProviderEvidence": [
         "stack-fastify-url.json",
         "stack-fastify-google.json",
-        "stack-fastify-codespaces.json"
+        "stack-fastify-codespaces.json",
+        "stack-fastify-fixed-url.json",
+        "stack-fastify-fixed-google.json",
+        "stack-fastify-fixed-codespaces.json"
       ],
       "attempts": [
         {
@@ -414,10 +417,10 @@
         }
       ],
       "nativeAcceptance": {
-        "googleBrowser": false,
+        "googleBrowser": true,
         "codespacesProtocol": true
       },
-      "nativeProviderScope": "Google product page appeared, but its empty browser POST failed with HTTP 415 after preview transport added chunked encoding without Content-Type. Fixed fixture needs production rebuild and browser retest. Codespaces HTTP product, SQLite write/read and full restart passed on the recorded original revision; native Codespaces browser interaction remains pending."
+      "nativeProviderScope": "Corrected Fastify fixture passed native Google product button, reload and SQLite retention across full stop/relaunch. Codespaces HTTP product, writes and full restart passed; existing saved data survived the corrected application version. Original Google HTTP415 failure is retained. Native Codespaces browser interaction remains pending."
     },
     {
       "fixture": "fiber",

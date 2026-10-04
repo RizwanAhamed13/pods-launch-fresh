@@ -86,8 +86,8 @@ or in-flight crash recovery.
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
 later passing attempts do not erase them. Automated coverage is **114 passing
-checks locally and on aswin**. Native coverage is 28 Google browser fixtures and
-29 Codespaces HTTP/protocol fixtures; 27 still lack at least one native acceptance path. Codespaces
+checks locally and on aswin**. Native coverage is 29 Google browser fixtures and
+29 Codespaces HTTP/protocol fixtures; 26 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1370,12 +1370,13 @@ JSON body and displays failed requests. The real prepared backend and its shippe
 client script were tested under an emulated chunked transport: the old fixture
 failed with 415, while the corrected fixture saved 0→1 and retained 1→2 after a
 full application restart. A simulated HTTP 503 also displayed an error and
-re-enabled the button. This isolated regression is **not native browser acceptance**;
-the corrected revision still needs normal production preparation and provider
-retesting. The original Google failure remains in the evidence.
+re-enabled the button. This isolated regression is **not native browser acceptance**.
+The corrected revision subsequently passed the native retest below. The original
+Google failure remains in the evidence.
 
 All three native launches stopped; the final audit found no active builds or
-launches, control health 200 and Codespaces port 20867 private. Coverage is
+launches, control health 200 and Codespaces port 20867 private. At that checkpoint,
+coverage was
 **55 isolated / 28 Google browser / 29 Codespaces HTTP**, with 27 fixtures still
 missing at least one acceptance path. Every Codespaces native browser check
 remains pending. Source count is **5,622 physical lines** under the scope in
@@ -1384,3 +1385,33 @@ remains pending. Source count is **5,622 physical lines** under the scope in
 Evidence: `stack-fastify-{url,google,codespaces}.json` and
 `stack-fastify-preview-regression-{before,after}.json`. Reproduce the isolated
 regression with `scripts/test-fastify-preview.mjs` in the QA guest.
+
+## Corrected Fastify native acceptance
+
+The normal developer form rebuilt public revision `d6da2ed780ae` in **25.747
+seconds**, producing a **273,072-byte Node bundle**. The request was submitted
+after the ordinary account quota opened; no QA artifact was imported.
+
+| Check | Observed result |
+| --- | --- |
+| Cloud Shell, RUNNING compute, first artifact delivery | Health 5.703s; page visible 6.749s; first successful SQLite write 7.156s |
+| Cloud Shell, cached artifact, full app relaunch | Health 4.597s; page visible 5.122s; saved value restored 5.238s; next write 5.531s |
+| Codespaces, initial Shutdown | Health 28.548s including resume; old version's SQLite value 2 retained and incremented to 3 |
+| Codespaces, initial Available, cached relaunch | Health 7.613s; retained SQLite 3 and incremented to 4 |
+
+The real Cloud Shell page's button, reload and full application restart passed
+with saved values 0→1→2 and no browser console warnings or errors. A separate
+isolated browser check also passed through an emulated chunked-POST proxy; both
+POST requests carried JSON and returned 200. Codespaces checks are authenticated
+HTTP on user compute, not native browser interaction.
+
+All four native launches stopped. The final audit found no active builds or
+launches, control health 200 and preview port 20867 private. Coverage is now
+**55 isolated / 29 Google browser / 29 Codespaces HTTP**, with **26 fixtures**
+awaiting those native acceptance checks. Every Codespaces native browser check
+remains pending. These results do not prove Cloud Shell VM replacement durability
+or a universal 20-second cold launch.
+
+Evidence: `stack-fastify-fixed-{url,google,codespaces}.json` and
+`stack-fastify-browser-transport.json`; the original failed Google attempt is
+retained in `stack-fastify-google.json`.

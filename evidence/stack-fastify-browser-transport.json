@@ -1,0 +1,37 @@
+{
+  "scope": "Actual browser interacting with the prepared Fastify artifact in the isolated QA guest through a proxy that sends POST requests with chunked transfer encoding. This is not native provider acceptance.",
+  "fixtureRevision": "d6da2ed780aec8ae0178fc181f1d24113c322e15",
+  "fixtureSourceSha256": "e4c2e6077fa4498ff0f02ea3be59cf3f2ab66a19f71fc0bf98958e8a351ed225",
+  "artifactSha256": "ea805d970ccdf312d233341f5d43917c086066d6d4532dae04e811e66e6a89b3",
+  "artifactBytes": 273072,
+  "startedAt": "2026-10-04T01:18:35.747Z",
+  "completedAt": "2026-10-04T01:18:54.528Z",
+  "browserCheck": {
+    "before": 0,
+    "afterWrite": 1,
+    "afterReload": 1,
+    "afterFullRestart": 1,
+    "afterRestartWrite": 2,
+    "afterFinalReload": 2,
+    "consoleErrorsOrWarnings": [],
+    "passed": true
+  },
+  "requests": [
+    { "method": "GET", "contentType": null, "transferEncoding": null, "status": 200 },
+    { "method": "POST", "contentType": "application/json", "transferEncoding": "chunked", "status": 200 },
+    { "method": "GET", "contentType": null, "transferEncoding": null, "status": 200 },
+    { "method": "GET", "contentType": null, "transferEncoding": null, "status": 200 },
+    { "method": "POST", "contentType": "application/json", "transferEncoding": "chunked", "status": 200 },
+    { "method": "GET", "contentType": null, "transferEncoding": null, "status": 200 }
+  ],
+  "reproduction": "Run stack-fastify-browser-transport-probe.mjs inside the isolated QA guest; connect a browser through a private SSH tunnel to its proxy port. Click Add one, reload, POST to the loopback control port's /restart endpoint, reload, click Add one, and reload. Finish by POSTing to /stop. The probe does not import its artifact into production.",
+  "cleanup": {
+    "fullRestartConfirmed": true,
+    "probeExitedSuccessfully": true,
+    "temporaryArtifactRemoved": true,
+    "temporaryTunnelStopped": true,
+    "temporaryLxdProxyRemoved": true,
+    "testTabClosed": true
+  },
+  "passed": true
+}
