@@ -2251,3 +2251,38 @@ this acceptance changed only evidence and documentation.
   linked to/opt/pods/node_modules. Evidence stack-dashboard-helper-{live.mjs,
   preflight.json,tests.json}. Source6994lines; native coverage unchanged55/44/44
   by this tooling. No product runtime/provider changes or service restart.
+
+
+## Rocket native product acceptance
+
+The actual developer form prepared `examples/stacks/rocket` from fixture
+revision `d6da2ed780ae` in **373.628 seconds** after ordinary same-account
+quota availability. Artifact `cd44c64f9825af4bd428ebd0adc280f8d7375fe95b7d46e60811d8356567ec80` contains **33,369,614 image bytes**.
+No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell RUNNING, first image delivery | Server healthy 14.122s; product visible 15.271s; counter read 15.642s; button write 15.934s |
+| Cloud Shell cached relaunch | Server healthy 6.683s; product visible 7.820s; saved value restored 7.934s; next write 8.210s |
+| Codespaces initially Shutdown | Server healthy 42.472s; delivery/startup 30.224s; image cache hits 0 |
+| Codespaces cached relaunch | Server healthy 8.303s; authenticated HTTP write/read and saved-file inspection passed |
+
+Google browser buttons, reloads and full application stops verified **0→1→2**
+without console warnings or errors. Product visibility matched its h1.
+Codespaces authenticated HTTP verified the same sequence. Direct inspection
+checked the recipe command, single web service, project network, assigned product
+port **29000** and persistent workspace volume. The copied file counter matched
+each write. This check does not independently identify the framework version;
+the pinned source and real server build identify the prepared fixture.
+
+Both Google launches completed and stopped before Codespaces tests began. All
+four launches ended stopped; the Codespaces product port remained private.
+Audit at 2026-10-04T07:14:49.544099+00:00 confirmed health200, SQLite integrity ok, no active
+builds/launches and unchanged service PID/runner SHA. These are file-persistence
+and fixture-specific timing results. Native Codespaces browser interaction and
+VM replacement durability remain unverified.
+
+Evidence: `stack-rocket-{url,google,codespaces,audit}.json`. Coverage is now
+**55 isolated / 45 Google browser / 45 Codespaces protocol**, with **10** native
+fixtures pending. Full suite **184/184** and source **6,994 lines** remain valid;
+this acceptance changed only evidence and documentation.

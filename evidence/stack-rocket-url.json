@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-04T07:14:49.389750+00:00",
+  "controlRevision": "5dde1e5",
+  "checkoutRevision": "bd7e895531b3d6fad0e1ffd36c0b9ae38919211e",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T07:05:13.416658+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T07:05:22.927Z",
+  "attempts": [
+    {
+      "id": "S0m4p3YcrkrP42DFXg1Se-To11Q7W70a",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/rocket",
+        "key": "175ff09b6a97a41a7eb12541"
+      },
+      "status": "ready",
+      "createdAt": 1791097523832,
+      "startedAt": 1791097523845,
+      "finishedAt": 1791097897473,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-175ff09b6a97a41a7eb12541-d6da2ed780ae-cd44c64f9825",
+      "app": {
+        "id": "repo-175ff09b6a97a41a7eb12541-d6da2ed780ae-cd44c64f9825",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "cd44c64f9825af4bd428ebd0adc280f8d7375fe95b7d46e60811d8356567ec80",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-175ff09b6a97a41a7eb12541",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/rocket",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Rocket counter"
+        },
+        "preparedAt": "2026-10-04T07:11:37.353Z",
+        "images": [
+          {
+            "id": "sha256:c0707068597b7c629b9f7481cca5b72ccdc4b075a8fef05e1b18a613d3fa2e69",
+            "sha256": "d70e06232c43aec904997aa3a3cd21465c90701da65838a7e2d136f1c6ab8753",
+            "bytes": 33369614
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 373628
+}

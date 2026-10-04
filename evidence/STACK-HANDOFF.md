@@ -17,11 +17,11 @@ VM replacement durability, or a universal 20-second cold launch.
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
   saved format changes on actual environment capabilities.
-- Coverage:55 isolated build/artifact/browser passes;44 Google native browser
-  and44 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+- Coverage:55 isolated build/artifact/browser passes;45 Google native browser
+  and45 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Native Codespaces browser checks remain
-  pending authorization. The11 fixtures awaiting native acceptance are:
-  aspnet, deno, gradio, ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
+  pending authorization. The10 fixtures awaiting native acceptance are:
+  aspnet, deno, gradio, ktor, micronaut, phoenix, php, sinatra, streamlit, symfony.
 - Current full suite:184/184 passed locally and in isolated aswin QA after
   dashboard protocol tooling. Logs /tmp/pods-dashboard-full-{local,qa}.txt.
   The previous SQLite native acceptance was published4bb9326.
@@ -1100,3 +1100,18 @@ source6814 remain valid because only evidence/documentation changed.
   linked to/opt/pods/node_modules. Evidence stack-dashboard-helper-{live.mjs,
   preflight.json,tests.json}. Source6994lines; native coverage unchanged55/44/44
   by this tooling. No product runtime/provider changes or service restart.
+
+
+## Rocket native acceptance checkpoint
+
+- Build S0m4p3YcrkrP42DFXg1Se-To11Q7W70a submitted 2026-10-04T07:05:22.927Z, ready after 373628ms.
+  App repo-175ff09b6a97a41a7eb12541-d6da2ed780ae-cd44c64f9825; image bytes 33369614.
+- Google first/cached health14122/6683ms, product visible15271/7820ms,
+  write15934/8210ms. Counter0→1→2, reloads passed, console clean, both stopped.
+- Codespaces existing environment pods-launch-containers-69rw5vx4xp46c5qw5; first
+  Shutdown health42472ms/delivery30224ms, cached8303ms.
+  Saved file counters1/2, exact recipe command, durablevolume/privateport29000.
+- Audit 2026-10-04T07:14:49.544099+00:00: health200/integrityok/zero active, unchangedPID1063107/runnerSHA.
+  All four launches stopped; no service restart. Coverage55/45/45;10nativepending.
+  Source6994/full184 unchanged. Existing GitHub2FA/VMreplacement/stablehostname
+  inputs remain pending. Goal active and progressing.
