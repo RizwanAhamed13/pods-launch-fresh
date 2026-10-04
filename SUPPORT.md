@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **211 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **214 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
@@ -170,7 +170,7 @@ A [fresh-asset transfer comparison](evidence/stack-cdn-range-experiment.json) ve
 
 Google's actual product was observed at 22.006s, then 11.465s on the cached relaunch. Both providers retained SQLite value 4 across the new version and saved 5 then 6 across reload and full stop/relaunch. Codespaces passed product HTTP and online SQLite integrity inspection with private ports; native browser acceptance remains pending. Existing Docker layers and saved data were retained, so these are new-image launches on previously used compute, not empty-machine benchmarks.
 
-The [first Codespaces attempt failed](evidence/stack-cdn-range-preview-failure.json) after 15.831s during preview-port lookup, before the runner or image download began. A subsequent read-only lookup on aswin took 24.147s; GitHub was observed transitioning through Starting to Available. Two later application launches passed. The failed attempt and its unsuccessful stop confirmation remain recorded; no active launch or application was left running. The preview lookup's 15-second command bound, within a 60-second stage deadline, needs a separate reliability fix. These functional retries do not establish a first-click success guarantee or meet the 20-second product target.
+The [first Codespaces attempt failed](evidence/stack-cdn-range-preview-failure.json) after 15.831s during preview-port lookup, before the runner or image download began. A subsequent read-only lookup on aswin took 24.147s; GitHub was observed transitioning through Starting to Available. Two later application launches passed. The failed attempt and its unsuccessful stop confirmation remain recorded; no active launch or application was left running. The preview lookup's premature 15-second command bound is corrected by a [shared deadline fix with 214 passing local/Linux checks](evidence/stack-preview-budget-tests.json). Commands and polling now use the remaining 60-second stage budget; native verification of that change is tracked separately. These functional retries do not establish a first-click success guarantee or meet the 20-second product target.
 
 ## Persistence and operational limits
 
@@ -295,7 +295,7 @@ a stable production hostname remains a deployment requirement.
   driver. These isolated checks do not add native-provider acceptance.
 - [Full-suite result](evidence/stack-sqlite-online-tests.json): **193/193**
   checks passed locally and in isolated aswin Linux QA.
-- [Physical source count](evidence/code-lines.json): **7,699 lines**, including
+- [Physical source count](evidence/code-lines.json): **7,747 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)

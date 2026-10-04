@@ -1,0 +1,53 @@
+{
+  "recordedAt": "2026-10-04T12:17:12.464572+00:00",
+  "baseRevision": "f2a46c6ccf686d871ab5ba5be1081cbd62630413",
+  "runs": [
+    {
+      "platform": "local",
+      "passed": 214,
+      "failed": 0,
+      "logSha256": "31dc669b5a0b9d12401d505722a0ca587640f837f1d2c190e25a6497920b818b"
+    },
+    {
+      "platform": "isolated-aswin-linux",
+      "passed": 214,
+      "failed": 0,
+      "logSha256": "1ffe10989643d40fb637f740a66e0731b63083165b676a2e7ea6aa069cd915c4"
+    }
+  ],
+  "isolatedSnapshot": {
+    "candidate": "/output/preview-budget-candidate-f2a46c6",
+    "verifiedFiles": 328,
+    "archiveSha256": "0b8f0904d57aed35c192dfb0a60bf18248a658acc7068ec58920188aea1b9c8f",
+    "manifestSha256": "f28fb2a7a210f0183d51a85adf8974045aeca09eea2ea3bde1b6b10f8239921e"
+  },
+  "sourceHashes": {
+    "src/codespace-preview.mjs": "f754213af6dd999ac0f9574d37f6e9aa4fc16e39cf64f52398caefe03c133ae7",
+    "test/codespace-preview.test.mjs": "e9085e20346064f1fb84136244bec3887181d9e8411aba5853dcbecbdd319983",
+    "src/providers.mjs": "5f367c1d85b702eac742424a14dbcc14ac3f42f31ef6c5ccba0560bf5ae316b7",
+    "src/util.mjs": "9c5789b319f5e5ba475b7701ef6e4e3fea2bd14fcf1f5df14ebefe35df2317cb"
+  },
+  "regression": {
+    "before": {
+      "passed": 3,
+      "failed": 3,
+      "logSha256": "d9484a47709046ea8ffebec0f0c35f52fb65cda3924be59e4865a2caa57c3e74"
+    },
+    "after": {
+      "passed": 6,
+      "failed": 0,
+      "logSha256": "cd6d44b71f8f74ef1f0167b89c4c7d4453dd6fa6850c56c3c21d9aef9949b605"
+    },
+    "coverage": [
+      "A 24147ms initial lookup and subsequent private registration succeed within the same 60000ms deadline.",
+      "A 24147ms lookup followed by a 40000ms privacy operation fails at the original 60000ms deadline.",
+      "Polling is clipped to remaining time; expiration starts no extra command and closes the temporary forwarder.",
+      "Existing authentication/error, malformed output, public-port privacy change and forwarding cleanup cases still pass."
+    ],
+    "clockMethod": "Node built-in test mock Date/setTimeout; subprocess replies and command deadlines advance on the same clock. This reproduces the timeout contract deterministically without asserting that a real provider is slow on demand.",
+    "clockDocumentation": "https://nodejs.org/download/release/v24.0.2/docs/api/test.html",
+    "harnessNote": "The initial negative test left its mock sleep unadvanced and was stopped. The test was bounded and rerun: all three new cases then failed on old code and passed on the fix."
+  },
+  "failureEvidence": "stack-cdn-range-preview-failure.json",
+  "scope": "Full local and isolated Linux suites; native provider verification is a separate gate."
+}

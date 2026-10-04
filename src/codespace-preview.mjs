@@ -3,7 +3,13 @@ import { command, sleep } from './util.mjs';
 
 export async function ensureCodespacePreview({name,port,env,exec=command,spawnProcess=spawn,pollMs=1000,timeoutMs=60000}) {
   const deadline=Date.now()+timeoutMs;
-  const options=()=>({env,timeout:Math.max(1,Math.min(15000,deadline-Date.now()))});
+  const options=()=>{
+    const timeout=deadline-Date.now();
+    if(timeout<=0)throw new Error('Codespaces preview registration timed out.');
+    // A recovering tunnel can take longer than 15s. Every command shares the
+    // stage deadline, so a slow lookup cannot reset the registration budget.
+    return {env,timeout};
+  };
   const lookup=async()=>{
     const ports=JSON.parse(await exec('gh',['codespace','ports','-c',name,'--json','sourcePort,visibility'],options()));
     if(!Array.isArray(ports))throw new Error('Codespaces did not return its preview ports.');
@@ -20,7 +26,7 @@ export async function ensureCodespacePreview({name,port,env,exec=command,spawnPr
       while(!mapping){
         if(forwardError)throw forwardError;
         if(Date.now()>=deadline)throw new Error('Codespaces preview registration timed out.');
-        await sleep(pollMs);mapping=await lookup();
+        await sleep(Math.min(pollMs,deadline-Date.now()));mapping=await lookup();
       }
     }
     if(mapping.visibility!=='private')await exec('gh',['codespace','ports','visibility',`${port}:private`,'-c',name],options());
