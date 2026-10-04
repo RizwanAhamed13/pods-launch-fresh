@@ -1,0 +1,43 @@
+{
+  "recordedAt": "2026-10-04T03:19:32.456Z",
+  "scope": "Isolated real FastAPI artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+  "artifactSha256": "4f3d6902033d5333f70b3c4028c5d5821853b037d00a182fd7b6d2e4defe11d4",
+  "images": [
+    {
+      "id": "sha256:8dc93a21ef66c2a0162e64ee93e200ec7a16b7fff67a7d613a19233df5844759",
+      "sha256": "c148d55fc770662a8d98ad5b8b5de43d134f0499c8774e664dcf1a84f1ec7dbe",
+      "bytes": 54898988
+    }
+  ],
+  "sourceSha256": "f73acf70e037fe2223d92c33819fa5310fafb21548b676159c93d22c2cb7ce48",
+  "records": [
+    {
+      "scenario": "first-launch",
+      "before": 0,
+      "post": {
+        "status": 200,
+        "count": 1
+      },
+      "afterRead": 1,
+      "transferEncoding": "chunked",
+      "contentType": null
+    },
+    {
+      "scenario": "full-relaunch",
+      "before": 1,
+      "post": {
+        "status": 200,
+        "count": 2
+      },
+      "afterRead": 2,
+      "transferEncoding": "chunked",
+      "contentType": null
+    }
+  ],
+  "passed": true,
+  "cleanup": {
+    "containersStopped": true,
+    "probeVolumeRemoved": true,
+    "temporaryRootRemoved": true
+  }
+}

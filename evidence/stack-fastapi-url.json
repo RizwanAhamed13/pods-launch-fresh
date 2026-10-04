@@ -1,0 +1,63 @@
+{
+  "recordedAt": "2026-10-04T03:29:49.192523+00:00",
+  "controlRevision": "5dde1e5",
+  "checkoutRevision": "2009c2e",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T03:26:10.100945+00:00",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0
+  },
+  "submittedAt": "2026-10-04T03:26:15.847Z",
+  "attempts": [
+    {
+      "id": "rUpOx4l-ZVEXuG72K8SUu_8fBYiRPcFT",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/fastapi",
+        "key": "46dbc56878c4f438c7ed70d3"
+      },
+      "status": "ready",
+      "createdAt": 1791084381476,
+      "startedAt": 1791084381494,
+      "finishedAt": 1791084453382,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-46dbc56878c4f438c7ed70d3-d6da2ed780ae-309b54492909",
+      "app": {
+        "id": "repo-46dbc56878c4f438c7ed70d3-d6da2ed780ae-309b54492909",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "309b5449290922b771804b4f1e98a0cabc5d456c01ab098ed74653defbfcf03f",
+        "bytes": 275,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-46dbc56878c4f438c7ed70d3",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/fastapi",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "FastAPI counter"
+        },
+        "preparedAt": "2026-10-04T03:27:33.187Z",
+        "images": [
+          {
+            "id": "sha256:9846cdb84ce20ba80a2d4c4baf5bab0fe4a382646c8280ac8055742c76ad262f",
+            "sha256": "3f34e12c187fe7d2bdd50bb5910b72381a3b5d4d7c83633fa680fedea91d2032",
+            "bytes": 54898173
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 71888
+}

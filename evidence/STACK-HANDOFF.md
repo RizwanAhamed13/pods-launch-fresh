@@ -17,11 +17,11 @@ VM replacement durability, or a universal 20-second cold launch.
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
   saved format changes on actual environment capabilities.
-- Coverage: 55 isolated build/artifact/browser passes; 33 Google native browser
-  and 33 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+- Coverage: 55 isolated build/artifact/browser passes; 34 Google native browser
+  and 34 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Every native Codespaces browser check
-  remains pending. The 22 fixtures awaiting both native acceptance paths are:
-  actix, aspnet, axum, deno, echo, fastapi, fiber, flask-mariadb,
+  remains pending. The 21 fixtures awaiting both native acceptance paths are:
+  actix, aspnet, axum, deno, echo, fiber, flask-mariadb,
   flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, ktor,
   micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
 - Runtimeprovider73bd9f4 had134 passing tests locally and in isolated aswin QA;
@@ -365,3 +365,33 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   unsubmitted draft: public runtime repository, examples/stacks/fastapi.
   Normalquota watcher98548 still running; next ordinaryslot03:26:06.781UTC.
   Resume the same handle, no duplicate watcher/submission/quota bypass.
+
+
+## Native FastAPI acceptance
+
+- Quota watcher98548 ended0 at03:26:10.100945UTC, sameaccount2/global2/active0.
+  Actual form submitted once03:26:15.847Z. Production isolated build71888ms,
+  source d6da2ed; image54898173bytes, app
+  repo-46dbc56878c4f438c7ed70d3-d6da2ed780ae-309b54492909; privateport27215.
+- Google firstRUNNING: health21348/delivery18375, page23248/read23259/
+  write23537ms. Cached after fullstop RUNNING: health6720/delivery3198,
+  page7560/read7675/write7959ms. SQLite0→1→2, reloads1/2, both fullystopped,
+  browserwarn/error0. First-image sample exceeds20seconds on readycompute.
+- Codespaces16323 ended0; same saved containerprofile, bothAvailable.
+  Health27278/8907, delivery26768/8354ms. HTTPproduct and SQLite0→1→2 across
+  fullstops passed. Native browser stillpending2FA, reobserved03:21UTC.
+- Finalaudit03:29:57.033769UTC: health200, SQLiteok, activebuild0/launch0,
+  PID1063107, runnerunchanged. All4launchesstopped; productport27215private.
+- Isolated chunkedPOST preflight84313 ended0, recorded03:19:32.456Z;
+  artifact4f3d6902…, sourceSHAf73acf70…matchescurrentfixture; SQLite0→1→2.
+  Unique testvolume/root and containerscleaned. Not nativeprovider evidence.
+- Evidence stack-fastapi-{url,google,codespaces}.json and
+  stack-fastapi-chunked-probe.{json,mjs}. Coverage55/34/34,21nativepending.
+  Source6120lines unchanged; no productcode changed during this gate.
+- Browser accountWorker/tab12 retains stoppedFastAPIlauncher; stackQa6/tab13
+  has completedFastAPIpreparation. fastapiLaunchUrl, fastapiBrowserChecks,
+  fastapiBrowserLogs, measureFastapiCounter and stopPreparedProduct retained.
+- Next normal quota watcher35120 started after this completed native gate;
+  watcher98548 is terminal. Resume35120 rather than launching a duplicate.
+- Compatibility checks3/3 passed after coverage update. Updated README,
+  PRODUCT and SUPPORT also reflect the prior Google recovery gate146tests.

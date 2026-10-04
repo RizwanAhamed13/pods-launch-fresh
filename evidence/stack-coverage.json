@@ -362,13 +362,22 @@
       "serverEvidence": "stack-matrix-02.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-02.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-fastapi-url.json",
+        "stack-fastapi-google.json",
+        "stack-fastapi-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-02.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      },
+      "nativeProviderScope": "FastAPI passed native Google product button, reload and SQLite retention across full stop/relaunch. Codespaces authenticated HTTP product, writes and full restart persistence passed. Native Codespaces browser interaction remains pending."
     },
     {
       "fixture": "fastapi-api",

@@ -110,6 +110,8 @@ states and request timestamps, not inferred cold/warm labels. A missing state is
 `null`; earlier launch records are not backfilled. Artifact/image cache status is
 recorded separately in runner timings. Cloud Shell adds one environment read
 before its start operation; this measurement overhead is included in total time.
+Cloud Shell also records `startAcceptedAt`, `startUncertainAt` and
+`startReconciledAt` when those events occur.
 State definitions: [Cloud Shell](https://cloud.google.com/shell/docs/reference/rest/v1/users.environments#State)
 and [Codespaces](https://docs.github.com/en/rest/codespaces/codespaces#get-a-codespace-for-the-authenticated-user).
 
@@ -119,6 +121,12 @@ Codespaces discovery and state reads retry transient provider errors up to three
 attempts with bounded backoff. If a resume response is uncertain, PODS observes the
 same environment until its provisioning deadline. Creation and resume mutations
 are never automatically repeated; authorization and quota errors remain immediate.
+
+Cloud Shell start is also sent once. After a transient lost response, PODS checks
+that the same environment is RUNNING and contains the unique SSH key for this
+attempt before delivery. An acknowledged startup keeps its original operation.
+Read retries and reconciliation are bounded; authorization/quota errors and
+explicit operation failures stop immediately.
 
 Each app receives a stable private preview port (20000–29999) per compute account.
 The reservation follows its data key across artifact versions, browser sessions and

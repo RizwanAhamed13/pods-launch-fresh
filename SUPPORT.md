@@ -85,9 +85,8 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **138 passing checks locally and across the isolated
-aswin QA run and corrected compatibility rerun**. Native coverage is 33 Google browser fixtures and
-33 Codespaces HTTP/protocol fixtures; 22 still lack at least one native acceptance path. Codespaces
+later passing attempts do not erase them. Automated coverage is **146 passing checks in full local and isolated aswin QA runs**. Native coverage is 34 Google browser fixtures and
+34 Codespaces HTTP/protocol fixtures; 21 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1684,3 +1683,46 @@ passed in both environments. Source totals 5,978 physical lines. Evidence:
 `stack-optional-node-packaging.json`, `stack-express-bundle-url.json`,
 `stack-express-native-transition-{baseline,google,codespaces}.json`, and the
 reproducible isolated/native transition probes.
+
+
+## Cloud Shell startup recovery
+
+The provider sends the start request once. If its response is lost to a transient
+transport failure, PODS reads the same environment until it confirms both RUNNING
+state and this launch's unique SSH key, within the provisioning deadline. Reads
+have bounded transient retries. Authorization, quota and explicit operation
+failures still stop the launch. Response-body transport failures remain visible.
+
+All 146 tests passed locally and in isolated Linux QA, including eight new
+recovery cases. The updated provider's native Express browser regression retained
+SQLite values 6→7→8 across full stops; pages appeared in 7.220s and 5.227s.
+Codespaces retained values 5→6→7 across full stops with authenticated HTTP health in 11.554s and
+10.698s. These launches did not encounter a timeout: recovery is proven by
+injected failures, and the original native failure remains recorded. All test
+previews stopped and the product port remained private. Source: 6,120 physical
+lines. Evidence: `stack-google-start-recovery.json` and
+`stack-google-recovery-codespaces-regression.json`.
+
+
+## Native FastAPI + SQLite workflow
+
+The normal developer form prepared FastAPI in **71.888 seconds**, producing a
+54,898,173-byte prebuilt image from the public repository at `d6da2ed780ae`.
+Cloud Shell was already RUNNING: the first image delivery reached health in
+21.348 seconds and completed the real product's button write in 23.537 seconds.
+After a full app stop, cached health took 6.720 seconds; the browser restored the
+saved count in 7.675 seconds and completed a write in 7.959 seconds. Both reloads
+retained the saved count, and SQLite values progressed 0→1→2.
+
+Codespaces was Available on both launches. Authenticated HTTP product and SQLite
+write/read/full-stop/relaunch checks passed: health took 27.278 seconds with the
+image absent and 8.907 seconds cached. Its native browser remains unverified.
+The first-image samples exceeded 20 seconds despite ready compute; these results
+do not describe cold VM provisioning. All four previews stopped, port 27215
+remained private, and the final server health and SQLite integrity audit passed.
+
+Evidence: `stack-fastapi-{url,google,codespaces}.json`. A separate isolated
+`stack-fastapi-chunked-probe.json` verifies empty chunked POST handling and SQLite
+persistence through a full relaunch with the current runner. It is not counted
+as native acceptance. Coverage is now 55 isolated / 34 Google browser / 34
+Codespaces HTTP-protocol, with 21 native fixtures still pending.
