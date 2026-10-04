@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **250 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **264 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
@@ -319,6 +319,18 @@ passed at 10.829s and 9.249s, retained SQLite values 17→18→19 across full st
 and recorded both stop confirmations. The same prepared image was reused. These
 checks add no new-image timing or native Codespaces browser acceptance.
 
+The product browser now automatically recovers temporary build/launch status-read
+failures, preserving the original operation and automatic product navigation.
+It bounds recovery to three retries, times out stalled reads, stops on denied
+requests and ignores responses from operations the user has left or stopped.
+Creation, stop and product writes are never automatically resubmitted.
+[Fourteen client regressions and the full 264-check local/Linux suite](evidence/stack-browser-recovery-tests.json)
+pass. A [real-browser before/after check](evidence/stack-browser-recovery-browser.json)
+reproduced the old stuck progress screen, then recovered two simulated errors
+during preparation and two during launch without an extra progress click. The
+actual notes product opened automatically and retained a saved note on reload.
+These injected faults used local simulated providers, not native cloud failures.
+
 ## Persistence and operational limits
 
 Database fixtures verify a product write, read, complete application stop,
@@ -440,9 +452,9 @@ a stable production hostname remains a deployment requirement.
   a consistent database snapshot, resumes it, then queries the private copy.
   The reported SQLite version belongs to the inspector, not the application
   driver. These isolated checks do not add native-provider acceptance.
-- [Full-suite result](evidence/stack-live-evidence-tests.json): **250/250**
+- [Full-suite result](evidence/stack-browser-recovery-tests.json): **264/264**
   checks passed locally and in isolated aswin Linux QA.
-- [Physical source count](evidence/code-lines.json): **8,347 lines**, including
+- [Physical source count](evidence/code-lines.json): **8,546 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)

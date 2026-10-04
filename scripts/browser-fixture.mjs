@@ -21,7 +21,9 @@ const processes = new Map();
 const requests = [], authorizations = [];
 let expireEveryAction = false;
 let expireSessionEveryAction = false;
-let productPort = 19900;
+let productPort = Number(process.env.PODS_FIXTURE_PRODUCT_PORT || 19900);
+const pollFailureLimit = Number(process.env.PODS_FIXTURE_POLL_FAILURES || 0);
+const pollFailures = new Map();
 const adapter = {
   initialize: async () => {}, close: async () => {},
   build: async (repository, update) => {
@@ -69,10 +71,18 @@ server.on('request', async (req, res) => {
   }
   if (req.method === 'GET' && url.pathname === '/fixture/report') {
     res.setHeader('Content-Type', 'application/json');
-    return res.end(JSON.stringify({ requests, authorizations,
+    return res.end(JSON.stringify({ requests, authorizations, pollFailures: Object.fromEntries(pollFailures),
       builds: store.list('build').map(({ id, repository, status, appId }) => ({ id, repository, status, appId })),
       launches: store.list('launch').map(({ id, appId, provider, status }) => ({ id, appId, provider, status })),
     }));
+  }
+  if (req.method === 'GET' && /^\/api\/(builds|launches)\/[A-Za-z0-9_-]{32}$/.test(url.pathname)) {
+    const count = pollFailures.get(url.pathname) || 0;
+    if (count < pollFailureLimit) {
+      pollFailures.set(url.pathname, count + 1);
+      res.writeHead(503, { 'Content-Type': 'text/html' });
+      return res.end('<h1>Simulated temporary progress interruption</h1>');
+    }
   }
   if (req.method === 'POST' && ['/api/builds', '/api/launches'].includes(url.pathname)) {
     if (expireEveryAction) expireConnections();

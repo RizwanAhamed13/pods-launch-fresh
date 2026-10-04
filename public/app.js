@@ -3,6 +3,9 @@ import { ended, providerName, route, appForRoute, pendingForPage, previewAddress
 const $ = id => document.getElementById(id);
 const page = route(location.pathname);
 let me, app, active, building, timer, autoOpen = false, busy = false, initializing = true;
+let pollVersion = 0, pollController;
+function cancelPolling() { pollVersion++; clearTimeout(timer); pollController?.abort(); }
+window.addEventListener('pagehide', cancelPolling);
 const selected = () => document.querySelector('input[name="provider"]:checked').value;
 const notice = text => { $('notice').textContent = text; $('notice').hidden = !text; };
 const title = item => {
@@ -20,9 +23,14 @@ const storage = {
   remove(key) { try { sessionStorage.removeItem(key); } catch {} },
 };
 async function api(path, options = {}) {
-  const response = await fetch(path, { ...options, headers: { 'Content-Type': 'application/json', 'X-Pods-CSRF': me?.csrf || '', ...options.headers } });
-  const result = await response.json();
-  if (!response.ok) throw Object.assign(new Error(result.error || 'The request could not be completed.'), { status: response.status, code: result.code });
+  let response;
+  try { response = await fetch(path, { ...options, headers: { 'Content-Type': 'application/json', 'X-Pods-CSRF': me?.csrf || '', ...options.headers } }); }
+  catch { throw Object.assign(new Error('The connection to PODS was interrupted.'), { retryable: true }); }
+  const retryable = response.status === 408 || response.status >= 500;
+  const unreadable = () => Object.assign(new Error('PODS could not return an update. Please try again.'), { status: response.status, retryable: response.ok || retryable });
+  if ((response.headers.get('content-type') || '').split(';')[0].trim().toLowerCase() !== 'application/json') { await response.body?.cancel(); throw unreadable(); }
+  let result; try { result = await response.json(); } catch { throw unreadable(); }
+  if (!response.ok) throw Object.assign(new Error(result.error || 'The request could not be completed.'), { status: response.status, code: result.code, retryable });
   return result;
 }
 function element(tag, text, className) {
@@ -102,6 +110,7 @@ function stages(labels, phase, failed = false) {
 }
 const launchLabels = { connecting: 'Connecting your compute', provisioning: 'Starting your environment', delivering: 'Sending the prepared application', downloading: 'Receiving the prepared application', starting: 'Starting your application', ready: 'Opening your application', failed: 'Your application could not start', stopped: 'Application stopped' };
 function showLaunch(state) {
+  if (active?.id !== state.id) cancelPolling();
   const changed = active?.id !== state.id || active?.status !== state.status || active?.stopRequested !== state.stopRequested;
   active = state; $('progress').hidden = false; setBusy(!ended(state.status) || state.stopRequested && !['failed', 'stopped'].includes(state.status));
   $('elapsed').textContent = time((state.readyAt || Date.now()) - state.createdAt);
@@ -119,11 +128,12 @@ function showLaunch(state) {
   if (state.status === 'ready' && autoOpen && address) {
     autoOpen = false; storage.set('pods-active', { id: state.id, appId: state.appId, autoOpen: false });
     storage.set('pods-last-navigation', { launchId: state.id, acceptedAt: state.createdAt, healthyAt: state.readyAt, navigationAt: Date.now() });
-    clearTimeout(timer); location.assign(address);
+    cancelPolling(); location.assign(address);
   }
 }
 const buildLabels = { queued: 'Waiting for a build slot', preparing: 'Preparing the build environment', fetching: 'Getting your repository', detecting: 'Finding the application', installing: 'Installing build dependencies', compiling: 'Compiling the application', packaging: 'Preparing the launch artifact', verifying: 'Checking the product page', publishing: 'Saving your prepared version', ready: 'Your application is prepared', failed: 'Preparation needs attention' };
 function showBuild(state) {
+  if (building?.id !== state.id) cancelPolling();
   const changed = building?.id !== state.id || building?.status !== state.status;
   const wasRunning = building && !ended(building.status);
   building = state; $('progress').hidden = false; setBusy(!ended(state.status));
@@ -145,20 +155,34 @@ function showBuild(state) {
 function clearChangedBuild() {
   if (page.view !== 'develop' || busy || initializing || !building || !ended(building.status)) return;
   if ($('repository').value.trim() === building.repository.url && $('folder').value.trim() === building.repository.folder) return;
-  building = null; clearTimeout(timer);
+  building = null; cancelPolling();
   $('progress').hidden = true; $('build-result').hidden = true; $('retry-status').hidden = true;
   $('launch-link').value = ''; $('try-version').removeAttribute('href'); $('copy-status').textContent = '';
   $('prepare').textContent = 'Prepare application'; notice('');
 }
-async function poll(kind) {
+async function poll(kind, failures = 0, version) {
+  if (version === undefined) { cancelPolling(); version = pollVersion; }
+  const id = kind === 'build' ? building?.id : active?.id;
+  const current = () => version === pollVersion && id === (kind === 'build' ? building?.id : active?.id);
+  if (!id || !current()) return;
   clearTimeout(timer); $('retry-status').hidden = true;
+  const controller = new AbortController(); pollController = controller;
+  const timeout = setTimeout(() => controller.abort(), 10000);
   try {
-    const id = kind === 'build' ? building.id : active.id;
-    const state = await api(`/api/${kind === 'build' ? 'builds' : 'launches'}/${id}`);
+    const state = await api(`/api/${kind === 'build' ? 'builds' : 'launches'}/${id}`, { signal: controller.signal });
+    if (!current()) return;
+    notice('');
     if (kind === 'build') showBuild(state); else showLaunch(state);
-    if (!ended(state.status) || state.stopRequested && !['failed', 'stopped'].includes(state.status)) timer = setTimeout(() => poll(kind), 1000);
-    else await history();
-  } catch (error) { notice(error.message + ' Check progress again to reconnect.'); $('retry-status').hidden = false; }
+    if (!current()) return;
+    if (!ended(state.status) || state.stopRequested && !['failed', 'stopped'].includes(state.status)) timer = setTimeout(() => poll(kind, 0, version), 1000);
+    else await history().catch(() => {});
+  } catch (error) {
+    if (!current()) return;
+    if (error.retryable && failures < 3) {
+      notice('Connection interrupted. Reconnecting to your progress…');
+      timer = setTimeout(() => poll(kind, failures + 1, version), 1000 * 2 ** failures);
+    } else { notice(error.message + ' Check progress again to reconnect.'); $('retry-status').hidden = false; }
+  } finally { clearTimeout(timeout); if (pollController === controller) pollController = null; }
 }
 async function history() {
   const kind = page.view === 'develop' ? 'build' : 'launch';
@@ -224,7 +248,7 @@ $('disconnect').addEventListener('click', async () => {
   try { await api('/api/connections/' + selected(), { method: 'DELETE' }); me = await api('/api/me'); connections(); notice('Account disconnected. You can connect a different account.'); } catch (error) { notice(error.message); }
 });
 $('stop').addEventListener('click', async () => {
-  try { autoOpen = false; storage.set('pods-active', { id: active.id, appId: active.appId, autoOpen: false }); await api('/api/launches/' + active.id + '/stop', { method: 'POST', body: '{}' }); await poll('launch'); } catch (error) { notice(error.message); }
+  try { autoOpen = false; cancelPolling(); storage.set('pods-active', { id: active.id, appId: active.appId, autoOpen: false }); await api('/api/launches/' + active.id + '/stop', { method: 'POST', body: '{}' }); await poll('launch'); } catch (error) { notice(error.message); $('retry-status').hidden = false; }
 });
 $('retry-status').addEventListener('click', () => { notice(''); poll(page.view === 'develop' ? 'build' : 'launch'); });
 $('copy-link').addEventListener('click', async () => {

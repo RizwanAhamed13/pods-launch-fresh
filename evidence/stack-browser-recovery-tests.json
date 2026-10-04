@@ -1,0 +1,53 @@
+{
+  "recordedAt": "2026-10-04T13:57:09.505442+00:00",
+  "baseRevision": "26e50d8b1d43576be8cd6316c2a87b7fa343542b",
+  "runs": [
+    {
+      "platform": "local",
+      "passed": 264,
+      "failed": 0,
+      "durationMs": 28659.958083,
+      "logSha256": "fadff5e81d6dfd283d6b5b6a432f9fad880c320e9b08699c7fb801081faee658"
+    },
+    {
+      "platform": "isolated-aswin-linux",
+      "passed": 264,
+      "failed": 0,
+      "durationMs": 57409.720496,
+      "logSha256": "460c5b8a070781f249be3d86ac89fdf5b780d9e33fca5843ca910b5f9ced4160"
+    }
+  ],
+  "isolatedSnapshot": {
+    "candidate": "/output/browser-recovery-candidate-26e50d8",
+    "verifiedFiles": 337,
+    "archiveSha256": "9117a0c2b247c99b77d36dfb5a79afd4ccdead00b8c4b15889c41669a1a82346",
+    "manifestSha256": "7bee53a8b369325575bdc262917fd0d4f09e44b14e98912d5896905e92041605"
+  },
+  "sourceHashes": {
+    "public/app.js": "fae866b21ed5d063b852ea0ef615e9aca0a61b9e3e2bb59ae61220204748dcff",
+    "scripts/browser-fixture.mjs": "a31feebf5da6ef0176922b7e6eaa4b0493ba6fae14d6eee878fdbeabe60aeae5",
+    "test/browser-polling.test.mjs": "d4c808ce8656e0d9add9168524026f32e04ca46c865349708a1081533485a87d"
+  },
+  "regression": {
+    "before": {
+      "passed": 4,
+      "failed": 10,
+      "logSha256": "f9733c908029a64c6610d7589ebdfc8b7f0287fa12dd5ef1120ffc90b0acd12c"
+    },
+    "afterNewFile": {
+      "passed": 14,
+      "failed": 0
+    },
+    "checks": [
+      "Automatically resumes the same launch after HTML, malformed JSON or network error and navigates once, with one launch POST.",
+      "Build progress recovers to its original share link without resubmission.",
+      "Three retries at1/2/4s after an initial failure, then manual progress control; manual retry reads the same ID.",
+      "HTTP401/403/404/429 do not trigger automatic retries.",
+      "Each status read times out at10s; a successful read resets the consecutive failure count.",
+      "Obsolete ready responses after stop, changed build selection or pagehide cannot change the view, schedule recovery or open a product.",
+      "Launch creation is never automatically repeated and history failure cannot undo product readiness."
+    ]
+  },
+  "scope": "Execute the real browser client source in a deterministic minimal DOM with controlled network and clock. Full local/Linux suites plus a separate real-browser loopback reproduction/acceptance. Production status GET retries only; no automated resubmission of creation, writes, authorization or stop.",
+  "browserEvidence": "stack-browser-recovery-browser.json"
+}

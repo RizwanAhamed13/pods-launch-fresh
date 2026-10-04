@@ -1,0 +1,93 @@
+{
+  "recordedAt": "2026-10-04T13:54:28.821804+00:00",
+  "scope": "Real Codex in-app browser against loopback fixture: actual PODS client/server/runner and notes product, simulated preparation and provider authorization/compute; no real cloud quota.",
+  "origin": "http://127.0.0.1:19894",
+  "fixtureEnvironment": {
+    "PODS_FIXTURE_PORT": 19894,
+    "PODS_FIXTURE_PRODUCT_PORT": 20090,
+    "PODS_FIXTURE_POLL_FAILURES": 2
+  },
+  "before": {
+    "observedAt": "2026-10-04T13:51:10.289Z",
+    "clientSha256": "3e7a44a59fbf72c499e03305587d61d69f2922e5875a29792f56404a44b84fa3",
+    "progressChecksFailed": 1,
+    "manualProgressButtonVisible": true,
+    "shareResultVisible": false,
+    "serverBuildStatus": "ready",
+    "cause": "The client stopped polling after an HTML503 response, although the server completed the build."
+  },
+  "after": {
+    "clientSha256": "fae866b21ed5d063b852ea0ef615e9aca0a61b9e3e2bb59ae61220204748dcff",
+    "buildObservedAt": "2026-10-04T13:52:55.965Z",
+    "buildProgressFailures": 2,
+    "shareResultVisible": true,
+    "noticeVisible": false,
+    "manualProgressButtonVisible": false,
+    "launchProgressFailures": 2,
+    "automaticProductNavigation": true,
+    "productObservedAt": "2026-10-04T13:53:25.896Z",
+    "productTitle": "Field Notes",
+    "savedNoteTitle": "Recovered launch",
+    "savedNoteSurvivedReload": true,
+    "manualProgressClicks": 0,
+    "applicationStoppedNormally": true
+  },
+  "fixtureReport": {
+    "requests": [
+      {
+        "path": "/api/builds",
+        "status": 202
+      },
+      {
+        "path": "/api/builds",
+        "status": 202
+      },
+      {
+        "path": "/api/launches",
+        "status": 202
+      }
+    ],
+    "authorizations": [
+      "github"
+    ],
+    "pollFailures": {
+      "/api/builds/mYm_502vBfDOf21lIsLqqZZ7E2lr0KAS": 1,
+      "/api/builds/hHgEhah3c1ia2J3b0KGdYAb1mePGAC6h": 2,
+      "/api/launches/1denvvU0BH3F1kMnqaaSDj7IDN11neCA": 2
+    },
+    "builds": [
+      {
+        "id": "hHgEhah3c1ia2J3b0KGdYAb1mePGAC6h",
+        "repository": {
+          "url": "https://github.com/example/recovery-after",
+          "owner": "example",
+          "name": "recovery-after",
+          "folder": "",
+          "key": "e8b1e8f2d73ab88b554145dd"
+        },
+        "status": "ready"
+      },
+      {
+        "id": "mYm_502vBfDOf21lIsLqqZZ7E2lr0KAS",
+        "repository": {
+          "url": "https://github.com/example/recovery-before",
+          "owner": "example",
+          "name": "recovery-before",
+          "folder": "",
+          "key": "cdb0ae294f4147f8fc77e524"
+        },
+        "status": "ready"
+      }
+    ],
+    "launches": [
+      {
+        "id": "1denvvU0BH3F1kMnqaaSDj7IDN11neCA",
+        "appId": "repo-e8b1e8f2d73ab88b554145dd-aaaaaaaaaaaa-f4ef6c309139",
+        "provider": "github",
+        "status": "stopped"
+      }
+    ]
+  },
+  "toolingNote": "gstack browse could not start because its expected Chromium executable was missing. The existing Codex browser completed the checks; no browser installation or cloud sign-in was needed.",
+  "limitations": "Controlled HTML503 faults only in the real browser; deterministic client tests separately cover malformed JSON, network timeout, denied statuses, bounded exhaustion and stale responses. This fixture does not add native provider support or native latency evidence."
+}
