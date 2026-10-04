@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-04T06:39:34.979541+00:00",
+  "controlRevision": "5dde1e5",
+  "checkoutRevision": "40ddc78a32d896c92962bfaff8c671ef6967392b",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T06:28:12.341266+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T06:28:48.822Z",
+  "attempts": [
+    {
+      "id": "uAoo1h5DoavzCx_RaSpMorG6NPfdsCXp",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/actix",
+        "key": "3ea2d30e9a4438fa60d125ac"
+      },
+      "status": "ready",
+      "createdAt": 1791095334366,
+      "startedAt": 1791095334378,
+      "finishedAt": 1791095727963,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-3ea2d30e9a4438fa60d125ac-d6da2ed780ae-97dbfbd5dce8",
+      "app": {
+        "id": "repo-3ea2d30e9a4438fa60d125ac-d6da2ed780ae-97dbfbd5dce8",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "97dbfbd5dce84c99a65a68f658830ae8b6968ebc73ebd2e1369c7563917431ce",
+        "bytes": 273,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-3ea2d30e9a4438fa60d125ac",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/actix",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Actix counter"
+        },
+        "preparedAt": "2026-10-04T06:35:27.843Z",
+        "images": [
+          {
+            "id": "sha256:2af6c0012980daa3fe7d85951cd11e353ef7197b1ab23c58c3fd227fe3fe2def",
+            "sha256": "4574dec29736b40a10901293697ee40ef6f1a7ca804fcc5fca42ecb3860baa9e",
+            "bytes": 33417771
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 393585
+}

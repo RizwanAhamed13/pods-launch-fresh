@@ -2126,3 +2126,38 @@ containers, volumes and temporary storage were removed. These checks prepare the
 native acceptance path; native coverage remains **55/42/42**, with13 pending.
 Evidence: `stack-file-counter-runtime-{preflight,tests}.json` and `-live.mjs`.
 Physical source is now **6,814 lines**. No application runtime or provider behavior changed.
+
+
+## Actix Web native product acceptance
+
+The actual developer form prepared `examples/stacks/actix` from fixture
+revision `d6da2ed780ae` in **393.585 seconds** after ordinary same-account
+quota availability. Artifact `97dbfbd5dce84c99a65a68f658830ae8b6968ebc73ebd2e1369c7563917431ce` contains **33,417,771 image bytes**.
+No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell RUNNING, first image delivery | Server healthy 14.015s; product visible 16.414s; counter read 16.429s; button write 16.725s |
+| Cloud Shell cached relaunch | Server healthy 5.978s; product visible 6.428s; saved value restored 6.539s; next write 6.814s |
+| Codespaces initially Shutdown | Server healthy 47.023s; delivery/startup 32.168s; image cache hits 0 |
+| Codespaces cached relaunch | Server healthy 8.442s; authenticated HTTP write/read and saved-file inspection passed |
+
+Google browser buttons, reloads and full application stops verified **0→1→2**
+without console warnings or errors. Product visibility matched its h1.
+Codespaces authenticated HTTP verified the same sequence. Direct inspection
+checked the recipe command, single web service, project network, assigned product
+port **21699** and persistent workspace volume. The copied file counter matched
+each write. This check does not independently identify the framework version;
+the pinned source and real server build identify the prepared fixture.
+
+Both Google launches completed and stopped before Codespaces tests began. All
+four launches ended stopped; the Codespaces product port remained private.
+Audit at 2026-10-04T06:39:38.804273+00:00 confirmed health200, SQLite integrity ok, no active
+builds/launches and unchanged service PID/runner SHA. These are file-persistence
+and fixture-specific timing results. Native Codespaces browser interaction and
+VM replacement durability remain unverified.
+
+Evidence: `stack-actix-{url,google,codespaces,audit}.json`. Coverage is now
+**55 isolated / 43 Google browser / 43 Codespaces protocol**, with **12** native
+fixtures pending. Full suite **179/179** and source **6,814 lines** remain valid;
+this acceptance changed only evidence and documentation.

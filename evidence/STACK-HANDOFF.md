@@ -17,12 +17,11 @@ VM replacement durability, or a universal 20-second cold launch.
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
   saved format changes on actual environment capabilities.
-- Coverage:55 isolated build/artifact/browser passes;42 Google native browser
-  and42 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+- Coverage:55 isolated build/artifact/browser passes;43 Google native browser
+  and43 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Native Codespaces browser checks remain
-  pending authorization. The13 fixtures awaiting native acceptance are:
-  actix, aspnet, axum, deno, gradio,
-  ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
+  pending authorization. The12 fixtures awaiting native acceptance are:
+  aspnet, axum, deno, gradio, ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
 - Current full suite:179/179 passed locally and in isolated aswin QA after
   Rust/ASP.NET file-counter inspection tooling. Logs /tmp/pods-file-counter-full-{local,qa}.txt.
   The previous SQLite native acceptance was published4bb9326.
@@ -977,3 +976,18 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   polling30s): account3/global3/active0; nextslot06:27:47.996UTC. Resume that
   SAME handle before Actix submission. Actix form remains filled/unsubmitted.
   All QA, transfer and audit sessions are terminal; no native launch is active.
+
+
+## Actix Web native acceptance checkpoint
+
+- Build uAoo1h5DoavzCx_RaSpMorG6NPfdsCXp submitted 2026-10-04T06:28:48.822Z, ready after 393585ms.
+  App repo-3ea2d30e9a4438fa60d125ac-d6da2ed780ae-97dbfbd5dce8; image bytes 33417771.
+- Google first/cached health14015/5978ms, product visible16414/6428ms,
+  write16725/6814ms. Counter0→1→2, reloads passed, console clean, both stopped.
+- Codespaces existing environment pods-launch-containers-69rw5vx4xp46c5qw5; first
+  Shutdown health47023ms/delivery32168ms, cached8442ms.
+  Saved file counters1/2, exact recipe command, durablevolume/privateport21699.
+- Audit 2026-10-04T06:39:38.804273+00:00: health200/integrityok/zero active, unchangedPID1063107/runnerSHA.
+  All four launches stopped; no service restart. Coverage55/43/43;12nativepending.
+  Source6814/full179 unchanged. Existing GitHub2FA/VMreplacement/stablehostname
+  inputs remain pending. Goal active and progressing.
