@@ -1,0 +1,102 @@
+{
+  "testedAt": "2026-10-04T01:47:08.148Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "j5Gr1-QzmMx71VD1MHsFXdQfcDvboEGR",
+      "dataKey": "repo-54e71d97ff4cca1baf2be123",
+      "port": 24886,
+      "appId": "repo-54e71d97ff4cca1baf2be123-d6da2ed780ae-4cf6f2739c10",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "4cf6f2739c10d5c7072c855ea4886a4ad8bd9fdafd5ac57cdcde898501700240",
+      "images": [],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791078374065,
+      "updatedAt": 1791078402346,
+      "expiresAt": 1791080174065,
+      "environment": "pods-launch-7vrw57jpjjppcww57",
+      "compute": {
+        "initialState": "Shutdown",
+        "observedAt": 1791078374614,
+        "resumeRequestedAt": 1791078374635
+      },
+      "providerReadyAt": 1791078386340,
+      "previewUrl": "https://pods-launch-7vrw57jpjjppcww57-24886.app.github.dev",
+      "lastSeenAt": 1791078402345,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 1161,
+        "runtimeReadyMs": 1965,
+        "cacheHit": false
+      },
+      "readyAt": 1791078402345,
+      "deliveryMs": 16005,
+      "totalMs": 28280,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 0,
+        "afterWrite": 1,
+        "afterRead": 1,
+        "passed": true,
+        "expectedInitialCount": 0
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "Vou4i9iXuqsj2kavLJzoJpf_QohyDUtR",
+      "dataKey": "repo-54e71d97ff4cca1baf2be123",
+      "port": 24886,
+      "appId": "repo-54e71d97ff4cca1baf2be123-d6da2ed780ae-4cf6f2739c10",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "4cf6f2739c10d5c7072c855ea4886a4ad8bd9fdafd5ac57cdcde898501700240",
+      "images": [],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791078409906,
+      "updatedAt": 1791078418133,
+      "expiresAt": 1791080209906,
+      "environment": "pods-launch-7vrw57jpjjppcww57",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791078410556
+      },
+      "providerReadyAt": 1791078410618,
+      "previewUrl": "https://pods-launch-7vrw57jpjjppcww57-24886.app.github.dev",
+      "lastSeenAt": 1791078418133,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 746,
+        "runtimeReadyMs": 1199,
+        "cacheHit": true
+      },
+      "readyAt": 1791078418133,
+      "deliveryMs": 7515,
+      "totalMs": 8227,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 1,
+        "afterWrite": 2,
+        "afterRead": 2,
+        "passed": true,
+        "expectedAfterRelaunch": 1
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "cleanupAudit": {
+    "at": "2026-10-04T01:47:26.519349+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 24886,
+    "codespacesPreviewVisibility": "private"
+  },
+  "persistenceScope": "Authenticated HTTP SQLite write/read and full stop/relaunch on user compute; native Codespaces browser execution remains pending."
+}

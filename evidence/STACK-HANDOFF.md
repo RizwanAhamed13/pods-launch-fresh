@@ -2,194 +2,143 @@
 
 Goal active and incomplete: repository URL → isolated aswin build → reusable
 artifact → authorized user Cloud Shell/Codespaces → actual usable product.
-Do not claim universal compatibility, native Codespaces browser acceptance or a
-20-second cold-launch guarantee. Historical results remain in SUPPORT.md and evidence.
+Do not claim universal compatibility, native Codespaces browser acceptance,
+VM replacement durability, or a universal 20-second cold launch.
 
-## Current source and acceptance
+## Current state
 
 - Local: /Users/rizwanahamed/Documents/ChatGPT/podsv2.
 - aswin: /home/aswin/pods-launch-fresh; SSH alias aswin.
-- Private core: https://github.com/RizwanAhamed13/pods-launch-fresh.
+- Core: https://github.com/RizwanAhamed13/pods-launch-fresh (private).
 - Public fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
-  current revisiond6da2ed780aec8ae0178fc181f1d24113c322e15.
-  Corrected native Fastify evidence testsd6da2ed; original9eee994 failure retained.
-- 55 isolated real build/artifact/browser fixture passes. 29 native Google browser
-  and29 Codespaces authenticated HTTP/protocol passes. 26 lack both Google
-  and Codespaces protocol acceptance. Google-pending fixtures:
-  actix, adonis, aspnet, axum, deno, echo, fastapi, fiber, flask-mariadb, flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, hono, koa, ktor, micronaut, nestjs, phoenix, php, rocket, sinatra, streamlit, symfony.
-- All eight static frontend and all six SSR fixtures pass both acceptance paths.
-  Codespaces native browser interaction remains pending for every fixture.
-- Current milestone: corrected Fastify native acceptance published inbc8c28c,
-  synced toaswin. Product runtime is unchanged. Compatibility3tests passed;
-  published support page verified55/29/29, FastifybothPassed, CSbrowserpending.
-- Full-suite baseline18026bb:114 automated tests pass locally/aswin. Logs
-  /tmp/pods-ssr-complete-tests-{local,aswin}.txt. Live runtime remains5e5b4a0.
-  Source updates only native QA scripts/tests; no runtime restart was necessary.
-- 5,622 physical source lines:3,033 product/tooling,1,492 tests,933 examples,
-  164 browser tools. The extension filter now includes the four-line .astro file.
+  revision d6da2ed780aec8ae0178fc181f1d24113c322e15.
+- This milestone adds Koa native acceptance on parent d915ec1. Use git log for
+  publication commit. Product runtime is unchanged at 5e5b4a0.
+- Coverage: 55 isolated build/artifact/browser passes; 30 Google native browser
+  and 30 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+  and six SSR fixtures pass both paths. Every native Codespaces browser check
+  remains pending. The 25 fixtures awaiting both native acceptance paths are:
+  actix, adonis, aspnet, axum, deno, echo, fastapi, fiber, flask-mariadb,
+  flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, hono, ktor,
+  micronaut, nestjs, phoenix, php, rocket, sinatra, streamlit, symfony.
+- Full-suite baseline 18026bb: 114 tests passed locally/aswin; logs
+  /tmp/pods-ssr-complete-tests-{local,aswin}.txt. Product source unchanged since
+  that baseline's subsequent recorded runtime fixes; do not rerun unchanged
+  passing checks without cause. Latest compatibility check: 3 tests passed.
+- Physical code: 5,622 lines = 3,033 product/tooling + 1,492 tests + 933 examples
+  + 164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
+  files; includes .astro. No product source changed during this milestone.
 
-## Latest gate: corrected Fastify native acceptance
+## Latest gate: Koa native acceptance
 
-- Actual developer form submitted once01:24:55.848UTC after watcher38583 returned
-  available01:24:47.736546UTC(account2/global2/active0), then ended0.
-- Public fixtured6da2ed780aec8ae0178fc181f1d24113c322e15; preparation25747ms,
-  bundle273072bytes, no Docker images, no imported QA artifact.
-  App repo-d3c62ee9058c74712132c10e-d6da2ed780ae-ea805d970ccd;private port20867.
-- Google firstinitialRUNNING:health5703ms,delivery2804,page6749,read6864,write7156.
-  Cached fullrelaunch initialRUNNING:health4597,delivery1588,page5122,read5238,
-  write5531. Actual browser SQLite0→1,reload1,fullstop retained1→2,reload2.
-  No browser warnings/errors. Both launches stopped.
-- Codespaces15289 ended0:pods-launch-7vrw57jpjjppcww57 (Node environment).
-  FirstinitialShutdown health28548ms/delivery13932; old artifact's SQLite2
-  retained,write3. CachedinitialAvailable health7613/delivery6853; fullstop
-  retained3→4. Both stopped. Native browser execution remains pending.
-- Final01:26:59.889583UTC audit:activebuilds0/launches0,health200,port20867private.
-  Evidence stack-fastify-fixed-{url,google,codespaces}.json. Both acceptance flags
-  true. Originalfailed stack-fastify-google.json remains unchanged.
-- Originalnative9eee994 failure: Google forwarded empty POST as chunked without
-  Content-Type; Fastify415. Publicfixture sends explicit JSON and displays errors.
-  Isolated client-script regression failed before/passed after; simulated503
-  showed error and enabled retry. scripts/test-fastify-preview.mjs reproduces it.
-- Actual isolated browser regression25021 ended0:0→1,reload1,fullrestart1→2,
-  reload2. EmulatedchunkedPOST carriedapplication/json and returned200 twice.
-  Evidence stack-fastify-browser-transport.json plus replayprobe.mjs. This is not
-  native acceptance. Probe/control/app stopped; temporaryartifactsremoved.
-  Temporary LXDdevice fastify-transport-qa removed; SSHtunnel90220 stopped and
-  ended0. Old failedtunnel66630 also ended0; testtab31 closed. No live probes.
-- Originalnative diagnostic16129 used only matching authorizedGooglecompute;
-  temporary key removed. Local gcloud targets a DIFFERENT,SUSPENDED environment;
-  do not use that CLI identity. No credentials/accounts were printed.
-- Runtime/automatedtests unchanged. Full114 baseline remains18026bb; targeted
-  compatibility tests validate changed coverage. Physicalcodecount unchanged5622.
+- Ordinary quota watcher 67969 ended0 at 01:45:25.124874 UTC, account2/global2/
+  active0. Actual form submitted once at 01:45:29.115 UTC.
+- Public source folder examples/stacks/koa at d6da2ed; production preparation
+  22,767ms; Node bundle 101,539 bytes, SHA256
+  4cf6f2739c10d5c7072c855ea4886a4ad8bd9fdafd5ac57cdcde898501700240.
+  No QA artifact import or quota bypass. Source SHA matches the earlier browser
+  transport preflight, which passed empty chunked POST and restart persistence.
+- App repo-54e71d97ff4cca1baf2be123-d6da2ed780ae-4cf6f2739c10; private port24886.
+- Google first initial RUNNING: health6196ms, delivery3023, page8334, read8345,
+  successful write8626. Cached full relaunch initial RUNNING: health5016,
+  delivery1806, page5525, saved value5643, successful write5932.
+  Actual browser SQLite0→1, reload1, full stop retained1→2, reload2. No browser
+  warnings/errors. Both launches stopped. These are not cold-VM measurements.
+- Codespaces harness44477 ended0. Environment pods-launch-7vrw57jpjjppcww57.
+  First initial Shutdown: health28280ms, delivery16005, SQLite0→1.
+  Cached initial Available: health8227ms, delivery7515, full stop retained1→2.
+  Both stopped. HTTP checks are not native browser acceptance.
+- Final audit 01:47:26.519349 UTC: active builds0/launches0, health200,
+  port24886 private. Evidence stack-koa-{url,google,codespaces}.json.
+- /tmp/pods-koa-{browser,production-evidence,ports}.json, health.txt and
+  /tmp/pods-record-koa.py retain evidence inputs/validation. Both providers now
+  hold Koa value2; never reset existing data when retesting.
 
-## Next bounded gate
+## Next gate and performance work
 
-- Current turn completed Koa browser transport preflight:sourceSHA30ec5f6a71fea263
-  da43d72c3a2993160ced4be0b4179386fa6b3f40f4843b75, artifact4cf6f2739c10d5c7072c
-  855ea4886a4ad8bd9fdafd5ac57cdcde898501700240,101539bytes. Actualbrowser0→1,
-  reload1,fullrestart1→2,reload2; empty chunked POST returned200, no consoleerrors.
-  Evidence stack-koa-browser-transport.json and replayprobe. Probe1842 and tunnel
-  20820 ended0; temporarydevicekoa-transport-qa removed; tab32closed; filesremoved.
-- Express cross-format diagnostic43765 ended0: real existingQAcontainer saved1,
-  same-dataKey experimentalbundle saw0, backtocontainer saw1. ContinuityFAIL,
-  originaldataretained. Its unique Docker volume and temporaryroot were removed.
-  Evidence stack-express-transition-probe.{json,mjs}; no productionpackagerchange.
-- Also reproduced provider-adapter safe rejection for savedcontainer→Node and
-  savedNode→container labels, with mockedAPI and no computemutations. Evidence
-  stack-provider-format-transition-probe.{json,mjs}. Server environmentKey binds
-  account+dataKey independently ofruntime. Do not selectanotherenvironment to
-  bypass this; migration mustretain the savedenvironment andrealdata.
-  Public .devcontainer currently includesNode24,sshd,docker-in-docker, but that
-  config alone does notprove historicalenvironments support everyruntime.
-- NEXT: normal URL preparation and native checks for Koa + persistent data, then
-  remaining26 fixtures. Do not assume its timings/results from Fastify. No Koa
-  production build has been submitted. Existing QA matrix tests are distinct.
-- Live quota watcher67969 started01:29:55.073018UTC:account3/global3/active0,next
-  ordinary slot01:44:59.996UTC. Re-poll this exact handle; do not recreate while
-  live. /tmp/pods-next-native-quota-watch.py watches20minutes with30second readonly
-  samples. Keep limits3/account/hour and
-  12/global/hour; never change identity/bypass quota/import QA artifacts.
-- /tmp/pods-record-fastify-fixed.py and /tmp/pods-fastify-fixed-{browser,production-
-  evidence,ports}.json retain this gate's local evidence inputs; health.txt is200.
-- Express packaging diagnosis is now reproduced: esbuild0.25.12 emits one
-  unresolved optional require of supports-color in debug/src/node.js. The current
-  non-builtin external guard selects a full container. Promoting esbuild's
-  ignored-dynamic-import diagnostic identifies the handled missing import;
-  ordinary required missing imports still fail and require.resolve is distinct.
-- Experimental isolated bundle:338,173bytes, versus the production82,250,849byte
-  image. Real Express HTTP product and SQLite0→1, stop/relaunch1→2 passed at
-  418ms/288ms local health. This is not a native/browser performance result and
-  production preparation remains unchanged. Evidence stack-express-packaging-
-  diagnosis.json and stack-express-optional-bundle-probe.json; probe44620 ended0.
-- Do not switch packaging until format-transition storage is implemented/tested:
-  bundles use <root>/data/<dataKey>, default containers use
-  <root>/volumes/pods-<key-hash>/app-data/data. A format change would currently
-  choose a different database. Container recipes also run with their image's
-  default identity; handle file ownership without weakening directory checks.
-- Completed watcher52715 and Express probe44620 ended0. No live probes/builds
-  remain. Production limits3/account/hour and12/global/hour remain unchanged.
-  Never bypass quota or import QA artifacts into production.
-- /tmp/pods-next-native-quota-watch.py is a reusable bounded watcher. Anchor Svelte
-  buildNLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp account privately; never print identity.
-- /tmp/pods-capture-native.py runs on aswin with argument astro, react-router, express or fastify;
-  readonly SQLite, whitelisted build/app/launch fields, compute and derived timings.
-  Extend its explicit fixture allowlist for Koa before its native capture.
-- scripts/live-codespaces.mjs: gh token via stdin; use the existing fixture's
-  matching interaction probe and an explicit evidence file. Two launches required.
-  SSR checks use PODS_SSR_CHECK/PODS_SSR_FIXTURE and reject wrong source folders.
-  Do not combine interaction/persistence checks with SINGLE_LAUNCH.
-- Stop/history observation corrected on the next turn: existing poll() already
-  awaits history() after terminal state. A fresh read WITHOUT reloading showed
-  every recent row stopped. The earlier screenshot caught the history request
-  in flight; there is no evidenced persistent UI bug and no fix was made.
-- Readonly production audit00:10UTC found no already-prepared production builds
-  for any of the then29 pending fixtures. React Router has since passed; the other
-  Historical: corrected Fastify has now passed. The other26 remain unprepared.
-- Astro compression experiment completed: session36583 ended0. Levels6 and9
-  reduced124,914,593bytes to124,901,410/124,901,306 respectively (0.011%). Both
-  decoded to identical tarSHA427fe3c86896feeac0555e1bb57b573cee195b4800263e0d3e5c08674f44a882.
-  Tar payload125,437,883 of125,448,998bytes is itself gzip-compressed layers.
-  Keep level1; stronger outer compression cannot materially improve first-launch
-  transfer. Evidence stack-astro-compression-trial.json. Temporary outputs removed.
-  No source/runtime change or test rerun was warranted.
+- NEXT: Hono URL preparation and native browser/HTTP persistence checks, then
+  remaining fixtures. No Hono production build has been submitted.
+- Latest quota snapshot 01:47:36.323269 UTC: account3/global3/active0; next ordinary
+  slot 02:01:21.388 UTC. No live watcher. /tmp/pods-next-native-quota-watch.py is a
+  bounded20min readonly watcher with30sec samples; anchor Svelte build
+  NLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp privately. Poll a running handle, never recreate
+  on observation timeout. Keep limits3/account/hour and12/global/hour. Never
+  bypass quota, change identity to evade it, or import QA artifacts to production.
+- /tmp/pods-capture-native.py reads aswin SQLite readonly, whitelists fields and
+  derives timings. Its explicit fixture allowlist currently includes astro,
+  react-router, express, fastify, koa; add hono before its capture.
+- scripts/live-codespaces.mjs receives gh token on stdin. Use the correct fixture
+  probe, explicit output file and expected initial count. Counter/SSR/static/
+  WebSocket/worker checks require two launches, including confirmed full stop.
+- Express optional-import optimization remains experimental. esbuild0.25.12
+  bundles a compiler-confirmed handled supports-color require into338,173 bytes
+  versus production82,250,849-byte image. Real same-format persistence passed.
+  Production packager unchanged: cross-format storage must be fixed first.
+- Real transition probe43765 ended0: same dataKey, container saved1, bundle saw0,
+  returning to container saw1. Original data retained but continuity FAILED.
+  Its unique volume/root were removed. See stack-express-transition-probe.json
+  and replay .mjs. This asserts the failure, not successful migration.
+- Mocked provider-adapter check also rejects both saved container→Node and
+  Node→container runtime-label changes before mutations. Server environmentKey
+  binds account+dataKey independently of runtime; preserve that saved environment.
+  See stack-provider-format-transition-probe.{json,mjs}. Current public
+  devcontainer includes Node24, sshd, Docker-in-Docker; this does not prove the
+  capabilities of older saved environments.
+- Storage currently differs: bundles <root>/data/<dataKey>; default container
+  <root>/volumes/pods-<key-sha256-first24>/app-data/data. run() creates the bundle
+  directory even for a container, so existence alone does not prove data is there.
+  Container files may be root-owned. Preserve ownership checks, refuse ambiguity,
+  and prove data continuity before enabling smaller bundles. Do not weaken checks.
+- Fastify originally failed Google empty chunked POST with HTTP415; corrected
+  JSON-body fixture passed native browser and Codespaces checks. Historical failure
+  retained. Evidence stack-fastify-fixed-*.json, stack-fastify-google.json and
+  isolated before/after regressions. Existing Fastify values: Google2, Codespaces4.
+- Astro stronger outer gzip saved only0.011% because Docker layers already gzip.
+  No production compression change warranted; recorded trial remains valid.
 
-## Browser handoffs
+## Browser and environment handoffs
 
-First CUA call after compaction must be cua.rewriteDocumentation. Reuse bindings.
-Mark pending workflow tabs each turn; no duplicate launch/build after read timeout.
+After compaction first CUA call must be cua.rewriteDocumentation. Reuse bindings;
+mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 
-- stackQa6: IAB2tab13, completed CORRECTED Fastify preparationd6da2ed. Ready region
-  includes period:Your application is ready to share. → Try this version link.
-  For next fixture fillApplicationfolder only after checking quota; submitonce.
-- accountWorker:IAB2tab12,stoppedcorrectedFastifylauncher,GoogleSQLitevalue2.
-  fastifyFixedLaunchUrl,fastifyFixedPreparationSubmittedAt,fastifyFixedBrowserChecks
-  (bothpassed),fastifyFixedFirstLogs/SecondLogs=[] persist. Original Fastify failure
-  bindings remain. Codespaces stabledataKey now holds4. Do notreset saveddata.
-- measureFastifyCounter(tab,record,openLabel,expectedBefore) records continuous
-  visible/read/write time and reload. Itsdeadline50s; timeout does not authorize
-  another launch. Adapt exact observedheading/controls for a different fixture.
-- stopPreparedProduct(tab,url) confirmsstop. History can briefly lag during its
-  existing async request; no evidencedhistorybug.
-- supportQa:IAB2tab29,public support deliverable. Afterbc8c28c sync, browser
-  verified55isolated/29Google/29Codespaces and FastifybothPassed. NativeCSbrowser
-  warning remains. No runtime restart was required for coverage/docs changes.
-- nativeGithubKeep: IAB2tab10, pending GitHub two-factor authentication; fresh
-  read00:40UTC still2FA. User action already requested. No SMS/code sent.
-- cloudLifecycle: IAB2tab14, Cloud Shell Restart confirmation pending. No approval
-  to replace VM. Do not click Restart or accept background Authorize prompt.
-- Redact Connected-account text and private Cloud Shell hostnames from snapshots.
-  Never print tokens, accounts, sessions or computeKeys.
-
-## Operations and evidence rules
-
+- stackQa6: IAB2 tab13, completed Koa preparation. Ready region name includes
+  period: Your application is ready to share. Try this version link identifies
+  the exact artifact. Next folder input should be examples/stacks/hono.
+- accountWorker: IAB2 tab12, stopped Koa launcher. koaLaunchUrl,
+  koaPreparationSubmittedAt, koaBrowserChecks (both passed), koaFirstLogs and
+  koaSecondLogs (empty) persist. measureKoaCounter records continuous page/read/
+  write timing and reload;50sec deadline. Stop helper stopPreparedProduct confirms
+  terminal state. History may briefly lag while its async refresh finishes.
+- supportQa: IAB2 tab29, public support deliverable; refresh after publishing to
+  verify55/30/30 and Koa bothPassed. Native CS browser warning must remain visible.
+- nativeGithubKeep: IAB2 tab10; freshly checked this turn, still Two-factor
+  authentication. User already asked; no SMS/code sent. Do not repeat question.
+- cloudLifecycle: IAB2 tab14; freshly checked this turn, Restart confirmation and
+  background Authorize request remain pending. No VM replacement approval;
+  do not click Restart or accept the unrelated background permission request.
+- Redact Connected-account text and private Google preview hosts from snapshots.
+  Never print tokens, accounts, sessions or computeKeys. Local gcloud is signed
+  into a DIFFERENT, SUSPENDED Google environment; do not use that CLI identity.
 - Origin https://collection-conferences-ages-clearly.trycloudflare.com.
-- systemd user pods-launch-fresh.service,MainPID946172,runtime5e5b4a0. Node/gh:
-  /home/aswin/pods-tools/bin. Health/health on127.0.0.1:8787 (not/api/health).
-  XDG_RUNTIME_DIR=/run/user/1000; DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus.
-- Before any runtime restart: prove idle, confirm unit PID/cwd/cmdline/listener.
-  No restart required for evidence/docs. Never use retired manual PID marker or
-  touch unrelated pods-j03 services. Last controlled restart23:36:28UTC.
-- Cloudflared manualPID2322522, same hostname. Fixedhostname answer and durable
-  DNS/tunnel supervision remain pending; do not change callback hostname.
-- RunnerSHA9ef8029d995e07421e5297aaa1b644fb145a54c838e0b2d2f6f38f0e356cfc3b.
-- Prod DB URIfile:/home/aswin/pods-launch-fresh/.data/pods.sqlite?mode=ro.
-  records(kind,id,value JSON), singular build/launch. Use whitelisted fields only.
-  Provider initial state must be observed, never inferred/backfilled from duration.
-- Public/support renders evidence/stack-coverage.json each request. Acceptance
-  requires nativeAcceptance.googleBrowser/codespacesProtocol booleans after evidence.
-  Filenames alone never confer a pass. No raw private evidence is served publicly.
-- QA LXDpods-fresh-matrix-01 via/snap/lxd/current/bin/lxc,not snap wrapper.
-  Source/opt/pods,fixtures/work/stacks,output/output,node/opt/node/bin/node,uid1000.
-  Existing QAserverPID292107/session86855,app18090/proxy8081/tunnel18890; one-shot
-  SIGTERM handler consumed. Don't blindly signal. Temporary Fastify and Express probes used18095 and
-  stopped it; no current temporary probe/tunnel remains. QA Fastify source is now corrected atd6da2ed; local regression helper
-  is/opt/pods/scripts/test-fastify-preview.mjs. LXC file push could not overwrite existing root-owned/tmp paths;
-  unique reviewed helper paths worked without changing permissions.
-- Graph projectUsers-rizwanahamed-Documents-ChatGPT-podsv2,indexed through5e5b4a0.
-  public/scripts/examples/deploy excluded; targeted fallback is appropriate.
-- npm test = node --test test/*.test.mjs. set -e before validation/commit.
-  No passing-check reruns absent changes/concerns. User requests no subagents.
-- All native Codespaces browser interactions remain unverified. Cloud Shell VM
-  replacement persistence, durable hosting and cold20-second target are pending.
-  Arbitrary dependencies/secrets/migrations and native/mobile/GPU interfaces are
-  outside the currently tested contracts. Goal remains active, not complete.
+  Support /support renders coverage each request; flags, not filenames, grant
+  acceptance. No raw private evidence is served publicly.
+- User service pods-launch-fresh.service on aswin; last observed PID946172,
+  runtime5e5b4a0. Node/gh /home/aswin/pods-tools/bin. /health at127.0.0.1:8787.
+  Before any restart prove idle and revalidate unit PID/cwd/cmdline/listener and
+  SQLite integrity. Docs/evidence sync needs no restart. Never use old PID files
+  or touch unrelated pods-j03 services. Last restart23:36:28 UTC.
+- Cloudflared manualPID2322522; fixed hostname/DNS supervision still awaits user
+  input. Keep callback hostname unchanged. RunnerSHA
+  9ef8029d995e07421e5297aaa1b644fb145a54c838e0b2d2f6f38f0e356cfc3b.
+- DB: file:/home/aswin/pods-launch-fresh/.data/pods.sqlite?mode=ro;
+  records(kind,id,value JSON), singular build/launch. Use whitelisted output.
+- QA guest pods-fresh-matrix-01 via /snap/lxd/current/bin/lxc. Source /opt/pods,
+  fixtures /work/stacks, output /output, Node /opt/node/bin/node, uid/gid1000.
+  Existing QAserverPID292107/session86855, app18090/proxy8081/host18890. Its
+  one-shot SIGTERM handler was consumed; do not blindly signal. Temporary Koa/
+  Fastify probes/tunnels/devices are stopped and removed; no current probe.
+- Graph project Users-rizwanahamed-Documents-ChatGPT-podsv2, indexed through
+  5e5b4a0. scripts/public/examples/deploy excluded; targeted fallback appropriate.
+- Use set -e for validation→commit. User requests no subagents. Keep goal active;
+  native Codespaces browser,25 remaining fixture paths, runtime migration,
+  VM replacement durability, stable hosting and cold performance remain open.

@@ -86,8 +86,8 @@ or in-flight crash recovery.
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
 later passing attempts do not erase them. Automated coverage is **114 passing
-checks locally and on aswin**. Native coverage is 29 Google browser fixtures and
-29 Codespaces HTTP/protocol fixtures; 26 still lack at least one native acceptance path. Codespaces
+checks locally and on aswin**. Native coverage is 30 Google browser fixtures and
+30 Codespaces HTTP/protocol fixtures; 25 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1437,5 +1437,29 @@ Both diagnostics preserve the failing behavior explicitly; they are not passing
 migration tests.
 
 Koa's isolated browser preflight additionally passed empty chunked POST handling,
-reload and full app restart with SQLite values 0→1→2. Its native provider tests
-are still pending. See `stack-koa-browser-transport.json`.
+reload and full app restart with SQLite values 0→1→2. Its subsequent native
+acceptance is recorded below. See `stack-koa-browser-transport.json`.
+
+## Native Koa workflow
+
+The normal developer form prepared `examples/stacks/koa` at public revision
+`d6da2ed780ae` in **22.767 seconds**. Its **101,539-byte Node bundle** matched the
+isolated preflight artifact's hash. No custom PODS configuration or user build
+commands were required.
+
+| Check | Observed result |
+| --- | --- |
+| Cloud Shell, RUNNING compute, first artifact delivery | Health 6.196s; page visible 8.334s; successful SQLite write 8.626s |
+| Cloud Shell, cached artifact, full app relaunch | Health 5.016s; page visible 5.525s; saved value restored 5.643s; next write 5.932s |
+| Codespaces, initial Shutdown | Health 28.280s including resume; HTTP SQLite 0→1 |
+| Codespaces, initial Available, cached relaunch | Health 8.227s; retained SQLite 1 and incremented to 2 |
+
+Cloud Shell's actual browser button, reload and full app restart passed without
+console warnings or errors. Codespaces checks cover authenticated HTTP and
+persistence on user compute; native browser interaction remains pending.
+
+All four launches stopped. The final audit found no active builds or launches,
+control health 200 and preview port 24886 private. Coverage is **55 isolated /
+30 Google browser / 30 Codespaces HTTP**, with **25 fixtures** still awaiting
+those native checks. This does not establish VM replacement durability or a
+universal 20-second cold launch. Evidence: `stack-koa-{url,google,codespaces}.json`.

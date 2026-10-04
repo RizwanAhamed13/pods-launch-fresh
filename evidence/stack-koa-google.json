@@ -1,0 +1,92 @@
+{
+  "recordedAt": "2026-10-04T01:47:26.519349+00:00",
+  "scope": "Koa fixture: real Google Cloud Shell product browser button, reload, full app stop/relaunch and retained SQLite data.",
+  "results": [
+    {
+      "id": "gLT54DW8TLM0hFbponfaIT71eKSslLQG",
+      "appId": "repo-54e71d97ff4cca1baf2be123-d6da2ed780ae-4cf6f2739c10",
+      "provider": "google",
+      "port": 24886,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791078392341,
+        "startRequestedAt": 1791078392507
+      },
+      "createdAt": 1791078391708,
+      "updatedAt": 1791078410222,
+      "providerReadyAt": 1791078394881,
+      "readyAt": 1791078397904,
+      "timings": {
+        "downloadMs": 875,
+        "runtimeReadyMs": 1331,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 6196,
+      "deliveryMs": 3023
+    },
+    {
+      "id": "6OcGKCznrWuc-oNJy4ZyFDP95HwHxVfw",
+      "appId": "repo-54e71d97ff4cca1baf2be123-d6da2ed780ae-4cf6f2739c10",
+      "provider": "google",
+      "port": 24886,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791078415616,
+        "startRequestedAt": 1791078415953
+      },
+      "createdAt": 1791078415038,
+      "updatedAt": 1791078426407,
+      "providerReadyAt": 1791078418248,
+      "readyAt": 1791078420054,
+      "timings": {
+        "downloadMs": 317,
+        "runtimeReadyMs": 643,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 5016,
+      "deliveryMs": 1806
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "first-artifact-delivery",
+      "startedAt": "2026-10-04T01:46:31.519Z",
+      "visibleMs": 8334,
+      "stateRestoredMs": 8345,
+      "before": 0,
+      "afterWrite": 1,
+      "interactionMs": 8626,
+      "afterReload": 1,
+      "passed": true
+    },
+    {
+      "scenario": "cached-artifact-full-relaunch",
+      "startedAt": "2026-10-04T01:46:54.865Z",
+      "visibleMs": 5525,
+      "stateRestoredMs": 5643,
+      "before": 1,
+      "afterWrite": 2,
+      "interactionMs": 5932,
+      "afterReload": 2,
+      "passed": true
+    }
+  ],
+  "browserErrorOrWarningLogs": {
+    "first": [],
+    "repeat": []
+  },
+  "persistenceScope": "SQLite record written through native product UI survives full application stop/relaunch; does not prove replacement of the Cloud Shell VM.",
+  "passed": true,
+  "cleanupAudit": {
+    "at": "2026-10-04T01:47:26.519349+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 24886,
+    "codespacesPreviewVisibility": "private"
+  }
+}
