@@ -122,6 +122,24 @@ a measured follow-up; runtime startup tuning alone cannot meet20s for those
 observations. This does not identify the limiting network segment or compare
 provider performance under controlled conditions.
 
+A [byte-identical Micronaut recompression probe](evidence/stack-image-recompression.json)
+found that stronger outer gzip saves only 0.1726% of the published 125.123 MB image;
+all six image layers were already gzip-compressed. Production compression is unchanged.
+
+A [private artifact-delivery experiment](evidence/stack-artifact-cdn.json) uploaded
+that exact image once from aswin in 29.576s, then downloaded it to already available
+Codespaces compute in 14.985s and 0.792s. Both fresh temporary files matched the
+published SHA-256 and were removed. Unauthenticated asset access returned404;
+the compute download used a short-lived signed URL without a GitHub token.
+The artifact repository is private. The large difference between the two download
+observations must not be treated as a guarantee for new clients or regions.
+
+This candidate delivery path is **not integrated into production**. These are
+download-only measurements, excluding Docker load, runtime startup and browser
+interaction. The next gate is authorized artifact delivery with an aswin fallback,
+followed by a complete native launch with an uncached image. The historical aswin
+timings and this new experiment are not a controlled side-by-side benchmark.
+
 ## Persistence and operational limits
 
 Database fixtures verify a product write, read, complete application stop,

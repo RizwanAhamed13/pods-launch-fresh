@@ -8,7 +8,11 @@ progress; it is not a blocked turn. No universal compatibility or20s claim.
 
 - Local: /Users/rizwanahamed/Documents/ChatGPT/podsv2.
 - aswin: /home/aswin/pods-launch-fresh; SSH alias aswin.
-- Core private repo: https://github.com/RizwanAhamed13/pods-launch-fresh.
+- Core repo: https://github.com/RizwanAhamed13/pods-launch-fresh.
+  Current GitHub API visibility is PUBLIC; do not rely on the older private label.
+- New private artifact repository: https://github.com/RizwanAhamed13/pods-launch-artifacts-fresh.
+  Draft delivery-probe-20261004/release402982733, asset609702555 contains only the
+  unchanged prepared Micronaut image. Private visibility and anonymous404 verified.
 - Public fixture repo: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
   pinned d6da2ed780aec8ae0178fc181f1d24113c322e15.
 - Coverage:55 isolated build/artifact/browser,55 Google native browser,
@@ -23,7 +27,8 @@ progress; it is not a blocked turn. No universal compatibility or20s claim.
   at2026-10-04T11:12:33.556Z:55 isolated,55 Google browser,55 Codespaces protocol;
   all55 applications shown, including passing Streamlit and Symfony rows.
   Publication receipt: stack-wide-support-published.json.
-- Latest idle audit2026-10-04T11:12:26UTC: health200, SQLiteok, zero active builds/launches.
+- Latest idle audit2026-10-04T11:22:59UTC: health200, SQLiteok, zero active builds/launches.
+  Recorded in stack-artifact-cdn.json; running PID and runner hash unchanged.
   All accepted launches stopped. Earlier failed attempts remain terminal, not relabeled.
   No build/launch watcher or test harness is currently running.
 
@@ -69,8 +74,27 @@ progress; it is not a blocked turn. No universal compatibility or20s claim.
   Delivery analysis covers8 first observations across4fixtures,5.514–5.555MB/s;
   it does not isolate the slow network segment or compare providers fairly.
   Streamlit/Symfony successful retries reuse failed first attempts' images. Never
-  relabel them uncached or erase failed measurements. Investigate reducing actual
-  image transfer bytes before another broad timing run; use one representative gate.
+  relabel them uncached or erase failed measurements. The byte-reduction and delivery
+  experiments below identify the next gate; do not repeat the completed compression probe.
+- This turn completed that size gate: stack-image-recompression.json proves all
+  six exact native Micronaut layers alreadygzip; outerlevel9 saves only0.1726%.
+  Each candidate decodes to identical tarbytes. No production compression change.
+- Private CDN experiment stack-artifact-cdn.json: exact125122726-byte native image,
+  SHA07408dbaef08a310f195b938eee2a54f2e2daa7405d7298173759d7a9db2502c,
+  uploaded once fromaswin29.576s. AvailableCodespaces download14.985s then0.792s,
+  both hash/disk verified; no token sent toCDN. Each fresh temp archive removed.
+  Sourcecopy removed fromQA; productionimage/artifacts and Docker caches unchanged.
+  Signed URL deliberately not saved; API resolves302 on demand, anonymous404.
+  Receipt includes upload, asset identity, input hashes and the two observations.
+- Next concrete gate: integrate optional private artifact delivery into preparation
+  and launch, authorize atPODS before obtaining a short-lived signed URL, never send
+  server credentials tocompute, strictly validate destination and image integrity,
+  retain aswin delivery on lookup/missingasset failure. GitHub documents both200
+  streaming and302 responses, so handle those without assuming every asset redirects.
+  Then use a new ordinary developer build for an uncached-image native launch;
+  do not delete existing user image caches to manufacture a timing result.
+  No production CDN integration or launch-speed claim exists yet. New clients/regions
+  cannot be assumed to reproduce the second CDN timing. Current20s target remains open.
 - Matrix is explicit tested representatives, not every version/application. Unknown
   secrets/schema/migrations remain developer inputs. Desktop/mobile/GPU/non-web
   programs are not claimed as browser products. Existing public-GitHub scope remains.

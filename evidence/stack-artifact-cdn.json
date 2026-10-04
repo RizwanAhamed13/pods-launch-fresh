@@ -1,0 +1,92 @@
+{
+  "startedAt": "2026-10-04T11:20:57.541971+00:00",
+  "recordedAt": "2026-10-04T11:21:18.950245+00:00",
+  "repository": "RizwanAhamed13/pods-launch-artifacts-fresh",
+  "repositoryPrivate": true,
+  "assetId": 609702555,
+  "assetApiStatus": 302,
+  "anonymousAssetApiStatus": 404,
+  "signedUrlHost": "release-assets.githubusercontent.com",
+  "signedUrlExpiresAt": "2026-10-04T12:04:08Z",
+  "provider": "codespaces",
+  "initialComputeState": "Available",
+  "probeSha256": "716dc3469f694495cb7939b23d4f2451ccc8c76ed3f1e2c7217a5bef86494448",
+  "observations": [
+    {
+      "recordedAt": "2026-10-04T11:21:02.724Z",
+      "node": "v24.21.0",
+      "host": "release-assets.githubusercontent.com",
+      "status": 200,
+      "bytes": 125122726,
+      "sha256": "07408dbaef08a310f195b938eee2a54f2e2daa7405d7298173759d7a9db2502c",
+      "responseHeadersMs": 937,
+      "downloadMs": 14985,
+      "effectiveMBps": 8.35,
+      "diskHashMatches": true,
+      "requestAuthorizationHeader": false,
+      "redirectsAllowed": false,
+      "temporaryFilesRemoved": true
+    },
+    {
+      "recordedAt": "2026-10-04T11:21:17.897Z",
+      "node": "v24.21.0",
+      "host": "release-assets.githubusercontent.com",
+      "status": 200,
+      "bytes": 125122726,
+      "sha256": "07408dbaef08a310f195b938eee2a54f2e2daa7405d7298173759d7a9db2502c",
+      "responseHeadersMs": 32,
+      "downloadMs": 792,
+      "effectiveMBps": 157.983,
+      "diskHashMatches": true,
+      "requestAuthorizationHeader": false,
+      "redirectsAllowed": false,
+      "temporaryFilesRemoved": true
+    }
+  ],
+  "scope": "Two sequential byte-verified private CDN downloads on already available user compute. Each used a fresh temporary file and removed it. No Docker load, application launch or browser timing is included. Historical aswin measurements are a separate, uncontrolled comparison.",
+  "upload": {
+    "startedAt": "2026-10-04T11:19:42.294382+00:00",
+    "finishedAt": "2026-10-04T11:20:11.871078+00:00",
+    "uploadMs": 29576,
+    "exitCode": 0,
+    "repository": "RizwanAhamed13/pods-launch-artifacts-fresh",
+    "releaseId": 402982733,
+    "tag": "delivery-probe-20261004",
+    "sourceSha256": "07408dbaef08a310f195b938eee2a54f2e2daa7405d7298173759d7a9db2502c",
+    "bytes": 125122726
+  },
+  "assetMetadata": {
+    "id": 609702555,
+    "digest": "sha256:07408dbaef08a310f195b938eee2a54f2e2daa7405d7298173759d7a9db2502c",
+    "name": "07408dbaef08a310f195b938eee2a54f2e2daa7405d7298173759d7a9db2502c.gz",
+    "size": 125122726,
+    "state": "uploaded"
+  },
+  "sourceEvidence": {
+    "stack-micronaut-url.json": "e59f36517ee398f3a88178ecefe21244b6f97972734a75a8fe68328137f48ff6",
+    "stack-micronaut-google.json": "fb4fdd0e2dc5fde96adba3b0cfc85740debeaa4ed9db4e1c6ec53ee2cb4d7926",
+    "stack-micronaut-codespaces.json": "805a0c1d495ee33b2e475f9fa1db60f28e0b971d3f97073b2cc494ceae1bc430",
+    "stack-image-recompression.json": "a2631bf404783354e90dddf3c82e0cd7ad857253a875deb02f518d922ff5da09"
+  },
+  "decision": "Proceed to an optional private artifact-delivery integration, with authorization checked by PODS before resolving a short-lived download URL, no server credential forwarded to compute, content integrity enforced and the existing aswin delivery retained as a fallback. Measure a full uncached-image native launch before claiming launch-speed improvement. The first and second CDN observations differ materially; do not assume the second timing for new clients or regions.",
+  "productionChanged": false,
+  "orchestrator": {
+    "executedSha256": "af6fe4c90ecce80ed3d4b3384cc195abc24b01d9257e4a4fc0017361b550e761",
+    "checkedInSha256": "3b9077d5f8e5613a205ac39e437bfc453e685f6705fd173fda47add35306ad84",
+    "changeAfterRun": "The checked-in script omits saving raw stderr on a failed SSH command, which can contain the signed URL. The successful request/download path is unchanged."
+  },
+  "documentation": "https://docs.github.com/en/rest/releases/assets#get-a-release-asset",
+  "productionAudit": {
+    "recordedAt": "2026-10-04T11:22:59.499312+00:00",
+    "pid": 1390769,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "a8140865a8d18aa4f36c6194bc011507508af34b9ad26cc40c78ccdafbe5925d",
+    "revision": "044a0fde208726821f12ece0de7e967378c6f890"
+  }
+}

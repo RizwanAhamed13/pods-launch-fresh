@@ -1,0 +1,92 @@
+{
+  "recordedAt": "2026-10-04T11:17:48.371506+00:00",
+  "probeSha256": "7edac04f78045a8aa002b8a55039db789100a05aced30e3dce654eefea280d84",
+  "python": "3.12.3",
+  "zlib": "1.3",
+  "source": {
+    "bytes": 125122726,
+    "sha256": "07408dbaef08a310f195b938eee2a54f2e2daa7405d7298173759d7a9db2502c"
+  },
+  "decodedTar": {
+    "bytes": 126779904,
+    "sha256": "61695d49ba4cde048ae8381310b3b94beacdaa2c1abd7475726c3f05882fd1c4"
+  },
+  "layers": [
+    {
+      "path": "blobs/sha256/a60ef8ec184edb5ed91f5983f00261359fb2fe20f603e8d488b9477d32fcad70",
+      "bytes": 29764422,
+      "magicHex": "1f8b0808",
+      "alreadyGzip": true
+    },
+    {
+      "path": "blobs/sha256/49b14164d4d96e593cb68db980906b691931cdcde6f60b918280317c89e55462",
+      "bytes": 19375635,
+      "magicHex": "1f8b0800",
+      "alreadyGzip": true
+    },
+    {
+      "path": "blobs/sha256/7c48d168a51b541814c6814256cd298e11114f5f088e4511cffb4f6b3622d1b6",
+      "bytes": 53097597,
+      "magicHex": "1f8b0800",
+      "alreadyGzip": true
+    },
+    {
+      "path": "blobs/sha256/5165dac19553999758e23bf9247e5bac05f0d26ee503d13bf70c1e8873eb8d37",
+      "bytes": 159,
+      "magicHex": "1f8b0800",
+      "alreadyGzip": true
+    },
+    {
+      "path": "blobs/sha256/02e0e048361058af7411fe47569c4d90b68a917dba037514c3831b7bf7029c7b",
+      "bytes": 2465,
+      "magicHex": "1f8b0800",
+      "alreadyGzip": true
+    },
+    {
+      "path": "blobs/sha256/9d518ae9e329fcb7dbef28201fe80ce84375f69c5d7de47a4492ae7769369d68",
+      "bytes": 24519646,
+      "magicHex": "1f8b0800",
+      "alreadyGzip": true
+    }
+  ],
+  "results": [
+    {
+      "level": 1,
+      "bytes": 124946907,
+      "sha256": "2d550b955b0d80ea397f2cb03df43f70dc166a65d46e1e5ffcd8648608b0b9ec",
+      "recompressMs": 4209,
+      "savedBytes": 175819,
+      "savedPercent": 0.1405,
+      "decodedTarIdentical": true
+    },
+    {
+      "level": 6,
+      "bytes": 124906892,
+      "sha256": "454bbf81a4e08a5f22417b3193c92cb6d4fe3ffa92974606c0d1bdb36278b1a1",
+      "recompressMs": 4591,
+      "savedBytes": 215834,
+      "savedPercent": 0.1725,
+      "decodedTarIdentical": true
+    },
+    {
+      "level": 9,
+      "bytes": 124906716,
+      "sha256": "b6fd86483d62f268e2025341e98d9abc399acc9669d7e131e53c7abb057409d4",
+      "recompressMs": 4806,
+      "savedBytes": 216010,
+      "savedPercent": 0.1726,
+      "decodedTarIdentical": true
+    }
+  ],
+  "sourceUnchanged": true,
+  "temporaryFilesRemoved": true,
+  "scope": "Isolated recompression of the exact prepared image. Each candidate decodes to the identical original tar stream. This measures bytes and isolated preparation cost, not native launch speed or a Docker runtime change.",
+  "fixture": "micronaut",
+  "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-b8c6e3de8016",
+  "imageId": "sha256:0f1a46a8eb6d00e8447ea5b9ad537ab21e67e5099c96271cdad97d4541e97eee",
+  "buildEvidence": {
+    "path": "evidence/stack-micronaut-url.json",
+    "sha256": "e59f36517ee398f3a88178ecefe21244b6f97972734a75a8fe68328137f48ff6"
+  },
+  "decision": "Do not change production outer gzip compression: the smallest byte-identical candidate saves only 0.1726% compared with the published image. This cannot close the measured first-launch latency gap. Candidate preparation uses Python/zlib; its level-1 output also differs from the existing Node-built gzip, so the full saving cannot be attributed to the compression level alone."
+}
