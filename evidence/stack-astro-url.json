@@ -1,0 +1,63 @@
+{
+  "recordedAt": "2026-10-04T00:06:14.414090+00:00",
+  "controlRevision": "5e5b4a0",
+  "checkoutRevision": "fc24da9",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated server build, with no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T00:01:06.170944+00:00",
+    "accountRecent": 2,
+    "globalRecent": 2,
+    "activeBuilds": 0
+  },
+  "submittedAt": "2026-10-04T00:01:09.051Z",
+  "attempts": [
+    {
+      "id": "I0EYiDQmuxXWs80U0K64UH21p9Pa6bjI",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/astro",
+        "key": "f398a17ba5a400573450613f"
+      },
+      "status": "ready",
+      "createdAt": 1791072069984,
+      "startedAt": 1791072070109,
+      "finishedAt": 1791072258857,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-f398a17ba5a400573450613f-9eee994ba7f7-df71063ff47f",
+      "app": {
+        "id": "repo-f398a17ba5a400573450613f-9eee994ba7f7-df71063ff47f",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "df71063ff47fabd7d9d71e2df50d4aa0498e28446e8ca1970921ed3e9bf427c5",
+        "bytes": 277,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-f398a17ba5a400573450613f",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/astro",
+          "revision": "9eee994ba7f70d1793bc449573ddb36e01003818"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Astro counter"
+        },
+        "preparedAt": "2026-10-04T00:04:18.413Z",
+        "images": [
+          {
+            "id": "sha256:e33929ec0209d1eb2c6905b541ca9e0e1341e2e8cad4051557ecb1cf0cdce674",
+            "sha256": "c99af19d71357fc3b51d0c2da0b92ef022f56ba93bc82280167993a0a6e9277a",
+            "bytes": 124919529
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 188748
+}

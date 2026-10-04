@@ -1,0 +1,98 @@
+{
+  "recordedAt": "2026-10-04T00:06:14.414090+00:00",
+  "scope": "Real Cloud Shell browser product after actual developer URL preparation; both launches stopped.",
+  "results": [
+    {
+      "id": "0wV7FjIxRfjBsvS6IfjQPRO4nO_1kHP8",
+      "appId": "repo-f398a17ba5a400573450613f-9eee994ba7f7-df71063ff47f",
+      "provider": "google",
+      "port": 26566,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791072288180,
+        "startRequestedAt": 1791072288419
+      },
+      "createdAt": 1791072287585,
+      "updatedAt": 1791072341149,
+      "providerReadyAt": 1791072290964,
+      "readyAt": 1791072330793,
+      "timings": {
+        "downloadMs": 580,
+        "imagesMs": 33867,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 40,
+        "imageDownloadMs": 27051,
+        "imageLoadMs": 6751,
+        "runtimeReadyMs": 37990,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 43208,
+      "deliveryMs": 39829
+    },
+    {
+      "id": "cY6A4xLm-y6qoFsjYLZSZ5teh7pSVht0",
+      "appId": "repo-f398a17ba5a400573450613f-9eee994ba7f7-df71063ff47f",
+      "provider": "google",
+      "port": 26566,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791072348380,
+        "startRequestedAt": 1791072348635
+      },
+      "createdAt": 1791072347922,
+      "updatedAt": 1791072359141,
+      "providerReadyAt": 1791072350936,
+      "readyAt": 1791072354690,
+      "timings": {
+        "downloadMs": 403,
+        "imagesMs": 66,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 66,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2575,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 6768,
+      "deliveryMs": 3754
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "first-image-delivery",
+      "visibleMs": 45363,
+      "before": 0,
+      "afterWrite": 1,
+      "interactionMs": 45645,
+      "afterReload": 1,
+      "passed": true
+    },
+    {
+      "scenario": "cached-full-relaunch",
+      "visibleMs": 7489,
+      "before": 1,
+      "afterWrite": 2,
+      "interactionMs": 7787,
+      "afterReload": 2,
+      "passed": true
+    }
+  ],
+  "timingScope": "Continuous launch-button to visible product and successful interaction in each browser call; both initial compute states RUNNING.",
+  "browserErrorOrWarningLogsAtFinalCheck": [],
+  "persistenceScope": "Browser localStorage survives reload and full application stop/relaunch; not backend database or VM replacement durability.",
+  "passed": true,
+  "cleanupAudit": {
+    "at": "2026-10-04T00:07:14.640802+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 26566,
+    "codespacesPreviewVisibility": "private"
+  }
+}

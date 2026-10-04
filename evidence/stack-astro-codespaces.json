@@ -1,0 +1,135 @@
+{
+  "testedAt": "2026-10-04T00:06:26.517Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "gKr4uU6W9nLIug-FcsRsgxmcquomYk-_",
+      "dataKey": "repo-f398a17ba5a400573450613f",
+      "port": 26566,
+      "appId": "repo-f398a17ba5a400573450613f-9eee994ba7f7-df71063ff47f",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "df71063ff47fabd7d9d71e2df50d4aa0498e28446e8ca1970921ed3e9bf427c5",
+      "images": [
+        {
+          "id": "sha256:e33929ec0209d1eb2c6905b541ca9e0e1341e2e8cad4051557ecb1cf0cdce674",
+          "sha256": "c99af19d71357fc3b51d0c2da0b92ef022f56ba93bc82280167993a0a6e9277a",
+          "bytes": 124919529
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791072275478,
+      "updatedAt": 1791072357908,
+      "expiresAt": 1791074075478,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Shutdown",
+        "observedAt": 1791072275918,
+        "resumeRequestedAt": 1791072275967
+      },
+      "providerReadyAt": 1791072295964,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-26566.app.github.dev",
+      "lastSeenAt": 1791072357908,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 1268,
+        "imagesMs": 35155,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 31,
+        "imageDownloadMs": 27861,
+        "imageLoadMs": 7238,
+        "runtimeReadyMs": 47356,
+        "cacheHit": false
+      },
+      "readyAt": 1791072357908,
+      "deliveryMs": 61944,
+      "totalMs": 82430,
+      "ssrCheck": {
+        "fixture": "astro",
+        "productRendered": true,
+        "initialCounter": 0,
+        "inlineClient": true,
+        "scripts": [],
+        "dynamicRender": {
+          "first": "2026-10-04T00:06:04.434Z",
+          "second": "2026-10-04T00:06:04.466Z",
+          "passed": true
+        },
+        "passed": true,
+        "scope": "Authenticated HTTP fresh server-rendered Astro fixture and inline client delivery; not browser execution, interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "OdB_cAif1n8I9l_gLEaZxQLVT_aijFJ7",
+      "dataKey": "repo-f398a17ba5a400573450613f",
+      "port": 26566,
+      "appId": "repo-f398a17ba5a400573450613f-9eee994ba7f7-df71063ff47f",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "df71063ff47fabd7d9d71e2df50d4aa0498e28446e8ca1970921ed3e9bf427c5",
+      "images": [
+        {
+          "id": "sha256:e33929ec0209d1eb2c6905b541ca9e0e1341e2e8cad4051557ecb1cf0cdce674",
+          "sha256": "c99af19d71357fc3b51d0c2da0b92ef022f56ba93bc82280167993a0a6e9277a",
+          "bytes": 124919529
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791072369371,
+      "updatedAt": 1791072378627,
+      "expiresAt": 1791074169371,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791072370094
+      },
+      "providerReadyAt": 1791072370212,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-26566.app.github.dev",
+      "lastSeenAt": 1791072378627,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 276,
+        "imagesMs": 43,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 43,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 1857,
+        "cacheHit": true
+      },
+      "readyAt": 1791072378627,
+      "deliveryMs": 8415,
+      "totalMs": 9256,
+      "ssrCheck": {
+        "fixture": "astro",
+        "productRendered": true,
+        "initialCounter": 0,
+        "inlineClient": true,
+        "scripts": [],
+        "dynamicRender": {
+          "first": "2026-10-04T00:06:23.607Z",
+          "second": "2026-10-04T00:06:23.638Z",
+          "passed": true
+        },
+        "passed": true,
+        "scope": "Authenticated HTTP fresh server-rendered Astro fixture and inline client delivery; not browser execution, interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "cleanupAudit": {
+    "at": "2026-10-04T00:07:14.640802+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 26566,
+    "codespacesPreviewVisibility": "private"
+  }
+}

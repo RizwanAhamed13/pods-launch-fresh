@@ -86,8 +86,8 @@ or in-flight crash recovery.
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
 later passing attempts do not erase them. Automated coverage is **114 passing
-checks locally and on aswin**. Native coverage is 25 Google browser fixtures and
-25 Codespaces HTTP/protocol fixtures; 30 await native acceptance. Codespaces
+checks locally and on aswin**. Native coverage is 26 Google browser fixtures and
+26 Codespaces HTTP/protocol fixtures; 29 await native acceptance. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1243,3 +1243,31 @@ still require actual URL preparation and provider/browser launches.
 Source totals 5,523 physical lines, now including the four-line Astro source file
 previously omitted by the extension filter. Evidence: `stack-astro-ssr-probe.json`
 and `stack-react-router-ssr-probe.json`.
+
+## Astro native acceptance
+
+The actual developer form prepared `examples/stacks/astro` at public revision
+`9eee994` in **188.748 seconds** after normal quota availability. It produced a
+277-byte launch manifest and a **124,919,529-byte** prebuilt runtime image. No QA
+artifact was imported and no source compilation was required at user launch.
+
+| Scenario | Health | Visible product / interaction |
+| --- | --- | --- |
+| Cloud Shell RUNNING, image absent | 43.208s | 45.363s / 45.645s |
+| Cloud Shell RUNNING, cached full relaunch | 6.768s | 7.489s / 7.787s |
+| Codespaces Shutdown, resume and image absent | 82.430s | Authenticated SSR check passed |
+| Codespaces Available, cached full relaunch | 9.256s | Authenticated SSR check passed |
+
+Both Cloud Shell timings were continuous within their browser calls. The real
+Astro counter changed 0→1 and survived reload; a full stop/relaunch retained 1,
+then changed 1→2 and survived reload. Browser warnings/errors were empty. This is
+localStorage evidence, not backend database or VM-replacement durability.
+Codespaces verified advancing server-render timestamps and inline client
+delivery twice; browser sign-in and JavaScript interaction remain pending.
+
+All four launches stopped. Port 26566 stayed private, and the final 00:07:14 UTC
+audit found no active builds or launches and healthy control service. The first
+image cases exceed 20 seconds; cached results do not establish a cold-launch promise.
+Evidence: `stack-astro-url.json`, `stack-astro-google.json`,
+`stack-astro-codespaces.json`. Current acceptance:55 isolated, 26 Google browser,
+26 Codespaces protocol, 29 native fixtures remaining. React Router is next.

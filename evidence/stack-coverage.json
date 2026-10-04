@@ -156,7 +156,11 @@
       "serverEvidence": "stack-matrix-24.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-24.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-astro-url.json",
+        "stack-astro-google.json",
+        "stack-astro-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-04.json",
@@ -172,7 +176,12 @@
           "status": "passed"
         }
       ],
-      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
+      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json",
+      "nativeProviderScope": "Native Cloud Shell Astro browser interaction, reload and full app restart retained localStorage values. Codespaces authenticated HTTP verified fresh server rendering and inline client delivery on first and cached launches. Native Codespaces browser interaction remains pending.",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "axum",
