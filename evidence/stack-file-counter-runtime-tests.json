@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-10-04T06:20:58.069439+00:00",
+  "baseRevision": "3e0c04b",
+  "scope": "Restricted native file-counter inspection for Actix, Axum, Rocket and ASP.NET: exact recipe command, saved file, private product port and persistent workspace volume. No provider or application runtime behavior changed.",
+  "sourceHashes": {
+    "src/runner.mjs": "de3680794b58f02d4e912810164e79049559fe994556501ec6969bd3cf3dafde",
+    "src/container-runtime.mjs": "51c866cf69fab25476f0cb286747db4c5f2aaa34c2e093b9580444970d970374",
+    "src/storage-transition.mjs": "4bf7ba7c9489cb1d2afbe372ac54e1d37c0dc3a9fe48a34f13f6bcc6300dc161",
+    "scripts/probe-file-counter-runtime.mjs": "6d011e9ceb5bf6bd64cab2490b278b6012b4704b6da9b1a0f31a40329148153e",
+    "scripts/live-codespaces.mjs": "ba1496cc5548ae18e7f8f6c837278cb329ab2fc424b1ac164f2003941cf51c49",
+    "test/file-counter-runtime-probe.test.mjs": "7e3504feae2095e4ea407c1b23d87c78fb6de60e581fe36f14990cab04cad1e2",
+    "evidence/stack-file-counter-runtime-live.mjs": "f09f2db0b74d076771c7b9227bdad2bbe05a423cc081354853f15ecdf60ce7a5"
+  },
+  "fullSuite": [
+    {
+      "environment": "local",
+      "tests": 179,
+      "passed": 179,
+      "failed": 0,
+      "outputSha256": "9c266ec85681c0eb23b07a10db2fcb6dd9207342cb720b333a4fec98c013bdb1"
+    },
+    {
+      "environment": "isolated-aswin-linux",
+      "tests": 179,
+      "passed": 179,
+      "failed": 0,
+      "outputSha256": "7c1e8836a30290a0d5fe884a0c60b98769fe2fcaacf42b8dfdec40f0bbbf98f6"
+    }
+  ]
+}

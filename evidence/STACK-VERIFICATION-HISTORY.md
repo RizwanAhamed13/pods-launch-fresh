@@ -2104,3 +2104,25 @@ Evidence: `stack-fiber-{url,google,codespaces,audit}.json`. Coverage is now
 fixtures pending. All four Go fixtures have passed these native paths. Full
 suite **173/173** and source **6,703 lines** remain valid because this step changed
 only evidence and documentation.
+
+
+## Shared Rust and ASP.NET native storage inspection
+
+The native Codespaces harness can now directly inspect saved counter files for
+Actix, Axum, Rocket and ASP.NET. The opt-in probe checks the exact recipe command,
+single web service, project network, assigned product port and persistent volume.
+It copies only the fixed counter file; temporary copies are removed even when
+inspection fails. It does not execute container tools or independently identify
+the framework version.
+
+Six focused tests cover expected commands, incorrect records, invalid inputs,
+container/network/port/storage boundary failures, symlinks, oversized files and
+copy cleanup. Serialization is tested in fresh processes for all four profiles.
+The full suite passes **179/179** locally and in isolated aswin Linux QA.
+
+All four pinned real framework artifacts passed this same helper with empty
+chunked POST and **0→1→2** file counters across full application stops. Scoped
+containers, volumes and temporary storage were removed. These checks prepare the
+native acceptance path; native coverage remains **55/42/42**, with13 pending.
+Evidence: `stack-file-counter-runtime-{preflight,tests}.json` and `-live.mjs`.
+Physical source is now **6,814 lines**. No application runtime or provider behavior changed.

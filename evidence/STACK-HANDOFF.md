@@ -23,10 +23,10 @@ VM replacement durability, or a universal 20-second cold launch.
   pending authorization. The13 fixtures awaiting native acceptance are:
   actix, aspnet, axum, deno, gradio,
   ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
-- Current full suite:173/173 passed locally and in isolated aswin QA after
-  Go/Echo/Fiber inspection tooling. Logs /tmp/pods-go-framework-full-{local,qa}.txt.
+- Current full suite:179/179 passed locally and in isolated aswin QA after
+  Rust/ASP.NET file-counter inspection tooling. Logs /tmp/pods-file-counter-full-{local,qa}.txt.
   The previous SQLite native acceptance was published4bb9326.
-- Physical code:6,703 lines =3,491 product/tooling +2,115 tests +933 examples
+- Physical code:6,814 lines =3,541 product/tooling +2,176 tests +933 examples
   +164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
   files; includes .astro. Running provider revision5dde1e5, PID1063107,
   runner SHA2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486.
@@ -940,3 +940,31 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   No test, build or watcher remains active. Actix form is filled, unsubmitted.
   Normal quota snapshot2026-10-04T06:13:07.190811+00:00: account3/global3,
   next ordinary slot2026-10-04T06:27:47.996000+00:00. Check quota again before submission.
+
+
+## Shared native file-counter inspection
+
+- Added scripts/probe-file-counter-runtime.mjs and opt-in
+  PODS_FILE_COUNTER_RUNTIME_CHECK=1 in scripts/live-codespaces.mjs, restricted to
+  actix/axum/rocket/aspnet. Requires the product counter check; verifies exact
+  recipe command, one web service/project network, only assigned product port,
+  /data persistent workspace bind-volume and copied saved counter. No container
+  command execution or independent framework-version claim.
+- Six focused tests reject wrong commands/ports/storage, malformed or incorrect
+  counters, invalid input, symlinks/directories/oversized files and copy failures;
+  copied files are removed on success/failure. Fresh-process serialization tested
+  for all four profiles. Full179/179 local+isolatedLinux. Source6814 lines.
+- Real stored artifacts passed the shared helper: Actix, Axum, Rocket, ASP.NET,
+  counter0→1→2 across full stops and preview-style empty chunked POST. Batch44269
+  ended0; all scoped containers/volumes/data directories removed. Sharedcache
+  retained. Candidate/output/file-counter-candidate-3e0c04b in QAguest.
+  Evidence stack-file-counter-runtime-{live.mjs,preflight.json,tests.json}.
+- Native counts unchanged55/42/42,13pending. Actix form remains unsubmitted;
+  last normal quota snapshot nextslot06:27:47.996UTC. No live quota watcher.
+  Prepared /tmp/pods-watch-actix-build.py and
+  /tmp/pods-record-file-counter-native.py (fixture argument, reads currentHEAD).
+  /tmp/pods-capture-native.py now allows all four profiles. Use exact heading
+  Actix counter and the strict product-h1 browser helper. After both Google
+  runs stop, use PODS_COUNTER_CHECK=1 PODS_FILE_COUNTER_RUNTIME_CHECK=1
+  PODS_EXPECT_INITIAL_COUNT=0 with the exact prepared app ID.
+  Existing GitHub2FA/VMreplacement/stable-hostname inputs remain pending.

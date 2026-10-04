@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **173 passing checks in full local and isolated aswin QA runs**. Native coverage is 42 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **179 passing checks in full local and isolated aswin QA runs**. Native coverage is 42 Google browser fixtures and
 42 Codespaces HTTP/protocol fixtures; 13 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
@@ -154,9 +154,12 @@ a stable production hostname remains a deployment requirement.
 - [Rust and ASP.NET transport preflight](evidence/stack-counter-transport-preflight.json)
   checks empty chunked POST and full-restart file persistence on isolated compute.
   These checks do not add native-provider acceptance.
-- [Full-suite result](evidence/stack-go-framework-runtime-tests.json): **173/173**
+- [Shared file-counter probe preflight](evidence/stack-file-counter-runtime-preflight.json)
+  verifies the native inspection helper against real Rust and ASP.NET artifacts.
+  These isolated checks do not add native-provider coverage.
+- [Full-suite result](evidence/stack-file-counter-runtime-tests.json): **179/179**
   checks passed locally and in isolated aswin Linux QA.
-- [Physical source count](evidence/code-lines.json): **6,703 lines**, including
+- [Physical source count](evidence/code-lines.json): **6,814 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)

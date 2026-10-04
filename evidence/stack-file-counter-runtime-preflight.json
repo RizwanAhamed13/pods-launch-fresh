@@ -1,0 +1,332 @@
+{
+  "recordedAt": "2026-10-04T06:20:58.069439+00:00",
+  "baseRevision": "3e0c04b",
+  "scope": "Real pinned Actix, Axum, Rocket and ASP.NET artifacts in isolated aswin QA using the shared native file-counter inspection helper. Empty chunked POST, product document, saved file counter and full restart checks; not new native provider or browser acceptance.",
+  "sourceHashes": {
+    "src/runner.mjs": "de3680794b58f02d4e912810164e79049559fe994556501ec6969bd3cf3dafde",
+    "src/container-runtime.mjs": "51c866cf69fab25476f0cb286747db4c5f2aaa34c2e093b9580444970d970374",
+    "src/storage-transition.mjs": "4bf7ba7c9489cb1d2afbe372ac54e1d37c0dc3a9fe48a34f13f6bcc6300dc161",
+    "scripts/probe-file-counter-runtime.mjs": "6d011e9ceb5bf6bd64cab2490b278b6012b4704b6da9b1a0f31a40329148153e",
+    "scripts/live-codespaces.mjs": "ba1496cc5548ae18e7f8f6c837278cb329ab2fc424b1ac164f2003941cf51c49",
+    "test/file-counter-runtime-probe.test.mjs": "7e3504feae2095e4ea407c1b23d87c78fb6de60e581fe36f14990cab04cad1e2",
+    "evidence/stack-file-counter-runtime-live.mjs": "f09f2db0b74d076771c7b9227bdad2bbe05a423cc081354853f15ecdf60ce7a5"
+  },
+  "results": [
+    {
+      "recordedAt": "2026-10-04T06:17:49.919Z",
+      "fixture": "actix",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+      "dataKey": "actix-chunked-99c30679f8c9e787",
+      "project": "pods-e2414780291a8626d6fbd2e8",
+      "artifactSha256": "fb5950ff5e983739e52f688983f3ede11ffc29a3a4733b9e902a89fb681a321d",
+      "images": [
+        {
+          "id": "sha256:44082f89d7ef7c8bfb60eefd0d6433bd304f723fcf8072c5ad0fff79e7b16aa7",
+          "sha256": "ce68d42dc91e41898f750e2032abdedcac2570b695b7f2e9ffbf0fbad8696b31",
+          "bytes": 33417325
+        }
+      ],
+      "sourceSha256": "16cfecd68940d5f59d8e98e6dace69dc60a94335c21e2d376faed2e9f31de6cd",
+      "records": [
+        {
+          "storage": {
+            "passed": true,
+            "fixtureProfile": "actix",
+            "project": "pods-e2414780291a8626d6fbd2e8",
+            "services": [
+              "web"
+            ],
+            "savedCount": 1,
+            "volume": "pods-e2414780291a8626d6fbd2e8_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+          },
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "storage": {
+            "passed": true,
+            "fixtureProfile": "actix",
+            "project": "pods-e2414780291a8626d6fbd2e8",
+            "services": [
+              "web"
+            ],
+            "savedCount": 2,
+            "volume": "pods-e2414780291a8626d6fbd2e8_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+          },
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T06:18:20.599Z",
+      "fixture": "axum",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+      "dataKey": "axum-chunked-342f8b77e5abf625",
+      "project": "pods-98aec06f003b8517560865b3",
+      "artifactSha256": "f83a4c121bf3ccd2ba80df7b0b69f35e82cf63593e5f1d2afc7a9aedec03035d",
+      "images": [
+        {
+          "id": "sha256:e9b44751e26dcd65168fc55424477049e05b68248028f4d7d96d12549cbb369d",
+          "sha256": "ff87d320928f05deaff445df15edf452d752c10a4c7b4ef71a4d0e716cc5e2c7",
+          "bytes": 32229761
+        }
+      ],
+      "sourceSha256": "e7882957be1d0304114d6ffb43c2be2521bb5bc0f3f8fbd25a6b999370edda0b",
+      "records": [
+        {
+          "storage": {
+            "passed": true,
+            "fixtureProfile": "axum",
+            "project": "pods-98aec06f003b8517560865b3",
+            "services": [
+              "web"
+            ],
+            "savedCount": 1,
+            "volume": "pods-98aec06f003b8517560865b3_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+          },
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "storage": {
+            "passed": true,
+            "fixtureProfile": "axum",
+            "project": "pods-98aec06f003b8517560865b3",
+            "services": [
+              "web"
+            ],
+            "savedCount": 2,
+            "volume": "pods-98aec06f003b8517560865b3_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+          },
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T06:18:31.764Z",
+      "fixture": "rocket",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+      "dataKey": "rocket-chunked-5353b306bf1712be",
+      "project": "pods-68aeee0468cb24c5da4c0556",
+      "artifactSha256": "501979e7d63d7ebea4ee9cfc1db23c4b913b0a029d94c5a26aa0e805cfdd2f0f",
+      "images": [
+        {
+          "id": "sha256:88807539e201ebc9fd33fe6a1bb09b62dc0faf0d3b62bfd996c156c161f52485",
+          "sha256": "303579e7770c66770531909f74c33e8b7a880e4b27ff2dd0facefebcf3aa8a79",
+          "bytes": 33370009
+        }
+      ],
+      "sourceSha256": "311dba2baa837f6a7826702c0a6d25fb08b51ec53709ac4dc7885ce801580602",
+      "records": [
+        {
+          "storage": {
+            "passed": true,
+            "fixtureProfile": "rocket",
+            "project": "pods-68aeee0468cb24c5da4c0556",
+            "services": [
+              "web"
+            ],
+            "savedCount": 1,
+            "volume": "pods-68aeee0468cb24c5da4c0556_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+          },
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "storage": {
+            "passed": true,
+            "fixtureProfile": "rocket",
+            "project": "pods-68aeee0468cb24c5da4c0556",
+            "services": [
+              "web"
+            ],
+            "savedCount": 2,
+            "volume": "pods-68aeee0468cb24c5da4c0556_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+          },
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T06:18:42.721Z",
+      "fixture": "aspnet",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+      "dataKey": "aspnet-chunked-35dc230a11686fa8",
+      "project": "pods-3052c69fa7c9d545361599c9",
+      "artifactSha256": "d2e156fc65ecacc6a43efa9e441a1ba30d84e44423a409ff018b4675677c45c9",
+      "images": [
+        {
+          "id": "sha256:14429881160ac123bb2669f30def362665104ec07eab9f566be64747ed1f2e39",
+          "sha256": "a589d329a0e4c7c07e6573e9fc1294b4d610ace7492de4bf7747f4870cfbd600",
+          "bytes": 89962148
+        }
+      ],
+      "sourceSha256": "a4c66dc0f1954594cacb41c38b84a619bbd49dc2a8359a40bc0908622cb184c7",
+      "records": [
+        {
+          "storage": {
+            "passed": true,
+            "fixtureProfile": "aspnet",
+            "project": "pods-3052c69fa7c9d545361599c9",
+            "services": [
+              "web"
+            ],
+            "savedCount": 1,
+            "volume": "pods-3052c69fa7c9d545361599c9_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+          },
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "storage": {
+            "passed": true,
+            "fixtureProfile": "aspnet",
+            "project": "pods-3052c69fa7c9d545361599c9",
+            "services": [
+              "web"
+            ],
+            "savedCount": 2,
+            "volume": "pods-3052c69fa7c9d545361599c9_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+          },
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    }
+  ]
+}

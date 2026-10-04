@@ -12,6 +12,7 @@ import { redisRuntimeProbeCommand } from './probe-redis-runtime.mjs';
 import { valkeyRuntimeProbeCommand } from './probe-valkey-runtime.mjs';
 import { sqliteRuntimeProbeCommand } from './probe-sqlite-runtime.mjs';
 import { goRuntimeProbeCommand } from './probe-go-runtime.mjs';
+import { fileCounterRuntimeProbeCommand } from './probe-file-counter-runtime.mjs';
 import { staticProbeCommand } from './probe-static.mjs';
 const exec = promisify(execFile);
 const provider=process.argv[3]||'github';if(!['github','google'].includes(provider))throw new Error('Unknown provider');
@@ -25,6 +26,7 @@ const redisRuntimeCheck=process.env.PODS_REDIS_RUNTIME_CHECK==='1';
 const valkeyRuntimeCheck=process.env.PODS_VALKEY_RUNTIME_CHECK==='1';
 const sqliteRuntimeCheck=process.env.PODS_SQLITE_RUNTIME_CHECK==='1';
 const goRuntimeCheck=process.env.PODS_GO_RUNTIME_CHECK==='1';
+const fileCounterRuntimeCheck=process.env.PODS_FILE_COUNTER_RUNTIME_CHECK==='1';
 if(mysqlRuntimeCheck&&!counterCheck)throw new Error('MySQL runtime inspection requires the counter fixture check');
 if(mariadbRuntimeCheck&&!counterCheck)throw new Error('MariaDB runtime inspection requires the counter fixture check');
 if(mongodbRuntimeCheck&&!counterCheck)throw new Error('MongoDB runtime inspection requires the counter fixture check');
@@ -32,6 +34,7 @@ if(redisRuntimeCheck&&!counterCheck)throw new Error('Redis runtime inspection re
 if(valkeyRuntimeCheck&&!counterCheck)throw new Error('Valkey runtime inspection requires the counter fixture check');
 if(sqliteRuntimeCheck&&!counterCheck)throw new Error('SQLite runtime inspection requires the counter fixture check');
 if(goRuntimeCheck&&!counterCheck)throw new Error('Go runtime inspection requires the counter fixture check');
+if(fileCounterRuntimeCheck&&!counterCheck)throw new Error('File counter inspection requires the counter fixture check');
 const apiProduct=process.env.PODS_API_PRODUCT==='1';
 const expectedInitialCount=process.env.PODS_EXPECT_INITIAL_COUNT;
 if(expectedInitialCount!==undefined&&(!counterCheck||!/^\d+$/.test(expectedInitialCount)||!Number.isSafeInteger(Number(expectedInitialCount))))throw new Error('Expected initial count requires a nonnegative integer and counter fixture checking');
@@ -59,6 +62,7 @@ if(redisRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-redis'
 if(valkeyRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-valkey')throw new Error('Valkey runtime inspection is restricted to its explicit fixture');
 if(sqliteRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-sqlite')throw new Error('SQLite runtime inspection is restricted to its explicit fixture');
 if(goRuntimeCheck&&!['go','echo','fiber'].some(fixture=>selectedApp.source?.folder==='examples/stacks/'+fixture))throw new Error('Go runtime inspection is restricted to its explicit fixtures');
+if(fileCounterRuntimeCheck&&!['actix','axum','rocket','aspnet'].some(fixture=>selectedApp.source?.folder==='examples/stacks/'+fixture))throw new Error('File counter inspection is restricted to its explicit fixtures');
 if(staticCheck&&selectedApp.source?.folder!=='examples/stacks/'+staticFixture)throw new Error('Static inspection is restricted to its explicit fixture');
 if(ssrCheck&&selectedApp.source?.folder!=='examples/stacks/'+ssrFixture)throw new Error('SSR inspection is restricted to its explicit fixture');
 const evidencePath=process.env.PODS_EVIDENCE_FILE||`evidence/${provider}.json`;
@@ -143,6 +147,7 @@ try {
   if(valkeyRuntimeCheck){result.valkeyRuntimeCheck=await probeEnvironment(launch.environment,valkeyRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
   if(sqliteRuntimeCheck){result.sqliteRuntimeCheck=await probeEnvironment(launch.environment,sqliteRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
   if(goRuntimeCheck){result.goRuntimeCheck=await probeEnvironment(launch.environment,goRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead,fixture:selectedApp.source.folder.split('/').at(-1)}));await persist();}
+  if(fileCounterRuntimeCheck){result.fileCounterRuntimeCheck=await probeEnvironment(launch.environment,fileCounterRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead,fixture:selectedApp.source.folder.split('/').at(-1)}));await persist();}
   if(workerCheck){result.workerCheck=await probeWorker(launch.environment,base);await persist();if(!result.workerCheck.passed)throw new Error('Worker completion/relaunch persistence failed');}
   if(websocketCheck){result.websocketCheck=await probeWebSocket(launch.environment,base);await persist();if(!result.websocketCheck.passed)throw new Error('WebSocket exchange/relaunch persistence failed');}
   if(ssrCheck){result.ssrCheck=await probeEnvironment(launch.environment,ssrProbeCommand(ssrFixture,base));await persist();if(!result.ssrCheck.passed)throw new Error('SSR product/client assets failed');}
