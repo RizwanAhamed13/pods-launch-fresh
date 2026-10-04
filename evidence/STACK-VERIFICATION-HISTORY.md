@@ -1949,3 +1949,43 @@ Evidence: `stack-go-chunked-probe.{json,mjs}` and
 isolated aswin Linux QA. Source: **6,679 physical lines**. Native coverage remains
 **55 isolated / 39 Google browser / 39 Codespaces protocol** until native Go
 acceptance completes.
+
+
+## Go native product acceptance
+
+The actual developer form prepared `examples/stacks/go` from fixture revision
+`d6da2ed780ae` in **141.001 seconds** after ordinary quota availability. Artifact
+`22abe2e07a65aa69563aca7635d2d8169ac376e7d0faa6610c6d210aabac7018` contains
+**4,755,738 image bytes**. No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell RUNNING, first image delivery | Server healthy 8.294s; product counter observed by 10.223s; button write 10.512s |
+| Cloud Shell cached relaunch | Server healthy 6.292s; product visible 7.228s; saved value restored 7.241s; next write 7.559s |
+| Codespaces initially Shutdown | Server healthy 32.594s, delivery/startup 17.705s; no cached image |
+| Codespaces cached relaunch | Server healthy 8.040s; authenticated HTTP write/read and compiled Go inspection passed |
+
+Cloud Shell browser buttons and reloads verified **0→1→2**, retaining the first
+saved counter across a complete application stop/relaunch. No console warnings
+or errors were observed. The first timing check initially matched the identically
+named launcher heading. That observation is retained separately and excluded
+from product visibility: the first successful counter observation at 10.223s is
+an upper bound for product visibility. The second check matches the product h1.
+
+Codespaces authenticated HTTP verified the same counter sequence. Read-only
+inspection of copied files confirmed the actual compiled **Go 1.24.13** Linux x64
+executable, CGO disabled, module `pods.example/counter` and saved counter. It
+required no compiler or shell in the scratch runtime. The bind volume uses
+persistent workspace storage and product port **21639** is private.
+This fixture uses a file counter and is not evidence of database durability.
+
+Both Google runs stopped before Codespaces testing began. All four launches
+ended stopped. The final audit returned HTTP200, SQLite integrity `ok`, zero
+active builds/launches and unchanged service PID/runner SHA. Native Codespaces
+browser interaction and provider VM replacement remain unverified. The stopped
+Codespace exceeded20s; the ready-compute results apply to this fixture only.
+
+Evidence: `stack-go-{url,google,codespaces,audit}.json`. Coverage is now
+**55 isolated / 40 Google browser / 40 Codespaces protocol**; **15** native
+fixtures remain pending. The171/171 full suite and6,679 source-line count remain
+valid because native acceptance added only evidence and documentation.

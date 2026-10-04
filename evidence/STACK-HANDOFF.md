@@ -17,11 +17,11 @@ VM replacement durability, or a universal 20-second cold launch.
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
   saved format changes on actual environment capabilities.
-- Coverage:55 isolated build/artifact/browser passes;39 Google native browser
-  and39 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+- Coverage:55 isolated build/artifact/browser passes;40 Google native browser
+  and40 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Native Codespaces browser checks remain
-  pending authorization. The16 fixtures awaiting native acceptance are:
-  actix, aspnet, axum, deno, echo, fiber, go, gradio,
+  pending authorization. The15 fixtures awaiting native acceptance are:
+  actix, aspnet, axum, deno, echo, fiber, gradio,
   ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
 - Current full suite:171/171 passed locally and in isolated aswin QA after
   Go executable inspection tooling. Logs /tmp/pods-go-full-{local,qa}.txt.
@@ -795,3 +795,32 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   05:20:07.596UTC: health200, integrityok, zero active builds/launches, unchanged
   PID1063107/runnerSHA. No service restart. Native quota watcher8312 remains live
   and the Go form remains unsubmitted. Resume that watcher for the native gate.
+
+
+## Go native acceptance complete
+
+- Previous goal turn progressed: Go inspection and preflight publishedc6dda2d.
+  Ordinary quota watcher8312 ended0 at05:27:37.152UTC; developer submitted once
+  at05:27:42.243UTC. Build observer2946 ended0, build
+  D-17Bxr4GOPaHnn-6ENMcvqH6BAt8Q69 took141001ms. Production source d6da2ed780ae,
+  apprepo-01f723149bc6fbe04db8e21a-d6da2ed780ae-22abe2e07a65, imagebytes4755738.
+- Google actual product0→1→2, reloads and full stops passed; no console warnings
+  or errors. First RUNNING/no cached image: health8294ms, product counter
+  observed10223ms, write10512ms. Cached: health6292ms, visible7228ms,
+  restored7241ms, write7559ms. The first generic heading also matched the launcher;
+  its294ms observation is retained but excluded from product visibility timing.
+  First visibleMs uses the successful product-counter observation as an upper
+  bound. The second check specifically matches the product h1.
+- Codespaces11535 ended0: existing69rw5vx4xp46c5qw5, firstShutdown health32594ms,
+  delivery17705ms/no cached image. CachedAvailable health8040ms/delivery7486ms.
+  ActualGo1.24.13, Linuxx64 ELF, CGOdisabled, modulepods.example/counter,
+  binarySHAab7ed61fe289d418445cdbb4dc440a1f1121224d6d1559f8052b75f53631fb13.
+  HTTPcounter0→1→2 and copied file match across fullstops; persistent workspace
+  volume, productport21639 private. This is file data, not database evidence.
+- Allfourlaunchesstopped. Audit05:34:58.999UTC: health200, DBintegrityok,
+  activebuild0/launch0, PID1063107 andrunnerSHAunchanged. No service restart.
+  Evidence stack-go-{url,google,codespaces,audit}.json. Currentfull171/source6679.
+- Coverage55/40/40;15nativepending. No live test/build/watcher remains.
+  Next native fixture is unstarted; check ordinary quota before preparing it.
+  Existing GitHub2FA/VMreplacement/stablehostname questions remainpending.
+  Goal remains active and made concrete native acceptance progress this turn.

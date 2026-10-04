@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-04T05:34:55.754614+00:00",
+  "controlRevision": "5dde1e5",
+  "checkoutRevision": "c6dda2d",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T05:27:37.152034+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T05:27:42.243Z",
+  "attempts": [
+    {
+      "id": "D-17Bxr4GOPaHnn-6ENMcvqH6BAt8Q69",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/go",
+        "key": "01f723149bc6fbe04db8e21a"
+      },
+      "status": "ready",
+      "createdAt": 1791091667996,
+      "startedAt": 1791091668007,
+      "finishedAt": 1791091809008,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-01f723149bc6fbe04db8e21a-d6da2ed780ae-22abe2e07a65",
+      "app": {
+        "id": "repo-01f723149bc6fbe04db8e21a-d6da2ed780ae-22abe2e07a65",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "22abe2e07a65aa69563aca7635d2d8169ac376e7d0faa6610c6d210aabac7018",
+        "bytes": 274,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-01f723149bc6fbe04db8e21a",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/go",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Go counter"
+        },
+        "preparedAt": "2026-10-04T05:30:08.985Z",
+        "images": [
+          {
+            "id": "sha256:596eb714284519fdf3957ef3de5dd1e6fa25934dbe8aa6ec11d73712a27e1c82",
+            "sha256": "ebc7fae88a86efed2b65528a087df738917a0ce95769af5dc6bff39065795891",
+            "bytes": 4755738
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 141001
+}
