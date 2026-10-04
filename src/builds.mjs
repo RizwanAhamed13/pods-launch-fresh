@@ -76,9 +76,9 @@ export async function publishArtifact(data, manifest, bytes, blobs = []) {
 }
 
 export class BuildManager {
-  constructor({ store, data, adapter, origin, maxPending = 4, accountLimit = 3, globalLimit = 12, imageStorageBytes = Number(process.env.PODS_IMAGE_STORAGE_BYTES ?? 5 * IMAGE_TOTAL_LIMIT) }) {
+  constructor({ store, data, adapter, origin, imageDelivery = null, maxPending = 4, accountLimit = 3, globalLimit = 12, imageStorageBytes = Number(process.env.PODS_IMAGE_STORAGE_BYTES ?? 5 * IMAGE_TOTAL_LIMIT) }) {
     if (!Number.isSafeInteger(imageStorageBytes) || imageStorageBytes < 1) throw new Error('PODS_IMAGE_STORAGE_BYTES must be a positive safe integer in bytes.');
-    Object.assign(this, { store, data, adapter, origin, maxPending, accountLimit, globalLimit, imageStorageBytes });
+    Object.assign(this, { store, data, adapter, origin, imageDelivery, maxPending, accountLimit, globalLimit, imageStorageBytes });
     this.pending = [];
     this.closed = false;
     this.fault = null;
@@ -159,6 +159,10 @@ export class BuildManager {
       this.update(id, { status: 'publishing' });
       const manifest = validateBuildOutput(build.repository, result.manifest, result.bytes, result.blobs);
       const published = await publishArtifact(this.data, manifest, result.bytes, result.blobs);
+      if (this.imageDelivery && published.images?.length) {
+        try { await this.imageDelivery.publish(published.images); this.update(id, {imageDelivery:'available'}); }
+        catch { this.update(id, {imageDelivery:'unavailable'}); } // The verified local artifact remains launchable.
+      }
       this.update(id, { status: 'ready', finishedAt: Date.now(), app: published, launchUrl: this.origin + '/launch/' + published.id });
     } catch (error) {
       this.update(id, { status: 'failed', finishedAt: Date.now(), error: String(error.message).slice(-500) });

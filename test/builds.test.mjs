@@ -39,6 +39,23 @@ function containerOutput(repo, contents) {
     blobs: [{ sha256: image.sha256, bytes: contents }] };
 }
 
+test('private image publication runs only after local validation and remains optional for a launchable build', async () => {
+  const root=await temp(),store=new Store(root,'ab'.repeat(32)),contents=Buffer.from('prepared container');let calls=0,fail=false;
+  const manager=new BuildManager({store,data:root,origin:'https://pods.example',adapter:{...idleAdapter,build:async repo=>containerOutput(repo,contents)},imageDelivery:{publish:async images=>{
+    calls++;assert.equal(images.length,1);assert.deepEqual(await readFile(join(root,'images',images[0].sha256+'.gz')),contents);
+    if(fail)throw new Error('Private provider credential must not appear in public build metadata');
+  }}});
+  try{
+    await manager.initialize();
+    for(const unavailable of [false,true]){
+      fail=unavailable;const build=manager.submit('browser','github:one',{url:repository.url});await waitFor(()=>!manager.running);
+      const result=manager.own('browser',build.id);assert.equal(result.status,'ready');assert.equal(result.imageDelivery,fail?'unavailable':'available');
+      assert.doesNotMatch(JSON.stringify(result),/credential/);assert.deepEqual(await readFile(join(root,'artifacts',result.app.sha256+'.gz')),containerOutput(repository,contents).bytes);
+    }
+    assert.equal(calls,2);
+  }finally{await manager.close();store.close();await rm(root,{recursive:true,force:true});}
+});
+
 test('image storage budget rejects overflow without altering existing artifacts and accepts its exact boundary', async () => {
   const root = await temp(), store = new Store(root, 'ab'.repeat(32));
   let contents = Buffer.from('first');

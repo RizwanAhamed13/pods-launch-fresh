@@ -87,7 +87,7 @@ Apps must listen on the supplied `PORT` (assigned per application), bind `0.0.0.
 
 ## Connect providers
 
-GitHub OAuth: register a web OAuth application with callback `PODS_ORIGIN/auth/github/callback`, then set `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`. The app requests `codespace read:user`. Stable numeric GitHub IDs and Google OpenID subjects identify accounts independently of display names. Set `PODS_RUNTIME_REPO=RizwanAhamed13/pods-launch-runtime-fresh` for the published public runtime, or use your own public equivalent. The control-plane repository stays private; users need access only to the runtime repository. The aswin deployment now uses this public runtime.
+GitHub OAuth: register a web OAuth application with callback `PODS_ORIGIN/auth/github/callback`, then set `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`. The app requests `codespace read:user`. Stable numeric GitHub IDs and Google OpenID subjects identify accounts independently of display names. Set `PODS_RUNTIME_REPO=RizwanAhamed13/pods-launch-runtime-fresh` for the published public runtime, or use your own public equivalent. Users need access only to the runtime repository; the control-plane repository may remain private. The current core and runtime repositories are public; optional prepared-image delivery uses a separate private repository.
 
 Google OAuth: create a web OAuth client in a Google Cloud project with the Cloud Shell API enabled, configure callback `PODS_ORIGIN/auth/google/callback`, and set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`. It requests `openid email cloud-platform`; consent publishing or test-user setup is required by Google. No provider client secret is bundled into the browser or artifact.
 
@@ -219,6 +219,27 @@ plane after checking free disk space and build headroom. A full store rejects ne
 publication without deleting existing images or launch links. This setting does
 not change the 3/account/hour and 12/global/hour build quotas or the per-application
 image limits. Keep the budget below the available persistent-disk capacity.
+
+Optional private image delivery uses `PODS_IMAGE_RELEASE_REPOSITORY` (owner/repo),
+`PODS_IMAGE_RELEASE_ID` (an existing release or draft), and
+`PODS_IMAGE_RELEASE_TOKEN` (a server credential with repository Contents read/write).
+Leave all three empty to use only aswin. Preparation first validates and publishes
+local artifacts, then uploads images to that private release and records verified
+asset IDs separately from public application metadata. Upload failure leaves the
+local artifact launchable. Existing artifacts continue to use aswin until prepared
+again; no user cache or published artifact is rewritten.
+
+The server checks repository privacy and launch authorization before resolving a
+short-lived asset URL. The runner sends no PODS or GitHub authorization header to
+the CDN, accepts only the designated HTTPS asset host, verifies byte count and
+SHA-256 before Docker load, and retries through aswin if the CDN fails. Legacy
+runners keep their original download path. GitHub may return a binary response
+instead of a redirect; that case also uses aswin. Signed links inherit GitHub's
+expiry and are not persisted; stopping a launch does not revoke a link already
+issued, but it still stops the application. See the
+[release asset API contract](https://docs.github.com/en/rest/releases/assets#get-a-release-asset).
+Native timing fields distinguish `imageCdnDownloads`, `imageCdnFallbacks`,
+`imageCdnMs` and `imageOriginDownloads`; they do not replace end-to-end product timing.
 
 Single Node process and local SQLite on persistent disk. Repository builds require a connected account, CSRF authorization and the isolated builder. Browser sessions last 24 hours. Provider credentials are not refreshed automatically: reconnect on expiry. A restart fails in-flight provisioning explicitly; ready agents continue heartbeats. Only one active app per browser/provider is allowed; selecting a different app while one is active returns an explicit conflict. Use provider controls to stop an environment immediately. This is a working prototype, not a completed public service: GitHub browser OAuth configuration, the remaining native provider/framework validation, durable DNS, stronger abuse controls and monitoring remain follow-up work. Google OAuth and representative native product journeys are verified; see SUPPORT.md for precise coverage.
 

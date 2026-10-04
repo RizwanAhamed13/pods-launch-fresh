@@ -1,0 +1,44 @@
+{
+  "recordedAt": "2026-10-04T11:31:44.819835+00:00",
+  "baseRevision": "13b5fc845d64e46ae873d29b14e28d91be2d3d53",
+  "scope": "Full local and isolated Linux suites on the candidate private image delivery implementation. Native delivery and product timing remain separate gates.",
+  "runs": [
+    {
+      "platform": "local",
+      "passed": 204,
+      "failed": 0,
+      "logSha256": "5e600daa41f5b221b8515a6f7083efa1d71596b777f17f697b320a33fa0d9e2d"
+    },
+    {
+      "platform": "isolated-aswin-linux",
+      "passed": 204,
+      "failed": 0,
+      "logSha256": "1526da182b292b4dd12375625dd6c7091c21b1714cdaf13a013f051ee7f1b048"
+    }
+  ],
+  "isolatedSnapshot": {
+    "directory": "/output/image-cdn-candidate-13b5fc8",
+    "verifiedFiles": 326,
+    "manifestSha256": "62e52ffbdbfce22134d311947d13413f5409b02f5aaf66565a1b1feb641921ef",
+    "archiveSha256": "5f7ad85a650ef648e9c43c375f7642cfbca846cb558ef99762eedd58dde22d28"
+  },
+  "sourceHashes": {
+    "src/artifact-url.mjs": "5c7b04d425c94f00a258164b04c5cde55c6af83267c448d3107f4c3b755f3da4",
+    "src/image-delivery.mjs": "94b39c32dfe8c1b988dbed7f9a2e249abc8bd58beddfb10a46251d16725660b8",
+    "src/builds.mjs": "2ed218e8e80651373e397d73cd6dcc869073c441e9a59e35a49715df1cc85a5a",
+    "src/container-runtime.mjs": "b56abd8dd79cf1927ab1268156789360609e78c9255353a027efd4e995b95be2",
+    "src/server.mjs": "25320561337f697518913a250250a135baaa9ea7aae92963b05c9b5c19670581",
+    "test/image-delivery.test.mjs": "757d4872a014306350fcde06724357c530384b9e401b8feb131e84795749f4fa",
+    "test/builds.test.mjs": "43a9e292df1eb0b0297207a2873e47ea8e4e2d4a6482aa8a92f731705e671968"
+  },
+  "coverage": [
+    "Private repository required before upload and resolution",
+    "Upload bytes, GitHub asset digest, persisted image identity and pagination",
+    "No stored signed URL or server token in artifact metadata",
+    "Launch capability, image membership, expiry, legacy clients and concurrent revocation",
+    "CDN request has no authorization header and redirects are rejected",
+    "Network error, expiry, truncation, oversize and corruption fall back to authorized local delivery",
+    "No Docker load when both candidate sources fail integrity",
+    "Local publication survives private image storage failure"
+  ]
+}

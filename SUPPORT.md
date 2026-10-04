@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **193 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **204 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
@@ -134,7 +134,7 @@ the compute download used a short-lived signed URL without a GitHub token.
 The artifact repository is private. The large difference between the two download
 observations must not be treated as a guarantee for new clients or regions.
 
-This candidate delivery path is **not integrated into production**. These are
+The optional delivery implementation passes [204 local and Linux checks](evidence/stack-image-delivery-tests.json); production deployment and a full native launch are still pending. These are
 download-only measurements, excluding Docker load, runtime startup and browser
 interaction. The next gate is authorized artifact delivery with an aswin fallback,
 followed by a complete native launch with an uncached image. The historical aswin
@@ -263,7 +263,7 @@ a stable production hostname remains a deployment requirement.
   driver. These isolated checks do not add native-provider acceptance.
 - [Full-suite result](evidence/stack-sqlite-online-tests.json): **193/193**
   checks passed locally and in isolated aswin Linux QA.
-- [Physical source count](evidence/code-lines.json): **7,216 lines**, including
+- [Physical source count](evidence/code-lines.json): **7,540 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)

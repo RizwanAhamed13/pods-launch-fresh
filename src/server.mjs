@@ -11,6 +11,8 @@ import { providers as makeProviders } from './providers.mjs';
 import { BuildManager } from './builds.mjs';
 import { LxdBuilder } from './lxd-builder.mjs';
 import { renderCompatibility } from './compatibility.mjs';
+import { GitHubImageDelivery } from './image-delivery.mjs';
+import { trustedImageUrl } from './artifact-url.mjs';
 const base = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const statuses = new Set(['downloading','starting','ready','failed','stopped','heartbeat']);
 const returnPage = value => typeof value === 'string' && /^(?:\/|\/develop|\/launch\/[a-z0-9-]+)$/.test(value);
@@ -22,11 +24,12 @@ export async function createApp(options={}) {
   const repo = options.repo || process.env.PODS_RUNTIME_REPO || 'RizwanAhamed13/pods-launch-fresh';
   const secure = origin.startsWith('https://');
   const store = new Store(data, options.secret || process.env.PODS_SECRET);
+  const imageDelivery = 'imageDelivery' in options ? options.imageDelivery : GitHubImageDelivery.fromEnv({data, store});
   const runner = (await bundle({entryPoints:[join(base,'src/runner.mjs')],bundle:true,platform:'node',format:'esm',target:'node22',write:false})).outputFiles[0].contents;
   const providers = options.providers || makeProviders({repo,origin,runnerSha:digest(runner)});
   const jobs = new Map();
   const buildsEnabled = options.buildAdapter || process.env.PODS_BUILDS_ENABLED === '1';
-  const builds = buildsEnabled ? new BuildManager({ store, data, origin, adapter: options.buildAdapter || new LxdBuilder() }) : null;
+  const builds = buildsEnabled ? new BuildManager({ store, data, origin, imageDelivery, adapter: options.buildAdapter || new LxdBuilder() }) : null;
   if (builds) await builds.initialize();
   const computeKey = c => c?.identityId ? digest(JSON.stringify([c.provider,c.identityId])) : null;
   const environmentKey = (key,dataKey) => digest(JSON.stringify([key,dataKey]));
@@ -89,7 +92,14 @@ export async function createApp(options={}) {
         if(!s||!same(digest(token||''),s.tokenHash)||s.expiresAt<Date.now())throw fail(401,'Launch authorization expired or invalid');
         if(agent[3] && req.method==='GET') {
           const image=s.images?.find(i=>i.sha256===agent[3]);
-          if(!image || ['failed','stopped'].includes(s.status))throw fail(404,'Prepared image unavailable');
+          if(!image || s.stopRequested || ['failed','stopped'].includes(s.status))throw fail(404,'Prepared image unavailable');
+          if (imageDelivery && req.headers['x-pods-image-delivery'] === 'direct') {
+            const location = await imageDelivery.resolve(image).catch(() => null);
+            // Resolution can take time: recheck revocation before issuing a capability.
+            const current = store.get('launch', s.id);
+            if (!current || current.stopRequested || current.expiresAt < Date.now() || ['failed','stopped'].includes(current.status)) throw fail(410,'Launch ended');
+            if (trustedImageUrl(location)) { res.writeHead(307, {Location:location}); return res.end(); }
+          }
           res.writeHead(200,{'Content-Type':'application/gzip','Content-Length':image.bytes});
           await pipeline(createReadStream(join(data,'images',image.sha256+'.gz')),res);return;
         }
@@ -102,7 +112,7 @@ export async function createApp(options={}) {
           if(event.status!=='heartbeat')patch.status=event.status;
           if(event.status==='ready') { if(!s.providerReadyAt)throw fail(409,'Provider is not ready');patch.readyAt=s.readyAt||Date.now(); }
           if(event.status==='failed')patch.error=String(event.error||'Application failed').slice(-500);
-          if(event.timings) {patch.timings={};for(const k of ['downloadMs','imagesMs','imageCacheHits','imageArchiveCacheHits','imageCacheCheckMs','imageDownloadMs','imageLoadMs','runtimeReadyMs','runtimeRetries'])if(Number.isFinite(event.timings[k])&&event.timings[k]>=0&&event.timings[k]<600000)patch.timings[k]=event.timings[k];patch.timings.cacheHit=event.timings.cacheHit===true;}
+          if(event.timings) {patch.timings={};for(const k of ['downloadMs','imagesMs','imageCacheHits','imageArchiveCacheHits','imageCacheCheckMs','imageDownloadMs','imageLoadMs','imageCdnDownloads','imageCdnFallbacks','imageCdnMs','imageOriginDownloads','runtimeReadyMs','runtimeRetries'])if(Number.isFinite(event.timings[k])&&event.timings[k]>=0&&event.timings[k]<600000)patch.timings[k]=event.timings[k];patch.timings.cacheHit=event.timings.cacheHit===true;}
           // Preview URL is set from provider metadata, never accepted from the runner.
           update(s.id,patch);return json(200,{action:s.stopRequested?'stop':'continue'});
         }

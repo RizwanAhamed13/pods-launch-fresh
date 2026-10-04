@@ -18,9 +18,10 @@ progress; it is not a blocked turn. No universal compatibility or20s claim.
 - Coverage:55 isolated build/artifact/browser,55 Google native browser,
   55 Codespaces authenticated HTTP/protocol. No representative remains pending
   on these two native paths. Codespaces native browser checks remain unverified.
-- Current full suite193/193 local and isolated Linux, including updated SQLite
-  online-backup probe. Evidence stack-sqlite-online-{tests,preflight}.json.
-  Source7216physical lines:3729product/tooling +2390tests +933examples +164browser.
+- Current full suite204/204 local and isolated Linux, including optional private
+  image publication, authorized CDN delivery, integrity and fallback checks.
+  Evidence stack-image-delivery-tests.json; snapshot326files fully verified.
+  Source7540physical lines:3858product/tooling +2585tests +933examples +164browser.
 - Latest accepted fixtures Streamlit and Symfony; stack-{streamlit,symfony}-{url,google,codespaces,audit}.json.
   Detailed timings and all earlier acceptance notes are in STACK-VERIFICATION-HISTORY.md.
 - Evidence revision6f0f460 pushed and synced to aswin. Public /support DOM verified
@@ -86,7 +87,14 @@ progress; it is not a blocked turn. No universal compatibility or20s claim.
   Sourcecopy removed fromQA; productionimage/artifacts and Docker caches unchanged.
   Signed URL deliberately not saved; API resolves302 on demand, anonymous404.
   Receipt includes upload, asset identity, input hashes and the two observations.
-- Next concrete gate: integrate optional private artifact delivery into preparation
+- Optional private artifact delivery is implemented and204tests pass on both hosts.
+  src/image-delivery.mjs publishes only validated local bytes to a private release,
+  checks remote digest and stores immutable asset IDs; never persists signedURLs.
+  Builds remain launchable if upload fails. Runner opts in to authorized307 and
+  strictly validates the CDN destination; no capability/token forwarded. Integrity
+  or transport failure retries local delivery once; bad bytes never reachDocker.
+  Old clients retain200localdelivery. Production deployment/native test pending.
+- Next concrete gate: deploy optional private artifact delivery into preparation
   and launch, authorize atPODS before obtaining a short-lived signed URL, never send
   server credentials tocompute, strictly validate destination and image integrity,
   retain aswin delivery on lookup/missingasset failure. GitHub documents both200

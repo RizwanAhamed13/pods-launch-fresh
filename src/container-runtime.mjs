@@ -7,6 +7,7 @@ import { Transform } from 'node:stream';
 import { docker, runtimeCompose } from './containers.mjs';
 import { persistentVolumes, storageRoot } from './storage.mjs';
 import { transitionApplicationData } from './storage-transition.mjs';
+import { trustedImageUrl } from './artifact-url.mjs';
 
 async function fileHash(path) {
   const hash = createHash('sha256'); for await (const chunk of createReadStream(path)) hash.update(chunk); return hash.digest('hex');
@@ -43,10 +44,10 @@ export async function containersAlive(plan, args, execute = docker) {
   });
 }
 
-export async function prepareRuntimeImages(images, config, root, timings, execute = docker) {
+export async function prepareRuntimeImages(images, config, root, timings, execute = docker, fetcher = fetch) {
   const cache = join(root, 'images'); await mkdir(cache, {recursive:true,mode:0o700});
   const started = performance.now();
-  Object.assign(timings, {imageCacheHits:0,imageArchiveCacheHits:0,imageCacheCheckMs:0,imageDownloadMs:0,imageLoadMs:0});
+  Object.assign(timings, {imageCacheHits:0,imageArchiveCacheHits:0,imageCacheCheckMs:0,imageDownloadMs:0,imageLoadMs:0,imageCdnDownloads:0,imageCdnFallbacks:0,imageCdnMs:0,imageOriginDownloads:0});
   const measure = async (key, action) => {
     const at = performance.now();
     try { return await action(); } finally { timings[key] += performance.now() - at; }
@@ -60,14 +61,27 @@ export async function prepareRuntimeImages(images, config, root, timings, execut
       if (valid) timings.imageArchiveCacheHits++;
       else await measure('imageDownloadMs', async () => {
         const url = new URL(config.artifactUrl); url.pathname += '/images/' + image.sha256;
-        const response = await fetch(url, {headers:{Authorization:`Bearer ${config.token}`},signal:AbortSignal.timeout(180000),redirect:'error'});
-        if (!response.ok) throw new Error(`Prepared image download returned ${response.status}`);
-        const temp = path + '.' + config.id; let size = 0; const hash = createHash('sha256');
-        try {
-          await pipeline(response.body, new Transform({transform(chunk, _, done) { size += chunk.length; if (size > image.bytes) return done(new Error('Prepared image exceeds declared size')); hash.update(chunk); done(null, chunk); }}), createWriteStream(temp,{flags:'wx',mode:0o600}));
-          if (size !== image.bytes || hash.digest('hex') !== image.sha256) throw new Error('Prepared image integrity check failed');
-          await rename(temp, path);
-        } finally { await rm(temp,{force:true}); }
+        const origin = direct => fetcher(url, {headers:{Authorization:`Bearer ${config.token}`,...(direct?{'X-PODS-Image-Delivery':'direct'}:{})},signal:AbortSignal.timeout(180000),redirect:'manual'});
+        const save = async response => {
+          if (response.status !== 200) { await response.body?.cancel().catch(() => {}); throw new Error(`Prepared image download returned ${response.status}`); }
+          const temp = path + '.' + config.id; let size = 0; const hash = createHash('sha256');
+          try {
+            await pipeline(response.body, new Transform({transform(chunk, _, done) { size += chunk.length; if (size > image.bytes) return done(new Error('Prepared image exceeds declared size')); hash.update(chunk); done(null, chunk); }}), createWriteStream(temp,{flags:'wx',mode:0o600}));
+            if (size !== image.bytes || hash.digest('hex') !== image.sha256) throw new Error('Prepared image integrity check failed');
+            await rename(temp, path);
+          } finally { await rm(temp,{force:true}); }
+        };
+        let response = await origin(true);
+        if (response.status === 307) {
+          const location = trustedImageUrl(response.headers.get('location'));
+          await response.body?.cancel().catch(() => {});
+          if (!location) throw new Error('Prepared image redirect rejected');
+          try {
+            await measure('imageCdnMs', async () => save(await fetcher(location, {signal:AbortSignal.timeout(30000),redirect:'error'})));
+            timings.imageCdnDownloads++; return;
+          } catch { timings.imageCdnFallbacks++; response = await origin(false); }
+        }
+        await save(response); timings.imageOriginDownloads++;
       });
       await measure('imageLoadMs', async () => {
         await execute(['load','--input',path], {timeout:180000});
@@ -77,7 +91,7 @@ export async function prepareRuntimeImages(images, config, root, timings, execut
       await rm(path, {force:true});
     }
   } finally {
-    for (const key of ['imageCacheCheckMs','imageDownloadMs','imageLoadMs']) timings[key] = Math.round(timings[key]);
+    for (const key of ['imageCacheCheckMs','imageDownloadMs','imageLoadMs','imageCdnMs']) timings[key] = Math.round(timings[key]);
     timings.imagesMs = Math.round(performance.now() - started);
   }
 }
