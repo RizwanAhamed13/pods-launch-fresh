@@ -2641,3 +2641,42 @@ existing **189/189** full-suite result remains applicable. Publication evidence:
 `stack-micronaut-published.json`. All four JVM representatives now have both
 native acceptance flags. Next gate: Phoenix after ordinary quota availability
 (next slot observed as09:47:41.239UTC; recheck before submission).
+
+
+## Phoenix native SQLite acceptance
+
+The real developer form prepared `examples/stacks/phoenix` from source revision
+`d6da2ed780ae` after ordinary same-account quota availability. Server preparation
+took **356.602s**; saved artifact `93e7177def98dd34acc8b880c6e6cdfdc0af9ee82844f3ad91930ef6ca3e1e02` contains
+**166,072,328 image bytes**. No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell initially RUNNING, first delivery | Healthy 52.891s; product visible 54.511s; saved count read 59.496s; button write 59.787s |
+| Cloud Shell cached relaunch | Healthy 8.031s; visible 9.338s; saved count restored 9.361s; next write 9.652s |
+| Codespaces initially Shutdown | Healthy 87.260s; delivery/startup 72.491s |
+| Codespaces cached relaunch | Healthy 9.708s; HTTP write/read, SQLite integrity and saved row passed |
+
+Cloud Shell verified the real product h1, saved-count control and increment button,
+reload and full application stop/relaunch: **0→1→2**, with no console warnings
+or errors. Codespaces exercised the product HTTP API, verified the same sequence and queried
+a read-only copy of the actual SQLite file. The fixture container was briefly
+paused to copy the database and any WAL consistently, then resumed before the
+query. Inspector SQLite **3.53.4**, integrity and saved
+rows were recorded; this is the inspector version, not the application's driver.
+The checks verified the exact compiled/runtime startup command, one web service,
+its project network, persistent workspace volume and private product port
+**23905**. No database port was published.
+
+Both Google runs finished and stopped before Codespaces testing began. All four
+launches ended stopped. Audit at 2026-10-04T09:59:07.912749+00:00 confirmed health200, SQLite
+integrity ok, zero active builds/launches and unchanged service PID/runner SHA.
+These timings describe this fixture and observed compute/cache states. Native
+Codespaces browser execution and provider VM replacement durability remain
+unverified.
+
+Evidence: `stack-phoenix-{url,google,codespaces,audit}.json`. Coverage now
+**55 isolated / 53 Google browser / 53 Codespaces protocol**, with
+**2** native fixtures pending. Full suite **189/189** and
+physical source **7,128 lines** remain valid; this acceptance changed only
+evidence and documentation. App `repo-c9d884e81c64dde53b2afef0-d6da2ed780ae-93e7177def98`; preserve saved native counters2.

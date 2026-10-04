@@ -12,58 +12,56 @@ VM replacement durability or universal launches under20s without evidence.
 - Core: https://github.com/RizwanAhamed13/pods-launch-fresh (private).
 - Fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
   pinned revision d6da2ed780aec8ae0178fc181f1d24113c322e15.
-- Latest native acceptance: Micronaut + SQLite; stack-micronaut-{url,google,codespaces,audit}.json.
-  Acceptance revision89abea0 pushed and synced. Public support verified55/52/52
-  at09:39:56UTC; Micronaut row shows all three passes. Evidence stack-micronaut-published.json.
-- Coverage:55 isolated build/artifact/browser passes;52 Google native browser
-  and52 Codespaces authenticated HTTP/protocol passes. All8static frontends,
+- Latest native acceptance: Phoenix + SQLite; stack-phoenix-{url,google,codespaces,audit}.json.
+  Coverage55/53/53; publication is the next checkpoint action.
+- Coverage:55 isolated build/artifact/browser passes;53 Google native browser
+  and53 Codespaces authenticated HTTP/protocol passes. All8static frontends,
   6SSR,6Node,4JVM,4Go,3Rust,2.NET and7database-family representatives pass native paths.
   Native Codespaces browser interaction remains pending authorization.
-  The3 fixtures awaiting native acceptance are:
-  phoenix, streamlit, symfony.
+  The2 fixtures awaiting native acceptance are:
+  streamlit, symfony.
 - Current full suite:189/189 passed locally and in isolated aswin QA.
   Evidence stack-sqlite-file-tests.json; logs /tmp/pods-sqlite-file-full-{local,qa}.txt.
   Source7128physical lines:3717product/tooling +2314tests +933examples +164browser.
   Evidence code-lines.json defines exclusions; do not count generated/evidence files.
 
-## Next native gate: Phoenix
+## Next native gate: Streamlit
 
-- Micronaut is complete; no build/launch watcher is running. Quota snapshot at09:37:56UTC
+- Phoenix is complete; no build/launch watcher is running. Quota snapshot at09:57:10UTC
   showed3account/global builds in the last hour and zero active builds. Next ordinary
-  slot2026-10-04T09:47:41.239000+00:00; recheck actual availability before submitting.
+  slot2026-10-04T10:05:47.894000+00:00; recheck actual availability before submitting.
   Quota3/account/hour,12global/hour: never bypass, switch account to evade quota,
   or import isolated QA artifacts into production.
-- Browser1 handles: stackQa6/tab1 completedMicronaut developer form; echoTab/tab2 stoppedMicronaut;
+- Browser1 handles: stackQa6/tab1 completedPhoenix developer form; echoTab/tab2 stoppedPhoenix;
   mongodbSupport/tab3 publicsupport. Re-markHandoff each new turn. After a browser
   context compaction, call cua.rewriteDocumentation before browser actions.
-- Set application folder examples/stacks/phoenix and submit through the actual developer
+- Set application folder examples/stacks/streamlit and submit through the actual developer
   form only after availability. Record actual submittedAt. Adapt the bounded
-  /tmp/pods-watch-micronaut-build.py observer to Phoenix with timestamp guard. A timeout is not build failure:
+  /tmp/pods-watch-phoenix-build.py observer to Streamlit with timestamp guard. A timeout is not build failure:
   resume same build via /tmp/pods-watch-existing-build.py ID FOLDER, never resubmit.
 - Use ready region Your application is ready to share. → scoped Try this version
   link, not recent history. GoogleOpen → producth1 → meaningful write → reload →
   full stop → reopen saved value → next write → reload → full stop, before Codespaces.
-- Phoenix h1 Phoenix + SQLite; #count; button Save +1. The prepared CUA helper
-  continueSqliteFramework(tab,record,expected,{heading,valueSelector,buttonName})
-  supports these controls. Check fresh DOM first; it has not yet run on a product.
-  It records first-visible/read/write timings without resetting timers and requires
-  a completed reload. Google0→1→2 with reload and full stop/relaunch.
-- Codespaces exactappID: PODS_COUNTER_CHECK=1 PODS_SQLITE_FILE_RUNTIME_CHECK=1
-  PODS_EXPECT_INITIAL_COUNT=0 PODS_EVIDENCE_FILE=evidence/stack-phoenix-codespaces.json
+- Inspect Streamlit's real DOM for h1, Saved count metric and Add one button.
+  It differs from Gradio's input and the framework counter's #count. Record
+  first-visible/read/write timings without resetting timers; require a completed
+  reload. Google0→1→2 with reload and full stop/relaunch.
+- Codespaces exactappID: PODS_DASHBOARD_FIXTURE=streamlit
+  PODS_EXPECT_INITIAL_COUNT=0 PODS_EVIDENCE_FILE=evidence/stack-streamlit-codespaces.json
   node scripts/live-codespaces.mjs ORIGIN github APPID, with gh auth token on stdin.
-  SQLite file helper passed all4real pinned artifacts and current189suite.
+  Do not set PODS_COUNTER_CHECK or PODS_SQLITE_FILE_RUNTIME_CHECK for dashboards.
 - After both providers finish/stopped, collect whitelisted capture using
-  /tmp/pods-capture-native.py phoenix, private ports via gh codespace ports --json
+  /tmp/pods-capture-native.py streamlit, private ports via gh codespace ports --json
   sourcePort,visibility, /health200, and /tmp/pods-storage-deploy-audit.py.
 - Save actual browser JSON. Helpers /tmp/pods-{record,document}-sqlite-native.py
-  now passed Ktor/Micronaut and validate counterCheck plus sqliteFileRuntimeCheck, identity,
-  restart persistence, private ports and stopped runs. Reuse for the two remaining
+  now passed Ktor/Micronaut/Phoenix and validate counterCheck plus sqliteFileRuntimeCheck, identity,
+  restart persistence, private ports and stopped runs. Reuse for the remaining
   SQLite frameworks; preserve inspector/runtime version distinction and test-only pause.
 - /tmp/pods-native-evidence-audit.py FIXTURE now validates the production identities,
-  timing agreement, stopped runs and evidence privacy; passed Micronaut. Syntax and
+  timing agreement, stopped runs and evidence privacy; passed Phoenix. Syntax and
   result checks are separate from the production application tests.
 - Dashboard helpers /tmp/pods-{record,document}-dashboard-native.py passed Gradio and
-  can be reused later for Streamlit. Do not claim exact startup-command checks for dashboards.
+  are ready for Streamlit. Do not claim exact startup-command checks for dashboards.
 - After recording: compatibility3tests, diffcheck, commit/push/ff-sync, publicDOM
   verification, save publication evidence and a concise next-gate handoff.
 
@@ -78,7 +76,7 @@ VM replacement durability or universal launches under20s without evidence.
   read-only, cleans copy. InspectorSQLite version is not the application's driver.
   Exact serialized probes on all4pinned artifacts passed0→1→2 and cleanup; Phoenix
   WAL included. Evidence stack-sqlite-file-preflight.json. Ktor/Micronaut now pass
-  native acceptance; Phoenix and Symfony still need native runs.
+  native acceptance, as does Phoenix; Symfony still needs native runs.
 - Streamlit uses PODS_DASHBOARD_FIXTURE=streamlit without PODS_COUNTER_CHECK.
   Native browser must interact with its real dashboard; protocol pass is separate.
 
@@ -100,10 +98,10 @@ VM replacement durability or universal launches under20s without evidence.
   Lost Google start-response reconciliation uses the sameRUNNINGenv and uniqueSSHkey.
 - Existing GitHub2FA, VMreplacement authorization and stablehostname inputs remain
   pending. Do not repeat those questions. Localgcloud identity is suspended/wrong.
-- Latest Micronaut audit09:38:20UTC: health200, SQLiteok, zero active, unchangedPID/SHA.
+- Latest Phoenix audit09:59:07UTC: health200, SQLiteok, zero active, unchangedPID/SHA.
   BothGoogle andCodespaces savedcount2. Codespacepods-launch-containers-69rw5vx4xp46c5qw5,
-  privateport26630; preserve data. All four launches stopped. First/cached visible
-  38.257/11.800sGoogle; Codespaces healthy70.406/11.256s. First deliveries missed20s.
+  privateport23905; preserve data. All four launches stopped. First/cached visible
+  54.511/9.338sGoogle; Codespaces healthy87.260/9.708s. First deliveries missed20s.
 
 ## Isolated QA and authoritative evidence
 
@@ -119,7 +117,7 @@ VM replacement durability or universal launches under20s without evidence.
 - Machine-readable acceptance: stack-coverage.json. Failed historical flask-mongodb
   remains; replacement flask-mongodb7 is accepted. Do not erase failed attempts.
 - Native timings: stack-native-timings.{json,md}, generator stack-native-timing-report.py.
-  Currently110observations;49provider/fixture pairs excluded for incomplete timing
+  Currently114observations;49provider/fixture pairs excluded for incomplete timing
   provenance. Explicit states/cache fields only; missing timing stays unknown.
   Mixed historical fixtures/revisions are not a controlled benchmark or universalSLA.
 - Detailed verification: STACK-VERIFICATION-HISTORY.md, per-fixture evidence files,
@@ -243,3 +241,42 @@ Evidence: `stack-micronaut-{url,google,codespaces,audit}.json`. Coverage now
 **3** native fixtures pending. Full suite **189/189** and
 physical source **7,128 lines** remain valid; this acceptance changed only
 evidence and documentation. App `repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-b8c6e3de8016`; preserve saved native counters2.
+
+
+## Phoenix native SQLite acceptance
+
+The real developer form prepared `examples/stacks/phoenix` from source revision
+`d6da2ed780ae` after ordinary same-account quota availability. Server preparation
+took **356.602s**; saved artifact `93e7177def98dd34acc8b880c6e6cdfdc0af9ee82844f3ad91930ef6ca3e1e02` contains
+**166,072,328 image bytes**. No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell initially RUNNING, first delivery | Healthy 52.891s; product visible 54.511s; saved count read 59.496s; button write 59.787s |
+| Cloud Shell cached relaunch | Healthy 8.031s; visible 9.338s; saved count restored 9.361s; next write 9.652s |
+| Codespaces initially Shutdown | Healthy 87.260s; delivery/startup 72.491s |
+| Codespaces cached relaunch | Healthy 9.708s; HTTP write/read, SQLite integrity and saved row passed |
+
+Cloud Shell verified the real product h1, saved-count control and increment button,
+reload and full application stop/relaunch: **0→1→2**, with no console warnings
+or errors. Codespaces exercised the product HTTP API, verified the same sequence and queried
+a read-only copy of the actual SQLite file. The fixture container was briefly
+paused to copy the database and any WAL consistently, then resumed before the
+query. Inspector SQLite **3.53.4**, integrity and saved
+rows were recorded; this is the inspector version, not the application's driver.
+The checks verified the exact compiled/runtime startup command, one web service,
+its project network, persistent workspace volume and private product port
+**23905**. No database port was published.
+
+Both Google runs finished and stopped before Codespaces testing began. All four
+launches ended stopped. Audit at 2026-10-04T09:59:07.912749+00:00 confirmed health200, SQLite
+integrity ok, zero active builds/launches and unchanged service PID/runner SHA.
+These timings describe this fixture and observed compute/cache states. Native
+Codespaces browser execution and provider VM replacement durability remain
+unverified.
+
+Evidence: `stack-phoenix-{url,google,codespaces,audit}.json`. Coverage now
+**55 isolated / 53 Google browser / 53 Codespaces protocol**, with
+**2** native fixtures pending. Full suite **189/189** and
+physical source **7,128 lines** remain valid; this acceptance changed only
+evidence and documentation. App `repo-c9d884e81c64dde53b2afef0-d6da2ed780ae-93e7177def98`; preserve saved native counters2.

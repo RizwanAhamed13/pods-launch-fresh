@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-04T09:59:07.833792+00:00",
+  "controlRevision": "5dde1e5",
+  "checkoutRevision": "49e9f37f7a4b59c8f14481e0569f7c2435ea9e89",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T09:47:47.204558+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T09:47:52.163Z",
+  "attempts": [
+    {
+      "id": "113KSGRtxU6A2iC3Nnw0UbVFrGTDmadh",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/phoenix",
+        "key": "c9d884e81c64dde53b2afef0"
+      },
+      "status": "ready",
+      "createdAt": 1791107272878,
+      "startedAt": 1791107272947,
+      "finishedAt": 1791107629549,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-c9d884e81c64dde53b2afef0-d6da2ed780ae-93e7177def98",
+      "app": {
+        "id": "repo-c9d884e81c64dde53b2afef0-d6da2ed780ae-93e7177def98",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "93e7177def98dd34acc8b880c6e6cdfdc0af9ee82844f3ad91930ef6ca3e1e02",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-c9d884e81c64dde53b2afef0",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/phoenix",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Phoenix + SQLite"
+        },
+        "preparedAt": "2026-10-04T09:53:48.960Z",
+        "images": [
+          {
+            "id": "sha256:8365ad438b4dd318d5d25b270ded6724413402f4c97028dbda7fede6e4ee571f",
+            "sha256": "aee1ad8f4d52e14735e8ea0957825377fda193b7be827f032bf38c3235451ab8",
+            "bytes": 166072328
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 356602
+}
