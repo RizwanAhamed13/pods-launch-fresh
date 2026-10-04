@@ -179,6 +179,9 @@ a stable production hostname remains a deployment requirement.
 - [PHP, Sinatra and Deno file persistence preflight](evidence/stack-file-profiles-preflight.json)
   verifies their exact launch commands, stored values and persistent volumes after
   full stops. These isolated checks do not add native-provider acceptance.
+- [Ktor, Micronaut, Phoenix and Symfony transport preflight](evidence/stack-sqlite-framework-transport-preflight.json)
+  verifies proxy-style requests and saved records after full application stops.
+  Native provider acceptance remains pending for these four fixtures.
 - [Full-suite result](evidence/stack-file-profiles-tests.json): **184/184**
   checks passed locally and in isolated aswin Linux QA.
 - [Physical source count](evidence/code-lines.json): **6,995 lines**, including

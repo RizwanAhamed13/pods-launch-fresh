@@ -1180,3 +1180,22 @@ Coverage remains55 isolated /45 Google browser /45 Codespaces protocol.
   55353audit. All passed. No test launch remains running. Tabs1/2/3 marked for
   continuation. Pending GitHub browser2FA, VMreplacement and stablehostname
   questions stay pending; do not repeat them. Goal remains active and incomplete.
+
+
+## Remaining SQLite framework transport preflight
+
+Pinned real Ktor, Micronaut, Phoenix and Symfony artifacts accepted empty chunked
+POST without a Content-Type header, read each saved value and retained0→1→2
+across full application stops. Product h1, artifact/page-source hashes and the
+transferred script hash matched. SQLite implementation sources also match,
+except one additional trailing newline in Phoenix QA; every other byte matches.
+Both raw hashes and normalized comparison are recorded. Initial exact-byte
+audit stopped before cleanup; corrected interpretation preserved in evidence.
+This transport check does not independently query the SQLite engine.
+Disposable containers/volumes/storage were removed after all four passes.
+
+Evidence: stack-sqlite-framework-transport-{live.mjs,preflight.json}.
+No source/runtime/provider change; source6995/full184 remain valid. Native
+coverage stays55/45/45. Ktor/Micronaut browser controls are #value and Add one;
+Phoenix/Symfony use #count and Save +1. Use their actual DOM when testing native
+product interactions; do not apply the Add one locator to those two fixtures.

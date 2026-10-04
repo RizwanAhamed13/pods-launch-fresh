@@ -1,0 +1,239 @@
+{
+  "recordedAt": "2026-10-04T07:28:27.219111+00:00",
+  "baseRevision": "9d0bdf1",
+  "qaCandidate": "/output/file-profiles-candidate-4c96520",
+  "scriptSha256": "64e26b834d201b40b4c06c38cbb9f5a38b4529f4b6cd5c6e1481fcb5b98df732",
+  "qaFileComparisons": [
+    {
+      "path": "/tmp/pods-sqlite-framework-transport.mjs",
+      "expected": "64e26b834d201b40b4c06c38cbb9f5a38b4529f4b6cd5c6e1481fcb5b98df732",
+      "actual": "64e26b834d201b40b4c06c38cbb9f5a38b4529f4b6cd5c6e1481fcb5b98df732",
+      "matches": true
+    },
+    {
+      "path": "/work/stacks/ktor/src/main/kotlin/example/Application.kt",
+      "expected": "8f94b8e355f4506a68070ccc7e25af162bd683cb885f106d21d0dcf4a8a34b78",
+      "actual": "8f94b8e355f4506a68070ccc7e25af162bd683cb885f106d21d0dcf4a8a34b78",
+      "matches": true
+    },
+    {
+      "path": "/work/stacks/micronaut/src/main/java/example/Counter.java",
+      "expected": "7c0705969beccd9f00d8bd117d724af2196878ec93bc6704c6ca298204208e90",
+      "actual": "7c0705969beccd9f00d8bd117d724af2196878ec93bc6704c6ca298204208e90",
+      "matches": true
+    },
+    {
+      "path": "/work/stacks/phoenix/lib/product.ex",
+      "expected": "0159a0fa1cee76d2497ba587a06066ebf049607de9a396b093b793440448bea9",
+      "actual": "784997d9f8d3835822df1dd3df4564cfd52db90596edc49cd578d29f716a951e",
+      "matches": false
+    },
+    {
+      "path": "/work/stacks/symfony/public/index.php",
+      "expected": "763633f7d7c923cf66f0cd8f31448e7befb6693813fc3eaac7ac3d740f1b996b",
+      "actual": "763633f7d7c923cf66f0cd8f31448e7befb6693813fc3eaac7ac3d740f1b996b",
+      "matches": true
+    }
+  ],
+  "phoenixSourceComparison": {
+    "file": "examples/stacks/phoenix/lib/product.ex",
+    "localSha256": "0159a0fa1cee76d2497ba587a06066ebf049607de9a396b093b793440448bea9",
+    "qaSha256": "784997d9f8d3835822df1dd3df4564cfd52db90596edc49cd578d29f716a951e",
+    "exactBytesMatch": false,
+    "difference": "QA copy has one additional trailing newline; all other bytes match.",
+    "sameAfterTrimmingTrailingNewlines": true,
+    "normalizedSha256": "0e8761a592e818399ee23aeba8f7d273d16f75931d07087e55fca833bce8e189"
+  },
+  "earlierAudit": "Initial exact-byte source assertion stopped cleanup before any mutation; identified one extra trailing newline in Phoenix QA source. Scoped cleanup then passed against recorded actual hashes. No application test failed.",
+  "scope": "Pinned real Ktor, Micronaut, Phoenix and Symfony SQLite applications accept the empty chunked POST used by the proxy and retain saved records after full application stops in isolated QA. Not new native-provider/browser acceptance or an independent database-engine inspection.",
+  "results": [
+    {
+      "recordedAt": "2026-10-04T07:25:07.240Z",
+      "fixture": "ktor",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and retained counter after full application restart. Existing SQLite fixture sources identify storage; this transport check does not independently query the database engine. Not a native provider or new browser acceptance test.",
+      "dataKey": "ktor-chunked-3d89da38f20c395f",
+      "project": "pods-3b6f8fb12bb7e099d3f7912c",
+      "artifactSha256": "49296597e69e533a327361f5dc38f89f282c8d0757c29c74754b3563c3bfa780",
+      "images": [
+        {
+          "id": "sha256:cc93a149db93551a987664b392449f677e3e601ecabc206995174e8c6ff273ce",
+          "sha256": "4de9a478c90ed83b0a99203bd183330cdd3d189461dca69ebd95f3f24823d092",
+          "bytes": 138945817
+        }
+      ],
+      "sourceSha256": "8f94b8e355f4506a68070ccc7e25af162bd683cb885f106d21d0dcf4a8a34b78",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T07:25:24.332Z",
+      "fixture": "micronaut",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and retained counter after full application restart. Existing SQLite fixture sources identify storage; this transport check does not independently query the database engine. Not a native provider or new browser acceptance test.",
+      "dataKey": "micronaut-chunked-3602a3b51a967e41",
+      "project": "pods-4a88e861c1c1a225ea31f5c8",
+      "artifactSha256": "e8d70b34f83d2437c0a79b10ce6d95f5169f378aa84fca5464d182043ebf997b",
+      "images": [
+        {
+          "id": "sha256:d026024db53948c0a716e275a0b0b975db3a8ed2a9364a5a5ce091233fba6eba",
+          "sha256": "87d911df4f774d07285f706edbc7d33b0172652059fa56cef3e76fd5792b776e",
+          "bytes": 125122408
+        }
+      ],
+      "sourceSha256": "3d4d4aa5b6bb0067d93ab03630d6e6d1e8786256a954f892463395f956b629d5",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T07:25:41.193Z",
+      "fixture": "phoenix",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and retained counter after full application restart. Existing SQLite fixture sources identify storage; this transport check does not independently query the database engine. Not a native provider or new browser acceptance test.",
+      "dataKey": "phoenix-chunked-3bd96333a54c0180",
+      "project": "pods-b701d070ff142b849b6f3d2c",
+      "artifactSha256": "7308461467ce0b24285428c542b402856037ab0c4ca8420e4bb4d313bacc0e98",
+      "images": [
+        {
+          "id": "sha256:b21152ef10862fed9b6fd780a2902590574df8e1522469df3ed050993daf4881",
+          "sha256": "a6ad3145a21075443653d81704e58ddeb94ea205881e98607331deee7f86e5a9",
+          "bytes": 166072256
+        }
+      ],
+      "sourceSha256": "2e144615570aaa27bb6e8ef60ebf3bddac7e21ad6d1b1d8cfab2fb03789f00f9",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T07:26:13.515Z",
+      "fixture": "symfony",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and retained counter after full application restart. Existing SQLite fixture sources identify storage; this transport check does not independently query the database engine. Not a native provider or new browser acceptance test.",
+      "dataKey": "symfony-chunked-b53f86e3ba65543d",
+      "project": "pods-c60da7bd79992502ff6db0d8",
+      "artifactSha256": "81b78431ad424b1b412bc73b3b44540d6bf01e98076eced7d532cdc37be2f817",
+      "images": [
+        {
+          "id": "sha256:efe0f95b8161337d20235b86a84ecb5f5db6d83a862b6643891159457fecd52b",
+          "sha256": "2a9d053e4344a2cf22ca1479d7b3667af7915cf3bfcf4309f08f2ac172e229c7",
+          "bytes": 225351307
+        }
+      ],
+      "sourceSha256": "405d631ffa88a53f55192cfe6022918a87407151584ebeb971fb28f1930c5e8e",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    }
+  ]
+}
