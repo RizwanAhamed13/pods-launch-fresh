@@ -1115,3 +1115,28 @@ source6814 remain valid because only evidence/documentation changed.
   All four launches stopped; no service restart. Coverage55/45/45;10nativepending.
   Source6994/full184 unchanged. Existing GitHub2FA/VMreplacement/stablehostname
   inputs remain pending. Goal active and progressing.
+
+
+## Published Rocket and dashboard harness checkpoint
+
+- Dashboard tooling bd7e895 and native Rocket acceptance82b2b00 pushed/synced
+  to aswin. Public DOM verified07:15:18.661UTC:55/45/45 and Rocket all passed;
+  Codespaces browser warning retained. stack-rocket-published.json records it.
+- All three Rust representatives now pass native Google browser and Codespaces
+  protocol paths.10 native fixtures remain (current list above).
+- Full184local/Linux, compatibility3/3, source6994. No product runtime/provider
+  changes or service restart. PID1063107/runner SHA unchanged. All four Rocket
+  launches stopped; private port29000. Scoped dashboard QA storage cleaned.
+- Next fixture ASP.NET Core: developer form contains examples/stacks/aspnet,
+  NOT submitted. Ordinary quota snapshot 2026-10-04T07:15:48.280694+00:00: account3,
+  global3, active0, nextslot2026-10-04T07:28:54.366000+00:00.
+  No live build, launch or quota watcher remains.
+- /tmp/pods-document-file-counter-native.py now reads current tests/source counts
+  rather than using179/6814. Capture/record helper accepts aspnet. Next build
+  observer should be copied from12-minute rocket watcher with folder changed;
+  use the actual fresh submission timestamp and pin its build ID.
+- Dashboard native command: PODS_DASHBOARD_FIXTURE=gradio or streamlit,
+  PODS_EXPECT_INITIAL_COUNT=0, exactappID and evidencefile; no PODS_COUNTER_CHECK.
+  Both Google browser runs must stop before Codespaces runs.
+- Existing GitHub2FA/VMreplacement/stablehostname questions remain pending.
+  Goal active/incomplete; next turn continues from this evidence.
