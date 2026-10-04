@@ -238,7 +238,7 @@ The product port stayed private and no database port was exposed. Both launches
 finished and stopped. These samples do not establish a universal speedup, first-image
 performance, cold-compute performance or native Codespaces browser interaction.
 
-The latest [ordinary developer URL build and native acceptance](evidence/stack-fresh-image-native.json)
+A prior [ordinary developer URL build and native acceptance](evidence/stack-fresh-image-native.json)
 exercise a new Micronaut + SQLite image after both provider optimizations.
 Preparation took 218.662s on the server. Google reconnection returned to the
 developer page and automatically continued the build; the finished launch link
@@ -280,8 +280,32 @@ retain four. The [242-check local/Linux suite](evidence/stack-eight-ranges-tests
 verifies uneven archive reconstruction and cancellation of all seven peers on a
 failure, alongside existing integrity and fallback checks. The 30-second deadline,
 private temporary files, full SHA verification before Docker loading and authenticated
-origin fallback remain unchanged. Fresh native launch acceptance is required before
-claiming that this reduces time to the product.
+origin fallback remain unchanged.
+
+[Fresh native acceptance](evidence/stack-eight-ranges-native.json) used an ordinary
+developer URL build prepared in 217.780s. Both providers initially missed the new
+image cache and completed a verified range download without origin fallback.
+
+| Eight-range launch | New image: healthy | New image: product visible | Cached: healthy | Cached: product visible |
+| --- | --- | --- | --- | --- |
+| Cloud Shell, running | 19.377s | 20.667s | 9.188s | 10.223s |
+| Codespaces, available | 28.725s | Unverified | 9.277s / 8.512s | Unverified |
+
+Image download/load took 5.923s/2.797s on Google and 4.545s/3.209s on Codespaces.
+Codespaces preview setup took 11.808s on its first launch. Its initial test harness
+failed while parsing an HTML status-poll response after launch creation; the HTTP
+status and cause were not retained. The same running product was subsequently
+verified and stopped through its original authenticated session. Both following
+cached launches passed the uninterrupted harness. The original failure is retained,
+so this is not an all-attempts-passed result.
+
+Google browser writes/reloads/full stops retained SQLite values 10→11→12.
+Codespaces product HTTP and online SQLite inspection retained 14→15→16→17 through
+full stops, with private product access, no exposed database ports and no pause.
+All five launches stopped. The [deployment](evidence/stack-eight-ranges-deployment.json)
+and final health/SQLite/idle audit passed. These small samples do not establish a
+controlled full-launch speedup. **The 20-second first-image product target remains
+unmet**, and native Codespaces browser interaction remains unverified.
 
 ## Persistence and operational limits
 
@@ -404,9 +428,9 @@ a stable production hostname remains a deployment requirement.
   a consistent database snapshot, resumes it, then queries the private copy.
   The reported SQLite version belongs to the inspector, not the application
   driver. These isolated checks do not add native-provider acceptance.
-- [Full-suite result](evidence/stack-sqlite-online-tests.json): **193/193**
+- [Full-suite result](evidence/stack-eight-ranges-tests.json): **242/242**
   checks passed locally and in isolated aswin Linux QA.
-- [Physical source count](evidence/code-lines.json): **7,747 lines**, including
+- [Physical source count](evidence/code-lines.json): **8,187 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)
