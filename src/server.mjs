@@ -124,7 +124,7 @@ export async function createApp(options={}) {
         if(req.headers.origin&&req.headers.origin!==origin)throw fail(403,'Request origin rejected');
         if(!same(req.headers['x-pods-csrf'],user.csrf))throw Object.assign(fail(403,'Your browser session changed. Reconnect to continue.'),{code:'SESSION_CHANGED'});
       }
-      if(path==='/api/me'&&req.method==='GET')return json(200,{csrf:user.csrf,buildsEnabled:Boolean(builds&&!builds.closed&&!builds.fault),connections:Object.keys(providers).map(p=>{const c=store.get('connection',`${user.id}:${p}`);return {provider:p,connected:Boolean(c&&c.expiresAt>Date.now()),name:c?.name,oauthReady:Boolean(oauth[p]?.id&&oauth[p]?.secret)};}),apps:await apps()});
+      if(path==='/api/me'&&req.method==='GET')return json(200,{csrf:user.csrf,buildsEnabled:Boolean(builds&&!builds.closed&&!builds.fault),connections:['github','google'].filter(p=>providers[p]).map(p=>{const c=store.get('connection',`${user.id}:${p}`);return {provider:p,connected:Boolean(c&&c.expiresAt>Date.now()),name:c?.name,oauthReady:Boolean(oauth[p]?.id&&oauth[p]?.secret)};}),apps:await apps()});
       if(path==='/api/builds'&&req.method==='GET')return json(200,builds?.list(user.id)||[]);
       if(path==='/api/builds'&&req.method==='POST') {
         if(!builds)throw fail(503,'Repository preparation is not available on this deployment.');

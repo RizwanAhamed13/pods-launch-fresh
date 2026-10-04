@@ -1,0 +1,45 @@
+{
+  "recordedAt": "2026-10-04T13:00:22.656285+00:00",
+  "baseRevision": "814e17334db9e5f14ac9b5ea6505bf3ab8088172",
+  "runs": [
+    {
+      "platform": "local",
+      "passed": 240,
+      "failed": 0,
+      "logSha256": "87b1b9b10d8c7de0a0146ebdfe0d8b62aa1ad11f0e6ae3b0d53ac952ea898257"
+    },
+    {
+      "platform": "isolated-aswin-linux",
+      "passed": 240,
+      "failed": 0,
+      "logSha256": "3679be6b7621bfdd07400c8ae6aac27af1f7b760c809ab6974ef5298060ae5b1"
+    }
+  ],
+  "isolatedSnapshot": {
+    "candidate": "/output/provider-bootstrap-candidate-814e173",
+    "verifiedFiles": 335,
+    "archiveSha256": "684ebe39b940823462656910cf39ebd5e0356b34d45d48aab03cbd6f7f3b30c4",
+    "manifestSha256": "b8ce49254c3821c89bfd404e56def48c7838dfadbb33721532b552f8a5e2715d"
+  },
+  "sourceHashes": {
+    "src/server.mjs": "d05094fee7a6297567fb718f9341197edcae6ffa0ba06d18ff813a5b1aab688f",
+    "src/providers.mjs": "e2b5cafebc2fadf99e425ce99e05c9feed2010458081e4487c85cf6e3ca3efcd",
+    "src/deferred-command.mjs": "62b3b4a346dc4dc1d5e6f4cdba334ab3a1ee5d7c0db8c32c29230e0d86ee7953",
+    "public/app.js": "3e7a44a59fbf72c499e03305587d61d69f2922e5875a29792f56404a44b84fa3",
+    "public/index.html": "2995a4847e74fddd0f4f3ec7348c255d2408687a596873da215c32efad20c9cf",
+    "test/account-bootstrap.test.mjs": "90f7478d1f1a9ad14f2b96d4e75a915f3f6301375dda541ad13f80a72b05fee5"
+  },
+  "regression": {
+    "before": {
+      "passed": 0,
+      "failed": 1,
+      "logSha256": "cd2fcbe2dc55f0263fbe5b79441393dde0e39e494c212b8c4155b90ff81f93ef"
+    },
+    "newCasesPassed": 1,
+    "observedLiveFailure": "Developer page showed Cannot set properties of null (setting textContent). Public account bootstrap returned provider names close,github,google after the shutdown helper was added.",
+    "rootCause": "The API enumerated every provider-adapter key, including its lifecycle method. The browser expected a rendered status element for each returned provider.",
+    "check": "A real createApp using the actual providers factory checks the public account response and matching provider/status controls in both developer and launch documents. No provider/API mock hides the lifecycle key.",
+    "fix": "Expose only the supported Google/GitHub provider entries; preserve lifecycle cleanup."
+  },
+  "scope": "Corrects account bootstrap for all page modes. No build/runner/provider launch sequencing change. Native browser and URL-build acceptance follow separately."
+}
