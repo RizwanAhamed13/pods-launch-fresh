@@ -1463,3 +1463,16 @@ control health 200 and preview port 24886 private. Coverage is **55 isolated /
 30 Google browser / 30 Codespaces HTTP**, with **25 fixtures** still awaiting
 those native checks. This does not establish VM replacement durability or a
 universal 20-second cold launch. Evidence: `stack-koa-{url,google,codespaces}.json`.
+
+## Hono browser transport preflight
+
+Hono produced a **23,851-byte Node bundle** in the isolated QA build. The actual
+browser button passed through a proxy that sent an empty chunked POST without a
+Content-Type header. SQLite values progressed 0→1, survived page reload and a
+full application stop/relaunch, then progressed 1→2. Both POSTs returned 200;
+no browser warnings or errors were observed.
+
+This is a transport preflight, not native provider acceptance. Hono's Google
+browser and Codespaces HTTP checks remain pending. The temporary application,
+artifact directory and private proxy tunnel were removed. Evidence and replay:
+`stack-hono-browser-transport.json` and `stack-hono-browser-transport-probe.mjs`.

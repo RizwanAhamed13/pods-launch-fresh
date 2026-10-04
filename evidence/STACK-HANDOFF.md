@@ -12,8 +12,9 @@ VM replacement durability, or a universal 20-second cold launch.
 - Core: https://github.com/RizwanAhamed13/pods-launch-fresh (private).
 - Public fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
   revision d6da2ed780aec8ae0178fc181f1d24113c322e15.
-- This milestone adds Koa native acceptance on parent d915ec1. Use git log for
-  publication commit. Product runtime is unchanged at 5e5b4a0.
+- Koa native acceptance was published at d7dbc22 and verified on the public
+  support page (55/30/30, Koa all passed, Codespaces browser pending warning).
+  This milestone adds Hono transport preflight. Product runtime remains5e5b4a0.
 - Coverage: 55 isolated build/artifact/browser passes; 30 Google native browser
   and 30 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Every native Codespaces browser check
@@ -29,7 +30,7 @@ VM replacement durability, or a universal 20-second cold launch.
   + 164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
   files; includes .astro. No product source changed during this milestone.
 
-## Latest gate: Koa native acceptance
+## Latest native gate: Koa acceptance
 
 - Ordinary quota watcher 67969 ended0 at 01:45:25.124874 UTC, account2/global2/
   active0. Actual form submitted once at 01:45:29.115 UTC.
@@ -54,19 +55,34 @@ VM replacement durability, or a universal 20-second cold launch.
   /tmp/pods-record-koa.py retain evidence inputs/validation. Both providers now
   hold Koa value2; never reset existing data when retesting.
 
+## Hono isolated browser transport gate
+
+- Probe71414 ended0. Bundle23,851bytes, SHA256
+  6bb59210268add349aa1e3ca6519073ed94c78a0b6a4bd2750da2c8400ef8bc0.
+  SourceSHA5036890b643f4366ee590012b00db206b0413e870eba20cd003398a3ff3c5096
+  matches local and isolated Hono server.mjs.
+- Actual browser01:52:54.600→01:53:12.035UTC:0→1,reload1,full app
+  stop/relaunch1→2,reload2,no warning/error. Both empty chunked POSTs returned200.
+- Temporary tab33 closed, tunnel8540 stopped, hono-transport-qa LXD proxy
+  removed, probe stopped and removed its artifact root. No probe remains live.
+- Evidence stack-hono-browser-transport.{json,mjs}; replay script is named
+  stack-hono-browser-transport-probe.mjs. No QA artifact imported to production.
+- Browser binding honoTransportResult retains raw browser observations.
+
 ## Next gate and performance work
 
 - NEXT: Hono URL preparation and native browser/HTTP persistence checks, then
   remaining fixtures. No Hono production build has been submitted.
-- Latest quota snapshot 01:47:36.323269 UTC: account3/global3/active0; next ordinary
-  slot 02:01:21.388 UTC. No live watcher. /tmp/pods-next-native-quota-watch.py is a
+- Quota watcher58800 is LIVE. Initial snapshot01:51:34.162390UTC:
+  account3/global3/active0; next ordinary slot02:01:21.388UTC. Poll this handle;
+  never recreate solely because observation timed out. /tmp/pods-next-native-quota-watch.py is a
   bounded20min readonly watcher with30sec samples; anchor Svelte build
   NLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp privately. Poll a running handle, never recreate
   on observation timeout. Keep limits3/account/hour and12/global/hour. Never
   bypass quota, change identity to evade it, or import QA artifacts to production.
 - /tmp/pods-capture-native.py reads aswin SQLite readonly, whitelists fields and
   derives timings. Its explicit fixture allowlist currently includes astro,
-  react-router, express, fastify, koa; add hono before its capture.
+  react-router, express, fastify, koa and hono.
 - scripts/live-codespaces.mjs receives gh token on stdin. Use the correct fixture
   probe, explicit output file and expected initial count. Counter/SSR/static/
   WebSocket/worker checks require two launches, including confirmed full stop.
@@ -101,16 +117,16 @@ VM replacement durability, or a universal 20-second cold launch.
 After compaction first CUA call must be cua.rewriteDocumentation. Reuse bindings;
 mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 
-- stackQa6: IAB2 tab13, completed Koa preparation. Ready region name includes
-  period: Your application is ready to share. Try this version link identifies
-  the exact artifact. Next folder input should be examples/stacks/hono.
+- stackQa6: IAB2 tab13, Hono folder staged but NOT submitted; button Prepare
+  application. Ready region name includes period: Your application is ready
+  to share. Try this version link in that region identifies the exact artifact.
 - accountWorker: IAB2 tab12, stopped Koa launcher. koaLaunchUrl,
   koaPreparationSubmittedAt, koaBrowserChecks (both passed), koaFirstLogs and
   koaSecondLogs (empty) persist. measureKoaCounter records continuous page/read/
   write timing and reload;50sec deadline. Stop helper stopPreparedProduct confirms
   terminal state. History may briefly lag while its async refresh finishes.
-- supportQa: IAB2 tab29, public support deliverable; refresh after publishing to
-  verify55/30/30 and Koa bothPassed. Native CS browser warning must remain visible.
+- supportQa: IAB2 tab29, public support deliverable, verified55/30/30 with
+  Koa allPassed. Native CS browser warning remains visible.
 - nativeGithubKeep: IAB2 tab10; freshly checked this turn, still Two-factor
   authentication. User already asked; no SMS/code sent. Do not repeat question.
 - cloudLifecycle: IAB2 tab14; freshly checked this turn, Restart confirmation and

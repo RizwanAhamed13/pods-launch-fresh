@@ -1,0 +1,76 @@
+{
+  "scope": "Isolated actual browser through emulated chunked POST; not native provider acceptance",
+  "sourceSha256": "5036890b643f4366ee590012b00db206b0413e870eba20cd003398a3ff3c5096",
+  "artifactSha256": "6bb59210268add349aa1e3ca6519073ed94c78a0b6a4bd2750da2c8400ef8bc0",
+  "artifactBytes": 23851,
+  "startedAt": "2026-10-04T01:52:54.600Z",
+  "completedAt": "2026-10-04T01:53:12.035Z",
+  "browserCheck": {
+    "before": 0,
+    "afterWrite": 1,
+    "afterReload": 1,
+    "afterFullRestart": 1,
+    "afterRestartWrite": 2,
+    "afterFinalReload": 2,
+    "consoleErrorsOrWarnings": [],
+    "passed": true
+  },
+  "requests": [
+    {
+      "method": "GET",
+      "contentType": null,
+      "transferEncoding": null,
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "contentType": null,
+      "transferEncoding": "chunked",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "contentType": null,
+      "transferEncoding": null,
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "contentType": null,
+      "transferEncoding": null,
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "contentType": null,
+      "transferEncoding": null,
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "contentType": null,
+      "transferEncoding": "chunked",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "contentType": null,
+      "transferEncoding": null,
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "contentType": null,
+      "transferEncoding": null,
+      "status": 200
+    }
+  ],
+  "cleanup": {
+    "probeExitedSuccessfully": true,
+    "temporaryTunnelStopped": true,
+    "temporaryProxyRemoved": true,
+    "temporaryArtifactRemoved": true
+  },
+  "passed": true,
+  "reproduction": "Run stack-hono-browser-transport-probe.mjs in the isolated QA guest. Use a private SSH tunnel to its proxy; click Add one, reload, POST /restart on the loopback control port, reload, click Add one, reload, then POST /stop. No artifact is imported into production."
+}
