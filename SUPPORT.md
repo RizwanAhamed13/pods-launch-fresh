@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **272 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **284 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
@@ -181,12 +181,43 @@ Both apps passed writes, reloads and full stop/relaunch, preserving SQLite
 2 → 3 → 4 and18 → 19 → 20 respectively. Images and local image archives were
 absent on first runs; existing Docker layers, manifest cache and database data
 were preserved. CDN cache warmth was not measured. Neither first-image product
-interaction met20s, and no new transfer failure reproduced.
+interaction met 20s, and no new transfer failure reproduced.
 
-The production inventory has59 distinct prepared images but only4 stored CDN
-mappings;55 older images (5.620GB total) still use origin unless prepared again.
-These are image counts, not framework counts. A migration path for existing
-prepared images is pending so enabling faster delivery need not require rebuilding.
+That inventory recorded 59 distinct prepared images with 4 stored CDN mappings;
+55 older images (5.620GB total) used origin. These are image counts, not framework
+counts. The following migration gate adds one mapping without rebuilding.
+
+## Existing-artifact delivery migration
+
+The operator command documented in [README.md](README.md) verifies one explicitly
+selected application's existing manifest, archive and every image before publishing
+to the configured private release. Its default is an offline dry-run. Repeating
+publication reuses verified assets; a partial failure retains completed mappings.
+Developers and users keep their existing preparation and launch flow.
+[284 passing local/Linux checks](evidence/stack-image-migration-tests.json) include
+integrity rejection, partial-upload recovery, identity checks, safe CLI output and
+unchanged artifact bytes.
+
+[Live operator validation](evidence/stack-image-migration-operator.json) migrated
+the existing 54,898,173-byte FastAPI image in 12.954s; repeat publication reused its
+asset in 1.342s. Build records, immutable artifacts, configuration and the running
+service stayed unchanged. The remaining 54 unmapped images total 5,565,417,613 bytes.
+
+[Two native Google browser launches](evidence/stack-image-migration-native.json)
+used the original prepared link and began on RUNNING compute:
+
+| FastAPI + SQLite | Health | Product visible | Button write |
+| --- | --- | --- | --- |
+| Image absent, migrated CDN delivery | 15.539s | 17.309s | 17.939s |
+| Cached relaunch | 5.461s | 5.946s | 6.389s |
+
+The first run had no Docker image or image archive cache. Its four-range CDN
+transfer succeeded without fallback: 4.338s image download, including 3.189s on the
+range path, then 4.026s Docker load. Manifest cache, existing Docker layers and
+database data were preserved; CDN cache warmth was not measured. SQLite 2 → 3 → 4
+survived button writes, reloads and full application stops. Both launches stopped.
+This representative met 20s; other first-image failures remain recorded, and native
+Codespaces browser acceptance is still pending.
 
 ## Native launch performance
 

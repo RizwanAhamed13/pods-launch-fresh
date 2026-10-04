@@ -1,0 +1,204 @@
+{
+  "recordedAt": "2026-10-04T15:24:54.584773+00:00",
+  "revision": "1654372c0fb829bc7639e32034b30df12184c1df",
+  "scope": "Existing FastAPI + SQLite artifact migrated without rebuild; ordinary native Google browser launches through unchanged application link. No cache clearing, artifact import, quota override or service restart.",
+  "build": {
+    "id": "rUpOx4l-ZVEXuG72K8SUu_8fBYiRPcFT",
+    "repository": {
+      "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+      "owner": "rizwanahamed13",
+      "name": "pods-launch-runtime-fresh",
+      "folder": "examples/stacks/fastapi",
+      "key": "46dbc56878c4f438c7ed70d3"
+    },
+    "status": "ready",
+    "createdAt": 1791084381476,
+    "startedAt": 1791084381494,
+    "finishedAt": 1791084453382,
+    "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-46dbc56878c4f438c7ed70d3-d6da2ed780ae-309b54492909",
+    "app": {
+      "id": "repo-46dbc56878c4f438c7ed70d3-d6da2ed780ae-309b54492909",
+      "name": "pods-launch-runtime-fresh",
+      "description": "",
+      "sha256": "309b5449290922b771804b4f1e98a0cabc5d456c01ab098ed74653defbfcf03f",
+      "bytes": 275,
+      "files": 0,
+      "healthPath": "/",
+      "applicationType": "container",
+      "runtime": "docker-linux-amd64",
+      "dataKey": "repo-46dbc56878c4f438c7ed70d3",
+      "productType": "web",
+      "productPath": "/",
+      "source": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "folder": "examples/stacks/fastapi",
+        "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+      },
+      "verification": {
+        "documentPath": "/",
+        "status": 200,
+        "title": "FastAPI counter"
+      },
+      "preparedAt": "2026-10-04T03:27:33.187Z",
+      "images": [
+        {
+          "id": "sha256:9846cdb84ce20ba80a2d4c4baf5bab0fe4a382646c8280ac8055742c76ad262f",
+          "sha256": "3f34e12c187fe7d2bdd50bb5910b72381a3b5d4d7c83633fa680fedea91d2032",
+          "bytes": 54898173
+        }
+      ]
+    }
+  },
+  "operatorEvidence": "stack-image-migration-operator.json",
+  "launches": [
+    {
+      "id": "5QmfGaCkS34a2h9Ny69v1jDS3_jz5EQO",
+      "appId": "repo-46dbc56878c4f438c7ed70d3-d6da2ed780ae-309b54492909",
+      "provider": "google",
+      "port": 27215,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791127409919,
+        "keyRegistrationRequestedAt": 1791127410124,
+        "keyRegistrationAcceptedAt": 1791127411335
+      },
+      "createdAt": 1791127409341,
+      "updatedAt": 1791127431738,
+      "providerReadyAt": 1791127411739,
+      "readyAt": 1791127424880,
+      "timings": {
+        "downloadMs": 239,
+        "imagesMs": 8411,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 35,
+        "imageDownloadMs": 4338,
+        "imageLoadMs": 4026,
+        "imageCdnDownloads": 1,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 3189,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 1,
+        "imageCdnRangeDownloads": 1,
+        "runtimeReadyMs": 11286,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 15539,
+      "deliveryMs": 13141
+    },
+    {
+      "id": "LQok1VrGMwWqhbRQm2MHZl54PeHCbGHL",
+      "appId": "repo-46dbc56878c4f438c7ed70d3-d6da2ed780ae-309b54492909",
+      "provider": "google",
+      "port": 27215,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791127439980,
+        "keyRegistrationRequestedAt": 1791127440106,
+        "keyRegistrationAcceptedAt": 1791127441355
+      },
+      "createdAt": 1791127439445,
+      "updatedAt": 1791127451784,
+      "providerReadyAt": 1791127441796,
+      "readyAt": 1791127444906,
+      "timings": {
+        "downloadMs": 207,
+        "imagesMs": 54,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 54,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 2066,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 5461,
+      "deliveryMs": 3110
+    }
+  ],
+  "browser": [
+    {
+      "stack": "fastapi",
+      "run": "migrated-first",
+      "startedAt": "2026-10-04T15:23:29.147Z",
+      "startedMs": 1791127409147,
+      "visibleMs": 17309,
+      "before": 2,
+      "stateRestoredMs": 17670,
+      "writeRequestedAt": "2026-10-04T15:23:46.817Z",
+      "afterWrite": 3,
+      "interactionMs": 17939,
+      "reloadRequestedAt": "2026-10-04T15:23:47.086Z",
+      "reloadCompleted": true,
+      "afterReload": 3,
+      "passed": true,
+      "stopRequestedAt": "2026-10-04T15:23:50.746Z",
+      "statusAfterStop": "stopped",
+      "launchId": "5QmfGaCkS34a2h9Ny69v1jDS3_jz5EQO",
+      "continuousFromClick": true
+    },
+    {
+      "stack": "fastapi",
+      "run": "migrated-relaunch",
+      "startedAt": "2026-10-04T15:23:59.273Z",
+      "startedMs": 1791127439273,
+      "visibleMs": 5946,
+      "before": 3,
+      "stateRestoredMs": 6067,
+      "writeRequestedAt": "2026-10-04T15:24:05.340Z",
+      "afterWrite": 4,
+      "interactionMs": 6389,
+      "reloadRequestedAt": "2026-10-04T15:24:05.662Z",
+      "reloadCompleted": true,
+      "afterReload": 4,
+      "passed": true,
+      "stopRequestedAt": "2026-10-04T15:24:09.514Z",
+      "statusAfterStop": "stopped",
+      "launchId": "LQok1VrGMwWqhbRQm2MHZl54PeHCbGHL",
+      "continuousFromClick": true
+    }
+  ],
+  "inventory": {
+    "uniquePreparedImages": 59,
+    "storedMappings": 5,
+    "remainingUnmappedImages": 54,
+    "remainingUnmappedBytes": 5565417613,
+    "basis": "Previous read-only inventory plus exactly one new verified mapping. Operator checks preserved all artifact/image inventory and build records; these counts are images, not framework counts."
+  },
+  "after": {
+    "recordedAt": "2026-10-04T15:24:18.902595+00:00",
+    "pid": 1560797,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "5172cf839d6c5287b8688bc028859c254757a9c056e435f23c817701d26172d8",
+    "revision": "1654372c0fb829bc7639e32034b30df12184c1df"
+  },
+  "passed": true,
+  "limits": [
+    "First migrated run began on RUNNING compute with no Docker image or image archive cache; manifest, existing Docker layers and database data were preserved. CDN cache warmth was not measured.",
+    "Both measured browser interactions met 20 seconds for this representative. This is not a universal first-image, cold-compute or all-stack timing guarantee.",
+    "Database acceptance covers SQLite button write, reload, full stop and relaunch of this fixture; no provider VM replacement or arbitrary schema migration was tested.",
+    "Codespaces was not retested in this gate; its native browser authorization/interaction remains pending.",
+    "Only the explicit 54.9 MB FastAPI image was migrated. Remaining older images still use origin until separately selected."
+  ],
+  "captureHashes": {
+    "pods-image-migration-fastapi-before.json": "36d06478a5a9d596ed52926d79971b9db7ef8c5e82289aea2069b6c3cbf0ddea",
+    "pods-image-migration-fastapi-after.json": "f267c711e3cf452a077107384d48f4fbca1cca91eb494255c547dad9dbac11d2",
+    "pods-image-migration-post-native-audit.json": "5dc3fd9750d446498417a7b9f458ee0aa89356a968e119cc5e62ca2b32698966"
+  }
+}

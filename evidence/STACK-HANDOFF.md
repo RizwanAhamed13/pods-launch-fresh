@@ -1,11 +1,12 @@
 # Broad stack checkpoint
 
 Goal active and incomplete: developer URL → isolated aswin build → reusable artifact
-→ authorized user compute → real usable product. Latest completed gate: four native
-Google browser launches separating absent-image origin/CDN paths from cached
-relaunches, and a read-only delivery inventory. First-image20s remains unmet;
-55 of59 prepared images have no CDN mapping. Native Codespaces browser acceptance
-also remains open. Production source is unchanged in this gate.
+→ authorized user compute → real usable product. Latest completed gate: bounded,
+resumable migration of an existing prepared image into private CDN delivery,
+without rebuilding or changing its link. FastAPI met 20s with its image absent on
+RUNNING Google compute; cached relaunch and SQLite persistence also passed.
+54 of 59 prepared images remain unmapped. Broader first-image performance and
+native Codespaces browser acceptance remain open.
 
 ## Current verified state
 
@@ -19,21 +20,56 @@ also remains open. Production source is unchanged in this gate.
   SUPPORT.md and stack-coverage.json; not every version or arbitrary repository.
   Native Codespaces browser remains unverified. Unknown secrets/schema/migrations
   require developer inputs. Desktop/mobile/GPU/non-web products excluded.
-- 272/272 full checks locally (27.789s) and isolated aswin Linux (57.709s);
-  stack-cdn-fallback-tests.json. All338 snapshot input hashes verified at
-  /output/cdn-fallback-candidate-f1412a4. Baseline with new targeted assertions:
-  14/21 pass; seven failures distinguish missing failure diagnostics.
-- Scope: 8669 physical source lines = 4080 product/tooling + 3478 tests
+- 284/284 full checks locally (26.797s) and isolated aswin Linux (58.301s);
+  stack-image-migration-tests.json. All 341 candidate input hashes independently
+  verified in /output/image-migration-candidate-a6d8caa-final. A first final-suite
+  staging upload failed before tests; retry used a new filename with identical
+  bytes. No passing source checks were repeated without a change.
+- Scope: 8875 physical source lines = 4160 product/tooling + 3604 tests
   + 933 examples + 178 browser tools. Archived diagnostic probes excluded.
-- Deployed implementation394abe666fca7c9ad209be7269825ea73c50a3a9.
-  Server PID1560797; runner SHA
+- Migration implementation 1654372c0fb829bc7639e32034b30df12184c1df.
+  Runtime implementation remains394abe666fca7c9ad209be7269825ea73c50a3a9;
+  server PID1560797; served runner SHA
   5172cf839d6c5287b8688bc028859c254757a9c056e435f23c817701d26172d8.
-  Protected restart preserved59 image files,135 artifacts and.env. Source hashes,
-  new served runner, listener, health200 and SQLiteok verified.
-- Final native audit2026-10-04T15:10:46.703285+00:00: same PID/runner,
+  Operator CLI requires no runtime restart. Protected configuration and all
+  immutable artifact/image inventories preserved.
+- Post-native audit2026-10-04T15:24:18.902595+00:00: same PID/runner,
   health200, SQLiteok, zero active builds/launches. Evidence-only sync needs no restart.
 
-## Latest completed first-image gate
+## Latest completed migration gate
+
+- src/image-migration.mjs and scripts/migrate-image-delivery.mjs accept one explicit
+  app id. Default offline dry-run validates manifest identity, decoded artifact,
+  declared image metadata and every local image hash before any remote publish.
+  Non-regular/symlink inputs and conflicting archive identities are rejected.
+  --publish requires the existing control-plane store, existing private delivery
+  configuration and verified asset reuse. It publishes serially and can resume
+  after partial failure. Fixed CLI errors exclude provider URLs/secrets. No builds,
+  immutable rewrites, user steps, quota changes or cache clearing.
+- stack-image-migration-operator.json: existing FastAPI build
+  rUpOx4l-ZVEXuG72K8SUu_8fBYiRPcFT, app
+  repo-46dbc56878c4f438c7ed70d3-d6da2ed780ae-309b54492909.
+  Same artifact309b5449290922b771804b4f1e98a0cabc5d456c01ab098ed74653defbfcf03f.
+  Image54898173bytes/archiveSHA
+  3f34e12c187fe7d2bdd50bb5910b72381a3b5d4d7c83633fa680fedea91d2032.
+  Dry-run336ms, publish12954ms, repeat1342ms; same permanent asset610078596.
+  Mappings4→5; all non-delivery records, build count, image inventory, artifact
+  file hashes, configuration and runtime PID preserved. No service restart.
+- stack-image-migration-native.json: ordinary native Google browser launches using
+  the unchanged app link, both RUNNING and manifest cache hit.
+  5QmfGaCkS34a2h9Ny69v1jDS3_jz5EQO: image/archive cache hits0, CDN download1,
+  four-range success/no fallback, download4338ms (CDN3189), Docker load4026ms,
+  health15539ms, continuous product17309ms/write17939ms. SQLite2→3.
+  LQok1VrGMwWqhbRQm2MHZl54PeHCbGHL: image cache hit1, download0,
+  health5461ms/product5946ms/write6389ms. SQLite3→4.
+  Both reload/full stop passed; all launches stopped. Existing Docker layers,
+  manifest cache and data preserved, CDN cache warmth unknown. Not cold compute
+  or universal20s evidence. Codespaces not retested in this gate.
+- Inventory now59 unique prepared images/5 mappings/54 unmapped images totaling
+  5565417613bytes. Image counts, not framework counts. Only FastAPI was migrated;
+  don't silently publish the rest in one operation.
+
+## Previous first-image gate
 
 - stack-ready-first-image.json records four ordinary Google browser launches with
   exact server phases and continuous click-to-product/write timing. All initially
@@ -52,7 +88,7 @@ also remains open. Production source is unchanged in this gate.
   It is now cached too. Not a cold-CDN or empty-machine benchmark.
 - Read-only inventory:59 unique images referenced by ready builds,4 delivery
   mappings,55 unmapped images/5620315786bytes. These are images, not55 frameworks.
-  README documents legacy images remaining on origin until re-preparation.
+  This is the historical inventory before the new FastAPI migration.
 - No speculative startup overlap: persistentVolumes may need loaded service
   images for migration helper containers. No native CDN failure reproduced.
 
@@ -85,17 +121,13 @@ also remains open. Production source is unchanged in this gate.
 
 ## Next bounded gate and pending inputs
 
-- Next implementation gate: provide a bounded, resumable operator migration for
-  existing production-prepared images into the configured private delivery store,
-  without source rebuild, artifact mutation, cache clearing or quota changes.
-  Reuse GitHubImageDelivery.publish identity/privacy checks and asset reuse. Start
-  with explicit app selection; validate idempotency, integrity, failure recovery
-  and unchanged immutable links. This closes the demonstrated legacy-delivery gap.
-  Do not silently upload the full5.620GB inventory before a bounded validation.
-- Then measure an ordinary image-absent product launch using a migrated artifact
-  and exact compute/cache state. Do not substitute a cached launch or direct
-  transfer probe for full product acceptance. No need to reproduce the old fallback
-  again unless it actually occurs. Current CDN first-image product21632ms is unmet.
+- Next bounded gate: use the verified operator command on one selected existing
+  multi-service/database artifact, checking shared-image reuse and ordinary native
+  product persistence. First inspect actual provider image state; do not remove
+  cached images to manufacture a first-image claim. Preserve permanent assets.
+- Migration implementation/idempotency/FastAPI native acceptance are complete.
+  Do not rerun the full matrix or completed suites without source changes or a
+  concrete failure. Use exact compute/cache state for further20s observations.
 - Existing unmet observations: Google first-image health19377ms, product20667ms;
   Codespaces first-image health28725ms (stack-eight-ranges-native.json). The later
   suspended/uncached Google fallback took54875ms. No universal20s guarantee.
@@ -122,7 +154,8 @@ also remains open. Production source is unchanged in this gate.
   do not use. Preserve nine unrelated Google public keys.
 - Codespace pods-launch-containers-69rw5vx4xp46c5qw5 last observed Shutdown at
   2026-10-04T14:29:20.206Z. Check fresh state before using it.
-  Latest Micronaut values Google20/Codespaces21; Ktor Google4. Never reset values.
+  Latest Micronaut values Google20/Codespaces21; Ktor Google4; FastAPI Google4.
+  Never reset values.
 - Prepared buildL2AiK3hVAKYytXputQXo0R8rWt6bDhVs, app
   repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-5a4e0078fab4,
   dataKeyrepo-2caafe8ea7f268fe237b7cab, port26630.

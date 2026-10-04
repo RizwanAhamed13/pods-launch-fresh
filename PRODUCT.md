@@ -15,7 +15,7 @@ Provider authorization is required. Conventional public GitHub applications can 
 
 Cold provisioning and uncached image transfer are measured separately from cached launch. User compute remains owned and billed by the user's provider. Persistent container data is stored under Cloud Shell's home or Codespaces' `/workspaces`; provider lifecycle durability requires separate evidence.
 ## Evidence on Hand
-As of 2026-10-04, 272 automated checks pass locally and in isolated aswin Linux QA.
+As of 2026-10-04, 284 automated checks pass locally and in isolated aswin Linux QA.
 The matrix records 55 passing representative applications: isolated server build,
 prepared-artifact launch and browser interaction, plus 55 native Cloud Shell
 browser acceptances and 55 Codespaces HTTP/protocol acceptances. The historical
@@ -27,7 +27,7 @@ launches still exceed the 20-second product target in several measured cases;
 cached and cold observations remain separate. A stable production hostname and
 Cloud Shell VM-replacement durability also remain open. Database acceptance
 covers the recorded write/read/stop/relaunch scenarios, not arbitrary migrations
-or power-loss guarantees. Current source totals 8,669 scoped physical lines.
+or power-loss guarantees. Current source totals 8,875 scoped physical lines.
 
 The deployed browser client recovers transient status-read failures without
 repeating creation or product writes. It now polls every 250 ms during delivery
@@ -38,7 +38,7 @@ product/reload/full-stop/relaunch acceptance passed: cached product visible in
 9.877s, button write in 10.598s. A suspended-compute run with no cached image and
 a CDN fallback took 54.875s to health; its click-to-product time was not measured.
 Use [SUPPORT.md](SUPPORT.md), [fixture coverage](evidence/stack-coverage.json),
-[tests](evidence/stack-cdn-fallback-tests.json),
+[tests](evidence/stack-image-migration-tests.json),
 [controlled comparison](evidence/stack-browser-handoff-comparison.json),
 [native browser evidence](evidence/stack-browser-handoff-native.json) and the
 [current checkpoint](evidence/STACK-HANDOFF.md) for exact scope and limitations.
@@ -66,9 +66,21 @@ A subsequent [ready-compute first-image check](evidence/stack-ready-first-image.
 showed Ktor's origin-only product in36.943s and an existing CDN-backed Micronaut
 product in21.632s. Both had absent images and passed database writes/reloads/full
 stops; their cached relaunches showed the product in7.585s and9.516s. Neither
-first-image interaction met20s. The inventory also identified55 of59 prepared
-images without CDN mappings. Migrating those existing images without rebuilding
-is the next delivery gap to address; the migration is not implemented yet.
+first-image interaction met 20s. That inventory identified 55 of 59 prepared images
+without CDN mappings.
+
+Operators can now migrate an explicitly selected existing artifact to private
+image delivery without rebuilding it or changing its launch link. Offline
+preflight verifies all selected bytes; publication resumes through verified asset
+reuse. [Live validation](evidence/stack-image-migration-operator.json) migrated the
+existing 54.9 MB FastAPI image and reused the same asset on repeat, preserving
+artifact files, database records, configuration and the running service.
+[Native Google acceptance](evidence/stack-image-migration-native.json) then showed
+its product in 17.309s and completed a SQLite write in 17.939s on RUNNING compute
+with the image absent. Cached relaunch took 5.946s to product and 6.389s to write.
+SQLite 2 → 3 → 4 survived reloads and full stops. Five of 59 images now have delivery
+mappings; 54 remain unmapped. This case meets 20s; broader first-image acceptance
+and native Codespaces browser acceptance remain open.
 
 ## Historical acceptance milestones
 The observations below retain their original milestone context. Counts and pending
