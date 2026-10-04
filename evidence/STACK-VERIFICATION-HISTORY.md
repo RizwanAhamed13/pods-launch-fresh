@@ -2544,3 +2544,44 @@ Compatibility checks passed **3/3**; no product implementation changed and the
 existing **189/189** full-suite result remains applicable. Publication evidence:
 `stack-gradio-published.json`. Next native gate: Ktor after ordinary quota is
 available (next slot observed as09:05:35.928UTC; recheck before submission).
+
+
+## Ktor native SQLite acceptance
+
+The real developer form prepared `examples/stacks/ktor` from source revision
+`d6da2ed780ae` after ordinary same-account quota availability. Server preparation
+took **235.533s**; saved artifact `8664bd05ad3ea90c02e07411d1aba1e14f9432e993e4ed96246cd12bc412066d` contains
+**138,946,648 image bytes**. No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell initially RUNNING, first delivery | Healthy 41.186s; product visible 42.431s; saved count read 43.019s; button write 48.585s |
+| Cloud Shell cached relaunch | Healthy 7.958s; visible 8.731s; saved count restored 9.275s; next write 9.563s |
+| Codespaces initially Shutdown | Healthy 74.982s; delivery/startup 59.946s |
+| Codespaces cached relaunch | Healthy 9.871s; HTTP write/read, SQLite integrity and saved row passed |
+
+Cloud Shell verified the real product h1, saved-count control and increment button,
+reload and full application stop/relaunch: **0→1→2**, with no console warnings
+or errors. Codespaces exercised the product HTTP API, verified the same sequence and queried
+a read-only copy of the actual SQLite file. The fixture container was briefly
+paused to copy the database and any WAL consistently, then resumed before the
+query. Inspector SQLite **3.53.4**, integrity and saved
+rows were recorded; this is the inspector version, not the application's driver.
+The checks verified the exact compiled/runtime startup command, one web service,
+its project network, persistent workspace volume and private product port
+**26525**. No database port was published.
+
+Both Google runs finished and stopped before Codespaces testing began. All four
+launches ended stopped. Audit at 2026-10-04T09:15:49.778820+00:00 confirmed health200, SQLite
+integrity ok, zero active builds/launches and unchanged service PID/runner SHA.
+These timings describe this fixture and observed compute/cache states. Native
+Codespaces browser execution and provider VM replacement durability remain
+unverified.
+
+Evidence: `stack-ktor-{url,google,codespaces,audit}.json`. Coverage now
+**55 isolated / 51 Google browser / 51 Codespaces protocol**, with
+**4** native fixtures pending. Full suite **189/189** and
+physical source **7,128 lines** remain valid; this acceptance changed only
+evidence and documentation. App `repo-acd8cc8280c3ab2983d8e2b5-d6da2ed780ae-8664bd05ad3e`; preserve saved native counters2.
+
+Browser measurement note: The first write completed at the end of a bounded browser observation window; interactionMs was recorded on the resumed observation and is an upper bound.

@@ -85,8 +85,8 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **189 passing checks in full local and isolated aswin QA runs**. Native coverage is 50 Google browser fixtures and
-50 Codespaces HTTP/protocol fixtures; 5 still lack at least one native acceptance path. Codespaces
+later passing attempts do not erase them. Automated coverage is **189 passing checks in full local and isolated aswin QA runs**. Native coverage is 51 Google browser fixtures and
+51 Codespaces HTTP/protocol fixtures; 4 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Native launch performance
@@ -189,6 +189,10 @@ a stable production hostname remains a deployment requirement.
   [Cloud Shell browser](evidence/stack-gradio-google.json), and
   [Codespaces dashboard protocol and SQLite inspection](evidence/stack-gradio-codespaces.json).
   Both paths retained the saved count across full application stop/relaunch.
+- Ktor native acceptance: [developer build](evidence/stack-ktor-url.json),
+  [Cloud Shell browser](evidence/stack-ktor-google.json), and
+  [Codespaces HTTP and SQLite snapshot inspection](evidence/stack-ktor-codespaces.json).
+  Both paths retained the saved count across full application stop/relaunch.
 - [Rust and ASP.NET transport preflight](evidence/stack-counter-transport-preflight.json)
   checks empty chunked POST and full-restart file persistence on isolated compute.
   These checks do not add native-provider acceptance.
@@ -207,7 +211,8 @@ a stable production hostname remains a deployment requirement.
   full stops. These isolated checks do not add native-provider acceptance.
 - [Ktor, Micronaut, Phoenix and Symfony transport preflight](evidence/stack-sqlite-framework-transport-preflight.json)
   verifies proxy-style requests and saved records after full application stops.
-  Native provider acceptance remains pending for these four fixtures.
+  Ktor native evidence is linked above. Micronaut, Phoenix and Symfony native
+  provider acceptance remains pending.
 - [SQLite framework inspection preflight](evidence/stack-sqlite-file-preflight.json)
   independently queries saved SQLite records for Ktor, Micronaut, Phoenix and
   Symfony, including Phoenix WAL data, after product writes and full restarts.

@@ -836,7 +836,11 @@
       "serverEvidence": "stack-matrix-31.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-31.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-ktor-url.json",
+        "stack-ktor-google.json",
+        "stack-ktor-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-15.json",
@@ -848,7 +852,12 @@
         }
       ],
       "recipeOptimizationEvidence": "stack-jvm-runtime-comparison.json",
-      "nativeRuntimeRetest": "Noble JRE artifact pending; existing native evidence, when present, uses the previous runtime."
+      "nativeRuntimeRetest": "Noble JRE artifact pending; existing native evidence, when present, uses the previous runtime.",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      },
+      "nativeProviderScope": "ktor passed native Google product button, reload and SQLite retention across full stop/relaunch. Codespaces product HTTP, writes, saved SQLite snapshot inspection and full restart persistence passed. Native Codespaces browser interaction remains pending."
     },
     {
       "fixture": "laravel",
