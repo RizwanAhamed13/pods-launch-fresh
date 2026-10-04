@@ -86,8 +86,8 @@ or in-flight crash recovery.
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
 later passing attempts do not erase them. Automated coverage is **114 passing
-checks locally and on aswin**. Native coverage is 30 Google browser fixtures and
-30 Codespaces HTTP/protocol fixtures; 25 still lack at least one native acceptance path. Codespaces
+checks locally and on aswin**. Native coverage is 31 Google browser fixtures and
+31 Codespaces HTTP/protocol fixtures; 24 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1472,7 +1472,44 @@ Content-Type header. SQLite values progressed 0→1, survived page reload and a
 full application stop/relaunch, then progressed 1→2. Both POSTs returned 200;
 no browser warnings or errors were observed.
 
-This is a transport preflight, not native provider acceptance. Hono's Google
-browser and Codespaces HTTP checks remain pending. The temporary application,
+This is a transport preflight. Hono's subsequent native Google browser and
+Codespaces HTTP acceptance is recorded below. The temporary application,
 artifact directory and private proxy tunnel were removed. Evidence and replay:
 `stack-hono-browser-transport.json` and `stack-hono-browser-transport-probe.mjs`.
+
+## Experimental Express storage handoff
+
+An isolated prototype copied SQLite data only while the application was stopped.
+It preserved successive values through container → bundle → container → bundle
+(0→1→2→3→4). Docker copied the initial root-owned database into a staging directory
+owned by the application user; no helper executable ran. All temporary runtimes,
+volumes and data were removed after the test.
+
+This validates a copying mechanism, not a production migration. Automatic format
+selection, crash recovery, conflicting existing data and the saved Codespace
+runtime check remain unresolved. The smaller Express bundle remains experimental.
+See `stack-express-storage-bridge-probe.{json,mjs}`.
+
+## Native Hono workflow
+
+The real developer form prepared `examples/stacks/hono` at public revision
+`d6da2ed780ae` in **29.554 seconds**, producing a **23,851-byte Node bundle**
+identical to the isolated preflight artifact. The form was submitted once after
+normal account quota became available. No QA artifact was imported.
+
+| Check | Observed result |
+| --- | --- |
+| Cloud Shell, RUNNING compute, first artifact delivery | Health 6.446s; page visible 7.726s; successful SQLite write 8.018s |
+| Cloud Shell, cached artifact, full app relaunch | Health 6.035s; page visible 7.172s; saved value restored 7.291s; next write 7.594s |
+| Codespaces, initial Shutdown | Health 26.220s including resume; HTTP SQLite 0→1 |
+| Codespaces, initial Available, cached relaunch | Health 8.060s; retained SQLite 1 and incremented to 2 |
+
+The actual Cloud Shell button, reload and full stop/relaunch preserved SQLite
+values 0→1→2 without browser warnings or errors. Codespaces authenticated HTTP
+write/read and full restart checks passed; native browser interaction is pending.
+
+All four launches stopped. The audit found no active builds or launches, control
+health 200 and preview port 25759 private. Coverage is **55 isolated / 31 Google
+browser / 31 Codespaces HTTP**, with **24 fixtures** awaiting those native paths.
+These measurements do not prove VM replacement durability or universal cold
+launches within 20 seconds. Evidence: `stack-hono-{url,google,codespaces}.json`.

@@ -1,0 +1,83 @@
+{
+  "recordedAt": "2026-10-04T01:58:40.629Z",
+  "scope": "Experimental explicit stopped-application copies in isolated disposable storage. Not a production migration implementation; crash recovery, ambiguous data and native providers remain unverified.",
+  "sourceSha256": "ee69cc6564046f054486722f62454e066e8e4fdab37f3f280a4ab71384e43fb2",
+  "containerArtifactSha256": "81fd2ab6194e1d62fbfa4890e3e56307563f2c719bf1ac4832c638bcaf2e6065",
+  "containerImages": [
+    {
+      "id": "sha256:b804fab8f5a4893b4271cb0bb048eedf4eaecf85ce6be14a33639656eff30b0d",
+      "sha256": "5e1cfa0c52e20664e1f99a32537b301013bb916f096f325e1b20febf48f9f0d8",
+      "bytes": 82992072
+    }
+  ],
+  "bundleArtifactSha256": "c469dd8aefc5439253a2ea76bb7d7642cd5c0bb6e27e7845277bb4b89a38b3c0",
+  "bundleBytes": 338173,
+  "records": [
+    {
+      "format": "container",
+      "scenario": "existing-container",
+      "before": 0,
+      "after": 1,
+      "storageMode": "persistent"
+    },
+    {
+      "format": "bundle",
+      "scenario": "copy-container-to-bundle",
+      "before": 1,
+      "after": 2,
+      "storageMode": "persistent"
+    },
+    {
+      "format": "container",
+      "scenario": "copy-bundle-to-container",
+      "before": 2,
+      "after": 3,
+      "storageMode": "persistent"
+    },
+    {
+      "format": "bundle",
+      "scenario": "copy-container-to-bundle-again",
+      "before": 3,
+      "after": 4,
+      "storageMode": "persistent"
+    }
+  ],
+  "migrations": [
+    {
+      "target": "bundle",
+      "sourceFileUid": 0,
+      "copiedFileUid": 1000,
+      "expectedUid": 1000,
+      "helperExecutableRun": false
+    },
+    {
+      "target": "container",
+      "sourceFileUid": 1000,
+      "copiedFileUid": 1000,
+      "expectedUid": 1000,
+      "helperExecutableRun": false
+    },
+    {
+      "target": "bundle",
+      "sourceFileUid": 1000,
+      "copiedFileUid": 1000,
+      "expectedUid": 1000,
+      "helperExecutableRun": false
+    }
+  ],
+  "dataContinuityPassed": true,
+  "productionMigrationImplemented": false,
+  "cleanup": {
+    "containersStopped": true,
+    "probeVolumeRemoved": true,
+    "temporaryRootRemoved": true
+  },
+  "reproduction": "Run stack-express-storage-bridge-probe.mjs as uid1000 in the isolated QA guest with its stored Express container artifact. This performs explicit copies between stopped runtimes, retaining backups until disposable-probe cleanup.",
+  "implementationGaps": [
+    "No automatic runtime-format negotiation",
+    "No crash-recovery journal",
+    "No resolution for pre-existing nonempty data in both locations",
+    "Native Codespaces runtime-label transition is still rejected",
+    "No production packaging or storage code changed"
+  ]
+}

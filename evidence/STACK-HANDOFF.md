@@ -14,13 +14,14 @@ VM replacement durability, or a universal 20-second cold launch.
   revision d6da2ed780aec8ae0178fc181f1d24113c322e15.
 - Koa native acceptance was published at d7dbc22 and verified on the public
   support page (55/30/30, Koa all passed, Codespaces browser pending warning).
-  This milestone adds Hono transport preflight. Product runtime remains5e5b4a0.
-- Coverage: 55 isolated build/artifact/browser passes; 30 Google native browser
-  and 30 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+  Hono transport preflight was published176a79a. This milestone adds Hono native
+  acceptance and an explicit Express storage-copy prototype. Runtime remains5e5b4a0.
+- Coverage: 55 isolated build/artifact/browser passes; 31 Google native browser
+  and 31 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Every native Codespaces browser check
-  remains pending. The 25 fixtures awaiting both native acceptance paths are:
+  remains pending. The 24 fixtures awaiting both native acceptance paths are:
   actix, adonis, aspnet, axum, deno, echo, fastapi, fiber, flask-mariadb,
-  flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, hono, ktor,
+  flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, ktor,
   micronaut, nestjs, phoenix, php, rocket, sinatra, streamlit, symfony.
 - Full-suite baseline 18026bb: 114 tests passed locally/aswin; logs
   /tmp/pods-ssr-complete-tests-{local,aswin}.txt. Product source unchanged since
@@ -30,7 +31,7 @@ VM replacement durability, or a universal 20-second cold launch.
   + 164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
   files; includes .astro. No product source changed during this milestone.
 
-## Latest native gate: Koa acceptance
+## Previous native gate: Koa acceptance
 
 - Ordinary quota watcher 67969 ended0 at 01:45:25.124874 UTC, account2/global2/
   active0. Actual form submitted once at 01:45:29.115 UTC.
@@ -55,6 +56,26 @@ VM replacement durability, or a universal 20-second cold launch.
   /tmp/pods-record-koa.py retain evidence inputs/validation. Both providers now
   hold Koa value2; never reset existing data when retesting.
 
+## Latest native gate: Hono acceptance
+
+- Quota watcher58800 ended0 at02:01:34.197091UTC:account2/global2/active0.
+  Actual form submitted once02:01:49.625UTC; preparation29,554ms.
+- Public folder examples/stacks/hono atd6da2ed, Node bundle23,851bytes, hash
+  matches isolated preflight below. App
+  repo-ed8c5f1d6937fe793390cb79-d6da2ed780ae-6bb59210268a; private port25759.
+- Google first initialRUNNING:health6446ms,delivery2943,page7726,read7742,
+  successful write8018. Cached initialRUNNING:health6035,delivery2285,page7172,
+  retained value7291,write7594. BrowserSQLite0→1→2,reload passed,no console
+  warning/error. Both full app stops confirmed. Not cold-VM measurements.
+- Codespaces20710 ended0. Environment pods-launch-jj497rpqpp7529v7.
+  First initialShutdown:health26220ms,delivery13810,SQLite0→1.
+  Cached initialAvailable:health8060,delivery7393,retainedSQLite1→2.
+  Both stopped. Authenticated HTTP only; native browser remains pending.
+- Audit02:03:25.608973UTC:activebuild0/launch0,health200,port25759private.
+  Evidence stack-hono-{url,google,codespaces}.json. Compatibility3 tests passed.
+- Inputs /tmp/pods-hono-{production-evidence,browser,ports}.json, health.txt and
+  /tmp/pods-record-hono.py. Both providers now hold Hono value2; do not reset.
+
 ## Hono isolated browser transport gate
 
 - Probe71414 ended0. Bundle23,851bytes, SHA256
@@ -71,15 +92,15 @@ VM replacement durability, or a universal 20-second cold launch.
 
 ## Next gate and performance work
 
-- NEXT: Hono URL preparation and native browser/HTTP persistence checks, then
-  remaining fixtures. No Hono production build has been submitted.
-- Quota watcher58800 is LIVE. Initial snapshot01:51:34.162390UTC:
-  account3/global3/active0; next ordinary slot02:01:21.388UTC. Poll this handle;
-  never recreate solely because observation timed out. /tmp/pods-next-native-quota-watch.py is a
-  bounded20min readonly watcher with30sec samples; anchor Svelte build
-  NLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp privately. Poll a running handle, never recreate
-  on observation timeout. Keep limits3/account/hour and12/global/hour. Never
-  bypass quota, change identity to evade it, or import QA artifacts to production.
+- NEXT native fixture: NestJS URL preparation/browser/HTTP persistence. No
+  NestJS production build has been submitted in this sequence. Check for any
+  pre-existing saved fixture data before assuming zero.
+- Quota snapshot02:04:10.897726UTC:account3/global3/active0,next ordinary slot
+  02:25:01.241UTC. No live watcher; prior58800 completed. Start a bounded
+  watcher only when useful. /tmp/pods-next-native-quota-watch.py watches20min
+  with30sec samples, anchorSvelte buildNLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp.
+  Keep limits3/account/hour and12/global/hour. Never bypass, change identity to
+  evade quota, or import QA artifacts into production.
 - /tmp/pods-capture-native.py reads aswin SQLite readonly, whitelists fields and
   derives timings. Its explicit fixture allowlist currently includes astro,
   react-router, express, fastify, koa and hono.
@@ -100,6 +121,14 @@ VM replacement durability, or a universal 20-second cold launch.
   See stack-provider-format-transition-probe.{json,mjs}. Current public
   devcontainer includes Node24, sshd, Docker-in-Docker; this does not prove the
   capabilities of older saved environments.
+- Explicit storage-bridge prototype79883 ended0 at01:58:40.629UTC. It copied
+  only stopped disposable Express data and preserved container0→1, bundle1→2,
+  container2→3, bundle3→4. Initial file uid0 became uid1000 using docker cp
+  from a never-started helper. Temporary volume/root removed.
+  Evidence stack-express-storage-bridge-probe.{json,mjs}. This is not automatic
+  production migration: no journal, ambiguity handling or provider adaptation.
+  Earlier probe attempts31201/2863 ended1 because of probe-only filename and
+  staging-directory mistakes; both cleaned up. Corrected79883 is the evidence.
 - Storage currently differs: bundles <root>/data/<dataKey>; default container
   <root>/volumes/pods-<key-sha256-first24>/app-data/data. run() creates the bundle
   directory even for a container, so existence alone does not prove data is there.
@@ -117,16 +146,16 @@ VM replacement durability, or a universal 20-second cold launch.
 After compaction first CUA call must be cua.rewriteDocumentation. Reuse bindings;
 mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 
-- stackQa6: IAB2 tab13, Hono folder staged but NOT submitted; button Prepare
-  application. Ready region name includes period: Your application is ready
+- stackQa6: IAB2 tab13, Hono preparation completed; button Prepare another
+  version. Next fixture folder is examples/stacks/nestjs. Ready region name includes period: Your application is ready
   to share. Try this version link in that region identifies the exact artifact.
-- accountWorker: IAB2 tab12, stopped Koa launcher. koaLaunchUrl,
-  koaPreparationSubmittedAt, koaBrowserChecks (both passed), koaFirstLogs and
-  koaSecondLogs (empty) persist. measureKoaCounter records continuous page/read/
+- accountWorker: IAB2 tab12, stopped Hono launcher. honoLaunchUrl,
+  honoPreparationSubmittedAt, honoBrowserChecks (both passed), honoFirstLogs and
+  honoSecondLogs (empty) persist. measureHonoCounter records continuous page/read/
   write timing and reload;50sec deadline. Stop helper stopPreparedProduct confirms
   terminal state. History may briefly lag while its async refresh finishes.
-- supportQa: IAB2 tab29, public support deliverable, verified55/30/30 with
-  Koa allPassed. Native CS browser warning remains visible.
+- supportQa: IAB2 tab29, public support deliverable; refresh after publication to verify55/31/31,
+  Hono allPassed. Native CS browser warning remains visible.
 - nativeGithubKeep: IAB2 tab10; freshly checked this turn, still Two-factor
   authentication. User already asked; no SMS/code sent. Do not repeat question.
 - cloudLifecycle: IAB2 tab14; freshly checked this turn, Restart confirmation and
@@ -156,5 +185,5 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 - Graph project Users-rizwanahamed-Documents-ChatGPT-podsv2, indexed through
   5e5b4a0. scripts/public/examples/deploy excluded; targeted fallback appropriate.
 - Use set -e for validation→commit. User requests no subagents. Keep goal active;
-  native Codespaces browser,25 remaining fixture paths, runtime migration,
+  native Codespaces browser,24 remaining fixture paths, runtime migration,
   VM replacement durability, stable hosting and cold performance remain open.
