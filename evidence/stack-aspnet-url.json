@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-04T07:36:33.233905+00:00",
+  "controlRevision": "5dde1e5",
+  "checkoutRevision": "7a0a44b7fc1c39241e1469c51eac07fcd9a8d198",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T07:29:23.529970+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T07:29:29.781Z",
+  "attempts": [
+    {
+      "id": "WtIkSyWnwuhv7d6s_9qcia5v2byvWQ9U",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/aspnet",
+        "key": "3bf23a343cd88917e5b7468f"
+      },
+      "status": "ready",
+      "createdAt": 1791098975611,
+      "startedAt": 1791098975626,
+      "finishedAt": 1791099110842,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-3bf23a343cd88917e5b7468f-d6da2ed780ae-0b24bff6a3a7",
+      "app": {
+        "id": "repo-3bf23a343cd88917e5b7468f-d6da2ed780ae-0b24bff6a3a7",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "0b24bff6a3a7eec33ed8e883debcdc026c17772295fe84699b0905daad262edd",
+        "bytes": 275,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-3bf23a343cd88917e5b7468f",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/aspnet",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "ASP.NET Core counter"
+        },
+        "preparedAt": "2026-10-04T07:31:50.531Z",
+        "images": [
+          {
+            "id": "sha256:dc12111ffefa977ba92a2f7879bdfae35da57cb7a8ae2e4fce26349b5d96c6ce",
+            "sha256": "0cdc5fa490a9aea675907fd0b117741a19b3f984d9ea7df05ce249b7903535dd",
+            "bytes": 89962194
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 135216
+}

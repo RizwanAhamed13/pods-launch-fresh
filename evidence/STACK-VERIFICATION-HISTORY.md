@@ -2326,3 +2326,38 @@ No source/runtime/provider change; source6995/full184 remain valid. Native
 coverage stays55/45/45. Ktor/Micronaut browser controls are #value and Add one;
 Phoenix/Symfony use #count and Save +1. Use their actual DOM when testing native
 product interactions; do not apply the Add one locator to those two fixtures.
+
+
+## ASP.NET Core native product acceptance
+
+The actual developer form prepared `examples/stacks/aspnet` from fixture
+revision `d6da2ed780ae` in **135.216 seconds** after ordinary same-account
+quota availability. Artifact `0b24bff6a3a7eec33ed8e883debcdc026c17772295fe84699b0905daad262edd` contains **89,962,194 image bytes**.
+No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell RUNNING, first image delivery | Server healthy 26.710s; product visible 28.495s; counter read 29.012s; button write 29.308s |
+| Cloud Shell cached relaunch | Server healthy 6.435s; product visible 7.781s; saved value restored 7.892s; next write 8.171s |
+| Codespaces initially Shutdown | Server healthy 61.937s; delivery/startup 46.892s; image cache hits 0 |
+| Codespaces cached relaunch | Server healthy 8.305s; authenticated HTTP write/read and saved-file inspection passed |
+
+Google browser buttons, reloads and full application stops verified **0→1→2**
+without console warnings or errors. Product visibility matched its h1.
+Codespaces authenticated HTTP verified the same sequence. Direct inspection
+checked the recipe command, single web service, project network, assigned product
+port **29758** and persistent workspace volume. The copied file counter matched
+each write. This check does not independently identify the framework version;
+the pinned source and real server build identify the prepared fixture.
+
+Both Google launches completed and stopped before Codespaces tests began. All
+four launches ended stopped; the Codespaces product port remained private.
+Audit at 2026-10-04T07:36:33.391739+00:00 confirmed health200, SQLite integrity ok, no active
+builds/launches and unchanged service PID/runner SHA. These are file-persistence
+and fixture-specific timing results. Native Codespaces browser interaction and
+VM replacement durability remain unverified.
+
+Evidence: `stack-aspnet-{url,google,codespaces,audit}.json`. Coverage is now
+**55 isolated / 46 Google browser / 46 Codespaces protocol**, with **9** native
+fixtures pending. Full suite **184/184** and source **6,995 lines** remain valid;
+this acceptance changed only evidence and documentation.
