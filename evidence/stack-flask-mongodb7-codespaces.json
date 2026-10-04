@@ -1,0 +1,179 @@
+{
+  "testedAt": "2026-10-04T04:14:46.906Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "jAKa1xIucG5Of8calwdE_t8VmnvyQMqT",
+      "dataKey": "repo-1ebc4958ec8b2189132e67ca",
+      "port": 23283,
+      "appId": "repo-1ebc4958ec8b2189132e67ca-d6da2ed780ae-39e1c46b1d99",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "39e1c46b1d9996e311c0bf61ad08a69648d08dcdde6fbd9e2c966b5f189f709b",
+      "images": [
+        {
+          "id": "sha256:1d7efe5e7df9b5e76c4eb9bc36f61d42a262145e420a927f5c85f49392e1c573",
+          "sha256": "d638135be5098c423108c60197eda9374c246880020c7e4ce468ed577a5ed5d0",
+          "bytes": 54843086
+        },
+        {
+          "id": "sha256:1f995ad6fdb93244a1addab1b58f934a0bc2f5643c38e02f5e9d7f0c7d227a7b",
+          "sha256": "5bb0b4ddadfd4088ffb7ac924243b8b706b668ca367a89fc963dc1d5876327c5",
+          "bytes": 295857191
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791087102728,
+      "updatedAt": 1791087243355,
+      "expiresAt": 1791088902728,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Shutdown",
+        "observedAt": 1791087103130,
+        "resumeRequestedAt": 1791087103147
+      },
+      "providerReadyAt": 1791087122447,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-23283.app.github.dev",
+      "lastSeenAt": 1791087243355,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 512,
+        "imagesMs": 99407,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 60,
+        "imageDownloadMs": 63717,
+        "imageLoadMs": 35594,
+        "runtimeReadyMs": 106398,
+        "cacheHit": false
+      },
+      "readyAt": 1791087243355,
+      "deliveryMs": 120908,
+      "totalMs": 140627,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 0,
+        "afterWrite": 1,
+        "afterRead": 1,
+        "passed": true,
+        "expectedInitialCount": 0
+      },
+      "mongodbRuntimeCheck": {
+        "passed": true,
+        "project": "pods-8a144173678b37b307eb56d4",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          23283
+        ],
+        "volume": "pods-8a144173678b37b307eb56d4_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Read-only inspection of private Docker boundaries, durable Codespaces storage, MongoDB server build and the document saved through the product. Browser execution is separate.",
+        "databaseEngine": "MongoDB",
+        "version": "7.0.43",
+        "gitVersion": "ef5a7d3480b59feae13d564376129fc4ceee6177",
+        "storageEngine": "wiredTiger",
+        "savedCount": 1
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "paeLtJeOQpZTD_wOdH7Az_1ZSHB6hRWT",
+      "dataKey": "repo-1ebc4958ec8b2189132e67ca",
+      "port": 23283,
+      "appId": "repo-1ebc4958ec8b2189132e67ca-d6da2ed780ae-39e1c46b1d99",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "39e1c46b1d9996e311c0bf61ad08a69648d08dcdde6fbd9e2c966b5f189f709b",
+      "images": [
+        {
+          "id": "sha256:1d7efe5e7df9b5e76c4eb9bc36f61d42a262145e420a927f5c85f49392e1c573",
+          "sha256": "d638135be5098c423108c60197eda9374c246880020c7e4ce468ed577a5ed5d0",
+          "bytes": 54843086
+        },
+        {
+          "id": "sha256:1f995ad6fdb93244a1addab1b58f934a0bc2f5643c38e02f5e9d7f0c7d227a7b",
+          "sha256": "5bb0b4ddadfd4088ffb7ac924243b8b706b668ca367a89fc963dc1d5876327c5",
+          "bytes": 295857191
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791087260734,
+      "updatedAt": 1791087272747,
+      "expiresAt": 1791089060734,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791087261242
+      },
+      "providerReadyAt": 1791087261259,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-23283.app.github.dev",
+      "lastSeenAt": 1791087272747,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 166,
+        "imagesMs": 99,
+        "imageCacheHits": 2,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 99,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 4860,
+        "cacheHit": true
+      },
+      "readyAt": 1791087272747,
+      "deliveryMs": 11488,
+      "totalMs": 12013,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 1,
+        "afterWrite": 2,
+        "afterRead": 2,
+        "passed": true,
+        "expectedAfterRelaunch": 1
+      },
+      "mongodbRuntimeCheck": {
+        "passed": true,
+        "project": "pods-8a144173678b37b307eb56d4",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          23283
+        ],
+        "volume": "pods-8a144173678b37b307eb56d4_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Read-only inspection of private Docker boundaries, durable Codespaces storage, MongoDB server build and the document saved through the product. Browser execution is separate.",
+        "databaseEngine": "MongoDB",
+        "version": "7.0.43",
+        "gitVersion": "ef5a7d3480b59feae13d564376129fc4ceee6177",
+        "storageEngine": "wiredTiger",
+        "savedCount": 2
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "performanceContext": "Cloud Shell first and cached browser launches completed and stopped before either Codespaces launch began. These provider checks were sequential; unrelated network traffic was not controlled.",
+  "cleanupAudit": {
+    "at": "2026-10-04T04:15:55.186067+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 23283,
+    "codespacesPreviewVisibility": "private"
+  },
+  "persistenceScope": "Authenticated HTTP MongoDB write/read and full stop/relaunch on user compute; native Codespaces browser execution remains pending."
+}

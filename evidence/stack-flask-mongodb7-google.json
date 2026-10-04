@@ -1,0 +1,108 @@
+{
+  "recordedAt": "2026-10-04T04:15:55.186067+00:00",
+  "scope": "Flask + MongoDB fixture: real Google Cloud Shell product browser button, reload, full app stop/relaunch and retained MongoDB data.",
+  "results": [
+    {
+      "id": "-Wj5CApMj4-vAK5VMkHmLHqS5Li2SsvP",
+      "appId": "repo-1ebc4958ec8b2189132e67ca-d6da2ed780ae-39e1c46b1d99",
+      "provider": "google",
+      "port": 23283,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791086926076,
+        "startRequestedAt": 1791086926223,
+        "startAcceptedAt": 1791086928132
+      },
+      "createdAt": 1791086925496,
+      "updatedAt": 1791087054392,
+      "providerReadyAt": 1791086928545,
+      "readyAt": 1791087019918,
+      "timings": {
+        "downloadMs": 552,
+        "imagesMs": 78988,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 68,
+        "imageDownloadMs": 63738,
+        "imageLoadMs": 15127,
+        "runtimeReadyMs": 89119,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 94422,
+      "deliveryMs": 91373
+    },
+    {
+      "id": "TrMuQfAT6egf67Kk3wsnns1VX10KpKeA",
+      "appId": "repo-1ebc4958ec8b2189132e67ca-d6da2ed780ae-39e1c46b1d99",
+      "provider": "google",
+      "port": 23283,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791087060515,
+        "startRequestedAt": 1791087060642,
+        "startAcceptedAt": 1791087062688
+      },
+      "createdAt": 1791087059986,
+      "updatedAt": 1791087089243,
+      "providerReadyAt": 1791087063150,
+      "readyAt": 1791087069872,
+      "timings": {
+        "downloadMs": 201,
+        "imagesMs": 120,
+        "imageCacheHits": 2,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 120,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 5162,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 9886,
+      "deliveryMs": 6722
+    }
+  ],
+  "browserChecks": [
+    {
+      "startedAt": "2026-10-04T04:08:45.215Z",
+      "visibleMs": 100071,
+      "stateRestoredMs": 100076,
+      "before": 0,
+      "afterWrite": 1,
+      "interactionMs": 100359,
+      "afterReload": 1,
+      "passed": true,
+      "statusAfterStop": "stopped",
+      "timingScope": "Browser observation upper bound includes a tool-call gap after product navigation; backend health timing is separately recorded."
+    },
+    {
+      "startedAt": "2026-10-04T04:10:59.777Z",
+      "visibleMs": 11343,
+      "stateRestoredMs": 11454,
+      "before": 1,
+      "afterWrite": 2,
+      "interactionMs": 11744,
+      "afterReload": 2,
+      "passed": true,
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "browserErrorOrWarningLogs": [
+    [],
+    []
+  ],
+  "persistenceScope": "MongoDB document written through native product UI survives full application stop/relaunch; does not prove replacement of the Cloud Shell VM.",
+  "passed": true,
+  "cleanupAudit": {
+    "at": "2026-10-04T04:15:55.186067+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 23283,
+    "codespacesPreviewVisibility": "private"
+  },
+  "performanceContext": "Cloud Shell first and cached browser launches completed and stopped before either Codespaces launch began. These provider checks were sequential; unrelated network traffic was not controlled."
+}

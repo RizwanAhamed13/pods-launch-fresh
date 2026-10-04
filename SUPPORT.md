@@ -85,8 +85,8 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **154 passing checks in full local and isolated aswin QA runs**. Native coverage is 35 Google browser fixtures and
-35 Codespaces HTTP/protocol fixtures; 20 still lack at least one native acceptance path. Codespaces
+later passing attempts do not erase them. Automated coverage is **154 passing checks in full local and isolated aswin QA runs**. Native coverage is 36 Google browser fixtures and
+36 Codespaces HTTP/protocol fixtures; 19 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1776,8 +1776,10 @@ HTTP200, SQLite integrity OK, and the unchanged server PID and runner hash.
 Codespaces required **12.235s** to resume its existing environment; delivery and
 startup after provider readiness took **88.997s**. Cloud Shell delivery and
 startup took **69.507s**. First-image downloads alone took **45.605s** on Codespaces
-and **44.123s** on Cloud Shell. These first-image samples exceed the 20-second
-target, including the Google sample on already-running compute. Cached launches
+and **44.123s** on Cloud Shell. The two providers’ first-image launches overlapped
+and used the same PODS artifact origin, so these samples include concurrent
+delivery load; they are not isolated single-download bandwidth benchmarks.
+These first-image samples exceed the 20-second target, including the Google sample on already-running compute. Cached launches
 met the target. Native Codespaces browser interaction and Cloud Shell VM
 replacement durability remain separate, unverified gates.
 
@@ -1805,3 +1807,39 @@ Evidence: `stack-mongodb-runtime-probe-tests.json` and
 `stack-flask-mongodb7-chunked-probe.{json,mjs}`. The native CLI opt-in is
 `PODS_COUNTER_CHECK=1 PODS_MONGODB_RUNTIME_CHECK=1`, restricted to the explicit
 MongoDB fixture. Coverage remains **55 / 35 / 35** until native acceptance passes.
+
+## Native Flask + MongoDB acceptance
+
+The real developer form prepared `examples/stacks/flask-mongodb7` from public
+revision `d6da2ed780ae` in **173.638s**, using the ordinary same-account build
+quota. Its web and MongoDB images total **350,700,277 bytes** (334.5 MiB).
+
+| Native path | Observed result |
+| --- | --- |
+| Cloud Shell, already running / images absent | Health 94.422s; product observed by 100.071s, successful click by 100.359s; wrote 0→1 and reload retained 1 |
+| Cloud Shell, cached after full stop | Health 9.886s; product visible 11.343s, saved value visible 11.454s, successful click 11.744s; retained 1 then wrote 2 |
+| Codespaces, resumed / images absent | Health 140.627s; authenticated product and MongoDB document 0→1 passed |
+| Codespaces, cached after full stop | Health 12.013s; retained document 1, wrote 2, and read 2 |
+
+The first Google browser observation includes a tool-call gap after navigation,
+so it is an upper bound; backend health is recorded independently. Both Google
+launches passed real button interactions and page reloads without browser
+warnings or errors. Codespaces direct read-only inspection verified MongoDB
+**7.0.43**, its expected git build, WiredTiger, the product-saved documents, a
+healthy database without public ports, and the application's durable volume.
+The product preview port **23283** remained private. All four previews stopped.
+
+Google checks completed and stopped before Codespaces began; these provider
+checks ran sequentially. Unrelated network traffic was not controlled. Initial
+image downloads took **63.738s / 63.717s** on Google / Codespaces; Codespaces
+provider startup took **19.719s**, and delivery/startup took **120.908s**. These
+first-image paths exceed 20 seconds even with ready Google compute. Cached
+launches met the target. Native Codespaces browser interaction and replacement
+of the Cloud Shell VM remain unverified.
+
+The final audit at **2026-10-04 04:15:58 UTC** found zero active builds or launches,
+HTTP 200, SQLite integrity OK, and the unchanged supervised server and runner.
+Evidence: `stack-flask-mongodb7-{url,google,codespaces,audit}.json`. Coverage is
+**55 isolated / 36 Google browser / 36 Codespaces protocol**, with **19** native
+fixtures pending. Source remains **6,293 physical lines**; the most recent full
+suites remain **154/154** locally and in isolated aswin QA.

@@ -172,5 +172,6 @@
     "codespacesPreviewPort": 23877,
     "codespacesPreviewVisibility": "private"
   },
-  "persistenceScope": "Authenticated HTTP MariaDB write/read and full stop/relaunch on user compute; native Codespaces browser execution remains pending."
+  "persistenceScope": "Authenticated HTTP MariaDB write/read and full stop/relaunch on user compute; native Codespaces browser execution remains pending.",
+  "performanceContext": "The two providers first-image launches overlapped and used the same PODS artifact origin. These samples include concurrent delivery load; they are not isolated single-download bandwidth benchmarks."
 }

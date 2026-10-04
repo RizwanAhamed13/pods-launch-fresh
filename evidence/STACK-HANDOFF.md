@@ -17,22 +17,19 @@ VM replacement durability, or a universal 20-second cold launch.
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
   saved format changes on actual environment capabilities.
-- Coverage: 55 isolated build/artifact/browser passes; 34 Google native browser
-  and 34 Codespaces authenticated HTTP/protocol passes. All eight static frontend
-  and six SSR fixtures pass both paths. Every native Codespaces browser check
-  remains pending. The 21 fixtures awaiting both native acceptance paths are:
-  actix, aspnet, axum, deno, echo, fiber, flask-mariadb,
-  flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, ktor,
-  micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
-- Runtimeprovider73bd9f4 had134 passing tests locally and in isolated aswin QA;
-  logs /tmp/pods-provider-full-{local,qa}.txt. Adds3 provider compatibility
-  cases after17 storage cases. Baselines114/131 remain historical; do not
-  rerun unchanged passing checks. Currentbuilder2553fc8 adds4 cases: all138
-  passed locally and on QA after restoring its missing coveragefile and rerunning
-  the3 affectedcompatibility checks; details below.
-- Physical code: 6,120 lines = 3,250 product/tooling + 1,773 tests + 933 examples
-  + 164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
-  files; includes .astro. Storage handoff is deployed; native same-format regressions follow below.
+- Coverage:55 isolated build/artifact/browser passes;36 Google native browser
+  and36 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+  and six SSR fixtures pass both paths. Native Codespaces browser checks remain
+  pending authorization. The19 fixtures awaiting native acceptance are:
+  actix, aspnet, axum, deno, echo, fiber, flask-redis, flask-sqlite, flask-valkey,
+  go, gradio, ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
+- Current full suite: 154/154 passed locally and in isolated aswin QA after
+  MongoDB inspection tooling, published at8fe3b7f. Logs:
+  /tmp/pods-mongodb-full-{local,qa}.txt. No subsequent product/tooling edits.
+- Physical code: 6,293 lines =3,316 product/tooling +1,880 tests +933 examples
+  +164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
+  files; includes .astro. Running provider revision5dde1e5, PID1063107,
+  runner SHA2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486.
 
 ## Current storage migration implementation
 
@@ -509,3 +506,39 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   Exact browser heading is "Flask + mongodb counter", not the folder suffix7.
 - Stored QA images total350699642bytes. Native first-image delivery may exceed
   one observation window: continue the same launch rather than restarting it.
+
+## Native Flask + MongoDB acceptance
+
+- Interrupted previous turn submitted one native build at04:03:05.128Z after
+  ordinary quota availability04:02:47.974850UTC (account2/global2/active0).
+  Recovered its existing build6mt9LFGUaS1kEMRflLJc_yAnC1ULqHS2, no resubmit.
+  Ready at04:05:58.259Z,173638ms, sourced6da2ed, images350700277bytes. App
+  repo-1ebc4958ec8b2189132e67ca-d6da2ed780ae-39e1c46b1d99, port23283.
+- Google real UI firstRUNNING health94422/delivery91373ms; image download63738,
+  load15127. Observed page100071/read100076/write100359ms (upper bounds include
+  a tool-call gap after navigation). CachedRUNNING health9886/delivery6722,
+  page11343/read11454/write11744. Counter0→1→2, reloads1/2, full stops, no logs.
+- Codespaces61219 ended0; same saved containerprofile. FirstShutdown,
+  provider startup19719, health140627/delivery120908, download63717/load35594.
+  CachedAvailable health12013/delivery11488. HTTP0→1→2/fullstops plus MongoDB
+  7.0.43/build ef5a7d3480b59feae13d564376129fc4ceee6177/WiredTiger/document1/2,
+  healthy privateDB, durable volume all passed. Native browser remains pending.
+- Google tests fully stopped before Codespaces began. Provider tests sequential;
+  unrelated traffic not controlled. Earlier MariaDB evidence/docs now explicitly
+  record overlapping first-image deliveries, without changing measured values.
+- Final capture04:15:55.186067UTC and audit04:15:58.313840UTC:
+  all4stopped,0activebuild/launch,health200,SQLiteok,privateport23283,
+  PID1063107/runner unchanged, checkout8fe3b7f/provider5dde1e5.
+- Evidence stack-flask-mongodb7-{url,google,codespaces,audit}.json;
+  compatibility row both nativeAcceptance true. Coverage55/36/36,19pending.
+  Source6293unchanged; most recent full154/154suites still valid.
+- Browser reset after interruption closed previous temporary tabs. Current IAB
+  tab1 stackQa6 holds completed MongoDB preparation, tab2 mongodbTab holds
+  stopped launcher. Helpers continueMongo, mongodbLaunchUrl, mongodbChecks,
+  mongoLogs1/2 retained. Both native MongoDB counters now2; do not reset.
+  No pending build or launch observer and no native app remains running.
+- Next bounded gate: Flask + Redis. Inspect its existing isolated evidence and
+  prepare native runtime inspection where needed, then use ordinary form quota.
+  No new build, quota watcher, or Redis launch has been started. Pending GitHub
+  2FA, Cloud Shell VM replacement approval and stable hostname questions remain;
+  do not repeat them or claim these gates complete. Keep the overall goal active.

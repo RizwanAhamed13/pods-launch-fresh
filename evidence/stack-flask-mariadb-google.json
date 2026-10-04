@@ -100,5 +100,6 @@
     "localHealthStatus": 200,
     "codespacesPreviewPort": 23877,
     "codespacesPreviewVisibility": "private"
-  }
+  },
+  "performanceContext": "The two providers first-image launches overlapped and used the same PODS artifact origin. These samples include concurrent delivery load; they are not isolated single-download bandwidth benchmarks."
 }
