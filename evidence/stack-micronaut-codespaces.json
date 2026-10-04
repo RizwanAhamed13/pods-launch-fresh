@@ -1,0 +1,173 @@
+{
+  "testedAt": "2026-10-04T09:38:02.785Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "VwCy3FxVvAKMSRwIou3xQzQ71pj8bN7C",
+      "dataKey": "repo-2caafe8ea7f268fe237b7cab",
+      "port": 26630,
+      "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-b8c6e3de8016",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "b8c6e3de8016153880530a6c1f84f777d43e201c455ca37249a3f9c22357844c",
+      "images": [
+        {
+          "id": "sha256:0f1a46a8eb6d00e8447ea5b9ad537ab21e67e5099c96271cdad97d4541e97eee",
+          "sha256": "07408dbaef08a310f195b938eee2a54f2e2daa7405d7298173759d7a9db2502c",
+          "bytes": 125122726
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791106573793,
+      "updatedAt": 1791106644199,
+      "expiresAt": 1791108373793,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Shutdown",
+        "observedAt": 1791106574232,
+        "resumeRequestedAt": 1791106574252
+      },
+      "providerReadyAt": 1791106586372,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-26630.app.github.dev",
+      "lastSeenAt": 1791106644199,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 946,
+        "imagesMs": 26573,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 29,
+        "imageDownloadMs": 22525,
+        "imageLoadMs": 3987,
+        "runtimeReadyMs": 37861,
+        "cacheHit": false
+      },
+      "readyAt": 1791106644199,
+      "deliveryMs": 57827,
+      "totalMs": 70406,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 0,
+        "afterWrite": 1,
+        "afterRead": 1,
+        "passed": true,
+        "expectedInitialCount": 0
+      },
+      "sqliteFileRuntimeCheck": {
+        "passed": true,
+        "fixtureProfile": "micronaut",
+        "project": "pods-c0dc0ca6fa37c8352e216af2",
+        "services": [
+          "web"
+        ],
+        "databaseEngine": "SQLite",
+        "inspectionEngineVersion": "3.53.4",
+        "integrity": "ok",
+        "savedCount": 1,
+        "snapshotFiles": [
+          "counter.sqlite"
+        ],
+        "applicationResumed": true,
+        "volume": "pods-c0dc0ca6fa37c8352e216af2_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          26630
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only query of a private database snapshot copied while the fixture container was paused, including WAL when present. Container resumed before querying. SQLite version describes the inspector, not the application driver. No application SQL or file was changed; VM replacement and power-loss durability are separate."
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "S0jrdAgIaY6UlQF38_yDBZVxBEq6AMU5",
+      "dataKey": "repo-2caafe8ea7f268fe237b7cab",
+      "port": 26630,
+      "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-b8c6e3de8016",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "b8c6e3de8016153880530a6c1f84f777d43e201c455ca37249a3f9c22357844c",
+      "images": [
+        {
+          "id": "sha256:0f1a46a8eb6d00e8447ea5b9ad537ab21e67e5099c96271cdad97d4541e97eee",
+          "sha256": "07408dbaef08a310f195b938eee2a54f2e2daa7405d7298173759d7a9db2502c",
+          "bytes": 125122726
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791106658173,
+      "updatedAt": 1791106669429,
+      "expiresAt": 1791108458173,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791106658844
+      },
+      "providerReadyAt": 1791106658878,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-26630.app.github.dev",
+      "lastSeenAt": 1791106669429,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 746,
+        "imagesMs": 44,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 44,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 4688,
+        "cacheHit": true
+      },
+      "readyAt": 1791106669429,
+      "deliveryMs": 10551,
+      "totalMs": 11256,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 1,
+        "afterWrite": 2,
+        "afterRead": 2,
+        "passed": true,
+        "expectedAfterRelaunch": 1
+      },
+      "sqliteFileRuntimeCheck": {
+        "passed": true,
+        "fixtureProfile": "micronaut",
+        "project": "pods-c0dc0ca6fa37c8352e216af2",
+        "services": [
+          "web"
+        ],
+        "databaseEngine": "SQLite",
+        "inspectionEngineVersion": "3.53.4",
+        "integrity": "ok",
+        "savedCount": 2,
+        "snapshotFiles": [
+          "counter.sqlite"
+        ],
+        "applicationResumed": true,
+        "volume": "pods-c0dc0ca6fa37c8352e216af2_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          26630
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only query of a private database snapshot copied while the fixture container was paused, including WAL when present. Container resumed before querying. SQLite version describes the inspector, not the application driver. No application SQL or file was changed; VM replacement and power-loss durability are separate."
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "performanceContext": "Cloud Shell first and cached browser launches completed and stopped before either Codespaces launch began. These provider checks were sequential; unrelated network traffic was not controlled.",
+  "cleanupAudit": {
+    "at": "2026-10-04T09:38:20.835592+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 26630,
+    "codespacesPreviewVisibility": "private"
+  },
+  "persistenceScope": "Authenticated native product HTTP write/read and read-only SQLite snapshot inspection and full stop/relaunch on user compute; native Codespaces browser execution remains pending."
+}

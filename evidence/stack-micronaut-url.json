@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-04T09:38:20.835592+00:00",
+  "controlRevision": "5dde1e5",
+  "checkoutRevision": "7d5f3dc0120de912dd54ddaa1a6c2fe136784788",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T09:30:18.184491+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T09:30:26.319Z",
+  "attempts": [
+    {
+      "id": "Fz0HHC8ciKZCAnxPuv4Vww8prcxZeABd",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/micronaut",
+        "key": "2caafe8ea7f268fe237b7cab"
+      },
+      "status": "ready",
+      "createdAt": 1791106230874,
+      "startedAt": 1791106230884,
+      "finishedAt": 1791106456101,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-b8c6e3de8016",
+      "app": {
+        "id": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-b8c6e3de8016",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "b8c6e3de8016153880530a6c1f84f777d43e201c455ca37249a3f9c22357844c",
+        "bytes": 275,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-2caafe8ea7f268fe237b7cab",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/micronaut",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Micronaut + SQLite"
+        },
+        "preparedAt": "2026-10-04T09:34:15.664Z",
+        "images": [
+          {
+            "id": "sha256:0f1a46a8eb6d00e8447ea5b9ad537ab21e67e5099c96271cdad97d4541e97eee",
+            "sha256": "07408dbaef08a310f195b938eee2a54f2e2daa7405d7298173759d7a9db2502c",
+            "bytes": 125122726
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 225217
+}

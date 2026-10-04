@@ -1,0 +1,13 @@
+{
+  "recordedAt": "2026-10-04T09:38:20.913418+00:00",
+  "pid": 1063107,
+  "cwd": "/home/aswin/pods-launch-fresh",
+  "command": "node --env-file=.env src/server.mjs",
+  "listenerMatches": true,
+  "sqliteQuickCheck": "ok",
+  "activeBuilds": 0,
+  "activeLaunches": 0,
+  "health": 200,
+  "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+  "revision": "7d5f3dc0120de912dd54ddaa1a6c2fe136784788"
+}

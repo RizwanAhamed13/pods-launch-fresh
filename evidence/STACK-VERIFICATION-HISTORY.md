@@ -2593,3 +2593,42 @@ checks passed **3/3**; no product implementation changed and the existing
 **189/189** full-suite result remains applicable. Publication evidence:
 `stack-ktor-published.json`. Next native gate: Micronaut after ordinary quota is
 available (next slot observed as09:29:51.926UTC; recheck before submission).
+
+
+## Micronaut native SQLite acceptance
+
+The real developer form prepared `examples/stacks/micronaut` from source revision
+`d6da2ed780ae` after ordinary same-account quota availability. Server preparation
+took **225.217s**; saved artifact `b8c6e3de8016153880530a6c1f84f777d43e201c455ca37249a3f9c22357844c` contains
+**125,122,726 image bytes**. No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell initially RUNNING, first delivery | Healthy 37.183s; product visible 38.257s; saved count read 39.844s; button write 40.138s |
+| Cloud Shell cached relaunch | Healthy 10.456s; visible 11.800s; saved count restored 12.358s; next write 12.637s |
+| Codespaces initially Shutdown | Healthy 70.406s; delivery/startup 57.827s |
+| Codespaces cached relaunch | Healthy 11.256s; HTTP write/read, SQLite integrity and saved row passed |
+
+Cloud Shell verified the real product h1, saved-count control and increment button,
+reload and full application stop/relaunch: **0→1→2**, with no console warnings
+or errors. Codespaces exercised the product HTTP API, verified the same sequence and queried
+a read-only copy of the actual SQLite file. The fixture container was briefly
+paused to copy the database and any WAL consistently, then resumed before the
+query. Inspector SQLite **3.53.4**, integrity and saved
+rows were recorded; this is the inspector version, not the application's driver.
+The checks verified the exact compiled/runtime startup command, one web service,
+its project network, persistent workspace volume and private product port
+**26630**. No database port was published.
+
+Both Google runs finished and stopped before Codespaces testing began. All four
+launches ended stopped. Audit at 2026-10-04T09:38:20.913418+00:00 confirmed health200, SQLite
+integrity ok, zero active builds/launches and unchanged service PID/runner SHA.
+These timings describe this fixture and observed compute/cache states. Native
+Codespaces browser execution and provider VM replacement durability remain
+unverified.
+
+Evidence: `stack-micronaut-{url,google,codespaces,audit}.json`. Coverage now
+**55 isolated / 52 Google browser / 52 Codespaces protocol**, with
+**3** native fixtures pending. Full suite **189/189** and
+physical source **7,128 lines** remain valid; this acceptance changed only
+evidence and documentation. App `repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-b8c6e3de8016`; preserve saved native counters2.
