@@ -1,0 +1,63 @@
+{
+  "recordedAt": "2026-10-04T00:13:29.056Z",
+  "scope": "Existing isolated Astro image archive recompressed without changing its contents; no production mutation or native performance claim",
+  "results": [
+    {
+      "level": 6,
+      "sourceBytes": 124914593,
+      "bytes": 124901410,
+      "elapsedMs": 5657,
+      "reductionPercent": 0.011,
+      "identicalTar": true,
+      "uncompressedSha256": "427fe3c86896feeac0555e1bb57b573cee195b4800263e0d3e5c08674f44a882"
+    },
+    {
+      "level": 9,
+      "sourceBytes": 124914593,
+      "bytes": 124901306,
+      "elapsedMs": 5364,
+      "reductionPercent": 0.011,
+      "identicalTar": true,
+      "uncompressedSha256": "427fe3c86896feeac0555e1bb57b573cee195b4800263e0d3e5c08674f44a882"
+    }
+  ],
+  "artifactSha256": "af5abb554329022cda5e59d3670c66e768e225169d9daeebdd60abd3f81a8dc8",
+  "layout": {
+    "largestMembers": [
+      {
+        "name": "blobs/sha256/1c473ca5523b8180b93f87dd2961339837b4d84db4d4998197a64984462b5164",
+        "bytes": 50860465,
+        "gzipPayload": true
+      },
+      {
+        "name": "blobs/sha256/aff9f664c74e8b74df11b15e56ca8150664499e2eb09ae1cb90636dfeda85ead",
+        "bytes": 44621339,
+        "gzipPayload": true
+      },
+      {
+        "name": "blobs/sha256/774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150",
+        "bytes": 28238443,
+        "gzipPayload": true
+      },
+      {
+        "name": "blobs/sha256/2a11efab31915186066efa212f7ba10e7ff63c5d49d21d07c4a8377a2993e70b",
+        "bytes": 1713025,
+        "gzipPayload": true
+      },
+      {
+        "name": "blobs/sha256/bf592409a49e0ee544a0e35b5b8f55a30788fb4092bb38bb2e20b7ebe92abf6f",
+        "bytes": 8035,
+        "gzipPayload": false
+      },
+      {
+        "name": "blobs/sha256/eab09f3e3981ba4ceab089988dd081db334f2221594d7873f6b9e123f32d2105",
+        "bytes": 3309,
+        "gzipPayload": true
+      }
+    ],
+    "gzipPayloadBytes": 125437883,
+    "totalFileBytes": 125448998
+  },
+  "decision": "Retain current compression. Levels6/9 save only0.011percent because nearly all tar payload is already compressed image layers. No production packaging change, no native retest claimed.",
+  "temporaryRecompressedArchivesRemoved": true
+}

@@ -61,9 +61,19 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
 - scripts/live-codespaces.mjs: gh token via stdin, PODS_SSR_CHECK=1 and
   PODS_SSR_FIXTURE=react-router; evidence file explicitly set. Two launches required.
   Native checks reject wrong source folder. Do not combine with SINGLE_LAUNCH.
-- Small observed UI issue for a future bounded fix: immediately after Stop,
-  Application stopped is correct but the newest recent-launch row still says
-  ready until refreshed. Both DB records confirm stopped; not a failed cleanup.
+- Stop/history observation corrected on the next turn: existing poll() already
+  awaits history() after terminal state. A fresh read WITHOUT reloading showed
+  every recent row stopped. The earlier screenshot caught the history request
+  in flight; there is no evidenced persistent UI bug and no fix was made.
+- Readonly production audit00:10UTC found no already-prepared production builds
+  for any of the29 pending native fixtures. Wait for ordinary preparation capacity.
+- Astro compression experiment completed: session36583 ended0. Levels6 and9
+  reduced124,914,593bytes to124,901,410/124,901,306 respectively (0.011%). Both
+  decoded to identical tarSHA427fe3c86896feeac0555e1bb57b573cee195b4800263e0d3e5c08674f44a882.
+  Tar payload125,437,883 of125,448,998bytes is itself gzip-compressed layers.
+  Keep level1; stronger outer compression cannot materially improve first-launch
+  transfer. Evidence stack-astro-compression-trial.json. Temporary outputs removed.
+  No source/runtime change or test rerun was warranted.
 
 ## Browser handoffs
 
@@ -78,7 +88,7 @@ Mark pending workflow tabs each turn; no duplicate launch/build after read timeo
   successful increment, reload retained value. Label must come from observed UI.
   measurePreparedCounter is older static helper hardcoded to Open PODS counter.
   stopPreparedProduct(tab,url) navigates to launcher, clicks Stop once, confirms.
-- supportQa: IAB2tab29, public/support deliverable. Check synced26/26 after commit.
+- supportQa: IAB2tab29, public/support deliverable. Published26/26 verified after5839948 sync.
 - nativeGithubKeep: IAB2tab10, pending GitHub two-factor authentication; fresh
   read23:57UTC still2FA. User action already requested. No SMS/code sent.
 - cloudLifecycle: IAB2tab14, Cloud Shell Restart confirmation pending. No approval

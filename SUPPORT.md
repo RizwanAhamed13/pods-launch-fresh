@@ -1271,3 +1271,13 @@ image cases exceed 20 seconds; cached results do not establish a cold-launch pro
 Evidence: `stack-astro-url.json`, `stack-astro-google.json`,
 `stack-astro-codespaces.json`. Current acceptance:55 isolated, 26 Google browser,
 26 Codespaces protocol, 29 native fixtures remaining. React Router is next.
+
+## Astro image compression check
+
+A measured attempt to reduce first-image delivery by changing outer gzip from
+level1 to6/9 saved only **0.011%** (about13KB of a124.9MB archive). Both trials
+preserved the exact uncompressed tar bytes. Inspection found125,437,883 of
+125,448,998 payload bytes were already compressed gzip layers. Stronger outer
+compression therefore offers no meaningful transfer reduction for this image.
+The working packaging remains unchanged; this is isolated measurement evidence,
+not a new native performance result. See `stack-astro-compression-trial.json`.
