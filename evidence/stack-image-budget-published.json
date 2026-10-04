@@ -1,0 +1,9 @@
+{
+  "recordedAt": "2026-10-04T10:18:10.384Z",
+  "url": "https://collection-conferences-ages-clearly.trycloudflare.com/support",
+  "evidenceRevision": "a1df278",
+  "summary": "55 representative apps tested\n\nAll 55 passed isolated server builds and browser interaction. 53 passed native Google Cloud Shell browser checks; 53 passed Codespaces HTTP or protocol checks.\n\nCodespaces browser sign-in and interaction remain pending. A passing representative does not guarantee every repository using that framework will work.",
+  "streamlit": "Streamlit\nPython and data services\n\tPassed\tPending\tPending",
+  "symfony": "Symfony\nPHP\n\tPassed\tPending\tPending",
+  "scope": "Actual public DOM after the image-budget change was pushed, synced and deployed. The failed preparation and operator fix do not add native acceptance."
+}

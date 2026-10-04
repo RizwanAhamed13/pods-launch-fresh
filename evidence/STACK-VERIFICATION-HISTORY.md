@@ -2688,3 +2688,29 @@ synced to aswin, the actual public compatibility DOM reported 55 isolated,
 showed all three passes. Compatibility checks passed 3/3; evidence privacy
 and production identity checks passed. Source/runtime code was unchanged.
 Evidence: `stack-phoenix-published.json`. Streamlit and Symfony remain pending.
+
+
+## Image-store capacity correction after Streamlit preparation
+
+The actual developer form submitted Streamlit at2026-10-04T10:06:17.625Z after
+ordinary same-account capacity. Build vDIc9sGiIvX_5MMI3Ui3PPo-yS0E01a3 reached
+verification, then failed after188.557s because5,212,803,563stored image bytes
+plus the new image exceeded the fixed5GiB store budget. The failure is retained
+in stack-streamlit-storage-failure.json; no provider launch or acceptance followed.
+
+Revisiona1df278 makes the operator admission budget configurable with
+PODS_IMAGE_STORAGE_BYTES, retaining the5GiB default, per-app limits and build quotas.
+All192tests passed locally and in isolated Linux, including overflow preservation,
+exact-boundary publication, larger-store acceptance, account quota and invalid config.
+All322candidate inputs were checked. See stack-image-budget-tests.json.
+
+After an idle check, aswin was configured for8GiB and restarted once. Audit at
+2026-10-04T10:18:07.333404+00:00 verified servicePID1374765, health200, SQLiteok,
+zero active builds/launches and unchanged runnerSHA. All53image files and123artifact
+files matched their prior inventories; disk free was33,818,968,064bytes. The public
+DOM at10:18:10UTC still showed55/53/53 and Streamlit/Symfony native checks pending.
+See stack-image-budget-{deployment,published}.json. Source now7190physical lines.
+
+Next ordinary build slot was2026-10-04T10:30:30.874000+00:00. Recheck availability,
+then retry Streamlit through the actual form and complete both native paths.
+No active watcher remains. Goal remains active and incomplete.

@@ -1,0 +1,101 @@
+{
+  "recordedAt": "2026-10-04T10:18:07.333404+00:00",
+  "scope": "Operator image-store budget deployment; no new native framework acceptance. No prepared image or artifact was deleted. Image inventory compares names, sizes and modification times; artifact inventory hashes file contents.",
+  "beforeAudit": {
+    "recordedAt": "2026-10-04T10:11:52.558248+00:00",
+    "pid": 1063107,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+    "revision": "4aa0a946fb180261e921938c3d72b00665ba3d64"
+  },
+  "afterAudit": {
+    "recordedAt": "2026-10-04T10:18:07.333404+00:00",
+    "pid": 1374765,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+    "revision": "a1df27822a2bc0103948d7b321c7f6edd01d5571"
+  },
+  "beforeInventory": {
+    "recordedAt": "2026-10-04T10:13:35.243065+00:00",
+    "failedBuild": {
+      "id": "vDIc9sGiIvX_5MMI3Ui3PPo-yS0E01a3",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/streamlit",
+        "key": "239d840381e192f76f9bfb38"
+      },
+      "status": "failed",
+      "createdAt": 1791108378168,
+      "startedAt": 1791108378287,
+      "finishedAt": 1791108566844,
+      "error": "Prepared image storage is full."
+    },
+    "imageFiles": 53,
+    "storedImageBytes": 5212803563,
+    "imageInventorySha256": "00cf317406056879831110f0305e8628d1f042d1b38a535730a20cb59c52ce4b",
+    "artifactFiles": 123,
+    "artifactInventorySha256": "f9fe5805c3b5c9c838047608bf7879e3b05a24245e6e7fc817ef842639ee2183",
+    "diskTotalBytes": 210779168768,
+    "diskFreeBytes": 33811582976,
+    "configuredImageStorageBytes": 5368709120
+  },
+  "afterInventory": {
+    "recordedAt": "2026-10-04T10:18:07.214681+00:00",
+    "failedBuild": {
+      "id": "vDIc9sGiIvX_5MMI3Ui3PPo-yS0E01a3",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/streamlit",
+        "key": "239d840381e192f76f9bfb38"
+      },
+      "status": "failed",
+      "createdAt": 1791108378168,
+      "startedAt": 1791108378287,
+      "finishedAt": 1791108566844,
+      "error": "Prepared image storage is full."
+    },
+    "imageFiles": 53,
+    "storedImageBytes": 5212803563,
+    "imageInventorySha256": "00cf317406056879831110f0305e8628d1f042d1b38a535730a20cb59c52ce4b",
+    "artifactFiles": 123,
+    "artifactInventorySha256": "f9fe5805c3b5c9c838047608bf7879e3b05a24245e6e7fc817ef842639ee2183",
+    "diskTotalBytes": 210779168768,
+    "diskFreeBytes": 33818968064,
+    "configuredImageStorageBytes": 8589934592
+  },
+  "configurationProbe": {
+    "imageStorageBytes": 8589934592,
+    "accountLimit": 3,
+    "globalLimit": 12
+  },
+  "restart": {
+    "previousPid": 1063107,
+    "newPid": 1374765,
+    "configuredImageStorageBytes": 8589934592,
+    "activeBuildsBeforeRestart": 0,
+    "activeLaunchesBeforeRestart": 0
+  },
+  "publicHealthStatus": 200,
+  "inventoriesUnchanged": true,
+  "operatorRecovery": "The SSH shell did not expose node on PATH, so the pre-restart configuration probe first stopped after updating the env file. Retried with the verified running service executable via /proc/<pid>/exe, validated the intended budget and quotas, then restarted once while idle.",
+  "remainingNativeFixtures": [
+    "streamlit",
+    "symfony"
+  ]
+}

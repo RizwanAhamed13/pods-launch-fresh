@@ -31,7 +31,10 @@ VM replacement durability or universal launches under20s without evidence.
 - Phoenix is complete. Streamlit build vDIc9sGiIvX_5MMI3Ui3PPo-yS0E01a3 failed
   after188.557s at the image-store budget; no launch was attempted. Failure is
   retained in stack-streamlit-storage-failure.json. The operator budget fix passed
-  192/192 local/Linux; deploy and verify before the next actual form retry.
+  192/192 local/Linux and is deployed at revisiona1df278 with an8GiB budget.
+  Audit10:18:07UTC verified health200, SQLiteok, zero active, unchanged runnerSHA,
+  all53image files and123artifact files preserved, and33.8GBdisk free.
+  Evidence stack-image-budget-{tests,deployment,published}.json. No native pass added.
   No build/launch watcher is running. Quota snapshot at10:13:01UTC
   showed3account/global builds in the last hour and zero active builds. Next ordinary
   slot2026-10-04T10:30:30.874000+00:00; recheck actual availability before submitting.
@@ -44,6 +47,9 @@ VM replacement durability or universal launches under20s without evidence.
   form only after availability. Record actual submittedAt. Adapt the bounded
   /tmp/pods-watch-phoenix-build.py observer to Streamlit with timestamp guard. A timeout is not build failure:
   resume same build via /tmp/pods-watch-existing-build.py ID FOLDER, never resubmit.
+  The prior Streamlit failure is terminal; a new explicit retry is appropriate
+  only after the next ordinary quota slot. Preserve that failure record. CUA
+  streamlitNative holds the failed submission; create a fresh attempt record.
 - Use ready region Your application is ready to share. → scoped Try this version
   link, not recent history. GoogleOpen → producth1 → meaningful write → reload →
   full stop → reopen saved value → next write → reload → full stop, before Codespaces.
@@ -67,6 +73,8 @@ VM replacement durability or universal launches under20s without evidence.
   result checks are separate from the production application tests.
 - Dashboard helpers /tmp/pods-{record,document}-dashboard-native.py passed Gradio and
   are ready for Streamlit. Do not claim exact startup-command checks for dashboards.
+  Both document helpers now use stack-image-budget-tests.json for the current192suite;
+  record helpers identify the new control revisiona1df278. Source count is7190.
 - After recording: compatibility3tests, diffcheck, commit/push/ff-sync, publicDOM
   verification, save publication evidence and a concise next-gate handoff.
 
@@ -87,7 +95,9 @@ VM replacement durability or universal launches under20s without evidence.
 
 ## Running service and constraints
 
-- ServicePID1063107, provider5dde1e5, builder2553fc8, storage77cf340.
+- ServicePID1374765, controla1df278, provider5dde1e5, builder2553fc8, storage77cf340.
+  Deployed PODS_IMAGE_STORAGE_BYTES=8589934592; default5368709120. The3/account/hour,
+  12global/hour and per-application limits are unchanged. No stored app was deleted.
   RunnerSHA2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486.
   Preserve cloudflaredPID2322522 and temporary origin
   https://collection-conferences-ages-clearly.trycloudflare.com.
@@ -103,8 +113,9 @@ VM replacement durability or universal launches under20s without evidence.
   Lost Google start-response reconciliation uses the sameRUNNINGenv and uniqueSSHkey.
 - Existing GitHub2FA, VMreplacement authorization and stablehostname inputs remain
   pending. Do not repeat those questions. Localgcloud identity is suspended/wrong.
-- Latest Phoenix audit09:59:07UTC: health200, SQLiteok, zero active, unchangedPID/SHA.
-  BothGoogle andCodespaces savedcount2. Codespacepods-launch-containers-69rw5vx4xp46c5qw5,
+- Latest service audit10:18:07UTC: health200, SQLiteok, zero active, PID1374765,
+  unchanged runnerSHA. Phoenix bothGoogle andCodespaces savedcount2.
+  Codespacepods-launch-containers-69rw5vx4xp46c5qw5,
   privateport23905; preserve data. All four launches stopped. First/cached visible
   54.511/9.338sGoogle; Codespaces healthy87.260/9.708s. First deliveries missed20s.
 

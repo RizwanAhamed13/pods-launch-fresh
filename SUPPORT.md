@@ -241,3 +241,5 @@ publication; [the failed attempt](evidence/stack-streamlit-storage-failure.json)
 retained. The operator budget is now configurable, with [192 passing local and
 isolated Linux checks](evidence/stack-image-budget-tests.json). Streamlit and
 Symfony still require native acceptance; no coverage pass was added for this fix.
+The [deployment audit](evidence/stack-image-budget-deployment.json) confirms an
+8 GiB budget on aswin with existing images and artifacts preserved.
