@@ -1,0 +1,45 @@
+{
+  "recordedAt": "2026-10-04T11:33:42.206518+00:00",
+  "revision": "54eb6902630a8c125ea0825f33cd3d6a41d2f760",
+  "before": {
+    "recordedAt": "2026-10-04T11:33:40.213683+00:00",
+    "pid": 1390769,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "a8140865a8d18aa4f36c6194bc011507508af34b9ad26cc40c78ccdafbe5925d",
+    "revision": "54eb6902630a8c125ea0825f33cd3d6a41d2f760"
+  },
+  "after": {
+    "recordedAt": "2026-10-04T11:33:42.187177+00:00",
+    "pid": 1444744,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "57d9dd95d47d9a597ba763460c568a270fc4d722a72b073e8b080254c143e54c",
+    "revision": "54eb6902630a8c125ea0825f33cd3d6a41d2f760"
+  },
+  "imageFilesPreserved": 55,
+  "artifactFilesPreserved": 127,
+  "inventoryUnchanged": true,
+  "repositoryPrivate": true,
+  "releaseId": 402982733,
+  "credentialConfigured": true,
+  "environmentFileMode": "0600",
+  "expectedRunnerSha256": "57d9dd95d47d9a597ba763460c568a270fc4d722a72b073e8b080254c143e54c",
+  "preflightCorrection": {
+    "firstAttempt": "Audit helper was absent from the remote /tmp directory.",
+    "runtimeOrEnvironmentChanged": false,
+    "resolution": "Copied the existing read-only audit helper and reran the same idle preflight before configuration or restart."
+  },
+  "deployerSha256": "0f124c2fed71838114f9e89e0638b8300387e80c7e05a8c147722c51aa5341f7",
+  "testEvidence": "stack-image-delivery-tests.json"
+}

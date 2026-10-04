@@ -1,0 +1,409 @@
+{
+  "recordedAt": "2026-10-04T11:45:07.423781+00:00",
+  "controlRevision": "54eb6902630a8c125ea0825f33cd3d6a41d2f760",
+  "scope": "Ordinary developer browser preparation followed by two sequential Cloud Shell browser launches and two Codespaces authenticated HTTP/SQLite launches of the same new image. Existing caches and data retained.",
+  "preparation": {
+    "capturedAt": "2026-10-04T11:39:41.332731+00:00",
+    "build": {
+      "id": "p3n99Eg66l7iemFbb0UaYgTUfaXGlMLt",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/micronaut",
+        "key": "2caafe8ea7f268fe237b7cab"
+      },
+      "status": "ready",
+      "createdAt": 1791113718508,
+      "startedAt": 1791113718522,
+      "finishedAt": 1791113965588,
+      "imageDelivery": "available",
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-618da4caadd4",
+      "app": {
+        "id": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-618da4caadd4",
+        "name": "pods-launch-runtime-fresh",
+        "sha256": "618da4caadd44514bd0c32b1c204a8eba2d6f0a274971425f1ca246b1c466144",
+        "bytes": 276,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-2caafe8ea7f268fe237b7cab",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/micronaut",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Micronaut + SQLite"
+        },
+        "preparedAt": "2026-10-04T11:38:58.368Z",
+        "images": [
+          {
+            "id": "sha256:ba5df5681cccc0b84b46361d0e3adb45a0b51cab5d6b8f6205d362982fee0ced",
+            "sha256": "e14ef3717c2560df51b9ceb038a2363642ba436e307ac80e9c3c19dbb8ac8cca",
+            "bytes": 125121394
+          }
+        ]
+      }
+    },
+    "assets": [
+      {
+        "repository": "RizwanAhamed13/pods-launch-artifacts-fresh",
+        "releaseId": 402982733,
+        "assetId": 609732872,
+        "sha256": "e14ef3717c2560df51b9ceb038a2363642ba436e307ac80e9c3c19dbb8ac8cca",
+        "bytes": 125121394
+      }
+    ]
+  },
+  "buildMs": 247080,
+  "quotaBefore": {
+    "at": "2026-10-04T11:33:23.831709Z",
+    "accountBuildsLastHour": 1,
+    "globalBuildsLastHour": 1,
+    "activeBuilds": 0,
+    "status": "available"
+  },
+  "browserAuthorizationStartedAt": "2026-10-04T11:35:12.991Z",
+  "google": {
+    "results": [
+      {
+        "id": "e5FiSfxwKfIdmKQCBGGvisik-OyoZBWM",
+        "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-618da4caadd4",
+        "provider": "google",
+        "port": 26630,
+        "status": "stopped",
+        "compute": {
+          "initialState": "SUSPENDED",
+          "observedAt": 1791114000170,
+          "startRequestedAt": 1791114000400,
+          "startAcceptedAt": 1791114003087
+        },
+        "createdAt": 1791113999345,
+        "updatedAt": 1791114124285,
+        "providerReadyAt": 1791114012720,
+        "readyAt": 1791114045269,
+        "timings": {
+          "downloadMs": 532,
+          "imagesMs": 22857,
+          "imageCacheHits": 0,
+          "imageArchiveCacheHits": 0,
+          "imageCacheCheckMs": 33,
+          "imageDownloadMs": 16400,
+          "imageLoadMs": 6402,
+          "imageCdnDownloads": 1,
+          "imageCdnFallbacks": 0,
+          "imageCdnMs": 15265,
+          "imageOriginDownloads": 0,
+          "runtimeReadyMs": 30384,
+          "cacheHit": false
+        },
+        "storageMode": "persistent",
+        "totalMs": 45924,
+        "deliveryMs": 32549
+      },
+      {
+        "id": "Gr-OVFZSwcATi-rm27zZAWGbD5eUcQib",
+        "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-618da4caadd4",
+        "provider": "google",
+        "port": 26630,
+        "status": "stopped",
+        "compute": {
+          "initialState": "RUNNING",
+          "observedAt": 1791114130250,
+          "startRequestedAt": 1791114130867,
+          "startAcceptedAt": 1791114132923
+        },
+        "createdAt": 1791114129690,
+        "updatedAt": 1791114150221,
+        "providerReadyAt": 1791114133355,
+        "readyAt": 1791114140361,
+        "timings": {
+          "downloadMs": 316,
+          "imagesMs": 54,
+          "imageCacheHits": 1,
+          "imageArchiveCacheHits": 0,
+          "imageCacheCheckMs": 53,
+          "imageDownloadMs": 0,
+          "imageLoadMs": 0,
+          "imageCdnDownloads": 0,
+          "imageCdnFallbacks": 0,
+          "imageCdnMs": 0,
+          "imageOriginDownloads": 0,
+          "runtimeReadyMs": 5521,
+          "cacheHit": true
+        },
+        "storageMode": "persistent",
+        "totalMs": 10671,
+        "deliveryMs": 7006
+      }
+    ],
+    "browserChecks": [
+      {
+        "startedAt": "2026-10-04T11:39:59.179Z",
+        "visibleMs": 56620,
+        "observationNote": "The first observation window ended before product readiness. On resuming, the page was visible with value 2; an incorrect test selector waited without writing. Controls were corrected from the visible DOM before any interaction. Browser timings include these observation delays.",
+        "before": 2,
+        "stateRestoredMs": 112196,
+        "writeRequestedAt": "2026-10-04T11:41:51.375Z",
+        "afterWrite": 3,
+        "interactionMs": 112482,
+        "reloadRequestedAt": "2026-10-04T11:41:51.661Z",
+        "reloadCompleted": true,
+        "afterReload": 3,
+        "passed": true,
+        "browserErrorOrWarningLogs": [],
+        "stopRequestedAt": "2026-10-04T11:42:01.058Z",
+        "statusAfterStop": "stopped"
+      },
+      {
+        "startedAt": "2026-10-04T11:42:09.529Z",
+        "visibleMs": 12004,
+        "before": 3,
+        "stateRestoredMs": 12440,
+        "writeRequestedAt": "2026-10-04T11:42:21.969Z",
+        "afterWrite": 4,
+        "interactionMs": 12730,
+        "reloadRequestedAt": "2026-10-04T11:42:22.259Z",
+        "reloadCompleted": true,
+        "afterReload": 4,
+        "passed": true,
+        "browserErrorOrWarningLogs": [],
+        "stopRequestedAt": "2026-10-04T11:42:28.479Z",
+        "statusAfterStop": "stopped"
+      }
+    ],
+    "passed": true
+  },
+  "github": {
+    "results": [
+      {
+        "id": "GWumKIIsesWwB8KsdeEQX6tB6j1rOcEq",
+        "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-618da4caadd4",
+        "provider": "github",
+        "port": 26630,
+        "status": "stopped",
+        "compute": {
+          "initialState": "Shutdown",
+          "observedAt": 1791114170455,
+          "resumeRequestedAt": 1791114170492
+        },
+        "createdAt": 1791114169873,
+        "updatedAt": 1791114250686,
+        "providerReadyAt": 1791114185280,
+        "readyAt": 1791114234817,
+        "timings": {
+          "downloadMs": 1207,
+          "imagesMs": 22845,
+          "imageCacheHits": 0,
+          "imageArchiveCacheHits": 0,
+          "imageCacheCheckMs": 28,
+          "imageDownloadMs": 17602,
+          "imageLoadMs": 5192,
+          "imageCdnDownloads": 1,
+          "imageCdnFallbacks": 0,
+          "imageCdnMs": 16427,
+          "imageOriginDownloads": 0,
+          "runtimeReadyMs": 34119,
+          "cacheHit": false
+        },
+        "storageMode": "persistent",
+        "totalMs": 64944,
+        "deliveryMs": 49537,
+        "counterCheck": {
+          "productDocument": true,
+          "api": null,
+          "before": 2,
+          "afterWrite": 3,
+          "afterRead": 3,
+          "passed": true,
+          "expectedInitialCount": 2
+        },
+        "sqliteFileRuntimeCheck": {
+          "passed": true,
+          "fixtureProfile": "micronaut",
+          "project": "pods-c0dc0ca6fa37c8352e216af2",
+          "services": [
+            "web"
+          ],
+          "databaseEngine": "SQLite",
+          "inspectionEngineVersion": "3.53.4",
+          "integrity": "ok",
+          "savedCount": 3,
+          "sourceFiles": [
+            "counter.sqlite"
+          ],
+          "snapshotFiles": [
+            "counter.sqlite"
+          ],
+          "applicationPaused": false,
+          "applicationStayedRunning": true,
+          "volume": "pods-c0dc0ca6fa37c8352e216af2_app-data-disk-v1",
+          "durableWorkspaceVolume": true,
+          "productHostPorts": [
+            26630
+          ],
+          "databaseHostPorts": [],
+          "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+        }
+      },
+      {
+        "id": "VVuRa4c4Bmo3ssqhFuT6_mr5fiw0eMyL",
+        "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-618da4caadd4",
+        "provider": "github",
+        "port": 26630,
+        "status": "stopped",
+        "compute": {
+          "initialState": "Available",
+          "observedAt": 1791114252309
+        },
+        "createdAt": 1791114251654,
+        "updatedAt": 1791114276233,
+        "providerReadyAt": 1791114252423,
+        "readyAt": 1791114263340,
+        "timings": {
+          "downloadMs": 301,
+          "imagesMs": 47,
+          "imageCacheHits": 1,
+          "imageArchiveCacheHits": 0,
+          "imageCacheCheckMs": 47,
+          "imageDownloadMs": 0,
+          "imageLoadMs": 0,
+          "imageCdnDownloads": 0,
+          "imageCdnFallbacks": 0,
+          "imageCdnMs": 0,
+          "imageOriginDownloads": 0,
+          "runtimeReadyMs": 4555,
+          "cacheHit": true
+        },
+        "storageMode": "persistent",
+        "totalMs": 11686,
+        "deliveryMs": 10917,
+        "counterCheck": {
+          "productDocument": true,
+          "api": null,
+          "before": 3,
+          "afterWrite": 4,
+          "afterRead": 4,
+          "passed": true,
+          "expectedAfterRelaunch": 3
+        },
+        "sqliteFileRuntimeCheck": {
+          "passed": true,
+          "fixtureProfile": "micronaut",
+          "project": "pods-c0dc0ca6fa37c8352e216af2",
+          "services": [
+            "web"
+          ],
+          "databaseEngine": "SQLite",
+          "inspectionEngineVersion": "3.53.4",
+          "integrity": "ok",
+          "savedCount": 4,
+          "sourceFiles": [
+            "counter.sqlite"
+          ],
+          "snapshotFiles": [
+            "counter.sqlite"
+          ],
+          "applicationPaused": false,
+          "applicationStayedRunning": true,
+          "volume": "pods-c0dc0ca6fa37c8352e216af2_app-data-disk-v1",
+          "durableWorkspaceVolume": true,
+          "productHostPorts": [
+            26630
+          ],
+          "databaseHostPorts": [],
+          "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+        }
+      }
+    ],
+    "nativeBrowserVerified": false,
+    "passed": true
+  },
+  "performance": {
+    "targetMs": 20000,
+    "targetAchievedForAllLaunches": false,
+    "rows": [
+      {
+        "provider": "google",
+        "launchId": "e5FiSfxwKfIdmKQCBGGvisik-OyoZBWM",
+        "scenario": "uncached-image",
+        "initialComputeState": "SUSPENDED",
+        "totalMs": 45924,
+        "deliveryMs": 32549,
+        "imageDownloadMs": 16400,
+        "imageCdnMs": 15265,
+        "imageLoadMs": 6402,
+        "browserVisibleMs": 56620
+      },
+      {
+        "provider": "google",
+        "launchId": "Gr-OVFZSwcATi-rm27zZAWGbD5eUcQib",
+        "scenario": "cached-image",
+        "initialComputeState": "RUNNING",
+        "totalMs": 10671,
+        "deliveryMs": 7006,
+        "imageDownloadMs": 0,
+        "imageCdnMs": 0,
+        "imageLoadMs": 0,
+        "browserVisibleMs": 12004
+      },
+      {
+        "provider": "github",
+        "launchId": "GWumKIIsesWwB8KsdeEQX6tB6j1rOcEq",
+        "scenario": "uncached-image",
+        "initialComputeState": "Shutdown",
+        "totalMs": 64944,
+        "deliveryMs": 49537,
+        "imageDownloadMs": 17602,
+        "imageCdnMs": 16427,
+        "imageLoadMs": 5192,
+        "browserVisibleMs": null
+      },
+      {
+        "provider": "github",
+        "launchId": "VVuRa4c4Bmo3ssqhFuT6_mr5fiw0eMyL",
+        "scenario": "cached-image",
+        "initialComputeState": "Available",
+        "totalMs": 11686,
+        "deliveryMs": 10917,
+        "imageDownloadMs": 0,
+        "imageCdnMs": 0,
+        "imageLoadMs": 0,
+        "browserVisibleMs": null
+      }
+    ],
+    "notes": [
+      "CDN time is included in imageDownloadMs; phase durations must not be summed as independent values.",
+      "First native observations resumed suspended/shutdown compute. Neither proves an uncached launch starting on already-ready compute.",
+      "The first Google browser observation includes a measurement gap and a corrected test-selector wait; it is an observed upper bound, not an exact paint timestamp.",
+      "Cached image launches do not exercise the CDN download path. Historical origin transfers were not a controlled simultaneous comparison."
+    ]
+  },
+  "persistenceScope": "Existing SQLite count 2 survives the new prepared version; writes 2 to 3 to 4 survive reload and full app stop/relaunch on both providers. This does not prove provider VM replacement, power-loss durability, or migration compatibility.",
+  "cleanupAudit": {
+    "recordedAt": "2026-10-04T11:44:56.119611+00:00",
+    "pid": 1444744,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "57d9dd95d47d9a597ba763460c568a270fc4d722a72b073e8b080254c143e54c",
+    "revision": "54eb6902630a8c125ea0825f33cd3d6a41d2f760"
+  },
+  "codespacesProductPort": {
+    "port": 26630,
+    "visibility": "private"
+  },
+  "sourceTestsUnchanged": true,
+  "deploymentEvidence": "stack-image-delivery-deployment.json",
+  "testEvidence": "stack-image-delivery-tests.json",
+  "passed": true
+}

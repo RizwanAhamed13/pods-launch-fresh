@@ -134,11 +134,32 @@ the compute download used a short-lived signed URL without a GitHub token.
 The artifact repository is private. The large difference between the two download
 observations must not be treated as a guarantee for new clients or regions.
 
-The optional delivery implementation passes [204 local and Linux checks](evidence/stack-image-delivery-tests.json); production deployment and a full native launch are still pending. These are
-download-only measurements, excluding Docker load, runtime startup and browser
-interaction. The next gate is authorized artifact delivery with an aswin fallback,
-followed by a complete native launch with an uncached image. The historical aswin
-timings and this new experiment are not a controlled side-by-side benchmark.
+The optional delivery implementation passes [204 local and Linux checks](evidence/stack-image-delivery-tests.json)
+and is [deployed with existing artifacts preserved](evidence/stack-image-delivery-deployment.json).
+A [fresh developer build and native acceptance run](evidence/stack-image-delivery-native.json)
+prepared Micronaut + SQLite in 247.080s and published its new image to private
+artifact storage. Both providers downloaded that image through the authorized CDN
+path, with zero image-cache hits and no origin fallback. Image transfer took
+16.400s on Cloud Shell and 17.602s on Codespaces, including hashing and disk writes.
+
+| New-image native run | Initial compute | Application ready | Cached relaunch ready |
+| --- | --- | --- | --- |
+| Google Cloud Shell | Suspended | 45.924s | 10.671s |
+| GitHub Codespaces | Shutdown | 64.944s | 11.686s |
+
+Cloud Shell's real product page passed button writes, reload and full stop/relaunch;
+the cached page was observed in 12.004s. Its first browser observation includes a
+measurement gap and a corrected test-selector wait, so 56.620s is an observed
+upper bound, not an exact paint measurement. Codespaces passed authenticated
+product HTTP and SQLite integrity checks; native browser interaction remains pending.
+Both providers retained the earlier count of 2 across the new build, then saved
+3 and 4 across full application restarts. All four launches were stopped.
+
+The 20-second first-launch target remains unmet. After compute became ready,
+delivery and startup still took 32.549s and 49.537s respectively. These results
+do not prove an uncached launch beginning on already-ready compute. CDN timings
+are nested within image-download timings; the historical origin tests are not a
+controlled side-by-side comparison. VM replacement durability is a separate gate.
 
 ## Persistence and operational limits
 

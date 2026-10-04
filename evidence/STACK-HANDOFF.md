@@ -11,8 +11,9 @@ progress; it is not a blocked turn. No universal compatibility or20s claim.
 - Core repo: https://github.com/RizwanAhamed13/pods-launch-fresh.
   Current GitHub API visibility is PUBLIC; do not rely on the older private label.
 - New private artifact repository: https://github.com/RizwanAhamed13/pods-launch-artifacts-fresh.
-  Draft delivery-probe-20261004/release402982733, asset609702555 contains only the
-  unchanged prepared Micronaut image. Private visibility and anonymous404 verified.
+  Draft delivery-probe-20261004/release402982733. Asset609702555 is the original
+  experiment image; asset609732872 is the new ordinary developer build image.
+  Private visibility and anonymous404 verified; signed URLs/tokens are never saved.
 - Public fixture repo: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
   pinned d6da2ed780aec8ae0178fc181f1d24113c322e15.
 - Coverage:55 isolated build/artifact/browser,55 Google native browser,
@@ -28,10 +29,10 @@ progress; it is not a blocked turn. No universal compatibility or20s claim.
   at2026-10-04T11:12:33.556Z:55 isolated,55 Google browser,55 Codespaces protocol;
   all55 applications shown, including passing Streamlit and Symfony rows.
   Publication receipt: stack-wide-support-published.json.
-- Latest idle audit2026-10-04T11:22:59UTC: health200, SQLiteok, zero active builds/launches.
-  Recorded in stack-artifact-cdn.json; running PID and runner hash unchanged.
-  All accepted launches stopped. Earlier failed attempts remain terminal, not relabeled.
-  No build/launch watcher or test harness is currently running.
+- Latest idle audit2026-10-04T11:44:56UTC: health200, SQLiteok, zero active builds/launches.
+  Recorded in stack-image-delivery-native.json. All four new launches stopped.
+  Earlier failed attempts remain terminal, not relabeled. Watcher31871 and native
+  harness19718 finished successfully; neither is running.
 
 ## Fixes and retained failures
 
@@ -87,30 +88,46 @@ progress; it is not a blocked turn. No universal compatibility or20s claim.
   Sourcecopy removed fromQA; productionimage/artifacts and Docker caches unchanged.
   Signed URL deliberately not saved; API resolves302 on demand, anonymous404.
   Receipt includes upload, asset identity, input hashes and the two observations.
-- Optional private artifact delivery is implemented and204tests pass on both hosts.
-  src/image-delivery.mjs publishes only validated local bytes to a private release,
-  checks remote digest and stores immutable asset IDs; never persists signedURLs.
-  Builds remain launchable if upload fails. Runner opts in to authorized307 and
-  strictly validates the CDN destination; no capability/token forwarded. Integrity
-  or transport failure retries local delivery once; bad bytes never reachDocker.
-  Old clients retain200localdelivery. Production deployment/native test pending.
-- Next concrete gate: deploy optional private artifact delivery into preparation
-  and launch, authorize atPODS before obtaining a short-lived signed URL, never send
-  server credentials tocompute, strictly validate destination and image integrity,
-  retain aswin delivery on lookup/missingasset failure. GitHub documents both200
-  streaming and302 responses, so handle those without assuming every asset redirects.
-  Then use a new ordinary developer build for an uncached-image native launch;
-  do not delete existing user image caches to manufacture a timing result.
-  No production CDN integration or launch-speed claim exists yet. New clients/regions
-  cannot be assumed to reproduce the second CDN timing. Current20s target remains open.
+- Optional private artifact delivery is deployed at runtime54eb690 and204tests pass
+  on both hosts. src/image-delivery.mjs publishes validated local bytes to a private
+  release, checks remote digest and stores immutable asset IDs; no signed URLs.
+  Upload/lookup failure keeps local delivery. Runner opts in to authorized307 and
+  validates CDN destination and SHA; no capability/token forwarded. Corrupt or
+  failed CDN transfer retries origin once. Old clients retain200local delivery.
+- Deployment receipt stack-image-delivery-deployment.json: preserved55images and
+  127artifacts; private credentials transferred through stdin, .env mode0600.
+  First preflight found a missing remote audit helper and changed nothing; after
+  copying the existing helper, idle deployment succeeded. Do not print .env.
+- Native acceptance stack-image-delivery-native.json: real browser developer build
+  p3n99Eg66l7iemFbb0UaYgTUfaXGlMLt, ordinary quota,247.080s, source d6da2ed.
+  New app repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-618da4caadd4,125121394image bytes,
+  imageSHAe14ef3717c2560df51b9ceb038a2363642ba436e307ac80e9c3c19dbb8ac8cca.
+  Native images differ from prior Micronaut; no caches/data cleared. First launch
+  on each provider reports imageCacheHits0,imageCdnDownloads1,fallback0,origin0.
+  Google SUSPENDED: total45.924s,after-provider32.549s,image download16.400s,
+  CDN15.265s,load6.402s. Cached RUNNING:total10.671s,visible12.004s.
+  First Google visible56.620s is an upper observation bound: a gap after the first
+  wait plus incorrect selector correction delayed observation/interaction. Product
+  DOM exposed #value / Add one; use those exact controls for future Micronaut tests.
+  Codespaces Shutdown:total64.944s,after-provider49.537s,image download17.602s,
+  CDN16.427s,load5.192s. Cached Available:total11.686s. Both SQLite online
+  inspections pass integrity with continuous liveness and private DB ports.
+  Both providers retained old count2 across new version and wrote2→3→4, with full
+  stop/relaunch. Preserve Micronaut counter4 on both. All four launches stopped.
+- Next performance gate: quantify remaining runner/bootstrap overhead and native
+  image loading/startup using these phase timings before selecting an optimization.
+  First native CDN runs resumed suspended/shutdown compute; a ready-compute new-image
+  observation remains unproven. Never delete caches to manufacture one, or relabel
+  cached runs as first launches.20s remains unmet; new regions/CDN clients vary.
+  Native Codespaces browser/VM-replacement/stable-hostname questions still pending.
 - Matrix is explicit tested representatives, not every version/application. Unknown
   secrets/schema/migrations remain developer inputs. Desktop/mobile/GPU/non-web
   programs are not claimed as browser products. Existing public-GitHub scope remains.
 
 ## Running service and constraints
 
-- PID1390769, runtime/control2cad8f8, provider5dde1e5, builder2553fc8, storage77cf340.
-  RunnerSHAa8140865a8d18aa4f36c6194bc011507508af34b9ad26cc40c78ccdafbe5925d.
+- PID1444744, runtime/control54eb690, provider5dde1e5, builder2553fc8, storage77cf340.
+  RunnerSHA57d9dd95d47d9a597ba763460c568a270fc4d722a72b073e8b080254c143e54c.
   Preserve cloudflaredPID2322522 and origin
   https://collection-conferences-ages-clearly.trycloudflare.com.
 - PODS_IMAGE_STORAGE_BYTES=8589934592. Quotas3/account/hour,12global/hour; no bypass,
@@ -127,9 +144,11 @@ progress; it is not a blocked turn. No universal compatibility or20s claim.
 
 ## Evidence and browser handles
 
-- Browser1: stackQa6/tab1 Symfony prepareddeveloperform; echoTab/tab2 stoppedSymfony;
+- Browser1: stackQa6/tab1 stopped new Micronaut; echoTab/tab2 stoppedSymfony;
   mongodbSupport/tab3 supportmatrix. Re-markHandoff eachturn. Aftercompaction call
-  cua.rewriteDocumentation first. streamlitNative and symfonyNative retainactualrecords.
+  cua.rewriteDocumentation first. micronautCdnGoogle contains both current browser
+  records; micronautCdnLaunchUrl is the new launch link. Older streamlitNative and
+  symfonyNative records remain. /tmp/pods-record-cdn-native.py validates this receipt.
 - /tmp/pods-record-dashboard-native.py and /tmp/pods-record-sqlite-native.py now
   retain exact failedIDs separately and require four accepted launches plus preserved
   failure, with timestamp/app identity, privateport and saveddata checks.
@@ -138,9 +157,9 @@ progress; it is not a blocked turn. No universal compatibility or20s claim.
   and passing replacementflask-mongodb7. Never count the failed row as a pass.
 - QAguest pods-fresh-matrix-01 via /snap/lxd/current/bin/lxc; uid/gid1000,
   Node/opt/node/bin/node, dependencies/opt/pods/node_modules. Candidate
-  /output/sqlite-online-candidate-2cad8f8;323inputhashes verified.
+  /output/image-cdn-candidate-13b5fc8;326inputhashes verified.
   All four new preflight containers/volumes/scoped storage and temporary snapshots cleaned.
   Keep unrelatedQAserverPID292107, app18090/proxy8081/host18890, shared caches andruntime.
-- Full logs /tmp/pods-sqlite-online-full-local-final.txt and /tmp/pods-sqlite-online-full-qa.txt.
-  Earlier full local snapshot-file expectation failed, then actual WAL/SHM metadata
-  and bounded expectations were corrected. Both final suites193passed.
+- Current full logs /tmp/pods-cdn-full-local.txt and /tmp/pods-cdn-full-qa.txt,
+  both204passed. Runtime source hashes rechecked against passing suite during
+  native receipt audit. This gate changed only docs/evidence after deployment.
