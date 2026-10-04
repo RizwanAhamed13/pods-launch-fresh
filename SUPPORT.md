@@ -161,7 +161,16 @@ do not prove an uncached launch beginning on already-ready compute. CDN timings
 are nested within image-download timings; the historical origin tests are not a
 controlled side-by-side comparison. VM replacement durability is a separate gate.
 
-A [fresh-asset transfer comparison](evidence/stack-cdn-range-experiment.json) verified the same 125.121 MB image in 5.504s using four concurrent ranges, versus 15.326s for a single request including the extra disk check. The two methods used separate new private asset paths on the same available Codespace; this is one sequential comparison, not a guaranteed speedup. Both temporary assets were removed. The large-image range implementation passes [211 local and Linux checks](evidence/stack-cdn-range-tests.json). Whole-product native acceptance of this optimization is pending.
+A [fresh-asset transfer comparison](evidence/stack-cdn-range-experiment.json) verified the same 125.121 MB image in 5.504s using four concurrent ranges, versus 15.326s for a single request including the extra disk check. The two methods used separate new private asset paths on the same available Codespace; this is one sequential comparison, not a guaranteed speedup. Both temporary assets were removed. The large-image range implementation passes [211 local and Linux checks](evidence/stack-cdn-range-tests.json). [Native acceptance of the range path](evidence/stack-cdn-range-native.json) used a new ordinary developer build prepared in 257.820s. Both providers reported an absent image, one successful range download and no origin fallback.
+
+| Range-download launch | Initial compute | Image delivery | Application healthy | Cached healthy |
+| --- | --- | --- | --- | --- |
+| Google Cloud Shell | Running | 6.215s | 20.755s | 10.058s |
+| GitHub Codespaces | Available | 5.218s | 25.357s | 11.149s |
+
+Google's actual product was observed at 22.006s, then 11.465s on the cached relaunch. Both providers retained SQLite value 4 across the new version and saved 5 then 6 across reload and full stop/relaunch. Codespaces passed product HTTP and online SQLite integrity inspection with private ports; native browser acceptance remains pending. Existing Docker layers and saved data were retained, so these are new-image launches on previously used compute, not empty-machine benchmarks.
+
+The [first Codespaces attempt failed](evidence/stack-cdn-range-preview-failure.json) after 15.831s during preview-port lookup, before the runner or image download began. A subsequent read-only lookup on aswin took 24.147s; GitHub was observed transitioning through Starting to Available. Two later application launches passed. The failed attempt and its unsuccessful stop confirmation remain recorded; no active launch or application was left running. The preview lookup's 15-second command bound, within a 60-second stage deadline, needs a separate reliability fix. These functional retries do not establish a first-click success guarantee or meet the 20-second product target.
 
 ## Persistence and operational limits
 

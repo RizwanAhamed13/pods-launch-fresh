@@ -1,165 +1,123 @@
 # Broad stack checkpoint
 
-Goal active and incomplete: developer URL → isolated aswin build → reusable
-artifact → authorized user compute → actual usable product. This goal turn made
-progress; it is not a blocked turn. No universal compatibility or20s claim.
+Goal active and incomplete. Developer URL → isolated aswin build → reusable
+artifact → authorized user compute → actual usable product. This turn completed
+native range-download acceptance and diagnosed a separate preview timeout.
+Do not mark the goal complete or blocked: meaningful work remains possible.
 
 ## Current verified state
 
 - Local: /Users/rizwanahamed/Documents/ChatGPT/podsv2.
 - aswin: /home/aswin/pods-launch-fresh; SSH alias aswin.
-- Core repo: https://github.com/RizwanAhamed13/pods-launch-fresh.
-  Current GitHub API visibility is PUBLIC; do not rely on the older private label.
-- New private artifact repository: https://github.com/RizwanAhamed13/pods-launch-artifacts-fresh.
-  Draft delivery-probe-20261004/release402982733. Asset609702555 is the original
-  experiment image; asset609732872 is the new ordinary developer build image.
-  Private visibility and anonymous404 verified; signed URLs/tokens are never saved.
-- Public fixture repo: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
+- Public core: https://github.com/RizwanAhamed13/pods-launch-fresh.
+- Public fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
   pinned d6da2ed780aec8ae0178fc181f1d24113c322e15.
-- Coverage:55 isolated build/artifact/browser,55 Google native browser,
-  55 Codespaces authenticated HTTP/protocol. No representative remains pending
-  on these two native paths. Codespaces native browser checks remain unverified.
-- Current full suite204/204 local and isolated Linux, including optional private
-  image publication, authorized CDN delivery, integrity and fallback checks.
-  Evidence stack-image-delivery-tests.json; snapshot326files fully verified.
-  Source7540physical lines:3858product/tooling +2585tests +933examples +164browser.
-- Latest accepted fixtures Streamlit and Symfony; stack-{streamlit,symfony}-{url,google,codespaces,audit}.json.
-  Detailed timings and all earlier acceptance notes are in STACK-VERIFICATION-HISTORY.md.
-- Evidence revision6f0f460 pushed and synced to aswin. Public /support DOM verified
-  at2026-10-04T11:12:33.556Z:55 isolated,55 Google browser,55 Codespaces protocol;
-  all55 applications shown, including passing Streamlit and Symfony rows.
-  Publication receipt: stack-wide-support-published.json.
-- Latest idle audit2026-10-04T11:44:56UTC: health200, SQLiteok, zero active builds/launches.
-  Recorded in stack-image-delivery-native.json. All four new launches stopped.
-  Earlier failed attempts remain terminal, not relabeled. Watcher31871 and native
-  harness19718 finished successfully; neither is running.
+- Coverage remains55 isolated build/artifact/browser,55 Google native browser,
+  55 Codespaces HTTP/protocol. Codespaces native browser interaction is unverified.
+  Seven database/service families are covered. Matrix records tested representatives,
+  not every version or arbitrary application. Unknown secrets/schema/migrations
+  still require developer inputs; desktop/mobile/GPU/non-web products are excluded.
+- Full suite211/211 local and isolated Linux; stack-cdn-range-tests.json verifies
+  all328 snapshot input hashes. Current source7,699physical lines:
+  3,916product/tooling +2,686tests +933examples +164browser tools.
+- Runtime/control91999c6517601e8bc9f9b0ce35e47169fd76339d, PID1459170.
+  Provider5dde1e5, builder2553fc8, storage77cf340.
+  RunnerSHAbe6b31d3791059d5833b20f2b7bdac6c7f99d78e00d4fd0c1ab3c7f0d688cc64.
+- Deployment stack-cdn-range-deployment.json: health200, SQLiteok, idle,
+  preserved56images/129artifacts and unchanged .env. No service restart for docs.
+- Latest idle audit2026-10-04T12:09:46.916911UTC: health200, SQLiteok,
+  zero active builds/launches. All four accepted launches and the Google warmup
+  stopped; the first Codespaces attempt remains terminal failed. No jobs running.
 
-## Fixes and retained failures
+## Latest native gate
 
-- Runtime2cad8f8 sets STREAMLIT_BROWSER_SERVER_ADDRESS to the exact provider preview
-  hostname. Actual Streamlit1.65 handshake reproduces403 with rewrittenHost, then101
-  for configured origin while unrelated origin remains403; CORS/XSRF enabled.
-  Native Google retry renders and saves data. stack-streamlit-origin-{probe,tests,deployment}.json.
-- Streamlit first build failed at5GiB image-store capacity. Operator capacity now8GiB;
-  default5GiB, quotas and per-app bounds unchanged. No old image/artifact was deleted.
-  stack-streamlit-storage-failure.json and stack-image-budget-* retain that work.
-- Streamlit second ordinary-quota build l9Yj0TocaLN4eJfZyJBTo80py9PuCS04 succeeded
-  in182.021s,182163684image bytes. First Google launch C1jD1h8nZjcnQkeYrRzk7gTqEaSKAtBM
-  failed to render with18WebSocketerrors despite health200; saved no value.
-  Failure and54.714s uncached delivery are in stack-streamlit-browser-failure.json.
-  Successful Google retries were cached: visible10.009/8.191s, healthy7.274/6.347s.
-  Google and Codespaces counters now2. Codespaces first/cached healthy90.361/8.900s.
-- Symfony build H1m7K4froQMKGlra2eI7Lq_O9fcC435a succeeded in249.658s,
-  225348539image bytes. Google first/cached visible58.118/7.549s,
-  healthy56.123/6.743s; saved0→1→2 with reload/fullstop/relaunch.
-- Symfony first Codespaces run Pkj_d40BgwUQpwjbkofrHHXZ9uV5Gs0- saved0→1 but the
-  old SQLite inspection paused the service during production liveness checking.
-  Server markedfailed; stop confirmation/repeat aborted. Scoped container was absent.
-  stack-symfony-snapshot-failure.json preserves this failed attempt and66.765s
-  uncached launch on Available compute (image download41.146s).
-- Updated scripts/probe-sqlite-file-runtime.mjs uses read-only SQLite online backup,
-  never pauses/copies the running container. Old pause/liveness conflict reproduced
-  in real isolated Ktor/Micronaut/Phoenix/Symfony; all four passed online snapshots,
-  committed WAL reads, continuous liveness and full restart persistence.
-  Native Symfony retries preserve data1→2→3, bothcached; healthy9.450/8.651s,
-  both stopped. Preserve Google counter2 and Codespaces counter3; never reset them.
-  Production runner/liveness unchanged by the probe fix; no service restart needed.
+- src/image-ranges.mjs downloads images≥32MiB in four bounded verified ranges.
+  Exact206/Content-Range/size/SHA checks, peer cancellation, private temporary file,
+  existing authorized single origin fallback. Runner reports range attempts/downloads.
+  No token/capability is sent to CDN; signed URLs are never saved.
+- stack-cdn-range-experiment.json compares separate new private asset paths:
+  four ranges5.504s vs serial15.326s including verification; one sequential test,
+  not a guaranteed speedup. Temporary assets609748536/609749327 deleted and404verified.
+- Ordinary developer browser build FQE7ixIiC2VbQAFOf6rb8jQK0WPArPVH:
+ 257.820s, source d6da2ed, new app repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-ed14d4bc3ecb.
+  Image125122053bytes, SHA48ac2bcef4a719876140d74b81474917545c48a15ae316252f31b466246f6d3d.
+  Private permanent asset609771636 in release402982733,
+  https://github.com/RizwanAhamed13/pods-launch-artifacts-fresh.
+  Preserve permanent assets609702555,609732872 and609771636.
+- Before the new Google launch, prior cached version was opened without a write,
+  verified count4 and fully stopped. This warmup is excluded from new-image timings.
+- Google new image xAmUXDTb3HAOyGxIPampObKiRN-ARxYI: RUNNING, healthy20.755s,
+  observed product22.006s, image transfer6.215s (CDN5.125s), load2.826s.
+  Cached EdKSBQAixKGq_EC5QFqsxDXU1AUXtkDr: healthy10.058s, product11.465s.
+  Browser button/reload/fullstop/relaunch retains4→5→6; no warning/error logs.
+- Codespaces accepted new image BVjGLv0CgVFUP6VuTGwDT6t5mnuOXSLb:
+  Available,healthy25.357s,transfer5.218s (CDN4.028s),load3.663s.
+  Cached zOg1_5XrtsXik3gTNc_QZn2RJBG4io3x: healthy11.149s.
+  Authenticated product HTTP and SQLite online backup passed4→5→6;
+  integrityok, private product26630, no exposed DB port, no pause, fully stopped.
+- Preserve Micronaut count6 on BOTH providers. Do not rerun expected4 or clear data.
+- stack-cdn-range-native.json validates source hashes, unique IDs, build/image
+  identity, first-cache-miss/repeat-hit, successful ranges/no fallback, persistence
+  and cleanup. allAttemptsPassed=false because of the earlier preview failure.
+- New image was absent, but existing Docker layers/caches were retained. Do not
+  call this an empty-machine benchmark. 20s product target remains unmet.
+  Prior sequential CDN measurements remain in stack-image-delivery-native.json.
 
-## Remaining goal work
+## Failure and next gate
 
-- Native Codespaces browser authorization is pending the user's existing GitHub2FA
-  question. Provider VM-replacement durability and stable production hostname also
-  await existing questions. Do not repeat those questions or infer approval.
-- First-launch speed is not solved. Prepared image downloads alone frequently
-  exceed20s, including ready compute. See stack-native-timings and
-  stack-image-delivery-analysis.{json,md,py}; cache hits are separate fields.
-  Delivery analysis covers8 first observations across4fixtures,5.514–5.555MB/s;
-  it does not isolate the slow network segment or compare providers fairly.
-  Streamlit/Symfony successful retries reuse failed first attempts' images. Never
-  relabel them uncached or erase failed measurements. The byte-reduction and delivery
-  experiments below identify the next gate; do not repeat the completed compression probe.
-- This turn completed that size gate: stack-image-recompression.json proves all
-  six exact native Micronaut layers alreadygzip; outerlevel9 saves only0.1726%.
-  Each candidate decodes to identical tarbytes. No production compression change.
-- Private CDN experiment stack-artifact-cdn.json: exact125122726-byte native image,
-  SHA07408dbaef08a310f195b938eee2a54f2e2daa7405d7298173759d7a9db2502c,
-  uploaded once fromaswin29.576s. AvailableCodespaces download14.985s then0.792s,
-  both hash/disk verified; no token sent toCDN. Each fresh temp archive removed.
-  Sourcecopy removed fromQA; productionimage/artifacts and Docker caches unchanged.
-  Signed URL deliberately not saved; API resolves302 on demand, anonymous404.
-  Receipt includes upload, asset identity, input hashes and the two observations.
-- Optional private artifact delivery is deployed at runtime54eb690 and204tests pass
-  on both hosts. src/image-delivery.mjs publishes validated local bytes to a private
-  release, checks remote digest and stores immutable asset IDs; no signed URLs.
-  Upload/lookup failure keeps local delivery. Runner opts in to authorized307 and
-  validates CDN destination and SHA; no capability/token forwarded. Corrupt or
-  failed CDN transfer retries origin once. Old clients retain200local delivery.
-- Deployment receipt stack-image-delivery-deployment.json: preserved55images and
-  127artifacts; private credentials transferred through stdin, .env mode0600.
-  First preflight found a missing remote audit helper and changed nothing; after
-  copying the existing helper, idle deployment succeeded. Do not print .env.
-- Native acceptance stack-image-delivery-native.json: real browser developer build
-  p3n99Eg66l7iemFbb0UaYgTUfaXGlMLt, ordinary quota,247.080s, source d6da2ed.
-  New app repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-618da4caadd4,125121394image bytes,
-  imageSHAe14ef3717c2560df51b9ceb038a2363642ba436e307ac80e9c3c19dbb8ac8cca.
-  Native images differ from prior Micronaut; no caches/data cleared. First launch
-  on each provider reports imageCacheHits0,imageCdnDownloads1,fallback0,origin0.
-  Google SUSPENDED: total45.924s,after-provider32.549s,image download16.400s,
-  CDN15.265s,load6.402s. Cached RUNNING:total10.671s,visible12.004s.
-  First Google visible56.620s is an upper observation bound: a gap after the first
-  wait plus incorrect selector correction delayed observation/interaction. Product
-  DOM exposed #value / Add one; use those exact controls for future Micronaut tests.
-  Codespaces Shutdown:total64.944s,after-provider49.537s,image download17.602s,
-  CDN16.427s,load5.192s. Cached Available:total11.686s. Both SQLite online
-  inspections pass integrity with continuous liveness and private DB ports.
-  Both providers retained old count2 across new version and wrote2→3→4, with full
-  stop/relaunch. Preserve Micronaut counter4 on both. All four launches stopped.
-- Next performance gate: quantify remaining runner/bootstrap overhead and native
-  image loading/startup using these phase timings before selecting an optimization.
-  First native CDN runs resumed suspended/shutdown compute; a ready-compute new-image
-  observation remains unproven. Never delete caches to manufacture one, or relabel
-  cached runs as first launches.20s remains unmet; new regions/CDN clients vary.
-  Native Codespaces browser/VM-replacement/stable-hostname questions still pending.
-- Matrix is explicit tested representatives, not every version/application. Unknown
-  secrets/schema/migrations remain developer inputs. Desktop/mobile/GPU/non-web
-  programs are not claimed as browser products. Existing public-GitHub scope remains.
+- First Codespaces attempt oYLPWeOxc0R9CqqW9yXr3Zqtl1q9O1-k failed after15.831s:
+  'Could not start your compute. gh timed out'. Initial API stateAvailable.
+  No runner timings, image download or database write. Harness stop confirmation
+  also timed out because the launch was already failed; retain that failure.
+- stack-cdn-range-preview-failure.json traces providers.launch →
+  ensureCodespacePreview before bootstrap. Its initial read-only gh ports lookup
+  has a15s per-command timeout inside a60s stage deadline.
+  The same aswin read-only command subsequently succeeded in24.147s, returning
+  only private8080. During diagnosis API states wereStarting thenAvailable.
+  Do not claim why the provider transitioned; observations do not establish it.
+- Next required reliability gate: reproduce the slow preview lookup and enforce
+  its overall budget without prematurely aborting a recoverable lookup. Keep
+  authentication failures, malformed replies, privacy verification and total
+  timeout fail-closed. Add a meaningful before/after regression, full local and
+  isolated Linux checks, idle deploy, then native Codespaces acceptance.
+  No preview timeout fix has yet been applied or claimed.
+- Investigate skill was read: /Users/rizwanahamed/.codex/skills/gstack-investigate/SKILL.md.
+  Root-cause workflow active; freeze helper unavailable. No subagents authorized.
+- After reliability, quantify remaining bootstrap/provider overhead. Google:start
+  currently installs the per-launch ephemeral SSH key; do not simply skip it for
+  RUNNING compute without preserving key registration/removal and recovery.
+- Existing questions about GitHub browser2FA, stable hostname and destructive
+  provider VM-replacement testing remain pending. Do not repeat or infer approval.
 
-## Running service and constraints
+## Operational constraints and evidence
 
-- PID1444744, runtime/control54eb690, provider5dde1e5, builder2553fc8, storage77cf340.
-  RunnerSHA57d9dd95d47d9a597ba763460c568a270fc4d722a72b073e8b080254c143e54c.
-  Preserve cloudflaredPID2322522 and origin
+- Preserve cloudflaredPID2322522 and origin
   https://collection-conferences-ages-clearly.trycloudflare.com.
-- PODS_IMAGE_STORAGE_BYTES=8589934592. Quotas3/account/hour,12global/hour; no bypass,
-  account switching to evade limits or isolated QA artifact import into production.
-- Before any runtime deploy, run /tmp/pods-storage-deploy-audit.py overSSH and verify
-  idle actualPID/cwd/8787listener, SQLite quick_check and health. Do not restart for docs/probes.
-- Existing .env/provider credentials stay private. Never print tokens, account
-  identities, computeKey or private Google preview URLs. SQLite reads mode=ro, whitelist fields.
-  Local gcloud identity is suspended/wrong; do not use it.
-- Sync only after confirmedpush: gh auth token piped into ssh aswin, GH_TOKEN fromstdin,
+- PODS_IMAGE_STORAGE_BYTES8589934592; quotas3/account/hour,12global/hour.
+  No bypass/account switching/QA artifact import or cache/data clearing.
+- .env/private delivery/provider credentials stay private; never print tokens,
+  account identities, computeKey, signed URLs or private Google preview URLs.
+  SQLite reads mode=ro with whitelisted fields. Local gcloud identity is wrong;
+  do not use it. Deployer verifies actualPID/cwd/listener and unchanged environment.
+- Push first, then sync with gh auth token piped to ssh aswin and temporary GH_TOKEN,
   helper /home/aswin/pods-tools/bin/gh auth git-credential, git pull --ff-only.
-- Codespace pods-launch-containers-69rw5vx4xp46c5qw5, privateStreamlit23312/Symfony20841.
-  Preserve all native data. QA cleanup affects only explicit isolated test dataKeys.
-
-## Evidence and browser handles
-
-- Browser1: stackQa6/tab1 stopped new Micronaut; echoTab/tab2 stoppedSymfony;
-  mongodbSupport/tab3 supportmatrix. Re-markHandoff eachturn. Aftercompaction call
-  cua.rewriteDocumentation first. micronautCdnGoogle contains both current browser
-  records; micronautCdnLaunchUrl is the new launch link. Older streamlitNative and
-  symfonyNative records remain. /tmp/pods-record-cdn-native.py validates this receipt.
-- /tmp/pods-record-dashboard-native.py and /tmp/pods-record-sqlite-native.py now
-  retain exact failedIDs separately and require four accepted launches plus preserved
-  failure, with timestamp/app identity, privateport and saveddata checks.
-  /tmp/pods-native-evidence-audit.py validates identities and evidence privacy.
-- Machine-readable acceptance stack-coverage.json retains older failedflask-mongodb
-  and passing replacementflask-mongodb7. Never count the failed row as a pass.
-- QAguest pods-fresh-matrix-01 via /snap/lxd/current/bin/lxc; uid/gid1000,
-  Node/opt/node/bin/node, dependencies/opt/pods/node_modules. Candidate
-  /output/image-cdn-candidate-13b5fc8;326inputhashes verified.
-  All four new preflight containers/volumes/scoped storage and temporary snapshots cleaned.
-  Keep unrelatedQAserverPID292107, app18090/proxy8081/host18890, shared caches andruntime.
-- Current full logs /tmp/pods-cdn-full-local.txt and /tmp/pods-cdn-full-qa.txt,
-  both204passed. Runtime source hashes rechecked against passing suite during
-  native receipt audit. This gate changed only docs/evidence after deployment.
+- Codespace pods-launch-containers-69rw5vx4xp46c5qw5. All native saved data retained.
+  Streamlit counters2both, Symfony Google2/Codespaces3, Micronaut6both.
+- Preserve older failures: Streamlit initial storage limit/build and403 origin,
+  Symfony pause/liveness conflict. See STACK-VERIFICATION-HISTORY.md and individual
+  receipts. SQLite inspections now use online backup, never pause the app.
+- QAguest pods-fresh-matrix-01, /snap/lxd/current/bin/lxc, uid/gid1000,
+  Node/opt/node/bin/node, deps/opt/pods/node_modules. Current verified candidate
+  /output/image-range-candidate-917c7d4. Always --disable-stdin for lxc exec overSSH;
+  earlier setup without it consumed script input and was not counted as a test.
+  Keep QAserverPID292107, ports18090/8081/18890, shared caches and runtime.
+- Full test logs /tmp/pods-range-full-local.txt and /tmp/pods-range-full-qa.txt.
+  Latest receipt generator /tmp/pods-record-range-native.py; raw native inputs
+  /tmp/pods-range-*.json. Preserve failure input pods-range-codespaces-failed-raw.json.
+- Browser1: stackQa6/tab1 stopped newMicronaut, echoTab/tab2 stopped warmup,
+  mongodbSupport/tab3 supportmatrix. Re-markHandoff each turn, after compaction
+  cua.rewriteDocumentation first. micronautRangeGoogle stores two browser records,
+  micronautRangeWarmup stores setup, micronautRangeLaunchUrl is current link.
+  Micronaut controls: h1 'Micronaut + SQLite', #value, button 'Add one'.
+- Browser handles retain continueSqliteFramework and stopNativeCounter helpers.
+  Worker sessions29809,8252,99843,50525 are terminal; no native/build process running.

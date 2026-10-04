@@ -1,0 +1,49 @@
+{
+  "recordedAt": "2026-10-04T12:07:32.852677+00:00",
+  "controlRevision": "91999c6517601e8bc9f9b0ce35e47169fd76339d",
+  "launch": {
+    "id": "oYLPWeOxc0R9CqqW9yXr3Zqtl1q9O1-k",
+    "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-ed14d4bc3ecb",
+    "provider": "github",
+    "port": 26630,
+    "status": "failed",
+    "compute": {
+      "initialState": "Available",
+      "observedAt": 1791115525201
+    },
+    "createdAt": 1791115524577,
+    "updatedAt": 1791115540408,
+    "providerReadyAt": 1791115525386
+  },
+  "failureMs": 15831,
+  "error": "Could not start your compute. gh timed out",
+  "failedGate": "GitHub preview preparation before runner bootstrap",
+  "rangeDownloadExercised": false,
+  "databaseWriteAttempted": false,
+  "sourceTrace": "src/providers.mjs awaits ensureCodespacePreview before bootstrap; src/codespace-preview.mjs limits the initial gh ports lookup to 15000 ms. This failure occurred after that bound without runner timings.",
+  "activeLaunchesAfterFailure": 0,
+  "activeBuildsAfterFailure": 0,
+  "passed": false,
+  "diagnostic": {
+    "sameHostReadOnlyPortLookup": {
+      "status": "returned",
+      "returncode": 0,
+      "elapsedMs": 24147,
+      "ports": [
+        {
+          "sourcePort": 8080,
+          "visibility": "private"
+        }
+      ],
+      "stderrBytes": 0
+    },
+    "computeStatesAfterFailure": [
+      "Starting",
+      "Available"
+    ],
+    "interpretation": "The read-only lookup subsequently succeeded after 24.147 seconds, exceeding its production 15-second bound. GitHub was observed Starting and then Available. The reason for that provider transition is not established by these observations.",
+    "conclusion": "The 15-second per-command preview lookup bound can reject an operation which subsequently completes in 24.147 seconds. The preview stage has a separate 60-second deadline. No runtime fix for this bound has been applied or claimed."
+  },
+  "cleanupError": "Application stop was not confirmed; repeat test aborted",
+  "statusAfterCleanup": null
+}
