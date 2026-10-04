@@ -50,6 +50,13 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
 
 - Next native framework: Fastify, followed by the remaining backend/database
   fixtures. No new production preparation or launch has been submitted.
+- While waiting for that slot, investigate the measured Express first-delivery
+  cost: image download14.678s/load2.351s on RUNNING Google compute. The tiny
+  application still shipped82.25MB. Historical matrix01 rejected an unbundled
+  supports-color dependency and matrix02 used a container; establish the current
+  fallback reason before considering an isolated packaging fix. Preserve optional
+  dependency semantics and all existing recipes; never import a QA artifact into
+  production. This is an investigation lead, not a diagnosed current defect.
 - Readonly quota audit00:49:07UTC:account3/global3/active0. Next ordinary slot
   01:01:09.984UTC. Watcher71223 and Express build watcher78777 both ended0.
   No live quota/build/native-test processes remain from this gate. Do not bypass
@@ -99,8 +106,8 @@ Mark pending workflow tabs each turn; no duplicate launch/build after read timeo
   successful increment, reload retained value. Label must come from observed UI.
   measurePreparedCounter is older static helper hardcoded to Open PODS counter.
   stopPreparedProduct(tab,url) navigates to launcher, clicks Stop once, confirms.
-- supportQa: IAB2tab29, public/support deliverable. After808b787 sync, browser
-  verified55 isolated/27 Google/27 Codespaces and React Router Passed/Passed/Passed.
+- supportQa: IAB2tab29, public/support deliverable. After3452f41 sync, browser
+  verified55 isolated/28 Google/28 Codespaces and Express Passed/Passed/Passed.
   Codespaces browser-pending warning remains visible. No further rerun is needed.
 - nativeGithubKeep: IAB2tab10, pending GitHub two-factor authentication; fresh
   read00:40UTC still2FA. User action already requested. No SMS/code sent.
