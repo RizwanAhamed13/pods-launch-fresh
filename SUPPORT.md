@@ -159,6 +159,35 @@ stopped; saved artifacts and configuration were preserved. No native fallback
 occurred in this integration gate. First-image speed and native Codespaces browser
 acceptance remain open.
 
+## Ready compute with an absent image
+
+[Four native Google browser launches](evidence/stack-ready-first-image.json)
+separate an older origin-only artifact from an existing CDN-backed artifact. All
+began with RUNNING compute, retained saved data and used ordinary prepared links.
+
+| Application / delivery | Image state | Health | Product visible | Button write |
+| --- | --- | --- | --- | --- |
+| Ktor / origin | Absent | 36.275s | 36.943s | 37.799s |
+| Ktor | Cached | 7.029s | 7.585s | 8.473s |
+| Micronaut / CDN | Absent | 20.875s | 21.632s | 22.556s |
+| Micronaut | Cached | 9.056s | 9.516s | 10.375s |
+
+Ktor spent25.271s downloading its138.947MB image from aswin; it had no CDN mapping
+and made no CDN attempt. Micronaut's125.120MB image downloaded in7.682s, including
+6.558s on the range path, then loaded into Docker in2.894s. It had no fallback.
+These different-app observations are not a controlled origin/CDN comparison.
+
+Both apps passed writes, reloads and full stop/relaunch, preserving SQLite
+2 → 3 → 4 and18 → 19 → 20 respectively. Images and local image archives were
+absent on first runs; existing Docker layers, manifest cache and database data
+were preserved. CDN cache warmth was not measured. Neither first-image product
+interaction met20s, and no new transfer failure reproduced.
+
+The production inventory has59 distinct prepared images but only4 stored CDN
+mappings;55 older images (5.620GB total) still use origin unless prepared again.
+These are image counts, not framework counts. A migration path for existing
+prepared images is pending so enabling faster delivery need not require rebuilding.
+
 ## Native launch performance
 
 [Recorded native timing summary](evidence/stack-native-timings.md) separates

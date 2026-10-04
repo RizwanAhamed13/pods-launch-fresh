@@ -62,6 +62,14 @@ See [diagnostics](evidence/stack-cdn-fallback-diagnostic.json) and
 [native integration](evidence/stack-cdn-fallback-native.json). These observations
 do not establish first-image performance or a native fallback fix.
 
+A subsequent [ready-compute first-image check](evidence/stack-ready-first-image.json)
+showed Ktor's origin-only product in36.943s and an existing CDN-backed Micronaut
+product in21.632s. Both had absent images and passed database writes/reloads/full
+stops; their cached relaunches showed the product in7.585s and9.516s. Neither
+first-image interaction met20s. The inventory also identified55 of59 prepared
+images without CDN mappings. Migrating those existing images without rebuilding
+is the next delivery gap to address; the migration is not implemented yet.
+
 ## Historical acceptance milestones
 The observations below retain their original milestone context. Counts and pending
 frameworks in these historical paragraphs are not current coverage; the evidence

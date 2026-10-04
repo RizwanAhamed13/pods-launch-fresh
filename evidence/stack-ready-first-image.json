@@ -1,0 +1,385 @@
+{
+  "recordedAt": "2026-10-04T15:11:37.936876+00:00",
+  "implementationRevision": "394abe666fca7c9ad209be7269825ea73c50a3a9",
+  "repositoryRevision": "132c86c31d56fa6fa96787a659851925a6c8d759",
+  "scope": "Four ordinary native Google launches of existing developer-prepared Ktor and Micronaut artifacts. First launch of each had absent installed image and absent archive; each was followed by a cached relaunch. All began with RUNNING compute and existing artifact-manifest cache. No cache clearing, new build, imported artifact, preparation bypass, product reset or service restart.",
+  "preparations": [
+    {
+      "id": "Sh31p3XtqzrrxwDqZbyM9-hvqNrnROos",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/ktor",
+        "key": "acd8cc8280c3ab2983d8e2b5"
+      },
+      "status": "ready",
+      "createdAt": 1791104747894,
+      "startedAt": 1791104747978,
+      "finishedAt": 1791104983511,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-acd8cc8280c3ab2983d8e2b5-d6da2ed780ae-8664bd05ad3e",
+      "app": {
+        "id": "repo-acd8cc8280c3ab2983d8e2b5-d6da2ed780ae-8664bd05ad3e",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "8664bd05ad3ea90c02e07411d1aba1e14f9432e993e4ed96246cd12bc412066d",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-acd8cc8280c3ab2983d8e2b5",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/ktor",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Ktor + SQLite"
+        },
+        "preparedAt": "2026-10-04T09:09:43.019Z",
+        "images": [
+          {
+            "id": "sha256:4c675e48f8c2081062c537b2dc3a5aa408f2268c10990aac091acbf03a6efca4",
+            "sha256": "6b8b4d70558c57d6cc4b01c072bf601ecf75ee86ec11e89a8345deccf1b1969d",
+            "bytes": 138946648
+          }
+        ]
+      }
+    },
+    {
+      "id": "UgVTF4smV7Ve6LSORWKFB-hcO4HoO-5D",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/micronaut",
+        "key": "2caafe8ea7f268fe237b7cab"
+      },
+      "status": "ready",
+      "createdAt": 1791118890678,
+      "startedAt": 1791118890691,
+      "finishedAt": 1791119109353,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-eadd466d0702",
+      "app": {
+        "id": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-eadd466d0702",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "eadd466d07023911348633724175cbfbcc97b25c81f95fcbda2dd31cbfdced38",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-2caafe8ea7f268fe237b7cab",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/micronaut",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Micronaut + SQLite"
+        },
+        "preparedAt": "2026-10-04T13:04:40.497Z",
+        "images": [
+          {
+            "id": "sha256:f8d81d6e3808af84557aaae2b5f93e794e77bc30cd3736d102041ef4a8fe2d3d",
+            "sha256": "8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f",
+            "bytes": 125120183
+          }
+        ]
+      }
+    }
+  ],
+  "results": [
+    {
+      "id": "DCzRIxHPugRmWLoZf_h00FN6rWJAHcsA",
+      "appId": "repo-acd8cc8280c3ab2983d8e2b5-d6da2ed780ae-8664bd05ad3e",
+      "provider": "google",
+      "port": 26525,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791126282961,
+        "keyRegistrationRequestedAt": 1791126283274,
+        "keyRegistrationAcceptedAt": 1791126284476
+      },
+      "createdAt": 1791126282520,
+      "updatedAt": 1791126326525,
+      "providerReadyAt": 1791126284952,
+      "readyAt": 1791126318795,
+      "timings": {
+        "downloadMs": 202,
+        "imagesMs": 28637,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 33,
+        "imageDownloadMs": 25271,
+        "imageLoadMs": 3309,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 1,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 32246,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 36275,
+      "deliveryMs": 33843,
+      "browser": {
+        "provider": "google",
+        "startedAt": "2026-10-04T15:04:42.333Z",
+        "startedMs": 1791126282333,
+        "visibleMs": 36943,
+        "before": 2,
+        "stateRestoredMs": 37471,
+        "writeRequestedAt": "2026-10-04T15:05:19.804Z",
+        "afterWrite": 3,
+        "interactionMs": 37799,
+        "reloadRequestedAt": "2026-10-04T15:05:20.132Z",
+        "reloadCompleted": true,
+        "afterReload": 3,
+        "passed": true,
+        "stopRequestedAt": "2026-10-04T15:05:23.550Z",
+        "statusAfterStop": "stopped",
+        "timingScope": "Continuous browser launch action through automatic product navigation, button write and reload."
+      }
+    },
+    {
+      "id": "ZIeRwHoNk3KaD6PkkOm9qOsuiQAfbAKv",
+      "appId": "repo-acd8cc8280c3ab2983d8e2b5-d6da2ed780ae-8664bd05ad3e",
+      "provider": "google",
+      "port": 26525,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791126342500,
+        "keyRegistrationRequestedAt": 1791126342582,
+        "keyRegistrationAcceptedAt": 1791126343841
+      },
+      "createdAt": 1791126341849,
+      "updatedAt": 1791126368566,
+      "providerReadyAt": 1791126344307,
+      "readyAt": 1791126348878,
+      "timings": {
+        "downloadMs": 199,
+        "imagesMs": 53,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 53,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 3504,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 7029,
+      "deliveryMs": 4571,
+      "browser": {
+        "provider": "google",
+        "startedAt": "2026-10-04T15:05:41.669Z",
+        "startedMs": 1791126341669,
+        "visibleMs": 7585,
+        "before": 3,
+        "stateRestoredMs": 8189,
+        "writeRequestedAt": "2026-10-04T15:05:49.858Z",
+        "afterWrite": 4,
+        "interactionMs": 8473,
+        "reloadRequestedAt": "2026-10-04T15:05:50.142Z",
+        "reloadCompleted": true,
+        "afterReload": 4,
+        "passed": true,
+        "stopRequestedAt": "2026-10-04T15:06:05.351Z",
+        "statusAfterStop": "stopped",
+        "timingScope": "Continuous browser launch action through automatic product navigation, button write and reload."
+      }
+    },
+    {
+      "id": "MIF3CdKPAp8VPNQ_pMDjw-7-sxyGcbtz",
+      "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-eadd466d0702",
+      "provider": "google",
+      "port": 26630,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791126448935,
+        "keyRegistrationRequestedAt": 1791126449477,
+        "keyRegistrationAcceptedAt": 1791126450656
+      },
+      "createdAt": 1791126448483,
+      "updatedAt": 1791126476076,
+      "providerReadyAt": 1791126451173,
+      "readyAt": 1791126469358,
+      "timings": {
+        "downloadMs": 251,
+        "imagesMs": 10636,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 34,
+        "imageDownloadMs": 7682,
+        "imageLoadMs": 2894,
+        "imageCdnDownloads": 1,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 6558,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 1,
+        "imageCdnRangeDownloads": 1,
+        "runtimeReadyMs": 16261,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 20875,
+      "deliveryMs": 18185,
+      "browser": {
+        "provider": "google",
+        "startedAt": "2026-10-04T15:07:28.275Z",
+        "startedMs": 1791126448275,
+        "visibleMs": 21632,
+        "before": 18,
+        "stateRestoredMs": 22277,
+        "writeRequestedAt": "2026-10-04T15:07:50.552Z",
+        "afterWrite": 19,
+        "interactionMs": 22556,
+        "reloadRequestedAt": "2026-10-04T15:07:50.831Z",
+        "reloadCompleted": true,
+        "afterReload": 19,
+        "passed": true,
+        "stopRequestedAt": "2026-10-04T15:07:54.823Z",
+        "statusAfterStop": "stopped",
+        "timingScope": "Continuous browser launch action through automatic product navigation, button write and reload."
+      }
+    },
+    {
+      "id": "uyciy2OZycLJ-nXUkG4sdM3PywuY76rL",
+      "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-eadd466d0702",
+      "provider": "google",
+      "port": 26630,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791126490370,
+        "keyRegistrationRequestedAt": 1791126490484,
+        "keyRegistrationAcceptedAt": 1791126491684
+      },
+      "createdAt": 1791126489877,
+      "updatedAt": 1791126535791,
+      "providerReadyAt": 1791126492119,
+      "readyAt": 1791126498933,
+      "timings": {
+        "downloadMs": 259,
+        "imagesMs": 54,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 54,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 5530,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 9056,
+      "deliveryMs": 6814,
+      "browser": {
+        "provider": "google",
+        "startedAt": "2026-10-04T15:08:09.696Z",
+        "startedMs": 1791126489696,
+        "visibleMs": 9516,
+        "before": 19,
+        "stateRestoredMs": 10078,
+        "writeRequestedAt": "2026-10-04T15:08:19.774Z",
+        "afterWrite": 20,
+        "interactionMs": 10375,
+        "reloadRequestedAt": "2026-10-04T15:08:20.071Z",
+        "reloadCompleted": true,
+        "afterReload": 20,
+        "passed": true,
+        "stopRequestedAt": "2026-10-04T15:08:53.425Z",
+        "statusAfterStop": "stopped",
+        "timingScope": "Continuous browser launch action through automatic product navigation, button write and reload."
+      }
+    }
+  ],
+  "allAttemptsPassed": true,
+  "functionalAcceptancePassed": true,
+  "firstImageProductTargetMet": false,
+  "deliveryInventory": {
+    "scope": "Read-only production records for ready-build referenced unique images and stored image-delivery mappings, at the time of this gate. Image count is not a framework/application count.",
+    "preparedImages": 59,
+    "storedMappings": 4,
+    "unmappedPreparedImages": 55,
+    "unmappedBytes": 5620315786,
+    "ktorHasMapping": false,
+    "micronautAssetId": 609862985
+  },
+  "findings": [
+    "Ktor image138946648bytes used origin only: transfer25271ms, Docker load3309ms, health36275ms, product36943ms, button write37799ms. No CDN attempt/fallback occurred because this older image has no stored delivery mapping.",
+    "Micronaut existing image125120183bytes used the current eight-range CDN path: imageDownload7682ms including CDN6558ms; Docker load2894ms; health20875ms, product21632ms, write22556ms. One successful range download, no origin/fallback.",
+    "Cached Ktor health7029ms/product7585ms/write8473ms; cached Micronaut health9056ms/product9516ms/write10375ms. SQLite2\u21923\u21924 and18\u219219\u219220 survived reload and full application stop/relaunch.",
+    "Existing preparation publishes images to private storage only during a build. README explicitly leaves legacy artifacts on origin until re-preparation. Migrating already-prepared images can enable CDN delivery without recompiling or changing their immutable artifact identity.",
+    "Storage setup cannot simply run wholesale before image preparation: persistentVolumes may create migration helper containers from a service image. No speculative startup parallelism was deployed."
+  ],
+  "sourceHashes": {
+    "src/image-transfer-error.mjs": "2612d0c065aca6a4486e8227b31f3187b8ce8a7785bfea189e4d1bcceacdc519",
+    "src/image-ranges.mjs": "0b6afc433304f74af11422cfb45a7ac4fce40f211a8a13ea60c0c1bf975319b0",
+    "src/container-runtime.mjs": "9d938b7aa5f38af7a18668a203feda57fe7417cfe5c3d699c0e944719bd06571",
+    "src/server.mjs": "edea7d0722f329f4d42e8e5006c3837a970d2ff6619b649c37b540cdc79477d5",
+    "test/image-ranges.test.mjs": "90768d7a43f6915a7940c59b1ee5af1660c400939085c41d8f9c1356433ff4b4",
+    "test/image-delivery.test.mjs": "fbfa27588fb3f888baab4f7db7c1d222672f5c6e68385f445248d87c7e73619e"
+  },
+  "testEvidence": "stack-cdn-fallback-tests.json",
+  "startAudit": {
+    "recordedAt": "2026-10-04T15:03:53.823310+00:00",
+    "pid": 1560797,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "5172cf839d6c5287b8688bc028859c254757a9c056e435f23c817701d26172d8",
+    "revision": "132c86c31d56fa6fa96787a659851925a6c8d759"
+  },
+  "cleanupAudit": {
+    "recordedAt": "2026-10-04T15:10:46.703285+00:00",
+    "pid": 1560797,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "5172cf839d6c5287b8688bc028859c254757a9c056e435f23c817701d26172d8",
+    "revision": "132c86c31d56fa6fa96787a659851925a6c8d759"
+  },
+  "limitations": [
+    "These are observations of different applications, sizes, and existing CDN assets, not a controlled origin-versus-CDN speedup comparison.",
+    "Installed image and local image archive were absent on first runs; previously used compute, shared Docker layers, manifest cache, saved database state and unknown CDN cache warmth were retained. Not empty-environment or cold-CDN benchmarks.",
+    "Micronaut uses an older immutable artifact of the same pinned fixture source and the same application data identity. Its database remained compatible and retained the newer launch value18.",
+    "Neither first-image product interaction met20s. No native CDN failure reproduced and the historical fallback cause remains unknown.",
+    "No production source changed in this gate; existing272-test result remains applicable. Native Codespaces browser, stable hostname and destructive Cloud Shell VM-replacement durability remain pending."
+  ]
+}

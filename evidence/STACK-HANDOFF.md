@@ -1,10 +1,11 @@
 # Broad stack checkpoint
 
 Goal active and incomplete: developer URL → isolated aswin build → reusable artifact
-→ authorized user compute → real usable product. Latest completed gate: sanitized
-image-transfer failure diagnostics, 272 local/Linux checks, protected deployment,
-and two native Google browser/persistence launches. First-image 20s and native
-Codespaces browser acceptance remain open.
+→ authorized user compute → real usable product. Latest completed gate: four native
+Google browser launches separating absent-image origin/CDN paths from cached
+relaunches, and a read-only delivery inventory. First-image20s remains unmet;
+55 of59 prepared images have no CDN mapping. Native Codespaces browser acceptance
+also remains open. Production source is unchanged in this gate.
 
 ## Current verified state
 
@@ -29,10 +30,33 @@ Codespaces browser acceptance remain open.
   5172cf839d6c5287b8688bc028859c254757a9c056e435f23c817701d26172d8.
   Protected restart preserved59 image files,135 artifacts and.env. Source hashes,
   new served runner, listener, health200 and SQLiteok verified.
-- Final native audit2026-10-04T15:01:25.428364Z: same PID/runner, health200,
-  SQLiteok, zero active builds/launches. Later docs-only sync needs no restart.
+- Final native audit2026-10-04T15:10:46.703285+00:00: same PID/runner,
+  health200, SQLiteok, zero active builds/launches. Evidence-only sync needs no restart.
 
-## Latest completed gate
+## Latest completed first-image gate
+
+- stack-ready-first-image.json records four ordinary Google browser launches with
+  exact server phases and continuous click-to-product/write timing. All initially
+  RUNNING, manifest cache hit, no cache clearing/build/import/restart. Both first
+  launches had imageCacheHits0/imageArchiveCacheHits0; both relaunches hit the image.
+- Ktor DCzRIxHPugRmWLoZf_h00FN6rWJAHcsA: origin25271ms, imageLoad3309ms,
+  health36275ms/product36943ms/write37799ms. No CDN mapping/attempt/fallback.
+  ZIeRwHoNk3KaD6PkkOm9qOsuiQAfbAKv cached: health7029/product7585/write8473ms.
+  SQLite2→3→4 retained across reloads/full stops.
+- Micronaut MIF3CdKPAp8VPNQ_pMDjw-7-sxyGcbtz: imageDownload7682ms (CDN6558ms),
+  imageLoad2894ms, health20875/product21632/write22556ms. Successful eight-range
+  download, no fallback. Cached uyciy2OZycLJ-nXUkG4sdM3PywuY76rL:
+  health9056/product9516/write10375ms. SQLite18→19→20 retained across full stops.
+  Used existing buildUgVTF4smV7Ve6LSORWKFB-hcO4HoO-5D, app suffixeadd466d0702,
+  permanent asset609862985; same source pin/data identity as latest Micronaut.
+  It is now cached too. Not a cold-CDN or empty-machine benchmark.
+- Read-only inventory:59 unique images referenced by ready builds,4 delivery
+  mappings,55 unmapped images/5620315786bytes. These are images, not55 frameworks.
+  README documents legacy images remaining on origin until re-preparation.
+- No speculative startup overlap: persistentVolumes may need loaded service
+  images for migration helper containers. No native CDN failure reproduced.
+
+## Previous diagnostics gate
 
 - imageCdnLastFailure records only a fixed reason (http, range-metadata, size,
   integrity, timeout, storage, transfer) and optional valid HTTP100..599 status.
@@ -61,11 +85,17 @@ Codespaces browser acceptance remain open.
 
 ## Next bounded gate and pending inputs
 
-- Next gate: ordinary first-image launch on ready compute with the new diagnostics,
-  using a normal developer-prepared artifact and preserving caches/data. Capture
-  continuous click-to-product/interaction and exact provider/cache state. Inspect
-  failure categories only if a real failure occurs before changing transfer policy.
-  Do not repeatedly download the same cached asset or call a warm CDN probe cold.
+- Next implementation gate: provide a bounded, resumable operator migration for
+  existing production-prepared images into the configured private delivery store,
+  without source rebuild, artifact mutation, cache clearing or quota changes.
+  Reuse GitHubImageDelivery.publish identity/privacy checks and asset reuse. Start
+  with explicit app selection; validate idempotency, integrity, failure recovery
+  and unchanged immutable links. This closes the demonstrated legacy-delivery gap.
+  Do not silently upload the full5.620GB inventory before a bounded validation.
+- Then measure an ordinary image-absent product launch using a migrated artifact
+  and exact compute/cache state. Do not substitute a cached launch or direct
+  transfer probe for full product acceptance. No need to reproduce the old fallback
+  again unless it actually occurs. Current CDN first-image product21632ms is unmet.
 - Existing unmet observations: Google first-image health19377ms, product20667ms;
   Codespaces first-image health28725ms (stack-eight-ranges-native.json). The later
   suspended/uncached Google fallback took54875ms. No universal20s guarantee.
@@ -92,7 +122,7 @@ Codespaces browser acceptance remain open.
   do not use. Preserve nine unrelated Google public keys.
 - Codespace pods-launch-containers-69rw5vx4xp46c5qw5 last observed Shutdown at
   2026-10-04T14:29:20.206Z. Check fresh state before using it.
-  Latest Micronaut saved values Google18/Codespaces21; never reset values.
+  Latest Micronaut values Google20/Codespaces21; Ktor Google4. Never reset values.
 - Prepared buildL2AiK3hVAKYytXputQXo0R8rWt6bDhVs, app
   repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-5a4e0078fab4,
   dataKeyrepo-2caafe8ea7f268fe237b7cab, port26630.
