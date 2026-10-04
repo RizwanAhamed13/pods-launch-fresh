@@ -1,6 +1,6 @@
 {
   "recordedAt": "2026-10-04T02:55:52.862534+00:00",
-  "scope": "Optional literal require packaging and isolated automatic data migration; native format-transition acceptance pending.",
+  "scope": "Optional literal require packaging, isolated automatic migration, and native Express format-transition acceptance with one retained Google compute-start timeout.",
   "baseRevision": "aa02036",
   "preparerSha256": "77686545d8259cd2a0f8a41edc7745b5989804d05e96d9e47a03f952abc38810",
   "esbuildVersion": "0.25.12",
@@ -26,7 +26,7 @@
     "all138CasesPassedOnBothEnvironments": true
   },
   "migrationEvidence": "stack-express-prepared-transition-probe.json",
-  "nativeAcceptance": false,
+  "nativeAcceptance": true,
   "physicalSourceLines": 5978,
   "deployment": {
     "before": {
@@ -57,5 +57,10 @@
     },
     "scope": "Builder loads deployed scripts into each isolated build; no server or runner restart needed."
   },
-  "unchangedBundleRegression": "stack-optional-bundle-regression.json"
+  "unchangedBundleRegression": "stack-optional-bundle-regression.json",
+  "nativeEvidence": [
+    "stack-express-bundle-url.json",
+    "stack-express-native-transition-google.json",
+    "stack-express-native-transition-codespaces.json"
+  ]
 }

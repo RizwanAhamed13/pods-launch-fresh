@@ -1,0 +1,170 @@
+{
+  "recordedAt": "2026-10-04T03:06:17.776190+00:00",
+  "scope": "Native Google Cloud Shell product UI across existing container \u2192 new Node bundle \u2192 previous container \u2192 bundle. Same data key and product origin; full stops and browser reload at each successful stage.",
+  "results": [
+    {
+      "id": "YmjObJba3A7a2Ji7xoq4cAZ6V2fRVdXj",
+      "appId": "repo-6c2ac75a42b5f46c775a3028-d6da2ed780ae-c469dd8aefc5",
+      "provider": "google",
+      "port": 24378,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791082983094,
+        "startRequestedAt": 1791082983182
+      },
+      "createdAt": 1791082982626,
+      "updatedAt": 1791082997809,
+      "providerReadyAt": 1791082985840,
+      "readyAt": 1791082988627,
+      "timings": {
+        "downloadMs": 515,
+        "runtimeReadyMs": 1268,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 6001,
+      "deliveryMs": 2787
+    },
+    {
+      "id": "E9CQajpQfxqwPMlUXQy8mCxgEemgM8gO",
+      "appId": "repo-6c2ac75a42b5f46c775a3028-9eee994ba7f7-53e4f5be199d",
+      "provider": "google",
+      "port": 24378,
+      "status": "failed",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791083009543,
+        "startRequestedAt": 1791083009754
+      },
+      "createdAt": 1791083009092,
+      "updatedAt": 1791083031117
+    },
+    {
+      "id": "8RfucA8UqUyc1lbmmrDK-bjMrXk0KzuE",
+      "appId": "repo-6c2ac75a42b5f46c775a3028-9eee994ba7f7-53e4f5be199d",
+      "provider": "google",
+      "port": 24378,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791083093962,
+        "startRequestedAt": 1791083094096
+      },
+      "createdAt": 1791083093245,
+      "updatedAt": 1791083112995,
+      "providerReadyAt": 1791083096088,
+      "readyAt": 1791083099734,
+      "timings": {
+        "downloadMs": 180,
+        "imagesMs": 57,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 57,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2124,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 6489,
+      "deliveryMs": 3646
+    },
+    {
+      "id": "lAsWrGnCAX8aWl9lhttpmzjIdJfDGBv7",
+      "appId": "repo-6c2ac75a42b5f46c775a3028-d6da2ed780ae-c469dd8aefc5",
+      "provider": "google",
+      "port": 24378,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791083123220,
+        "startRequestedAt": 1791083123342
+      },
+      "createdAt": 1791083122678,
+      "updatedAt": 1791083143017,
+      "providerReadyAt": 1791083125716,
+      "readyAt": 1791083127840,
+      "timings": {
+        "downloadMs": 301,
+        "runtimeReadyMs": 1073,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 5162,
+      "deliveryMs": 2124
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "container-to-bundle",
+      "format": "node",
+      "startedAt": "2026-10-04T03:03:02.471Z",
+      "visibleMs": 6514,
+      "stateRestoredMs": 6628,
+      "before": 3,
+      "afterWrite": 4,
+      "interactionMs": 6906,
+      "afterReload": 4,
+      "passed": true
+    },
+    {
+      "scenario": "bundle-to-container",
+      "format": "container",
+      "startedAt": "2026-10-04T03:03:28.945Z",
+      "passed": false,
+      "failure": "Google compute startup timed out before provider readiness or artifact delivery; terminal failed launch confirmed.",
+      "productWriteAttempted": false
+    },
+    {
+      "scenario": "bundle-to-container-retry",
+      "format": "container",
+      "startedAt": "2026-10-04T03:04:52.644Z",
+      "visibleMs": 7950,
+      "stateRestoredMs": 8065,
+      "before": 4,
+      "afterWrite": 5,
+      "interactionMs": 8357,
+      "afterReload": 5,
+      "passed": true
+    },
+    {
+      "scenario": "container-to-bundle-again",
+      "format": "node",
+      "startedAt": "2026-10-04T03:05:22.532Z",
+      "visibleMs": 6561,
+      "stateRestoredMs": 6676,
+      "before": 5,
+      "afterWrite": 6,
+      "interactionMs": 6969,
+      "afterReload": 6,
+      "passed": true
+    }
+  ],
+  "browserErrorOrWarningLogs": [
+    [],
+    [],
+    []
+  ],
+  "baselineEvidence": "stack-express-native-transition-baseline.json",
+  "dataContinuityPassed": true,
+  "allAttemptsPassed": false,
+  "passedAfterRetry": true,
+  "retainedFailure": "One Google compute-start timeout terminated before provider readiness/artifact delivery. One later explicit retry succeeded with the latest saved value4.",
+  "limits": "Default single-service SQLite storage. Does not prove application schema migration, arbitrary multi-service migration, provider VM replacement durability or universal launch latency.",
+  "cleanupAudit": {
+    "recordedAt": "2026-10-04T03:06:23.039235+00:00",
+    "pid": 1041360,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+    "revision": "55ca3dccc3507eb7e51780570b02a89717607770",
+    "codespacesProductPort": 24378,
+    "codespacesProductVisibility": "private"
+  }
+}

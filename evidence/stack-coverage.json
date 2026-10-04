@@ -334,7 +334,10 @@
       "nativeProviderEvidence": [
         "stack-express-url.json",
         "stack-express-google.json",
-        "stack-express-codespaces.json"
+        "stack-express-codespaces.json",
+        "stack-express-bundle-url.json",
+        "stack-express-native-transition-google.json",
+        "stack-express-native-transition-codespaces.json"
       ],
       "attempts": [
         {
@@ -350,7 +353,8 @@
       "nativeAcceptance": {
         "googleBrowser": true,
         "codespacesProtocol": true
-      }
+      },
+      "bundleOptimizationEvidence": "stack-optional-node-packaging.json"
     },
     {
       "fixture": "fastapi",

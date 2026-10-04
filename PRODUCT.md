@@ -370,11 +370,19 @@ browser /33 Codespaces HTTP, with 22 awaiting native acceptance. Native Codespac
 browser interaction and universal 20-second first-image launches remain unproven.
 
 
-The optional Node dependency packaging candidate keeps compiler-confirmed,
-handled missing literal `require()` calls in a bundle with the application's
-original fallback. Express now prepares as a338,173-byte bundle in isolated QA,
-and automatic container/bundle transitions retained SQLite0→1→2→3→4. Required
-imports and native modules still use the previous failure/container path. Native
-format-transition acceptance is pending. All138 cases passed locally and on
-isolated QA after restoring a missing test-snapshot coverage file and rerunning
-the three affected compatibility checks. Current source:5,978 physical lines.
+Handled optional Node dependencies now stay in a prepared bundle with their
+original application fallback. The real developer form prepared Express in
+17.311 seconds as a 338,173-byte download, 99.59% smaller than its previous
+82,250,849-byte container image. Native Cloud Shell restored the existing SQLite
+record and completed a write in 6.906 seconds on the first bundle launch.
+Container→bundle→container→bundle transitions retained values 3→4→5→6 through
+real product interactions and reloads. Codespaces retained 2→3→4→5 in the same
+saved environment, with authenticated HTTP health at 15.548s, 8.225s and 10.215s.
+One Google compute-start timeout occurred before artifact delivery; a single
+retry succeeded, and the failure is retained. These are ready-compute samples,
+not a universal latency guarantee. All test previews stopped; private ports
+and database integrity passed. Native Codespaces browser interaction, arbitrary
+schema/multi-service migrations and VM replacement durability remain unproven.
+Current source: 5,978 physical lines; all 138 test cases passed locally and in
+isolated QA, with the missing QA coverage fixture restored before its affected
+compatibility rerun.

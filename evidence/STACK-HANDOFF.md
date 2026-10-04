@@ -24,10 +24,12 @@ VM replacement durability, or a universal 20-second cold launch.
   actix, aspnet, axum, deno, echo, fastapi, fiber, flask-mariadb,
   flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, ktor,
   micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
-- Deployed provider73bd9f4 passes134 tests locally and in isolated aswin QA;
+- Runtimeprovider73bd9f4 had134 passing tests locally and in isolated aswin QA;
   logs /tmp/pods-provider-full-{local,qa}.txt. Adds3 provider compatibility
   cases after17 storage cases. Baselines114/131 remain historical; do not
-  rerun unchanged passing checks.
+  rerun unchanged passing checks. Currentbuilder2553fc8 adds4 cases: all138
+  passed locally and on QA after restoring its missing coveragefile and rerunning
+  the3 affectedcompatibility checks; details below.
 - Physical code: 5,978 lines = 3,210 product/tooling + 1,671 tests + 933 examples
   + 164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
   files; includes .astro. Storage handoff is deployed; native same-format regressions follow below.
@@ -54,8 +56,8 @@ VM replacement durability, or a universal 20-second cold launch.
 - Root-protected record copying probe21960 ended0; directory0700/file0600
   uid0 copied asuid1000 without application image or executable. Root-only
   QA fixture removed via guest root.
-- Native format transition and optional bundling are NOT verified by the storage
-  change. Codespaces label adaptation is now capability-gated as below. Keep packaging unchanged.
+- The storage change alone did not prove native format continuity. The later
+  Express gate below now covers it on both providers with optional bundling.
   Multi-service or conflicting data requires explicit migration. Backups
   remain; retention policy and power-loss durability are not proven.
 
@@ -96,7 +98,7 @@ VM replacement durability, or a universal 20-second cold launch.
   pods-launch-containers-69rw5vx4xp46c5qw5 both Available and compatible.
   No application launched or data modified. Evidence
   stack-codespaces-runtime-capabilities.json plus its -probe.mjs and
-  stack-provider-format-adapter.json. Full native format migration still pending.
+  stack-provider-format-adapter.json. Native format migration is now covered by the latest Express gate below.
 - Deployment62661 ended0: fresh idle precheck, service restarted02:37:28.804718
   UTC toPID1041360, health200, SQLite quick_check ok, activebuild0/launch0.
   Runner hash unchanged (provider-only change). Deployment recorded in
@@ -181,69 +183,45 @@ VM replacement durability, or a universal 20-second cold launch.
 
 ## Next gate and performance work
 
-- Adonis acceptance is complete. Current gate: native Express format transition
-  after the new optional-import preparation candidate2553fc8. Readonly latest
-  production Express audit02:53UTC found no active apps and only its oldcontainer.
-- Normal quota watcher5345 started02:51:16.478250UTC; live, bounded20min,
-  account3/global3/active0, next ordinary slot03:01:50.267UTC. Poll this same
-  handle; never recreate solely on observation timeout. Form is staged for
-  examples/stacks/express, not submitted. Limits3/account/hour and12/global/hour;
-  no identity switching or imported QA artifacts.
-- /tmp/pods-capture-native.py reads aswin SQLite readonly, whitelists fields and
-  derives timings. Its explicit fixture allowlist currently includes astro,
-  react-router, express, fastify, koa, hono, nestjs and adonis.
-- scripts/live-codespaces.mjs receives gh token on stdin. Use the correct fixture
-  probe, explicit output file and expected initial count. Counter/SSR/static/
-  WebSocket/worker checks require two launches, including confirmed full stop.
-- Express optional-import preparation candidate is deployed at2553fc8; native
-  format-transition acceptance is pending. esbuild0.25.12
-  bundles a compiler-confirmed handled supports-color require into338,173 bytes
-  versus production82,250,849-byte image. Real same-format persistence passed.
-  Production packager unchanged: native format-transition acceptance is still needed.
-- Real transition probe43765 ended0: same dataKey, container saved1, bundle saw0,
-  returning to container saw1. Original data retained but continuity FAILED.
-  Its unique volume/root were removed. See stack-express-transition-probe.json
-  and replay .mjs. This asserts the failure, not successful migration.
-- Historical mocked adapter probe at60b7960 rejected both saved container→Node
-  and Node→container runtime-label changes before mutations; the current
-  candidate adds capability-gated reuse, verified as above. Server environmentKey
-  binds account+dataKey independently of runtime; preserve that saved environment.
-  See stack-provider-format-transition-probe.{json,mjs}. The public devcontainer includes Node24, sshd and Docker-in-Docker.
-  Two actual saved profiles passed capabilities; older uninspected environments
-  are not covered by that observation.
-- Explicit storage-bridge prototype79883 ended0 at01:58:40.629UTC. It copied
-  only stopped disposable Express data and preserved container0→1, bundle1→2,
-  container2→3, bundle3→4. Initial file uid0 became uid1000 using docker cp
-  from a never-started helper. Temporary volume/root removed.
-  Evidence stack-express-storage-bridge-probe.{json,mjs}. This is not automatic
-  production migration: no journal, ambiguity handling or provider adaptation.
-  Earlier probe attempts31201/2863 ended1 because of probe-only filename and
-  staging-directory mistakes; both cleaned up. Corrected79883 is the evidence.
-- Storage paths still differ, with automatic handoff now implemented: bundles <root>/data/<dataKey>; default container
-  <root>/volumes/pods-<key-sha256-first24>/app-data/data. run() creates the bundle
-  directory even for a container, so existence alone does not prove data is there.
-  Container files may be root-owned. Preserve ownership checks, refuse ambiguity,
-  and prove native/provider continuity before enabling smaller bundles. Do not weaken checks.
-- Fastify originally failed Google empty chunked POST with HTTP415; corrected
-  JSON-body fixture passed native browser and Codespaces checks. Historical failure
-  retained. Evidence stack-fastify-fixed-*.json, stack-fastify-google.json and
-  isolated before/after regressions. Existing Fastify values: Google2, Codespaces4.
-- Astro stronger outer gzip saved only0.011% because Docker layers already gzip.
-  No production compression change warranted; recorded trial remains valid.
+- Express optional-import preparation2553fc8 is deployed and native format
+  continuity is now verified, with one retained Google compute-start timeout.
+  See the latest gate below. No quota watcher remains live. Watcher5345 ended0
+  at03:02:16.517065UTC and Express submitted once03:02:21.944UTC.
+- Current Express values: Google6, Codespaces5, both last launched as bundles.
+  Never reset existing data; use these only after rechecking current evidence.
+- Choose one of22 remaining native fixtures after a fresh normal quota check.
+  Limits3/account/hour and12/global/hour; no identity switching or QA imports.
+- Google compute startup timed out once before artifact delivery on a RUNNING
+  environment. Terminal failure was confirmed; one retry passed. Investigate
+  provider timeout handling before claiming consistently one-click success.
+  Do not add blind retries or change Google identity. Existing evidence retains
+  the failed launch and distinguishes its metrics from successful samples.
+- /tmp/pods-capture-native.py uses readonlySQLite and whitelisted fields;
+  explicit fixture allowlist:astro,react-router,express,fastify,koa,hono,nestjs,adonis.
+  /tmp/pods-capture-transition.py includes both old/new apps for one fixture.
+- scripts/live-codespaces.mjs uses tokenstdin and explicit fixture checks.
+  New evidence/stack-express-native-transition-probe.mjs validates same-dataKey,
+  exactsavedCodespace and values across bundle→container→bundle with fullstops.
+- Default storage format migration is implemented and natively verified for
+  ExpressSQLite. Multi-service/schema migrations, conflicts, backup retention,
+  power-loss durability and VM replacement durability are separate open gates.
+- Fastify's original Google empty chunked POST415 and corrected passing fixture
+  remain preserved. Its existing values areGoogle2/Codespaces4. Older manual
+  Express bridge/provider rejection probes are historical, not current behavior.
 
 ## Browser and environment handoffs
 
 After compaction first CUA call must be cua.rewriteDocumentation. Reuse bindings;
 mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 
-- stackQa6: IAB2 tab13, staged examples/stacks/express; Prepare application
-  enabled but not submitted. Existing Adonis result remains historical.
+- stackQa6: IAB2 tab13, completed Express bundle preparation and exact link.
   Ready region name includes period: Your application is ready to share.
-- accountWorker: IAB2 tab12, stopped AdonisJS launcher. adonisLaunchUrl,
-  adonisPreparationSubmittedAt, adonisBrowserChecks (both passed), adonisFirstLogs
-  and adonisSecondLogs (empty) persist. measureAdonisCounter records page/read/
-  write timing and reload;50sec deadline. Never duplicate a launch on timeout.
-  stopPreparedProduct confirms full stop. History may briefly lag its refresh.
+- accountWorker: IAB2 tab12, stopped Express bundle launcher. Bindings
+  expressBundleLaunchUrl,expressLegacyLaunchUrl,expressOptimizedSubmittedAt,
+  expressTransitionBrowserChecks (threepassed/onecompute-startfailure),
+  expressTransitionLogs (threeempty),expressBeforeMigrationBrowser persist.
+  measureExpressCounter expects h1express counter,#value,Add one;50sec deadline.
+  stopPreparedProduct confirms fullstop. Never duplicate an in-flight launch.
 - supportQa: IAB2 tab29, public support deliverable. After d1c23f1 was pushed
   and synced to aswin, native DOM verified55/33/33, Adonis allPassed and the
   visible Codespaces browser-pending warning. Compatibility3 tests passed.
@@ -276,7 +254,7 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 - Graph project Users-rizwanahamed-Documents-ChatGPT-podsv2, indexed through
   73bd9f4 runtime source. scripts/public/examples/deploy excluded; targeted fallback appropriate.
 - Use set -e for validation→commit. User requests no subagents. Keep goal active;
-  native Codespaces browser,22 remaining fixture paths, native format migration,
+  native Codespaces browser,22 remaining fixture paths,
   VM replacement durability, stable hosting and cold performance remain open.
 
 
@@ -306,44 +284,52 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   stack-adonis-chunked-probe.{json,mjs}. No temporary probes remain live.
 - Evidence checkpoint d1c23f1 is pushed and synced; docs/evidence only, so no
   service restart. Compatibility3 tests and probe syntax check passed.
-- Adonis quota watcher14019 is complete; the current Express watcher5345 is
-  described above. No duplicate builds, identity switching or QA imports.
-- Goal active. Candidate Express bundling is deployed for native format
-  migration acceptance. Do not repeat pending browser2FA, CloudShellRestart
+- Adonis quota watcher14019 and Express watcher5345 are complete. No duplicate
+  builds, identity switching or QA imports.
+- Goal active. Express bundling is deployed; native migration acceptance now
+  passes with one retained compute-start timeout. Do not repeat pending
+  browser2FA, CloudShellRestart
   or stable-hostname questions. No product source change in this checkpoint.
 
 
-## Current optional Node packaging gate
+## Optional Node packaging and latest native migration gate
 
-- Candidate2553fc8 pushed and synced to aswin; scripts/prepare.mjs permits only
-  compiler-confirmed handled missing literal require calls. Required imports,
-  native binaries, require.resolve and dynamic imports keep prior fallback.
-  Pinnedesbuild0.25.12; preparerSHA77686545d8259cd2a0f8a41edc7745b5989804d05e96d9e47a03f952abc38810.
-- Local fullsuite138/138 passed. QA snapshot/output/optional-candidate-aa02036:
-  first fullrun136/138, two compatibility failures because source tar omitted
-  evidence/stack-coverage.json. Restored exacttrackedfile, affected3/3 passed.
-  This is a QA setup correction; no product/testlogic changed for these failures.
+- Builder2553fc8 synced to aswin; preparerSHA
+  77686545d8259cd2a0f8a41edc7745b5989804d05e96d9e47a03f952abc38810.
+  Pinned esbuild0.25.12 preserves compiler-confirmed handled literal requires;
+  required/native/resolve/dynamic imports retain previous fallback. Deployed
+  builder pushes current scripts into every build; no service restart needed.
+- Local138/138 passed. QA snapshot/output/optional-candidate-aa02036 first
+  fullrun136/138 because source tar omitted evidence/stack-coverage.json.
+  Restored exactfile; affected3/3 passed. No product fix for QA setup failure.
   Logs/tmp/pods-optional-full-{local,qa}.txt and compatibility-qa.txt.
-- Actualprepare+isolatedmigration23446 ended0 at02:53:28.934UTC, bundle338173bytes,
+- Actualprepare+isolatedmigration23446 ended0 at02:53:28.934UTC: bundle338173B,
   SHAc469dd8aefc5439253a2ea76bb7d7642cd5c0bb6e27e7845277bb4b89a38b3c0.
-  Legacycontainer0→1,bundle1→2,container2→3,bundle3→4; allcleanuptrue.
-  Evidence stack-express-prepared-transition-probe.{json,mjs}. This uses the
-  candidate prepare() path, not manually assembled experimental bundle bytes.
-- Builder pushes current src/scripts into every fresh isolated build; no service
-  restart needed. Idlepre/postaudits02:55:58/02:56:21UTC:health200,SQLiteok,
-  active0/0,unchangedPID1041360 and unchangedrunnerSHA2b346a88....
-  Runtimeprovider73bd9f4 and runner77cf340 remain. Deployment evidence currently
-  in stack-optional-node-packaging.json.
-- Native transition helper evidence/stack-express-native-transition-probe.mjs
-  takes origin,newbundleID,oldcontainerID,expectedcount,Codespace,evidencefile.
-  gh token stdin. Three launches bundle→container→bundle, exactsameenvironment,
-  HTTP read-before-write againstexpected, fullstops. Run onlyafter ordinary
-  URLpreparation completes. Expected oldCSvalue2, environment
-  pods-launch-containers-69rw5vx4xp46c5qw5. Native Google helper
-  measureExpressCounter is present; expected oldGooglevalue3.
-  Oldapprepo-6c2ac75a42b5f46c775a3028-9eee994ba7f7-53e4f5be199d,port24378.
-  Newartifact must retain dataKeyrepo-6c2ac75a42b5f46c775a3028. Do notresetdata.
-
-- Optional bundle regression39160 ended0 at02:57:23.541UTC. Actualprepare
-  retained exact Hono23851byteSHA6bb592... and Koa101539byteSHA4cf6f2...;
-  temporaryrootremoved. stack-optional-bundle-regression{,-probe}.json/.mjs.
+  Container0→1,bundle1→2,container2→3,bundle3→4; allcleanuptrue. Hono/Koa
+  regression39160 retained exact bundle bytes/hashes; temp root removed.
+- ActualURLform submitted03:02:21.944UTC after ordinaryquota5345 ended0.
+  Build17311ms, same338173B/hash, publicsource d6da2ed. Newapp
+  repo-6c2ac75a42b5f46c775a3028-d6da2ed780ae-c469dd8aefc5.
+  Oldcontainer repo-6c2ac75a42b5f46c775a3028-9eee994ba7f7-53e4f5be199d.
+  Same dataKeyrepo-6c2ac75a42b5f46c775a3028 and port24378.
+- Google pre-migration readonlybaseline restored3 at24618ms, RUNNING with
+  imageabsent; stopped. Bundle health6001/page6514/write6906ms restored3→4.
+  First reverse attempt failed compute-starttimeout before providerReady/delivery.
+  Confirmedterminal, one retry:health6489/page7950/write8357, restored4→5.
+  Backtobundle:health5162/page6561/write6969, restored5→6. Reloadretainedeach.
+  AllinitialRUNNING; threebrowserlogs empty. Allsuccessfulapps stopped.
+- CS23093 ended0, samepods-launch-containers-69rw5vx4xp46c5qw5 throughout.
+  AllinitialAvailable: bundlehealth15548,container8225,bundle10215ms.
+  HTTP retained2→3→4→5 withfullstops. Native browser stillpending.
+- Finalaudit71368 ended0 at03:06:23.039235UTC: health200,SQLiteok,active0/0,
+  port24378private,PID1041360,runnerSHAunchanged2b346a88.... Provider73bd9f4
+  andrunner77cf340 unchanged; builder2553fc8,checkout55ca3dc atpreparation.
+- Evidence stack-express-bundle-url.json, stack-express-native-transition-
+  {baseline,google,codespaces}.json, stack-optional-node-packaging.json and
+  isolated/unchanged-bundle probes. RetainedGooglefailure is not a pass.
+  /tmp/pods-record-express-transition.py assertsallcounts andjoinsbrowserchecks
+  tolaunch timestamps; inputs /tmp/pods-express-transition-{browser,final,ports,audit}.json.
+- Source5978=3210product+1671tests+933examples+164browsertools. Coverageunchanged
+  55/33/33,22pending. Compatibility3/3 passedafteradding evidence references.
+- Goalactive. No live watcher, test, or migrationprobe remains. All testpreview
+  apps stopped; saved data and required migrationbackups retained.

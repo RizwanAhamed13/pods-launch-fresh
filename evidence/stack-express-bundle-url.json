@@ -1,0 +1,61 @@
+{
+  "recordedAt": "2026-10-04T03:06:17.776190+00:00",
+  "controlRevision": "73bd9f4",
+  "builderRevision": "2553fc8",
+  "checkoutRevision": "55ca3dc",
+  "scope": "Actual developer URL form, normal same-account quota, isolated production build. No imported QA artifact or manual artifact registration.",
+  "quotaBefore": {
+    "at": "2026-10-04T03:02:16.517065+00:00",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0
+  },
+  "submittedAt": "2026-10-04T03:02:21.944Z",
+  "attempts": [
+    {
+      "id": "6EbLh62Gz04uhp6i699hR-EJW7AWOieT",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/express",
+        "key": "6c2ac75a42b5f46c775a3028"
+      },
+      "status": "ready",
+      "createdAt": 1791082942543,
+      "startedAt": 1791082942554,
+      "finishedAt": 1791082959865,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-6c2ac75a42b5f46c775a3028-d6da2ed780ae-c469dd8aefc5",
+      "app": {
+        "id": "repo-6c2ac75a42b5f46c775a3028-d6da2ed780ae-c469dd8aefc5",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "c469dd8aefc5439253a2ea76bb7d7642cd5c0bb6e27e7845277bb4b89a38b3c0",
+        "bytes": 338173,
+        "files": 1,
+        "healthPath": "/",
+        "applicationType": "node",
+        "runtime": "node22+",
+        "dataKey": "repo-6c2ac75a42b5f46c775a3028",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/express",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "express counter"
+        },
+        "preparedAt": "2026-10-04T03:02:39.856Z"
+      }
+    }
+  ],
+  "buildMs": 17311,
+  "previousContainerEvidence": "stack-express-url.json",
+  "previousImageBytes": 82250849,
+  "bundleBytes": 338173,
+  "downloadReductionPercent": 99.5889
+}

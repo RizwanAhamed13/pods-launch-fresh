@@ -1,0 +1,41 @@
+{
+  "recordedAt": "2026-10-04T03:00:49.089966+00:00",
+  "scope": "Read-only native Google browser check of the existing Express container before format migration; no counter write.",
+  "browser": {
+    "startedAt": "2026-10-04T02:59:52.355Z",
+    "readMs": 24618,
+    "value": 3,
+    "heading": "express counter",
+    "stopped": true
+  },
+  "launch": {
+    "id": "8kJ_hMFGWSB0fzZE1rUNEOzs_1gYhCYY",
+    "appId": "repo-6c2ac75a42b5f46c775a3028-9eee994ba7f7-53e4f5be199d",
+    "provider": "google",
+    "port": 24378,
+    "status": "stopped",
+    "compute": {
+      "initialState": "RUNNING",
+      "observedAt": 1791082793208,
+      "startRequestedAt": 1791082793398
+    },
+    "createdAt": 1791082792518,
+    "updatedAt": 1791082826149,
+    "providerReadyAt": 1791082795671,
+    "readyAt": 1791082815989,
+    "timings": {
+      "downloadMs": 202,
+      "imagesMs": 16704,
+      "imageCacheHits": 0,
+      "imageArchiveCacheHits": 0,
+      "imageCacheCheckMs": 33,
+      "imageDownloadMs": 14619,
+      "imageLoadMs": 2038,
+      "runtimeReadyMs": 18792,
+      "cacheHit": true
+    },
+    "storageMode": "persistent",
+    "totalMs": 23471,
+    "deliveryMs": 20318
+  }
+}

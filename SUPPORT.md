@@ -1629,23 +1629,58 @@ launches, health 200 and Codespaces port 23608 private. Current coverage:
 native fixtures. Source and full-suite counts remain 5,920 lines and 134 checks.
 
 
-## Optional Node import packaging candidate
+## Prepared Node bundles and native data continuity
 
-For pinned esbuild0.25.12 diagnostics, a missing literal `require()` may remain
+For pinned esbuild 0.25.12 diagnostics, a missing literal `require()` may remain
 in the bundle only when the compiler identifies its existing error handler.
-PODS preserves the application fallback. It does not create a stub or install
-an undeclared module. Missing required imports, native modules, `require.resolve`
-and dynamic imports retain the previous failure/container fallback.
+PODS preserves the application fallback without stubs or undeclared installs.
+Missing required imports, native modules, `require.resolve` and dynamic imports
+retain the previous failure/container fallback. Actual preparation reproduced
+the existing Hono and Koa bundles byte for byte.
 
-The actual `prepare()` path produced a338,173-byte Express artifact in isolated
-QA. The real runner retained SQLite0→1→2→3→4 through a legacy container,
-new bundle, old container and new bundle, without manual copying. Temporary
-containers, probe volume and storage root were removed. This does not yet prove
-native provider format transitions or their browser timing.
+The normal developer URL form prepared Express at public revision `d6da2ed`
+in **17.311 seconds**. The launch artifact is **338,173 bytes**, compared with
+its previous **82,250,849-byte** image: **99.59% less download**. The application
+source is unchanged; the repository folder retains the same data identity and
+private preview port. This production artifact matches the isolated candidate
+artifact hash. No QA artifact was imported or user data copied manually.
 
-The local suite passed138/138. Isolated QA initially passed136/138 because its
-temporary snapshot lacked the unchanged coverage JSON; after copying that file,
+| Native scenario | Health | Product/data result |
+| --- | --- | --- |
+| Cloud Shell RUNNING, first bundle after existing container | 6.001s | Page 6.514s; restored 3; write 4 at 6.906s; reload 4 |
+| Cloud Shell RUNNING, return to previous container after one failed compute-start attempt | 6.489s | Page 7.950s; restored 4; write 5 at 8.357s; reload 5 |
+| Cloud Shell RUNNING, return to cached bundle | 5.162s | Page 6.561s; restored 5; write 6 at 6.969s; reload 6 |
+| Codespaces Available, container→bundle | 15.548s | Authenticated HTTP restored 2; wrote/read 3 |
+| Codespaces Available, bundle→container | 8.225s | Authenticated HTTP restored 3; wrote/read 4 |
+| Codespaces Available, container→bundle again | 10.215s | Authenticated HTTP restored 4; wrote/read 5 |
+
+Each successful launch was fully stopped before the next format. Codespaces
+retained the exact saved environment throughout, including capability checks
+when its container runtime label differed from the requested Node bundle.
+Cloud Shell browser checks used the real product button and reload; no console
+warnings or errors were observed. Codespaces native browser acceptance remains
+pending sign-in.
+
+One Google compute-start attempt timed out before provider readiness or artifact
+delivery. It was confirmed terminal before one explicit retry; the saved value 4
+survived. That failure is preserved and is not counted as a successful launch.
+Immediately before migration, a read-only Cloud Shell check of the old container
+needed 24.618s to display its saved value 3 with the image absent. Successful
+new-bundle samples meet 20 seconds on ready compute; they do not prove all future
+launches or cold provisioning meet that target.
+
+The 03:06:23 UTC audit confirmed no active builds/launches, health 200, SQLite
+integrity and private product port 24378. All six successful transition launches
+stopped; the seventh attempt is the retained failed compute start. Coverage
+remains 55 isolated /33 Google browser /33 Codespaces HTTP, with 22 native fixtures
+pending. Data continuity here covers default single-service SQLite storage;
+it does not infer schema migrations, arbitrary multi-service database migration,
+power-loss recovery or provider VM replacement durability.
+
+The local suite passed 138/138. Isolated QA initially passed 136/138 because its
+temporary snapshot lacked the unchanged coverage JSON; after restoring it,
 all three affected compatibility checks passed. The four new packaging checks
-passed in both environments. Source totals5,978 physical lines. Evidence:
-`stack-optional-node-packaging.json`,
-`stack-express-prepared-transition-probe.{json,mjs}`.
+passed in both environments. Source totals 5,978 physical lines. Evidence:
+`stack-optional-node-packaging.json`, `stack-express-bundle-url.json`,
+`stack-express-native-transition-{baseline,google,codespaces}.json`, and the
+reproducible isolated/native transition probes.
