@@ -91,22 +91,28 @@ export function providers({ repo, origin, runnerSha, api = github, cloudRequest 
         // gh establishes authenticated SSH over GitHub's tunnel; no public inbound SSH needed.
         const envVars = { ...process.env, GH_TOKEN: token, GH_PROMPT_DISABLED: '1' };
         if (runtimeChanged) {
+          compute.compatibilityRequestedAt=Date.now();await update({compute:{...compute}});
           let compatible = false;
           try { compatible = (await exec('gh',['codespace','ssh','-c',env.name,'--','-T','bash -s'],{env:envVars,input:codespaceRuntimeProbe(),timeout:60000})).trim() === 'PODS_RUNTIME_COMPATIBLE'; }
           catch (error) { if(error.code==='ENOENT')throw new Error('GitHub CLI is unavailable on the PODS server. Restore gh in the server PATH.'); }
           if (!compatible) throw new Error('Your saved Codespace cannot change application runtime yet. It needs Node.js 22 or newer, a Linux x64 Docker daemon and Docker Compose. Existing application data was preserved; restore these capabilities in the same Codespace and retry.');
+          compute.compatibilityConfirmedAt=Date.now();
         }
         // Finish private forwarding before the runner can announce readiness.
+        compute.previewRequestedAt=Date.now();await update({compute:{...compute}});
         await preparePreview({name:env.name,port,env:envVars,exec});
+        compute.previewReadyAt=Date.now();compute.bootstrapRequestedAt=Date.now();
         let last;
         for (let n=0;n<3;n++) {
-          try { await exec('gh', ['codespace','ssh','-c',env.name,'--','-T','bash -s'], {env:envVars,input:bootstrap({...config,previewUrl},origin,runnerSha),timeout:60000}); last=null; break; }
+          compute.bootstrapAttempts=n+1;await update({compute:{...compute}});
+          try { await exec('gh', ['codespace','ssh','-c',env.name,'--','-T','bash -s'], {env:envVars,input:bootstrap({...config,previewUrl},origin,runnerSha),timeout:60000}); compute.bootstrapDeliveredAt=Date.now();last=null; break; }
           catch(e) {
             if(e.code==='ENOENT')throw new Error('GitHub CLI is unavailable on the PODS server. Restore gh in the server PATH.');
             last=e; await sleep(pollMs);
           }
         }
         if (last) throw new Error('Could not reach the Codespace over SSH. Check that its image includes an SSH server and retry.');
+        await update({compute:{...compute}});
         return {environment:env.name,previewUrl};
       },
       async stop(token, name) { if (name) await api(`/user/codespaces/${encodeURIComponent(name)}/stop`, token, {method:'POST'}); }

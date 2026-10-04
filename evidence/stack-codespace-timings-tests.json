@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-10-04T12:38:56.385293+00:00",
+  "baseRevision": "dc0b25b35817b643d10d296b19b2a166beb7dba4",
+  "runs": [
+    {
+      "platform": "local",
+      "passed": 225,
+      "failed": 0,
+      "logSha256": "74407c0b35ec6755d00b8a878bd15ebe0d4d7ac34ea42f15dd387e882684d909"
+    },
+    {
+      "platform": "isolated-aswin-linux",
+      "passed": 225,
+      "failed": 0,
+      "logSha256": "b10255ee357179270c50eaff2e33a4a36260385bff90cd899f539de566a26935"
+    }
+  ],
+  "isolatedSnapshot": {
+    "candidate": "/output/codespace-timings-candidate-dc0b25b",
+    "verifiedFiles": 330,
+    "archiveSha256": "b02d25a3a1bcb5df126d8ed367e365e1e8222788a01a99101688ba913c32df3a",
+    "manifestSha256": "2fe43babc4816f1b36f6a1b6f971f4b449a73990d79424cca5870bb35750b335"
+  },
+  "sourceHashes": {
+    "src/providers.mjs": "21ac043a5d3f15ae4f1b0c77a85fc173c60ef44fe35ef1c7493845d103d1c448",
+    "src/codespace-preview.mjs": "f754213af6dd999ac0f9574d37f6e9aa4fc16e39cf64f52398caefe03c133ae7",
+    "src/util.mjs": "9c5789b319f5e5ba475b7701ef6e4e3fea2bd14fcf1f5df14ebefe35df2317cb",
+    "test/codespace-timings.test.mjs": "ad9a68fab67329ec699e2f137d312e86fb4e5de66d125e6c7ffb357f21922b03"
+  },
+  "observationAcceptance": {
+    "previousImplementation": {
+      "passed": 0,
+      "failed": 4,
+      "logSha256": "c78be52eae9bb5d91e2ca6f73e84d54e5075d2863a3dab331fd09b11f60dbfe2"
+    },
+    "newCasesPassedInFullSuite": 4,
+    "coverage": [
+      "Preview and bootstrap have independent timestamps after provider readiness.",
+      "Failed preview registration records its start but neither dispatches nor claims bootstrap completion.",
+      "SSH retry timing preserves the first request time and counts every attempt without repeating private preview registration.",
+      "Saved-runtime compatibility is measured separately before preview setup."
+    ],
+    "clockMethod": "Node mock Date with deterministic fake provider/SSH durations. No provider delay is forced live."
+  },
+  "scope": "Adds observations to the existing Codespaces sequence; no launch sequencing, privacy requirement, retry count or deadline is changed. Native cold/warm measurements are a separate gate."
+}
