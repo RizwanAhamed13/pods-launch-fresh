@@ -61,5 +61,15 @@
       }
     }
   ],
-  "buildMs": 104353
+  "buildMs": 104353,
+  "publicMatrixVerification": {
+    "at": "2026-10-04T04:53:36.432Z",
+    "deploymentRevision": "5f0af24",
+    "url": "https://collection-conferences-ages-clearly.trycloudflare.com/support",
+    "isolatedPassed": 55,
+    "googleBrowserPassed": 38,
+    "codespacesProtocolPassed": 38,
+    "fixtureRow": "Flask + SQLite: Passed / Passed / Passed",
+    "codespacesBrowserPendingNoticeVisible": true
+  }
 }
