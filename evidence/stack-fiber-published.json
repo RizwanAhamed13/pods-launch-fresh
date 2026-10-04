@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-04T06:12:46.027Z",
+  "acceptanceRevision": "35576ae",
+  "url": "https://collection-conferences-ages-clearly.trycloudflare.com/support",
+  "scope": "Rendered public compatibility page after native Fiber evidence synchronization. Browser DOM verification, not a new product launch.",
+  "isolatedFixtures": 55,
+  "googleBrowserFixtures": 42,
+  "codespacesProtocolFixtures": 42,
+  "fiberRow": "Fiber Go Passed Passed Passed",
+  "codespacesBrowserPendingNoticePresent": true,
+  "compatibilityChecks": {
+    "tests": 3,
+    "passed": 3,
+    "failed": 0
+  }
+}
