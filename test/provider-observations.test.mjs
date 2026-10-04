@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { writeFile } from 'node:fs/promises';
-import { providers } from '../src/providers.mjs';
+import { providers } from './provider-harness.mjs';
 
 for (const initialState of ['Available','Shutdown','ShuttingDown','Provisioning',null]) {
   test(`Codespaces preserves initial ${initialState ?? 'absent'} compute state through delivery`,async()=>{

@@ -27,7 +27,7 @@ export async function createApp(options={}) {
   const imageDelivery = 'imageDelivery' in options ? options.imageDelivery : GitHubImageDelivery.fromEnv({data, store});
   const runner = (await bundle({entryPoints:[join(base,'src/runner.mjs')],bundle:true,platform:'node',format:'esm',target:'node22',write:false})).outputFiles[0].contents;
   const providers = options.providers || makeProviders({repo,origin,runnerSha:digest(runner)});
-  const jobs = new Map();
+  const jobs = new Map();let closing;
   const buildsEnabled = options.buildAdapter || process.env.PODS_BUILDS_ENABLED === '1';
   const builds = buildsEnabled ? new BuildManager({ store, data, origin, imageDelivery, adapter: options.buildAdapter || new LxdBuilder() }) : null;
   if (builds) await builds.initialize();
@@ -68,6 +68,7 @@ export async function createApp(options={}) {
   }
   function own(user,id) {const s=store.get('launch',id);if(!s||s.owner!==user.id)throw fail(404,'Launch not found');return s;}
   function update(id,patch) {
+    if(closing)return;
     const current=store.get('launch',id);
     if(!current||['stopped','failed'].includes(current.status))return;
     if(patch.previewUrl && current.productPath==='/docs') {const target=new URL(patch.previewUrl);target.pathname='/docs';patch={...patch,previewUrl:target.href};}
@@ -202,8 +203,7 @@ export async function createApp(options={}) {
     for(const c of store.list('connection'))if(c.expiresAt<Date.now())store.delete('connection',c.id);
     for(const c of store.list('oauth'))if(c.expiresAt<Date.now())store.delete('oauth',c.id);
   },5000);sweep.unref();
-  let closing;
-  function closeResources() { return closing ||= (async()=>{clearInterval(sweep);await builds?.close();store.close();})(); }
+  function closeResources() { return closing ||= (async()=>{clearInterval(sweep);await providers.close?.();await builds?.close();store.close();})(); }
   server.on('close',()=>{closeResources().catch(e=>console.error('shutdown',e.message));});
   return {server,store,jobs,builds,closeResources};
 }

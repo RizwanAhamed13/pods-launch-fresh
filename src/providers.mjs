@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { command, request, shell, sleep } from './util.mjs';
 import { ensureCodespacePreview } from './codespace-preview.mjs';
+import { deferredCommand } from './deferred-command.mjs';
 const github = (path, token, options) => request(`https://api.github.com${path}`, token, {...options,headers:{'X-GitHub-Api-Version':'2026-03-10'}});
 const transient = error => [500,502,503,504].includes(error.status) || error.name==='TimeoutError' || ['ECONNRESET','ETIMEDOUT','UND_ERR_CONNECT_TIMEOUT','UND_ERR_SOCKET'].includes(error.cause?.code);
 // A saved environment can serve either artifact format, but its label alone
@@ -24,7 +25,8 @@ export function bootstrap(config, origin, runnerSha) {
   // Token goes through encrypted SSH stdin, never command-line arguments.
   return `set -eu\numask 077\nTASK_DIR=$(mktemp -d /tmp/pods-launch.XXXXXX)\ncd "$TASK_DIR"\ncurl --fail --silent --show-error --max-time 30 ${shell(origin + '/runner.mjs')} -o runner.mjs\nprintf '%s  runner.mjs\\n' ${shell(runnerSha)} | sha256sum -c - >/dev/null\ncat > launch.json <<'PODS_CONFIG'\n${JSON.stringify(config)}\nPODS_CONFIG\nPODS_NODE=''\nfor candidate in $(command -v node || true) /usr/local/nvm/versions/node/*/bin/node \"$HOME\"/.nvm/versions/node/*/bin/node; do\n  if [ -x \"$candidate\" ] && \"$candidate\" -e 'if(Number(process.versions.node.split(".")[0])<22)process.exit(1)' 2>/dev/null; then PODS_NODE=\"$candidate\"; break; fi\ndone\n[ -n \"$PODS_NODE\" ] || { echo 'Node.js 22 or newer was not found in PATH or NVM'; exit 1; }\nnohup \"$PODS_NODE\" runner.mjs launch.json > runner.log 2>&1 < /dev/null &\necho PODS_DELIVERED\n`;
 }
-export function providers({ repo, origin, runnerSha, api = github, cloudRequest = request, exec = command, preparePreview = ensureCodespacePreview, pollMs = 2000, provisionMs = 240000 }) {
+export function providers({ repo, origin, runnerSha, api = github, cloudRequest = request, exec = command, openSsh = deferredCommand, preparePreview = ensureCodespacePreview, pollMs = 2000, provisionMs = 240000 }) {
+  const deliveries=new Set();let closed=false;
   async function readGithub(path, token, deadline=Infinity) {
     for(let attempt=0;;attempt++){
       try{return await api(path,token);}
@@ -46,6 +48,7 @@ export function providers({ repo, origin, runnerSha, api = github, cloudRequest 
     }
   }
   return {
+    async close() {closed=true;await Promise.all([...deliveries].map(delivery=>delivery.cancel()));},
     github: {
       async validate(token) { const u = await api('/user', token); if(!u.id||!u.login)throw new Error('GitHub account identity was unavailable. Reconnect your account.');return {id:String(u.id),name:u.login}; },
       async launch(token, config, update) {
@@ -98,20 +101,37 @@ export function providers({ repo, origin, runnerSha, api = github, cloudRequest 
           if (!compatible) throw new Error('Your saved Codespace cannot change application runtime yet. It needs Node.js 22 or newer, a Linux x64 Docker daemon and Docker Compose. Existing application data was preserved; restore these capabilities in the same Codespace and retry.');
           compute.compatibilityConfirmedAt=Date.now();
         }
-        // Finish private forwarding before the runner can announce readiness.
+        // Establish SSH alongside private forwarding, with stdin held empty.
         compute.previewRequestedAt=Date.now();await update({compute:{...compute}});
-        await preparePreview({name:env.name,port,env:envVars,exec});
-        compute.previewReadyAt=Date.now();compute.bootstrapRequestedAt=Date.now();
-        let last;
-        for (let n=0;n<3;n++) {
-          compute.bootstrapAttempts=n+1;await update({compute:{...compute}});
-          try { await exec('gh', ['codespace','ssh','-c',env.name,'--','-T','bash -s'], {env:envVars,input:bootstrap({...config,previewUrl},origin,runnerSha),timeout:60000}); compute.bootstrapDeliveredAt=Date.now();last=null; break; }
-          catch(e) {
-            if(e.code==='ENOENT')throw new Error('GitHub CLI is unavailable on the PODS server. Restore gh in the server PATH.');
-            last=e; await sleep(pollMs);
+        const connect=()=>{
+          if(closed)throw new Error('PODS server is shutting down.');
+          compute.transportRequestedAt??=Date.now();
+          const delivery=openSsh('gh',['codespace','ssh','-c',env.name,'--','-T','bash -s'],{env:envVars,holdTimeout:65000,timeout:60000});
+          deliveries.add(delivery);
+          delivery.result.finally(()=>deliveries.delete(delivery)).catch(()=>{});
+          return delivery;
+        };
+        let delivery;
+        try {
+          delivery=connect();
+          await preparePreview({name:env.name,port,env:envVars,exec});
+          compute.previewReadyAt=Date.now();compute.bootstrapRequestedAt=Date.now();
+          let last;
+          for (let n=0;n<3;n++) {
+            if(closed)throw new Error('PODS server is shutting down.');
+            compute.bootstrapAttempts=n+1;await update({compute:{...compute}});
+            try {
+              delivery??=connect();
+              await delivery.send(bootstrap({...config,previewUrl},origin,runnerSha));
+              compute.bootstrapDeliveredAt=Date.now();last=null;break;
+            } catch(e) {
+              if(e.code==='ENOENT')throw new Error('GitHub CLI is unavailable on the PODS server. Restore gh in the server PATH.');
+              last=e;
+            } finally {await delivery?.cancel();delivery=undefined;}
+            if(n<2)await sleep(pollMs);
           }
-        }
-        if (last) throw new Error('Could not reach the Codespace over SSH. Check that its image includes an SSH server and retry.');
+          if(last)throw new Error('Could not reach the Codespace over SSH. Check that its image includes an SSH server and retry.');
+        } finally {await delivery?.cancel();}
         await update({compute:{...compute}});
         return {environment:env.name,previewUrl};
       },

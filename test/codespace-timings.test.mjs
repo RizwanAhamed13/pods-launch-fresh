@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { providers } from '../src/providers.mjs';
+import { providers } from './provider-harness.mjs';
 
 function harness(t,{previewError=false,retry=false,runtimeChanged=false}={}){
  t.mock.timers.enable({apis:['Date'],now:1000});

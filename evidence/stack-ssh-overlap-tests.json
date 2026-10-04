@@ -1,0 +1,49 @@
+{
+  "recordedAt": "2026-10-04T12:53:45.337452+00:00",
+  "baseRevision": "4e39e61073a7ee0db95979f7d9a320e893abfffc",
+  "runs": [
+    {
+      "platform": "local",
+      "passed": 239,
+      "failed": 0,
+      "logSha256": "6bc78ba25763b1e97bd3845c9b6c708d1117b0f9492c6f2ee3b929b6b394d92b"
+    },
+    {
+      "platform": "isolated-aswin-linux",
+      "passed": 239,
+      "failed": 0,
+      "logSha256": "ff8d667b096780f060cff96c7cf6b8283dbca5ec6c8616c676cd1410a41c80b3"
+    }
+  ],
+  "isolatedSnapshot": {
+    "candidate": "/output/ssh-overlap-candidate-4e39e61",
+    "verifiedFiles": 334,
+    "archiveSha256": "54ac9122e2aaaa748e7efcf50f5373a026f0e797777dafe489e2b5a9d00c9f16",
+    "manifestSha256": "c67e0c848f7bf9e1f4ae8e6fdb3d003a4c02ff7317f13378ba2d70f1aa3b29c2"
+  },
+  "sourceHashes": {
+    "src/deferred-command.mjs": "62b3b4a346dc4dc1d5e6f4cdba334ab3a1ee5d7c0db8c32c29230e0d86ee7953",
+    "src/providers.mjs": "e2b5cafebc2fadf99e425ce99e05c9feed2010458081e4487c85cf6e3ca3efcd",
+    "src/server.mjs": "19e6a9e4d8372ae2d0670a0fd2115b2f50fbf34005901c271aef82a8f9d2757a",
+    "src/codespace-preview.mjs": "f754213af6dd999ac0f9574d37f6e9aa4fc16e39cf64f52398caefe03c133ae7",
+    "src/util.mjs": "9c5789b319f5e5ba475b7701ef6e4e3fea2bd14fcf1f5df14ebefe35df2317cb",
+    "test/deferred-command.test.mjs": "90f69a83fba05fbba902505ed06232afc68f51974f1a3e06a3f492a14e92e52c",
+    "test/codespace-overlap.test.mjs": "bff0dee2dfe3829b0370ac845446f618bb37c10642e53e414606a616ba59b4d7",
+    "test/provider-harness.mjs": "6328be8053dd5131b2348e813279726d7530ece738bd3830c0b69b1300705945",
+    "test/codespace-timings.test.mjs": "cef3abf9bfaf3d9449847db58454f96c5eeea870d94bbefba70979cd3a06c0ee",
+    "test/providers.test.mjs": "59ed4e2accf4a721daf1772ff78a1981e3a4372595ffd5ef6fc59d74dd146c91",
+    "test/provider-observations.test.mjs": "9975b8eed0b9be92f1d74d6c13685fc66109e1148f96f46dc379429c9a745c82"
+  },
+  "regressionCoverage": {
+    "newCases": 14,
+    "transport": "Real OS child processes test withheld stdin, release, cancellation and reaping, a descendant process group, early exit, ENOENT, failed delivery and duplicate send. Mock timers control pre-release and post-release deadlines without delaying real providers.",
+    "orchestration": "Mock transports verify open-before-preview, no bytes before private success, privacy failure cleanup, early SSH failure accounting, three-attempt limit, missing gh, shutdown and observer failure cleanup. A real createApp test verifies shutdown awaits provider cleanup before store closure. Existing provider orchestration command mocks use an explicit test-only gated transport adapter.",
+    "initialRun": {
+      "passed": 238,
+      "failed": 1,
+      "logSha256": "78ccaffa92ba7211cc641bf1b95d0e5bebd0a3e81f7b22b7502b097cbd0432a6",
+      "cause": "The new shutdown test used a non-hex 32-character test secret and failed Store input validation before reaching its assertions. Corrected to the existing 64-hex-character contract; the final full suites pass."
+    }
+  },
+  "scope": "Overlap SSH establishment with preview setup while withholding all bootstrap/config bytes until private preview success. Pre-release wait capped at65s, preview remains60s, delivery receives its own60s per attempt; maximum3 attempts on the same compute. Normal cancellation awaits child close and kills its process group. Server shutdown invokes provider cleanup. Abrupt process exit additionally kills active transport groups. No application build/cache/data change; native acceptance is a separate gate."
+}

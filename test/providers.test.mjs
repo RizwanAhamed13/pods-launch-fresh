@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { providers as realProviders, bootstrap, codespaceRuntimeProbe } from '../src/providers.mjs';
+import { bootstrap, codespaceRuntimeProbe } from '../src/providers.mjs';
+import { providers as realProviders } from './provider-harness.mjs';
 import { createApp } from '../src/server.mjs';
 import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
