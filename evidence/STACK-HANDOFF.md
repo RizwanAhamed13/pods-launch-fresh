@@ -23,10 +23,10 @@ VM replacement durability, or a universal 20-second cold launch.
   pending authorization. The18 fixtures awaiting native acceptance are:
   actix, aspnet, axum, deno, echo, fiber, flask-sqlite, flask-valkey, go, gradio,
   ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
-- Current full suite:158/158 passed locally and in isolated aswin QA after
-  Redis inspection tooling. Logs /tmp/pods-redis-full-{local,qa}.txt.
-  The previous MongoDB native acceptance was published9a23260.
-- Physical code:6,384 lines =3,353 product/tooling +1,934 tests +933 examples
+- Current full suite:162/162 passed locally and in isolated aswin QA after
+  SQLite inspection tooling. Logs /tmp/pods-sqlite-full-{local,qa}.txt.
+  The previous Redis native acceptance was published36d765c.
+- Physical code:6,475 lines =3,392 product/tooling +1,986 tests +933 examples
   +164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
   files; includes .astro. Running provider revision5dde1e5, PID1063107,
   runner SHA2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486.
@@ -622,3 +622,32 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   04:35:20.475UTC verified55/37/37, Flask+Redis Passed/Passed/Passed, with native
   Codespaces browser pending notice. Compatibility checks3/3 passed. No live
   test/watch process remains; next Flask+SQLite gate is unstarted. Goal active.
+
+## SQLite runtime inspection and isolated preflight
+
+- Previousgoalturn progressed: Redis native acceptance published36d765c.
+  Added explicitFlask+SQLite read-only file/version/integrity/savedrow check,
+  singlewebcontainer, productport and exactpersistentworkspacevolume checks.
+  PODS_SQLITE_RUNTIME_CHECK requires countermode and its explicitfixture.
+- Four new cases include negative database/boundary/input cases and serialized
+  freshprocesscommand. Full162/162 passedlocal/isolatedQA; sessions6855/44136
+  terminal0. QA candidate/output/sqlite-candidate-36d765c. No providerrunneredits.
+- Actualisolatedpreflight40147 ended0, recorded04:39:06.918UTC. Artifact98b2b9f4…,
+  sourcef16b819f… verified; SQLite3.46.1, integrityok, read-onlyrows1/2,
+  durablevolume,chunkedPOST/fullstop/relaunch0→1→2. Project
+  pods-45969d0791f101f887526088 and keyflask-sqlite-chunked-2a727e4aedf1a1a2.
+  Containers/volume/selectedstorage cleaned; sharedruntime/cache retained.
+- Source6475lines=3392product/tooling+1986tests+933examples+164browsertools.
+  Coverage55/37/37,18nativepending. Native SQLite has not started.
+- Ordinaryquota watcher71776 is live: lastaccount3/global3/active0,
+  nextslot04:45:57.733UTC. Resume SAME handle; no duplicate build/quota bypass.
+  BrowserstackQa6/tab1 holds unsubmittedexamples/stacks/flask-sqlite form,
+  Googleselected. RedisTab/tab2stoppedlauncher and supporttab3 preserved.
+- /tmp/pods-capture-native.py allowlist includesflask-sqlite. Recorder template
+  /tmp/pods-record-flask-sqlite.py expects actualGoogleUI0→1→2,2CSruntimechecks,
+  4stoppedlaunches,privateport/health. UpdatecheckoutRevisionafterpublication.
+- Next: quota→submitonce→nativebuild→Googlebrowserfirst/cached/fullstops,
+  thenCodespacesCLIcounter+SQLiteflags/expected0; finalaudits/matrixpublish.
+  Exactheading"Flask + sqlite counter". Keep original clicktimestamp across
+  pending browserobservations. Existing GitHub2FA/VMreplacement/stablehosting
+  questions remainpending; do not repeat them or claim completion.

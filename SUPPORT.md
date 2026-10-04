@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **158 passing checks in full local and isolated aswin QA runs**. Native coverage is 37 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **162 passing checks in full local and isolated aswin QA runs**. Native coverage is 37 Google browser fixtures and
 37 Codespaces HTTP/protocol fixtures; 18 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
@@ -1900,3 +1900,23 @@ supervised server and runner. Evidence:
 **55 isolated / 37 Google browser / 37 Codespaces protocol**, with **18** native
 fixtures pending. Source remains **6,384 physical lines** and the most recent
 full suites remain **158/158** locally and in isolated aswin QA.
+
+## SQLite file and persistence inspection preflight
+
+The native acceptance helper now opens the Flask + SQLite fixture's existing
+database in read-only mode, checks its SQLite version and integrity, and reads
+the counter row saved through the product. It verifies the single application
+container, expected product port and durable application volume. No database
+file is created by this inspection. Native opt-in is restricted to this fixture:
+`PODS_COUNTER_CHECK=1 PODS_SQLITE_RUNTIME_CHECK=1`.
+
+All **162 tests passed locally and in isolated aswin Linux QA**. The real stored
+artifact passed counter **0→1→2**, empty chunked POSTs, a full stop/relaunch,
+and direct SQLite **3.46.1** integrity and saved-row verification. Its disposable
+containers, volume and selected storage were removed. The fixture needs only
+Python source and requirements; PODS generates its container recipe and durable
+volume. Native acceptance for this fixture remains pending.
+
+Evidence: `stack-sqlite-runtime-probe-tests.json` and
+`stack-flask-sqlite-chunked-probe.{json,mjs}`. Source totals **6,475 physical
+lines**; native coverage remains **55 / 37 / 37**.

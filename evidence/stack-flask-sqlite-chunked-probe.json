@@ -1,0 +1,82 @@
+{
+  "recordedAt": "2026-10-04T04:39:06.918Z",
+  "scope": "Isolated real SQLite artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+  "dataKey": "flask-sqlite-chunked-2a727e4aedf1a1a2",
+  "project": "pods-45969d0791f101f887526088",
+  "artifactSha256": "98b2b9f46d3be5a96c1ade52ead9a5b8a8be07539f3bf5ed352c66c5f15f13e1",
+  "images": [
+    {
+      "id": "sha256:ab8c6e0afdb1aa4e36cbad982e15f1e3f2e7af961cf59c76c0c1fcce0422e701",
+      "sha256": "fbcf158ef7909829d8fdbcc6f5cea7487564fa977f4d0dba9caffa5d385cc410",
+      "bytes": 51764922
+    }
+  ],
+  "sourceSha256": "f16b819f9977dbce6096cbb535e3af06ddfcc2cd1bb48383532988c035e0774c",
+  "records": [
+    {
+      "database": {
+        "passed": true,
+        "project": "pods-45969d0791f101f887526088",
+        "services": [
+          "web"
+        ],
+        "databaseEngine": "SQLite",
+        "version": "3.46.1",
+        "integrity": "ok",
+        "savedCount": 1,
+        "volume": "pods-45969d0791f101f887526088_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          18095
+        ],
+        "databaseHostPorts": [],
+        "scope": "Isolated aswin guest: actual SQLite version, saved document, private ports and persistent bind volume; not a native provider launch."
+      },
+      "scenario": "first-launch",
+      "before": 0,
+      "post": {
+        "status": 200,
+        "count": 1
+      },
+      "afterRead": 1,
+      "transferEncoding": "chunked",
+      "contentType": null
+    },
+    {
+      "database": {
+        "passed": true,
+        "project": "pods-45969d0791f101f887526088",
+        "services": [
+          "web"
+        ],
+        "databaseEngine": "SQLite",
+        "version": "3.46.1",
+        "integrity": "ok",
+        "savedCount": 2,
+        "volume": "pods-45969d0791f101f887526088_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          18095
+        ],
+        "databaseHostPorts": [],
+        "scope": "Isolated aswin guest: actual SQLite version, saved document, private ports and persistent bind volume; not a native provider launch."
+      },
+      "scenario": "full-relaunch",
+      "before": 1,
+      "post": {
+        "status": 200,
+        "count": 2
+      },
+      "afterRead": 2,
+      "transferEncoding": "chunked",
+      "contentType": null
+    }
+  ],
+  "passed": true,
+  "cleanup": {
+    "containersStopped": true,
+    "probeVolumeRemoved": true,
+    "probeStorageDirectoriesRemoved": true,
+    "sharedRuntimeAndCacheRetained": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "recordedAt": "2026-10-04T04:40:53.274680+00:00",
+  "baseRevision": "36d765c",
+  "scope": "Explicit Flask + SQLite fixture: read-only existing database file, engine version, integrity, saved counter row, isolated container and durable workspace volume. Four new cases include serialized fresh-process inspection. Native acceptance remains separate.",
+  "fullSuite": [
+    {
+      "environment": "local",
+      "tests": 162,
+      "passed": 162,
+      "failed": 0,
+      "outputSha256": "592c2305eeba657956ccb925b593f8c415c5b8dba45cb24daa2aec835bb138ed"
+    },
+    {
+      "environment": "isolated-aswin-linux",
+      "tests": 162,
+      "passed": 162,
+      "failed": 0,
+      "outputSha256": "21af858a8c555c1958eaa220a9609304c095b354b5d6f39a2272142489edd00c"
+    }
+  ]
+}
