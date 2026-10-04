@@ -1,0 +1,19 @@
+{
+  "recordedAt": "2026-10-04T02:57:23.541Z",
+  "scope": "Actual candidate prepare() preserves the existing Hono and Koa bundle bytes using the same installed fixture dependencies.",
+  "results": [
+    {
+      "fixture": "hono",
+      "bytes": 23851,
+      "sha256": "6bb59210268add349aa1e3ca6519073ed94c78a0b6a4bd2750da2c8400ef8bc0",
+      "unchanged": true
+    },
+    {
+      "fixture": "koa",
+      "bytes": 101539,
+      "sha256": "4cf6f2739c10d5c7072c855ea4886a4ad8bd9fdafd5ac57cdcde898501700240",
+      "unchanged": true
+    }
+  ],
+  "temporaryRootRemoved": true
+}

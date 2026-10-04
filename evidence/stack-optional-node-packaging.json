@@ -27,5 +27,35 @@
   },
   "migrationEvidence": "stack-express-prepared-transition-probe.json",
   "nativeAcceptance": false,
-  "physicalSourceLines": 5978
+  "physicalSourceLines": 5978,
+  "deployment": {
+    "before": {
+      "recordedAt": "2026-10-04T02:55:58.261518+00:00",
+      "pid": 1041360,
+      "cwd": "/home/aswin/pods-launch-fresh",
+      "command": "node --env-file=.env src/server.mjs",
+      "listenerMatches": true,
+      "sqliteQuickCheck": "ok",
+      "activeBuilds": 0,
+      "activeLaunches": 0,
+      "health": 200,
+      "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+      "revision": "aa02036b04842d5c4d5808471e05f261debae7c4"
+    },
+    "after": {
+      "recordedAt": "2026-10-04T02:56:21.841102+00:00",
+      "pid": 1041360,
+      "cwd": "/home/aswin/pods-launch-fresh",
+      "command": "node --env-file=.env src/server.mjs",
+      "listenerMatches": true,
+      "sqliteQuickCheck": "ok",
+      "activeBuilds": 0,
+      "activeLaunches": 0,
+      "health": 200,
+      "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+      "revision": "2553fc854bc6f469fc545c9b5e324fae2c413528"
+    },
+    "scope": "Builder loads deployed scripts into each isolated build; no server or runner restart needed."
+  },
+  "unchangedBundleRegression": "stack-optional-bundle-regression.json"
 }

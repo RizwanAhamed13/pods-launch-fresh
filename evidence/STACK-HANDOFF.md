@@ -28,7 +28,7 @@ VM replacement durability, or a universal 20-second cold launch.
   logs /tmp/pods-provider-full-{local,qa}.txt. Adds3 provider compatibility
   cases after17 storage cases. Baselines114/131 remain historical; do not
   rerun unchanged passing checks.
-- Physical code: 5,920 lines = 3,204 product/tooling + 1,619 tests + 933 examples
+- Physical code: 5,978 lines = 3,210 product/tooling + 1,671 tests + 933 examples
   + 164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
   files; includes .astro. Storage handoff is deployed; native same-format regressions follow below.
 
@@ -181,19 +181,22 @@ VM replacement durability, or a universal 20-second cold launch.
 
 ## Next gate and performance work
 
-- Adonis native acceptance is complete; see the latest gate below. Choose one
-  of the22 remaining fixtures after checking ordinary quota and saved data.
-- Watcher14019 completed normally; no quota watcher remains live. The helper
-  /tmp/pods-next-native-quota-watch.py is available for a fresh bounded watch.
-  Keep limits3/account/hour and12/global/hour. Never bypass quotas or import
-  QA artifacts into production. No next fixture has been submitted.
+- Adonis acceptance is complete. Current gate: native Express format transition
+  after the new optional-import preparation candidate2553fc8. Readonly latest
+  production Express audit02:53UTC found no active apps and only its oldcontainer.
+- Normal quota watcher5345 started02:51:16.478250UTC; live, bounded20min,
+  account3/global3/active0, next ordinary slot03:01:50.267UTC. Poll this same
+  handle; never recreate solely on observation timeout. Form is staged for
+  examples/stacks/express, not submitted. Limits3/account/hour and12/global/hour;
+  no identity switching or imported QA artifacts.
 - /tmp/pods-capture-native.py reads aswin SQLite readonly, whitelists fields and
   derives timings. Its explicit fixture allowlist currently includes astro,
   react-router, express, fastify, koa, hono, nestjs and adonis.
 - scripts/live-codespaces.mjs receives gh token on stdin. Use the correct fixture
   probe, explicit output file and expected initial count. Counter/SSR/static/
   WebSocket/worker checks require two launches, including confirmed full stop.
-- Express optional-import optimization remains experimental. esbuild0.25.12
+- Express optional-import preparation candidate is deployed at2553fc8; native
+  format-transition acceptance is pending. esbuild0.25.12
   bundles a compiler-confirmed handled supports-color require into338,173 bytes
   versus production82,250,849-byte image. Real same-format persistence passed.
   Production packager unchanged: native format-transition acceptance is still needed.
@@ -233,7 +236,8 @@ VM replacement durability, or a universal 20-second cold launch.
 After compaction first CUA call must be cua.rewriteDocumentation. Reuse bindings;
 mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 
-- stackQa6: IAB2 tab13, completed Adonis preparation with exact launch link.
+- stackQa6: IAB2 tab13, staged examples/stacks/express; Prepare application
+  enabled but not submitted. Existing Adonis result remains historical.
   Ready region name includes period: Your application is ready to share.
 - accountWorker: IAB2 tab12, stopped AdonisJS launcher. adonisLaunchUrl,
   adonisPreparationSubmittedAt, adonisBrowserChecks (both passed), adonisFirstLogs
@@ -302,9 +306,44 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   stack-adonis-chunked-probe.{json,mjs}. No temporary probes remain live.
 - Evidence checkpoint d1c23f1 is pushed and synced; docs/evidence only, so no
   service restart. Compatibility3 tests and probe syntax check passed.
-- Normal quota remains3/account/hour and12/global/hour. No watcher currently
-  live; refresh readonly quota before selecting the next native fixture. Do not
-  create duplicate builds, switch identities, or import QA artifacts to production.
-- Goal active. Optional Express bundling stays disabled until native format
+- Adonis quota watcher14019 is complete; the current Express watcher5345 is
+  described above. No duplicate builds, identity switching or QA imports.
+- Goal active. Candidate Express bundling is deployed for native format
   migration acceptance. Do not repeat pending browser2FA, CloudShellRestart
   or stable-hostname questions. No product source change in this checkpoint.
+
+
+## Current optional Node packaging gate
+
+- Candidate2553fc8 pushed and synced to aswin; scripts/prepare.mjs permits only
+  compiler-confirmed handled missing literal require calls. Required imports,
+  native binaries, require.resolve and dynamic imports keep prior fallback.
+  Pinnedesbuild0.25.12; preparerSHA77686545d8259cd2a0f8a41edc7745b5989804d05e96d9e47a03f952abc38810.
+- Local fullsuite138/138 passed. QA snapshot/output/optional-candidate-aa02036:
+  first fullrun136/138, two compatibility failures because source tar omitted
+  evidence/stack-coverage.json. Restored exacttrackedfile, affected3/3 passed.
+  This is a QA setup correction; no product/testlogic changed for these failures.
+  Logs/tmp/pods-optional-full-{local,qa}.txt and compatibility-qa.txt.
+- Actualprepare+isolatedmigration23446 ended0 at02:53:28.934UTC, bundle338173bytes,
+  SHAc469dd8aefc5439253a2ea76bb7d7642cd5c0bb6e27e7845277bb4b89a38b3c0.
+  Legacycontainer0→1,bundle1→2,container2→3,bundle3→4; allcleanuptrue.
+  Evidence stack-express-prepared-transition-probe.{json,mjs}. This uses the
+  candidate prepare() path, not manually assembled experimental bundle bytes.
+- Builder pushes current src/scripts into every fresh isolated build; no service
+  restart needed. Idlepre/postaudits02:55:58/02:56:21UTC:health200,SQLiteok,
+  active0/0,unchangedPID1041360 and unchangedrunnerSHA2b346a88....
+  Runtimeprovider73bd9f4 and runner77cf340 remain. Deployment evidence currently
+  in stack-optional-node-packaging.json.
+- Native transition helper evidence/stack-express-native-transition-probe.mjs
+  takes origin,newbundleID,oldcontainerID,expectedcount,Codespace,evidencefile.
+  gh token stdin. Three launches bundle→container→bundle, exactsameenvironment,
+  HTTP read-before-write againstexpected, fullstops. Run onlyafter ordinary
+  URLpreparation completes. Expected oldCSvalue2, environment
+  pods-launch-containers-69rw5vx4xp46c5qw5. Native Google helper
+  measureExpressCounter is present; expected oldGooglevalue3.
+  Oldapprepo-6c2ac75a42b5f46c775a3028-9eee994ba7f7-53e4f5be199d,port24378.
+  Newartifact must retain dataKeyrepo-6c2ac75a42b5f46c775a3028. Do notresetdata.
+
+- Optional bundle regression39160 ended0 at02:57:23.541UTC. Actualprepare
+  retained exact Hono23851byteSHA6bb592... and Koa101539byteSHA4cf6f2...;
+  temporaryrootremoved. stack-optional-bundle-regression{,-probe}.json/.mjs.
