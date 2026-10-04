@@ -85,8 +85,8 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **162 passing checks in full local and isolated aswin QA runs**. Native coverage is 37 Google browser fixtures and
-37 Codespaces HTTP/protocol fixtures; 18 still lack at least one native acceptance path. Codespaces
+later passing attempts do not erase them. Automated coverage is **162 passing checks in full local and isolated aswin QA runs**. Native coverage is 38 Google browser fixtures and
+38 Codespaces HTTP/protocol fixtures; 17 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1920,3 +1920,37 @@ volume. Native acceptance for this fixture remains pending.
 Evidence: `stack-sqlite-runtime-probe-tests.json` and
 `stack-flask-sqlite-chunked-probe.{json,mjs}`. Source totals **6,475 physical
 lines**; native coverage remains **55 / 37 / 37**.
+
+
+## SQLite native product acceptance
+
+The real developer form built `examples/stacks/flask-sqlite` from the public
+fixture repository at `d6da2ed780ae` in **104.353 seconds** after ordinary quota
+availability. Source and requirements alone produced a reusable container
+artifact with **51,763,713 image bytes** and a persistent application volume.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell already RUNNING, image absent | Server healthy in 18.612s; product visible in 20.220s; saved value read in 20.689s; button write in 20.983s |
+| Cloud Shell cached relaunch | Server healthy in 6.274s; product visible in 7.758s; saved value restored in 7.870s; next write in 8.172s |
+| Codespaces initially Shutdown, image absent | Healthy in 52.502s, including 37.542s delivery/startup; first launch exceeds 20s |
+| Codespaces cached, initially Available | Healthy in 8.407s; authenticated HTTP counter and direct SQLite checks passed |
+
+Cloud Shell browser buttons and reloads verified **0→1→2**, with the first saved
+value surviving a full application stop/relaunch. There were no browser console
+warnings or errors. Codespaces verified the same sequence through authenticated
+HTTP and read-only inspection of the actual SQLite **3.46.1** file: integrity
+`ok`, expected saved row, one isolated application container, and the durable
+workspace volume. Its product port **27851** remains private; no database port
+is published. Native Codespaces browser interaction still needs authorization.
+
+Both Cloud Shell launches were stopped before Codespaces testing began. All four
+launches ended stopped. The final audit returned HTTP 200, database integrity
+`ok`, zero active builds/launches, and the unchanged service PID and runner SHA.
+This verifies application restart persistence, not replacement of a provider VM.
+The initial browser interaction exceeded 20s even though server health did not.
+
+Evidence: `stack-flask-sqlite-{url,google,codespaces,audit}.json`. Coverage is now
+**55 isolated / 38 Google browser / 38 Codespaces protocol**, with **17** native
+fixtures pending. Source remains **6,475 physical lines**; the current full
+suites passed **162/162** locally and in isolated aswin QA.

@@ -1,0 +1,163 @@
+{
+  "testedAt": "2026-10-04T04:51:42.700Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "BBCY1v9qa1ELW-kmNfUxiWIO1tVYXFvX",
+      "dataKey": "repo-f1ef36759663d43be8500d1a",
+      "port": 27851,
+      "appId": "repo-f1ef36759663d43be8500d1a-d6da2ed780ae-8cbc1c9dbba4",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "8cbc1c9dbba4c825e1ee8afdb9e623500eaa6413e0ce59b52e8a1ef604297ba1",
+      "images": [
+        {
+          "id": "sha256:fe3238890138cd9fa7a4cac3ec58977f3c0a5e511ea0167b065c70431f945cc9",
+          "sha256": "989c856a7963c65311bb7e4932c22d7589de4934e39d73ade4d4d1873f47dfeb",
+          "bytes": 51763713
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791089410753,
+      "updatedAt": 1791089463255,
+      "expiresAt": 1791091210753,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Shutdown",
+        "observedAt": 1791089411310,
+        "resumeRequestedAt": 1791089411367
+      },
+      "providerReadyAt": 1791089425713,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-27851.app.github.dev",
+      "lastSeenAt": 1791089463255,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 638,
+        "imagesMs": 12798,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 28,
+        "imageDownloadMs": 9079,
+        "imageLoadMs": 3680,
+        "runtimeReadyMs": 15420,
+        "cacheHit": false
+      },
+      "readyAt": 1791089463255,
+      "deliveryMs": 37542,
+      "totalMs": 52502,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 0,
+        "afterWrite": 1,
+        "afterRead": 1,
+        "passed": true,
+        "expectedInitialCount": 0
+      },
+      "sqliteRuntimeCheck": {
+        "passed": true,
+        "project": "pods-d9d8b47ba8c69c760fc3eaab",
+        "services": [
+          "web"
+        ],
+        "databaseEngine": "SQLite",
+        "version": "3.46.1",
+        "integrity": "ok",
+        "savedCount": 1,
+        "volume": "pods-d9d8b47ba8c69c760fc3eaab_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          27851
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only inspection of the actual SQLite file, saved product row, isolated container and durable Codespaces volume. Browser execution and VM replacement are separate."
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "Z27UWqT2da7XKFLf6K5i9NEGsNVo2lr2",
+      "dataKey": "repo-f1ef36759663d43be8500d1a",
+      "port": 27851,
+      "appId": "repo-f1ef36759663d43be8500d1a-d6da2ed780ae-8cbc1c9dbba4",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "8cbc1c9dbba4c825e1ee8afdb9e623500eaa6413e0ce59b52e8a1ef604297ba1",
+      "images": [
+        {
+          "id": "sha256:fe3238890138cd9fa7a4cac3ec58977f3c0a5e511ea0167b065c70431f945cc9",
+          "sha256": "989c856a7963c65311bb7e4932c22d7589de4934e39d73ade4d4d1873f47dfeb",
+          "bytes": 51763713
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791089477806,
+      "updatedAt": 1791089486213,
+      "expiresAt": 1791091277806,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791089478439
+      },
+      "providerReadyAt": 1791089478539,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-27851.app.github.dev",
+      "lastSeenAt": 1791089486213,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 857,
+        "imagesMs": 45,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 45,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2336,
+        "cacheHit": true
+      },
+      "readyAt": 1791089486213,
+      "deliveryMs": 7674,
+      "totalMs": 8407,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 1,
+        "afterWrite": 2,
+        "afterRead": 2,
+        "passed": true,
+        "expectedAfterRelaunch": 1
+      },
+      "sqliteRuntimeCheck": {
+        "passed": true,
+        "project": "pods-d9d8b47ba8c69c760fc3eaab",
+        "services": [
+          "web"
+        ],
+        "databaseEngine": "SQLite",
+        "version": "3.46.1",
+        "integrity": "ok",
+        "savedCount": 2,
+        "volume": "pods-d9d8b47ba8c69c760fc3eaab_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          27851
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only inspection of the actual SQLite file, saved product row, isolated container and durable Codespaces volume. Browser execution and VM replacement are separate."
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "performanceContext": "Cloud Shell first and cached browser launches completed and stopped before either Codespaces launch began. These provider checks were sequential; unrelated network traffic was not controlled.",
+  "cleanupAudit": {
+    "at": "2026-10-04T04:52:19.804080+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 27851,
+    "codespacesPreviewVisibility": "private"
+  },
+  "persistenceScope": "Authenticated HTTP SQLite write/read and full stop/relaunch on user compute; native Codespaces browser execution remains pending."
+}

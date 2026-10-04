@@ -17,11 +17,11 @@ VM replacement durability, or a universal 20-second cold launch.
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
   saved format changes on actual environment capabilities.
-- Coverage:55 isolated build/artifact/browser passes;37 Google native browser
-  and37 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+- Coverage:55 isolated build/artifact/browser passes;38 Google native browser
+  and38 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Native Codespaces browser checks remain
-  pending authorization. The18 fixtures awaiting native acceptance are:
-  actix, aspnet, axum, deno, echo, fiber, flask-sqlite, flask-valkey, go, gradio,
+  pending authorization. The17 fixtures awaiting native acceptance are:
+  actix, aspnet, axum, deno, echo, fiber, flask-valkey, go, gradio,
   ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
 - Current full suite:162/162 passed locally and in isolated aswin QA after
   SQLite inspection tooling. Logs /tmp/pods-sqlite-full-{local,qa}.txt.
@@ -655,3 +655,32 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 - SQLite tooling published e214e15 and synchronized to aswin. Idle audit at
   04:43:09.157 UTC: HTTP 200, SQLite integrity ok, zero active builds/launches,
   unchanged PID 1063107 and runner SHA. No service restart was required.
+
+
+## SQLite native acceptance complete
+
+- This goal turn progressed: SQLite tooling e214e15 and audit87105f4 published,
+  then ordinary quota became available at04:46:00.311UTC. Watcher71776 ended0.
+  Real developer form submitted once at04:46:04.918UTC. Build observer73193 ended0.
+  Build6Q6wqr9VwY9Afl-IqtXcc_EEuoKa_7Nv ready in104353ms, fixture d6da2ed780ae,
+  app repo-f1ef36759663d43be8500d1a-d6da2ed780ae-8cbc1c9dbba4, port27851,
+  image51763713bytes. No imported QA artifact or quota bypass.
+- Google RUNNING, first image absent: health18612ms/delivery15228ms;
+  browser visible20220/read20689/write20983ms. Cached health6274/delivery3062ms;
+  browser visible7758/read7870/write8172ms. Counter0→1→2, reloads/full stops passed,
+  no warn/error logs. Cloud Shell stopped before Codespaces checks began.
+- Codespaces session3450 ended0. First Shutdown, health52502/delivery37542ms,
+  no cached image, download9079/load3680ms. Cached Available health8407/delivery7674ms.
+  Counter0→1→2 across full stops; actual SQLite3.46.1 integrityok/savedrows1and2,
+  single app container, persistentvolume and private27851 verified. No DB port.
+- All four launches stopped. Final capture04:52:19.804UTC and audit04:52:22.904UTC:
+  health200, integrityok, zeroactivebuild/launch, unchangedPID1063107 andrunnerSHA.
+  Evidence stack-flask-sqlite-{url,google,codespaces,audit}.json.
+- Coverage55/38/38 with17 current nativefixtures pending; one older failed MongoDB
+  row remains historical and is not counted as another pending current fixture.
+  Source6475lines, full162/162 local/QA stillvalid; only evidence/docs changed since.
+- No live command or native application remains. Browser tab1 developerSQLite
+  complete, tab2 stoppedSQLitelauncher, tab3 support. Preserve for next turn.
+  Next native fixture can be Flask+Valkey after its engine-specific inspection and
+  normal quota. Existing GitHub2FA/VMreplacement/stablehostname inputs stay pending;
+  do not repeat those questions. Goal remains active, incomplete and making progress.
