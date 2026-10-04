@@ -7,13 +7,13 @@ VM replacement durability, or a universal 20-second cold launch.
 
 ## Current state
 
-- Latest native acceptance: Sinatra, revision `21b6cd0`, pushed and synced to aswin.
-  Public `/support` verified **55/48/48** at 2026-10-04T08:15:09.166Z.
-  All four Sinatra launches stopped; current saved counters2 on each provider.
-  Next unsubmitted developer draft is `examples/stacks/deno`.
-  Ordinary quota watcher session37339 remains live; its last snapshot at08:14:39UTC
-  reports the next slot at2026-10-04T08:29:35.611000+00:00. Resume that watcher;
-  no quota bypass or resubmission. `/tmp/pods-watch-deno-build.py` is prepared.
+- Latest native acceptance: Deno, revision `ecbcafa`, pushed and synced to aswin.
+  Public `/support` verified **55/49/49** at 2026-10-04T08:37:32.120Z.
+  All four Deno launches stopped; current saved counters2 on each provider.
+  Next unsubmitted developer draft is `examples/stacks/gradio`.
+  Ordinary quota watcher session83972 remains live; its snapshot at08:36:33UTC
+  reports the next slot at2026-10-04T08:47:21.377000+00:00. Resume that watcher;
+  no quota bypass or resubmission. `/tmp/pods-watch-gradio-build.py` is prepared.
 
 - Local: /Users/rizwanahamed/Documents/ChatGPT/podsv2.
 - aswin: /home/aswin/pods-launch-fresh; SSH alias aswin.
@@ -1343,3 +1343,15 @@ The temporary file-counter documentation helper now invokes it automatically.
   All four launches stopped; no service restart. Coverage55/49/49;6nativepending.
   Source7128/full189 unchanged. Existing GitHub2FA/VMreplacement/stablehostname
   inputs remain pending. Goal active and progressing.
+
+
+## Deno publication verified
+
+- Public `stack-deno-published.json` confirms Deno all three paths Passed at revisionecbcafa; native Codespaces browser interaction remains explicitly pending.
+- BuildGLISoHttNJg6Rcn-od35Ei5wa4j0yhtL submitted2026-10-04T08:29:45.596Z, ready145456ms after build start. Artifactapp repo-850a8e4568f756cc3f4117ae-d6da2ed780ae-26bac45acce9, image61421201bytes. Real developer form and isolated build; no QA import.
+- GoogleRUNNING first/cached healthy20835/6789ms; visible22944/7835ms; write23245/8233ms. Browser0→1→2, reloads, both full stops and console cleanliness passed.
+- Codespaces existing69rw5vx4xp46c5qw5: Shutdown53678ms, cachedAvailable8944ms. Counterwrites0→1→2, exactcompiled command `/product`, copied `/data/counter.txt` values1/2, durable volume and privateport23310 verified. Both stopped.
+- Audit 2026-10-04T08:36:33.712331+00:00: health200/integrityok/zeroactive, unchangedPID1063107/runnerSHA; no service restart. Native coverage55/49/49, sixpending. Source7128/full189 unchanged; compatibility3passed after evidence update. Timing report98observations/49excludedpairs; first deliveries still exceed20s.
+- Next Gradio: sourceh1 `Gradio + SQLite`, Gradio Number label `Saved count`, Button `Add one`, SQLite `/data/counter.sqlite`. Inspect the live DOM before choosing its counter locator; file-counter browser helper expects #value and must not be reused blindly. Use `PODS_DASHBOARD_FIXTURE=gradio PODS_EXPECT_INITIAL_COUNT=0` in the Codespaces harness, without PODS_COUNTER_CHECK. Dashboard helper already passed real serialized QA and full189 suite.
+- `/tmp/pods-record-dashboard-native.py` is prepared for Gradio/Streamlit, validates both protocol sequences and SQLite integrity/saved values. It has not run against native evidence yet. Dashboard documentation needs a matching scope/template; do not claim the file-counter helper's exact-command verification for dashboard checks.
+- Browserhandles stackQa6/tab1(Gradio draft), echoTab/tab2(stoppedDeno), mongodbSupport/tab3(publicsupport55/49/49), all markedHandoff. New watcher83972, ordinary slot08:47:21UTC. Goalactive; existing GitHub2FA/VMreplacement/stablehostname inputs remain pending, do not repeat.
