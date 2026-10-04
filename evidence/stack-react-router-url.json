@@ -1,0 +1,63 @@
+{
+  "recordedAt": "2026-10-04T00:28:42.546627+00:00",
+  "controlRevision": "5e5b4a0",
+  "checkoutRevision": "6b060b9",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated server build, with no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T00:24:35.005062+00:00",
+    "accountRecent": 2,
+    "globalRecent": 2,
+    "activeBuilds": 0
+  },
+  "submittedAt": "2026-10-04T00:24:39.103Z",
+  "attempts": [
+    {
+      "id": "MjrcYjGIxMke9yviTCOw8FkyIXjnlCTK",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/react-router",
+        "key": "2d7780cca2d3a2ce37012bb4"
+      },
+      "status": "ready",
+      "createdAt": 1791073484981,
+      "startedAt": 1791073485132,
+      "finishedAt": 1791073618709,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-2d7780cca2d3a2ce37012bb4-9eee994ba7f7-22c18eb98949",
+      "app": {
+        "id": "repo-2d7780cca2d3a2ce37012bb4-9eee994ba7f7-22c18eb98949",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "22c18eb98949e218e98af105fd41d7a33b84d561070f3cd8053c74820d160c2b",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-2d7780cca2d3a2ce37012bb4",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/react-router",
+          "revision": "9eee994ba7f70d1793bc449573ddb36e01003818"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "React Router counter"
+        },
+        "preparedAt": "2026-10-04T00:26:58.362Z",
+        "images": [
+          {
+            "id": "sha256:fa6146e4c35d7d6d60875e9c94219b15c29ecf5ac460f63fc0fc17d6d27c2700",
+            "sha256": "39e828d43a19c96ea46ccd7f9770c5445ea7948d64dcacecbda6bdbbefcbfa9f",
+            "bytes": 100372817
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 133577
+}

@@ -1,0 +1,149 @@
+{
+  "testedAt": "2026-10-04T00:28:40.290Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "OuyJMgJXkZuuiSXAdoDN9392n1uLo9NP",
+      "dataKey": "repo-2d7780cca2d3a2ce37012bb4",
+      "port": 24950,
+      "appId": "repo-2d7780cca2d3a2ce37012bb4-9eee994ba7f7-22c18eb98949",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "22c18eb98949e218e98af105fd41d7a33b84d561070f3cd8053c74820d160c2b",
+      "images": [
+        {
+          "id": "sha256:fa6146e4c35d7d6d60875e9c94219b15c29ecf5ac460f63fc0fc17d6d27c2700",
+          "sha256": "39e828d43a19c96ea46ccd7f9770c5445ea7948d64dcacecbda6bdbbefcbfa9f",
+          "bytes": 100372817
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791073631376,
+      "updatedAt": 1791073694811,
+      "expiresAt": 1791075431376,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Shutdown",
+        "observedAt": 1791073631919,
+        "resumeRequestedAt": 1791073632088
+      },
+      "providerReadyAt": 1791073647057,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-24950.app.github.dev",
+      "lastSeenAt": 1791073694811,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 1011,
+        "imagesMs": 24500,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 28,
+        "imageDownloadMs": 18353,
+        "imageLoadMs": 6091,
+        "runtimeReadyMs": 29889,
+        "cacheHit": false
+      },
+      "readyAt": 1791073694811,
+      "deliveryMs": 47754,
+      "totalMs": 63435,
+      "ssrCheck": {
+        "fixture": "react-router",
+        "productRendered": true,
+        "initialCounter": 0,
+        "scripts": [
+          {
+            "path": "/assets/root-Q1OWNSXF.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 688
+          },
+          {
+            "path": "/assets/entry.client-BuSCv7hK.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 224210
+          }
+        ],
+        "passed": true,
+        "scope": "Authenticated HTTP server-rendered fixture and client entry assets; not browser hydration, interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "cRmdvK8nbgsEhJ5V9SGSOWj1884iPsP3",
+      "dataKey": "repo-2d7780cca2d3a2ce37012bb4",
+      "port": 24950,
+      "appId": "repo-2d7780cca2d3a2ce37012bb4-9eee994ba7f7-22c18eb98949",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "22c18eb98949e218e98af105fd41d7a33b84d561070f3cd8053c74820d160c2b",
+      "images": [
+        {
+          "id": "sha256:fa6146e4c35d7d6d60875e9c94219b15c29ecf5ac460f63fc0fc17d6d27c2700",
+          "sha256": "39e828d43a19c96ea46ccd7f9770c5445ea7948d64dcacecbda6bdbbefcbfa9f",
+          "bytes": 100372817
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791073703422,
+      "updatedAt": 1791073712136,
+      "expiresAt": 1791075503422,
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791073704034
+      },
+      "providerReadyAt": 1791073704155,
+      "previewUrl": "https://pods-launch-containers-69rw5vx4xp46c5qw5-24950.app.github.dev",
+      "lastSeenAt": 1791073712136,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 571,
+        "imagesMs": 46,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 46,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2272,
+        "cacheHit": true
+      },
+      "readyAt": 1791073712136,
+      "deliveryMs": 7981,
+      "totalMs": 8714,
+      "ssrCheck": {
+        "fixture": "react-router",
+        "productRendered": true,
+        "initialCounter": 0,
+        "scripts": [
+          {
+            "path": "/assets/root-Q1OWNSXF.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 688
+          },
+          {
+            "path": "/assets/entry.client-BuSCv7hK.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 224210
+          }
+        ],
+        "passed": true,
+        "scope": "Authenticated HTTP server-rendered fixture and client entry assets; not browser hydration, interaction or database persistence"
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "cleanupAudit": {
+    "at": "2026-10-04T00:28:42.546627+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 24950,
+    "codespacesPreviewVisibility": "private"
+  }
+}

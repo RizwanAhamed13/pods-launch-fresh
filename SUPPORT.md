@@ -86,8 +86,8 @@ or in-flight crash recovery.
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
 later passing attempts do not erase them. Automated coverage is **114 passing
-checks locally and on aswin**. Native coverage is 26 Google browser fixtures and
-26 Codespaces HTTP/protocol fixtures; 29 await native acceptance. Codespaces
+checks locally and on aswin**. Native coverage is 27 Google browser fixtures and
+27 Codespaces HTTP/protocol fixtures; 28 await native acceptance. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1238,8 +1238,8 @@ rejected. Native tests also verify the selected prepared app matches the fixture
 
 Both new checks passed against existing genuine isolated artifacts, with clean
 application stops afterward. All 114 automated checks pass locally and on aswin.
-These isolated probe results do not add native acceptance: Astro and React Router
-still require actual URL preparation and provider/browser launches.
+These isolated probe results did not add native acceptance; the subsequent Astro
+and React Router native results are recorded below.
 Source totals 5,523 physical lines, now including the four-line Astro source file
 previously omitted by the extension filter. Evidence: `stack-astro-ssr-probe.json`
 and `stack-react-router-ssr-probe.json`.
@@ -1269,8 +1269,8 @@ All four launches stopped. Port 26566 stayed private, and the final 00:07:14 UTC
 audit found no active builds or launches and healthy control service. The first
 image cases exceed 20 seconds; cached results do not establish a cold-launch promise.
 Evidence: `stack-astro-url.json`, `stack-astro-google.json`,
-`stack-astro-codespaces.json`. Current acceptance:55 isolated, 26 Google browser,
-26 Codespaces protocol, 29 native fixtures remaining. React Router is next.
+`stack-astro-codespaces.json`. This checkpoint reached55 isolated, 26 Google browser,
+26 Codespaces protocol, with29 native fixtures remaining.
 
 ## Astro image compression check
 
@@ -1281,3 +1281,36 @@ preserved the exact uncompressed tar bytes. Inspection found125,437,883 of
 compression therefore offers no meaningful transfer reduction for this image.
 The working packaging remains unchanged; this is isolated measurement evidence,
 not a new native performance result. See `stack-astro-compression-trial.json`.
+
+## React Router native acceptance
+
+The actual developer form prepared `examples/stacks/react-router` at revision
+`9eee994` in **133.577 seconds**, after ordinary preparation quota became available.
+The reusable result contains a 276-byte manifest and a 100,372,817-byte runtime image.
+User launch required no build command or installation step.
+
+| Scenario | Health | Visible product / interaction |
+| --- | --- | --- |
+| Cloud Shell RUNNING, image absent | 30.349s | 32.614s / 32.930s |
+| Cloud Shell RUNNING, cached full relaunch | 7.450s | 8.862s / 9.167s |
+| Codespaces Shutdown, resume and image absent | 63.435s | Authenticated SSR and client-module checks passed |
+| Codespaces Available, cached full relaunch | 8.714s | Authenticated SSR and client-module checks passed |
+
+Both Google browser measurements were continuous. The hydrated button changed
+0→1, reload retained 1, and a full application stop/relaunch restored 1 before the
+next click changed it to 2; reload retained 2. There were no captured browser
+warnings or errors. This proves browser localStorage persistence, not database
+or provider VM replacement durability. Codespaces delivered the rendered counter
+and both real root/client-entry JavaScript modules on each launch; its native
+browser execution remains pending.
+
+All four previews stopped. The 00:28:42 UTC audit found no active builds or launches,
+healthy control service and a private Codespaces product port 24950. Evidence:
+`stack-react-router-url.json`, `stack-react-router-google.json` and
+`stack-react-router-codespaces.json`.
+
+All eight listed static frontend fixtures and all six listed SSR fixtures now
+have native Google browser and Codespaces HTTP/protocol acceptance. Total coverage
+is 55 isolated fixtures, 27 native Google browser fixtures and 27 Codespaces protocol
+fixtures, with 28 awaiting native acceptance. Uncached React Router launches exceed
+20 seconds; the cached result does not establish a universal cold-launch guarantee.
