@@ -94,7 +94,9 @@ Mark pending workflow tabs each turn; no duplicate launch/build after read timeo
   successful increment, reload retained value. Label must come from observed UI.
   measurePreparedCounter is older static helper hardcoded to Open PODS counter.
   stopPreparedProduct(tab,url) navigates to launcher, clicks Stop once, confirms.
-- supportQa: IAB2tab29, public/support deliverable; verify27/27 after this evidence sync.
+- supportQa: IAB2tab29, public/support deliverable. After808b787 sync, browser
+  verified55 isolated/27 Google/27 Codespaces and React Router Passed/Passed/Passed.
+  Codespaces browser-pending warning remains visible. No further rerun is needed.
 - nativeGithubKeep: IAB2tab10, pending GitHub two-factor authentication; fresh
   read00:18UTC still2FA. User action already requested. No SMS/code sent.
 - cloudLifecycle: IAB2tab14, Cloud Shell Restart confirmation pending. No approval
