@@ -724,3 +724,12 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   04:58:00.368UTC confirmed health200, SQLite integrityok, zeroactivebuild/launch,
   unchangedPID1063107 andrunnerSHA. No restart. Watcher52951 remainslive awaiting
   ordinary05:03:05.821UTC quota; nativeValkeyform is unsubmitted.
+
+## Current guide and historical records separated
+
+- SUPPORT.md is now a concise current guide (146 lines): target families, verified
+  fixture families, current counts, performance example and operational limits.
+- Older run details moved byte-for-byte to evidence/STACK-VERIFICATION-HISTORY.md.
+  Relative document links resolve. Keep future detailed run history in that file;
+  update current counts and relevant evidence links in SUPPORT.md without growing
+  another chronological log. No product source or native acceptance was changed.
