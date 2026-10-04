@@ -2452,3 +2452,13 @@ Evidence: `stack-sinatra-{url,google,codespaces,audit}.json`. Coverage is now
 **55 isolated / 48 Google browser / 48 Codespaces protocol**, with **7** native
 fixtures pending. Full suite **184/184** and source **6,995 lines** remain valid;
 this acceptance changed only evidence and documentation.
+
+
+## SQLite framework inspection helper checkpoint
+
+- New `scripts/probe-sqlite-file-runtime.mjs` opt-in verification profiles for Ktor, Micronaut, Phoenix and Symfony. Validates exact prepared startup command, one web service, network, assigned8080port and durable workspace volume. Briefly pauses only the explicit fixture container, copies database/WAL, always attempts unpause, and queries the private copy read-only with Node SQLite. Cleans private snapshot on success/failure. Inspection version does not identify the application driver.
+- `PODS_SQLITE_FILE_RUNTIME_CHECK=1` requires counter checks and exact supported fixture folder in `live-codespaces.mjs`; saved file inspection runs after the product write. No product/provider runtime changes or service restart.
+- Five focused tests passed, including committed records present only in WAL, corrupt/stale/linked snapshots, boundary rejection, failure cleanup and a fresh-process serialized probe. Full189/189 passed locally and in isolated Linux after all322 snapshot file hashes matched. Initial incomplete Linux snapshot omitted the compatibility coverage JSON and failed2tests; correction and loghash recorded in `stack-sqlite-file-tests.json`.
+- Real pinned Ktor/Micronaut/Phoenix/Symfony artifacts passed0→1→2, exact serialized helper, SQLite quick_check, copied saved row and product response after resume. Full stop/relaunch retained each counter. Phoenix copied main/WAL/SHM; the others copied the checkpointed database. Evidence `stack-sqlite-file-{live.mjs,preflight.json,tests.json,audit.json}`.
+- All scoped test containers, named volumes and storage directories removed, retaining shared runtime/cache and unrelated QA work. Audit 2026-10-04T08:24:19.882384+00:00: health200/integrityok/zeroactive, unchangedPID1063107/runnerSHA. QA source candidate `/output/sqlite-file-candidate-a6a7f5d`.
+- Product source count now7128 physical lines. Native acceptance stays55/48/48; all7 remaining native fixtures still pending. Deno draft/watcher37339 unchanged; ordinary slot08:29:35UTC.

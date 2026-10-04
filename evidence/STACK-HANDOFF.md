@@ -30,10 +30,10 @@ VM replacement durability, or a universal 20-second cold launch.
   and six SSR fixtures pass both paths. Native Codespaces browser checks remain
   pending authorization. The7 fixtures awaiting native acceptance are:
   deno, gradio, ktor, micronaut, phoenix, streamlit, symfony.
-- Current full suite:184/184 passed locally and in isolated aswin QA after
-  PHP/Sinatra/Deno file-counter profiles. Logs /tmp/pods-file-profiles-full-{local,qa}.txt.
+- Current full suite:189/189 passed locally and in isolated aswin QA after
+  SQLite snapshot helper. Logs /tmp/pods-sqlite-file-full-{local,qa}.txt.
   The previous SQLite native acceptance was published4bb9326.
-- Physical code:6,995 lines =3,662 product/tooling +2,236 tests +933 examples
+- Physical code:7,128 lines =3,717 product/tooling +2,314 tests +933 examples
   +164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
   files; includes .astro. Running provider revision5dde1e5, PID1063107,
   runner SHA2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486.
@@ -1318,3 +1318,13 @@ The temporary file-counter documentation helper now invokes it automatically.
 - Seven native fixtures remain: Deno, Gradio, Ktor, Micronaut, Phoenix, Streamlit, Symfony. Continue Deno through actual developer form after normal quota; both file-profile runtime preflight and184tests are already valid. Use `PODS_COUNTER_CHECK=1 PODS_FILE_COUNTER_RUNTIME_CHECK=1 PODS_EXPECT_INITIAL_COUNT=0` for its native Codespaces harness.
 - Persistent browser handles: stackQa6/tab1(Deno draft), echoTab/tab2(stoppedSinatra), mongodbSupport/tab3(publicsupport55/48/48). All markedHandoff. Deno product h1 is `Deno persistent counter`, counter#value, Add one.
 - Goal remains active and incomplete. Existing GitHub2FA, VMreplacement durability authorization and stablehostname inputs remain pending; do not repeat those questions.
+
+
+## SQLite framework inspection helper checkpoint
+
+- New `scripts/probe-sqlite-file-runtime.mjs` opt-in verification profiles for Ktor, Micronaut, Phoenix and Symfony. Validates exact prepared startup command, one web service, network, assigned8080port and durable workspace volume. Briefly pauses only the explicit fixture container, copies database/WAL, always attempts unpause, and queries the private copy read-only with Node SQLite. Cleans private snapshot on success/failure. Inspection version does not identify the application driver.
+- `PODS_SQLITE_FILE_RUNTIME_CHECK=1` requires counter checks and exact supported fixture folder in `live-codespaces.mjs`; saved file inspection runs after the product write. No product/provider runtime changes or service restart.
+- Five focused tests passed, including committed records present only in WAL, corrupt/stale/linked snapshots, boundary rejection, failure cleanup and a fresh-process serialized probe. Full189/189 passed locally and in isolated Linux after all322 snapshot file hashes matched. Initial incomplete Linux snapshot omitted the compatibility coverage JSON and failed2tests; correction and loghash recorded in `stack-sqlite-file-tests.json`.
+- Real pinned Ktor/Micronaut/Phoenix/Symfony artifacts passed0→1→2, exact serialized helper, SQLite quick_check, copied saved row and product response after resume. Full stop/relaunch retained each counter. Phoenix copied main/WAL/SHM; the others copied the checkpointed database. Evidence `stack-sqlite-file-{live.mjs,preflight.json,tests.json,audit.json}`.
+- All scoped test containers, named volumes and storage directories removed, retaining shared runtime/cache and unrelated QA work. Audit 2026-10-04T08:24:19.882384+00:00: health200/integrityok/zeroactive, unchangedPID1063107/runnerSHA. QA source candidate `/output/sqlite-file-candidate-a6a7f5d`.
+- Product source count now7128 physical lines. Native acceptance stays55/48/48; all7 remaining native fixtures still pending. Deno draft/watcher37339 unchanged; ordinary slot08:29:35UTC.

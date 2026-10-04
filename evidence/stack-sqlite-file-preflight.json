@@ -1,0 +1,389 @@
+{
+  "recordedAt": "2026-10-04T08:24:17.597177+00:00",
+  "baseRevision": "a6a7f5dc01a0bde3fc301b22181b905c11ca9732",
+  "sourceHashes": {
+    "src/runner.mjs": "de3680794b58f02d4e912810164e79049559fe994556501ec6969bd3cf3dafde",
+    "src/container-runtime.mjs": "51c866cf69fab25476f0cb286747db4c5f2aaa34c2e093b9580444970d970374",
+    "src/storage-transition.mjs": "4bf7ba7c9489cb1d2afbe372ac54e1d37c0dc3a9fe48a34f13f6bcc6300dc161",
+    "src/containers.mjs": "1c1a811c983f666d7a4c222bd115a56268263d28e6737133e6d84ab451a57eba",
+    "scripts/live-codespaces.mjs": "51cb962385cb3126c88db8927e5f453ce670bb8ca4e0cf8ec3800fac5c11d0f4",
+    "scripts/probe-sqlite-file-runtime.mjs": "6df8ebeb28afeff069953b4d6a1d06261784396926b32185b48e04ac137ae477",
+    "test/sqlite-file-runtime-probe.test.mjs": "8580fedc38f447d23d5e9a47e1f388a499bf937ed5523f57427711c738e9a791",
+    "evidence/stack-sqlite-file-live.mjs": "9014d7496a44df44153252489f07e49f86cab92cd53dd92219e79e2f638d1de8"
+  },
+  "qaCandidate": "/output/sqlite-file-candidate-a6a7f5d",
+  "snapshotManifestSha256": "033838212b7004cc00ab6d7df81797cdff7fbb55506c8edc985454f82a6f8d2a",
+  "snapshotFilesMatched": 322,
+  "scope": "Four pinned real framework artifacts, empty chunked product writes, exact serialized SQLite snapshot helper and full restart persistence. Pauses only the explicit test container during its database/WAL copy, resumes before querying and verifies the product responds with unchanged data. Isolated QA only; no added native provider acceptance.",
+  "sourceProvenance": "Artifact hashes and product source hashes are recorded per fixture; the prior SQLite framework source audit is in stack-sqlite-framework-transport-preflight.json.",
+  "results": [
+    {
+      "recordedAt": "2026-10-04T08:21:38.074Z",
+      "fixture": "ktor",
+      "scope": "Isolated real framework artifact and exact serialized native SQLite file helper; real HTTP write/read, independent SQLite snapshot integrity and saved-row query, application resume and full restart retention. Not a native provider or new browser acceptance test.",
+      "dataKey": "ktor-sqlite-snapshot-f6fcb11698da1ec4",
+      "project": "pods-7e4b9106d78541022d6de61d",
+      "artifactSha256": "49296597e69e533a327361f5dc38f89f282c8d0757c29c74754b3563c3bfa780",
+      "images": [
+        {
+          "id": "sha256:cc93a149db93551a987664b392449f677e3e601ecabc206995174e8c6ff273ce",
+          "sha256": "4de9a478c90ed83b0a99203bd183330cdd3d189461dca69ebd95f3f24823d092",
+          "bytes": 138945817
+        }
+      ],
+      "sourceSha256": "8f94b8e355f4506a68070ccc7e25af162bd683cb885f106d21d0dcf4a8a34b78",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "afterInspection": 1,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "ktor",
+            "project": "pods-7e4b9106d78541022d6de61d",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 1,
+            "snapshotFiles": [
+              "counter.sqlite"
+            ],
+            "applicationResumed": true,
+            "volume": "pods-7e4b9106d78541022d6de61d_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only query of a private database snapshot copied while the fixture container was paused, including WAL when present. Container resumed before querying. SQLite version describes the inspector, not the application driver. No application SQL or file was changed; VM replacement and power-loss durability are separate."
+          }
+        },
+        {
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "afterInspection": 2,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "ktor",
+            "project": "pods-7e4b9106d78541022d6de61d",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 2,
+            "snapshotFiles": [
+              "counter.sqlite"
+            ],
+            "applicationResumed": true,
+            "volume": "pods-7e4b9106d78541022d6de61d_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only query of a private database snapshot copied while the fixture container was paused, including WAL when present. Container resumed before querying. SQLite version describes the inspector, not the application driver. No application SQL or file was changed; VM replacement and power-loss durability are separate."
+          }
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T08:22:04.388Z",
+      "fixture": "micronaut",
+      "scope": "Isolated real framework artifact and exact serialized native SQLite file helper; real HTTP write/read, independent SQLite snapshot integrity and saved-row query, application resume and full restart retention. Not a native provider or new browser acceptance test.",
+      "dataKey": "micronaut-sqlite-snapshot-802b88c560dc0ffd",
+      "project": "pods-ca641ada3daa81ae95468fda",
+      "artifactSha256": "e8d70b34f83d2437c0a79b10ce6d95f5169f378aa84fca5464d182043ebf997b",
+      "images": [
+        {
+          "id": "sha256:d026024db53948c0a716e275a0b0b975db3a8ed2a9364a5a5ce091233fba6eba",
+          "sha256": "87d911df4f774d07285f706edbc7d33b0172652059fa56cef3e76fd5792b776e",
+          "bytes": 125122408
+        }
+      ],
+      "sourceSha256": "3d4d4aa5b6bb0067d93ab03630d6e6d1e8786256a954f892463395f956b629d5",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "afterInspection": 1,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "micronaut",
+            "project": "pods-ca641ada3daa81ae95468fda",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 1,
+            "snapshotFiles": [
+              "counter.sqlite"
+            ],
+            "applicationResumed": true,
+            "volume": "pods-ca641ada3daa81ae95468fda_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only query of a private database snapshot copied while the fixture container was paused, including WAL when present. Container resumed before querying. SQLite version describes the inspector, not the application driver. No application SQL or file was changed; VM replacement and power-loss durability are separate."
+          }
+        },
+        {
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "afterInspection": 2,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "micronaut",
+            "project": "pods-ca641ada3daa81ae95468fda",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 2,
+            "snapshotFiles": [
+              "counter.sqlite"
+            ],
+            "applicationResumed": true,
+            "volume": "pods-ca641ada3daa81ae95468fda_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only query of a private database snapshot copied while the fixture container was paused, including WAL when present. Container resumed before querying. SQLite version describes the inspector, not the application driver. No application SQL or file was changed; VM replacement and power-loss durability are separate."
+          }
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T08:22:31.371Z",
+      "fixture": "phoenix",
+      "scope": "Isolated real framework artifact and exact serialized native SQLite file helper; real HTTP write/read, independent SQLite snapshot integrity and saved-row query, application resume and full restart retention. Not a native provider or new browser acceptance test.",
+      "dataKey": "phoenix-sqlite-snapshot-9cf1fd18520f5d98",
+      "project": "pods-7572ca15caf73cd99afce3b7",
+      "artifactSha256": "7308461467ce0b24285428c542b402856037ab0c4ca8420e4bb4d313bacc0e98",
+      "images": [
+        {
+          "id": "sha256:b21152ef10862fed9b6fd780a2902590574df8e1522469df3ed050993daf4881",
+          "sha256": "a6ad3145a21075443653d81704e58ddeb94ea205881e98607331deee7f86e5a9",
+          "bytes": 166072256
+        }
+      ],
+      "sourceSha256": "2e144615570aaa27bb6e8ef60ebf3bddac7e21ad6d1b1d8cfab2fb03789f00f9",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "afterInspection": 1,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "phoenix",
+            "project": "pods-7572ca15caf73cd99afce3b7",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 1,
+            "snapshotFiles": [
+              "counter.sqlite",
+              "counter.sqlite-shm",
+              "counter.sqlite-wal"
+            ],
+            "applicationResumed": true,
+            "volume": "pods-7572ca15caf73cd99afce3b7_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only query of a private database snapshot copied while the fixture container was paused, including WAL when present. Container resumed before querying. SQLite version describes the inspector, not the application driver. No application SQL or file was changed; VM replacement and power-loss durability are separate."
+          }
+        },
+        {
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "afterInspection": 2,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "phoenix",
+            "project": "pods-7572ca15caf73cd99afce3b7",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 2,
+            "snapshotFiles": [
+              "counter.sqlite",
+              "counter.sqlite-shm",
+              "counter.sqlite-wal"
+            ],
+            "applicationResumed": true,
+            "volume": "pods-7572ca15caf73cd99afce3b7_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only query of a private database snapshot copied while the fixture container was paused, including WAL when present. Container resumed before querying. SQLite version describes the inspector, not the application driver. No application SQL or file was changed; VM replacement and power-loss durability are separate."
+          }
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T08:23:11.260Z",
+      "fixture": "symfony",
+      "scope": "Isolated real framework artifact and exact serialized native SQLite file helper; real HTTP write/read, independent SQLite snapshot integrity and saved-row query, application resume and full restart retention. Not a native provider or new browser acceptance test.",
+      "dataKey": "symfony-sqlite-snapshot-6d309a65e4ad4943",
+      "project": "pods-bc72fa7ecb548fe95e42393b",
+      "artifactSha256": "81b78431ad424b1b412bc73b3b44540d6bf01e98076eced7d532cdc37be2f817",
+      "images": [
+        {
+          "id": "sha256:efe0f95b8161337d20235b86a84ecb5f5db6d83a862b6643891159457fecd52b",
+          "sha256": "2a9d053e4344a2cf22ca1479d7b3667af7915cf3bfcf4309f08f2ac172e229c7",
+          "bytes": 225351307
+        }
+      ],
+      "sourceSha256": "405d631ffa88a53f55192cfe6022918a87407151584ebeb971fb28f1930c5e8e",
+      "records": [
+        {
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "afterInspection": 1,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "symfony",
+            "project": "pods-bc72fa7ecb548fe95e42393b",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 1,
+            "snapshotFiles": [
+              "counter.sqlite"
+            ],
+            "applicationResumed": true,
+            "volume": "pods-bc72fa7ecb548fe95e42393b_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only query of a private database snapshot copied while the fixture container was paused, including WAL when present. Container resumed before querying. SQLite version describes the inspector, not the application driver. No application SQL or file was changed; VM replacement and power-loss durability are separate."
+          }
+        },
+        {
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "afterInspection": 2,
+          "sqliteFileRuntimeCheck": {
+            "passed": true,
+            "fixtureProfile": "symfony",
+            "project": "pods-bc72fa7ecb548fe95e42393b",
+            "services": [
+              "web"
+            ],
+            "databaseEngine": "SQLite",
+            "inspectionEngineVersion": "3.53.4",
+            "integrity": "ok",
+            "savedCount": 2,
+            "snapshotFiles": [
+              "counter.sqlite"
+            ],
+            "applicationResumed": true,
+            "volume": "pods-bc72fa7ecb548fe95e42393b_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only query of a private database snapshot copied while the fixture container was paused, including WAL when present. Container resumed before querying. SQLite version describes the inspector, not the application driver. No application SQL or file was changed; VM replacement and power-loss durability are separate."
+          }
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    }
+  ]
+}
