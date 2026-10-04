@@ -15,7 +15,7 @@ Provider authorization is required. Conventional public GitHub applications can 
 
 Cold provisioning and uncached image transfer are measured separately from cached launch. User compute remains owned and billed by the user's provider. Persistent container data is stored under Cloud Shell's home or Codespaces' `/workspaces`; provider lifecycle durability requires separate evidence.
 ## Evidence on Hand
-The current implementation passes 131 automated checks locally and in isolated aswin QA. Native acceptance currently covers 32 Cloud Shell browser fixtures and 32 Codespaces HTTP/protocol fixtures; native Codespaces browser sign-in and interaction remain pending. All 55 distinct stack fixtures have real server-build, reusable-artifact launch and meaningful browser-interaction evidence. Hono, Koa and Fastify's corrected fixture passed native Google browser and Codespaces HTTP persistence checks; Fastify's original Google preview POST failure is retained as evidence. The fixtures cover frontend, SSR, backend, database and worker combinations; they do not represent 55 different frameworks. Database fixtures have write/read/stop/relaunch checks. See `evidence/stack-coverage.json`, numbered stack matrix/browser evidence, and `SUPPORT.md` for the exact scope and retained failures.
+The current implementation passes 134 automated checks locally and in isolated aswin QA. Native acceptance currently covers 32 Cloud Shell browser fixtures and 32 Codespaces HTTP/protocol fixtures; native Codespaces browser sign-in and interaction remain pending. All 55 distinct stack fixtures have real server-build, reusable-artifact launch and meaningful browser-interaction evidence. Hono, Koa and Fastify's corrected fixture passed native Google browser and Codespaces HTTP persistence checks; Fastify's original Google preview POST failure is retained as evidence. The fixtures cover frontend, SSR, backend, database and worker combinations; they do not represent 55 different frameworks. Database fixtures have write/read/stop/relaunch checks. See `evidence/stack-coverage.json`, numbered stack matrix/browser evidence, and `SUPPORT.md` for the exact scope and retained failures.
 
 Real developer repository submissions and native Cloud Shell product interactions pass for Flask + PostgreSQL, React + Express + PostgreSQL, Angular SSR + SQLite, Quarkus + SQLite, Laravel + SQLite, Blazor Server + SQLite, and the Go Gin persistent-file counter. Angular's cached launch displayed its usable product and saved record in 7.223 seconds; its uncached launch took 72.289 seconds to health. These observations do not establish a universal 20-second cold-launch guarantee. The optimized npm recipe excludes download caches while retaining installed dependencies. All eight affected fixtures were rebuilt and retested. Its new Angular artifact showed saved data in the native Cloud Shell product in 8.312 seconds cached and took 61.933 seconds uncached to health; the old artifact’s SQLite record survived the upgrade.
 
@@ -347,4 +347,12 @@ isolated legacy-container → bundle → container → bundle check retained suc
 SQLite values 1→2→3→4. Interrupted-copy recovery and conflicting-data rejection
 are covered by automated tests. Native format-transition acceptance and Codespaces
 runtime-label adaptation remain pending; the smaller Express packaging remains
-experimental. Current source count is 5,867 physical lines under the recorded scope.
+experimental. The storage-handoff milestone contained 5,867 physical source lines under the recorded scope.
+
+The provider now allows either known PODS runtime label for an application's
+saved Codespace, after verifying its Node, Linux x64 Docker and Compose
+capabilities. It retains the same environment and refuses incompatible compute
+before dispatching an app. Both existing runtime profiles passed the read-only
+native probe; full native format-transition acceptance remains pending. Current
+code count is 5,920 physical lines; 134 automated checks pass locally and in
+isolated aswin QA.

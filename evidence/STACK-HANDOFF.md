@@ -23,10 +23,11 @@ VM replacement durability, or a universal 20-second cold launch.
   actix, adonis, aspnet, axum, deno, echo, fastapi, fiber, flask-mariadb,
   flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, ktor,
   micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
-- Current candidate passes131 tests locally and in isolated aswin QA; logs
-  /tmp/pods-storage-full-{local,qa}.txt. Includes17 new migration tests; original
-  baseline114 remains historical. No need to rerun unchanged passing checks.
-- Physical code: 5,867 lines = 3,182 product/tooling + 1,588 tests + 933 examples
+- Current provider candidate passes134 tests locally and in isolated aswin QA;
+  logs /tmp/pods-provider-full-{local,qa}.txt. Adds3 provider compatibility
+  cases after17 storage cases. Baselines114/131 remain historical; do not
+  rerun unchanged passing checks.
+- Physical code: 5,920 lines = 3,204 product/tooling + 1,619 tests + 933 examples
   + 164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
   files; includes .astro. Storage handoff is deployed; native same-format regressions follow below.
 
@@ -52,8 +53,8 @@ VM replacement durability, or a universal 20-second cold launch.
 - Root-protected record copying probe21960 ended0; directory0700/file0600
   uid0 copied asuid1000 without application image or executable. Root-only
   QA fixture removed via guest root.
-- Native format transition, Codespaces runtime-label adaptation and optional
-  bundling are NOT enabled/verified by this change. Keep packaging unchanged.
+- Native format transition and optional bundling are NOT verified by the storage
+  change. Codespaces label adaptation is now capability-gated as below. Keep packaging unchanged.
   Multi-service or conflicting data requires explicit migration. Backups
   remain; retention policy and power-loss durability are not proven.
 
@@ -77,6 +78,24 @@ VM replacement durability, or a universal 20-second cold launch.
 - Audit02:24:43.123781UTC: health200, activebuild0/launch0, servicePID1032728,
   SQLite quick_check ok, Codespaces Hono port25759 private. Current Hono
   Codespaces value4; do not reset stored records.
+
+## Provider runtime format compatibility
+
+- Current candidate preserves an app's preferred Codespace across either known
+  PODS label, with exact name/repository verification unchanged. It checks
+  Node>=22, Linuxx64, usable local Linuxx64Docker and Compose over readonlySSH
+  before preview registration or runner dispatch. No installer, replacement
+  environment, label mutation or data copy happens in the capability probe.
+- Provider tests23passed; full134 passed locally and isolatedQA. QA snapshot
+  /output/provider-candidate-c0931da is retained; originalstorage candidate
+  /output/storage-candidate-3102caf remains unchanged. Provider sourceSHA
+  bc4ec4b03c3d13e50374323764d6111d7d6cc5e465c6847ba0011f43952b67fe.
+- Native readonlyprobe24316 ended0 at02:35:15.512UTC: existing Node profile
+  pods-launch-jj497rpqpp7529v7 and containerprofile
+  pods-launch-containers-69rw5vx4xp46c5qw5 both Available and compatible.
+  No application launched or data modified. Evidence
+  stack-codespaces-runtime-capabilities{,-probe}.json/.mjs and
+  stack-provider-format-adapter.json. Full native format migration still pending.
 
 ## Previous native gate: Koa acceptance
 
@@ -162,9 +181,9 @@ VM replacement durability, or a universal 20-second cold launch.
   below; its preparation form remains the browser handoff.
 - Quota watcher96793 ended0 at02:25:27.009292UTC: account2/global2/active0.
   NestJS submitted once02:26:01.546UTC. Fresh quota02:30:33.292750UTC is
-  account3/global3/active0, next ordinary slot02:45:29.969UTC. No watcher
-  remains live. /tmp/pods-next-native-quota-watch.py is bounded20min/30sec
-  samples; start it only if useful next turn. Keep limits3/account/hour and
+  account3/global3/active0, next ordinary slot02:45:29.969UTC. Watcher14019 is LIVE since02:33:00.602172UTC, bounded20min/30sec
+  samples. Poll the same handle, never restart solely on timeout. The helper
+  is /tmp/pods-next-native-quota-watch.py. Keep limits3/account/hour and
   12/global/hour. Never bypass quotas or import QA artifacts into production.
 - /tmp/pods-capture-native.py reads aswin SQLite readonly, whitelists fields and
   derives timings. Its explicit fixture allowlist currently includes astro,
@@ -175,17 +194,18 @@ VM replacement durability, or a universal 20-second cold launch.
 - Express optional-import optimization remains experimental. esbuild0.25.12
   bundles a compiler-confirmed handled supports-color require into338,173 bytes
   versus production82,250,849-byte image. Real same-format persistence passed.
-  Production packager unchanged: cross-format storage must be fixed first.
+  Production packager unchanged: native format-transition acceptance is still needed.
 - Real transition probe43765 ended0: same dataKey, container saved1, bundle saw0,
   returning to container saw1. Original data retained but continuity FAILED.
   Its unique volume/root were removed. See stack-express-transition-probe.json
   and replay .mjs. This asserts the failure, not successful migration.
-- Mocked provider-adapter check also rejects both saved container→Node and
-  Node→container runtime-label changes before mutations. Server environmentKey
+- Historical mocked adapter probe at60b7960 rejected both saved container→Node
+  and Node→container runtime-label changes before mutations; the current
+  candidate adds capability-gated reuse, verified as above. Server environmentKey
   binds account+dataKey independently of runtime; preserve that saved environment.
-  See stack-provider-format-transition-probe.{json,mjs}. Current public
-  devcontainer includes Node24, sshd, Docker-in-Docker; this does not prove the
-  capabilities of older saved environments.
+  See stack-provider-format-transition-probe.{json,mjs}. The public devcontainer includes Node24, sshd and Docker-in-Docker.
+  Two actual saved profiles passed capabilities; older uninspected environments
+  are not covered by that observation.
 - Explicit storage-bridge prototype79883 ended0 at01:58:40.629UTC. It copied
   only stopped disposable Express data and preserved container0→1, bundle1→2,
   container2→3, bundle3→4. Initial file uid0 became uid1000 using docker cp

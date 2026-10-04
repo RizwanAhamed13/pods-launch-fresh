@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **131 passing
+later passing attempts do not erase them. Automated coverage is **134 passing
 checks locally and in isolated aswin QA**. Native coverage is 32 Google browser fixtures and
 32 Codespaces HTTP/protocol fixtures; 23 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
@@ -1577,3 +1577,22 @@ isolated /32 Google browser /32 Codespaces HTTP**, with **23** fixtures pending
 native acceptance. These results do not prove VM replacement durability or
 universal cold launches within20 seconds. Evidence:
 `stack-nestjs-{url,google,codespaces}.json`.
+
+## Saved Codespace runtime compatibility
+
+A saved application may change between the known `PODS launch` and
+`PODS launch containers` runtime profiles while retaining the same Codespace.
+Before a format change, PODS checks that the existing environment has Node.js
+22 or newer, a Linux x64 local Docker daemon, and Docker Compose. It rejects
+incompatible compute before private-preview registration or runner dispatch.
+Unrelated repositories or runtime labels remain rejected; no replacement
+Codespace is created to evade missing data or missing capabilities.
+
+Both existing native runtime profiles passed the read-only probe. All134
+automated tests pass locally and in isolated aswin QA, including positive
+transitions in both directions, refused capabilities, and exact-environment
+resume. This is not yet proof of native application data migration across
+formats; smaller Express packaging remains experimental. Current source:
+**5,920 physical lines**. Evidence: `stack-provider-format-adapter.json` and
+`stack-codespaces-runtime-capabilities.json`; the earlier rejection probe is
+historical evidence for provider source revision60b7960.

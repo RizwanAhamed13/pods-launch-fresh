@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { providers as realProviders, bootstrap } from '../src/providers.mjs';
+import { providers as realProviders, bootstrap, codespaceRuntimeProbe } from '../src/providers.mjs';
 import { createApp } from '../src/server.mjs';
 import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -112,6 +112,37 @@ test('a missing, failed or unrelated saved Codespace never silently replaces app
   await assert.rejects(adapter.github.launch('token',{preferredEnvironment:'saved-data'},()=>{}),/saved Codespace/i);
   assert.equal(executions,0);assert.deepEqual(calls,[['/user/codespaces/saved-data','GET']]);
  }
+});
+test('saved Codespaces accept either runtime only after capabilities pass, without replacing their environment',async()=>{
+ for(const containerRuntime of [false,true]){
+  const order=[],saved={name:'saved-data',display_name:containerRuntime?'PODS launch':'PODS launch containers',state:'Available',repository:{full_name:'owner/runtime'}};
+  const adapter=providers({repo:'owner/runtime',origin:'https://pods.example',runnerSha:'a'.repeat(64),
+   api:async(path,token,options)=>{assert.equal(path,'/user/codespaces/saved-data');assert.equal(options,undefined);order.push('saved');return saved;},
+   preparePreview:async({name})=>{assert.equal(name,saved.name);order.push('private');},
+   exec:async(file,args,options)=>{assert.equal(args[3],saved.name);assert.equal(file,'gh');if(options.input===codespaceRuntimeProbe()){order.push('capabilities');return 'PODS_RUNTIME_COMPATIBLE\n';}assert.ok(options.input.includes('launch-secret'));order.push('runner');return 'PODS_DELIVERED\n';}});
+  const result=await adapter.github.launch('provider-token',{preferredEnvironment:saved.name,containerRuntime,token:'launch-secret'},()=>{});
+  assert.equal(result.environment,saved.name);assert.deepEqual(order,['saved','capabilities','private','runner']);
+ }
+});
+test('missing or unverified Codespaces capabilities preserve the saved environment without runner or preview mutation',async()=>{
+ for(const outcome of ['unrecognized output','',new Error('Docker unavailable')]){
+  let probes=0;const calls=[];
+  const adapter=providers({repo:'owner/runtime',origin:'https://pods.example',runnerSha:'a'.repeat(64),
+   api:async(path,token,options)=>{calls.push([path,options?.method||'GET']);return {name:'saved-data',display_name:'PODS launch',state:'Available',repository:{full_name:'owner/runtime'}};},
+   preparePreview:async()=>assert.fail('No preview mutation before compatibility'),
+   exec:async(file,args,options)=>{assert.equal(options.input,codespaceRuntimeProbe());assert.ok(!options.input.includes('launch-secret'));probes++;if(outcome instanceof Error)throw outcome;return outcome;}});
+  await assert.rejects(adapter.github.launch('provider-token',{preferredEnvironment:'saved-data',containerRuntime:true,token:'launch-secret'},()=>{}),/Existing application data was preserved/);
+  assert.equal(probes,1);assert.deepEqual(calls,[['/user/codespaces/saved-data','GET']]);
+ }
+});
+test('a runtime change resumes the exact saved Codespace once before checking capabilities',async()=>{
+ const order=[],saved={name:'saved-data',display_name:'PODS launch',repository:{full_name:'owner/runtime'}};
+ const adapter=providers({repo:'owner/runtime',origin:'https://pods.example',runnerSha:'a'.repeat(64),pollMs:1,
+  api:async(path,token,options)=>{if(options?.method==='POST'){assert.equal(path,'/user/codespaces/saved-data/start');order.push('resume');return {...saved,state:'Available'};}assert.equal(path,'/user/codespaces/saved-data');order.push('read');return {...saved,state:'Shutdown'};},
+  preparePreview:async()=>order.push('private'),
+  exec:async(file,args,options)=>{assert.equal(args[3],saved.name);if(options.input===codespaceRuntimeProbe()){order.push('capabilities');return 'PODS_RUNTIME_COMPATIBLE\n';}order.push('runner');return 'PODS_DELIVERED\n';}});
+ const result=await adapter.github.launch('provider-token',{preferredEnvironment:saved.name,containerRuntime:true},()=>{});
+ assert.equal(result.environment,saved.name);assert.deepEqual(order,['read','resume','capabilities','private','runner']);
 });
 test('retrying a pending PODS Codespace waits for it instead of creating another environment',async()=>{
  for(const state of ['Starting','Provisioning','Created','Queued','Awaiting','Updating','Rebuilding']){

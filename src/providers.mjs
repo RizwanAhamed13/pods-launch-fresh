@@ -5,6 +5,21 @@ import { command, request, shell, sleep } from './util.mjs';
 import { ensureCodespacePreview } from './codespace-preview.mjs';
 const github = (path, token, options) => request(`https://api.github.com${path}`, token, {...options,headers:{'X-GitHub-Api-Version':'2026-03-10'}});
 const transient = error => [500,502,503,504].includes(error.status) || error.name==='TimeoutError' || ['ECONNRESET','ETIMEDOUT','UND_ERR_CONNECT_TIMEOUT','UND_ERR_SOCKET'].includes(error.cause?.code);
+// A saved environment can serve either artifact format, but its label alone
+// cannot prove that an older environment has the required runtime tools.
+export function codespaceRuntimeProbe() {
+  return `set -eu
+PODS_NODE=''
+for candidate in $(command -v node || true) /usr/local/nvm/versions/node/*/bin/node "$HOME"/.nvm/versions/node/*/bin/node; do
+  if [ -x "$candidate" ] && "$candidate" -e 'if(Number(process.versions.node.split(".")[0])<22)process.exit(1)' 2>/dev/null; then PODS_NODE="$candidate"; break; fi
+done
+[ -n "$PODS_NODE" ]
+[ "$("$PODS_NODE" -p 'process.platform+"/"+process.arch')" = 'linux/x64' ]
+case "$(env -i PATH="$PATH" HOME="$HOME" docker --host unix:///var/run/docker.sock info --format '{{.OSType}}/{{.Architecture}}')" in linux/x86_64|linux/amd64) ;; *) exit 1 ;; esac
+env -i PATH="$PATH" HOME="$HOME" docker --host unix:///var/run/docker.sock compose version >/dev/null
+printf 'PODS_RUNTIME_COMPATIBLE\\n'
+`;
+}
 export function bootstrap(config, origin, runnerSha) {
   // Token goes through encrypted SSH stdin, never command-line arguments.
   return `set -eu\numask 077\nTASK_DIR=$(mktemp -d /tmp/pods-launch.XXXXXX)\ncd "$TASK_DIR"\ncurl --fail --silent --show-error --max-time 30 ${shell(origin + '/runner.mjs')} -o runner.mjs\nprintf '%s  runner.mjs\\n' ${shell(runnerSha)} | sha256sum -c - >/dev/null\ncat > launch.json <<'PODS_CONFIG'\n${JSON.stringify(config)}\nPODS_CONFIG\nPODS_NODE=''\nfor candidate in $(command -v node || true) /usr/local/nvm/versions/node/*/bin/node \"$HOME\"/.nvm/versions/node/*/bin/node; do\n  if [ -x \"$candidate\" ] && \"$candidate\" -e 'if(Number(process.versions.node.split(".")[0])<22)process.exit(1)' 2>/dev/null; then PODS_NODE=\"$candidate\"; break; fi\ndone\n[ -n \"$PODS_NODE\" ] || { echo 'Node.js 22 or newer was not found in PATH or NVM'; exit 1; }\nnohup \"$PODS_NODE\" runner.mjs launch.json > runner.log 2>&1 < /dev/null &\necho PODS_DELIVERED\n`;
@@ -25,12 +40,13 @@ export function providers({ repo, origin, runnerSha, api = github, cloudRequest 
       async validate(token) { const u = await api('/user', token); if(!u.id||!u.login)throw new Error('GitHub account identity was unavailable. Reconnect your account.');return {id:String(u.id),name:u.login}; },
       async launch(token, config, update) {
         const displayName = config.containerRuntime ? 'PODS launch containers' : 'PODS launch';
-        let env;
+        let env, runtimeChanged = false;
         if (config.preferredEnvironment) {
           if (!/^[a-z0-9-]+$/.test(config.preferredEnvironment)) throw new Error('Invalid saved Codespace name.');
           try { env = await readGithub(`/user/codespaces/${config.preferredEnvironment}`, token); }
           catch (e) { if(e.status===404)throw new Error('Your saved Codespace is no longer accessible. Restore access to it to use the existing application data.');throw e; }
-          if (env.name !== config.preferredEnvironment || env.repository?.full_name?.toLowerCase() !== repo.toLowerCase() || env.display_name !== displayName) throw new Error('Your saved Codespace no longer matches this PODS runtime. Restore its configuration before relaunching.');
+          if (env.name !== config.preferredEnvironment || env.repository?.full_name?.toLowerCase() !== repo.toLowerCase() || !['PODS launch','PODS launch containers'].includes(env.display_name)) throw new Error('Your saved Codespace no longer matches this PODS runtime. Restore its configuration before relaunching.');
+          runtimeChanged = env.display_name !== displayName;
           if (['Failed','Deleted','Unavailable'].includes(env.state)) throw new Error(`Your saved Codespace is ${env.state}. Recover it in GitHub Codespaces before relaunching.`);
         } else {
           const found = await readGithub(`/repos/${repo}/codespaces?per_page=100`, token);
@@ -64,6 +80,12 @@ export function providers({ repo, origin, runnerSha, api = github, cloudRequest 
         await update({status:'delivering',providerReadyAt:Date.now(),previewUrl});
         // gh establishes authenticated SSH over GitHub's tunnel; no public inbound SSH needed.
         const envVars = { ...process.env, GH_TOKEN: token, GH_PROMPT_DISABLED: '1' };
+        if (runtimeChanged) {
+          let compatible = false;
+          try { compatible = (await exec('gh',['codespace','ssh','-c',env.name,'--','-T','bash -s'],{env:envVars,input:codespaceRuntimeProbe(),timeout:60000})).trim() === 'PODS_RUNTIME_COMPATIBLE'; }
+          catch (error) { if(error.code==='ENOENT')throw new Error('GitHub CLI is unavailable on the PODS server. Restore gh in the server PATH.'); }
+          if (!compatible) throw new Error('Your saved Codespace cannot change application runtime yet. It needs Node.js 22 or newer, a Linux x64 Docker daemon and Docker Compose. Existing application data was preserved; restore these capabilities in the same Codespace and retry.');
+        }
         // Finish private forwarding before the runner can announce readiness.
         await preparePreview({name:env.name,port,env:envVars,exec});
         let last;

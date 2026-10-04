@@ -1,0 +1,27 @@
+{
+  "recordedAt": "2026-10-04T02:35:15.512Z",
+  "scope": "Read-only capability probe on existing available user Codespaces. No runner dispatched, environment replaced, application data copied or native format transition claimed.",
+  "providerSourceSha256": "bc4ec4b03c3d13e50374323764d6111d7d6cc5e465c6847ba0011f43952b67fe",
+  "probeSha256": "ac14cd86eb7571f8efdd9a04996f5abffde6c06f42a42ed895dfd0f8dd9b8632",
+  "requirements": [
+    "Node.js >=22",
+    "Linux x64 Node process",
+    "Accessible local Linux x64 Docker daemon",
+    "Docker Compose available"
+  ],
+  "results": [
+    {
+      "environment": "pods-launch-jj497rpqpp7529v7",
+      "displayName": "PODS launch",
+      "initialState": "Available",
+      "compatible": true
+    },
+    {
+      "environment": "pods-launch-containers-69rw5vx4xp46c5qw5",
+      "displayName": "PODS launch containers",
+      "initialState": "Available",
+      "compatible": true
+    }
+  ],
+  "passed": true
+}

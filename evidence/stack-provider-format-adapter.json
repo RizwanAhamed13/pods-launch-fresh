@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-04T02:36:27.070662+00:00",
+  "sourceBaseRevision": "c0931da",
+  "providerSourceSha256": "bc4ec4b03c3d13e50374323764d6111d7d6cc5e465c6847ba0011f43952b67fe",
+  "testsSha256": "65320dc72947440e8a07b96359973b0f257ccf6d9ae48a3eab5c76a5f4ffcb88",
+  "automatedTests": {
+    "local": 134,
+    "isolatedAswin": 134,
+    "failed": 0
+  },
+  "checks": [
+    "Both saved label transitions retain the exact environment and require capability success before preview/runner dispatch",
+    "Missing or unverified capabilities cause no replacement, preview mutation or runner dispatch",
+    "A stopped saved Codespace is resumed exactly once before capability checking",
+    "Unrelated repositories, labels, missing environments and failed environments remain rejected"
+  ],
+  "nativeCapabilityEvidence": "stack-codespaces-runtime-capabilities.json",
+  "scopeLimits": [
+    "Native artifact-format transition remains unverified",
+    "No optional-import packaging optimization enabled",
+    "Capability success does not prove database schema compatibility or VM replacement durability"
+  ]
+}
