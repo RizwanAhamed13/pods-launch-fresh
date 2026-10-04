@@ -1,0 +1,38 @@
+{
+  "recordedAt": "2026-10-04T10:44:37.602919+00:00",
+  "baseRevision": "9ee26db41735976f15daa6c02f43d0ca23c7bb75",
+  "sourceHashes": {
+    "src/containers.mjs": "202c6791faf6c6ec5b20098c95319aaee0ba1f7066d7aaf64c23a18d43bae48d",
+    "test/containers.test.mjs": "a893984195bfe6723eda4900a7c336875d23c1cd2a2902fb418636dc555156fa"
+  },
+  "qaCandidate": "/output/streamlit-origin-candidate-9ee26db",
+  "snapshotManifestSha256": "dbf3e51448c0853ab0498d5e969f87f8f3ea47b1fc00d7c48dd16d2a511ab5f4",
+  "snapshotFilesMatched": 322,
+  "scope": "Set the current provider preview hostname in Streamlit runtime configuration without changing CORS/XSRF flags, database service environment, local launch defaults, image content or build quotas. Actual isolated Streamlit 1.65 WebSocket handshakes reproduce rejection then accept only the configured preview origin plus existing localhost.",
+  "fullSuite": [
+    {
+      "environment": "local",
+      "tests": 193,
+      "pass": 193,
+      "fail": 0,
+      "outputSha256": "220dd60104344136b2e40c99d9854f5c85ae78d776dfdfdebe42b8f18e96d4dc"
+    },
+    {
+      "environment": "isolated-aswin-linux",
+      "tests": 193,
+      "pass": 193,
+      "fail": 0,
+      "outputSha256": "ce2bd7fa89d2894666dcb782cae7c36ff6ca70914b9dc7dc198ad6587012ea64"
+    }
+  ],
+  "verificationCorrections": [
+    {
+      "stage": "initial Linux snapshot",
+      "result": "Two compatibility tests failed because the uploaded snapshot omitted evidence/stack-coverage.json. Included that input, rechecked all 322 hashes, then all 193 checks passed.",
+      "outputSha256": "88f3cc6e1a0df11067462a0e152669be8efc9589b6a9995415a0534e6e58f24c"
+    }
+  ],
+  "frameworkHandshakeEvidence": "stack-streamlit-origin-probe.json",
+  "frameworkProbeSourceSha256": "bf17475448b33c3bd551369985fa8814dcb756a42a7b061cc6bf0b47252e99cf",
+  "nativeAcceptanceAdded": false
+}

@@ -172,6 +172,24 @@ test('Angular SSR receives the exact provider preview host and local health host
   assert.equal(runtimeCompose(plan(),'pods-'+'d'.repeat(24),8080).services.web.environment.NG_ALLOWED_HOSTS,'localhost,127.0.0.1');
 });
 
+test('Streamlit receives only its current preview hostname without disabling origin or XSRF checks',()=>{
+  const p=plan();
+  p.services.web.environment={STREAMLIT_BROWSER_SERVER_ADDRESS:'previous.example',STREAMLIT_SERVER_ENABLE_CORS:'true',STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION:'true'};
+  for(const url of ['https://8080-cs-example.cloudshell.dev/','https://example-8080.app.github.dev/']){
+    const compose=runtimeCompose(p,'pods-'+'d'.repeat(24),8080,url), env=compose.services.web.environment;
+    assert.equal(env.STREAMLIT_BROWSER_SERVER_ADDRESS,new URL(url).hostname);
+    assert.equal(env.STREAMLIT_SERVER_ENABLE_CORS,'true');
+    assert.equal(env.STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION,'true');
+    assert.equal(compose.services.db.environment.STREAMLIT_BROWSER_SERVER_ADDRESS,undefined);
+    assert.equal(p.services.web.environment.STREAMLIT_BROWSER_SERVER_ADDRESS,'previous.example');
+  }
+  const local=runtimeCompose(plan(),'pods-'+'d'.repeat(24),8080).services.web.environment;
+  assert.equal(local.STREAMLIT_BROWSER_SERVER_ADDRESS,undefined);
+  assert.equal(local.STREAMLIT_SERVER_ENABLE_CORS,undefined);
+  assert.equal(local.STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION,undefined);
+  assert.equal(runtimeCompose(p,'pods-'+'d'.repeat(24),8080).services.web.environment.STREAMLIT_BROWSER_SERVER_ADDRESS,'previous.example');
+});
+
 test('Compose detects the web service, database dependency, explicit defaults and portable storage',()=>{
   const doc={services:{web:{build:'.',ports:['3000:8000'],environment:{DATABASE_URL:'postgres://db/test',MODE:'${MODE:-preview}'},depends_on:{db:{condition:'service_healthy'}}},db:{image:'postgres:17-alpine',ports:['5432:5432'],volumes:['records:/var/lib/postgresql/data']}},volumes:{records:{}}};
   const p=normalizeCompose(doc);assert.equal(p.web,'web');assert.equal(p.port,8000);assert.equal(p.services.web.environment.MODE,'preview');assert.equal(p.services.db.volumes[0].name,'records');

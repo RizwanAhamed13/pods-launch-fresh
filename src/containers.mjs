@@ -59,7 +59,12 @@ export function runtimeCompose(plan, project, port, previewUrl) {
       services[key].ports = [{target:plan.port,published:String(port),host_ip:'0.0.0.0',protocol:'tcp'}];
       // Angular SSR uses its documented runtime allowlist for per-user preview hosts.
       const hosts = [services[key].environment.NG_ALLOWED_HOSTS, 'localhost', '127.0.0.1'];
-      if (previewUrl) hosts.push(new URL(previewUrl).hostname);
+      if (previewUrl) {
+        const hostname = new URL(previewUrl).hostname;
+        hosts.push(hostname);
+        // Streamlit validates WebSocket origins behind provider proxies whose Host differs.
+        services[key].environment.STREAMLIT_BROWSER_SERVER_ADDRESS = hostname;
+      }
       services[key].environment.NG_ALLOWED_HOSTS = hosts.filter(Boolean).join(',');
     }
   }

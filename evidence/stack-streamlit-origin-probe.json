@@ -1,0 +1,44 @@
+{
+  "streamlit": "1.65.0",
+  "corsEnabled": true,
+  "xsrfEnabled": true,
+  "handshakes": [
+    {
+      "configured": false,
+      "origin": "https://preview.example.test",
+      "status": 403,
+      "expected": 403
+    },
+    {
+      "configured": false,
+      "origin": "https://unrelated.example.test",
+      "status": 403,
+      "expected": 403
+    },
+    {
+      "configured": false,
+      "origin": "http://localhost:8080",
+      "status": 101,
+      "expected": 101
+    },
+    {
+      "configured": true,
+      "origin": "https://preview.example.test",
+      "status": 101,
+      "expected": 101
+    },
+    {
+      "configured": true,
+      "origin": "https://unrelated.example.test",
+      "status": 403,
+      "expected": 403
+    },
+    {
+      "configured": true,
+      "origin": "http://localhost:8080",
+      "status": 101,
+      "expected": 101
+    }
+  ]
+}
+

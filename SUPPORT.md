@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **192 passing checks in full local and isolated aswin QA runs**. Native coverage is 53 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **193 passing checks in full local and isolated aswin QA runs**. Native coverage is 53 Google browser fixtures and
 53 Codespaces HTTP/protocol fixtures; 2 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
@@ -114,6 +114,13 @@ These are fixture-specific results, not a universal latency guarantee. First
 image transfers and provider startup frequently exceed the 20-second target.
 Cloud Shell runs finished and stopped before Codespaces tests started. Native
 Codespaces browser sign-in and interaction remain pending.
+
+A [breakdown of four recent single-image fixtures](evidence/stack-image-delivery-analysis.md)
+records 22.525–30.117s for uncached image delivery alone, at 5.514–5.555 MB/s
+including HTTP, hashing and disk writes. Smaller images or faster delivery need
+a measured follow-up; runtime startup tuning alone cannot meet20s for those
+observations. This does not identify the limiting network segment or compare
+provider performance under controlled conditions.
 
 ## Persistence and operational limits
 
@@ -228,9 +235,9 @@ a stable production hostname remains a deployment requirement.
   a consistent database snapshot, resumes it, then queries the private copy.
   The reported SQLite version belongs to the inspector, not the application
   driver. These isolated checks do not add native-provider acceptance.
-- [Full-suite result](evidence/stack-sqlite-file-tests.json): **189/189**
+- [Full-suite result](evidence/stack-streamlit-origin-tests.json): **193/193**
   checks passed locally and in isolated aswin Linux QA.
-- [Physical source count](evidence/code-lines.json): **7,128 lines**, including
+- [Physical source count](evidence/code-lines.json): **7,213 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)
@@ -243,3 +250,10 @@ isolated Linux checks](evidence/stack-image-budget-tests.json). Streamlit and
 Symfony still require native acceptance; no coverage pass was added for this fix.
 The [deployment audit](evidence/stack-image-budget-deployment.json) confirms an
 8 GiB budget on aswin with existing images and artifacts preserved.
+
+Streamlit's next ordinary-quota build succeeded, but its first Cloud Shell browser
+attempt showed an empty dashboard and WebSocket errors. The [failed browser attempt](evidence/stack-streamlit-browser-failure.json)
+is retained separately from HTTP readiness. An [isolated Streamlit 1.65 origin test](evidence/stack-streamlit-origin-probe.json)
+reproduced a 403 behind a rewritten Host header. Setting the exact provider preview
+hostname accepted that origin and kept an unrelated origin rejected, with CORS and
+XSRF enabled. Native acceptance remains pending a browser retry of this runtime fix.

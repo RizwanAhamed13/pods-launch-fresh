@@ -1,0 +1,105 @@
+{
+  "capturedAt": "2026-10-04T10:40:48.601408+00:00",
+  "build": {
+    "id": "l9Yj0TocaLN4eJfZyJBTo80py9PuCS04",
+    "repository": {
+      "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+      "owner": "rizwanahamed13",
+      "name": "pods-launch-runtime-fresh",
+      "folder": "examples/stacks/streamlit",
+      "key": "239d840381e192f76f9bfb38"
+    },
+    "status": "ready",
+    "createdAt": 1791109877261,
+    "startedAt": 1791109877402,
+    "finishedAt": 1791110059423,
+    "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-239d840381e192f76f9bfb38-d6da2ed780ae-de72e4c02c1c",
+    "app": {
+      "id": "repo-239d840381e192f76f9bfb38-d6da2ed780ae-de72e4c02c1c",
+      "name": "pods-launch-runtime-fresh",
+      "description": "",
+      "sha256": "de72e4c02c1c7e0f2ebbcd91a0df752dafe940700a1e7c4b8bcaffed9824e2b7",
+      "bytes": 276,
+      "files": 0,
+      "healthPath": "/",
+      "applicationType": "container",
+      "runtime": "docker-linux-amd64",
+      "dataKey": "repo-239d840381e192f76f9bfb38",
+      "productType": "web",
+      "productPath": "/",
+      "source": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "folder": "examples/stacks/streamlit",
+        "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+      },
+      "verification": {
+        "documentPath": "/",
+        "status": 200,
+        "title": "Streamlit"
+      },
+      "preparedAt": "2026-10-04T10:34:18.768Z",
+      "images": [
+        {
+          "id": "sha256:4333bb2c5d0253a18a30cba565e5d3ecbb65289352481f3d055b4f09e6968ef5",
+          "sha256": "cc34c07a95f3d389140a328bff6e16b8858a392f6c7fe94e2a9a6e7d4f0f39ac",
+          "bytes": 182163684
+        }
+      ]
+    }
+  },
+  "launches": [
+    {
+      "id": "C1jD1h8nZjcnQkeYrRzk7gTqEaSKAtBM",
+      "appId": "repo-239d840381e192f76f9bfb38-d6da2ed780ae-de72e4c02c1c",
+      "provider": "google",
+      "port": 23312,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791110091209,
+        "startRequestedAt": 1791110091381,
+        "startAcceptedAt": 1791110093192
+      },
+      "createdAt": 1791110090638,
+      "updatedAt": 1791110437701,
+      "providerReadyAt": 1791110093714,
+      "readyAt": 1791110145352,
+      "timings": {
+        "downloadMs": 645,
+        "imagesMs": 44015,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 31,
+        "imageDownloadMs": 33096,
+        "imageLoadMs": 10851,
+        "runtimeReadyMs": 49504,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 54714,
+      "deliveryMs": 51638
+    }
+  ],
+  "activeBuilds": 0,
+  "activeLaunches": 0,
+  "fixture": "streamlit",
+  "outcome": "failed-native-browser",
+  "controlRevision": "a1df278",
+  "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+  "browser": {
+    "startedAt": "2026-10-04T10:34:49.844Z",
+    "observedAt": "2026-10-04T10:40:32.402Z",
+    "productRendered": false,
+    "interactionPerformed": false,
+    "dom": "- banner",
+    "errors": {
+      "message": "Client Error: WebSocket onerror",
+      "count": 18,
+      "first": "2026-10-04T10:35:48.125Z",
+      "last": "2026-10-04T10:36:51.096Z"
+    },
+    "stopRequestedAt": "2026-10-04T10:40:35.432Z",
+    "statusAfterStop": "stopped"
+  },
+  "note": "Server HTTP readiness did not establish a usable Streamlit dashboard. No native pass or database mutation claimed. First uncached image delivery remains attached to this failed attempt."
+}
