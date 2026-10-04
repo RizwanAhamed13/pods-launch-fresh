@@ -89,6 +89,18 @@ later passing attempts do not erase them. Automated coverage is **264 passing ch
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
+## Preview registration diagnostic
+
+A [Codespaces registration comparison](evidence/stack-codespace-preview-latency.json)
+measured four initially absent product ports and four existing private mappings.
+Starting the temporary loopback forwarder alongside the initial lookup produced
+no useful measured benefit: absent-map means were 4.488s with the current ordering
+and 4.468s with overlap; existing-map means were 1.766s and 1.835s respectively.
+Every completed sample independently confirmed private visibility. This small
+sequential probe does not measure full application launch or prove a general
+performance difference. Production ordering remains unchanged; failed diagnostic
+attempts and provider cleanup are retained in the receipt.
+
 ## Native launch performance
 
 [Recorded native timing summary](evidence/stack-native-timings.md) separates

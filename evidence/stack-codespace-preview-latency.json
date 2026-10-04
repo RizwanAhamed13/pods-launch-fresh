@@ -1,0 +1,624 @@
+{
+  "schema": 1,
+  "recordedAt": "2026-10-04T14:16:24.009590+00:00",
+  "purpose": "Compare private Codespaces preview registration ordering on existing fixture ports; no product launch.",
+  "baselineRevision": "508fd894bf43ab85f2aaf68db293a6cbc4d4e61a",
+  "cliVersion": "2.101.0 (2026-09-15)",
+  "sourceSha256": {
+    "src/codespace-preview.mjs": "f754213af6dd999ac0f9574d37f6e9aa4fc16e39cf64f52398caefe03c133ae7",
+    "evidence/probes/codespace-preview-latency.mjs": "407651942a5613d48dac385a0cf6e65889583472a0693d0fff5901a32987a676",
+    "evidence/probes/codespace-preview-overlap.mjs": "ee480abf923eb5c179ce57d428779d1727b452728e53e4e233a00710e08a8753"
+  },
+  "upstreamSources": [
+    "https://raw.githubusercontent.com/cli/cli/v2.101.0/pkg/cmd/codespace/ports.go",
+    "https://raw.githubusercontent.com/cli/cli/v2.101.0/internal/codespaces/portforwarder/port_forwarder.go",
+    "https://raw.githubusercontent.com/cli/cli/v2.101.0/internal/codespaces/api/api.go"
+  ],
+  "retainedFailures": [
+    {
+      "diagnostic": "initial existing-mapping assumption",
+      "interpretation": "Initial probe failed productPortPrivate assertion. It did not distinguish absent versus nonprivate mapping. Stop was accepted but terminal Shutdown was not observed in this attempt.",
+      "record": {
+        "startedAt": "2026-10-04T14:03:40.631Z",
+        "samples": [
+          {
+            "elapsedMs": 1859,
+            "exitCode": 0,
+            "timedOut": false,
+            "events": [
+              {
+                "atMs": 83,
+                "kind": "request",
+                "category": "codespace-metadata"
+              },
+              {
+                "atMs": 1446,
+                "kind": "completed",
+                "duration": "1.363562667s"
+              },
+              {
+                "atMs": 1447,
+                "kind": "request",
+                "category": "other-provider"
+              },
+              {
+                "atMs": 1447,
+                "kind": "request",
+                "category": "repository-content"
+              },
+              {
+                "atMs": 1761,
+                "kind": "completed",
+                "duration": "313.752743ms"
+              },
+              {
+                "atMs": 1806,
+                "kind": "completed",
+                "duration": "358.447326ms"
+              },
+              {
+                "atMs": 1806,
+                "kind": "request",
+                "category": "other-provider"
+              },
+              {
+                "atMs": 1852,
+                "kind": "completed",
+                "duration": "45.612231ms"
+              }
+            ],
+            "productPortPrivate": false
+          }
+        ],
+        "applicationStarted": false,
+        "productionChanged": false,
+        "existingPreviewOnly": true,
+        "initialState": "Shutdown",
+        "resumeRequestedAt": "2026-10-04T14:03:41.236Z",
+        "availableAt": "2026-10-04T14:03:53.664Z",
+        "completed": false,
+        "errorClass": "AssertionError",
+        "httpStatus": null,
+        "restoreStopAccepted": true,
+        "finishedAt": "2026-10-04T14:03:57.083Z"
+      }
+    },
+    {
+      "diagnostic": "provider still stopping",
+      "interpretation": "Initial state ShuttingDown rejected before any new start request.",
+      "record": {
+        "startedAt": "2026-10-04T14:04:48.569Z",
+        "samples": [],
+        "applicationStarted": false,
+        "productionChanged": false,
+        "existingProductPortOnly": true,
+        "initialState": "ShuttingDown",
+        "completed": false,
+        "errorClass": "AssertionError",
+        "httpStatus": null,
+        "finishedAt": "2026-10-04T14:04:49.113Z"
+      }
+    },
+    {
+      "diagnostic": "initial overlap probe state assertion",
+      "interpretation": "A provider state after accepted start was outside the allowed list; the exact rejected value was not retained. Cleanup also failed its state assertion after stop acceptance. A subsequent independent API read observed Available; the final comparison reused that compute and confirmed Shutdown afterward.",
+      "record": {
+        "startedAt": "2026-10-04T14:12:29.287Z",
+        "order": [
+          "serial",
+          "eager",
+          "eager",
+          "serial"
+        ],
+        "samples": [],
+        "applicationStarted": false,
+        "productionChanged": false,
+        "initialState": "Shutdown",
+        "resumeRequestedAt": "2026-10-04T14:12:29.880Z",
+        "completed": false,
+        "errorClass": "AssertionError",
+        "httpStatus": null,
+        "stopRequestedAt": "2026-10-04T14:12:32.625Z",
+        "restoreStopAccepted": true,
+        "cleanupFailed": true,
+        "finishedAt": "2026-10-04T14:12:33.583Z"
+      }
+    }
+  ],
+  "detailedDiagnostic": {
+    "startedAt": "2026-10-04T14:05:44.286Z",
+    "samples": [
+      {
+        "elapsedMs": 1636,
+        "exitCode": 0,
+        "timedOut": false,
+        "events": [
+          {
+            "atMs": 85,
+            "kind": "request",
+            "category": "codespace-metadata"
+          },
+          {
+            "atMs": 1337,
+            "kind": "completed",
+            "duration": "1.252340911s"
+          },
+          {
+            "atMs": 1339,
+            "kind": "request",
+            "category": "other-provider"
+          },
+          {
+            "atMs": 1339,
+            "kind": "request",
+            "category": "repository-content"
+          },
+          {
+            "atMs": 1567,
+            "kind": "completed",
+            "duration": "228.856147ms"
+          },
+          {
+            "atMs": 1568,
+            "kind": "request",
+            "category": "other-provider"
+          },
+          {
+            "atMs": 1610,
+            "kind": "completed",
+            "duration": "41.32095ms"
+          },
+          {
+            "atMs": 1629,
+            "kind": "completed",
+            "duration": "289.758874ms"
+          }
+        ],
+        "mappingPresent": false,
+        "visibility": null,
+        "productPortPrivate": false
+      },
+      {
+        "elapsedMs": 1726,
+        "exitCode": 0,
+        "timedOut": false,
+        "events": [
+          {
+            "atMs": 85,
+            "kind": "request",
+            "category": "codespace-metadata"
+          },
+          {
+            "atMs": 1416,
+            "kind": "completed",
+            "duration": "1.330693586s"
+          },
+          {
+            "atMs": 1417,
+            "kind": "request",
+            "category": "other-provider"
+          },
+          {
+            "atMs": 1417,
+            "kind": "request",
+            "category": "repository-content"
+          },
+          {
+            "atMs": 1575,
+            "kind": "completed",
+            "duration": "158.235882ms"
+          },
+          {
+            "atMs": 1576,
+            "kind": "request",
+            "category": "other-provider"
+          },
+          {
+            "atMs": 1624,
+            "kind": "completed",
+            "duration": "47.25976ms"
+          },
+          {
+            "atMs": 1720,
+            "kind": "completed",
+            "duration": "302.063023ms"
+          }
+        ],
+        "mappingPresent": true,
+        "visibility": "private",
+        "productPortPrivate": true
+      },
+      {
+        "elapsedMs": 1673,
+        "exitCode": 0,
+        "timedOut": false,
+        "events": [
+          {
+            "atMs": 87,
+            "kind": "request",
+            "category": "codespace-metadata"
+          },
+          {
+            "atMs": 1378,
+            "kind": "completed",
+            "duration": "1.290919527s"
+          },
+          {
+            "atMs": 1379,
+            "kind": "request",
+            "category": "other-provider"
+          },
+          {
+            "atMs": 1380,
+            "kind": "request",
+            "category": "repository-content"
+          },
+          {
+            "atMs": 1488,
+            "kind": "completed",
+            "duration": "108.562434ms"
+          },
+          {
+            "atMs": 1489,
+            "kind": "request",
+            "category": "other-provider"
+          },
+          {
+            "atMs": 1531,
+            "kind": "completed",
+            "duration": "41.925546ms"
+          },
+          {
+            "atMs": 1667,
+            "kind": "completed",
+            "duration": "286.922779ms"
+          }
+        ],
+        "mappingPresent": true,
+        "visibility": "private",
+        "productPortPrivate": true
+      }
+    ],
+    "applicationStarted": false,
+    "productionChanged": false,
+    "existingProductPortOnly": true,
+    "entryState": "ShuttingDown",
+    "transitionFinishedAt": "2026-10-04T14:06:12.446Z",
+    "initialState": "Shutdown",
+    "resumeRequestedAt": "2026-10-04T14:06:12.446Z",
+    "availableAt": "2026-10-04T14:06:34.311Z",
+    "registration": {
+      "startedAt": "2026-10-04T14:06:35.947Z",
+      "commands": [
+        {
+          "operation": "lookup",
+          "startedMs": 0,
+          "success": true,
+          "mappingPresent": false,
+          "visibility": null,
+          "elapsedMs": 1845
+        },
+        {
+          "operation": "lookup",
+          "startedMs": 2847,
+          "success": true,
+          "mappingPresent": true,
+          "visibility": "private",
+          "elapsedMs": 1661
+        }
+      ],
+      "processes": [
+        {
+          "operation": "forward",
+          "startedMs": 1845,
+          "elapsedMs": 2669,
+          "exitCode": null,
+          "signal": "SIGTERM"
+        }
+      ],
+      "elapsedMs": 4514,
+      "success": true
+    },
+    "previewConfirmedPrivate": true,
+    "completed": true,
+    "restoreStopAccepted": true,
+    "finalState": "Shutdown",
+    "finishedAt": "2026-10-04T14:09:08.811Z"
+  },
+  "comparison": {
+    "startedAt": "2026-10-04T14:13:27.505Z",
+    "order": [
+      "serial",
+      "eager",
+      "eager",
+      "serial"
+    ],
+    "samples": [
+      {
+        "mode": "serial",
+        "port": 26630,
+        "existingMapping": false,
+        "commands": [
+          {
+            "operation": "lookup",
+            "startedMs": 0,
+            "success": true,
+            "mappingPresent": false,
+            "visibility": null,
+            "elapsedMs": 1730
+          },
+          {
+            "operation": "lookup",
+            "startedMs": 2736,
+            "success": true,
+            "mappingPresent": true,
+            "visibility": "private",
+            "elapsedMs": 1640
+          }
+        ],
+        "processes": [
+          {
+            "startedMs": 1731,
+            "loopbackOnly": true,
+            "elapsedMs": 2650,
+            "exitCode": null,
+            "signal": "SIGTERM"
+          }
+        ],
+        "elapsedMs": 4381,
+        "privateAfter": true,
+        "success": true
+      },
+      {
+        "mode": "eager",
+        "port": 26525,
+        "existingMapping": false,
+        "commands": [
+          {
+            "operation": "lookup",
+            "startedMs": 3,
+            "success": true,
+            "mappingPresent": false,
+            "visibility": null,
+            "elapsedMs": 1728
+          },
+          {
+            "operation": "lookup",
+            "startedMs": 2733,
+            "success": true,
+            "mappingPresent": true,
+            "visibility": "private",
+            "elapsedMs": 1694
+          }
+        ],
+        "processes": [
+          {
+            "startedMs": 0,
+            "loopbackOnly": true,
+            "elapsedMs": 4432,
+            "exitCode": null,
+            "signal": "SIGTERM"
+          }
+        ],
+        "elapsedMs": 4433,
+        "privateAfter": true,
+        "success": true
+      },
+      {
+        "mode": "eager",
+        "port": 23905,
+        "existingMapping": false,
+        "commands": [
+          {
+            "operation": "lookup",
+            "startedMs": 3,
+            "success": true,
+            "mappingPresent": false,
+            "visibility": null,
+            "elapsedMs": 1663
+          },
+          {
+            "operation": "lookup",
+            "startedMs": 2668,
+            "success": true,
+            "mappingPresent": true,
+            "visibility": "private",
+            "elapsedMs": 1830
+          }
+        ],
+        "processes": [
+          {
+            "startedMs": 0,
+            "loopbackOnly": true,
+            "elapsedMs": 4503,
+            "exitCode": null,
+            "signal": "SIGTERM"
+          }
+        ],
+        "elapsedMs": 4503,
+        "privateAfter": true,
+        "success": true
+      },
+      {
+        "mode": "serial",
+        "port": 20841,
+        "existingMapping": false,
+        "commands": [
+          {
+            "operation": "lookup",
+            "startedMs": 0,
+            "success": true,
+            "mappingPresent": false,
+            "visibility": null,
+            "elapsedMs": 1830
+          },
+          {
+            "operation": "lookup",
+            "startedMs": 2834,
+            "success": true,
+            "mappingPresent": true,
+            "visibility": "private",
+            "elapsedMs": 1755
+          }
+        ],
+        "processes": [
+          {
+            "startedMs": 1830,
+            "loopbackOnly": true,
+            "elapsedMs": 2764,
+            "exitCode": null,
+            "signal": "SIGTERM"
+          }
+        ],
+        "elapsedMs": 4594,
+        "privateAfter": true,
+        "success": true
+      },
+      {
+        "mode": "serial",
+        "port": 26630,
+        "existingMapping": true,
+        "commands": [
+          {
+            "operation": "lookup",
+            "startedMs": 0,
+            "success": true,
+            "mappingPresent": true,
+            "visibility": "private",
+            "elapsedMs": 1724
+          }
+        ],
+        "processes": [],
+        "elapsedMs": 1724,
+        "privateAfter": true,
+        "success": true
+      },
+      {
+        "mode": "eager",
+        "port": 26525,
+        "existingMapping": true,
+        "commands": [
+          {
+            "operation": "lookup",
+            "startedMs": 2,
+            "success": true,
+            "mappingPresent": true,
+            "visibility": "private",
+            "elapsedMs": 1894
+          }
+        ],
+        "processes": [
+          {
+            "startedMs": 0,
+            "loopbackOnly": true,
+            "elapsedMs": 1900,
+            "exitCode": null,
+            "signal": "SIGTERM"
+          }
+        ],
+        "elapsedMs": 1900,
+        "privateAfter": true,
+        "success": true
+      },
+      {
+        "mode": "eager",
+        "port": 23905,
+        "existingMapping": true,
+        "commands": [
+          {
+            "operation": "lookup",
+            "startedMs": 2,
+            "success": true,
+            "mappingPresent": true,
+            "visibility": "private",
+            "elapsedMs": 1763
+          }
+        ],
+        "processes": [
+          {
+            "startedMs": 0,
+            "loopbackOnly": true,
+            "elapsedMs": 1770,
+            "exitCode": null,
+            "signal": "SIGTERM"
+          }
+        ],
+        "elapsedMs": 1770,
+        "privateAfter": true,
+        "success": true
+      },
+      {
+        "mode": "serial",
+        "port": 20841,
+        "existingMapping": true,
+        "commands": [
+          {
+            "operation": "lookup",
+            "startedMs": 0,
+            "success": true,
+            "mappingPresent": true,
+            "visibility": "private",
+            "elapsedMs": 1808
+          }
+        ],
+        "processes": [],
+        "elapsedMs": 1808,
+        "privateAfter": true,
+        "success": true
+      }
+    ],
+    "applicationStarted": false,
+    "productionChanged": false,
+    "initialState": "Available",
+    "restoreTargetState": "Shutdown",
+    "stage": "existing-mapping-samples",
+    "reusesComputeFromRetainedFailedAttempt": true,
+    "availableAt": "2026-10-04T14:13:28.567Z",
+    "allTargetMappingsInitiallyAbsent": true,
+    "completed": true,
+    "stopRequestedAt": "2026-10-04T14:14:09.737Z",
+    "restoreStopAccepted": true,
+    "finalState": "Shutdown",
+    "finishedAt": "2026-10-04T14:16:08.387Z"
+  },
+  "meanRegistrationMs": {
+    "absentMapping": {
+      "serial": 4487.5,
+      "eager": 4468,
+      "eagerMinusSerialMs": -19.5
+    },
+    "existingMapping": {
+      "serial": 1766,
+      "eager": 1835,
+      "eagerMinusSerialMs": 69
+    }
+  },
+  "decision": "Keep production ordering unchanged. This sample does not show useful benefit from eager forwarding; it adds a temporary process to already-private mapping checks.",
+  "limitations": [
+    "Two samples per mode per mapping condition on one Codespace; sequential fixture ports and uncontrolled provider/network variation, not a statistically powered benchmark.",
+    "No application started, no product browser interaction or end-to-end launch latency measured.",
+    "Independent final privacy lookups, compute resume and provider stop are outside registration elapsedMs.",
+    "Concurrent debug request completion timings cannot be unambiguously assigned to repository-content versus other-provider requests.",
+    "No public/org mapping transition experiment or native provider failure injection.",
+    "Temporary processes reaped; four existing fixture port numbers used; no application data, Docker caches or image assets changed by this probe."
+  ],
+  "allAttemptsPassed": false,
+  "comparisonCompleted": true,
+  "productionChanged": false,
+  "fullTestsRerun": false,
+  "existingTests": "264 local and isolated Linux checks, stack-browser-recovery-tests.json; unchanged implementation.",
+  "providerRestoredToShutdown": true,
+  "postProbeProductionAudit": {
+    "recordedAt": "2026-10-04T14:15:14.610353+00:00",
+    "pid": 1508835,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "be41ee8a471d684705100e8353a1d7cc34ea1e8d89b2575a6e155f1d50eef13d",
+    "revision": "508fd894bf43ab85f2aaf68db293a6cbc4d4e61a"
+  }
+}

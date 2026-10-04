@@ -1,10 +1,11 @@
 # Broad stack checkpoint
 
 Goal active and incomplete: developer URL → isolated aswin build → reusable
-artifact → authorized user compute → actual usable product. Latest gate fixed
-browser status-read recovery, passed 264 local/Linux checks, a real-browser
-controlled-fault before/after test and two deployed Google browser launches with
-persistent SQLite. First-image 20-second product target remains unmet.
+artifact → authorized user compute → actual usable product. Latest gate measured
+Codespaces preview lookup/registration and rejected eager forwarding: no useful
+observed gain. Production source is unchanged; previous browser recovery passed
+264 local/Linux checks and native Google persistence. First-image 20-second
+product target remains unmet.
 Do not mark the goal complete or blocked; meaningful work remains possible.
 
 ## Current verified state
@@ -31,7 +32,7 @@ Do not mark the goal complete or blocked; meaningful work remains possible.
   Runner SHA be41ee8a471d684705100e8353a1d7cc34ea1e8d89b2575a6e155f1d50eef13d.
 - stack-eight-ranges-deployment.json records health200/SQLiteok and preservation
   of 58 image files/133 artifacts and .env. A later ordinary build adds artifacts.
-- Final audit 2026-10-04T13:59:39.062277+00:00: same PID/runner, source 29dc9e4,
+- Latest probe audit 2026-10-04T14:15:14.610353+00:00: same PID/runner, source 508fd89,
   health200, SQLiteok, zero active builds/launches. All test launches stopped.
   Browser static files are served from disk; new app.js SHA matched over public HTTPS
   without a service restart. Later docs-only sync also needs no restart.
@@ -149,6 +150,36 @@ Do not mark the goal complete or blocked; meaningful work remains possible.
   PID1508835/runner unchanged. These cached observations add no first-image
   performance or native Codespaces browser acceptance.
 
+## Completed preview registration diagnostic
+
+- stack-codespace-preview-latency.json retains the complete whitelisted records,
+  failed attempts, pinned CLI sources and exact diagnostic reproducer hashes.
+  No application, runner or production source changed. Full passing264 suite was
+  not rerun for docs and probes; scoped source remains8546 lines.
+- Detailed native diagnostic observed absent Micronaut port26630 after provider
+  resume. Current registration took4514ms: initial lookup1845ms, forwarding starts,
+  wait1002ms, final lookup1661ms, cleanup6ms. Three independent lookup durations
+  were1636/1726/1673ms; last two confirmedprivate. GH2.101.0 metadata requests took
+  about1.25–1.33s. Concurrent remaining request durations cannot be attributed
+  unambiguously. No full-product latency claim.
+- Four absent-map samples in order serial/eager/eager/serial:
+  4381/4433/4503/4594ms; means4487.5/4468ms. Four already-private samples in the
+  same order:1724/1900/1770/1808ms; means1766/1835ms. All private verified again
+  outside measured intervals; every temporary forwarder reaped withSIGTERM.
+  Starting forwarding before lookup added a process on existing mappings without
+  a useful measured registration gain. Candidate rejected; production retained.
+- Initial diagnostic wrongly assumed a private existing mapping after resume;
+  failed without distinguishing missing/nonprivate. Next attempt encountered
+  ShuttingDown and stopped before mutation. Corrected diagnostic completed and
+  confirmedShutdown after stop. Initial overlap probe rejected a provider state
+  after start, then cleanup assertion failed; exact rejected states not retained.
+  A separate API read confirmedAvailable. Corrected overlap probe reused that
+  same compute instead of issuing another start; finalShutdown was confirmed.
+  Preserve these failures; do not call every attempt successful.
+- Native app saved values remain last observed Google14/Codespaces19. These probes
+  perform no product writes or database checks. Existing four fixture ports only;
+  no preview mapping deleted, public listener, runtime build or cache clearing.
+
 ## Next bounded gate
 
 - Continue measured work on first-image/preview costs. Use existing timing evidence
@@ -157,8 +188,10 @@ Do not mark the goal complete or blocked; meaningful work remains possible.
   without a relevant production change or an unresolved regression.
 - Pending user inputs remain GitHub native-browser2FA, stable production hostname,
   and destructive provider VM-replacement testing. Do not repeat or infer approval.
-- Current browser recovery gate is finished and published. No need to rerun its
-  passing suite or native checks unless implementation changes.
+- Browser recovery is finished and published. Preview registration ordering was
+  measured and rejected as a useful optimization; do not repeat that experiment.
+  Its one-second post-forward wait remains a separate, untested hypothesis.
+  No need to rerun passing suite/native checks unless implementation changes.
 - Historical fixes/probes/failures remain in individual receipts and
   STACK-VERIFICATION-HISTORY.md; previous checkpoint is preserved in git at
   26e50d8:evidence/STACK-HANDOFF.md. Older provider optimizations remain documented
@@ -197,6 +230,9 @@ Do not mark the goal complete or blocked; meaningful work remains possible.
   browser evidence; eightRangeLaunchUrl is current launchlink. Helpers
   continueSqliteFramework/stopNativeCounter retained. Product h1
   'Micronaut + SQLite' (not PODS h2), #value, button 'Add one'. Current count14.
-- All native/build/probe/test/deploy workers are terminal. Latest capture62287,
-  audit90334 and localfixture94999 exited0. No jobs running or waiting exec cells.
+- All native/build/probe/test/deploy workers are terminal. Registration comparison
+  worker19882 and audit20027 exited0; final providerShutdown independently confirmed.
+  Raw whitelisted inputs /tmp/pods-preview-latency-{initial,transition,detailed}.json,
+  /tmp/pods-preview-overlap-{initial,probe}.json; validator
+  /tmp/pods-record-preview-latency.py. Preserve failed attempt77373 (exit1).
   No subagents authorized. Next changes should use a bounded investigation.

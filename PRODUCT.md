@@ -15,7 +15,31 @@ Provider authorization is required. Conventional public GitHub applications can 
 
 Cold provisioning and uncached image transfer are measured separately from cached launch. User compute remains owned and billed by the user's provider. Persistent container data is stored under Cloud Shell's home or Codespaces' `/workspaces`; provider lifecycle durability requires separate evidence.
 ## Evidence on Hand
-The current implementation has 154 passing automated checks in full local and isolated aswin QA runs. Native acceptance currently covers 35 Cloud Shell browser fixtures and 35 Codespaces HTTP/protocol fixtures; native Codespaces browser sign-in and interaction remain pending. All 55 distinct stack fixtures have real server-build, reusable-artifact launch and meaningful browser-interaction evidence. Hono, Koa and Fastify's corrected fixture passed native Google browser and Codespaces HTTP persistence checks; Fastify's original Google preview POST failure is retained as evidence. The fixtures cover frontend, SSR, backend, database and worker combinations; they do not represent 55 different frameworks. Database fixtures have write/read/stop/relaunch checks. See `evidence/stack-coverage.json`, numbered stack matrix/browser evidence, and `SUPPORT.md` for the exact scope and retained failures.
+As of 2026-10-04, 264 automated checks pass locally and in isolated aswin Linux QA.
+The matrix records 55 passing representative applications: isolated server build,
+prepared-artifact launch and browser interaction, plus 55 native Cloud Shell
+browser acceptances and 55 Codespaces HTTP/protocol acceptances. The historical
+MongoDB fixture failure remains recorded; the supported MongoDB 7 fixture passed.
+These counts describe representative applications, not universal version support.
+
+Native Codespaces browser sign-in/interaction remains unverified. First-image
+launches still exceed the 20-second product target in several measured cases;
+cached and cold observations remain separate. A stable production hostname and
+Cloud Shell VM-replacement durability also remain open. Database acceptance
+covers the recorded write/read/stop/relaunch scenarios, not arbitrary migrations
+or power-loss guarantees. Current source totals 8,546 scoped physical lines.
+
+The latest deployed browser client recovers transient status-read failures without
+repeating creation or product writes. Controlled browser failures and native
+Google product/reload/full-stop/relaunch acceptance passed. Use [SUPPORT.md](SUPPORT.md),
+[fixture coverage](evidence/stack-coverage.json), [tests](evidence/stack-browser-recovery-tests.json),
+[native browser evidence](evidence/stack-browser-recovery-native.json) and the
+[current checkpoint](evidence/STACK-HANDOFF.md) for exact scope and limitations.
+
+## Historical acceptance milestones
+The observations below retain their original milestone context. Counts and pending
+frameworks in these historical paragraphs are not current coverage; the evidence
+summary above and SUPPORT.md are authoritative for current status.
 
 Real developer repository submissions and native Cloud Shell product interactions pass for Flask + PostgreSQL, React + Express + PostgreSQL, Angular SSR + SQLite, Quarkus + SQLite, Laravel + SQLite, Blazor Server + SQLite, and the Go Gin persistent-file counter. Angular's cached launch displayed its usable product and saved record in 7.223 seconds; its uncached launch took 72.289 seconds to health. These observations do not establish a universal 20-second cold-launch guarantee. The optimized npm recipe excludes download caches while retaining installed dependencies. All eight affected fixtures were rebuilt and retested. Its new Angular artifact showed saved data in the native Cloud Shell product in 8.312 seconds cached and took 61.933 seconds uncached to health; the old artifact’s SQLite record survived the upgrade.
 
@@ -81,6 +105,10 @@ application still requires a usable rendered interface. Native/GPU/mobile progra
 are outside the browser-compute delivery contract until a suitable interface and
 runtime exist. Do not represent a generic container capability as proof that every
 framework, arbitrary repository or external service works automatically.
+
+## Additional historical milestones
+
+These are chronological implementation records, not the current acceptance totals.
 
 Nuxt now adds an eleventh native application family. Actual URL preparation took
 241.125s. Cloud Shell health took 64.995s image-absent and 6.865s cached; the cached
