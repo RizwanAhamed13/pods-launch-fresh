@@ -1,0 +1,51 @@
+{
+  "recordedAt": "2026-10-04T13:42:41.725583+00:00",
+  "baseRevision": "ca6753a1b5ead5eb242c8463eb387dfc6cae880d",
+  "runs": [
+    {
+      "platform": "local",
+      "passed": 250,
+      "failed": 0,
+      "durationMs": 27815.7665,
+      "logSha256": "e6ef0257fc1dba834f1bf01e904abcfad2eca80dba8b521bc890700ccc3a3e38"
+    },
+    {
+      "platform": "isolated-aswin-linux",
+      "passed": 250,
+      "failed": 0,
+      "durationMs": 64314.264362,
+      "logSha256": "a0cc27959bc0e9846e0905437cbe26bb2304bcf3eabb68e39b1db24172cc3d95"
+    }
+  ],
+  "isolatedSnapshot": {
+    "candidate": "/output/live-evidence-candidate-ca6753a",
+    "verifiedFiles": 336,
+    "archiveSha256": "a1f410c3c470aa4973696d04788664f884dd65ca65257a3b29c0212fe43aa6b1",
+    "manifestSha256": "148dfbe010060cc12f1e71f263fe59dfde5ea7465dc95d1bb39aef3d60f41d14"
+  },
+  "sourceHashes": {
+    "scripts/live-codespaces.mjs": "8656a9020bb78ddd9fcd5b5228297ce53e51b755f897935ac38ba57015ab3ad9",
+    "test/live-codespaces.test.mjs": "5ee3c307e013cbdf24d4483d03eb5735889ebe8ed3af71d6271b7f7d45907c54"
+  },
+  "regression": {
+    "before": {
+      "passed": 1,
+      "failed": 7,
+      "logSha256": "f0d35c9c4faa765055e9b8b8b82f540c44f0503b47cb0ccfc97a0962f6ca3982"
+    },
+    "afterNewFile": {
+      "passed": 8,
+      "failed": 0
+    },
+    "checks": [
+      "Launch identity exists on disk before polling; HTTP503 HTML, HTTP200 HTML and malformed JSON preserve safe metadata and confirm normal stop.",
+      "A failed stop preserves both test and cleanup errors without falsely claiming stopped.",
+      "An interrupted second launch has its own result and leaves the first successful result unchanged.",
+      "An ambiguous launch creation request is recorded separately, never repeated, and does not stop a prior completed launch.",
+      "An ambiguous stop response is reconciled with GET, without a second mutation.",
+      "Two successful launches retain the established evidence format."
+    ]
+  },
+  "scope": "Native test harness only. Real CLI subprocesses use a loopback HTTP server; no provider quota, live database writes or production fault injection. Production server, runner, build and launch behavior are unchanged. Initial account/bootstrap failures and process or filesystem crashes are outside this regression scope.",
+  "failureEvidence": "stack-eight-ranges-native.json"
+}

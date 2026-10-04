@@ -58,7 +58,17 @@ if([counterCheck,workerCheck,websocketCheck,ssrCheck,staticCheck,dashboardCheck]
 if((counterCheck||workerCheck||websocketCheck||ssrCheck||staticCheck||dashboardCheck)&&(provider!=='github'||process.env.PODS_SINGLE_LAUNCH==='1'))throw new Error('Fixture checking requires two Codespaces launches');
 let token='';for await(const b of process.stdin)token+=b;token=token.trim();
 const initial=await fetch(origin+'/api/me'),cookie=initial.headers.get('set-cookie').split(';')[0],me=await initial.json();
-async function api(path,method='GET',body){const r=await fetch(origin+path,{method,headers:{Cookie:cookie,'X-Pods-CSRF':me.csrf,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(30000)});const d=await r.json();if(!r.ok)throw new Error(d.error);return d;}
+async function api(path,method='GET',body){
+ const r=await fetch(origin+path,{method,headers:{Cookie:cookie,'X-Pods-CSRF':me.csrf,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(30000)});
+ const mediaType=(r.headers.get('content-type')||'').split(';')[0].trim().toLowerCase();
+ const contentType=/^[a-z0-9!#$&^_.+-]+\/[a-z0-9!#$&^_.+-]+$/.test(mediaType)?mediaType:'unknown';
+ const details={method,path,status:r.status,contentType};
+ const failure=reason=>Object.assign(new Error(`${reason}: ${method} ${path}, HTTP ${r.status} (${contentType})`),{apiResponse:details});
+ if(contentType!=='application/json'){await r.body?.cancel();throw failure('Expected JSON response');}
+ let data;try{data=await r.json();}catch{throw failure('Invalid JSON response');}
+ if(!r.ok)throw failure('API request failed');
+ return data;
+}
 const appId=process.argv[4]||me.apps[0]?.id;
 if(!me.apps.some(app=>app.id===appId))throw new Error('Prepared application not found');
 const selectedApp=me.apps.find(app=>app.id===appId);
@@ -78,7 +88,7 @@ const evidencePath=process.env.PODS_EVIDENCE_FILE||`evidence/${provider}.json`;
 await api('/api/connections/'+provider,'POST',{token});token='';
 const results=[];
 const persist=()=>writeFile(evidencePath,JSON.stringify({testedAt:new Date().toISOString(),origin,results},null,2));
-let previousCount, previousJob, currentLaunch;
+let previousCount, previousJob, currentLaunch, currentResult;
 async function probeEnvironment(environment,code,timeout=60000) {
   if(!/^[a-z0-9-]+$/.test(environment||''))throw new Error('Invalid Codespace environment');
   const quoted="'"+code.replaceAll("'","'\\''")+"'";
@@ -125,8 +135,10 @@ async function probeWebSocket(environment,base) {
   previousCount=check.afterRead;
   return check;
 }
-async function stopLaunch(id) {
-  await api('/api/launches/'+id+'/stop','POST',{});
+async function stopLaunch(result) {
+  const id=result.id;
+  // A lost stop response is ambiguous. Reconcile with GET, never repeat the POST.
+  if(!result.stopRequestedAt){result.stopRequestedAt=new Date().toISOString();await api('/api/launches/'+id+'/stop','POST',{});result.stopRequestAccepted=true;}
   const deadline=Date.now()+45000;let stopped;
   do {await new Promise(r=>setTimeout(r,1000));stopped=await api('/api/launches/'+id);} while(stopped.status!=='stopped'&&Date.now()<deadline);
   if(stopped.status!=='stopped')throw new Error('Application stop was not confirmed; repeat test aborted');
@@ -135,15 +147,18 @@ async function stopLaunch(id) {
 const scenarios=process.env.PODS_SINGLE_LAUNCH==='1'?['launch']:['first-launch','repeat-launch'];
 try {
  for(const name of scenarios) {
+  const result={scenario:name,requestedAt:new Date().toISOString()};currentResult=result;results.push(result);await persist();
   const started=await api('/api/launches','POST',{provider,appId});currentLaunch=started.id;
-  if(results.some(result=>result.id===started.id))throw new Error('Repeat test reused the previous launch instead of restarting');
+  Object.assign(result,started);await persist();
+  if(results.some(previous=>previous!==result&&previous.id===started.id))throw new Error('Repeat test reused the previous launch instead of restarting');
   let launch=started,last='';const deadline=Date.now()+360000;
   while(!['ready','failed','stopped'].includes(launch.status)){
    if(Date.now()>deadline)throw new Error('Live launch timed out');
    if(launch.status!==last){console.log(name+': '+launch.status);last=launch.status;}
    await new Promise(r=>setTimeout(r,3000));launch=await api('/api/launches/'+started.id);
+   Object.assign(result,launch);await persist();
   }
-  const result={scenario:name,...launch};results.push(result);console.log(JSON.stringify({scenario:name,status:launch.status,totalMs:launch.totalMs,deliveryMs:launch.deliveryMs,timings:launch.timings,compute:launch.compute,environment:launch.environment,storageMode:launch.storageMode,error:launch.error}));
+  console.log(JSON.stringify({scenario:name,status:launch.status,totalMs:launch.totalMs,deliveryMs:launch.deliveryMs,timings:launch.timings,compute:launch.compute,environment:launch.environment,storageMode:launch.storageMode,error:launch.error}));
   await persist();
   if(launch.status!=='ready')throw new Error(launch.error||'Launch failed');
   const base=`http://127.0.0.1:${launch.port||8080}`;
@@ -164,14 +179,14 @@ try {
   if(ssrCheck){result.ssrCheck=await probeEnvironment(launch.environment,ssrProbeCommand(ssrFixture,base));await persist();if(!result.ssrCheck.passed)throw new Error('SSR product/client assets failed');}
   if(staticCheck){result.staticCheck=await probeEnvironment(launch.environment,staticProbeCommand(staticFixture,base));await persist();if(!result.staticCheck.passed)throw new Error('Static product/client assets failed');}
   if (process.env.PODS_KEEP_LAST === '1' && name === scenarios.at(-1)) { console.log('Live app left running until its 30-minute deadline: '+launch.previewUrl); break; }
-  result.statusAfterStop=await stopLaunch(launch.id);await persist();
+  result.statusAfterStop=await stopLaunch(result);await persist();
   currentLaunch=null;
  }
 } catch(error) {
- if(results.length){results.at(-1).testError=error.message;await persist();}
+ if(currentResult){currentResult.testError=error.message;currentResult.testErrorDetails=error.apiResponse;await persist();}
  if(currentLaunch){
-  try {const status=await stopLaunch(currentLaunch);if(results.length)results.at(-1).statusAfterStop=status;}
-  catch(cleanupError){if(results.length)results.at(-1).cleanupError=cleanupError.message;}
+  try {currentResult.statusAfterStop=await stopLaunch(currentResult);}
+  catch(cleanupError){currentResult.cleanupError=cleanupError.message;currentResult.cleanupErrorDetails=cleanupError.apiResponse;}
   await persist();
  }
  throw error;

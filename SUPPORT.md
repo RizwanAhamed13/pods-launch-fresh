@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **242 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **250 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
@@ -307,6 +307,14 @@ and final health/SQLite/idle audit passed. These small samples do not establish 
 controlled full-launch speedup. **The 20-second first-image product target remains
 unmet**, and native Codespaces browser interaction remains unverified.
 
+The native test harness now saves each attempt before launch creation and each
+known launch before status polling. Unexpected HTML or malformed JSON preserves
+HTTP status/content type without saving response bodies. A later attempt cannot
+overwrite an earlier success, and an ambiguous stop response is reconciled with
+GET without repeating the stop request. [Eight CLI regressions and the full
+250-check local/Linux suite](evidence/stack-live-evidence-tests.json) pass. This
+improves test evidence and cleanup; production launch behavior is unchanged.
+
 ## Persistence and operational limits
 
 Database fixtures verify a product write, read, complete application stop,
@@ -428,9 +436,9 @@ a stable production hostname remains a deployment requirement.
   a consistent database snapshot, resumes it, then queries the private copy.
   The reported SQLite version belongs to the inspector, not the application
   driver. These isolated checks do not add native-provider acceptance.
-- [Full-suite result](evidence/stack-eight-ranges-tests.json): **242/242**
+- [Full-suite result](evidence/stack-live-evidence-tests.json): **250/250**
   checks passed locally and in isolated aswin Linux QA.
-- [Physical source count](evidence/code-lines.json): **8,187 lines**, including
+- [Physical source count](evidence/code-lines.json): **8,347 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)
