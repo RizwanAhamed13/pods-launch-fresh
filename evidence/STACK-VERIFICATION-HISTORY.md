@@ -2632,3 +2632,12 @@ Evidence: `stack-micronaut-{url,google,codespaces,audit}.json`. Coverage now
 **3** native fixtures pending. Full suite **189/189** and
 physical source **7,128 lines** remain valid; this acceptance changed only
 evidence and documentation. App `repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-b8c6e3de8016`; preserve saved native counters2.
+
+Micronaut acceptance revision `89abea0` was pushed and synced to aswin. Public
+`/support` DOM verified **55 isolated / 52 Google browser / 52 Codespaces protocol**
+at **2026-10-04T09:39:56.128Z**, with all three Micronaut row checks passed.
+Compatibility checks passed **3/3**; no product implementation changed and the
+existing **189/189** full-suite result remains applicable. Publication evidence:
+`stack-micronaut-published.json`. All four JVM representatives now have both
+native acceptance flags. Next gate: Phoenix after ordinary quota availability
+(next slot observed as09:47:41.239UTC; recheck before submission).

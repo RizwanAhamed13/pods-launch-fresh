@@ -1,0 +1,9 @@
+{
+  "recordedAt": "2026-10-04T09:39:56.128Z",
+  "url": "https://collection-conferences-ages-clearly.trycloudflare.com/support",
+  "evidenceRevision": "89abea0",
+  "summary": "55 representative apps tested\n\nAll 55 passed isolated server builds and browser interaction. 52 passed native Google Cloud Shell browser checks; 52 passed Codespaces HTTP or protocol checks.\n\nCodespaces browser sign-in and interaction remain pending. A passing representative does not guarantee every repository using that framework will work.",
+  "row": "Micronaut + SQLite\nJava and Kotlin\n\tPassed\tPassed\tPassed",
+  "compatibilityChecks": {"command": "node --test test/compatibility.test.mjs", "passed": 3, "failed": 0},
+  "scope": "Actual public DOM after the native evidence commit was pushed and synced to aswin. Provider functional acceptance and timing details remain in the linked fixture evidence."
+}
