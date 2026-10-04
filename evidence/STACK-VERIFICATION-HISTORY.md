@@ -2497,3 +2497,42 @@ Evidence: `stack-deno-{url,google,codespaces,audit}.json`. Coverage is now
 **55 isolated / 49 Google browser / 49 Codespaces protocol**, with **6** native
 fixtures pending. Full suite **189/189** and source **7,128 lines** remain valid;
 this acceptance changed only evidence and documentation.
+
+
+## Gradio native dashboard acceptance
+
+The real developer form prepared `examples/stacks/gradio` from source revision
+`d6da2ed780ae` after ordinary same-account quota availability. Server preparation
+took **197.356s**; saved artifact `61950a67d4e0f297237e34bec24f93a00e9d7b49d0442b57e171be62a9c4c93a` contains
+**151,999,097 image bytes**. No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell initially RUNNING, first delivery | Healthy 51.038s; product visible 53.263s; saved count read 134.153s; button write 134.450s |
+| Cloud Shell cached relaunch | Healthy 11.022s; visible 12.148s; saved count restored 12.174s; next write 12.467s |
+| Codespaces initially Shutdown | Healthy 86.579s; delivery/startup 73.553s |
+| Codespaces cached relaunch | Healthy 11.025s; protocol write/read, SQLite integrity and saved row passed |
+
+Cloud Shell verified the real dashboard h1, saved-count control, Add one button,
+reload and full application stop/relaunch: **0→1→2**, with no console warnings
+or errors. Codespaces exercised the framework protocol, verified the same
+sequence and directly queried the actual SQLite file. Framework version
+**6.29.1**, SQLite version **3.46.1**, database
+integrity and saved rows were recorded. The checks verified one web service,
+its project network, persistent workspace volume and private product port
+**29623**. No database port was published.
+
+Both Google runs finished and stopped before Codespaces testing began. All four
+launches ended stopped. Audit at 2026-10-04T08:58:47.692174+00:00 confirmed health200, SQLite
+integrity ok, zero active builds/launches and unchanged service PID/runner SHA.
+These timings describe this fixture and observed compute/cache states. Native
+Codespaces browser execution and provider VM replacement durability remain
+unverified.
+
+Evidence: `stack-gradio-{url,google,codespaces,audit}.json`. Coverage now
+**55 isolated / 50 Google browser / 50 Codespaces protocol**, with
+**5** native fixtures pending. Full suite **189/189** and
+physical source **7,128 lines** remain valid; this acceptance changed only
+evidence and documentation. App `repo-c4c5dae76225abe8b74bac37-d6da2ed780ae-61950a67d4e0`; preserve saved native counters2.
+
+Browser measurement note: Saved-count read/write timing includes a browser test selector recovery after the product h1 was visible; it is an observed upper bound, not application processing latency.

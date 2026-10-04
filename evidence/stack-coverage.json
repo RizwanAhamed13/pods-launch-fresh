@@ -755,7 +755,11 @@
       "serverEvidence": "stack-matrix-13.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-13.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-gradio-url.json",
+        "stack-gradio-google.json",
+        "stack-gradio-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-05.json",
@@ -773,7 +777,12 @@
           "evidence": "stack-matrix-13.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      },
+      "nativeProviderScope": "gradio passed native Google product button, reload and SQLite retention across full stop/relaunch. Codespaces dashboard product protocol, writes, saved SQLite inspection and full restart persistence passed. Native Codespaces browser interaction remains pending."
     },
     {
       "fixture": "hono",

@@ -85,8 +85,8 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **189 passing checks in full local and isolated aswin QA runs**. Native coverage is 49 Google browser fixtures and
-49 Codespaces HTTP/protocol fixtures; 6 still lack at least one native acceptance path. Codespaces
+later passing attempts do not erase them. Automated coverage is **189 passing checks in full local and isolated aswin QA runs**. Native coverage is 50 Google browser fixtures and
+50 Codespaces HTTP/protocol fixtures; 5 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Native launch performance
@@ -185,6 +185,10 @@ a stable production hostname remains a deployment requirement.
   [Cloud Shell browser](evidence/stack-deno-google.json), and
   [Codespaces product and file persistence](evidence/stack-deno-codespaces.json).
   Both paths retained the counter across full application stop/relaunch.
+- Gradio native acceptance: [developer build](evidence/stack-gradio-url.json),
+  [Cloud Shell browser](evidence/stack-gradio-google.json), and
+  [Codespaces dashboard protocol and SQLite inspection](evidence/stack-gradio-codespaces.json).
+  Both paths retained the saved count across full application stop/relaunch.
 - [Rust and ASP.NET transport preflight](evidence/stack-counter-transport-preflight.json)
   checks empty chunked POST and full-restart file persistence on isolated compute.
   These checks do not add native-provider acceptance.
@@ -193,10 +197,11 @@ a stable production hostname remains a deployment requirement.
   These isolated checks do not add native-provider coverage.
 - [Gradio and Streamlit protocol preflight](evidence/stack-dashboard-protocol-preflight.json)
   verifies real dashboard protocol writes and SQLite persistence after a full
-  restart in isolated QA. Native provider acceptance remains pending for both.
+  restart in isolated QA. Gradio native evidence is linked above; Streamlit
+  native provider acceptance remains pending.
 - [Shared dashboard helper](evidence/stack-dashboard-helper-preflight.json) verifies
   the exact serialized native harness against real Gradio and Streamlit artifacts.
-  Their native provider acceptance still needs separate runs.
+  Native provider acceptance uses separate runs and evidence.
 - [PHP, Sinatra and Deno file persistence preflight](evidence/stack-file-profiles-preflight.json)
   verifies their exact launch commands, stored values and persistent volumes after
   full stops. These isolated checks do not add native-provider acceptance.

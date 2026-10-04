@@ -12,50 +12,51 @@ VM replacement durability or universal launches under20s without evidence.
 - Core: https://github.com/RizwanAhamed13/pods-launch-fresh (private).
 - Fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
   pinned revision d6da2ed780aec8ae0178fc181f1d24113c322e15.
-- Latest native acceptance: Deno, evidence revisionecbcafa, publicationc1ce216.
-  Both pushed and synced. Public support verified55/49/49 at08:37:32UTC.
-- Coverage:55 isolated build/artifact/browser passes;49 Google native browser
-  and49 Codespaces authenticated HTTP/protocol passes. All8static frontends,
+- Latest native acceptance: Gradio + SQLite; stack-gradio-{url,google,codespaces,audit}.json.
+  Current acceptance checkpoint is ready for publication verification at55/50/50.
+- Coverage:55 isolated build/artifact/browser passes;50 Google native browser
+  and50 Codespaces authenticated HTTP/protocol passes. All8static frontends,
   6SSR,6Node,4Go,3Rust,2.NET and7database-family representatives pass native paths.
   Native Codespaces browser interaction remains pending authorization.
-  The6 fixtures awaiting native acceptance are:
-  gradio, ktor, micronaut, phoenix, streamlit, symfony.
+  The5 fixtures awaiting native acceptance are:
+  ktor, micronaut, phoenix, streamlit, symfony.
 - Current full suite:189/189 passed locally and in isolated aswin QA.
   Evidence stack-sqlite-file-tests.json; logs /tmp/pods-sqlite-file-full-{local,qa}.txt.
   Source7128physical lines:3717product/tooling +2314tests +933examples +164browser.
   Evidence code-lines.json defines exclusions; do not count generated/evidence files.
 
-## Next native gate: Gradio
+## Next native gate: Ktor
 
-- Developer draft examples/stacks/gradio, not submitted. Existing quota watcher
-  session83972 is live; next ordinary slot2026-10-04T08:47:21.377000+00:00.
-  Re-poll the same handle. Quota3/account/hour,12global/hour: never bypass,
-  switch account to evade quota, or import isolated QA artifacts into production.
-- Browser1 handles: stackQa6/tab1 developer draft; echoTab/tab2 stoppedDeno;
+- Gradio is complete; no build/launch watcher is running. Quota snapshot at08:59:12UTC
+  showed3account/global builds in the last hour and zero active builds. Next ordinary
+  slot2026-10-04T09:05:35.928000+00:00; recheck actual availability before submitting.
+  Quota3/account/hour,12global/hour: never bypass, switch account to evade quota,
+  or import isolated QA artifacts into production.
+- Browser1 handles: stackQa6/tab1 completedGradio developer form; echoTab/tab2 stoppedGradio;
   mongodbSupport/tab3 publicsupport. Re-markHandoff each new turn. After a browser
   context compaction, call cua.rewriteDocumentation before browser actions.
-- Submit through actual developer form only after availability. Record actual
-  submittedAt. Observer /tmp/pods-watch-gradio-build.py expects that timestamp;
-  start with ssh aswin python3- and stdin script. A timeout is not build failure:
+- Set application folder examples/stacks/ktor and submit through the actual developer
+  form only after availability. Record actual submittedAt. Adapt the bounded
+  /tmp/pods-watch-gradio-build.py observer to Ktor with timestamp guard. A timeout is not build failure:
   resume same build via /tmp/pods-watch-existing-build.py ID FOLDER, never resubmit.
 - Use ready region Your application is ready to share. → scoped Try this version
   link, not recent history. GoogleOpen → producth1 → meaningful write → reload →
   full stop → reopen saved value → next write → reload → full stop, before Codespaces.
-- Gradio h1 Gradio + SQLite; number label Saved count; button Add one. Inspect
-  actual DOM for counter locator; the old continueCounter helper expects #value.
-  Record first-visible/read/write timings without resetting timers on wait yields.
-- Codespaces exactappID: PODS_DASHBOARD_FIXTURE=gradio PODS_EXPECT_INITIAL_COUNT=0
-  PODS_EVIDENCE_FILE=evidence/stack-gradio-codespaces.json node scripts/live-codespaces.mjs
-  ORIGIN github APPID, with gh auth token on stdin. No PODS_COUNTER_CHECK flag.
-  Gradio6.29.1 SSE and Streamlit1.65.0 WebSocket helpers already passed serialized
-  real-artifact QA in stack-dashboard-helper-preflight.json and current189suite.
+- Ktor h1 Ktor + SQLite; #value; button Add one. Existing continueCounter helper
+  applies after checking fresh DOM. Record first-visible/read/write timings without
+  resetting timers on wait yields. Google0→1→2 with reload and full stop/relaunch.
+- Codespaces exactappID: PODS_COUNTER_CHECK=1 PODS_SQLITE_FILE_RUNTIME_CHECK=1
+  PODS_EXPECT_INITIAL_COUNT=0 PODS_EVIDENCE_FILE=evidence/stack-ktor-codespaces.json
+  node scripts/live-codespaces.mjs ORIGIN github APPID, with gh auth token on stdin.
+  SQLite file helper passed all4real pinned artifacts and current189suite.
 - After both providers finish/stopped, collect whitelisted capture using
-  /tmp/pods-capture-native.py gradio, private ports via gh codespace ports --json
+  /tmp/pods-capture-native.py ktor, private ports via gh codespace ports --json
   sourcePort,visibility, /health200, and /tmp/pods-storage-deploy-audit.py.
-- Save observed browser JSON to /tmp/pods-gradio-browser.json. Prepared temp helpers
-  /tmp/pods-{record,document}-dashboard-native.py validate evidence/update docs;
-  syntax checked only, not yet executed on native dashboard evidence. Do not claim
-  the file-counter helper's exact startup-command check for dashboards.
+- Save actual browser JSON. Adapt evidence validation to counterCheck and the SQLite
+  file runtime result; inspect exact output fields instead of assuming dashboardCheck.
+  Preserve the inspector/runtime SQLite version distinction and the brief test-only pause.
+- Dashboard helpers /tmp/pods-{record,document}-dashboard-native.py passed Gradio and
+  can be reused later for Streamlit. Do not claim exact startup-command checks for dashboards.
 - After recording: compatibility3tests, diffcheck, commit/push/ff-sync, publicDOM
   verification, save publication evidence and a concise next-gate handoff.
 
@@ -91,10 +92,11 @@ VM replacement durability or universal launches under20s without evidence.
   Lost Google start-response reconciliation uses the sameRUNNINGenv and uniqueSSHkey.
 - Existing GitHub2FA, VMreplacement authorization and stablehostname inputs remain
   pending. Do not repeat those questions. Localgcloud identity is suspended/wrong.
-- Latest Deno audit08:36:33UTC: health200, SQLiteok, zero active, unchangedPID/SHA.
-  BothGoogle andCodespaces savedcount2. Codespace69rw5vx4xp46c5qw5, privateport23310;
-  preserve data. All four launches stopped. First/cached visible22.944/7.835sGoogle;
-  Codespaces healthy53.678/8.944s. First deliveries missed20s.
+- Latest Gradio audit08:58:47UTC: health200, SQLiteok, zero active, unchangedPID/SHA.
+  BothGoogle andCodespaces savedcount2. Codespacepods-launch-containers-69rw5vx4xp46c5qw5,
+  privateport29623; preserve data. All four launches stopped. First/cached visible
+  53.263/12.148sGoogle; Codespaces healthy86.579/11.025s. First deliveries missed20s.
+  First Google read/write timing includes browser-selector recovery, not app latency.
 
 ## Isolated QA and authoritative evidence
 
@@ -110,8 +112,47 @@ VM replacement durability or universal launches under20s without evidence.
 - Machine-readable acceptance: stack-coverage.json. Failed historical flask-mongodb
   remains; replacement flask-mongodb7 is accepted. Do not erase failed attempts.
 - Native timings: stack-native-timings.{json,md}, generator stack-native-timing-report.py.
-  Currently98observations;49provider/fixture pairs excluded for incomplete timing
+  Currently102observations;49provider/fixture pairs excluded for incomplete timing
   provenance. Explicit states/cache fields only; missing timing stays unknown.
   Mixed historical fixtures/revisions are not a controlled benchmark or universalSLA.
 - Detailed verification: STACK-VERIFICATION-HISTORY.md, per-fixture evidence files,
   and verbatim archived operational history STACK-HANDOFF-ARCHIVE-20261004.md.
+
+
+## Gradio native dashboard acceptance
+
+The real developer form prepared `examples/stacks/gradio` from source revision
+`d6da2ed780ae` after ordinary same-account quota availability. Server preparation
+took **197.356s**; saved artifact `61950a67d4e0f297237e34bec24f93a00e9d7b49d0442b57e171be62a9c4c93a` contains
+**151,999,097 image bytes**. No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell initially RUNNING, first delivery | Healthy 51.038s; product visible 53.263s; saved count read 134.153s; button write 134.450s |
+| Cloud Shell cached relaunch | Healthy 11.022s; visible 12.148s; saved count restored 12.174s; next write 12.467s |
+| Codespaces initially Shutdown | Healthy 86.579s; delivery/startup 73.553s |
+| Codespaces cached relaunch | Healthy 11.025s; protocol write/read, SQLite integrity and saved row passed |
+
+Cloud Shell verified the real dashboard h1, saved-count control, Add one button,
+reload and full application stop/relaunch: **0→1→2**, with no console warnings
+or errors. Codespaces exercised the framework protocol, verified the same
+sequence and directly queried the actual SQLite file. Framework version
+**6.29.1**, SQLite version **3.46.1**, database
+integrity and saved rows were recorded. The checks verified one web service,
+its project network, persistent workspace volume and private product port
+**29623**. No database port was published.
+
+Both Google runs finished and stopped before Codespaces testing began. All four
+launches ended stopped. Audit at 2026-10-04T08:58:47.692174+00:00 confirmed health200, SQLite
+integrity ok, zero active builds/launches and unchanged service PID/runner SHA.
+These timings describe this fixture and observed compute/cache states. Native
+Codespaces browser execution and provider VM replacement durability remain
+unverified.
+
+Evidence: `stack-gradio-{url,google,codespaces,audit}.json`. Coverage now
+**55 isolated / 50 Google browser / 50 Codespaces protocol**, with
+**5** native fixtures pending. Full suite **189/189** and
+physical source **7,128 lines** remain valid; this acceptance changed only
+evidence and documentation. App `repo-c4c5dae76225abe8b74bac37-d6da2ed780ae-61950a67d4e0`; preserve saved native counters2.
+
+Browser measurement note: Saved-count read/write timing includes a browser test selector recovery after the product h1 was visible; it is an observed upper bound, not application processing latency.
