@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **240 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **242 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
@@ -266,6 +266,22 @@ the provider API accidentally exposed its shutdown helper as a compute choice.
 It now returns only Google and GitHub. A [real API/document regression and the full
 240-check local/Linux suite](evidence/stack-provider-bootstrap-tests.json) pass;
 the developer page and automatic reconnection/build continuation were verified live.
+
+A subsequent [four/eight-range comparison](evidence/stack-image-range-parallelism.json)
+downloaded identical 125.120 MB bytes from four distinct new private asset paths
+on ready Codespaces compute, in 4/8/8/4 order. Verified downloads took
+4.777/2.616/3.443/5.905s. Eight ranges averaged 3.030s versus 5.341s for four;
+shared CDN caches and network variation remain uncontrolled. All temporary assets
+were deleted and their absence verified. This measures transfer only, not Google
+performance, Docker loading or product readiness.
+
+Images of at least 64 MiB now use eight concurrent ranges; smaller ranged downloads
+retain four. The [242-check local/Linux suite](evidence/stack-eight-ranges-tests.json)
+verifies uneven archive reconstruction and cancellation of all seven peers on a
+failure, alongside existing integrity and fallback checks. The 30-second deadline,
+private temporary files, full SHA verification before Docker loading and authenticated
+origin fallback remain unchanged. Fresh native launch acceptance is required before
+claiming that this reduces time to the product.
 
 ## Persistence and operational limits
 

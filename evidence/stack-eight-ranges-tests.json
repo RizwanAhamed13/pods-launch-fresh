@@ -1,0 +1,45 @@
+{
+  "recordedAt": "2026-10-04T13:19:47.048744+00:00",
+  "baseRevision": "4bb6a8312575e7fb71c10a535def0d8d09a6ca27",
+  "runs": [
+    {
+      "platform": "local",
+      "passed": 242,
+      "failed": 0,
+      "logSha256": "dbd1c0cf2d05d5221ec41538c636c1930a17adb9c49debc033eeee4264bad2b9"
+    },
+    {
+      "platform": "isolated-aswin-linux",
+      "passed": 242,
+      "failed": 0,
+      "logSha256": "a10782b489afac262993b88df512b38fa88d826950861aeeb9dbc1402c188473"
+    }
+  ],
+  "isolatedSnapshot": {
+    "candidate": "/output/eight-ranges-candidate-4bb6a83",
+    "verifiedFiles": 335,
+    "archiveSha256": "2464c9a059746deb83efeefb4cc1af45450413496117716827f6532c6bf8d055",
+    "manifestSha256": "a997fdd6974d2826a627e5ffacfeaadfd96d87865c05ecaebb3809777dabc025"
+  },
+  "sourceHashes": {
+    "src/image-ranges.mjs": "47dfbb654c11f8e47347db4a3f13d6b5707fd245511e3ee9d65df2ac5d6b772f",
+    "src/container-runtime.mjs": "183f3935983f833e33ccc0ba474d8563ab116ac5d689111e603f9e97ba1352ce",
+    "src/runner.mjs": "de3680794b58f02d4e912810164e79049559fe994556501ec6969bd3cf3dafde",
+    "test/image-ranges.test.mjs": "09065f9b37a442f5abb027939fac34aa596b521704f537ba7f9907f73f064651"
+  },
+  "regression": {
+    "before": {
+      "passed": 7,
+      "failed": 2,
+      "logSha256": "07046fe2a49febc88915cb645ea6331dc6a766632d5dbfc3b59a6d62bda2e5f7"
+    },
+    "newCasesPassed": 2,
+    "checks": [
+      "At64MiB and above, at most eight concurrent requests reconstruct an uneven archive with exact ranges, bytes, SHA and private permissions.",
+      "One failed range aborts all seven peers and removes the unverified file.",
+      "Existing four-range, redirect/status/size/digest rejection, authorized fallback and no-load-before-verification checks still pass."
+    ]
+  },
+  "scope": "Eight ranges for images at least64MiB; four below64MiB. Existing CDN threshold32MiB,30s transfer deadline, host restriction, no credentials to CDN, whole-file verification and origin fallback are unchanged. Transfer probe motivates this change; fresh native launch acceptance remains separate.",
+  "experimentEvidence": "stack-image-range-parallelism.json"
+}

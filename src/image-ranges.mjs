@@ -11,7 +11,8 @@ export async function downloadImageRanges(url, image, path, fetcher = fetch) {
   if (!trustedImageUrl(url) || !/^[a-f0-9]{64}$/.test(image.sha256) || !Number.isSafeInteger(image.bytes) || image.bytes < 1 || image.bytes > 512 * 1024 ** 2) throw new Error('Invalid image range request');
   const controller = new AbortController();
   const signal = AbortSignal.any([controller.signal, AbortSignal.timeout(30000)]);
-  const width = Math.ceil(image.bytes / 4), ranges = [];
+  const count = image.bytes >= 64 * 1024 ** 2 ? 8 : 4;
+  const width = Math.ceil(image.bytes / count), ranges = [];
   for (let start = 0; start < image.bytes; start += width) ranges.push({start, end:Math.min(start + width, image.bytes) - 1});
   let file, created = false, verified = false;
   try {

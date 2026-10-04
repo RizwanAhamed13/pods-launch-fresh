@@ -32,6 +32,32 @@ test('four concurrent ranges reassemble out of order into an exact private verif
   assert.deepEqual(await readFile(path),bytes);assert.equal((await stat(path)).mode&0o777,0o600);
 });
 
+test('large images use eight bounded ranges and verify the exact uneven archive before publication',async t=>{
+  const root=await temporary(t),path=join(root,'large.gz');
+  const source=Buffer.alloc(64*1024**2+3,47);source[0]=1;source[Math.floor(source.length/2)]=2;source[source.length-1]=3;
+  const large={...image,sha256:digest(source),bytes:source.length},observed=[];
+  let inFlight=0,peak=0;
+  await downloadImageRanges(signed,large,path,async(_,options)=>{
+    const part=range(options,source);observed.push(part);peak=Math.max(peak,++inFlight);
+    await new Promise(resolve=>setImmediate(resolve));inFlight--;
+    return new Response(part.body,{status:206,headers:part.headers});
+  });
+  assert.equal(observed.length,8);assert.equal(peak,8);
+  assert.equal(observed[0].start,0);assert.equal(observed.at(-1).end,source.length-1);
+  for(let i=1;i<observed.length;i++)assert.equal(observed[i].start,observed[i-1].end+1);
+  assert.deepEqual(await readFile(path),source);assert.equal((await stat(path)).mode&0o777,0o600);
+});
+
+test('a failed large-image range cancels all seven peers and removes unverified bytes',async t=>{
+  const root=await temporary(t),large={...image,bytes:64*1024**2};let requests=0,aborted=0;
+  await assert.rejects(downloadImageRanges(signed,large,join(root,'large.gz'),async(_,options)=>{
+    requests++;
+    if(requests===1)return new Response(null,{status:403});
+    return new Promise((resolve,reject)=>options.signal.addEventListener('abort',()=>{aborted++;reject(new Error('Canceled'));},{once:true}));
+  }),/range transfer failed/);
+  assert.equal(requests,8);assert.equal(aborted,7);assert.deepEqual(await readdir(root),[]);
+});
+
 test('range status, offsets, totals, length and full-file digest are enforced with partial files removed',async t=>{
   const root=await temporary(t),path=join(root,'image.gz');
   for(const failure of ['ignored-range','expired','redirect','offset','total','length','truncated','oversized','corrupt','network']) {

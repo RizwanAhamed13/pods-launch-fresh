@@ -1,0 +1,351 @@
+{
+  "startedAt": "2026-10-04T13:17:04.290380+00:00",
+  "repository": "RizwanAhamed13/pods-launch-artifacts-fresh",
+  "repositoryPrivate": true,
+  "provider": "codespaces",
+  "initialComputeState": "Available",
+  "assets": [
+    {
+      "sample": 1,
+      "rangeCount": 4,
+      "id": 609878758,
+      "name": "probe-20261004-range-count-1-4-8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f.gz",
+      "bytes": 125120183,
+      "sha256": "8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f",
+      "digest": "sha256:8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f",
+      "uploadMs": 25486,
+      "recordedAt": "2026-10-04T13:14:52.207Z",
+      "signedPathSha256": "f0ce17aa9012327f0542824b80d2a980c1983b598959c4e3c8333eb06af3703b"
+    },
+    {
+      "sample": 2,
+      "rangeCount": 8,
+      "id": 609879399,
+      "name": "probe-20261004-range-count-2-8-8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f.gz",
+      "bytes": 125120183,
+      "sha256": "8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f",
+      "digest": "sha256:8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f",
+      "uploadMs": 24770,
+      "recordedAt": "2026-10-04T13:15:16.979Z",
+      "signedPathSha256": "373580ed51efc0aad4d0a5cf388e2674f3ff967b915b064977d4e77a7b959c1b"
+    },
+    {
+      "sample": 3,
+      "rangeCount": 8,
+      "id": 609880064,
+      "name": "probe-20261004-range-count-3-8-8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f.gz",
+      "bytes": 125120183,
+      "sha256": "8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f",
+      "digest": "sha256:8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f",
+      "uploadMs": 24908,
+      "recordedAt": "2026-10-04T13:15:41.888Z",
+      "signedPathSha256": "756461ec4168b353c013d7e1cfe2b9f2c309cf0e3262b01fd5400d82ae7c2c94"
+    },
+    {
+      "sample": 4,
+      "rangeCount": 4,
+      "id": 609880647,
+      "name": "probe-20261004-range-count-4-4-8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f.gz",
+      "bytes": 125120183,
+      "sha256": "8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f",
+      "digest": "sha256:8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f",
+      "uploadMs": 25803,
+      "recordedAt": "2026-10-04T13:16:07.691Z",
+      "signedPathSha256": "ec5795e8cc26463233ae05d6ba82279282baabc2638284ec8b38e39ca9ff68bc"
+    }
+  ],
+  "observations": [
+    {
+      "recordedAt": "2026-10-04T13:17:08.894Z",
+      "node": "v24.21.0",
+      "rangeCount": 4,
+      "bytes": 125120183,
+      "sha256": "8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f",
+      "bodyCompleteMs": 4591,
+      "verifiedMs": 4777,
+      "ranges": [
+        {
+          "start": 0,
+          "end": 31280045,
+          "bytes": 31280046,
+          "responseHeadersMs": 913,
+          "completedMs": 3682,
+          "status": 206
+        },
+        {
+          "start": 31280046,
+          "end": 62560091,
+          "bytes": 31280046,
+          "responseHeadersMs": 915,
+          "completedMs": 4591,
+          "status": 206
+        },
+        {
+          "start": 62560092,
+          "end": 93840137,
+          "bytes": 31280046,
+          "responseHeadersMs": 423,
+          "completedMs": 2829,
+          "status": 206
+        },
+        {
+          "start": 93840138,
+          "end": 125120182,
+          "bytes": 31280045,
+          "responseHeadersMs": 426,
+          "completedMs": 3832,
+          "status": 206
+        }
+      ],
+      "diskHashMatches": true,
+      "requestAuthorizationHeader": false,
+      "redirectsAllowed": false,
+      "temporaryFilesRemoved": true,
+      "sample": 1,
+      "assetId": 609878758
+    },
+    {
+      "recordedAt": "2026-10-04T13:17:13.706Z",
+      "node": "v24.21.0",
+      "rangeCount": 8,
+      "bytes": 125120183,
+      "sha256": "8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f",
+      "bodyCompleteMs": 2464,
+      "verifiedMs": 2616,
+      "ranges": [
+        {
+          "start": 0,
+          "end": 15640022,
+          "bytes": 15640023,
+          "responseHeadersMs": 333,
+          "completedMs": 2161,
+          "status": 206
+        },
+        {
+          "start": 15640023,
+          "end": 31280045,
+          "bytes": 15640023,
+          "responseHeadersMs": 769,
+          "completedMs": 2464,
+          "status": 206
+        },
+        {
+          "start": 31280046,
+          "end": 46920068,
+          "bytes": 15640023,
+          "responseHeadersMs": 343,
+          "completedMs": 2026,
+          "status": 206
+        },
+        {
+          "start": 46920069,
+          "end": 62560091,
+          "bytes": 15640023,
+          "responseHeadersMs": 341,
+          "completedMs": 687,
+          "status": 206
+        },
+        {
+          "start": 62560092,
+          "end": 78200114,
+          "bytes": 15640023,
+          "responseHeadersMs": 352,
+          "completedMs": 1614,
+          "status": 206
+        },
+        {
+          "start": 78200115,
+          "end": 93840137,
+          "bytes": 15640023,
+          "responseHeadersMs": 410,
+          "completedMs": 1226,
+          "status": 206
+        },
+        {
+          "start": 93840138,
+          "end": 109480160,
+          "bytes": 15640023,
+          "responseHeadersMs": 447,
+          "completedMs": 1940,
+          "status": 206
+        },
+        {
+          "start": 109480161,
+          "end": 125120182,
+          "bytes": 15640022,
+          "responseHeadersMs": 436,
+          "completedMs": 1881,
+          "status": 206
+        }
+      ],
+      "diskHashMatches": true,
+      "requestAuthorizationHeader": false,
+      "redirectsAllowed": false,
+      "temporaryFilesRemoved": true,
+      "sample": 2,
+      "assetId": 609879399
+    },
+    {
+      "recordedAt": "2026-10-04T13:17:16.352Z",
+      "node": "v24.21.0",
+      "rangeCount": 8,
+      "bytes": 125120183,
+      "sha256": "8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f",
+      "bodyCompleteMs": 3262,
+      "verifiedMs": 3443,
+      "ranges": [
+        {
+          "start": 0,
+          "end": 15640022,
+          "bytes": 15640023,
+          "responseHeadersMs": 309,
+          "completedMs": 1048,
+          "status": 206
+        },
+        {
+          "start": 15640023,
+          "end": 31280045,
+          "bytes": 15640023,
+          "responseHeadersMs": 326,
+          "completedMs": 1415,
+          "status": 206
+        },
+        {
+          "start": 31280046,
+          "end": 46920068,
+          "bytes": 15640023,
+          "responseHeadersMs": 319,
+          "completedMs": 1363,
+          "status": 206
+        },
+        {
+          "start": 46920069,
+          "end": 62560091,
+          "bytes": 15640023,
+          "responseHeadersMs": 329,
+          "completedMs": 1380,
+          "status": 206
+        },
+        {
+          "start": 62560092,
+          "end": 78200114,
+          "bytes": 15640023,
+          "responseHeadersMs": 336,
+          "completedMs": 1888,
+          "status": 206
+        },
+        {
+          "start": 78200115,
+          "end": 93840137,
+          "bytes": 15640023,
+          "responseHeadersMs": 314,
+          "completedMs": 1092,
+          "status": 206
+        },
+        {
+          "start": 93840138,
+          "end": 109480160,
+          "bytes": 15640023,
+          "responseHeadersMs": 366,
+          "completedMs": 3262,
+          "status": 206
+        },
+        {
+          "start": 109480161,
+          "end": 125120182,
+          "bytes": 15640022,
+          "responseHeadersMs": 308,
+          "completedMs": 2467,
+          "status": 206
+        }
+      ],
+      "diskHashMatches": true,
+      "requestAuthorizationHeader": false,
+      "redirectsAllowed": false,
+      "temporaryFilesRemoved": true,
+      "sample": 3,
+      "assetId": 609880064
+    },
+    {
+      "recordedAt": "2026-10-04T13:17:19.832Z",
+      "node": "v24.21.0",
+      "rangeCount": 4,
+      "bytes": 125120183,
+      "sha256": "8c387f0c10b232f859357bb396576485eb4fb912018b11da879c59da9c8ee24f",
+      "bodyCompleteMs": 5755,
+      "verifiedMs": 5905,
+      "ranges": [
+        {
+          "start": 0,
+          "end": 31280045,
+          "bytes": 31280046,
+          "responseHeadersMs": 783,
+          "completedMs": 3288,
+          "status": 206
+        },
+        {
+          "start": 31280046,
+          "end": 62560091,
+          "bytes": 31280046,
+          "responseHeadersMs": 361,
+          "completedMs": 4409,
+          "status": 206
+        },
+        {
+          "start": 62560092,
+          "end": 93840137,
+          "bytes": 31280046,
+          "responseHeadersMs": 315,
+          "completedMs": 2776,
+          "status": 206
+        },
+        {
+          "start": 93840138,
+          "end": 125120182,
+          "bytes": 31280045,
+          "responseHeadersMs": 309,
+          "completedMs": 5755,
+          "status": 206
+        }
+      ],
+      "diskHashMatches": true,
+      "requestAuthorizationHeader": false,
+      "redirectsAllowed": false,
+      "temporaryFilesRemoved": true,
+      "sample": 4,
+      "assetId": 609880647
+    }
+  ],
+  "sourceHashes": {
+    "evidence/probes/image-range-parallelism-download.mjs": "c2a409839f1497c835516f8fa0e312294f00cc53e07dc7668b034f6326f1b936",
+    "/Users/rizwanahamed/Documents/ChatGPT/podsv2/evidence/probes/image-range-parallelism-run.py": "0ed359d0839b13484cf94e69e3e777176a40f67249187154877684d7392a3969",
+    "evidence/probes/image-range-parallelism-upload.mjs": "c2fc3ea5dac06d3f852b2ab45fabcd1e2c28aa90efb08c434f8342cd44db7c7f"
+  },
+  "scope": "Four first observed downloads of identical bytes from distinct newly uploaded paths, with four/eight/eight/four ranges in sequence. Each download uses a new temporary file, verifies size and SHA-256, then removes it. Existing images, application data and caches are untouched. Shared CDN/backend cache and network variation remain uncontrolled. No Docker load, full launch or Google measurement is included.",
+  "status": "passed",
+  "cleanupPending": false,
+  "recordedAt": "2026-10-04T13:17:25.799739+00:00",
+  "exitCode": 0,
+  "cleanup": {
+    "recordedAt": "2026-10-04T13:17:48.111808+00:00",
+    "deletedProbeAssetIds": [
+      609878758,
+      609879399,
+      609880064,
+      609880647
+    ],
+    "authorizedReadAfterDeleteStatus": 404,
+    "productionAssetsChanged": false,
+    "sourceSha256": "cb7490183a44f54a441b44f4cc136277fdba31377fc68429d493d60c6d8f13eb"
+  },
+  "summary": {
+    "meanVerifiedMs": {
+      "4": 5341.0,
+      "8": 3029.5
+    },
+    "meanReductionMs": 2311.5,
+    "meanReductionPercent": 43.28
+  },
+  "decision": "Use eight bounded concurrent ranges for images at least64MiB and retain four below that threshold. All size/range/whole-file SHA checks, cancellation, private files and existing origin fallback remain required. Native full-launch acceptance is still required; this small Codespaces transfer sample does not establish a Google result or a20s product guarantee.",
+  "productionRangeSourceSha256AtProbe": "d841e87e508089a2bd62f536fa0dac105ae1d0584966f1cb4883e3e91b5b4cd9"
+}
