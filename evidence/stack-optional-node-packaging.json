@@ -1,0 +1,31 @@
+{
+  "recordedAt": "2026-10-04T02:55:52.862534+00:00",
+  "scope": "Optional literal require packaging and isolated automatic data migration; native format-transition acceptance pending.",
+  "baseRevision": "aa02036",
+  "preparerSha256": "77686545d8259cd2a0f8a41edc7745b5989804d05e96d9e47a03f952abc38810",
+  "esbuildVersion": "0.25.12",
+  "behavior": "Only literal require-call externals identified by the pinned compiler as handled missing-import errors stay in Node bundles. No stubs, installers or dependency substitution. Required imports and native binaries retain their previous failure/container fallback.",
+  "verification": {
+    "localFullSuite": {
+      "tests": 138,
+      "passed": 138,
+      "failed": 0
+    },
+    "isolatedQaInitialSuite": {
+      "tests": 138,
+      "passed": 136,
+      "failed": 2,
+      "cause": "Temporary source snapshot omitted evidence/stack-coverage.json, breaking two compatibility checks."
+    },
+    "isolatedQaRepair": "Copied the unchanged tracked coverage JSON; no product code changed.",
+    "isolatedQaAffectedRerun": {
+      "tests": 3,
+      "passed": 3,
+      "failed": 0
+    },
+    "all138CasesPassedOnBothEnvironments": true
+  },
+  "migrationEvidence": "stack-express-prepared-transition-probe.json",
+  "nativeAcceptance": false,
+  "physicalSourceLines": 5978
+}

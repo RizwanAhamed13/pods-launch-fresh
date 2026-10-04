@@ -85,8 +85,8 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **134 passing
-checks locally and in isolated aswin QA**. Native coverage is 33 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **138 passing checks locally and across the isolated
+aswin QA run and corrected compatibility rerun**. Native coverage is 33 Google browser fixtures and
 33 Codespaces HTTP/protocol fixtures; 22 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
@@ -1627,3 +1627,25 @@ The 02:49:06 UTC audit found all four launches stopped, no active builds or
 launches, health 200 and Codespaces port 23608 private. Current coverage:
 **55 isolated /33 Google browser /33 Codespaces HTTP**, with **22** remaining
 native fixtures. Source and full-suite counts remain 5,920 lines and 134 checks.
+
+
+## Optional Node import packaging candidate
+
+For pinned esbuild0.25.12 diagnostics, a missing literal `require()` may remain
+in the bundle only when the compiler identifies its existing error handler.
+PODS preserves the application fallback. It does not create a stub or install
+an undeclared module. Missing required imports, native modules, `require.resolve`
+and dynamic imports retain the previous failure/container fallback.
+
+The actual `prepare()` path produced a338,173-byte Express artifact in isolated
+QA. The real runner retained SQLite0→1→2→3→4 through a legacy container,
+new bundle, old container and new bundle, without manual copying. Temporary
+containers, probe volume and storage root were removed. This does not yet prove
+native provider format transitions or their browser timing.
+
+The local suite passed138/138. Isolated QA initially passed136/138 because its
+temporary snapshot lacked the unchanged coverage JSON; after copying that file,
+all three affected compatibility checks passed. The four new packaging checks
+passed in both environments. Source totals5,978 physical lines. Evidence:
+`stack-optional-node-packaging.json`,
+`stack-express-prepared-transition-probe.{json,mjs}`.

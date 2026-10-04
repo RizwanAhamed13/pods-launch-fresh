@@ -58,6 +58,7 @@ export async function prepare(source, dataDir = process.env.PODS_DATA || '.data'
     try { result = await build({
       entryPoints: [entry.path], bundle: true, write: false, platform: 'node',
       format: 'cjs', target: 'node22', minify: true, metafile: true, logLevel: 'silent',
+      logOverride: { 'ignored-dynamic-import': 'warning' },
     }); } catch (error) {
       if(config.detected && config.package) return prepareContainer(root,dataDir,{...config,kind:'container',recipe:'node'});
       throw error;
@@ -65,7 +66,12 @@ export async function prepare(source, dataDir = process.env.PODS_DATA || '.data'
     const builtins = new Set(builtinModules.flatMap(x => [x, `node:${x}`]));
     for (const output of Object.values(result.metafile.outputs)) {
       for (const imp of output.imports) {
-        if (imp.external && !builtins.has(imp.path)) {
+        // esbuild leaves a literal require intact when its missing-module error
+        // is handled by the application. Preserve that fallback, without stubs.
+        const optionalRequire = imp.kind === 'require-call' && result.warnings.some(warning =>
+          warning.id === 'ignored-dynamic-import' && warning.text.startsWith(
+            `Importing ${JSON.stringify(imp.path)} was allowed even though it could not be resolved because dynamic import failures appear to be handled here:`));
+        if (imp.external && !builtins.has(imp.path) && !optionalRequire) {
           if(config.detected && config.package) return prepareContainer(root,dataDir,{...config,kind:'container',recipe:'node'});
           throw new Error(`Unbundled runtime dependency: ${imp.path}. Use an existing Dockerfile for this application.`);
         }
