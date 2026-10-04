@@ -13,7 +13,8 @@ VM replacement durability or universal launches under20s without evidence.
 - Fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
   pinned revision d6da2ed780aec8ae0178fc181f1d24113c322e15.
 - Latest native acceptance: Gradio + SQLite; stack-gradio-{url,google,codespaces,audit}.json.
-  Current acceptance checkpoint is ready for publication verification at55/50/50.
+  Acceptance revision38dec05 pushed and synced. Public support verified55/50/50
+  at09:00:35UTC; Gradio row shows all three passes. Evidence stack-gradio-published.json.
 - Coverage:55 isolated build/artifact/browser passes;50 Google native browser
   and50 Codespaces authenticated HTTP/protocol passes. All8static frontends,
   6SSR,6Node,4Go,3Rust,2.NET and7database-family representatives pass native paths.

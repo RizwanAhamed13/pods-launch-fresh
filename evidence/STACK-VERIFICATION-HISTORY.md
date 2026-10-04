@@ -2536,3 +2536,11 @@ physical source **7,128 lines** remain valid; this acceptance changed only
 evidence and documentation. App `repo-c4c5dae76225abe8b74bac37-d6da2ed780ae-61950a67d4e0`; preserve saved native counters2.
 
 Browser measurement note: Saved-count read/write timing includes a browser test selector recovery after the product h1 was visible; it is an observed upper bound, not application processing latency.
+
+Gradio acceptance revision `38dec05` was pushed and synced to aswin. Public
+`/support` DOM verified **55 isolated / 50 Google browser / 50 Codespaces protocol**
+at **2026-10-04T09:00:35.100Z**, with all three Gradio row checks passed.
+Compatibility checks passed **3/3**; no product implementation changed and the
+existing **189/189** full-suite result remains applicable. Publication evidence:
+`stack-gradio-published.json`. Next native gate: Ktor after ordinary quota is
+available (next slot observed as09:05:35.928UTC; recheck before submission).
