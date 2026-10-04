@@ -1263,7 +1263,11 @@
       "serverEvidence": "stack-matrix-25.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-25.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-sinatra-url.json",
+        "stack-sinatra-google.json",
+        "stack-sinatra-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-02.json",
@@ -1274,7 +1278,12 @@
           "status": "passed"
         }
       ],
-      "recipeOptimizationEvidence": "stack-ruby-image-comparison.json"
+      "recipeOptimizationEvidence": "stack-ruby-image-comparison.json",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      },
+      "nativeProviderScope": "sinatra passed native Google product button, reload and file retention across full stop/relaunch. Codespaces authenticated HTTP product, writes, saved file inspection and full restart persistence passed. Native Codespaces browser interaction remains pending."
     },
     {
       "fixture": "solid",

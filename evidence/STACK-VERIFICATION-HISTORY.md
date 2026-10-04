@@ -2417,3 +2417,38 @@ Evidence: `stack-php-{url,google,codespaces,audit}.json`. Coverage is now
 **55 isolated / 47 Google browser / 47 Codespaces protocol**, with **8** native
 fixtures pending. Full suite **184/184** and source **6,995 lines** remain valid;
 this acceptance changed only evidence and documentation.
+
+
+## Sinatra native product acceptance
+
+The actual developer form prepared `examples/stacks/sinatra` from fixture
+revision `d6da2ed780ae` in **312.797 seconds** after ordinary same-account
+quota availability. Artifact `effde18b31df036e0a4f359c6b0212fa4b719ca15dc8cb159ddb8ba52df8e693` contains **72,509,287 image bytes**.
+No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell RUNNING, first image delivery | Server healthy 24.086s; product visible 25.589s; counter read 25.927s; button write 26.220s |
+| Cloud Shell cached relaunch | Server healthy 6.355s; product visible 6.848s; saved value restored 6.963s; next write 7.345s |
+| Codespaces initially Shutdown | Server healthy 53.926s; delivery/startup 38.570s; image cache hits 0 |
+| Codespaces cached relaunch | Server healthy 9.048s; authenticated HTTP write/read and saved-file inspection passed |
+
+Google browser buttons, reloads and full application stops verified **0→1→2**
+without console warnings or errors. Product visibility matched its h1.
+Codespaces authenticated HTTP verified the same sequence. Direct inspection
+checked the recipe command, single web service, project network, assigned product
+port **26238** and persistent workspace volume. The copied file counter matched
+each write. This check does not independently identify the framework version;
+the pinned source and real server build identify the prepared fixture.
+
+Both Google launches completed and stopped before Codespaces tests began. All
+four launches ended stopped; the Codespaces product port remained private.
+Audit at 2026-10-04T08:14:12.816897+00:00 confirmed health200, SQLite integrity ok, no active
+builds/launches and unchanged service PID/runner SHA. These are file-persistence
+and fixture-specific timing results. Native Codespaces browser interaction and
+VM replacement durability remain unverified.
+
+Evidence: `stack-sinatra-{url,google,codespaces,audit}.json`. Coverage is now
+**55 isolated / 48 Google browser / 48 Codespaces protocol**, with **7** native
+fixtures pending. Full suite **184/184** and source **6,995 lines** remain valid;
+this acceptance changed only evidence and documentation.

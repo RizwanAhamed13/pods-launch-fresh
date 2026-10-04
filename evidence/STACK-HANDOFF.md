@@ -17,11 +17,11 @@ VM replacement durability, or a universal 20-second cold launch.
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
   saved format changes on actual environment capabilities.
-- Coverage:55 isolated build/artifact/browser passes;47 Google native browser
-  and47 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+- Coverage:55 isolated build/artifact/browser passes;48 Google native browser
+  and48 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Native Codespaces browser checks remain
-  pending authorization. The8 fixtures awaiting native acceptance are:
-  deno, gradio, ktor, micronaut, phoenix, sinatra, streamlit, symfony.
+  pending authorization. The7 fixtures awaiting native acceptance are:
+  deno, gradio, ktor, micronaut, phoenix, streamlit, symfony.
 - Current full suite:184/184 passed locally and in isolated aswin QA after
   PHP/Sinatra/Deno file-counter profiles. Logs /tmp/pods-file-profiles-full-{local,qa}.txt.
   The previous SQLite native acceptance was published4bb9326.
@@ -1282,3 +1282,18 @@ The temporary file-counter documentation helper now invokes it automatically.
 - Public support page verified at 2026-10-04T08:02:51.723Z: **55 isolated / 47 Google browser / 47 Codespaces protocol**. PHP shows Passed on each path; Codespaces browser remains pending. Saved in `stack-php-published.json`.
 - All PHP launches are stopped. Next developer draft is `examples/stacks/sinatra`, not submitted. Normal quota watcher reports next ordinary slot 2026-10-04T08:05:23.832000+00:00; no bypass.
 - Native timing report now includes 90 observations, with 49 provider/fixture pairs explicitly excluded for missing or noncanonical timing provenance. Cached results do not establish a universal 20-second launch guarantee.
+
+
+## Sinatra native acceptance checkpoint
+
+- Build qwE2JZxW3nc6VlubXTADdnjbtyLvBS9i submitted 2026-10-04T08:05:35.260Z, ready after 312797ms.
+  App repo-01d11990da06be311f9bf071-d6da2ed780ae-effde18b31df; image bytes 72509287.
+- Google first/cached health24086/6355ms, product visible25589/6848ms,
+  write26220/7345ms. Counter0→1→2, reloads passed, console clean, both stopped.
+- Codespaces existing environment pods-launch-containers-97qw56gjg47gf7vrv; first
+  Shutdown health53926ms/delivery38570ms, cached9048ms.
+  Saved file counters1/2, exact recipe command, durablevolume/privateport26238.
+- Audit 2026-10-04T08:14:12.816897+00:00: health200/integrityok/zero active, unchangedPID1063107/runnerSHA.
+  All four launches stopped; no service restart. Coverage55/48/48;7nativepending.
+  Source6995/full184 unchanged. Existing GitHub2FA/VMreplacement/stablehostname
+  inputs remain pending. Goal active and progressing.

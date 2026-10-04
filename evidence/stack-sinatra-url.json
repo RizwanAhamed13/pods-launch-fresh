@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-04T08:14:12.801632+00:00",
+  "controlRevision": "5dde1e5",
+  "checkoutRevision": "681a8433faa753f102bb5d2f72c97b332491c851",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T08:05:29.137173+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T08:05:35.260Z",
+  "attempts": [
+    {
+      "id": "qwE2JZxW3nc6VlubXTADdnjbtyLvBS9i",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/sinatra",
+        "key": "01d11990da06be311f9bf071"
+      },
+      "status": "ready",
+      "createdAt": 1791101135928,
+      "startedAt": 1791101135939,
+      "finishedAt": 1791101448736,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-01d11990da06be311f9bf071-d6da2ed780ae-effde18b31df",
+      "app": {
+        "id": "repo-01d11990da06be311f9bf071-d6da2ed780ae-effde18b31df",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "effde18b31df036e0a4f359c6b0212fa4b719ca15dc8cb159ddb8ba52df8e693",
+        "bytes": 275,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-01d11990da06be311f9bf071",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/sinatra",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Sinatra counter"
+        },
+        "preparedAt": "2026-10-04T08:10:48.487Z",
+        "images": [
+          {
+            "id": "sha256:1a9c1ac9bd00086f10e35d32e418fa0aa2d8a6870cc45565dc221711d1b8d623",
+            "sha256": "f2cd5aa982451d95dbba7b0e6a6e20c630fb87e35cce427e5aafd5884918734c",
+            "bytes": 72509287
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 312797
+}
