@@ -991,3 +991,23 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   All four launches stopped; no service restart. Coverage55/43/43;12nativepending.
   Source6814/full179 unchanged. Existing GitHub2FA/VMreplacement/stablehostname
   inputs remain pending. Goal active and progressing.
+
+- Actix acceptance published0cf4f51 and synchronized to aswin. Public support DOM
+  verified55/43/43 and Actix Web allpassed at06:40:35.866UTC; Codespaces browser
+  pending notice present. Compatibility3/3 passed. All four native launches stopped.
+  Build took393585ms. Initial observer51046 expired after6minutes while the same
+  isolated worker was still installing packages; replacement observer37394 pinned
+  the same build ID and ended0. This was not a failed or repeated build. CS51425
+  ended0; final capture/audit completed successfully. No native test remains active.
+- Documentation helper /tmp/pods-document-file-counter-native.py accepts one
+  of actix/axum/rocket/aspnet, deriving current native counts from the55 passing
+  isolated representatives. Original failed flask-mongodb remains in the56-row
+  historical coverage file and is not counted; its mongodb7 replacement passed.
+  /tmp/pods-record-file-counter-native.py and capture helper are ready to reuse.
+- Axum form is filled but unsubmitted. Normal quota watcher99017 is live,
+  started06:40:53.404UTC, bounded20minutes/poll30s. account3/global3/active0,
+  nextslot06:46:22.026UTC. Resume SAME handle before submitting.
+  /tmp/pods-watch-axum-build.py allows12minutes observation while retaining the
+  same build identity, covering the existing10-minute worker timeout and cleanup.
+  Keep product-h1 timing and provider tests sequential. Source6814/full179.
+  Existing GitHub2FA/VMreplacement/stablehostname inputs remain pending.

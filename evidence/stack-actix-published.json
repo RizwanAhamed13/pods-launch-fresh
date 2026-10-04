@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-04T06:40:35.866Z",
+  "acceptanceRevision": "0cf4f51",
+  "url": "https://collection-conferences-ages-clearly.trycloudflare.com/support",
+  "scope": "Rendered public compatibility page after native Actix evidence synchronization. Browser DOM verification, not a new product launch.",
+  "isolatedFixtures": 55,
+  "googleBrowserFixtures": 43,
+  "codespacesProtocolFixtures": 43,
+  "actixRow": "Actix Web Rust Passed Passed Passed",
+  "codespacesBrowserPendingNoticePresent": true,
+  "compatibilityChecks": {
+    "tests": 3,
+    "passed": 3,
+    "failed": 0
+  }
+}
