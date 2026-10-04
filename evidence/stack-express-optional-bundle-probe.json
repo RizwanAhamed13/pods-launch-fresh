@@ -42,5 +42,10 @@
       "passed": true
     }
   ],
-  "passed": true
+  "passed": true,
+  "reproduction": {
+    "script": "stack-express-optional-bundle-probe.mjs",
+    "command": "ssh aswin '/snap/lxd/current/bin/lxc exec pods-fresh-matrix-01 --user 1000 --group 1000 --cwd /opt/pods -- /opt/node/bin/node --input-type=module -' < evidence/stack-express-optional-bundle-probe.mjs",
+    "scope": "Only the existing isolated QA guest; does not publish an artifact to production."
+  }
 }
