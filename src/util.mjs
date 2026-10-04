@@ -22,8 +22,9 @@ export function command(file, args, { input, env, timeout = 90000, cwd, onStdout
   });
 }
 export async function request(url, token, { method = 'GET', body, headers = {} } = {}) {
-  const res = await fetch(url, { method, headers: { Accept: 'application/json', Authorization: `Bearer ${token}`, ...(body ? { 'Content-Type': 'application/json' } : {}), ...headers }, body: body ? JSON.stringify(body) : undefined, signal: AbortSignal.timeout(20000) });
-  const data = await res.json().catch(() => ({}));
+  const signal=AbortSignal.timeout(20000);
+  const res = await fetch(url, { method, headers: { Accept: 'application/json', Authorization: `Bearer ${token}`, ...(body ? { 'Content-Type': 'application/json' } : {}), ...headers }, body: body ? JSON.stringify(body) : undefined, signal });
+  const data = await res.json().catch(error => { if(signal.aborted)throw signal.reason; if(error instanceof SyntaxError)return {}; throw error; });
   if (!res.ok) { const e = new Error(data.message || data.error?.message || `Provider returned ${res.status}`); e.status = res.status; throw e; }
   return data;
 }

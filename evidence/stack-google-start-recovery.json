@@ -1,0 +1,45 @@
+{
+  "recordedAt": "2026-10-04T03:14:51.532578+00:00",
+  "sourceBaseRevision": "f598e07",
+  "trigger": {
+    "evidence": "stack-express-native-transition-google.json",
+    "failedLaunch": "E9CQajpQfxqwPMlUXQy8mCxgEemgM8gO",
+    "initialState": "RUNNING",
+    "message": "Could not start your compute. The operation was aborted due to timeout",
+    "artifactDeliveryStarted": false,
+    "limitation": "The retained failure does not identify start POST versus operation or environment GET. It was not reproduced live."
+  },
+  "sourceSha256": {
+    "src/providers.mjs": "5f367c1d85b702eac742424a14dbcc14ac3f42f31ef6c5ccba0560bf5ae316b7",
+    "src/util.mjs": "9c5789b319f5e5ba475b7701ef6e4e3fea2bd14fcf1f5df14ebefe35df2317cb",
+    "test/google-recovery.test.mjs": "db694aa71329a5ce8ace57a053daa954883c6593075ef92646d11eee0f739429"
+  },
+  "automatedTests": {
+    "local": 146,
+    "isolatedAswin": 146,
+    "failed": 0,
+    "newRecoveryCases": 8,
+    "localLog": "/tmp/pods-google-recovery-full-local.txt",
+    "isolatedLog": "/tmp/pods-google-recovery-full-qa.txt"
+  },
+  "behavior": [
+    "Send the Cloud Shell start mutation exactly once.",
+    "On a transient lost start response, inspect the same default environment and require RUNNING plus the unique ephemeral SSH key before dispatch.",
+    "Retry only transient read failures, at most three attempts per read and within the provisioning deadline.",
+    "Poll the original acknowledged operation; never issue a replacement start.",
+    "Preserve authorization/quota failures, explicit operation errors, bounded deadlines and key cleanup.",
+    "Preserve response-body transport errors instead of silently treating them as empty successful data.",
+    "Persist start acceptance, uncertainty and reconciliation timestamps without provider tokens or keys."
+  ],
+  "providerContractSources": [
+    "https://docs.cloud.google.com/shell/docs/reference/rest/v1/users.environments/start",
+    "https://docs.cloud.google.com/shell/docs/reference/rest/v1/users.environments"
+  ],
+  "limitations": [
+    "Recovery is proven with injected unit failures; real Google timeout recovery has not yet been observed.",
+    "A provider delay can exceed the ready-compute 20-second target.",
+    "Provider shutdown, VM replacement durability and Codespaces browser acceptance are separate gates."
+  ],
+  "deployment": null,
+  "nativeRegression": null
+}

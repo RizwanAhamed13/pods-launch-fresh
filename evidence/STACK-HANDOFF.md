@@ -30,7 +30,7 @@ VM replacement durability, or a universal 20-second cold launch.
   rerun unchanged passing checks. Currentbuilder2553fc8 adds4 cases: all138
   passed locally and on QA after restoring its missing coveragefile and rerunning
   the3 affectedcompatibility checks; details below.
-- Physical code: 5,978 lines = 3,210 product/tooling + 1,671 tests + 933 examples
+- Physical code: 6,120 lines = 3,250 product/tooling + 1,773 tests + 933 examples
   + 164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
   files; includes .astro. Storage handoff is deployed; native same-format regressions follow below.
 
@@ -333,3 +333,19 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   55/33/33,22pending. Compatibility3/3 passedafteradding evidence references.
 - Goalactive. No live watcher, test, or migrationprobe remains. All testpreview
   apps stopped; saved data and required migrationbackups retained.
+
+## Google startup recovery
+
+- The retained Express failure occurred before delivery, with initial RUNNING
+  and a transport timeout. Exact request was not recorded; do not claim a
+  reproduced provider root cause. Evidence: stack-google-start-recovery.json.
+- Start is sent once. An uncertain transient response is reconciled only when
+  the same default environment is RUNNING and contains this attempt’s unique
+  SSH public key. GETs have bounded transient retries; acknowledged operations
+  retain their handle. Authorization/quota errors and explicit failures stop.
+- Response-body transport failures now propagate to provider recovery.
+  Start accepted/uncertain/reconciled timestamps distinguish future incidents.
+- Eight new cases; full146/146 passed locally and isolated aswin QA. Snapshot
+  /output/google-recovery-candidate-f598e07 contains source and coverage data.
+- Deployment and native regression are pending for this candidate. The lost
+  response recovery is simulated; a real Google timeout has not recurred yet.

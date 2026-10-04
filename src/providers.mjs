@@ -35,6 +35,16 @@ export function providers({ repo, origin, runnerSha, api = github, cloudRequest 
       }
     }
   }
+  async function readCloud(url, token, deadline=Infinity) {
+    for(let attempt=0;;attempt++){
+      try{return await cloudRequest(url,token);}
+      catch(error){
+        const delay=pollMs*2**attempt;
+        if(!transient(error)||attempt>=2||Date.now()+delay>=deadline)throw error;
+        await sleep(delay);
+      }
+    }
+  }
   return {
     github: {
       async validate(token) { const u = await api('/user', token); if(!u.id||!u.login)throw new Error('GitHub account identity was unavailable. Reconnect your account.');return {id:String(u.id),name:u.login}; },
@@ -113,17 +123,46 @@ export function providers({ repo, origin, runnerSha, api = github, cloudRequest 
         const base = 'https://cloudshell.googleapis.com/v1/users/me/environments/default';
         let publicKey;
         try {
-          const initial = await cloudRequest(base,token);
+          const initial = await readCloud(base,token);
           const compute = {initialState:initial.state??null,observedAt:Date.now()};
           await exec('ssh-keygen', ['-q','-t','rsa','-b','3072','-N','','-f',join(directory,'key')]);
           publicKey = (await readFile(join(directory,'key.pub'),'utf8')).trim().split(' ').slice(0,2).join(' ');
-          await update({status:'provisioning',compute:{...compute,startRequestedAt:Date.now()}});
-          const op = await cloudRequest(base+':start', token, {method:'POST',body:{publicKeys:[publicKey]}});
-          const deadline = Date.now()+240000;
-          let result=op;
-          while (!result.done) { if(Date.now()>deadline) throw new Error('Cloud Shell provisioning exceeded four minutes'); await sleep(pollMs); result = await cloudRequest(`https://cloudshell.googleapis.com/v1/${op.name}`,token); }
-          if(result.error) throw new Error(result.error.message);
-          const env = await cloudRequest(base,token);
+          compute.startRequestedAt=Date.now();
+          const deadline=compute.startRequestedAt+provisionMs;
+          await update({status:'provisioning',compute:{...compute}});
+          let op, env;
+          try {
+            op=await cloudRequest(base+':start',token,{method:'POST',body:{publicKeys:[publicKey]}});
+            compute.startAcceptedAt=Date.now();
+          } catch(error) {
+            if(!transient(error))throw error;
+            compute.startUncertainAt=Date.now();
+          }
+          await update({compute:{...compute}});
+          const waitForPoll=async()=>{
+            if(Date.now()+pollMs>=deadline)throw new Error('Cloud Shell did not confirm startup within the provisioning deadline. No additional start request was sent.');
+            await sleep(pollMs);
+          };
+          if(op) {
+            let result=op;
+            while(!result.done){
+              if(typeof op.name!=='string'||!op.name.startsWith('operations/'))throw new Error('Cloud Shell did not return a valid startup operation');
+              await waitForPoll();
+              result=await readCloud(`https://cloudshell.googleapis.com/v1/${op.name}`,token,deadline);
+            }
+            if(result.error)throw new Error(result.error.message);
+            env=await readCloud(base,token,deadline);
+          } else {
+            // A lost response does not mean the start failed. Confirm both the
+            // running environment and this attempt's unique key before delivery.
+            for(;;){
+              await waitForPoll();
+              env=await readCloud(base,token,deadline);
+              if(env.state==='RUNNING'&&Array.isArray(env.publicKeys)&&env.publicKeys.includes(publicKey))break;
+            }
+            compute.startReconciledAt=Date.now();
+            await update({compute:{...compute}});
+          }
           if (!env.sshHost || !env.sshUsername || !Number.isInteger(env.sshPort) || !env.webHost) throw new Error('Cloud Shell did not return connection details');
           if (!/^[a-zA-Z0-9.:-]+$/.test(env.sshHost) || !/^[a-zA-Z0-9_-]+$/.test(env.sshUsername) || !/^[a-zA-Z0-9.-]+$/.test(env.webHost)) throw new Error('Invalid Cloud Shell connection details');
           const previewUrl=`https://${config.port??8080}-${env.webHost}`;
