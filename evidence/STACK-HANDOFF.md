@@ -19,8 +19,9 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
   actix, adonis, aspnet, axum, deno, echo, fastapi, fiber, flask-mariadb, flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, hono, koa, ktor, micronaut, nestjs, phoenix, php, rocket, sinatra, streamlit, symfony.
 - All eight static frontend and all six SSR fixtures pass both acceptance paths.
   Codespaces native browser interaction remains pending for every fixture.
-- Current milestone: corrected Fastify native acceptance. This checkpoint builds on
-  1ab2fb9; use git log for the publication commit. Product runtime is unchanged.
+- Current milestone: corrected Fastify native acceptance published inbc8c28c,
+  synced toaswin. Product runtime is unchanged. Compatibility3tests passed;
+  published support page verified55/29/29, FastifybothPassed, CSbrowserpending.
 - Full-suite baseline18026bb:114 automated tests pass locally/aswin. Logs
   /tmp/pods-ssr-complete-tests-{local,aswin}.txt. Live runtime remains5e5b4a0.
   Source updates only native QA scripts/tests; no runtime restart was necessary.
@@ -131,9 +132,9 @@ Mark pending workflow tabs each turn; no duplicate launch/build after read timeo
   another launch. Adapt exact observedheading/controls for a different fixture.
 - stopPreparedProduct(tab,url) confirmsstop. History can briefly lag during its
   existing async request; no evidencedhistorybug.
-- supportQa:IAB2tab29,public support deliverable. Refresh after sync to verify
-  55isolated/29Google/29Codespaces and FastifybothPassed. NativeCSbrowserwarning
-  remains. No productruntime restart is required for coverage/docs changes.
+- supportQa:IAB2tab29,public support deliverable. Afterbc8c28c sync, browser
+  verified55isolated/29Google/29Codespaces and FastifybothPassed. NativeCSbrowser
+  warning remains. No runtime restart was required for coverage/docs changes.
 - nativeGithubKeep: IAB2tab10, pending GitHub two-factor authentication; fresh
   read00:40UTC still2FA. User action already requested. No SMS/code sent.
 - cloudLifecycle: IAB2tab14, Cloud Shell Restart confirmation pending. No approval
