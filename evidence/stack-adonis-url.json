@@ -1,0 +1,63 @@
+{
+  "recordedAt": "2026-10-04T02:49:06.930211+00:00",
+  "controlRevision": "73bd9f4",
+  "checkoutRevision": "615fe80",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T02:45:30.645736+00:00",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0
+  },
+  "submittedAt": "2026-10-04T02:45:43.987Z",
+  "attempts": [
+    {
+      "id": "I6SHqRnH2SKUZT_ngngRzTrQY0t1Te2h",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/adonis",
+        "key": "4083e3f707cf3d21b636b324"
+      },
+      "status": "ready",
+      "createdAt": 1791081944827,
+      "startedAt": 1791081944842,
+      "finishedAt": 1791082036929,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-4083e3f707cf3d21b636b324-d6da2ed780ae-9ec0984392a8",
+      "app": {
+        "id": "repo-4083e3f707cf3d21b636b324-d6da2ed780ae-9ec0984392a8",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "9ec0984392a801e20ba62a97d23784b901f0c740948612bd6b50296d34d6873c",
+        "bytes": 276,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-4083e3f707cf3d21b636b324",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/adonis",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "AdonisJS + SQLite"
+        },
+        "preparedAt": "2026-10-04T02:47:16.632Z",
+        "images": [
+          {
+            "id": "sha256:7021c61d42328b6b5f343a3f33a2a30a4bb278cfe27a36e7c88708919eb3d20b",
+            "sha256": "e37afd14ab18faee0b429ec945305d965341b70aeb819b3b4f5d00fafa7a4059",
+            "bytes": 83631279
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 92087
+}

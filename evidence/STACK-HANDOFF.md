@@ -17,11 +17,11 @@ VM replacement durability, or a universal 20-second cold launch.
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
   saved format changes on actual environment capabilities.
-- Coverage: 55 isolated build/artifact/browser passes; 32 Google native browser
-  and 32 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+- Coverage: 55 isolated build/artifact/browser passes; 33 Google native browser
+  and 33 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Every native Codespaces browser check
-  remains pending. The 23 fixtures awaiting both native acceptance paths are:
-  actix, adonis, aspnet, axum, deno, echo, fastapi, fiber, flask-mariadb,
+  remains pending. The 22 fixtures awaiting both native acceptance paths are:
+  actix, aspnet, axum, deno, echo, fastapi, fiber, flask-mariadb,
   flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, ktor,
   micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
 - Deployed provider73bd9f4 passes134 tests locally and in isolated aswin QA;
@@ -127,7 +127,7 @@ VM replacement durability, or a universal 20-second cold launch.
   /tmp/pods-record-koa.py retain evidence inputs/validation. Both providers now
   hold Koa value2; never reset existing data when retesting.
 
-## Latest native gate: Hono acceptance
+## Previous native gate: Hono acceptance
 
 - Quota watcher58800 ended0 at02:01:34.197091UTC:account2/global2/active0.
   Actual form submitted once02:01:49.625UTC; preparation29,554ms.
@@ -161,7 +161,7 @@ VM replacement durability, or a universal 20-second cold launch.
   stack-hono-browser-transport-probe.mjs. No QA artifact imported to production.
 - Browser binding honoTransportResult retains raw browser observations.
 
-## Latest native gate: NestJS acceptance
+## Previous native gate: NestJS acceptance
 
 - Public fixture d6da2ed, ordinary URL form preparation101382ms; Docker image
   83083824bytes. App repo-4ce4a27db492259d64c087b5-d6da2ed780ae-a96fe128e4ec.
@@ -181,18 +181,15 @@ VM replacement durability, or a universal 20-second cold launch.
 
 ## Next gate and performance work
 
-- NEXT native fixture: AdonisJS URL preparation/browser/HTTP persistence. Check
-  for current data before writing. Readonly audit02:37UTC found Adonis build0.
-  The developer form is now staged at examples/stacks/adonis, not submitted.
-- Quota watcher96793 ended0 at02:25:27.009292UTC: account2/global2/active0.
-  NestJS submitted once02:26:01.546UTC. Fresh quota02:30:33.292750UTC is
-  account3/global3/active0, next ordinary slot02:45:29.969UTC. Watcher14019 is LIVE since02:33:00.602172UTC, bounded20min/30sec
-  samples. Poll the same handle, never restart solely on timeout. The helper
-  is /tmp/pods-next-native-quota-watch.py. Keep limits3/account/hour and
-  12/global/hour. Never bypass quotas or import QA artifacts into production.
+- Adonis native acceptance is complete; see the latest gate below. Choose one
+  of the22 remaining fixtures after checking ordinary quota and saved data.
+- Watcher14019 completed normally; no quota watcher remains live. The helper
+  /tmp/pods-next-native-quota-watch.py is available for a fresh bounded watch.
+  Keep limits3/account/hour and12/global/hour. Never bypass quotas or import
+  QA artifacts into production. No next fixture has been submitted.
 - /tmp/pods-capture-native.py reads aswin SQLite readonly, whitelists fields and
   derives timings. Its explicit fixture allowlist currently includes astro,
-  react-router, express, fastify, koa, hono and nestjs.
+  react-router, express, fastify, koa, hono, nestjs and adonis.
 - scripts/live-codespaces.mjs receives gh token on stdin. Use the correct fixture
   probe, explicit output file and expected initial count. Counter/SSR/static/
   WebSocket/worker checks require two launches, including confirmed full stop.
@@ -236,16 +233,15 @@ VM replacement durability, or a universal 20-second cold launch.
 After compaction first CUA call must be cua.rewriteDocumentation. Reuse bindings;
 mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 
-- stackQa6: IAB2 tab13, Adonis folder filled, button Prepare application.
-  No submission yet; wait for normal quota handle14019. Ready region name includes period: Your application is ready
-  to share. Try this version link in that region identifies the exact artifact.
-- accountWorker: IAB2 tab12, stopped NestJS launcher. nestjsLaunchUrl,
-  nestjsPreparationSubmittedAt, nestjsBrowserChecks (both passed), nestjsFirstLogs
-  and nestjsSecondLogs (empty) persist. measureNestjsCounter records page/read/
-  write timing and reload;50sec deadline. Stop helper stopPreparedProduct confirms
-  terminal state. History may briefly lag while its async refresh finishes.
-- supportQa: IAB2 tab29, public support deliverable; refresh after publication to verify55/32/32,
-  NestJS allPassed. Native CS browser warning remains visible.
+- stackQa6: IAB2 tab13, completed Adonis preparation with exact launch link.
+  Ready region name includes period: Your application is ready to share.
+- accountWorker: IAB2 tab12, stopped AdonisJS launcher. adonisLaunchUrl,
+  adonisPreparationSubmittedAt, adonisBrowserChecks (both passed), adonisFirstLogs
+  and adonisSecondLogs (empty) persist. measureAdonisCounter records page/read/
+  write timing and reload;50sec deadline. Never duplicate a launch on timeout.
+  stopPreparedProduct confirms full stop. History may briefly lag its refresh.
+- supportQa: IAB2 tab29, public support deliverable; refresh after publication to
+  verify55/33/33 and Adonis allPassed. Native CS browser warning must remain visible.
 - nativeGithubKeep: IAB2 tab10; freshly checked this turn, still Two-factor
   authentication. User already asked; no SMS/code sent. Do not repeat question.
 - cloudLifecycle: IAB2 tab14; previous Restart confirmation and
@@ -275,5 +271,37 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 - Graph project Users-rizwanahamed-Documents-ChatGPT-podsv2, indexed through
   73bd9f4 runtime source. scripts/public/examples/deploy excluded; targeted fallback appropriate.
 - Use set -e for validation→commit. User requests no subagents. Keep goal active;
-  native Codespaces browser,23 remaining fixture paths, native format migration,
+  native Codespaces browser,22 remaining fixture paths, native format migration,
   VM replacement durability, stable hosting and cold performance remain open.
+
+
+## Latest native gate: AdonisJS acceptance
+
+- Ordinary quota watcher14019 ended0 at02:45:30.645736UTC, account2/global2,
+  active0. Actual developer form submitted once02:45:43.987UTC; build92087ms.
+- Public fixture examples/stacks/adonis atd6da2ed. Image83631279bytes.
+  App repo-4083e3f707cf3d21b636b324-d6da2ed780ae-9ec0984392a8, port23608.
+- Google initialRUNNING both runs: first health35982/delivery32602ms,
+  page38321/read38333/write38620ms; cached health7830/delivery4546ms,
+  page8800/read8914/write9196ms. Browser0→1,reload1,fullstop1→2,reload2.
+  Both stopped; warning/error logs empty. These are not cold-VM measurements.
+- Codespaces32135 ended0 in pods-launch-containers-69rw5vx4xp46c5qw5.
+  InitialAvailable both runs: uncached health41977/delivery41474ms;
+  cached health9286/delivery8755ms. HTTP0→1,fullstop1→2 passed; bothstopped.
+  Native CS browser remains pending. Both providers now hold Adonisvalue2.
+- Audit75515 ended0 at02:49:06.930211UTC: activebuild0/launch0,health200,
+  Codespacesport23608private. Evidence stack-adonis-{url,google,codespaces}.json.
+  Inputs /tmp/pods-adonis-{production-evidence,browser,ports}.json,health.txt,
+  recorder /tmp/pods-record-adonis.py. Runtime73bd9f4/checkout615fe80 atbuild.
+- Isolated emptychunkedPOST/fullrestart probe30327 ended0 at02:43:35.401UTC,
+  sourceSHA5cc3fe656531ad5c784b6e97adc5c7e8cc3325d7445b3b8da8453e9895afecf3.
+  Existingmatrix24artifact, provider-candidate-c0931da runner. Both200,0→1→2;
+  temporaryvolume/rootremoved. Original30273 wrong-title assertion and40077
+  uploadownershipfailure were probe-only; no product code changed. Evidence
+  stack-adonis-chunked-probe.{json,mjs}. No temporary probes remain live.
+- Normal quota remains3/account/hour and12/global/hour. No watcher currently
+  live; refresh readonly quota before selecting the next native fixture. Do not
+  create duplicate builds, switch identities, or import QA artifacts to production.
+- Goal active. Optional Express bundling stays disabled until native format
+  migration acceptance. Do not repeat pending browser2FA, CloudShellRestart
+  or stable-hostname questions. No product source change in this checkpoint.

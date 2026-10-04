@@ -86,8 +86,8 @@ or in-flight crash recovery.
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
 later passing attempts do not erase them. Automated coverage is **134 passing
-checks locally and in isolated aswin QA**. Native coverage is 32 Google browser fixtures and
-32 Codespaces HTTP/protocol fixtures; 23 still lack at least one native acceptance path. Codespaces
+checks locally and in isolated aswin QA**. Native coverage is 33 Google browser fixtures and
+33 Codespaces HTTP/protocol fixtures; 22 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1596,3 +1596,34 @@ formats; smaller Express packaging remains experimental. Current source:
 **5,920 physical lines**. Evidence: `stack-provider-format-adapter.json` and
 `stack-codespaces-runtime-capabilities.json`; the earlier rejection probe is
 historical evidence for provider source revision60b7960.
+
+
+## AdonisJS native acceptance
+
+The ordinary developer form prepared `examples/stacks/adonis` at public revision
+`d6da2ed` in **92.087 seconds**, after normal quota availability. Its production
+container image is **83,631,279 bytes**; no QA artifact was imported.
+
+| Provider / state | Health | Actual product and persistence |
+| --- | --- | --- |
+| Cloud Shell RUNNING, image absent | 35.982s | Page 38.321s; SQLite write 38.620s; reload retained 1 |
+| Cloud Shell RUNNING, cached full relaunch | 7.830s | Page 8.800s; saved value 8.914s; next write 9.196s; reload retained 2 |
+| Codespaces Available, image absent | 41.977s | Authenticated HTTP product and SQLite 0→1 passed |
+| Codespaces Available, cached full relaunch | 9.286s | Authenticated HTTP retained SQLite 1→2 |
+
+The Cloud Shell browser exercised the real AdonisJS product button, reload and
+full process stop/relaunch, with no console warnings or errors. Codespaces
+browser interaction remains pending sign-in. Both first-image launches exceeded
+20 seconds despite ready compute; neither is a cold-VM provisioning measurement.
+
+A separate isolated transport probe verified empty chunked POSTs without a
+Content-Type header and SQLite retention across a full restart. Its initial
+wrong-title assertion and temporary-file upload error were probe-only corrections;
+no production application change was needed. This probe does not replace native
+acceptance. Evidence: `stack-adonis-chunked-probe.{json,mjs}` and
+`stack-adonis-{url,google,codespaces}.json`.
+
+The 02:49:06 UTC audit found all four launches stopped, no active builds or
+launches, health 200 and Codespaces port 23608 private. Current coverage:
+**55 isolated /33 Google browser /33 Codespaces HTTP**, with **22** remaining
+native fixtures. Source and full-suite counts remain 5,920 lines and 134 checks.

@@ -1,0 +1,53 @@
+{
+  "recordedAt": "2026-10-04T02:43:35.401Z",
+  "scope": "Isolated real Adonis artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+  "artifactSha256": "fad66754ed2bfcf41747cd8029bbffd83ea37a0ef6d0bd12d3e33443db87b55b",
+  "images": [
+    {
+      "id": "sha256:66a0c4ca9b94eb92751962f7ac2b1562f21ca5f361b3d2401a4eafff5d616aa2",
+      "sha256": "e049c733510c1c5b8e6cc2d1b4e09b96668699c0cad5bd6e7ffa1616c8ce9b24",
+      "bytes": 86305657
+    }
+  ],
+  "sourceSha256": "5cc3fe656531ad5c784b6e97adc5c7e8cc3325d7445b3b8da8453e9895afecf3",
+  "records": [
+    {
+      "scenario": "first-launch",
+      "before": 0,
+      "post": {
+        "status": 200,
+        "count": 1
+      },
+      "afterRead": 1,
+      "transferEncoding": "chunked",
+      "contentType": null
+    },
+    {
+      "scenario": "full-relaunch",
+      "before": 1,
+      "post": {
+        "status": 200,
+        "count": 2
+      },
+      "afterRead": 2,
+      "transferEncoding": "chunked",
+      "contentType": null
+    }
+  ],
+  "passed": true,
+  "cleanup": {
+    "containersStopped": true,
+    "probeVolumeRemoved": true,
+    "temporaryRootRemoved": true
+  },
+  "probeCorrections": [
+    {
+      "kind": "test-assertion",
+      "detail": "Initial probe expected the wrong product title before any POST; corrected to AdonisJS + SQLite. No product code changed."
+    },
+    {
+      "kind": "upload",
+      "detail": "An attempted overwrite of the temporary guest script was denied. Retried using a fresh temporary filename; no application ran in the failed upload attempt."
+    }
+  ]
+}

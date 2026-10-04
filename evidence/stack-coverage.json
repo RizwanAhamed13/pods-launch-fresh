@@ -27,7 +27,11 @@
       "serverEvidence": "stack-matrix-24.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-24.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-adonis-url.json",
+        "stack-adonis-google.json",
+        "stack-adonis-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-18.json",
@@ -47,7 +51,12 @@
           "status": "passed"
         }
       ],
-      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
+      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      },
+      "nativeProviderScope": "AdonisJS passed native Google product button, reload and SQLite retention across full stop/relaunch. Codespaces authenticated HTTP product, writes and full restart persistence passed. Native Codespaces browser interaction remains pending."
     },
     {
       "fixture": "alpine",
