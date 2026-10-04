@@ -70,7 +70,7 @@ test('providers use the assigned port in both the private preview and delivered 
  const gh=await github.launch('secret',{port:23456},p=>updates.push(p));
  assert.deepEqual(order,['private','runner']);assert.equal(gh.previewUrl,'https://my-pods-23456.app.github.dev');assert.match(input,/"port":23456/);assert.ok(input.includes(gh.previewUrl));
  const calls=[];
- const google=providers({origin:'https://pods.example',runnerSha:'a'.repeat(64),cloudRequest:async url=>{calls.push(url);return url.endsWith(':start')?{done:true}:{sshHost:'127.0.0.1',sshPort:22,sshUsername:'test',webHost:'test.cloudshell.dev'};},exec:async(file,args,options)=>{if(file==='ssh-keygen')await writeFile(args.at(-1)+'.pub','ssh-rsa test-key');else input=options.input;}}).google;
+ const google=providers({origin:'https://pods.example',runnerSha:'a'.repeat(64),cloudRequest:async url=>{calls.push(url);return url.endsWith(':addPublicKey')?{done:true}:{state:'RUNNING',publicKeys:['ssh-rsa test-key'],sshHost:'127.0.0.1',sshPort:22,sshUsername:'test',webHost:'test.cloudshell.dev'};},exec:async(file,args,options)=>{if(file==='ssh-keygen')await writeFile(args.at(-1)+'.pub','ssh-rsa test-key');else input=options.input;}}).google;
  const g=await google.launch('secret',{port:24567},p=>updates.push(p));
  assert.equal(g.previewUrl,'https://24567-test.cloudshell.dev');assert.match(input,/"port":24567/);assert.ok(input.includes(g.previewUrl));assert.ok(calls.at(-1).endsWith(':removePublicKey'));
 });

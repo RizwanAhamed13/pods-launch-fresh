@@ -34,25 +34,26 @@ for (const initialState of ['Available','Shutdown','ShuttingDown','Provisioning'
 }
 
 for(const initialState of ['RUNNING','SUSPENDED','PENDING',undefined]) {
-  test(`Cloud Shell records ${initialState??'unknown'} before its start operation`,async()=>{
+  test(`Cloud Shell records ${initialState??'unknown'} before key registration or its start operation`,async()=>{
     const updates=[],calls=[];let reads=0;
     const adapter=providers({origin:'https://pods.example',runnerSha:'a'.repeat(64),
       cloudRequest:async(url,token,options)=>{
         calls.push([options?.method??'GET',url]);
-        if(url.endsWith(':start')){
+        if(url.endsWith(initialState==='RUNNING'?':addPublicKey':':start')){
           assert.equal(updates.at(-1).compute.initialState,initialState??null);
-          assert.ok(Number.isFinite(updates.at(-1).compute.startRequestedAt));
+          assert.ok(Number.isFinite(updates.at(-1).compute[initialState==='RUNNING'?'keyRegistrationRequestedAt':'startRequestedAt']));
+          assert.deepEqual(options.body,initialState==='RUNNING'?{key:'ssh-rsa test-key'}:{publicKeys:['ssh-rsa test-key']});
           return {done:true};
         }
         if(url.endsWith(':removePublicKey'))return {};
         reads++;
-        return {state:reads===1?initialState:'RUNNING',sshHost:'127.0.0.1',sshPort:22,sshUsername:'test',webHost:'test.cloudshell.dev'};
+        return {publicKeys:['ssh-rsa test-key'],state:reads===1?initialState:'RUNNING',sshHost:'127.0.0.1',sshPort:22,sshUsername:'test',webHost:'test.cloudshell.dev'};
       },exec:async(file,args)=>{if(file==='ssh-keygen')await writeFile(args.at(-1)+'.pub','ssh-rsa test-key');}});
     const before=Date.now();
     await adapter.google.launch('test-token',{},patch=>updates.push(structuredClone(patch)));
     const compute=updates.find(p=>p.compute)?.compute;
     assert.equal(compute.initialState,initialState??null);
-    assert.ok(compute.observedAt>=before&&compute.observedAt<=compute.startRequestedAt);
+    assert.ok(compute.observedAt>=before&&compute.observedAt<=compute[initialState==='RUNNING'?'keyRegistrationRequestedAt':'startRequestedAt']);
     assert.equal(calls[0][0],'GET');assert.ok(calls[0][1].endsWith('/default'));
     assert.equal(reads,2);
     assert.ok(!JSON.stringify(updates).includes('test-token'));

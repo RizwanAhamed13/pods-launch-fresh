@@ -127,42 +127,59 @@ export function providers({ repo, origin, runnerSha, api = github, cloudRequest 
           const compute = {initialState:initial.state??null,observedAt:Date.now()};
           await exec('ssh-keygen', ['-q','-t','rsa','-b','3072','-N','','-f',join(directory,'key')]);
           publicKey = (await readFile(join(directory,'key.pub'),'utf8')).trim().split(' ').slice(0,2).join(' ');
-          compute.startRequestedAt=Date.now();
-          const deadline=compute.startRequestedAt+provisionMs;
-          await update({status:'provisioning',compute:{...compute}});
-          let op, env;
-          try {
-            op=await cloudRequest(base+':start',token,{method:'POST',body:{publicKeys:[publicKey]}});
-            compute.startAcceptedAt=Date.now();
-          } catch(error) {
-            if(!transient(error))throw error;
-            compute.startUncertainAt=Date.now();
-          }
-          await update({compute:{...compute}});
+          const deadline=Date.now()+provisionMs;
+          const withinDeadline=()=>{
+            if(Date.now()>=deadline)throw new Error('Cloud Shell did not confirm startup within the provisioning deadline. No additional request was sent.');
+          };
           const waitForPoll=async()=>{
-            if(Date.now()+pollMs>=deadline)throw new Error('Cloud Shell did not confirm startup within the provisioning deadline. No additional start request was sent.');
+            if(Date.now()+pollMs>=deadline)throw new Error('Cloud Shell did not confirm startup within the provisioning deadline. No additional request was sent.');
             await sleep(pollMs);
           };
-          if(op) {
-            let result=op;
-            while(!result.done){
-              if(typeof op.name!=='string'||!op.name.startsWith('operations/'))throw new Error('Cloud Shell did not return a valid startup operation');
-              await waitForPoll();
-              result=await readCloud(`https://cloudshell.googleapis.com/v1/${op.name}`,token,deadline);
+          const hasKey=env=>Array.isArray(env.publicKeys)&&env.publicKeys.includes(publicKey);
+          async function activate(method,body,field) {
+            withinDeadline();
+            compute[`${field}RequestedAt`]=Date.now();
+            await update({status:'provisioning',compute:{...compute}});
+            let op, env, uncertain=false;
+            try {
+              op=await cloudRequest(base+':'+method,token,{method:'POST',body});
+              compute[`${field}AcceptedAt`]=Date.now();
+            } catch(error) {
+              if(!transient(error))throw error;
+              uncertain=true;compute[`${field}UncertainAt`]=Date.now();
             }
-            if(result.error)throw new Error(result.error.message);
-            env=await readCloud(base,token,deadline);
-          } else {
-            // A lost response does not mean the start failed. Confirm both the
-            // running environment and this attempt's unique key before delivery.
-            for(;;){
-              await waitForPoll();
-              env=await readCloud(base,token,deadline);
-              if(env.state==='RUNNING'&&Array.isArray(env.publicKeys)&&env.publicKeys.includes(publicKey))break;
-            }
-            compute.startReconciledAt=Date.now();
             await update({compute:{...compute}});
+            withinDeadline();
+            if(!uncertain) {
+              let result=op;
+              if(!result||typeof result!=='object')throw new Error('Cloud Shell did not return a valid startup operation');
+              while(!result.done){
+                if(typeof op.name!=='string'||!op.name.startsWith('operations/'))throw new Error('Cloud Shell did not return a valid startup operation');
+                await waitForPoll();
+                result=await readCloud(`https://cloudshell.googleapis.com/v1/${op.name}`,token,deadline);
+                withinDeadline();
+              }
+              if(result.error)throw new Error(result.error.message);
+            } else await waitForPoll();
+            env=await readCloud(base,token,deadline);
+            withinDeadline();
+            // Even an acknowledged registration must expose this attempt's key.
+            // Lost responses are observed without repeating their mutation.
+            while(!hasKey(env)||(method==='start'&&env.state!=='RUNNING')){
+              await waitForPoll();env=await readCloud(base,token,deadline);withinDeadline();
+            }
+            if(uncertain){compute[`${field}ReconciledAt`]=Date.now();await update({compute:{...compute}});}
+            return env;
           }
+          let env;
+          if(initial.state==='RUNNING'){
+            env=await activate('addPublicKey',{key:publicKey},'keyRegistration');
+            // Registration can race suspension. Resume only this environment;
+            // its key is already confirmed, so do not register it a second time.
+            if(['SUSPENDED','PENDING'].includes(env.state))env=await activate('start',{},'start');
+          } else env=await activate('start',{publicKeys:[publicKey]},'start');
+          withinDeadline();
+          if(env.state!=='RUNNING')throw new Error('Cloud Shell did not confirm a running environment');
           if (!env.sshHost || !env.sshUsername || !Number.isInteger(env.sshPort) || !env.webHost) throw new Error('Cloud Shell did not return connection details');
           if (!/^[a-zA-Z0-9.:-]+$/.test(env.sshHost) || !/^[a-zA-Z0-9_-]+$/.test(env.sshUsername) || !/^[a-zA-Z0-9.-]+$/.test(env.webHost)) throw new Error('Invalid Cloud Shell connection details');
           const previewUrl=`https://${config.port??8080}-${env.webHost}`;

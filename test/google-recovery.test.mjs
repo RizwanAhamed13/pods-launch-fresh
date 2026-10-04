@@ -6,7 +6,7 @@ import { request } from '../src/util.mjs';
 
 const base='https://cloudshell.googleapis.com/v1/users/me/environments/default';
 const key='ssh-rsa attempt-specific-key';
-const environment={state:'RUNNING',sshHost:'127.0.0.1',sshPort:22,sshUsername:'test',webHost:'test.cloudshell.dev'};
+const environment={state:'RUNNING',publicKeys:[key],sshHost:'127.0.0.1',sshPort:22,sshUsername:'test',webHost:'test.cloudshell.dev'};
 const timeout=()=>Object.assign(new Error('The operation was aborted due to timeout'),{name:'TimeoutError'});
 function harness(request,provisionMs=1000){
   const calls=[],updates=[],deliveries=[];
@@ -14,7 +14,7 @@ function harness(request,provisionMs=1000){
     cloudRequest:async(url,token,options)=>{
       calls.push({url,method:options?.method??'GET'});
       if(url.endsWith(':removePublicKey')){assert.deepEqual(options.body,{key});return {};}
-      return request(url,options);
+      const result=await request(url,options);return calls.length===1?{...result,state:'SUSPENDED'}:result;
     },exec:async(file,args,options)=>{
       if(file==='ssh-keygen')await writeFile(args.at(-1)+'.pub',key);
       else {assert.equal(file,'ssh');deliveries.push(options.input);}
@@ -36,7 +36,7 @@ test('an uncertain start is reconciled only after the same environment exposes t
     assert.equal(reads,4);assert.equal(h.deliveries.length,1);
     assert.equal(h.calls.filter(c=>c.url.endsWith(':start')).length,1);
     const compute=h.updates.filter(p=>p.compute).at(-1).compute;
-    assert.equal(compute.initialState,'RUNNING');
+    assert.equal(compute.initialState,'SUSPENDED');
     assert.ok(compute.startReconciledAt>=compute.startUncertainAt);
     assert.equal(compute.startAcceptedAt,undefined);
     assert.ok(!JSON.stringify(h.updates).includes(key));assert.ok(!JSON.stringify(h.updates).includes('secret'));

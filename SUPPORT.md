@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **214 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **221 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
@@ -178,7 +178,14 @@ registration-through-SSH time was 2.793s and 2.329s respectively, excluding key
 generation and the initial environment read. All four SSH checks passed and all
 temporary keys were removed. The observed 0.464s difference is a small-sample
 optimization candidate, not a full-launch result or a latency guarantee.
-Production behavior is unchanged; the 20-second product target remains open.
+That experiment did not change production behavior. The subsequent implementation
+uses direct key registration for already-running Cloud Shell compute and preserves
+the normal start path for suspended or pending compute. If registration races
+suspension, PODS resumes the same environment after confirming its key, within
+one shared deadline. Lost responses are reconciled without repeating mutations;
+authorization failures stop immediately. [Regression and full-suite evidence](evidence/stack-google-ready-tests.json)
+covers both paths, cleanup and the suspension race. The 20-second product target
+remains open.
 
 ## Persistence and operational limits
 

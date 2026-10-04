@@ -1,0 +1,64 @@
+{
+  "recordedAt": "2026-10-04T12:30:14.775376+00:00",
+  "baseRevision": "0d4a255665a2103342243dc49ece4ff192fd2de2",
+  "runs": [
+    {
+      "platform": "local",
+      "passed": 221,
+      "failed": 0,
+      "logSha256": "1568805a88284256e67455587f562eb513d544a9b3d768b10992ca9db611bb80"
+    },
+    {
+      "platform": "isolated-aswin-linux",
+      "passed": 221,
+      "failed": 0,
+      "logSha256": "feda74132a2b87a5273cb11cbf3c998c7cc275cd70db47e86d982f470febf69d"
+    }
+  ],
+  "isolatedSnapshot": {
+    "candidate": "/output/google-ready-candidate-0d4a255",
+    "verifiedFiles": 329,
+    "archiveSha256": "41dbbc20c5f38d63df80cfa642d7d24b255b9b01dcc5fc5b38df8541f3bbcfbd",
+    "manifestSha256": "aa9227b2b6cd5c9f1a7551b9ce6a703488bfd34b0dcf63ba2f8e8dbe859686fa"
+  },
+  "sourceHashes": {
+    "src/providers.mjs": "890806a0cd77f89d8e134c0ec7c867dc581632649dc9134688faa25b4b3e503c",
+    "src/util.mjs": "9c5789b319f5e5ba475b7701ef6e4e3fea2bd14fcf1f5df14ebefe35df2317cb",
+    "src/store.mjs": "54018c0a6608105115e9faf65d1c51c31f1d44ed09b56dd93285cb8c15173a6e",
+    "test/google-ready.test.mjs": "758d2d591c0cc85fc625ebcfc86a240d5b948d4efb2537c3dd0ee118aa1ee718",
+    "test/google-recovery.test.mjs": "797409ee2b59a06f5fe8989297615076c2bbecfa34122fb33ae804d2958f5c16",
+    "test/provider-observations.test.mjs": "40dba3ba29e6de89d6023d1498c88e71c8fd7b7040bc483c62198f44da40866b",
+    "test/providers.test.mjs": "717839ab3117eb8ac2b2a25c50f54f4bd11471fb47904912b42bb783208f392c"
+  },
+  "readyPathAcceptance": {
+    "previousAlwaysStartImplementation": {
+      "passed": 0,
+      "failed": 7,
+      "logSha256": "caca1c64f5c5854d3c453f9aa40ed89027451ab5d34a6837334bda0a06b475f8"
+    },
+    "newImplementationFocusedSuite": {
+      "passed": 47,
+      "failed": 0,
+      "logSha256": "b58653e1c8946c7966b567f2d1c969a3f4af185df5c8652848fe92a3963f112a"
+    },
+    "newCases": 7,
+    "coverage": [
+      "RUNNING registers exactly one unique key without start and delivers the assigned preview.",
+      "Lost registration followed by lost resume reconciles both mutations using environment state and the attempt key, without duplicate mutations.",
+      "Acknowledged registration that races suspension resumes the same environment with the already-confirmed key.",
+      "Authorization, quota, explicit operation errors and malformed operations stop without a start fallback.",
+      "Even an acknowledged operation must expose this attempt key before delivery or resume.",
+      "Registration and suspension recovery share one deadline, including slow completed responses.",
+      "Transient polling keeps the same operation; SSH failure still removes provider and local ephemeral keys.",
+      "Existing cold-start recovery, auth/quota, polling limits, deadline and compute observations remain covered."
+    ],
+    "harnessNote": "The first focused run used an older provider-port fixture without state/key fields and was stopped during polling. The fixture was updated to the current provider contract; the completed bounded focused run passed47/47. Full local/Linux runs passed221/221.",
+    "scope": "The seven new cases fail against the previous always-start behavior. They verify the new ready path and its failure/recovery contracts; this is not a claim that all those failure conditions were native regressions."
+  },
+  "measurementEvidence": "stack-google-key-registration-probe.json",
+  "references": [
+    "https://docs.cloud.google.com/shell/docs/reference/rest/v1/users.environments/addPublicKey",
+    "https://docs.cloud.google.com/shell/docs/reference/rest/v1/users.environments/start"
+  ],
+  "scope": "Full local and isolated Linux suites; native provider browser acceptance is a separate gate."
+}
