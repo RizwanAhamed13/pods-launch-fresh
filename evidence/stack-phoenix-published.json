@@ -1,0 +1,9 @@
+{
+  "recordedAt": "2026-10-04T10:02:17.852Z",
+  "url": "https://collection-conferences-ages-clearly.trycloudflare.com/support",
+  "evidenceRevision": "d546b3a",
+  "summary": "55 representative apps tested\n\nAll 55 passed isolated server builds and browser interaction. 53 passed native Google Cloud Shell browser checks; 53 passed Codespaces HTTP or protocol checks.\n\nCodespaces browser sign-in and interaction remain pending. A passing representative does not guarantee every repository using that framework will work.",
+  "row": "Elixir / Phoenix\nOther runtimes\n\tPassed\tPassed\tPassed",
+  "compatibilityChecks": {"command": "node --test test/compatibility.test.mjs", "passed": 3, "failed": 0},
+  "scope": "Actual public DOM after the native evidence commit was pushed and synced to aswin. Provider functional acceptance and timing details remain in the linked fixture evidence."
+}

@@ -13,7 +13,8 @@ VM replacement durability or universal launches under20s without evidence.
 - Fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
   pinned revision d6da2ed780aec8ae0178fc181f1d24113c322e15.
 - Latest native acceptance: Phoenix + SQLite; stack-phoenix-{url,google,codespaces,audit}.json.
-  Coverage55/53/53; publication is the next checkpoint action.
+  Acceptance revisiond546b3a pushed and synced. Public support verified55/53/53
+  at10:02:17UTC; Phoenix row shows all three passes. Evidence stack-phoenix-published.json.
 - Coverage:55 isolated build/artifact/browser passes;53 Google native browser
   and53 Codespaces authenticated HTTP/protocol passes. All8static frontends,
   6SSR,6Node,4JVM,4Go,3Rust,2.NET and7database-family representatives pass native paths.

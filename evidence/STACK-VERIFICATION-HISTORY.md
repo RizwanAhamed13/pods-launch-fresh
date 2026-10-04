@@ -2680,3 +2680,11 @@ Evidence: `stack-phoenix-{url,google,codespaces,audit}.json`. Coverage now
 **2** native fixtures pending. Full suite **189/189** and
 physical source **7,128 lines** remain valid; this acceptance changed only
 evidence and documentation. App `repo-c9d884e81c64dde53b2afef0-d6da2ed780ae-93e7177def98`; preserve saved native counters2.
+# Phoenix publication checkpoint
+
+At 2026-10-04T10:02:17.852Z, after acceptance revision d546b3a was pushed and
+synced to aswin, the actual public compatibility DOM reported 55 isolated,
+53 Google browser and 53 Codespaces HTTP/protocol passes. Elixir / Phoenix
+showed all three passes. Compatibility checks passed 3/3; evidence privacy
+and production identity checks passed. Source/runtime code was unchanged.
+Evidence: `stack-phoenix-published.json`. Streamlit and Symfony remain pending.
