@@ -1,12 +1,12 @@
 # Broad stack checkpoint
 
 Goal active and incomplete: developer URL → isolated aswin build → reusable artifact
-→ authorized user compute → real usable product. Latest completed gate: bounded,
-resumable migration of an existing prepared image into private CDN delivery,
-without rebuilding or changing its link. FastAPI met 20s with its image absent on
-RUNNING Google compute; cached relaunch and SQLite persistence also passed.
-54 of 59 prepared images remain unmapped. Broader first-image performance and
-native Codespaces browser acceptance remain open.
+→ authorized user compute → real usable product. Latest completed gate: migrate
+an existing React + Express + PostgreSQL artifact into private CDN delivery and
+verify the actual native Google product, private dependencies and persistence.
+First-image health48.805s misses20s; cached product9.938s/write10.339s passed.
+51 of59 prepared images remain unmapped. Broader first-image performance and
+native Codespaces browser acceptance remain open. No source change in this gate.
 
 ## Current verified state
 
@@ -33,10 +33,45 @@ native Codespaces browser acceptance remain open.
   5172cf839d6c5287b8688bc028859c254757a9c056e435f23c817701d26172d8.
   Operator CLI requires no runtime restart. Protected configuration and all
   immutable artifact/image inventories preserved.
-- Post-native audit2026-10-04T15:24:18.902595+00:00: same PID/runner,
+- Post-native audit2026-10-04T15:35:21.410303+00:00: same PID/runner,
   health200, SQLiteok, zero active builds/launches. Evidence-only sync needs no restart.
 
-## Latest completed migration gate
+## Latest completed multi-service gate
+
+- stack-multiservice-migration-operator.json: original React + Express + PostgreSQL
+  buildauCrc3RBfSqCcIZz_83YwGOLRLwc6fZL, app
+  repo-12b64d343d1a4578791b29c6-5f376f60ed9c-2d9d982df706.
+  Source pin5f376f60ed9cf16a0ef47a2a9b251b5846b3df0f; do not rewrite it to the
+  later fixture pin. Original artifact and link preserved, no new build.
+  Three images226330909bytes: web26010276/api83776525/db116544108.
+  Dry-run1077ms, publish51817ms, repeat3549ms; permanent assets610087307,
+  610087487,610087990 respectively. All3 assets reused. Mappings5→8, artifact
+  files/build records/configuration/runtime PID unchanged. No restart or quota
+  override. The DB archive also appears in another prepared app; its shared
+  mapping now applies there, but that application was not relaunched in this gate.
+- stack-multiservice-migration-native.json: both Google launches initially RUNNING,
+  manifest cache hit, normal browser flow, no cache removal/artifact import.
+  L8UbFQHUpbznrAlZbm3DnKRBBUt6nxRp: image/archive cache hits0; all3 CDN downloads
+  succeeded, two range downloads, no fallback. images37624ms = download23523ms
+  +load13955ms (plus checks), health48805ms. Product observed52609ms/write52899ms
+  are upper-bound availability observations including a6514ms gap between bounded
+  browser calls. Not continuous first-image product timing;20s clearly unmet.
+  nQPJyVdoVlkU0L4HMiwMT2lrrUCJdRdr: image cache hits3, downloads0, health9433ms;
+  continuous product9938ms/write10339ms. PostgreSQL1→2→3, reload and full stop
+  passed on both. All previews stopped, original layers/manifest/data preserved.
+- Live runtime inspection: exactly web/api/db running, API and DB healthy with
+  no published ports. DB volume uses home-backed persistent storage. Only web is
+  published on0.0.0.0:21747, matching runtimeCompose; do not claim loopback-only.
+  Four diagnostic failures retained: first2 opaque, third established node absent
+  from SSH PATH(exit127), fourth exposed a wrong loopback-only assertion in the
+  inspector. Final check used the launcher's Node/NVM discovery and actual web
+  port contract; production code unchanged. All temporary keys removed on every
+  attempt, all9 pre-existing Google keys preserved.
+- Fresh read-only inventory:59 unique prepared images,8 mappings,51 unmapped,
+  5339086704bytes remaining. Images, not framework counts. Scope/source count
+  unchanged;284/284 tested source hashes still match, so no full-suite rerun.
+
+## Previous single-image migration gate
 
 - src/image-migration.mjs and scripts/migrate-image-delivery.mjs accept one explicit
   app id. Default offline dry-run validates manifest identity, decoded artifact,
@@ -65,7 +100,7 @@ native Codespaces browser acceptance remain open.
   Both reload/full stop passed; all launches stopped. Existing Docker layers,
   manifest cache and data preserved, CDN cache warmth unknown. Not cold compute
   or universal20s evidence. Codespaces not retested in this gate.
-- Inventory now59 unique prepared images/5 mappings/54 unmapped images totaling
+- Inventory at that checkpoint:59 unique prepared images/5 mappings/54 unmapped images totaling
   5565417613bytes. Image counts, not framework counts. Only FastAPI was migrated;
   don't silently publish the rest in one operation.
 
@@ -121,13 +156,22 @@ native Codespaces browser acceptance remain open.
 
 ## Next bounded gate and pending inputs
 
-- Next bounded gate: use the verified operator command on one selected existing
-  multi-service/database artifact, checking shared-image reuse and ordinary native
-  product persistence. First inspect actual provider image state; do not remove
-  cached images to manufacture a first-image claim. Preserve permanent assets.
-- Migration implementation/idempotency/FastAPI native acceptance are complete.
-  Do not rerun the full matrix or completed suites without source changes or a
-  concrete failure. Use exact compute/cache state for further20s observations.
+- Next bounded implementation gate: evaluate a resource-bounded image download
+  pipeline. Current prepareRuntimeImages awaits each complete inspect/download/
+  load cycle sequentially; the three-image native case spends37.624s there.
+  Overlap a small bounded number of verified downloads with serialized Docker
+  loads. Preserve full SHA/size checks before load, Docker identity validation,
+  existing range/deadline/fallback behavior, safe temporary file cleanup and
+  cancellation/failure semantics. No user cache clearing or quota changes.
+  Use controlled representative comparison and meaningful failure regressions
+  before deployment; then a normal native multi-image case with actual cache state.
+  No pipeline improvement is implemented or proven yet.
+- Refresh the code graph for this checkout before implementation discovery;
+  project pods-launch-fresh currently has an older index missing runtime modules.
+- Operator migration/idempotency and native FastAPI/full-stack persistence gates
+  are complete. Do not rerun the55-app matrix or completed284 checks absent source
+  changes or a new failure. Do not mass-upload the remaining5.339GB as a substitute
+  for improving measured launch behavior.
 - Existing unmet observations: Google first-image health19377ms, product20667ms;
   Codespaces first-image health28725ms (stack-eight-ranges-native.json). The later
   suspended/uncached Google fallback took54875ms. No universal20s guarantee.
@@ -154,7 +198,8 @@ native Codespaces browser acceptance remain open.
   do not use. Preserve nine unrelated Google public keys.
 - Codespace pods-launch-containers-69rw5vx4xp46c5qw5 last observed Shutdown at
   2026-10-04T14:29:20.206Z. Check fresh state before using it.
-  Latest Micronaut values Google20/Codespaces21; Ktor Google4; FastAPI Google4.
+  Latest Micronaut values Google20/Codespaces21; Ktor Google4; FastAPI Google4;
+  React/Express/PostgreSQL Google3.
   Never reset values.
 - Prepared buildL2AiK3hVAKYytXputQXo0R8rWt6bDhVs, app
   repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-5a4e0078fab4,

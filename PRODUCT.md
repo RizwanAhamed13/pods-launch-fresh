@@ -78,9 +78,21 @@ artifact files, database records, configuration and the running service.
 [Native Google acceptance](evidence/stack-image-migration-native.json) then showed
 its product in 17.309s and completed a SQLite write in 17.939s on RUNNING compute
 with the image absent. Cached relaunch took 5.946s to product and 6.389s to write.
-SQLite 2 → 3 → 4 survived reloads and full stops. Five of 59 images now have delivery
-mappings; 54 remain unmapped. This case meets 20s; broader first-image acceptance
+SQLite 2 → 3 → 4 survived reloads and full stops. That checkpoint brought delivery
+mappings to five of 59 images. This case meets 20s; broader first-image acceptance
 and native Codespaces browser acceptance remain open.
+
+The [multi-service migration](evidence/stack-multiservice-migration-native.json)
+then passed React + Express + PostgreSQL using its original prepared link. All
+three images (226.3 MB) were published and reused on repeat without a rebuild.
+The image-absent Google launch took 48.805s to health; its product was observed
+within 52.609s, including a 6.514s observation gap. The cached product appeared in
+9.938s and completed a write in 10.339s. PostgreSQL 1 → 2 → 3 survived reloads and
+full stops. Runtime inspection confirmed unpublished API/database ports and
+persistent home storage. Eight of 59 prepared images now have mappings; 51 remain
+unmapped. The three-image first launch still misses 20s, with 37.624s spent in image
+preparation. Source currently processes those images sequentially; overlapping
+bounded downloads and Docker loading needs separate validation.
 
 ## Historical acceptance milestones
 The observations below retain their original milestone context. Counts and pending

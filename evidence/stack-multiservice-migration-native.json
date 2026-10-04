@@ -1,0 +1,416 @@
+{
+  "recordedAt": "2026-10-04T15:36:12.558409+00:00",
+  "revision": "9ed08265c176c0a4856a6ca7ba4e9b8c22d59797",
+  "scope": "Previously prepared React + Express + PostgreSQL app; three existing images migrated without rebuild and normal native Google product/reload/full-stop/relaunch acceptance. No cache clearing, quota changes or artifact imports.",
+  "build": {
+    "id": "auCrc3RBfSqCcIZz_83YwGOLRLwc6fZL",
+    "repository": {
+      "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+      "owner": "rizwanahamed13",
+      "name": "pods-launch-runtime-fresh",
+      "folder": "examples/stacks/react-express-postgres",
+      "key": "12b64d343d1a4578791b29c6"
+    },
+    "status": "ready",
+    "createdAt": 1791037240496,
+    "startedAt": 1791037240526,
+    "finishedAt": 1791037384671,
+    "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-12b64d343d1a4578791b29c6-5f376f60ed9c-2d9d982df706",
+    "app": {
+      "id": "repo-12b64d343d1a4578791b29c6-5f376f60ed9c-2d9d982df706",
+      "name": "pods-launch-runtime-fresh",
+      "description": "",
+      "sha256": "2d9d982df7061fabea8585bec0a4701a14ded74becc9b05a4285de61fcbcb29d",
+      "bytes": 803,
+      "files": 0,
+      "healthPath": "/",
+      "applicationType": "container",
+      "runtime": "docker-linux-amd64",
+      "dataKey": "repo-12b64d343d1a4578791b29c6",
+      "productType": "web",
+      "source": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "folder": "examples/stacks/react-express-postgres",
+        "revision": "5f376f60ed9cf16a0ef47a2a9b251b5846b3df0f"
+      },
+      "verification": {
+        "documentPath": "/",
+        "status": 200,
+        "title": "React + Express + PostgreSQL"
+      },
+      "preparedAt": "2026-10-03T14:23:03.495Z",
+      "images": [
+        {
+          "id": "sha256:7b1b27c0ddf739338357eed60469ce64ae9a075b0fde1cf1d4010593bac89748",
+          "sha256": "77fa07caf5cbd82cbc480de1e5eb5cc3e2b4e1a80259425603af848e7936f534",
+          "bytes": 26010276
+        },
+        {
+          "id": "sha256:88f8da757a26de7dd7c85ab2b1e1aa53231f90614ae94c51cdb50a53395b8b23",
+          "sha256": "64c2555c8aa9e51f4202627bcee34799ed920c58cb46d1ef180bb905e7f06381",
+          "bytes": 83776525
+        },
+        {
+          "id": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+          "sha256": "3fc00a26627991f13bcb9daaadd844f87e02850cf00a356e0287010940d6cc01",
+          "bytes": 116544108
+        }
+      ]
+    }
+  },
+  "operatorEvidence": "stack-multiservice-migration-operator.json",
+  "launches": [
+    {
+      "id": "L8UbFQHUpbznrAlZbm3DnKRBBUt6nxRp",
+      "appId": "repo-12b64d343d1a4578791b29c6-5f376f60ed9c-2d9d982df706",
+      "provider": "google",
+      "port": 21747,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791127741229,
+        "keyRegistrationRequestedAt": 1791127741471,
+        "keyRegistrationAcceptedAt": 1791127742698
+      },
+      "createdAt": 1791127740623,
+      "updatedAt": 1791128076790,
+      "providerReadyAt": 1791127743130,
+      "readyAt": 1791127789428,
+      "timings": {
+        "downloadMs": 239,
+        "imagesMs": 37624,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 100,
+        "imageDownloadMs": 23523,
+        "imageLoadMs": 13955,
+        "imageCdnDownloads": 3,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 18914,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 2,
+        "imageCdnRangeDownloads": 2,
+        "runtimeReadyMs": 44747,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 48805,
+      "deliveryMs": 46298
+    },
+    {
+      "id": "nQPJyVdoVlkU0L4HMiwMT2lrrUCJdRdr",
+      "appId": "repo-12b64d343d1a4578791b29c6-5f376f60ed9c-2d9d982df706",
+      "provider": "google",
+      "port": 21747,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791128083929,
+        "keyRegistrationRequestedAt": 1791128084100,
+        "keyRegistrationAcceptedAt": 1791128085349
+      },
+      "createdAt": 1791128083343,
+      "updatedAt": 1791128109945,
+      "providerReadyAt": 1791128085747,
+      "readyAt": 1791128092776,
+      "timings": {
+        "downloadMs": 210,
+        "imagesMs": 204,
+        "imageCacheHits": 3,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 204,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 5601,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 9433,
+      "deliveryMs": 7029
+    }
+  ],
+  "browser": [
+    {
+      "stack": "react-express-postgres",
+      "run": "migrated-first",
+      "startedAt": "2026-10-04T15:28:59.974Z",
+      "startedMs": 1791127739974,
+      "observationGaps": [
+        {
+          "afterElapsedMs": 45766,
+          "resumedElapsedMs": 52280
+        }
+      ],
+      "visibleMs": 52609,
+      "before": 1,
+      "stateRestoredMs": 52626,
+      "writeRequestedAt": "2026-10-04T15:29:52.600Z",
+      "afterWrite": 2,
+      "interactionMs": 52899,
+      "reloadRequestedAt": "2026-10-04T15:29:52.873Z",
+      "reloadCompleted": true,
+      "afterReload": 2,
+      "passed": true,
+      "stopRequestedAt": "2026-10-04T15:34:22.759Z",
+      "statusAfterStop": "stopped",
+      "timingKind": "Observation upper bound including a 6.514-second tool gap after the first bounded product wait. The write itself occurred at the recorded time; launch-to-availability is not exact.",
+      "launchId": "L8UbFQHUpbznrAlZbm3DnKRBBUt6nxRp"
+    },
+    {
+      "stack": "react-express-postgres",
+      "run": "migrated-relaunch",
+      "startedAt": "2026-10-04T15:34:43.147Z",
+      "startedMs": 1791128083147,
+      "visibleMs": 9938,
+      "before": 2,
+      "stateRestoredMs": 10056,
+      "writeRequestedAt": "2026-10-04T15:34:53.203Z",
+      "afterWrite": 3,
+      "interactionMs": 10339,
+      "reloadRequestedAt": "2026-10-04T15:34:53.486Z",
+      "reloadCompleted": true,
+      "afterReload": 3,
+      "passed": true,
+      "stopRequestedAt": "2026-10-04T15:34:58.280Z",
+      "statusAfterStop": "stopped",
+      "timingKind": "Continuous from browser launch click.",
+      "launchId": "nQPJyVdoVlkU0L4HMiwMT2lrrUCJdRdr"
+    }
+  ],
+  "runtimeInspection": {
+    "startedAt": "2026-10-04T15:34:10.277Z",
+    "provider": "google",
+    "applicationStarted": false,
+    "productionChanged": false,
+    "initialState": "RUNNING",
+    "initialPublicKeyCount": 9,
+    "runtime": {
+      "checkedAt": "2026-10-04T15:34:13.764Z",
+      "passed": true,
+      "services": [
+        {
+          "name": "web",
+          "image": "sha256:7b1b27c0ddf739338357eed60469ce64ae9a075b0fde1cf1d4010593bac89748",
+          "status": "running",
+          "health": null,
+          "publishedBindings": [
+            {
+              "HostIp": "0.0.0.0",
+              "HostPort": "21747"
+            }
+          ]
+        },
+        {
+          "name": "api",
+          "image": "sha256:88f8da757a26de7dd7c85ab2b1e1aa53231f90614ae94c51cdb50a53395b8b23",
+          "status": "running",
+          "health": "healthy",
+          "publishedBindings": []
+        },
+        {
+          "name": "db",
+          "image": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+          "status": "running",
+          "health": "healthy",
+          "publishedBindings": []
+        }
+      ],
+      "privateDatabase": true,
+      "privateApi": true,
+      "onlyProductPortPublished": true,
+      "persistentHomeStorage": true
+    },
+    "completed": true,
+    "finalState": "RUNNING",
+    "keyRemoved": true,
+    "existingKeysPreserved": true,
+    "finalPublicKeyCount": 9,
+    "localKeyRemoved": true,
+    "finishedAt": "2026-10-04T15:34:15.633Z"
+  },
+  "inventory": {
+    "recordedAt": "2026-10-04T15:33:41.104938+00:00",
+    "uniquePreparedImages": 59,
+    "storedMappings": 8,
+    "remainingUnmappedImages": 51,
+    "remainingUnmappedBytes": 5339086704,
+    "selected": [
+      {
+        "image": {
+          "id": "sha256:7b1b27c0ddf739338357eed60469ce64ae9a075b0fde1cf1d4010593bac89748",
+          "sha256": "77fa07caf5cbd82cbc480de1e5eb5cc3e2b4e1a80259425603af848e7936f534",
+          "bytes": 26010276
+        },
+        "assetId": 610087307,
+        "preparedApplicationReferences": [
+          "repo-12b64d343d1a4578791b29c6-5f376f60ed9c-2d9d982df706"
+        ]
+      },
+      {
+        "image": {
+          "id": "sha256:88f8da757a26de7dd7c85ab2b1e1aa53231f90614ae94c51cdb50a53395b8b23",
+          "sha256": "64c2555c8aa9e51f4202627bcee34799ed920c58cb46d1ef180bb905e7f06381",
+          "bytes": 83776525
+        },
+        "assetId": 610087487,
+        "preparedApplicationReferences": [
+          "repo-12b64d343d1a4578791b29c6-5f376f60ed9c-2d9d982df706"
+        ]
+      },
+      {
+        "image": {
+          "id": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+          "sha256": "3fc00a26627991f13bcb9daaadd844f87e02850cf00a356e0287010940d6cc01",
+          "bytes": 116544108
+        },
+        "assetId": 610087990,
+        "preparedApplicationReferences": [
+          "repo-12b64d343d1a4578791b29c6-5f376f60ed9c-2d9d982df706",
+          "repo-a8b5cf7306c523deda321181-ce433b05441c-c986084e2034"
+        ]
+      }
+    ]
+  },
+  "after": {
+    "recordedAt": "2026-10-04T15:35:21.410303+00:00",
+    "pid": 1560797,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "5172cf839d6c5287b8688bc028859c254757a9c056e435f23c817701d26172d8",
+    "revision": "9ed08265c176c0a4856a6ca7ba4e9b8c22d59797"
+  },
+  "functionalAcceptancePassed": true,
+  "firstImageTwentySecondTargetMet": false,
+  "inspectionFailures": {
+    "attempts": [
+      {
+        "startedAt": "2026-10-04T15:30:54.620Z",
+        "provider": "google",
+        "applicationStarted": false,
+        "productionChanged": false,
+        "initialState": "RUNNING",
+        "initialPublicKeyCount": 9,
+        "completed": false,
+        "error": "Runtime inspection failed; inspect sanitized status before retrying",
+        "finalState": "RUNNING",
+        "keyRemoved": true,
+        "existingKeysPreserved": true,
+        "finalPublicKeyCount": 9,
+        "localKeyRemoved": true,
+        "finishedAt": "2026-10-04T15:30:59.149Z"
+      },
+      {
+        "startedAt": "2026-10-04T15:31:45.614Z",
+        "provider": "google",
+        "applicationStarted": false,
+        "productionChanged": false,
+        "initialState": "RUNNING",
+        "initialPublicKeyCount": 9,
+        "completed": false,
+        "failureCategory": "other",
+        "error": "Runtime inspection failed; inspect sanitized status before retrying",
+        "finalState": "RUNNING",
+        "keyRemoved": true,
+        "existingKeysPreserved": true,
+        "finalPublicKeyCount": 9,
+        "localKeyRemoved": true,
+        "finishedAt": "2026-10-04T15:31:50.482Z"
+      },
+      {
+        "startedAt": "2026-10-04T15:32:40.097Z",
+        "provider": "google",
+        "applicationStarted": false,
+        "productionChanged": false,
+        "initialState": "RUNNING",
+        "initialPublicKeyCount": 9,
+        "completed": false,
+        "errorShape": {
+          "name": "Error",
+          "sshExit": 127,
+          "commandMissing": true,
+          "syntaxError": false,
+          "referenceError": false,
+          "typeError": false,
+          "invalidOption": false,
+          "missingFile": false,
+          "connectionError": false
+        },
+        "safeErrorLine": null,
+        "failureCategory": "other",
+        "error": "Runtime inspection failed; inspect sanitized status before retrying",
+        "finalState": "RUNNING",
+        "keyRemoved": true,
+        "existingKeysPreserved": true,
+        "finalPublicKeyCount": 9,
+        "localKeyRemoved": true,
+        "finishedAt": "2026-10-04T15:32:44.947Z"
+      },
+      {
+        "startedAt": "2026-10-04T15:33:16.300Z",
+        "provider": "google",
+        "applicationStarted": false,
+        "productionChanged": false,
+        "initialState": "RUNNING",
+        "initialPublicKeyCount": 9,
+        "completed": false,
+        "errorShape": {
+          "name": "Error",
+          "sshExit": 1,
+          "commandMissing": false,
+          "syntaxError": false,
+          "referenceError": false,
+          "typeError": false,
+          "invalidOption": false,
+          "missingFile": false,
+          "connectionError": false
+        },
+        "safeErrorLine": null,
+        "failureCategory": "product-binding",
+        "error": "Runtime inspection failed; inspect sanitized status before retrying",
+        "finalState": "RUNNING",
+        "keyRemoved": true,
+        "existingKeysPreserved": true,
+        "finalPublicKeyCount": 9,
+        "localKeyRemoved": true,
+        "finishedAt": "2026-10-04T15:33:21.213Z"
+      }
+    ],
+    "explanation": "First two opaque inspection failures were retained without a diagnosed cause. Third inspection established that plain node is absent from non-interactive SSH PATH (exit 127); use the launch bootstrap Node/NVM discovery. Fourth inspection rejected an incorrect loopback-only product-port assertion: runtimeCompose intentionally publishes the web service on 0.0.0.0; API/database ports remain unpublished. The final inspector verifies that actual runtime contract. Production code and application were unchanged during these corrections."
+  },
+  "sourceVerification": {
+    "testsEvidence": "stack-image-migration-tests.json",
+    "allRecordedSourceHashesMatch": true,
+    "fullSuitesRerun": false,
+    "reason": "No product/test code changed in this gate; existing 284/284 local and isolated Linux results remain applicable."
+  },
+  "reproductionSteps": [
+    "Use the prepared application id and original launch link recorded in build.app/build.launchUrl. Run the documented migration CLI in default dry-run mode, then --publish, then --publish again; compare verified asset ids and unchanged artifact hashes.",
+    "In the authenticated PODS browser select Google Cloud Shell and click Open React + Express + PostgreSQL. Observe the actual React heading and retained #value, click Add one, verify the increment and reload.",
+    "Return to the prepared link, Stop application and wait for Application stopped. Relaunch, verify the saved count and another increment/reload, then stop again. Do not clear provider caches; classify state using that launch telemetry."
+  ],
+  "nextPerformanceEvidence": {
+    "observedImageWallMs": 37624,
+    "summedDownloadMs": 23523,
+    "summedLoadMs": 13955,
+    "sourceObservation": "prepareRuntimeImages currently awaits each image inspect/download/load before the next image. Image work dominates this three-image first launch. A bounded pipeline may overlap verified downloads and serialized Docker loading, but its resource limits and failure cleanup need controlled validation before deployment.",
+    "notEstablished": "No pipeline implementation or measured improvement in this gate."
+  },
+  "limits": [
+    "First-image health took48.805s; browser availability is an upper bound52.609s because of a6.514s observation gap. Cached product9.938s and write10.339s are continuous measurements.",
+    "Both launches began on RUNNING compute. Manifest cache, existing Docker layers and persistent data were retained; first launch image/archive cache hits0, CDN warmth unknown.",
+    "PostgreSQL acceptance covers these write/read/reload/stop/relaunch cases, not VM replacement or arbitrary schema migrations.",
+    "Codespaces was not retested; native Codespaces browser acceptance remains pending.",
+    "Private API/database means no host port bindings for those services. The web service is intentionally published on0.0.0.0:21747 for the provider preview; this is not a loopback-only claim."
+  ]
+}

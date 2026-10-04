@@ -201,7 +201,8 @@ unchanged artifact bytes.
 [Live operator validation](evidence/stack-image-migration-operator.json) migrated
 the existing 54,898,173-byte FastAPI image in 12.954s; repeat publication reused its
 asset in 1.342s. Build records, immutable artifacts, configuration and the running
-service stayed unchanged. The remaining 54 unmapped images total 5,565,417,613 bytes.
+service stayed unchanged. At that checkpoint, 54 unmapped images totaled
+5,565,417,613 bytes.
 
 [Two native Google browser launches](evidence/stack-image-migration-native.json)
 used the original prepared link and began on RUNNING compute:
@@ -218,6 +219,43 @@ database data were preserved; CDN cache warmth was not measured. SQLite 2 → 3 
 survived button writes, reloads and full application stops. Both launches stopped.
 This representative met 20s; other first-image failures remain recorded, and native
 Codespaces browser acceptance is still pending.
+
+### React, Express and PostgreSQL migration
+
+The [next operator gate](evidence/stack-multiservice-migration-operator.json)
+published the three existing images (226,330,909 bytes) in 51.817s. Repeating the
+same explicit selection reused all three assets in 3.549s. Artifact hashes, build
+records, configuration and runtime process stayed unchanged. The PostgreSQL image
+mapping also serves another existing prepared application that references the
+same archive; that other application was not relaunched in this gate.
+
+[Native Google browser acceptance](evidence/stack-multiservice-migration-native.json)
+used the original React + Express + PostgreSQL launch link:
+
+| Image state on RUNNING compute | Health | Product observed | Button write |
+| --- | --- | --- | --- |
+| All three absent | 48.805s | Within 52.609s* | At 52.899s* |
+| All three cached | 9.433s | 9.938s | 10.339s |
+
+*The first run includes a 6.514s gap between bounded browser observations. Its
+product timing is an upper bound; it still clearly misses 20s. Cached timings are
+continuous from the launch click. All three CDN downloads succeeded without
+fallback. Image preparation took 37.624s, including 23.523s download and 13.955s
+Docker load. Manifest cache and data were retained; CDN cache warmth was unknown.
+
+PostgreSQL 1 → 2 → 3 survived writes, reloads and full application stops. Live
+container inspection verified healthy API/database services, no published ports
+for either dependency, and the database volume backed by persistent home storage.
+Only the product port was published, on `0.0.0.0:21747`, as required by the current
+runtime contract. Failed diagnostic attempts are retained: Node discovery needed
+the launcher’s NVM search, and an incorrect loopback-only web assertion was fixed
+in the inspector. Product code did not change. All temporary inspection keys were
+removed while preserving the nine pre-existing keys; both previews stopped.
+
+The current inventory is 59 distinct prepared images, eight CDN mappings and
+51 unmapped images totaling 5,339,086,704 bytes. These are image counts, not
+framework counts. Full-stack first-image speed and native Codespaces browser
+acceptance remain open.
 
 ## Native launch performance
 
