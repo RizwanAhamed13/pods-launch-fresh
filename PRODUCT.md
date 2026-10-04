@@ -15,7 +15,7 @@ Provider authorization is required. Conventional public GitHub applications can 
 
 Cold provisioning and uncached image transfer are measured separately from cached launch. User compute remains owned and billed by the user's provider. Persistent container data is stored under Cloud Shell's home or Codespaces' `/workspaces`; provider lifecycle durability requires separate evidence.
 ## Evidence on Hand
-As of 2026-10-04, 270 automated checks pass locally and in isolated aswin Linux QA.
+As of 2026-10-04, 272 automated checks pass locally and in isolated aswin Linux QA.
 The matrix records 55 passing representative applications: isolated server build,
 prepared-artifact launch and browser interaction, plus 55 native Cloud Shell
 browser acceptances and 55 Codespaces HTTP/protocol acceptances. The historical
@@ -27,7 +27,7 @@ launches still exceed the 20-second product target in several measured cases;
 cached and cold observations remain separate. A stable production hostname and
 Cloud Shell VM-replacement durability also remain open. Database acceptance
 covers the recorded write/read/stop/relaunch scenarios, not arbitrary migrations
-or power-loss guarantees. Current source totals 8,597 scoped physical lines.
+or power-loss guarantees. Current source totals 8,669 scoped physical lines.
 
 The deployed browser client recovers transient status-read failures without
 repeating creation or product writes. It now polls every 250 ms during delivery
@@ -38,7 +38,7 @@ product/reload/full-stop/relaunch acceptance passed: cached product visible in
 9.877s, button write in 10.598s. A suspended-compute run with no cached image and
 a CDN fallback took 54.875s to health; its click-to-product time was not measured.
 Use [SUPPORT.md](SUPPORT.md), [fixture coverage](evidence/stack-coverage.json),
-[tests](evidence/stack-browser-handoff-tests.json),
+[tests](evidence/stack-cdn-fallback-tests.json),
 [controlled comparison](evidence/stack-browser-handoff-comparison.json),
 [native browser evidence](evidence/stack-browser-handoff-native.json) and the
 [current checkpoint](evidence/STACK-HANDOFF.md) for exact scope and limitations.
@@ -50,6 +50,17 @@ native cached-image launches then passed product HTTP and SQLite persistence.
 See [polling evidence](evidence/stack-codespace-preview-poll.json) and
 [native integration](evidence/stack-codespace-preview-poll-native.json). These
 observations do not establish first-image or universal 20-second acceptance.
+
+Image delivery now retains a fixed failure category and optional HTTP status when
+CDN transfer falls back to origin. It excludes upstream URLs, messages, headers
+and bodies; transfer policy is unchanged. The historical fallback did not recur
+in a diagnostic transfer: the existing 125 MB image verified in 5.532s on RUNNING
+Cloud Shell with warm CDN paths. Its original cause remains unknown. After
+deployment, two cached native Google launches displayed the product in 11.636s
+and 10.050s; writes, reloads and full stops retained SQLite 16 → 17 → 18.
+See [diagnostics](evidence/stack-cdn-fallback-diagnostic.json) and
+[native integration](evidence/stack-cdn-fallback-native.json). These observations
+do not establish first-image performance or a native fallback fix.
 
 ## Historical acceptance milestones
 The observations below retain their original milestone context. Counts and pending

@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **270 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **272 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
@@ -136,6 +136,28 @@ cached relaunch reached health in 9.333s and showed the product in 9.877s from t
 browser action, completing a write in 10.598s. The client was deployed without a
 server restart; all launches stopped. First-image 20s and native Codespaces
 browser acceptance remain open. The fallback cause was not diagnosed in this gate.
+
+## Image transfer failure diagnostics
+
+[272 local/Linux checks](evidence/stack-cdn-fallback-tests.json) cover bounded
+failure categories, first-failure preservation across cancelled range requests,
+and server sanitization of the optional HTTP status. Existing deadlines, integrity
+verification and the single origin fallback remain unchanged. No raw upstream
+error message, signed URL, header or body enters this telemetry.
+
+A [native diagnostic transfer](evidence/stack-cdn-fallback-diagnostic.json) verified
+the existing 125,123,048-byte image in 5.532s on RUNNING Cloud Shell, using baseline
+code and warm CDN paths. The earlier fallback did not reproduce; its cause remains
+unknown. This probe neither started the product nor measured a cold transfer.
+
+After [deployment](evidence/stack-cdn-fallback-deployment.json), two
+[native browser launches](evidence/stack-cdn-fallback-native.json) reached health
+in 10.079s/9.669s, displayed the product in 11.636s/10.050s, and completed button
+writes in 12.370s/10.859s. Both had RUNNING compute and a cached image. SQLite
+16 → 17 → 18 survived reload and full application stop/relaunch. All launches
+stopped; saved artifacts and configuration were preserved. No native fallback
+occurred in this integration gate. First-image speed and native Codespaces browser
+acceptance remain open.
 
 ## Native launch performance
 

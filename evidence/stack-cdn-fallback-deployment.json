@@ -1,0 +1,36 @@
+{
+  "recordedAt": "2026-10-04T15:00:27.906124+00:00",
+  "revision": "394abe666fca7c9ad209be7269825ea73c50a3a9",
+  "before": {
+    "recordedAt": "2026-10-04T15:00:26.435022+00:00",
+    "pid": 1542671,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "be41ee8a471d684705100e8353a1d7cc34ea1e8d89b2575a6e155f1d50eef13d",
+    "revision": "394abe666fca7c9ad209be7269825ea73c50a3a9"
+  },
+  "after": {
+    "recordedAt": "2026-10-04T15:00:27.886120+00:00",
+    "pid": 1560797,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "5172cf839d6c5287b8688bc028859c254757a9c056e435f23c817701d26172d8",
+    "revision": "394abe666fca7c9ad209be7269825ea73c50a3a9"
+  },
+  "imageFilesPreserved": 59,
+  "artifactFilesPreserved": 135,
+  "inventoryUnchanged": true,
+  "environmentUnchanged": true,
+  "expectedRunnerSha256": "5172cf839d6c5287b8688bc028859c254757a9c056e435f23c817701d26172d8",
+  "testEvidence": "stack-cdn-fallback-tests.json"
+}
