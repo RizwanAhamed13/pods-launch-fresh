@@ -1,0 +1,132 @@
+{
+  "startedAt": "2026-10-04T12:23:48.197Z",
+  "probeOnly": true,
+  "productionChanged": false,
+  "order": [
+    "start",
+    "addPublicKey",
+    "addPublicKey",
+    "start"
+  ],
+  "samples": [
+    {
+      "method": "start",
+      "keyGenerationMs": 276,
+      "initialState": "RUNNING",
+      "acceptedMs": 1818,
+      "doneOnResponse": true,
+      "operationMs": 1818,
+      "environmentReadMs": 464,
+      "keyRegistered": true,
+      "state": "RUNNING",
+      "sshMs": 643,
+      "sshPassed": true,
+      "totalSetupMs": 2925,
+      "keyRemoved": true,
+      "localKeyRemoved": true
+    },
+    {
+      "method": "addPublicKey",
+      "keyGenerationMs": 500,
+      "initialState": "RUNNING",
+      "acceptedMs": 1225,
+      "doneOnResponse": true,
+      "operationMs": 1225,
+      "environmentReadMs": 407,
+      "keyRegistered": true,
+      "state": "RUNNING",
+      "sshMs": 697,
+      "sshPassed": true,
+      "totalSetupMs": 2329,
+      "keyRemoved": true,
+      "localKeyRemoved": true
+    },
+    {
+      "method": "addPublicKey",
+      "keyGenerationMs": 43,
+      "initialState": "RUNNING",
+      "acceptedMs": 1239,
+      "doneOnResponse": true,
+      "operationMs": 1239,
+      "environmentReadMs": 407,
+      "keyRegistered": true,
+      "state": "RUNNING",
+      "sshMs": 683,
+      "sshPassed": true,
+      "totalSetupMs": 2329,
+      "keyRemoved": true,
+      "localKeyRemoved": true
+    },
+    {
+      "method": "start",
+      "keyGenerationMs": 435,
+      "initialState": "RUNNING",
+      "acceptedMs": 1644,
+      "doneOnResponse": true,
+      "operationMs": 1644,
+      "environmentReadMs": 380,
+      "keyRegistered": true,
+      "state": "RUNNING",
+      "sshMs": 637,
+      "sshPassed": true,
+      "totalSetupMs": 2661,
+      "keyRemoved": true,
+      "localKeyRemoved": true
+    }
+  ],
+  "initialState": "RUNNING",
+  "completed": true,
+  "finishedAt": "2026-10-04T12:24:09.125Z",
+  "kind": "ready-compute-key-registration-comparison",
+  "sourceRevision": "ae75ca9f3585577572aaf06dcbaed65aa40e2176",
+  "probeSha256": "8fa50187c1a266b9fafcd56c2411d54a6b066152663f08ec90ed351986d3f936",
+  "sourceHashes": {
+    "src/providers.mjs": "5f367c1d85b702eac742424a14dbcc14ac3f42f31ef6c5ccba0560bf5ae316b7",
+    "src/util.mjs": "9c5789b319f5e5ba475b7701ef6e4e3fea2bd14fcf1f5df14ebefe35df2317cb",
+    "src/store.mjs": "54018c0a6608105115e9faf65d1c51c31f1d44ed09b56dd93285cb8c15173a6e"
+  },
+  "meanMs": {
+    "start": {
+      "acceptedMs": 1731,
+      "totalSetupMs": 2793
+    },
+    "addPublicKey": {
+      "acceptedMs": 1232,
+      "totalSetupMs": 2329
+    }
+  },
+  "observedMeanSavingMs": {
+    "acceptedMs": 499,
+    "totalSetupMs": 464
+  },
+  "methodology": [
+    "Four sequential samples on the same already-running authorized Cloud Shell environment, using start/addPublicKey/addPublicKey/start order.",
+    "Each sample generates a fresh RSA-3072 key, makes one registration mutation, completes its operation, reads back RUNNING state and key registration, and executes SSH true.",
+    "An operation not complete on response would be polled every 250ms; all four responses were already complete.",
+    "Each ephemeral public key was removed with the provider API and confirmed absent; each temporary private-key directory was removed.",
+    "Credentials were loaded only in server memory from the existing encrypted authorization. No application was launched, stopped, rebuilt or modified."
+  ],
+  "limitations": [
+    "Two samples per method on one environment are a timing probe, not a statistically established performance guarantee.",
+    "Key generation and the initial environment read are excluded from totalSetupMs; operation, confirming environment read and SSH are included.",
+    "The comparison does not measure artifact delivery, product rendering, cold provisioning or full launch latency.",
+    "No production change was made; addPublicKey remains an optimization candidate that would need deadline, uncertain-response, suspension-race and native acceptance coverage."
+  ],
+  "references": [
+    "https://docs.cloud.google.com/shell/docs/reference/rest/v1/users.environments/addPublicKey",
+    "https://docs.cloud.google.com/shell/docs/reference/rest/v1/users.environments/start"
+  ],
+  "after": {
+    "recordedAt": "2026-10-04T12:24:42.763755+00:00",
+    "pid": 1471581,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "be6b31d3791059d5833b20f2b7bdac6c7f99d78e00d4fd0c1ab3c7f0d688cc64",
+    "revision": "ae75ca9f3585577572aaf06dcbaed65aa40e2176"
+  }
+}

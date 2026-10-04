@@ -1,8 +1,9 @@
 # Broad stack checkpoint
 
 Goal active and incomplete. Developer URL → isolated aswin build → reusable
-artifact → authorized user compute → actual usable product. This turn fixed the
-preview deadline and passed full local/Linux and native Codespaces acceptance.
+artifact → authorized user compute → actual usable product. This turn measured
+Google key registration overhead. The previous turn fixed the preview deadline
+and passed full local/Linux and native Codespaces acceptance.
 Do not mark the goal complete or blocked: meaningful work remains possible.
 
 ## Current verified state
@@ -98,9 +99,25 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   unavailable. No subagents authorized.
 ## Next performance gate
 
-- Quantify remaining bootstrap/provider overhead before choosing another fix. Google:start
-  currently installs the per-launch ephemeral SSH key; do not simply skip it for
-  RUNNING compute without preserving key registration/removal and recovery.
+- stack-google-key-registration-probe.json records four real API/SSH samples on
+  the same RUNNING Google environment, in start/addPublicKey/addPublicKey/start order.
+  Mean registration-through-SSH: start2.793s, addPublicKey2.329s, observed difference464ms.
+  Registration API responses alone averaged1.731s versus1.232s. All operations were
+  done on response; all keys registered, SSH true passed, provider keys removed and
+  local temporary key directories removed. No application or database mutation.
+- This is two observations per method, not a guarantee. Key generation and initial
+  environment reads are excluded; full product latency was not retested. Production
+  code is unchanged, so existing214 checks remain applicable and were not rerun.
+- addPublicKey remains a measured optimization candidate; before changing the
+  RUNNING path, preserve deadline, uncertain-mutation/key reconciliation, auth/quota
+  failures and key cleanup. Cover suspension races and retain start for cold compute.
+  Never simply skip key registration. The observed saving alone does not meet20s.
+- Probe script /tmp/pods-google-key-probe.mjs, output /tmp/pods-google-key-probe.json;
+  credentials were read in server memory only. Four samples completed successfully
+  at2026-10-04T12:24:09.125Z. Latest idle audit is embedded in the evidence;
+  health200, zero active builds/launches, unchanged production PID1471581 and runner.
+- Another candidate is remaining Codespaces preview/bootstrap overhead; quantify
+  it before selecting a fix. Do not relax private-port checks or force cache clears.
 - Existing questions about GitHub browser2FA, stable hostname and destructive
   provider VM-replacement testing remain pending. Do not repeat or infer approval.
 

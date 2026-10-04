@@ -172,6 +172,14 @@ Google's actual product was observed at 22.006s, then 11.465s on the cached rela
 
 The [first Codespaces attempt failed](evidence/stack-cdn-range-preview-failure.json) after 15.831s during preview-port lookup, before the runner or image download began. A subsequent read-only lookup on aswin took 24.147s; GitHub was observed transitioning through Starting to Available. Two later application launches passed. The failed attempt and its unsuccessful stop confirmation remain recorded; no active launch or application was left running. The preview lookup's premature 15-second command bound is corrected by a [shared deadline fix with 214 passing local/Linux checks](evidence/stack-preview-budget-tests.json). Commands and polling now use the remaining 60-second stage budget. [Two native Codespaces launches after deployment](evidence/stack-preview-budget-native.json) passed at 11.259s and 11.736s with cached images, preserving SQLite values 6→7→8 through full app restarts. The original 24.147s delay is covered by a deterministic before/after regression; it was not reproduced as a slow native response on demand. These functional retries do not establish a first-click success guarantee or meet the 20-second product target.
 
+A [Google setup probe](evidence/stack-google-key-registration-probe.json) compared
+two `start` and two `addPublicKey` calls on the same running environment. Mean
+registration-through-SSH time was 2.793s and 2.329s respectively, excluding key
+generation and the initial environment read. All four SSH checks passed and all
+temporary keys were removed. The observed 0.464s difference is a small-sample
+optimization candidate, not a full-launch result or a latency guarantee.
+Production behavior is unchanged; the 20-second product target remains open.
+
 ## Persistence and operational limits
 
 Database fixtures verify a product write, read, complete application stop,
