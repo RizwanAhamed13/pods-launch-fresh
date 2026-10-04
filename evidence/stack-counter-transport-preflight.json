@@ -1,0 +1,321 @@
+{
+  "recordedAt": "2026-10-04T06:00:39.556227+00:00",
+  "baseRevision": "ed35ee0",
+  "scope": "Four pinned stored artifacts in isolated aswin Linux QA. Empty chunked POST, real product document, persistent file counter and complete application stop/relaunch. Not native provider, new browser, database or VM replacement acceptance.",
+  "sourceHashes": {
+    "src/runner.mjs": "de3680794b58f02d4e912810164e79049559fe994556501ec6969bd3cf3dafde",
+    "src/container-runtime.mjs": "51c866cf69fab25476f0cb286747db4c5f2aaa34c2e093b9580444970d970374",
+    "src/storage-transition.mjs": "4bf7ba7c9489cb1d2afbe372ac54e1d37c0dc3a9fe48a34f13f6bcc6300dc161",
+    "evidence/stack-counter-transport-probe.mjs": "a01d35be4914a305049b7bf1863ddf5da256d37bc4c09e6841f186e494a03da0"
+  },
+  "results": [
+    {
+      "recordedAt": "2026-10-04T05:57:06.734Z",
+      "fixture": "actix",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+      "dataKey": "actix-chunked-9e088f29b9e2e1db",
+      "project": "pods-12db66c07da1565023b31f6c",
+      "artifactSha256": "fb5950ff5e983739e52f688983f3ede11ffc29a3a4733b9e902a89fb681a321d",
+      "images": [
+        {
+          "id": "sha256:44082f89d7ef7c8bfb60eefd0d6433bd304f723fcf8072c5ad0fff79e7b16aa7",
+          "sha256": "ce68d42dc91e41898f750e2032abdedcac2570b695b7f2e9ffbf0fbad8696b31",
+          "bytes": 33417325
+        }
+      ],
+      "sourceSha256": "16cfecd68940d5f59d8e98e6dace69dc60a94335c21e2d376faed2e9f31de6cd",
+      "records": [
+        {
+          "storage": {
+            "passed": true,
+            "project": "pods-12db66c07da1565023b31f6c",
+            "services": [
+              "web"
+            ],
+            "savedCount": 1,
+            "volume": "pods-12db66c07da1565023b31f6c_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Isolated guest inspection of the saved file counter, product port and persistent volume. Not native provider, database or power-loss evidence."
+          },
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "storage": {
+            "passed": true,
+            "project": "pods-12db66c07da1565023b31f6c",
+            "services": [
+              "web"
+            ],
+            "savedCount": 2,
+            "volume": "pods-12db66c07da1565023b31f6c_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Isolated guest inspection of the saved file counter, product port and persistent volume. Not native provider, database or power-loss evidence."
+          },
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T05:57:37.497Z",
+      "fixture": "axum",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+      "dataKey": "axum-chunked-2efce7dcfc3593f5",
+      "project": "pods-9a8d62652a01b7065d458be6",
+      "artifactSha256": "f83a4c121bf3ccd2ba80df7b0b69f35e82cf63593e5f1d2afc7a9aedec03035d",
+      "images": [
+        {
+          "id": "sha256:e9b44751e26dcd65168fc55424477049e05b68248028f4d7d96d12549cbb369d",
+          "sha256": "ff87d320928f05deaff445df15edf452d752c10a4c7b4ef71a4d0e716cc5e2c7",
+          "bytes": 32229761
+        }
+      ],
+      "sourceSha256": "e7882957be1d0304114d6ffb43c2be2521bb5bc0f3f8fbd25a6b999370edda0b",
+      "records": [
+        {
+          "storage": {
+            "passed": true,
+            "project": "pods-9a8d62652a01b7065d458be6",
+            "services": [
+              "web"
+            ],
+            "savedCount": 1,
+            "volume": "pods-9a8d62652a01b7065d458be6_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Isolated guest inspection of the saved file counter, product port and persistent volume. Not native provider, database or power-loss evidence."
+          },
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "storage": {
+            "passed": true,
+            "project": "pods-9a8d62652a01b7065d458be6",
+            "services": [
+              "web"
+            ],
+            "savedCount": 2,
+            "volume": "pods-9a8d62652a01b7065d458be6_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Isolated guest inspection of the saved file counter, product port and persistent volume. Not native provider, database or power-loss evidence."
+          },
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T05:57:48.212Z",
+      "fixture": "rocket",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+      "dataKey": "rocket-chunked-7a8d1b758d48942c",
+      "project": "pods-18e4a6c9e3caa47c27e5043a",
+      "artifactSha256": "501979e7d63d7ebea4ee9cfc1db23c4b913b0a029d94c5a26aa0e805cfdd2f0f",
+      "images": [
+        {
+          "id": "sha256:88807539e201ebc9fd33fe6a1bb09b62dc0faf0d3b62bfd996c156c161f52485",
+          "sha256": "303579e7770c66770531909f74c33e8b7a880e4b27ff2dd0facefebcf3aa8a79",
+          "bytes": 33370009
+        }
+      ],
+      "sourceSha256": "311dba2baa837f6a7826702c0a6d25fb08b51ec53709ac4dc7885ce801580602",
+      "records": [
+        {
+          "storage": {
+            "passed": true,
+            "project": "pods-18e4a6c9e3caa47c27e5043a",
+            "services": [
+              "web"
+            ],
+            "savedCount": 1,
+            "volume": "pods-18e4a6c9e3caa47c27e5043a_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Isolated guest inspection of the saved file counter, product port and persistent volume. Not native provider, database or power-loss evidence."
+          },
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "storage": {
+            "passed": true,
+            "project": "pods-18e4a6c9e3caa47c27e5043a",
+            "services": [
+              "web"
+            ],
+            "savedCount": 2,
+            "volume": "pods-18e4a6c9e3caa47c27e5043a_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Isolated guest inspection of the saved file counter, product port and persistent volume. Not native provider, database or power-loss evidence."
+          },
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T05:57:59.293Z",
+      "fixture": "aspnet",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+      "dataKey": "aspnet-chunked-adb48624b5627b5b",
+      "project": "pods-29dcbe72b6a8a8de4d7032f3",
+      "artifactSha256": "d2e156fc65ecacc6a43efa9e441a1ba30d84e44423a409ff018b4675677c45c9",
+      "images": [
+        {
+          "id": "sha256:14429881160ac123bb2669f30def362665104ec07eab9f566be64747ed1f2e39",
+          "sha256": "a589d329a0e4c7c07e6573e9fc1294b4d610ace7492de4bf7747f4870cfbd600",
+          "bytes": 89962148
+        }
+      ],
+      "sourceSha256": "a4c66dc0f1954594cacb41c38b84a619bbd49dc2a8359a40bc0908622cb184c7",
+      "records": [
+        {
+          "storage": {
+            "passed": true,
+            "project": "pods-29dcbe72b6a8a8de4d7032f3",
+            "services": [
+              "web"
+            ],
+            "savedCount": 1,
+            "volume": "pods-29dcbe72b6a8a8de4d7032f3_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Isolated guest inspection of the saved file counter, product port and persistent volume. Not native provider, database or power-loss evidence."
+          },
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "storage": {
+            "passed": true,
+            "project": "pods-29dcbe72b6a8a8de4d7032f3",
+            "services": [
+              "web"
+            ],
+            "savedCount": 2,
+            "volume": "pods-29dcbe72b6a8a8de4d7032f3_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Isolated guest inspection of the saved file counter, product port and persistent volume. Not native provider, database or power-loss evidence."
+          },
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    }
+  ]
+}

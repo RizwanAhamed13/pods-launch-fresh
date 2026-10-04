@@ -2048,3 +2048,25 @@ Evidence: `stack-echo-{url,google,codespaces,audit}.json`. Coverage is now
 **55 isolated / 41 Google browser / 41 Codespaces protocol**; **14** native
 fixtures remain pending. Full suite173/173 and source6,703 lines remain valid;
 this acceptance step changed only evidence and documentation.
+
+
+## Rust and ASP.NET preview transport preflight
+
+Pinned stored artifacts for **Actix, Axum, Rocket and ASP.NET Core** passed the
+empty chunked POST used by the preview path. Each served its actual product
+page and retained its file counter through complete application stops:
+**0→1→2**. Read-only Docker inspection verified the product port, service network,
+workspace-backed persistent volume and saved file value.
+
+The checks used current runner sources in isolated aswin Linux QA. Artifact and
+fixture-source checksums were verified; runner, container runtime, storage
+transition and probe source hashes were recorded. All temporary test containers,
+volumes and selected data directories were removed. Shared runtime/cache were
+retained. These are file-persistence and transport checks, not database, new
+browser or native-provider acceptance.
+
+Evidence: `stack-counter-transport-preflight.json` and
+`stack-counter-transport-probe.mjs`. Native coverage remains **55 isolated /
+41 Google browser / 41 Codespaces protocol**. No implementation or existing test
+source changed; **173/173** full-suite results and **6,703 source lines** remain
+valid. Fiber native preparation awaits ordinary quota availability.

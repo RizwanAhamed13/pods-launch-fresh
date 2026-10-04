@@ -890,3 +890,27 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   browser pending notice. Compatibility checks3/3 passed. Codespaces90007 and
   final capture/audit68781 both ended0. No live watcher, build or test remains.
   Source6703/full173. Fiber native preparation is still unstarted.
+
+
+## Rust and ASP.NET transport preflight
+
+- Current goal turn made progress after Echo acceptance. While waiting for Fiber
+  build quota, tested the exact preview-style empty chunked POST against pinned
+  stored Actix, Axum, Rocket and ASP.NET artifacts. Their native gates remain
+  required; this is isolated preflight only.
+- All four passed product documents, HTTPcounter0→1→2 over full application stops,
+  copied-file counter checks, expected product port, one web container/network,
+  and persistent workspace bind-volume boundaries. Source and artifact checksums
+  were verified. These fixtures store files; they are not database acceptance.
+- Batch80839 ended0. All scoped containers, named volumes and selected storage
+  directories were removed; shared runtime/cache remain. Candidate preserved at
+  /output/counter-transport-candidate-ed35ee0 in pods-fresh-matrix-01.
+- Evidence stack-counter-transport-preflight.json and its -probe.mjs. Snapshot
+  runner/container-runtime/storage-transition/probe hashes match local files.
+  No product or test source changed; existing173/173 and6703line count remain
+  valid. Coverage remains55/41/41, with14native fixtures pending.
+- Fiber form is filled but unsubmitted. Normal quota watcher95047 is live;
+  expected next slot06:03:54.835UTC. Resume that same handle before submitting.
+  /tmp/pods-watch-fiber-build.py and /tmp/pods-record-fiber.py are prepared;
+  update the latter checkoutRevision after publication. No QA process remains.
+  Existing GitHub2FA/VMreplacement/stablehostname inputs remainpending.

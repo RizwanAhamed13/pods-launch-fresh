@@ -147,6 +147,9 @@ a stable production hostname remains a deployment requirement.
   [Cloud Shell browser](evidence/stack-echo-google.json), and
   [Codespaces protocol and framework inspection](evidence/stack-echo-codespaces.json).
   Both paths retained the file counter across full stop/relaunch.
+- [Rust and ASP.NET transport preflight](evidence/stack-counter-transport-preflight.json)
+  checks empty chunked POST and full-restart file persistence on isolated compute.
+  These checks do not add native-provider acceptance.
 - [Full-suite result](evidence/stack-go-framework-runtime-tests.json): **173/173**
   checks passed locally and in isolated aswin Linux QA.
 - [Physical source count](evidence/code-lines.json): **6,703 lines**, including
