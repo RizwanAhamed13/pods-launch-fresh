@@ -1,8 +1,8 @@
 # Broad stack checkpoint
 
 Goal active and incomplete. Developer URL → isolated aswin build → reusable
-artifact → authorized user compute → actual usable product. This turn completed
-native range-download acceptance and diagnosed a separate preview timeout.
+artifact → authorized user compute → actual usable product. This turn fixed the
+preview deadline and passed full local/Linux and native Codespaces acceptance.
 Do not mark the goal complete or blocked: meaningful work remains possible.
 
 ## Current verified state
@@ -17,16 +17,16 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   Seven database/service families are covered. Matrix records tested representatives,
   not every version or arbitrary application. Unknown secrets/schema/migrations
   still require developer inputs; desktop/mobile/GPU/non-web products are excluded.
-- Full suite211/211 local and isolated Linux; stack-cdn-range-tests.json verifies
-  all328 snapshot input hashes. Current source7,699physical lines:
-  3,916product/tooling +2,686tests +933examples +164browser tools.
-- Runtime/control91999c6517601e8bc9f9b0ce35e47169fd76339d, PID1459170.
-  Provider5dde1e5, builder2553fc8, storage77cf340.
+- Full suite214/214 local and isolated Linux; stack-preview-budget-tests.json verifies
+  all328 snapshot input hashes. Current source7,747physical lines:
+  3,922product/tooling +2,728tests +933examples +164browser tools.
+- Runtime/control7a28920f424515a37c8d2fa6d8122f23bde3362a, PID1471581.
+  Preview provider helper7a28920; providers.mjs5dde1e5, builder2553fc8, storage77cf340.
   RunnerSHAbe6b31d3791059d5833b20f2b7bdac6c7f99d78e00d4fd0c1ab3c7f0d688cc64.
-- Deployment stack-cdn-range-deployment.json: health200, SQLiteok, idle,
-  preserved56images/129artifacts and unchanged .env. No service restart for docs.
-- Latest idle audit2026-10-04T12:09:46.916911UTC: health200, SQLiteok,
-  zero active builds/launches. All four accepted launches and the Google warmup
+- Deployment stack-preview-budget-deployment.json: health200, SQLiteok, idle,
+  preserved57images/131artifacts, unchanged .env and unchanged runner. No restart for docs.
+- Latest idle audit2026-10-04T12:19:02.383189+00:00: health200, SQLiteok,
+  zero active builds/launches. All accepted launches and the Google warmup
   stopped; the first Codespaces attempt remains terminal failed. No jobs running.
 
 ## Latest native gate
@@ -55,7 +55,8 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   Cached zOg1_5XrtsXik3gTNc_QZn2RJBG4io3x: healthy11.149s.
   Authenticated product HTTP and SQLite online backup passed4→5→6;
   integrityok, private product26630, no exposed DB port, no pause, fully stopped.
-- Preserve Micronaut count6 on BOTH providers. Do not rerun expected4 or clear data.
+- Range gate ended at count6 both. Current counts after the preview fix:
+  Google6, Codespaces8. Never reset data or rerun an old expected value.
 - stack-cdn-range-native.json validates source hashes, unique IDs, build/image
   identity, first-cache-miss/repeat-hit, successful ranges/no fallback, persistence
   and cleanup. allAttemptsPassed=false because of the earlier preview failure.
@@ -63,7 +64,7 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   call this an empty-machine benchmark. 20s product target remains unmet.
   Prior sequential CDN measurements remain in stack-image-delivery-native.json.
 
-## Failure and next gate
+## Preview failure and completed fix
 
 - First Codespaces attempt oYLPWeOxc0R9CqqW9yXr3Zqtl1q9O1-k failed after15.831s:
   'Could not start your compute. gh timed out'. Initial API stateAvailable.
@@ -75,15 +76,29 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   The same aswin read-only command subsequently succeeded in24.147s, returning
   only private8080. During diagnosis API states wereStarting thenAvailable.
   Do not claim why the provider transitioned; observations do not establish it.
-- Next required reliability gate: reproduce the slow preview lookup and enforce
-  its overall budget without prematurely aborting a recoverable lookup. Keep
-  authentication failures, malformed replies, privacy verification and total
-  timeout fail-closed. Add a meaningful before/after regression, full local and
-  isolated Linux checks, idle deploy, then native Codespaces acceptance.
-  No preview timeout fix has yet been applied or claimed.
+- Fixed at7a28920: each preview command uses the remaining original60s budget;
+  expired stages do not issue another command, and polling cannot outlive the
+  deadline. No retries of auth/privacy mutations or public exposure added.
+- stack-preview-budget-tests.json: all3 new cases failed old code and passed fix;
+  full214local/Linux,328snapshot inputs verified. The first negative test harness
+  left its mocked sleep unadvanced; that process was stopped and the bounded
+  harness was rerun. Only the completed before/after runs are evidence.
+  Slow24.147s lookup+private registration succeeds; combined lookup+privacy change
+  cannot reset60s; expiration issues no extra lookup and closes its forwarder.
+  Existing malformed/auth/forward/privacy failures retain their checks.
+- stack-preview-budget-native.json: two post-deploy cached Codespaces launches
+  KhKhOJE7w1kQMPpr5TK0VpSUAdzKO5eK and xsUfstfxINLkC8bxr2-ovPsrfcfmy5SF,
+  bothAvailable, healthy11.259/11.736s. HTTP counter6→7→8, SQLite online backup
+  integrityok, private26630, no DB hostports, no application pause, bothstopped.
+  Same prepared artifact/image/data; no new build. Native slow24s delay was not
+  forced or reproduced. Deterministic before/after tests prove that boundary;
+  native runs cover normal integration. Codespaces native browser remains unverified.
 - Investigate skill was read: /Users/rizwanahamed/.codex/skills/gstack-investigate/SKILL.md.
-  Root-cause workflow active; freeze helper unavailable. No subagents authorized.
-- After reliability, quantify remaining bootstrap/provider overhead. Google:start
+  Root-cause workflow completed with bounded fix and acceptance; freeze helper
+  unavailable. No subagents authorized.
+## Next performance gate
+
+- Quantify remaining bootstrap/provider overhead before choosing another fix. Google:start
   currently installs the per-launch ephemeral SSH key; do not simply skip it for
   RUNNING compute without preserving key registration/removal and recovery.
 - Existing questions about GitHub browser2FA, stable hostname and destructive
@@ -102,22 +117,23 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
 - Push first, then sync with gh auth token piped to ssh aswin and temporary GH_TOKEN,
   helper /home/aswin/pods-tools/bin/gh auth git-credential, git pull --ff-only.
 - Codespace pods-launch-containers-69rw5vx4xp46c5qw5. All native saved data retained.
-  Streamlit counters2both, Symfony Google2/Codespaces3, Micronaut6both.
+  Streamlit counters2both, Symfony Google2/Codespaces3, Micronaut Google6/Codespaces8.
 - Preserve older failures: Streamlit initial storage limit/build and403 origin,
   Symfony pause/liveness conflict. See STACK-VERIFICATION-HISTORY.md and individual
   receipts. SQLite inspections now use online backup, never pause the app.
 - QAguest pods-fresh-matrix-01, /snap/lxd/current/bin/lxc, uid/gid1000,
   Node/opt/node/bin/node, deps/opt/pods/node_modules. Current verified candidate
-  /output/image-range-candidate-917c7d4. Always --disable-stdin for lxc exec overSSH;
+  /output/preview-budget-candidate-f2a46c6. Always --disable-stdin for lxc exec overSSH;
   earlier setup without it consumed script input and was not counted as a test.
   Keep QAserverPID292107, ports18090/8081/18890, shared caches and runtime.
-- Full test logs /tmp/pods-range-full-local.txt and /tmp/pods-range-full-qa.txt.
-  Latest receipt generator /tmp/pods-record-range-native.py; raw native inputs
-  /tmp/pods-range-*.json. Preserve failure input pods-range-codespaces-failed-raw.json.
+- Full test logs /tmp/pods-preview-budget-full-local.txt and /tmp/pods-preview-budget-full-qa.txt.
+  Latest validator /tmp/pods-record-preview-budget-native.py; inputs
+  /tmp/pods-preview-budget-*.json. Prior validator /tmp/pods-record-range-native.py. Preserve failure input pods-range-codespaces-failed-raw.json.
 - Browser1: stackQa6/tab1 stopped newMicronaut, echoTab/tab2 stopped warmup,
   mongodbSupport/tab3 supportmatrix. Re-markHandoff each turn, after compaction
   cua.rewriteDocumentation first. micronautRangeGoogle stores two browser records,
   micronautRangeWarmup stores setup, micronautRangeLaunchUrl is current link.
   Micronaut controls: h1 'Micronaut + SQLite', #value, button 'Add one'.
 - Browser handles retain continueSqliteFramework and stopNativeCounter helpers.
-  Worker sessions29809,8252,99843,50525 are terminal; no native/build process running.
+  Worker sessions20376(Linux),17528(native),10429(deploy) are terminal.
+  The first hanging negative-test session30407 was stopped explicitly. No jobs running.
