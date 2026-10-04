@@ -1,0 +1,7 @@
+{
+  "recordedAt": "2026-10-04T06:56:21.014Z",
+  "url": "https://collection-conferences-ages-clearly.trycloudflare.com/support",
+  "revision": "2dc984f",
+  "summary": "55 representative apps tested\n\nAll 55 passed isolated server builds and browser interaction. 44 passed native Google Cloud Shell browser checks; 44 passed Codespaces HTTP or protocol checks.\n\nCodespaces browser sign-in and interaction remain pending. A passing representative does not guarantee every repository using that framework will work.",
+  "row": "Axum\nRust\n\tPassed\tPassed\tPassed"
+}

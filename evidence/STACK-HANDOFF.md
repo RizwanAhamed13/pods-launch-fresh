@@ -1052,3 +1052,22 @@ source6814 remain valid because only evidence/documentation changed.
   All four launches stopped; no service restart. Coverage55/44/44;11nativepending.
   Source6814/full179 unchanged. Existing GitHub2FA/VMreplacement/stablehostname
   inputs remain pending. Goal active and progressing.
+
+
+## Published Axum and dashboard checkpoint
+
+- Commit2dc984f pushed to GitHub and fast-forwarded on aswin. Public support DOM
+  verified06:56:21.014UTC:55/44/44, Axum row all passed, Codespaces browser
+  authorization warning retained. Evidence stack-axum-published.json.
+- Compatibility checks3/3 passed; exact QA probe scripts parse successfully.
+  Full179/source6814 remain unchanged. No product source edit or service restart.
+- All Axum launches stopped; audit health200/integrityok/0active and private
+  product port24931. All isolated dashboard test storage cleaned, including
+  failed prototype attempts. No background build, launch or quota watcher remains.
+- Next native fixture: Rocket. Developer form contains examples/stacks/rocket
+  but has NOT been submitted. Check ordinary same-account quota first; the
+  prior Fiber build reaches one hour at07:04:50.289UTC. Do not bypass quotas.
+- Continue dashboard native harness integration from the recorded passing
+  prototypes; do not treat isolated Gradio/Streamlit protocol evidence as native
+  acceptance. Existing GitHub2FA, VMreplacement and stable-hostname inputs remain
+  pending; do not repeat their questions. Goal remains active and incomplete.
