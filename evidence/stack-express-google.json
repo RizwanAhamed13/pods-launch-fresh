@@ -1,0 +1,102 @@
+{
+  "recordedAt": "2026-10-04T00:48:24.874102+00:00",
+  "scope": "Real Cloud Shell browser product after actual developer URL preparation; both launches stopped.",
+  "results": [
+    {
+      "id": "VCrKUzXOUYULhr3wNxyBS196TzRTUkhk",
+      "appId": "repo-6c2ac75a42b5f46c775a3028-9eee994ba7f7-53e4f5be199d",
+      "provider": "google",
+      "port": 24378,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791074785072,
+        "startRequestedAt": 1791074785226
+      },
+      "createdAt": 1791074784435,
+      "updatedAt": 1791074815886,
+      "providerReadyAt": 1791074787530,
+      "readyAt": 1791074808655,
+      "timings": {
+        "downloadMs": 473,
+        "imagesMs": 17080,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 35,
+        "imageDownloadMs": 14678,
+        "imageLoadMs": 2351,
+        "runtimeReadyMs": 19568,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 24220,
+      "deliveryMs": 21125
+    },
+    {
+      "id": "7SIDrVAUI-9M7PoEzKFrvE0eomxpFQQC",
+      "appId": "repo-6c2ac75a42b5f46c775a3028-9eee994ba7f7-53e4f5be199d",
+      "provider": "google",
+      "port": 24378,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791074821677,
+        "startRequestedAt": 1791074821762
+      },
+      "createdAt": 1791074821164,
+      "updatedAt": 1791074837444,
+      "providerReadyAt": 1791074823992,
+      "readyAt": 1791074827150,
+      "timings": {
+        "downloadMs": 201,
+        "imagesMs": 59,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 59,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 2167,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 5986,
+      "deliveryMs": 3158
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "first-image-delivery",
+      "startedAt": "2026-10-04T00:46:24.274Z",
+      "visibleMs": 26290,
+      "stateRestoredMs": 26303,
+      "before": 0,
+      "afterWrite": 1,
+      "interactionMs": 26585,
+      "afterReload": 1,
+      "passed": true
+    },
+    {
+      "scenario": "cached-full-relaunch",
+      "startedAt": "2026-10-04T00:47:01.020Z",
+      "visibleMs": 6371,
+      "stateRestoredMs": 6381,
+      "before": 1,
+      "afterWrite": 2,
+      "interactionMs": 6677,
+      "afterReload": 2,
+      "passed": true
+    }
+  ],
+  "timingScope": "Continuous launch-button to visible product, restored database count and successful interaction in each browser call; both initial compute states RUNNING.",
+  "browserErrorOrWarningLogsAtFinalCheck": [],
+  "persistenceScope": "Real Express fixture uses node:sqlite. Database writes survive browser reload and full application stop/relaunch; provider VM replacement is not tested.",
+  "passed": true,
+  "cleanupAudit": {
+    "at": "2026-10-04T00:48:24.874102+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 24378,
+    "codespacesPreviewVisibility": "private"
+  }
+}

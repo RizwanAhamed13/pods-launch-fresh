@@ -322,7 +322,11 @@
       "serverEvidence": "stack-matrix-02.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-02.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-express-url.json",
+        "stack-express-google.json",
+        "stack-express-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-01.json",
@@ -332,7 +336,12 @@
           "evidence": "stack-matrix-02.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeProviderScope": "Native Cloud Shell Express browser interaction, reload and full application restart retained SQLite values. Codespaces authenticated HTTP verified product delivery, SQLite write/read and full restart persistence on first and cached launches. Native Codespaces browser interaction remains pending.",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      }
     },
     {
       "fixture": "fastapi",

@@ -1,0 +1,63 @@
+{
+  "recordedAt": "2026-10-04T00:48:24.874102+00:00",
+  "controlRevision": "5e5b4a0",
+  "checkoutRevision": "fdcc305",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated server build, with no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T00:44:54.604820+00:00",
+    "accountRecent": 2,
+    "globalRecent": 2,
+    "activeBuilds": 0
+  },
+  "submittedAt": "2026-10-04T00:44:59.218Z",
+  "attempts": [
+    {
+      "id": "-ftxRJft9D2avgaHMCLnHO9q5BYagPIz",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/express",
+        "key": "6c2ac75a42b5f46c775a3028"
+      },
+      "status": "ready",
+      "createdAt": 1791074699996,
+      "startedAt": 1791074700008,
+      "finishedAt": 1791074757785,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-6c2ac75a42b5f46c775a3028-9eee994ba7f7-53e4f5be199d",
+      "app": {
+        "id": "repo-6c2ac75a42b5f46c775a3028-9eee994ba7f7-53e4f5be199d",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "53e4f5be199d20172206444749816799f7e90299d9e84141ba4afddf31161dc8",
+        "bytes": 275,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-6c2ac75a42b5f46c775a3028",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/express",
+          "revision": "9eee994ba7f70d1793bc449573ddb36e01003818"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "express counter"
+        },
+        "preparedAt": "2026-10-04T00:45:57.497Z",
+        "images": [
+          {
+            "id": "sha256:d18ab99cd730c89a0efb6b8c25d6d187ee2454a0a43f37aa8909fc88ebe934b1",
+            "sha256": "1ec6d596b67cedb0c3c264baaaab32ed88c6ab7b460cc3d3e130ea436edf09b3",
+            "bytes": 82250849
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 57777
+}

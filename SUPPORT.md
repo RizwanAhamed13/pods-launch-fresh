@@ -86,8 +86,8 @@ or in-flight crash recovery.
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
 later passing attempts do not erase them. Automated coverage is **114 passing
-checks locally and on aswin**. Native coverage is 27 Google browser fixtures and
-27 Codespaces HTTP/protocol fixtures; 28 await native acceptance. Codespaces
+checks locally and on aswin**. Native coverage is 28 Google browser fixtures and
+28 Codespaces HTTP/protocol fixtures; 27 await native acceptance. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1311,6 +1311,36 @@ healthy control service and a private Codespaces product port 24950. Evidence:
 
 All eight listed static frontend fixtures and all six listed SSR fixtures now
 have native Google browser and Codespaces HTTP/protocol acceptance. Total coverage
-is 55 isolated fixtures, 27 native Google browser fixtures and 27 Codespaces protocol
-fixtures, with 28 awaiting native acceptance. Uncached React Router launches exceed
+at that checkpoint was 55 isolated fixtures, 27 native Google browser fixtures and
+27 Codespaces protocol fixtures, with 28 awaiting native acceptance. Uncached React Router launches exceed
 20 seconds; the cached result does not establish a universal cold-launch guarantee.
+
+## Express and SQLite native acceptance
+
+The real developer form prepared `examples/stacks/express` at revision `9eee994`
+in **57.777 seconds**, after normal quota availability. PODS saved a 275-byte
+manifest and an **82,250,849-byte** runtime image. The Express application uses
+Node's SQLite implementation and a database in the application's persistent data
+directory. User launch required no build or installation commands.
+
+| Scenario | Health | Visible product / interaction |
+| --- | --- | --- |
+| Cloud Shell RUNNING, image absent | 24.220s | 26.290s / 26.585s |
+| Cloud Shell RUNNING, cached full relaunch | 5.986s | 6.371s / 6.677s |
+| Codespaces Shutdown, resume and image absent | 52.999s | HTTP product and SQLite write/read passed |
+| Codespaces Available, cached full relaunch | 9.201s | Saved SQLite count survived full restart |
+
+The native Google product wrote 0→1, retained 1 after reload and full application
+restart, then wrote 1→2 and retained 2 after reload. Both browser measurements
+were continuous; the saved count was visible at 6.381 seconds on cached relaunch.
+No browser warnings or errors were captured. Codespaces independently verified
+0→1 and retained 1 before writing 2 on its second launch. Its native browser
+interaction and provider VM replacement durability remain unverified.
+
+All four previews stopped. The 00:48:24 UTC audit found zero active builds and
+launches, healthy control service and a private Codespaces product port 24378.
+Evidence: `stack-express-url.json`, `stack-express-google.json` and
+`stack-express-codespaces.json`. Coverage is now **55 isolated / 28 Google browser /
+28 Codespaces protocol**, with **27 fixtures awaiting native acceptance**.
+First-image delivery still exceeds the 20-second goal; cached performance is
+reported separately from compute startup and artifact transfer.

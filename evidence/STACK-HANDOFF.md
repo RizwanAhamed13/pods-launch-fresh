@@ -12,9 +12,9 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
 - Private core: https://github.com/RizwanAhamed13/pods-launch-fresh.
 - Public fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
   revision9eee994ba7f70d1793bc449573ddb36e01003818.
-- 55 isolated real build/artifact/browser fixture passes. 27 native Google browser
-  and27 Codespaces authenticated HTTP/protocol passes. 28 await native acceptance:
-  actix, adonis, aspnet, axum, deno, echo, express, fastapi, fastify, fiber, flask-mariadb, flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, hono, koa, ktor, micronaut, nestjs, phoenix, php, rocket, sinatra, streamlit, symfony.
+- 55 isolated real build/artifact/browser fixture passes. 28 native Google browser
+  and28 Codespaces authenticated HTTP/protocol passes. 27 await native acceptance:
+  actix, adonis, aspnet, axum, deno, echo, fastapi, fastify, fiber, flask-mariadb, flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, hono, koa, ktor, micronaut, nestjs, phoenix, php, rocket, sinatra, streamlit, symfony.
 - All eight static frontend and all six SSR fixtures pass both acceptance paths.
   Codespaces native browser interaction remains pending for every fixture.
 - Latest tooling source18026bb:114 automated tests pass locally/aswin. Logs
@@ -23,40 +23,40 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
 - 5,523 physical source lines:2,960 product/tooling,1,492 tests,907 examples,
   164 browser tools. The extension filter now includes the four-line .astro file.
 
-## Latest completed gate: native React Router
+## Latest completed gate: native Express + SQLite
 
-- Actual form submitted once00:24:39.103UTC after watcher49084 confirmed ordinary
-  capacity00:24:35UTC (account2/global2/active0). Preparation133.577s, manifest276
-  bytes, image100,372,817bytes. Runtime5e5b4a0, checkout6b060b9 during native tests.
-- App repo-2d7780cca2d3a2ce37012bb4-9eee994ba7f7-22c18eb98949; private port24950.
-  ImageSHA39e828d43a19c96ea46ccd7f9770c5445ea7948d64dcacecbda6bdbbefcbfa9f.
-- Cloud Shell initialRUNNING on both launches. First-image health30.349s,
-  delivery27.578s, visible32.614s, interaction32.930s; cached health7.450s,
-  delivery3.917s, visible8.862s, restored state8.867s, interaction9.167s.
-  Both browser calls continuous. Counter0→1/reload1, full stop/relaunch retained
-  1→2/reload2; warnings/errors[]. This proves localStorage, not backend DB or
-  provider VM replacement durability.
-- Codespaces harness45982 ended0 in pods-launch-containers-69rw5vx4xp46c5qw5.
-  FirstinitialShutdown/resume/image-absent:health63.435s,delivery47.754s.
-  RepeatinitialAvailable/cached:health8.714s,delivery7.981s. Both HTTP probes
-  verified SSR counter and actual root688-byte/client-entry224,210-byte modules.
-- All four launches stopped. Final00:28:42UTC audit:active builds0/launches0,
-  control health200; Codespaces port24950 verifiedprivate. No public preview.
-- Evidence stack-react-router-{url,google,codespaces}.json, explicit acceptance
-  flags, temp /tmp/pods-react-router-production-evidence.json and
-  /tmp/pods-react-router-ports.json. /tmp/pods-record-react-router.py wrote evidence.
+- Actual form submitted once00:44:59.218UTC after watcher71223 confirmed ordinary
+  capacity00:44:54UTC (account2/global2/active0). Preparation57.777s, manifest275
+  bytes, image82,250,849bytes. Runtime5e5b4a0, checkoutfdcc305 during native tests.
+- App repo-6c2ac75a42b5f46c775a3028-9eee994ba7f7-53e4f5be199d; private port24378.
+  ImageSHA1ec6d596b67cedb0c3c264baaaab32ed88c6ab7b460cc3d3e130ea436edf09b3.
+- Cloud Shell initialRUNNING on both launches. First-image health24.220s,
+  delivery21.125s, visible26.290s, interaction26.585s; cached health5.986s,
+  delivery3.158s, visible6.371s, restored database value6.381s, interaction6.677s.
+  Both browser calls continuous. SQLite0→1/reload1, full stop/relaunch retained
+  1→2/reload2; warnings/errors[]. This is backend SQLite persistence, not browser
+  localStorage. Provider VM replacement remains untested.
+- Codespaces harness46698 ended0 in pods-launch-containers-69rw5vx4xp46c5qw5.
+  FirstinitialShutdown/resume/image-absent:health52.999s,delivery40.331s.
+  RepeatinitialAvailable/cached:health9.201s,delivery8.535s. HTTP product and SQLite
+  write/read passed0→1, then expected retained1→2 after a full application stop.
+- All four launches stopped. Final00:48:24UTC audit:active builds0/launches0,
+  control health200; Codespaces port24378 verifiedprivate. No public preview.
+- Evidence stack-express-{url,google,codespaces}.json, explicit acceptance flags,
+  temp /tmp/pods-express-production-evidence.json and /tmp/pods-express-ports.json.
+  /tmp/pods-record-express.py wrote the verified evidence.
 
 ## Next bounded gate
 
-- Next native framework: Express, followed by the remaining backend/database
+- Next native framework: Fastify, followed by the remaining backend/database
   fixtures. No new production preparation or launch has been submitted.
-- Readonly quota audit00:30:03UTC:account3/global3/active0. Next ordinary slot
-  00:44:25.640UTC. Watcher49084 and React Router build watcher55920 both ended0.
+- Readonly quota audit00:49:07UTC:account3/global3/active0. Next ordinary slot
+  01:01:09.984UTC. Watcher71223 and Express build watcher78777 both ended0.
   No live quota/build/native-test processes remain from this gate. Do not bypass
   quota, change identities or import QA artifacts. Prod limits3/account/hour,12global.
 - /tmp/pods-next-native-quota-watch.py is a reusable bounded watcher. Anchor Svelte
   buildNLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp account privately; never print identity.
-- /tmp/pods-capture-ssr.py runs on aswin with argument astro or react-router;
+- /tmp/pods-capture-native.py runs on aswin with argument astro, react-router or express;
   readonly SQLite, whitelisted build/app/launch fields, compute and derived timings.
 - scripts/live-codespaces.mjs: gh token via stdin; use the existing fixture's
   matching interaction probe and an explicit evidence file. Two launches required.
@@ -68,7 +68,7 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
   in flight; there is no evidenced persistent UI bug and no fix was made.
 - Readonly production audit00:10UTC found no already-prepared production builds
   for any of the then29 pending fixtures. React Router has since passed; the other
-  28 still require ordinary preparation capacity.
+  27 still require ordinary preparation capacity; Express has now also passed.
 - Astro compression experiment completed: session36583 ended0. Levels6 and9
   reduced124,914,593bytes to124,901,410/124,901,306 respectively (0.011%). Both
   decoded to identical tarSHA427fe3c86896feeac0555e1bb57b573cee195b4800263e0d3e5c08674f44a882.
@@ -82,14 +82,19 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
 First CUA call after compaction must be cua.rewriteDocumentation. Reuse bindings.
 Mark pending workflow tabs each turn; no duplicate launch/build after read timeout.
 
-- stackQa6: IAB2tab13, completed React Router preparation. Ready region includes period:
+- stackQa6: IAB2tab13, completed Express preparation. Ready region includes period:
   Your application is ready to share. → Try this version link.
-- accountWorker: IAB2tab12, stopped React Router launcher; localStorage count2.
-  reactRouterLaunchUrl, reactRouterBrowserChecks, reactRouterBrowserLogs=[],
-  reactRouterPreparationSubmittedAt. Older Astro bindings remain.
-- measureReactRouterCounter(tab,record,openLabel,expectedBefore) preserves start
-  time in caller record, verifies restored expected value before click and reload.
-  If a bounded observation expires, continue same launch; never duplicate it.
+- accountWorker: IAB2tab12, stopped Express launcher; SQLite count2.
+  expressLaunchUrl, expressBrowserChecks, expressBrowserLogs=[],
+  expressPreparationSubmittedAt. Older React Router and Astro bindings remain.
+- measureExpressCounter(tab,record,openLabel,expectedBefore) preserves start time
+  and verifies exact heading express counter, restored DB count, click and reload.
+  Use expected0 first and1 on repeat for a fresh fixture. No duplicate launch on
+  an observation timeout. Fastify needs its actual fixture heading and selectors.
+- Codespaces Express options: PODS_COUNTER_CHECK=1, PODS_EXPECT_INITIAL_COUNT=0,
+  PODS_EVIDENCE_FILE=evidence/stack-express-codespaces.json. Two launches mandatory.
+  /tmp/pods-express-native-handoff.json is now HISTORICAL waiting-state data;
+  its watcher71223 is terminal. Prefer this updated checkpoint.
 - measureSsrCounter(tab,heading,scenario,openLabel): bounded50s visibility and
   successful increment, reload retained value. Label must come from observed UI.
   measurePreparedCounter is older static helper hardcoded to Open PODS counter.
@@ -98,7 +103,7 @@ Mark pending workflow tabs each turn; no duplicate launch/build after read timeo
   verified55 isolated/27 Google/27 Codespaces and React Router Passed/Passed/Passed.
   Codespaces browser-pending warning remains visible. No further rerun is needed.
 - nativeGithubKeep: IAB2tab10, pending GitHub two-factor authentication; fresh
-  read00:18UTC still2FA. User action already requested. No SMS/code sent.
+  read00:40UTC still2FA. User action already requested. No SMS/code sent.
 - cloudLifecycle: IAB2tab14, Cloud Shell Restart confirmation pending. No approval
   to replace VM. Do not click Restart or accept background Authorize prompt.
 - Redact Connected-account text and private Cloud Shell hostnames from snapshots.
