@@ -87,7 +87,7 @@ Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
 later passing attempts do not erase them. Automated coverage is **114 passing
 checks locally and on aswin**. Native coverage is 28 Google browser fixtures and
-28 Codespaces HTTP/protocol fixtures; 27 await native acceptance. Codespaces
+29 Codespaces HTTP/protocol fixtures; 27 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1344,3 +1344,43 @@ Evidence: `stack-express-url.json`, `stack-express-google.json` and
 28 Codespaces protocol**, with **27 fixtures awaiting native acceptance**.
 First-image delivery still exceeds the 20-second goal; cached performance is
 reported separately from compute startup and artifact transfer.
+
+
+## Fastify preview transport regression
+
+The real developer form prepared the original Fastify + SQLite fixture at
+`9eee994ba7f7` in **29.529 seconds**, producing a **272,829-byte Node bundle**.
+No Docker image or QA artifact import was needed.
+
+| Check | Observed result |
+| --- | --- |
+| Google, initial compute RUNNING | Health 5.796s; page visible 7.043s; counter read by 7.054s |
+| Google browser write | **Failed**: value remained zero, including after reload and another click |
+| Codespaces, initial Shutdown | Health 28.162s, including resume; authenticated HTTP SQLite 0→1 |
+| Codespaces, cached full relaunch | Health 7.722s; retained SQLite 1→2 |
+
+A bounded metadata capture on the same Google environment found that its preview
+forwarded the empty POST with `Transfer-Encoding: chunked` and no `Content-Type`.
+Fastify returned HTTP 415 (`FST_ERR_CTP_INVALID_MEDIA_TYPE`). This explains why the
+same fixture passed direct HTTP testing but failed through the browser preview.
+No credentials, cookies or account identifiers were recorded.
+
+The public fixture at `d6da2ed780aec8ae0178fc181f1d24113c322e15` now sends an explicit
+JSON body and displays failed requests. The real prepared backend and its shipped
+client script were tested under an emulated chunked transport: the old fixture
+failed with 415, while the corrected fixture saved 0→1 and retained 1→2 after a
+full application restart. A simulated HTTP 503 also displayed an error and
+re-enabled the button. This isolated regression is **not native browser acceptance**;
+the corrected revision still needs normal production preparation and provider
+retesting. The original Google failure remains in the evidence.
+
+All three native launches stopped; the final audit found no active builds or
+launches, control health 200 and Codespaces port 20867 private. Coverage is
+**55 isolated / 28 Google browser / 29 Codespaces HTTP**, with 27 fixtures still
+missing at least one acceptance path. Every Codespaces native browser check
+remains pending. Source count is **5,622 physical lines** under the scope in
+`evidence/code-lines.json`.
+
+Evidence: `stack-fastify-{url,google,codespaces}.json` and
+`stack-fastify-preview-regression-{before,after}.json`. Reproduce the isolated
+regression with `scripts/test-fastify-preview.mjs` in the QA guest.

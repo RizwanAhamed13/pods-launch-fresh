@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-10-04T01:09:55.863Z",
+  "passed": false,
+  "error": "Browser request through chunked preview transport must persist its write\n\n0 !== 1\n",
+  "observations": [
+    {
+      "round": 0,
+      "before": 0,
+      "displayed": 0,
+      "saved": 0,
+      "requests": [
+        {
+          "method": "GET",
+          "status": 200,
+          "contentType": null
+        },
+        {
+          "method": "POST",
+          "status": 415,
+          "contentType": null
+        },
+        {
+          "method": "GET",
+          "status": 200,
+          "contentType": null
+        }
+      ]
+    }
+  ],
+  "fixtureRevision": "9eee994ba7f70d1793bc449573ddb36e01003818",
+  "fixtureSourceSha256": "ff685dfddb80aca7655f37b8537cd43ea93201db9d7175c8360699fa60355c28",
+  "reproduction": "Run scripts/test-fastify-preview.mjs inside the isolated QA guest against the corresponding installed Fastify fixture revision."
+}

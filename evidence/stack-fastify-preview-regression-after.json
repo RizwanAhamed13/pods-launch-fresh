@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-10-04T01:10:28.321Z",
+  "scope": "Actual prepared Fastify backend plus its shipped client script under an emulated chunked Google preview transport; not native browser acceptance.",
+  "passed": true,
+  "observations": [
+    {
+      "round": 0,
+      "before": 0,
+      "displayed": 1,
+      "saved": 1,
+      "requests": [
+        {
+          "method": "GET",
+          "status": 200,
+          "contentType": null
+        },
+        {
+          "method": "POST",
+          "status": 200,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "before": 1,
+      "displayed": 2,
+      "saved": 2,
+      "requests": [
+        {
+          "method": "GET",
+          "status": 200,
+          "contentType": null
+        },
+        {
+          "method": "POST",
+          "status": 200,
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ],
+  "fixtureRevision": "d6da2ed780aec8ae0178fc181f1d24113c322e15",
+  "fixtureSourceSha256": "e4c2e6077fa4498ff0f02ea3be59cf3f2ab66a19f71fc0bf98958e8a351ed225",
+  "reproduction": "Run scripts/test-fastify-preview.mjs inside the isolated QA guest against the corresponding installed Fastify fixture revision."
+}

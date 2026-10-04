@@ -1,0 +1,71 @@
+{
+  "recordedAt": "2026-10-04T01:08:32.373420+00:00",
+  "scope": "Real Google Cloud Shell browser launch; product page appeared, but counter write failed. Launch stopped.",
+  "results": [
+    {
+      "id": "doYxcVlVlsz9EYYY6CXhuNAvFRrPZKT3",
+      "appId": "repo-d3c62ee9058c74712132c10e-9eee994ba7f7-e189ea49d139",
+      "provider": "google",
+      "port": 20867,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791075740527,
+        "startRequestedAt": 1791075740615
+      },
+      "createdAt": 1791075739956,
+      "updatedAt": 1791076097187,
+      "providerReadyAt": 1791075742834,
+      "readyAt": 1791075745752,
+      "timings": {
+        "downloadMs": 610,
+        "runtimeReadyMs": 1087,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 5796,
+      "deliveryMs": 2918
+    }
+  ],
+  "browserChecks": [
+    {
+      "scenario": "first-artifact-delivery",
+      "startedAt": "2026-10-04T01:02:19.773Z",
+      "visibleMs": 7043,
+      "stateRestoredMs": 7054,
+      "before": 0,
+      "afterFailedWrite": 0,
+      "afterReload": 0,
+      "passed": false,
+      "failure": "Empty browser POST forwarded as chunked without Content-Type was rejected by Fastify with HTTP 415. Repeated action after reload also left the value at zero."
+    }
+  ],
+  "browserErrorOrWarningLogsAtFailure": [],
+  "diagnosis": {
+    "scope": "Bounded request metadata capture on the same authorized running environment; no cookies, tokens or account identifiers recorded. Temporary SSH key removed through provider cleanup.",
+    "request": {
+      "method": "POST",
+      "path": "/api/count",
+      "headers": {
+        "transfer-encoding": "chunked"
+      }
+    },
+    "responseStatus": 415,
+    "response": {
+      "statusCode": 415,
+      "code": "FST_ERR_CTP_INVALID_MEDIA_TYPE",
+      "error": "Unsupported Media Type",
+      "message": "Unsupported Media Type"
+    }
+  },
+  "persistenceScope": "No successful browser write; Google persistence and cached relaunch remain unverified.",
+  "passed": false,
+  "cleanupAudit": {
+    "at": "2026-10-04T01:08:32.373420+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 20867,
+    "codespacesPreviewVisibility": "private"
+  }
+}

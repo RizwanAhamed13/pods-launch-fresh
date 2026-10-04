@@ -11,45 +11,63 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
 - aswin: /home/aswin/pods-launch-fresh; SSH alias aswin.
 - Private core: https://github.com/RizwanAhamed13/pods-launch-fresh.
 - Public fixtures: https://github.com/RizwanAhamed13/pods-launch-runtime-fresh,
-  revision9eee994ba7f70d1793bc449573ddb36e01003818.
+  current revisiond6da2ed780aec8ae0178fc181f1d24113c322e15.
+  Native Fastify evidence below tested the original9eee994 revision.
 - 55 isolated real build/artifact/browser fixture passes. 28 native Google browser
-  and28 Codespaces authenticated HTTP/protocol passes. 27 await native acceptance:
+  and29 Codespaces authenticated HTTP/protocol passes. 27 still lack Google
+  acceptance;26 also lack Codespaces protocol acceptance. Fastify passed only
+  Codespaces protocol so far. Google-pending fixtures:
   actix, adonis, aspnet, axum, deno, echo, fastapi, fastify, fiber, flask-mariadb, flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, hono, koa, ktor, micronaut, nestjs, phoenix, php, rocket, sinatra, streamlit, symfony.
 - All eight static frontend and all six SSR fixtures pass both acceptance paths.
   Codespaces native browser interaction remains pending for every fixture.
 - Latest tooling source18026bb:114 automated tests pass locally/aswin. Logs
   /tmp/pods-ssr-complete-tests-{local,aswin}.txt. Live runtime remains5e5b4a0.
   Source updates only native QA scripts/tests; no runtime restart was necessary.
-- 5,523 physical source lines:2,960 product/tooling,1,492 tests,907 examples,
+- 5,622 physical source lines:3,033 product/tooling,1,492 tests,933 examples,
   164 browser tools. The extension filter now includes the four-line .astro file.
 
-## Latest completed gate: native Express + SQLite
+## Latest gate: Fastify native failure reproduced and fixture fixed
 
-- Actual form submitted once00:44:59.218UTC after watcher71223 confirmed ordinary
-  capacity00:44:54UTC (account2/global2/active0). Preparation57.777s, manifest275
-  bytes, image82,250,849bytes. Runtime5e5b4a0, checkoutfdcc305 during native tests.
-- App repo-6c2ac75a42b5f46c775a3028-9eee994ba7f7-53e4f5be199d; private port24378.
-  ImageSHA1ec6d596b67cedb0c3c264baaaab32ed88c6ab7b460cc3d3e130ea436edf09b3.
-- Cloud Shell initialRUNNING on both launches. First-image health24.220s,
-  delivery21.125s, visible26.290s, interaction26.585s; cached health5.986s,
-  delivery3.158s, visible6.371s, restored database value6.381s, interaction6.677s.
-  Both browser calls continuous. SQLite0→1/reload1, full stop/relaunch retained
-  1→2/reload2; warnings/errors[]. This is backend SQLite persistence, not browser
-  localStorage. Provider VM replacement remains untested.
-- Codespaces harness46698 ended0 in pods-launch-containers-69rw5vx4xp46c5qw5.
-  FirstinitialShutdown/resume/image-absent:health52.999s,delivery40.331s.
-  RepeatinitialAvailable/cached:health9.201s,delivery8.535s. HTTP product and SQLite
-  write/read passed0→1, then expected retained1→2 after a full application stop.
-- All four launches stopped. Final00:48:24UTC audit:active builds0/launches0,
-  control health200; Codespaces port24378 verifiedprivate. No public preview.
-- Evidence stack-express-{url,google,codespaces}.json, explicit acceptance flags,
-  temp /tmp/pods-express-production-evidence.json and /tmp/pods-express-ports.json.
-  /tmp/pods-record-express.py wrote the verified evidence.
+- Ordinary quota watcher52715 ended0 at01:01:16UTC(account2/global2/active0).
+  Actual form submitted once01:01:20.421UTC; preparation29.529s, bundle272829bytes.
+  Original fixture9eee994, control5e5b4a0, checkout7f73f6c.
+- App repo-d3c62ee9058c74712132c10e-9eee994ba7f7-e189ea49d139;private port20867.
+- Google initialRUNNING:health5796ms,delivery2918ms,page7043ms,read7054ms.
+  Browser write FAILED:0 remained0 after clicks and reload. Do not claim7seconds
+  to usable product. Only one Google launch; stopped after diagnosis.
+- Bounded raw HTTP metadata capture on its same authorized environment confirmed
+  POST/api/count with Transfer-Encoding:chunked and NO Content-Type; Fastify415
+  FST_ERR_CTP_INVALID_MEDIA_TYPE. No cookies/tokens/accounts recorded. Temporary
+  SSH key removed through existing provider finally cleanup. Diagnostic16129 ended0.
+- Local gcloud is a DIFFERENT,SUSPENDED environment. Read-only identity comparison
+  failed; no CLI SSH/start was attempted there. Do not use that CLI identity.
+- Codespaces14206 ended0:pods-launch-7vrw57jpjjppcww57 (Node environment, NOT the
+  older containers environment). FirstinitialShutdown health28162ms/delivery13185;
+  cachedinitialAvailable health7722/delivery7159. SQLite0→1, fullstop retained1→2.
+  Both stopped; native browser execution still pending.
+- Final01:08:32UTC audit:active builds0/launches0,health200,port20867private.
+  Evidence stack-fastify-{url,google,codespaces}.json; Googlepassedfalse,CStrue.
+- Fixed examples/stacks/fastify/server.js sends JSON with body{} and Content-Type,
+  reports failed writes and re-enables its button. Public fixture commitd6da2ed
+  published from clean /tmp/pods-spring-runtime-20261004 (origin main).
+- scripts/test-fastify-preview.mjs prepares the real Fastify source and executes
+  its shipped client script against its real backend with emulated chunked POST.
+  Before14367 exit1 reproduced415/value0; after45265 exit0 saved0→1 and restarted
+  1→2. Simulated503 displayed error and enabled retry. This is isolated script/HTTP
+  integration, not browser/native acceptance. Regression evidence before/after
+  includes exact fixture revisions and source hashes. Compatibility3 tests pass.
+- No full114-test rerun: product runtime and automated tests were unchanged.
+  Existing114 full-suite baseline remains18026bb. New regression passed separately.
 
 ## Next bounded gate
 
-- Next native framework: Fastify, followed by the remaining backend/database
-  fixtures. No new production preparation or launch has been submitted.
+- NEXT: rebuild fixed Fastify atd6da2ed through the normal developer form and
+  retest actual Google browser writes, reload and full stop/relaunch. Existing
+  Google data should still be0. Codespaces already saved2 on this stable dataKey;
+  use PODS_EXPECT_INITIAL_COUNT=2, require2→3 then3→4 after a full restart.
+  Preserve failed original evidence when recording the new revision (new files).
+- Last quota snapshot01:08:35UTC:account3/global3/active0,next ordinary slot
+  01:24:44.981UTC. No new build submitted; no live quota watcher currently.
 - Express packaging diagnosis is now reproduced: esbuild0.25.12 emits one
   unresolved optional require of supports-color in debug/src/node.js. The current
   non-builtin external guard selects a full container. Promoting esbuild's
@@ -65,10 +83,9 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
   <root>/volumes/pods-<key-hash>/app-data/data. A format change would currently
   choose a different database. Container recipes also run with their image's
   default identity; handle file ownership without weakening directory checks.
-- Live quota watcher52715 started00:51:13UTC; at00:51:16 account3/global3/active0,
-  next ordinary slot01:01:09.984UTC. Poll the existing handle coarsely; do not
-  duplicate it. No Fastify preparation submitted yet. Production limits remain
-  3/account/hour and12/global/hour; never bypass them or import QA artifacts.
+- Completed watcher52715 and Express probe44620 ended0. No live probes/builds
+  remain. Production limits3/account/hour and12/global/hour remain unchanged.
+  Never bypass quota or import QA artifacts into production.
 - /tmp/pods-next-native-quota-watch.py is a reusable bounded watcher. Anchor Svelte
   buildNLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp account privately; never print identity.
 - /tmp/pods-capture-native.py runs on aswin with argument astro, react-router, express or fastify;
@@ -83,7 +100,7 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
   in flight; there is no evidenced persistent UI bug and no fix was made.
 - Readonly production audit00:10UTC found no already-prepared production builds
   for any of the then29 pending fixtures. React Router has since passed; the other
-  27 still require ordinary preparation capacity; Express has now also passed.
+  This is historical; original Fastify has now been prepared, but its fixed revision needs another ordinary build.
 - Astro compression experiment completed: session36583 ended0. Levels6 and9
   reduced124,914,593bytes to124,901,410/124,901,306 respectively (0.011%). Both
   decoded to identical tarSHA427fe3c86896feeac0555e1bb57b573cee195b4800263e0d3e5c08674f44a882.
@@ -97,26 +114,20 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
 First CUA call after compaction must be cua.rewriteDocumentation. Reuse bindings.
 Mark pending workflow tabs each turn; no duplicate launch/build after read timeout.
 
-- stackQa6: IAB2tab13, Fastify folder staged, preparation NOT submitted. Ready region includes period:
-  Your application is ready to share. → Try this version link.
-- accountWorker: IAB2tab12, stopped Express launcher; SQLite count2.
-  expressLaunchUrl, expressBrowserChecks, expressBrowserLogs=[],
-  expressPreparationSubmittedAt. Older React Router and Astro bindings remain.
-- measureExpressCounter(tab,record,openLabel,expectedBefore) preserves start time
-  and verifies exact heading express counter, restored DB count, click and reload.
-  Use expected0 first and1 on repeat for a fresh fixture. No duplicate launch on
-  an observation timeout. Fastify needs its actual fixture heading and selectors.
-- Codespaces Express options: PODS_COUNTER_CHECK=1, PODS_EXPECT_INITIAL_COUNT=0,
-  PODS_EVIDENCE_FILE=evidence/stack-express-codespaces.json. Two launches mandatory.
-  /tmp/pods-express-native-handoff.json is now HISTORICAL waiting-state data;
-  its watcher71223 is terminal. Prefer this updated checkpoint.
-- measureSsrCounter(tab,heading,scenario,openLabel): bounded50s visibility and
-  successful increment, reload retained value. Label must come from observed UI.
-  measurePreparedCounter is older static helper hardcoded to Open PODS counter.
-  stopPreparedProduct(tab,url) navigates to launcher, clicks Stop once, confirms.
-- supportQa: IAB2tab29, public/support deliverable. After3452f41 sync, browser
-  verified55 isolated/28 Google/28 Codespaces and Express Passed/Passed/Passed.
-  Codespaces browser-pending warning remains visible. No further rerun is needed.
+- stackQa6: IAB2tab13, completed ORIGINAL Fastify preparation. Ready region includes
+  period:Your application is ready to share. → Try this version link. To build
+  corrected public revision, use Prepare another version ONCE after quota opens.
+- accountWorker:IAB2tab12,stoppedoriginalFastifylauncher,GoogleSQLitevalue0.
+  fastifyLaunchUrl,fastifyPreparationSubmittedAt,fastifyBrowserChecks[0](passedfalse),
+  fastifyBrowserLogs=[] remain. Old Express/React Router/Astro bindings remain.
+- measureFastifyCounter(tab,record,openLabel,expectedBefore) waits exacth1fastify
+  counter and expected saved count;recordscontinuousvisible/state/interactiontime.
+  It allows50seconds;timeout does not authorize another launch. Googlefixedfirst
+  expected0 then1 after fullstop. Use newrecordarray to preserve originalfailure.
+- stopPreparedProduct(tab,url) confirmsstop. History can briefly lag whileits
+  existingasync request finishes; no evidencedhistorybug.
+- supportQa:IAB2tab29,public support deliverable. Needs fresh verification after
+  this gate's push:55isolated/28Google/29Codespaces;FastifyGooglePending,CS passed.
 - nativeGithubKeep: IAB2tab10, pending GitHub two-factor authentication; fresh
   read00:40UTC still2FA. User action already requested. No SMS/code sent.
 - cloudLifecycle: IAB2tab14, Cloud Shell Restart confirmation pending. No approval
@@ -145,8 +156,9 @@ Mark pending workflow tabs each turn; no duplicate launch/build after read timeo
 - QA LXDpods-fresh-matrix-01 via/snap/lxd/current/bin/lxc,not snap wrapper.
   Source/opt/pods,fixtures/work/stacks,output/output,node/opt/node/bin/node,uid1000.
   Existing QAserverPID292107/session86855,app18090/proxy8081/tunnel18890; one-shot
-  SIGTERM handler consumed. Don't blindly signal. New probe tests used18094 and
-  stopped it. LXC file push could not overwrite existing root-owned/tmp paths;
+  SIGTERM handler consumed. Don't blindly signal. New Fastify and Express probes used18095 and
+  stopped it. QA Fastify source is now corrected atd6da2ed; local regression helper
+  is/opt/pods/scripts/test-fastify-preview.mjs. LXC file push could not overwrite existing root-owned/tmp paths;
   unique reviewed helper paths worked without changing permissions.
 - Graph projectUsers-rizwanahamed-Documents-ChatGPT-podsv2,indexed through5e5b4a0.
   public/scripts/examples/deploy excluded; targeted fallback is appropriate.
