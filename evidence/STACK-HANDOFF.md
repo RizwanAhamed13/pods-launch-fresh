@@ -1214,3 +1214,27 @@ product interactions; do not apply the Add one locator to those two fixtures.
   All four launches stopped; no service restart. Coverage55/46/46;9nativepending.
   Source6995/full184 unchanged. Existing GitHub2FA/VMreplacement/stablehostname
   inputs remain pending. Goal active and progressing.
+
+
+## ASP.NET publication and next PHP gate
+
+- c7d55dc pushed and synced to aswin. Public support DOM at
+  2026-10-04T07:38:59.688Z showed55/46/46, ASP.NET all three checks passed,
+  and Codespaces browser interaction still pending. Evidence
+  stack-aspnet-published.json. Goal remains active; nine native fixtures remain.
+- Native ASP.NET watcher67488 and Codespaces90004 both exited0. All four
+  launches stopped. Product port29758 stayed private. Google first/cached
+  visible28495/7781ms, writes29308/8171ms; CS cold61937/cached8305ms.
+  First image delivery missed20s even on running Google compute; cached passed.
+- New ordinary same-account quota watcher27775 remains live. Snapshot at
+  07:37:42.269982UTC: account3/global3/activebuild0; next slot07:47:09.357UTC.
+  Resume that handle, no quota bypass or duplicate preparation.
+- IABtab1 draft folder examples/stacks/php; not submitted. Once quota reports
+  available, capture quotaBefore plus actual submit timestamp, then run
+  /tmp/pods-watch-php-build.py with that timestamp. Existing file-counter
+  native record/document helpers accept PHP/Deno/Sinatra; the bounded capture
+  helper now permits all remaining explicit fixture names.
+- Browser tabs1/2/3 are marked for continuation. Current PHP/Sinatra/Deno
+  preflights and four remaining SQLite framework transport preflights passed.
+  Their disposable storage is cleaned. Do not reset native saved counters.
+  Pending GitHub2FA/VMreplacement/stablehostname inputs stay pending.
