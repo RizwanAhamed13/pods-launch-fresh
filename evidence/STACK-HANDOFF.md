@@ -17,11 +17,11 @@ VM replacement durability, or a universal 20-second cold launch.
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
   saved format changes on actual environment capabilities.
-- Coverage:55 isolated build/artifact/browser passes;38 Google native browser
-  and38 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+- Coverage:55 isolated build/artifact/browser passes;39 Google native browser
+  and39 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Native Codespaces browser checks remain
-  pending authorization. The17 fixtures awaiting native acceptance are:
-  actix, aspnet, axum, deno, echo, fiber, flask-valkey, go, gradio,
+  pending authorization. The16 fixtures awaiting native acceptance are:
+  actix, aspnet, axum, deno, echo, fiber, go, gradio,
   ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
 - Current full suite:166/166 passed locally and in isolated aswin QA after
   Valkey inspection tooling. Logs /tmp/pods-valkey-full-{local,qa}.txt.
@@ -733,3 +733,35 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   Relative document links resolve. Keep future detailed run history in that file;
   update current counts and relevant evidence links in SUPPORT.md without growing
   another chronological log. No product source or native acceptance was changed.
+
+
+## Valkey native acceptance complete
+
+- Previous goal turn progressed: inspection/preflight published ea5135e. This turn
+  published concise support guide/history split8dcff88, then normal quota became
+  available05:03:29.498UTC; watcher52951 ended0. Developer submitted once at
+  2026-10-04T05:03:53.707Z; build observer43760 ended0. BuildBklzCORIa7-SKDmNfyss5mS7E1mkIxwf in127295ms,
+  source d6da2ed780ae, apprepo-e53406928177d326dd9cb17c-d6da2ed780ae-df3a34a3842a, imagebytes69644333.
+- Google actual UI0→1→2 with reloads/fullstops passed, no warning/error logs.
+  Firsthealth23883ms, visible25373ms,
+  write25676ms. Cachedhealth8858ms,
+  visible10401ms, restore10516ms,
+  write10831ms. Both Cloud Shell runs stopped before CS.
+- Codespaces88436 ended0: firstShutdown,
+  health60011ms/delivery34751ms,
+  cachedimages0; cachedhealth10174ms.
+  RealValkey8.1.10/buildfd3b186b1408478b, AOFenabled/writeok,
+  savedcounter1/2, durablevolume/privateDB passed across fullstops.
+- Allfourlaunchesstopped. Audit2026-10-04T05:10:32.493654+00:00: HTTP200/integrityok,
+  zeroactivebuild/launch, PID1063107 andrunnerSHAunchanged.
+  Codespaces productport24747 private. Evidence
+  stack-flask-valkey-{url,google,codespaces,audit}.json. Source6567/full166stillvalid.
+- Coverage55/39/39,16nativepending. Next fixture can be Go(net/http); not started.
+  No live test or watcher remains. Tabs1developerValkeycomplete/2Valkeystopped/
+  3support are retained. GitHub2FA/VMreplacement/stablehostname questions stay
+  pending; do not repeat them. Goal remains active and making progress.
+- Environment-selection audit: Valkey used existing Codespace
+  pods-launch-containers-97qw56gjg47gf7vrv, created2026-10-04T00:31:56+05:30,
+  for both native runs. No creationRequestedAt; older SQLite Codespace69rw… is
+  still present. New apps choose an eligible existing environment; subsequent
+  launches keep their saved environment. Do not assume every fixture uses69rw….

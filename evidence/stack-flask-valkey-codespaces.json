@@ -1,0 +1,188 @@
+{
+  "testedAt": "2026-10-04T05:09:48.521Z",
+  "origin": "https://collection-conferences-ages-clearly.trycloudflare.com",
+  "results": [
+    {
+      "scenario": "first-launch",
+      "id": "V0N6ccOV_bnblfsyN2YDjB1VDeRowsrR",
+      "dataKey": "repo-e53406928177d326dd9cb17c",
+      "port": 24747,
+      "appId": "repo-e53406928177d326dd9cb17c-d6da2ed780ae-df3a34a3842a",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "df3a34a3842a21db5b89719c8e40c365626f996a3ac708e345bac14bb523398b",
+      "images": [
+        {
+          "id": "sha256:20db39527f22b1bc10fd58dfd0616bfd16d58725fe0db97ac9bf27ed2c33437f",
+          "sha256": "91db7cabf32ffc981fc9fb30faa1ba0ba0b33b084d1cba2a092cfaafc0e3a77e",
+          "bytes": 52235918
+        },
+        {
+          "id": "sha256:081c2f5cb575efc901aa80ff9cdbd1ec6a301682fd35e1ebb4b0990a4a4a8507",
+          "sha256": "10943ffdaadac347af2c806367985ea88bd791101d7d1e0b68c55e40c93f2e7b",
+          "bytes": 17408415
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791090487533,
+      "updatedAt": 1791090547545,
+      "expiresAt": 1791092287533,
+      "environment": "pods-launch-containers-97qw56gjg47gf7vrv",
+      "compute": {
+        "initialState": "Shutdown",
+        "observedAt": 1791090488055,
+        "resumeRequestedAt": 1791090488205
+      },
+      "providerReadyAt": 1791090512793,
+      "previewUrl": "https://pods-launch-containers-97qw56gjg47gf7vrv-24747.app.github.dev",
+      "lastSeenAt": 1791090547544,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 975,
+        "imagesMs": 16243,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 85,
+        "imageDownloadMs": 11758,
+        "imageLoadMs": 4384,
+        "runtimeReadyMs": 21894,
+        "cacheHit": false
+      },
+      "readyAt": 1791090547544,
+      "deliveryMs": 34751,
+      "totalMs": 60011,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 0,
+        "afterWrite": 1,
+        "afterRead": 1,
+        "passed": true,
+        "expectedInitialCount": 0
+      },
+      "valkeyRuntimeCheck": {
+        "passed": true,
+        "project": "pods-ff96fb0b375b084b1b51f7f7",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          24747
+        ],
+        "volume": "pods-ff96fb0b375b084b1b51f7f7_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Read-only inspection of private Docker boundaries, durable Codespaces storage, Valkey engine, append-only persistence and the counter saved through the product. Browser execution is separate.",
+        "databaseEngine": "Valkey",
+        "version": "8.1.10",
+        "buildId": "fd3b186b1408478b",
+        "appendOnly": true,
+        "appendOnlyWriteStatus": "ok",
+        "savedCount": 1
+      },
+      "statusAfterStop": "stopped"
+    },
+    {
+      "scenario": "repeat-launch",
+      "id": "Gxc8MWTILXRCu67oc-M2zGPr71I-f90o",
+      "dataKey": "repo-e53406928177d326dd9cb17c",
+      "port": 24747,
+      "appId": "repo-e53406928177d326dd9cb17c-d6da2ed780ae-df3a34a3842a",
+      "appName": "pods-launch-runtime-fresh",
+      "provider": "github",
+      "sha256": "df3a34a3842a21db5b89719c8e40c365626f996a3ac708e345bac14bb523398b",
+      "images": [
+        {
+          "id": "sha256:20db39527f22b1bc10fd58dfd0616bfd16d58725fe0db97ac9bf27ed2c33437f",
+          "sha256": "91db7cabf32ffc981fc9fb30faa1ba0ba0b33b084d1cba2a092cfaafc0e3a77e",
+          "bytes": 52235918
+        },
+        {
+          "id": "sha256:081c2f5cb575efc901aa80ff9cdbd1ec6a301682fd35e1ebb4b0990a4a4a8507",
+          "sha256": "10943ffdaadac347af2c806367985ea88bd791101d7d1e0b68c55e40c93f2e7b",
+          "bytes": 17408415
+        }
+      ],
+      "productPath": "/",
+      "status": "ready",
+      "createdAt": 1791090561242,
+      "updatedAt": 1791090571416,
+      "expiresAt": 1791092361242,
+      "environment": "pods-launch-containers-97qw56gjg47gf7vrv",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791090561941
+      },
+      "providerReadyAt": 1791090561974,
+      "previewUrl": "https://pods-launch-containers-97qw56gjg47gf7vrv-24747.app.github.dev",
+      "lastSeenAt": 1791090571416,
+      "storageMode": "persistent",
+      "timings": {
+        "downloadMs": 662,
+        "imagesMs": 95,
+        "imageCacheHits": 2,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 95,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 3953,
+        "cacheHit": true
+      },
+      "readyAt": 1791090571416,
+      "deliveryMs": 9442,
+      "totalMs": 10174,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 1,
+        "afterWrite": 2,
+        "afterRead": 2,
+        "passed": true,
+        "expectedAfterRelaunch": 1
+      },
+      "valkeyRuntimeCheck": {
+        "passed": true,
+        "project": "pods-ff96fb0b375b084b1b51f7f7",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          24747
+        ],
+        "volume": "pods-ff96fb0b375b084b1b51f7f7_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Read-only inspection of private Docker boundaries, durable Codespaces storage, Valkey engine, append-only persistence and the counter saved through the product. Browser execution is separate.",
+        "databaseEngine": "Valkey",
+        "version": "8.1.10",
+        "buildId": "fd3b186b1408478b",
+        "appendOnly": true,
+        "appendOnlyWriteStatus": "ok",
+        "savedCount": 2
+      },
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "performanceContext": "Cloud Shell first and cached browser launches completed and stopped before either Codespaces launch began. These provider checks were sequential; unrelated network traffic was not controlled.",
+  "cleanupAudit": {
+    "at": "2026-10-04T05:10:29.281157+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 24747,
+    "codespacesPreviewVisibility": "private"
+  },
+  "persistenceScope": "Authenticated HTTP Valkey write/read and full stop/relaunch on user compute; native Codespaces browser execution remains pending.",
+  "environmentSelection": {
+    "scope": "New application selected an existing eligible Codespace; both launches reused it. Prior SQLite environment remains present. No Codespace was created or deleted during this acceptance.",
+    "selectedEnvironment": "pods-launch-containers-97qw56gjg47gf7vrv",
+    "createdAt": "2026-10-04T00:31:56+05:30",
+    "sameEnvironmentForBothLaunches": true,
+    "priorSqliteEnvironmentStillPresent": true
+  }
+}

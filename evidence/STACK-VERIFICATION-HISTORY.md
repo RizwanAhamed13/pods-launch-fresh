@@ -1892,3 +1892,39 @@ Evidence: `stack-valkey-runtime-probe-tests.json` and
 `stack-flask-valkey-chunked-probe.{json,mjs}`. Source totals **6,567 physical
 lines**. Native Valkey acceptance is still pending; provider coverage remains
 **55 isolated / 38 Google browser / 38 Codespaces protocol**.
+
+
+## Valkey native product acceptance
+
+The actual developer form prepared `examples/stacks/flask-valkey` from fixture
+revision `d6da2ed780ae` in **127.295 seconds** after ordinary quota
+availability. Artifact `df3a34a3842a21db5b89719c8e40c365626f996a3ac708e345bac14bb523398b` contains
+**69,644,333 image bytes**. No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell RUNNING, first image delivery | Server healthy 23.883s; product visible 25.373s; saved value read 25.389s; button write 25.676s |
+| Cloud Shell cached relaunch | Server healthy 8.858s; product visible 10.401s; saved value restored 10.516s; next write 10.831s |
+| Codespaces initially Shutdown | Server healthy 60.011s, delivery/startup 34.751s; 0 cached images |
+| Codespaces cached relaunch | Server healthy 10.174s; authenticated HTTP write/read and direct Valkey inspection passed |
+
+Cloud Shell product buttons and reloads verified **0→1→2**, retaining the first
+saved counter across a complete application stop/relaunch. No browser console
+warnings or errors were observed. Codespaces authenticated HTTP verified the same
+sequence. Fixed read-only commands inspected actual **Valkey 8.1.10**,
+build `fd3b186b1408478b`, append-only logging enabled and last write status `ok`,
+and the saved counter. Inspection found no published Codespaces database port; the
+Codespaces product port **24747** remains private.
+The volume was bound to persistent workspace storage.
+
+Both Cloud Shell runs finished and stopped before Codespaces testing started.
+All four launches ended stopped. The audit returned HTTP 200, SQLite integrity
+`ok`, zero active builds/launches and unchanged service PID/runner SHA. This tests
+application restart persistence, not power-loss recovery or provider VM replacement.
+Native Codespaces browser interaction remains pending. First launch timings
+exceed 20s; cached timings are not a universal first-launch guarantee.
+
+Evidence: `stack-flask-valkey-{url,google,codespaces,audit}.json`. Current coverage:
+**55 isolated / 39 Google browser / 39 Codespaces protocol**, **16** native
+fixtures pending. Source: **6,567 physical lines**; full suites **166/166** locally
+and in isolated aswin Linux QA remain valid.

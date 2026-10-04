@@ -627,13 +627,22 @@
       "serverEvidence": "stack-matrix-02.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-02.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-flask-valkey-url.json",
+        "stack-flask-valkey-google.json",
+        "stack-flask-valkey-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-02.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      },
+      "nativeProviderScope": "Flask + Valkey passed native Google product button, reload and Valkey retention across full stop/relaunch. Codespaces authenticated HTTP product, writes and full restart persistence passed. Native Codespaces browser interaction remains pending."
     },
     {
       "fixture": "gin",

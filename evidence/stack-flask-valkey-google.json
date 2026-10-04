@@ -1,0 +1,107 @@
+{
+  "recordedAt": "2026-10-04T05:10:29.281157+00:00",
+  "scope": "Flask + Valkey fixture: real Google Cloud Shell product browser button, reload, full app stop/relaunch and retained Valkey data.",
+  "results": [
+    {
+      "id": "att8ZzR7QMyr3b4ZZaeUiR18Sg_va_Hb",
+      "appId": "repo-e53406928177d326dd9cb17c-d6da2ed780ae-df3a34a3842a",
+      "provider": "google",
+      "port": 24747,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791090391137,
+        "startRequestedAt": 1791090391275,
+        "startAcceptedAt": 1791090393272
+      },
+      "createdAt": 1791090390518,
+      "updatedAt": 1791090439728,
+      "providerReadyAt": 1791090393784,
+      "readyAt": 1791090414401,
+      "timings": {
+        "downloadMs": 561,
+        "imagesMs": 14643,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 68,
+        "imageDownloadMs": 11756,
+        "imageLoadMs": 2804,
+        "runtimeReadyMs": 18939,
+        "cacheHit": false
+      },
+      "storageMode": "persistent",
+      "totalMs": 23883,
+      "deliveryMs": 20617
+    },
+    {
+      "id": "nPpyJ45FwVAE9ObQC1IyS9tNludOa0Al",
+      "appId": "repo-e53406928177d326dd9cb17c-d6da2ed780ae-df3a34a3842a",
+      "provider": "google",
+      "port": 24747,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791090446504,
+        "startRequestedAt": 1791090446920,
+        "startAcceptedAt": 1791090448848
+      },
+      "createdAt": 1791090445714,
+      "updatedAt": 1791090473801,
+      "providerReadyAt": 1791090449597,
+      "readyAt": 1791090454572,
+      "timings": {
+        "downloadMs": 420,
+        "imagesMs": 121,
+        "imageCacheHits": 2,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 121,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "runtimeReadyMs": 3931,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 8858,
+      "deliveryMs": 4975
+    }
+  ],
+  "browserChecks": [
+    {
+      "startedAt": "2026-10-04T05:06:30.113Z",
+      "visibleMs": 25373,
+      "stateRestoredMs": 25389,
+      "before": 0,
+      "afterWrite": 1,
+      "interactionMs": 25676,
+      "afterReload": 1,
+      "passed": true,
+      "statusAfterStop": "stopped"
+    },
+    {
+      "startedAt": "2026-10-04T05:07:25.433Z",
+      "visibleMs": 10401,
+      "stateRestoredMs": 10516,
+      "before": 1,
+      "afterWrite": 2,
+      "interactionMs": 10831,
+      "afterReload": 2,
+      "passed": true,
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "browserErrorOrWarningLogs": [
+    [],
+    []
+  ],
+  "persistenceScope": "Valkey counter written through native product UI survives full application stop/relaunch; does not prove replacement of the Cloud Shell VM.",
+  "passed": true,
+  "cleanupAudit": {
+    "at": "2026-10-04T05:10:29.281157+00:00",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "localHealthStatus": 200,
+    "codespacesPreviewPort": 24747,
+    "codespacesPreviewVisibility": "private"
+  },
+  "performanceContext": "Cloud Shell first and cached browser launches completed and stopped before either Codespaces launch began. These provider checks were sequential; unrelated network traffic was not controlled."
+}

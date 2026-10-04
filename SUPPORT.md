@@ -85,8 +85,8 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **166 passing checks in full local and isolated aswin QA runs**. Native coverage is 38 Google browser fixtures and
-38 Codespaces HTTP/protocol fixtures; 17 still lack at least one native acceptance path. Codespaces
+later passing attempts do not erase them. Automated coverage is **166 passing checks in full local and isolated aswin QA runs**. Native coverage is 39 Google browser fixtures and
+39 Codespaces HTTP/protocol fixtures; 16 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Native launch performance
@@ -135,8 +135,10 @@ a stable production hostname remains a deployment requirement.
   [Cloud Shell browser evidence](evidence/stack-flask-sqlite-google.json), and
   [Codespaces evidence](evidence/stack-flask-sqlite-codespaces.json) record the
   performance example above.
-- [Valkey preflight](evidence/stack-flask-valkey-chunked-probe.json) verifies
-  actual Valkey 8.1.10 and persistence; native Valkey acceptance is still pending.
+- Valkey native acceptance: [developer build](evidence/stack-flask-valkey-url.json),
+  [Cloud Shell browser](evidence/stack-flask-valkey-google.json), and
+  [Codespaces protocol and database inspection](evidence/stack-flask-valkey-codespaces.json).
+  Both paths retained the product counter across full stop/relaunch.
 - [Full-suite result](evidence/stack-valkey-runtime-probe-tests.json): **166/166**
   checks passed locally and in isolated aswin Linux QA.
 - [Physical source count](evidence/code-lines.json): **6,567 lines**, including

@@ -1,0 +1,70 @@
+{
+  "recordedAt": "2026-10-04T05:10:29.281157+00:00",
+  "controlRevision": "5dde1e5",
+  "checkoutRevision": "8dcff88",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T05:03:29.498801+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T05:03:53.707Z",
+  "attempts": [
+    {
+      "id": "BklzCORIa7-SKDmNfyss5mS7E1mkIxwf",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/flask-valkey",
+        "key": "e53406928177d326dd9cb17c"
+      },
+      "status": "ready",
+      "createdAt": 1791090234835,
+      "startedAt": 1791090234932,
+      "finishedAt": 1791090362227,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-e53406928177d326dd9cb17c-d6da2ed780ae-df3a34a3842a",
+      "app": {
+        "id": "repo-e53406928177d326dd9cb17c-d6da2ed780ae-df3a34a3842a",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "df3a34a3842a21db5b89719c8e40c365626f996a3ac708e345bac14bb523398b",
+        "bytes": 483,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-e53406928177d326dd9cb17c",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/flask-valkey",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "PODS stack counter"
+        },
+        "preparedAt": "2026-10-04T05:06:01.980Z",
+        "images": [
+          {
+            "id": "sha256:20db39527f22b1bc10fd58dfd0616bfd16d58725fe0db97ac9bf27ed2c33437f",
+            "sha256": "91db7cabf32ffc981fc9fb30faa1ba0ba0b33b084d1cba2a092cfaafc0e3a77e",
+            "bytes": 52235918
+          },
+          {
+            "id": "sha256:081c2f5cb575efc901aa80ff9cdbd1ec6a301682fd35e1ebb4b0990a4a4a8507",
+            "sha256": "10943ffdaadac347af2c806367985ea88bd791101d7d1e0b68c55e40c93f2e7b",
+            "bytes": 17408415
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 127295
+}
