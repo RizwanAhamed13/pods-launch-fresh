@@ -40,6 +40,146 @@
     "A provider delay can exceed the ready-compute 20-second target.",
     "Provider shutdown, VM replacement durability and Codespaces browser acceptance are separate gates."
   ],
-  "deployment": null,
-  "nativeRegression": null
+  "deployment": {
+    "before": {
+      "recordedAt": "2026-10-04T03:15:21.232333+00:00",
+      "pid": 1041360,
+      "cwd": "/home/aswin/pods-launch-fresh",
+      "command": "node --env-file=.env src/server.mjs",
+      "listenerMatches": true,
+      "sqliteQuickCheck": "ok",
+      "activeBuilds": 0,
+      "activeLaunches": 0,
+      "health": 200,
+      "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+      "revision": "5dde1e5eea81d16c207ab004878e7301678ec10a"
+    },
+    "after": {
+      "recordedAt": "2026-10-04T03:15:31.783701+00:00",
+      "pid": 1063107,
+      "cwd": "/home/aswin/pods-launch-fresh",
+      "command": "node --env-file=.env src/server.mjs",
+      "listenerMatches": true,
+      "sqliteQuickCheck": "ok",
+      "activeBuilds": 0,
+      "activeLaunches": 0,
+      "health": 200,
+      "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+      "revision": "5dde1e5eea81d16c207ab004878e7301678ec10a"
+    },
+    "passed": true,
+    "runnerUnchanged": true
+  },
+  "nativeRegression": {
+    "google": {
+      "results": [
+        {
+          "id": "WnkmJhfylx1gzZqzGCuRZMeb4Rt-LL7a",
+          "appId": "repo-6c2ac75a42b5f46c775a3028-d6da2ed780ae-c469dd8aefc5",
+          "provider": "google",
+          "port": 24378,
+          "status": "stopped",
+          "compute": {
+            "initialState": "RUNNING",
+            "observedAt": 1791083744757,
+            "startRequestedAt": 1791083744818,
+            "startAcceptedAt": 1791083746558
+          },
+          "createdAt": 1791083744144,
+          "updatedAt": 1791083758334,
+          "providerReadyAt": 1791083746999,
+          "readyAt": 1791083749143,
+          "timings": {
+            "downloadMs": 290,
+            "runtimeReadyMs": 611,
+            "cacheHit": true
+          },
+          "storageMode": "persistent",
+          "totalMs": 4999,
+          "deliveryMs": 2144
+        },
+        {
+          "id": "dKB7Q0ZAjXSIGNEsNK1GpdWY9cbR2RTM",
+          "appId": "repo-6c2ac75a42b5f46c775a3028-d6da2ed780ae-c469dd8aefc5",
+          "provider": "google",
+          "port": 24378,
+          "status": "stopped",
+          "compute": {
+            "initialState": "RUNNING",
+            "observedAt": 1791083764964,
+            "startRequestedAt": 1791083765197,
+            "startAcceptedAt": 1791083767273
+          },
+          "createdAt": 1791083764433,
+          "updatedAt": 1791083778444,
+          "providerReadyAt": 1791083767716,
+          "readyAt": 1791083769261,
+          "timings": {
+            "downloadMs": 233,
+            "runtimeReadyMs": 549,
+            "cacheHit": true
+          },
+          "storageMode": "persistent",
+          "totalMs": 4828,
+          "deliveryMs": 1545
+        }
+      ],
+      "browserChecks": [
+        {
+          "scenario": "after-provider-update",
+          "expectedBefore": 6,
+          "startedAt": "2026-10-04T03:15:43.365Z",
+          "visibleMs": 7220,
+          "stateRestoredMs": 7227,
+          "before": 6,
+          "afterWrite": 7,
+          "interactionMs": 7542,
+          "afterReload": 7,
+          "passed": true
+        },
+        {
+          "scenario": "relaunch-after-full-stop",
+          "expectedBefore": 7,
+          "startedAt": "2026-10-04T03:16:04.268Z",
+          "visibleMs": 5227,
+          "stateRestoredMs": 5341,
+          "before": 7,
+          "afterWrite": 8,
+          "interactionMs": 5624,
+          "afterReload": 8,
+          "passed": true
+        }
+      ],
+      "browserErrorOrWarningLogs": [
+        [],
+        []
+      ],
+      "passed": true,
+      "timeoutRecoveryObserved": false,
+      "scope": "Real native Google product browser, write/read/reload, full application stop/relaunch. No VM replacement."
+    },
+    "codespacesEvidence": "stack-google-recovery-codespaces-regression.json",
+    "codespacesPassed": true,
+    "codespacesBrowserPassed": false,
+    "codespacesScope": "Authenticated product HTTP/protocol over SSH on the same retained user-owned Codespace, counter 5 to 6 to 7 across full app stop/relaunch; native browser pending GitHub 2FA."
+  },
+  "cleanupAudit": {
+    "recordedAt": "2026-10-04T03:17:04.855862+00:00",
+    "pid": 1063107,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+    "revision": "5dde1e5eea81d16c207ab004878e7301678ec10a",
+    "ports": [
+      {
+        "sourcePort": 24378,
+        "visibility": "private"
+      }
+    ]
+  }
 }

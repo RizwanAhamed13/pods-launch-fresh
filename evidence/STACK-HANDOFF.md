@@ -347,5 +347,21 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   Start accepted/uncertain/reconciled timestamps distinguish future incidents.
 - Eight new cases; full146/146 passed locally and isolated aswin QA. Snapshot
   /output/google-recovery-candidate-f598e07 contains source and coverage data.
-- Deployment and native regression are pending for this candidate. The lost
-  response recovery is simulated; a real Google timeout has not recurred yet.
+- Deployed5dde1e5 at03:15:31.783701UTC after fresh idle audit, PID1063107,
+  health200, SQLiteok, runner SHA unchanged. The lost-response recovery is
+  simulated; the real timeout has not recurred and its original failure remains.
+- Native Google Express bundle kept SQLite6→7, reload7, full stop, retained7→8,
+  reload8. Pages7220/5227ms, writes7542/5624ms, health4999/4828ms;
+  delivery2144/1545ms. Both initialRUNNING and startAcceptedAt recorded;
+  no startUncertainAt and no browser errors/warnings. Both fully stopped.
+- Native Codespaces regression21792 ended0, same saved containerprofile;
+  retained5→6→7 across full stops. Available health11554/10698ms and delivery
+  11149/10129ms, privateport24378. Native browser remains unverified.
+- Finalaudit03:17:04.855862UTC: activebuild0/launch0, health200, SQLiteok,
+  PID1063107. Current Express counters: Google8, Codespaces7, both bundles.
+- Code6120lines=3250product/tooling+1773tests+933examples+164browsertools.
+  Coverage remains55/33/33;22nativefixtures pending. Source graph refreshed.
+- Nextfixture selected: FastAPI + SQLite. Browser stackQa6/tab13 holds an
+  unsubmitted draft: public runtime repository, examples/stacks/fastapi.
+  Normalquota watcher98548 still running; next ordinaryslot03:26:06.781UTC.
+  Resume the same handle, no duplicate watcher/submission/quota bypass.
