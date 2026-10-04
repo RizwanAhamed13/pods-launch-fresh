@@ -1,0 +1,60 @@
+{
+  "recordedAt": "2026-10-04T15:22:39.325100+00:00",
+  "baseRevision": "a6d8caa199fc103cfca30f37ec7a752877a40457",
+  "runs": [
+    {
+      "platform": "local",
+      "tests": 284,
+      "pass": 284,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 26797.241042,
+      "logSha256": "9fba0c86d76d2999a1effadc1839c465055c20a8ee90eccecb65cc33342b05d6"
+    },
+    {
+      "platform": "isolated-aswin-linux",
+      "tests": 284,
+      "pass": 284,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 58301.420951,
+      "logSha256": "a391e6cd89d45f093ad2ea8959932b6791e3f389898f5e8cd33b4f05395aa6ff"
+    }
+  ],
+  "isolatedSnapshot": {
+    "candidate": "/output/image-migration-candidate-a6d8caa-final",
+    "verifiedFiles": 341,
+    "archiveSha256": "f3d59396f905c2dc13e3cfc33a7b10ee6fcea6c05d562643fa2239c8bff32ac3",
+    "manifestSha256": "6c893132c2fad84d8f77fcd9f966ad68f8c911317e671b9c7d887be47ea9b194"
+  },
+  "sourceHashes": {
+    "src/image-migration.mjs": "7f3218b5a944f02f0cb9cf643e706a5e7b1b91983e8d170d15b46f56fe1e2e3e",
+    "scripts/migrate-image-delivery.mjs": "ed6355860a2414ab8c60089d064a07719a8ded2f80da0bec24b87bfd31479093",
+    "test/image-migration.test.mjs": "7451e674aefe4063f818e4d731363f0edebdb4110799f2887ed845f0af64fef1",
+    "src/image-delivery.mjs": "94b39c32dfe8c1b988dbed7f9a2e249abc8bd58beddfb10a46251d16725660b8",
+    "src/runner.mjs": "de3680794b58f02d4e912810164e79049559fe994556501ec6969bd3cf3dafde",
+    "src/store.mjs": "54018c0a6608105115e9faf65d1c51c31f1d44ed09b56dd93285cb8c15173a6e",
+    "src/containers.mjs": "202c6791faf6c6ec5b20098c95319aaee0ba1f7066d7aaf64c23a18d43bae48d",
+    "src/container-runtime.mjs": "9d938b7aa5f38af7a18668a203feda57fe7417cfe5c3d699c0e944719bd06571"
+  },
+  "baselineCapability": "No migration command/module in baseline; existing prepared images required a new preparation to gain a delivery mapping.",
+  "scope": "Bounded operator migration of one explicitly selected already-published application. Default offline dry-run verifies manifest/archive/image bytes. --publish uses existing private-repository/asset-digest checks, serial image publication and verified asset reuse. No rebuild, immutable-artifact rewrite, cache clearing, build quota changes, new user step or runtime/server change.",
+  "coverage": [
+    "Offline dry-run performs no provider calls or artifact mutations.",
+    "Publication deduplicates shared service references, keeps immutable files identical and resolves via the existing delivery path.",
+    "Retry preserves a prior successful mapping and recovers a second completed upload whose response was lost, without duplicate uploads.",
+    "All selected image bytes are checked before remote publication. Changed manifest identity, mismatched image metadata, corrupted archive/image and conflicting archive references fail.",
+    "Symlink input and invalid application paths fail.",
+    "Bundle artifacts need no image migration; missing/private-repository configuration gates container publication.",
+    "CLI uses explicit app selection, defaults to dry-run, avoids accidental database creation and returns a fixed error without exposing a secret marker.",
+    "Existing launcher/provider/storage/browser/build checks remain passing on local and isolated Linux."
+  ],
+  "infrastructureRetry": {
+    "firstAttempt": "Final Linux archive transfer was rejected because the earlier staging filename could not be overwritten; no final-suite tests started.",
+    "failedLogSha256": "b0f9c6f553b6a46696bb2a2ba97cef9cee980b6f122731a4ed4e56a89fae6e29",
+    "recovery": "Same final candidate bytes copied under a new owned staging filename; source hashes independently verified in the isolated guest before the passing run.",
+    "candidateBytesUnchanged": true
+  }
+}

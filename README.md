@@ -226,14 +226,31 @@ Optional private image delivery uses `PODS_IMAGE_RELEASE_REPOSITORY` (owner/repo
 Leave all three empty to use only aswin. Preparation first validates and publishes
 local artifacts, then uploads images to that private release and records verified
 asset IDs separately from public application metadata. Upload failure leaves the
-local artifact launchable. Existing artifacts continue to use aswin until prepared
-again; no user cache or published artifact is rewritten.
+local artifact launchable. Existing artifacts remain launchable from aswin. An
+operator can enable private delivery for a previously prepared application without
+rebuilding it, changing its launch link, or touching user compute:
+
+```sh
+node --env-file=.env scripts/migrate-image-delivery.mjs --app your-prepared-app-id
+node --env-file=.env scripts/migrate-image-delivery.mjs --app your-prepared-app-id --publish
+```
+
+The first command is an offline dry-run: it checks the manifest, compressed
+artifact, image identities and every image's bytes. The second uses the configured
+private release and existing PODS database. It publishes one image at a time and
+prints bounded JSON progress. Repeating the same selection reuses matching release
+assets, including an upload completed before an interrupted response. A failed
+image stops the run; prior verified mappings remain usable. Correct the cause and
+rerun the same command to resume. The command accepts one explicit application,
+does not rebuild, and never deletes or rewrites published artifacts. This is
+operator maintenance; developers and end users keep their existing launch flow.
 
 The server checks repository privacy and launch authorization before resolving a
 short-lived asset URL. The runner sends no PODS or GitHub authorization header to
 the CDN, accepts only the designated HTTPS asset host, verifies byte count and
 SHA-256 before Docker load, and retries through aswin if the CDN fails. Images
-of at least 32 MiB use four concurrent byte ranges with a shared deadline; each
+of at least 64 MiB use eight concurrent byte ranges; images from 32 to 64 MiB use
+four. All ranges share a deadline; each
 response must match its exact range and size, and the assembled file must match
 the complete image hash. A failed range cancels the other requests and falls back
 to the authorized aswin source. Smaller images use one CDN request. Legacy
