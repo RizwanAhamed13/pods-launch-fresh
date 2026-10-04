@@ -50,20 +50,28 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
 
 - Next native framework: Fastify, followed by the remaining backend/database
   fixtures. No new production preparation or launch has been submitted.
-- While waiting for that slot, investigate the measured Express first-delivery
-  cost: image download14.678s/load2.351s on RUNNING Google compute. The tiny
-  application still shipped82.25MB. Historical matrix01 rejected an unbundled
-  supports-color dependency and matrix02 used a container; establish the current
-  fallback reason before considering an isolated packaging fix. Preserve optional
-  dependency semantics and all existing recipes; never import a QA artifact into
-  production. This is an investigation lead, not a diagnosed current defect.
-- Readonly quota audit00:49:07UTC:account3/global3/active0. Next ordinary slot
-  01:01:09.984UTC. Watcher71223 and Express build watcher78777 both ended0.
-  No live quota/build/native-test processes remain from this gate. Do not bypass
-  quota, change identities or import QA artifacts. Prod limits3/account/hour,12global.
+- Express packaging diagnosis is now reproduced: esbuild0.25.12 emits one
+  unresolved optional require of supports-color in debug/src/node.js. The current
+  non-builtin external guard selects a full container. Promoting esbuild's
+  ignored-dynamic-import diagnostic identifies the handled missing import;
+  ordinary required missing imports still fail and require.resolve is distinct.
+- Experimental isolated bundle:338,173bytes, versus the production82,250,849byte
+  image. Real Express HTTP product and SQLite0→1, stop/relaunch1→2 passed at
+  418ms/288ms local health. This is not a native/browser performance result and
+  production preparation remains unchanged. Evidence stack-express-packaging-
+  diagnosis.json and stack-express-optional-bundle-probe.json; probe44620 ended0.
+- Do not switch packaging until format-transition storage is implemented/tested:
+  bundles use <root>/data/<dataKey>, default containers use
+  <root>/volumes/pods-<key-hash>/app-data/data. A format change would currently
+  choose a different database. Container recipes also run with their image's
+  default identity; handle file ownership without weakening directory checks.
+- Live quota watcher52715 started00:51:13UTC; at00:51:16 account3/global3/active0,
+  next ordinary slot01:01:09.984UTC. Poll the existing handle coarsely; do not
+  duplicate it. No Fastify preparation submitted yet. Production limits remain
+  3/account/hour and12/global/hour; never bypass them or import QA artifacts.
 - /tmp/pods-next-native-quota-watch.py is a reusable bounded watcher. Anchor Svelte
   buildNLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp account privately; never print identity.
-- /tmp/pods-capture-native.py runs on aswin with argument astro, react-router or express;
+- /tmp/pods-capture-native.py runs on aswin with argument astro, react-router, express or fastify;
   readonly SQLite, whitelisted build/app/launch fields, compute and derived timings.
 - scripts/live-codespaces.mjs: gh token via stdin; use the existing fixture's
   matching interaction probe and an explicit evidence file. Two launches required.
@@ -89,7 +97,7 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
 First CUA call after compaction must be cua.rewriteDocumentation. Reuse bindings.
 Mark pending workflow tabs each turn; no duplicate launch/build after read timeout.
 
-- stackQa6: IAB2tab13, completed Express preparation. Ready region includes period:
+- stackQa6: IAB2tab13, Fastify folder staged, preparation NOT submitted. Ready region includes period:
   Your application is ready to share. → Try this version link.
 - accountWorker: IAB2tab12, stopped Express launcher; SQLite count2.
   expressLaunchUrl, expressBrowserChecks, expressBrowserLogs=[],

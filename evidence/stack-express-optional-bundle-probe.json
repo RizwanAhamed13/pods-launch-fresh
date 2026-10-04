@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-10-04T00:55:47.991Z",
+  "scope": "Isolated experimental Express bundle only; production packager unchanged. No cross-format migration or native-provider/browser acceptance is established.",
+  "sourceSha256": "ee69cc6564046f054486722f62454e066e8e4fdab37f3f280a4ab71384e43fb2",
+  "node": "v24.21.0",
+  "external": [
+    {
+      "path": "supports-color",
+      "kind": "require-call",
+      "external": true
+    }
+  ],
+  "compilerConfirmedOptional": true,
+  "bundleBytes": 816063,
+  "artifactBytes": 338173,
+  "sha256": "c469dd8aefc5439253a2ea76bb7d7642cd5c0bb6e27e7845277bb4b89a38b3c0",
+  "records": [
+    {
+      "scenario": "first-bundle-launch",
+      "healthMs": 418,
+      "before": 0,
+      "after": 1,
+      "reread": 1,
+      "timings": {
+        "cacheHit": false,
+        "downloadMs": 72,
+        "runtimeReadyMs": 413
+      },
+      "passed": true
+    },
+    {
+      "scenario": "same-format-full-relaunch",
+      "healthMs": 288,
+      "before": 1,
+      "after": 2,
+      "reread": 2,
+      "timings": {
+        "cacheHit": true,
+        "downloadMs": 50,
+        "runtimeReadyMs": 285
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

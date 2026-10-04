@@ -1,0 +1,44 @@
+{
+  "recordedAt": "2026-10-04T00:55:05.040537+00:00",
+  "scope": "Packaging diagnosis only. No runtime, artifact or production behavior was changed.",
+  "fixture": "examples/stacks/express",
+  "fixtureRevision": "9eee994ba7f70d1793bc449573ddb36e01003818",
+  "sourceSha256": "ee69cc6564046f054486722f62454e066e8e4fdab37f3f280a4ab71384e43fb2",
+  "productionEvidence": "stack-express-url.json",
+  "isolatedProbe": {
+    "environment": "pods-fresh-matrix-01",
+    "node": "24.21.0",
+    "esbuild": "0.25.12",
+    "bundleBytes": 816063,
+    "nonBuiltinExternalImports": [
+      {
+        "path": "supports-color",
+        "kind": "require-call",
+        "external": true
+      }
+    ],
+    "importer": "node_modules/debug/src/node.js",
+    "handling": "Literal require inside an existing try/catch for an absent optional color dependency."
+  },
+  "compilerBoundaryProbe": {
+    "esbuild": "0.25.12",
+    "optionalRequire": "Build succeeds; ignored-dynamic-import diagnostic identifies error handling when promoted to a warning.",
+    "requiredMissingRequire": "Build fails with Could not resolve.",
+    "requireResolve": "Build succeeds with require-resolve-not-external; must not be treated as an optional require-call.",
+    "primarySource": "https://raw.githubusercontent.com/evanw/esbuild/v0.25.12/internal/bundler/bundler.go"
+  },
+  "currentFallback": "scripts/prepare.mjs sends every non-builtin external to a full container for detected packaged Node apps.",
+  "storageCompatibility": {
+    "bundle": "<storage-root>/data/<dataKey>",
+    "containerDefaultAppData": "<storage-root>/volumes/pods-<sha256(dataKey)[0:24]>/app-data/data",
+    "finding": "The same dataKey currently maps to different directories across artifact formats. Changing Express from a container to a bundle without migration would select a new empty data directory.",
+    "status": "Format-transition persistence is unverified; optimization deferred until migration or stable layout is proven."
+  },
+  "nextImplementationGate": [
+    "Retain literal optional import semantics; never stub or install undeclared modules.",
+    "Continue rejecting required or native external dependencies.",
+    "Test container-to-bundle and bundle-to-container database continuity before changing packaging selection.",
+    "Then verify the real Express artifact, product interaction, full stop/relaunch and native timing."
+  ],
+  "claim": "This diagnosis does not establish an optimized runnable artifact or a performance improvement."
+}
