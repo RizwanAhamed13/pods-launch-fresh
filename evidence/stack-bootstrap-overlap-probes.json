@@ -1,0 +1,205 @@
+{
+  "recordedAt": "2026-10-04T12:45:46.880492+00:00",
+  "controlRevision": "05d46e8af24f3a79c2ae0c4529d3af9666621fb6",
+  "sources": {
+    "evidence/probes/bootstrap-transfer.mjs": "e769098abc6b26567d62f37c3c9d0046862622b2f78f0a58c1d1f78c15c9bda8",
+    "evidence/probes/bootstrap-overlap.mjs": "35e2ec77c3835ccd904037fde52050e9782dc6ce7c11e05fde576b556214fe14"
+  },
+  "transferComparison": {
+    "startedAt": "2026-10-04T12:41:26.248Z",
+    "order": [
+      "download",
+      "inline",
+      "inline",
+      "download"
+    ],
+    "samples": [
+      {
+        "mode": "download",
+        "initialState": "Available",
+        "previewLookupMs": 1714,
+        "productPortPrivate": true,
+        "stdinBytes": 1139,
+        "sshElapsedMs": 4513,
+        "verifiedTransferMs": 644,
+        "nodeCheckMs": 31,
+        "runnerVerified": true,
+        "runnerExecuted": false,
+        "transportAndSetupResidualMs": 3838,
+        "temporaryDirectoryCleanupViaTrap": true
+      },
+      {
+        "mode": "inline",
+        "initialState": "Available",
+        "previewLookupMs": 1657,
+        "productPortPrivate": true,
+        "stdinBytes": 63064,
+        "sshElapsedMs": 3697,
+        "verifiedTransferMs": 112,
+        "nodeCheckMs": 34,
+        "runnerVerified": true,
+        "runnerExecuted": false,
+        "transportAndSetupResidualMs": 3551,
+        "temporaryDirectoryCleanupViaTrap": true
+      },
+      {
+        "mode": "inline",
+        "initialState": "Available",
+        "previewLookupMs": 1764,
+        "productPortPrivate": true,
+        "stdinBytes": 63064,
+        "sshElapsedMs": 3795,
+        "verifiedTransferMs": 64,
+        "nodeCheckMs": 32,
+        "runnerVerified": true,
+        "runnerExecuted": false,
+        "transportAndSetupResidualMs": 3699,
+        "temporaryDirectoryCleanupViaTrap": true
+      },
+      {
+        "mode": "download",
+        "initialState": "Available",
+        "previewLookupMs": 1721,
+        "productPortPrivate": true,
+        "stdinBytes": 1139,
+        "sshElapsedMs": 3721,
+        "verifiedTransferMs": 117,
+        "nodeCheckMs": 33,
+        "runnerVerified": true,
+        "runnerExecuted": false,
+        "transportAndSetupResidualMs": 3571,
+        "temporaryDirectoryCleanupViaTrap": true
+      }
+    ],
+    "probeOnly": true,
+    "applicationStarted": false,
+    "productionChanged": false,
+    "runnerSha256": "be6b31d3791059d5833b20f2b7bdac6c7f99d78e00d4fd0c1ab3c7f0d688cc64",
+    "runnerBytes": 46494,
+    "completed": true,
+    "finishedAt": "2026-10-04T12:41:51.545Z"
+  },
+  "overlapComparison": {
+    "startedAt": "2026-10-04T12:44:03.133Z",
+    "order": [
+      "serial",
+      "overlap",
+      "overlap",
+      "serial"
+    ],
+    "samples": [
+      {
+        "mode": "serial",
+        "initialState": "Available",
+        "stdinBytes": 1139,
+        "previewLookupMs": 2171,
+        "productPortPrivate": true,
+        "stdinReleasedAfterMs": 2,
+        "privatePortConfirmedBeforeStdin": true,
+        "pairTotalMs": 6897,
+        "sshElapsedMs": 4725,
+        "verifiedTransferMs": 670,
+        "nodeCheckMs": 31,
+        "runnerVerified": true,
+        "runnerExecuted": false,
+        "transportAndSetupResidualMs": 4024,
+        "temporaryDirectoryCleanupViaTrap": true
+      },
+      {
+        "mode": "overlap",
+        "initialState": "Available",
+        "stdinBytes": 1139,
+        "previewLookupMs": 2716,
+        "productPortPrivate": true,
+        "stdinReleasedAfterMs": 2719,
+        "privatePortConfirmedBeforeStdin": true,
+        "pairTotalMs": 3788,
+        "sshElapsedMs": 3788,
+        "verifiedTransferMs": 132,
+        "nodeCheckMs": 30,
+        "runnerVerified": true,
+        "runnerExecuted": false,
+        "transportAndSetupResidualMs": 3626,
+        "temporaryDirectoryCleanupViaTrap": true
+      },
+      {
+        "mode": "overlap",
+        "initialState": "Available",
+        "stdinBytes": 1139,
+        "previewLookupMs": 1688,
+        "productPortPrivate": true,
+        "stdinReleasedAfterMs": 1692,
+        "privatePortConfirmedBeforeStdin": true,
+        "pairTotalMs": 3871,
+        "sshElapsedMs": 3871,
+        "verifiedTransferMs": 127,
+        "nodeCheckMs": 31,
+        "runnerVerified": true,
+        "runnerExecuted": false,
+        "transportAndSetupResidualMs": 3713,
+        "temporaryDirectoryCleanupViaTrap": true
+      },
+      {
+        "mode": "serial",
+        "initialState": "Available",
+        "stdinBytes": 1139,
+        "previewLookupMs": 1685,
+        "productPortPrivate": true,
+        "stdinReleasedAfterMs": 4,
+        "privatePortConfirmedBeforeStdin": true,
+        "pairTotalMs": 5492,
+        "sshElapsedMs": 3807,
+        "verifiedTransferMs": 126,
+        "nodeCheckMs": 34,
+        "runnerVerified": true,
+        "runnerExecuted": false,
+        "transportAndSetupResidualMs": 3647,
+        "temporaryDirectoryCleanupViaTrap": true
+      }
+    ],
+    "probeOnly": true,
+    "applicationStarted": false,
+    "productionChanged": false,
+    "runnerSha256": "be6b31d3791059d5833b20f2b7bdac6c7f99d78e00d4fd0c1ab3c7f0d688cc64",
+    "runnerBytes": 46494,
+    "completed": true,
+    "finishedAt": "2026-10-04T12:44:25.751Z"
+  },
+  "meanMs": {
+    "downloadSsh": 4117,
+    "inlineSsh": 3746,
+    "serialPreviewAndSsh": 6194.5,
+    "overlappedPreviewAndSsh": 3829.5
+  },
+  "observedMeanSavingMs": {
+    "inline": 371,
+    "overlap": 2365.0
+  },
+  "methodology": [
+    "Four sequential samples per comparison on the same already-Available Codespace, using ABBA method order. Existing image caches and saved application data were retained.",
+    "Both use the actual production bootstrap with its nohup runner launch removed. They verify the identical runner SHA and discover Node; the downloaded runner is never executed and no application is started.",
+    "In the overlap comparison, the SSH child starts with its stdin open and empty while the ordinary private-port lookup runs. The harmless probe script is written only after the target port is confirmed private.",
+    "The SSH command must finish successfully. Each script creates an isolated temporary directory and installs an EXIT cleanup trap. No application cache, database, volume or existing file is cleared.",
+    "The local provider-state API read and fetching the public runner once on aswin are setup, excluded from these command timings."
+  ],
+  "limitations": [
+    "Two samples per method, one environment and sequential scheduling do not establish a guaranteed speedup. First download timings differ materially from the later download.",
+    "The production launch sequence is still sequential; overlapping transport remains a candidate requiring cancellation, deadline, retry, privacy-gate tests and real application acceptance.",
+    "These command probes do not measure application startup, first-image delivery, browser product visibility or cold compute.",
+    "The archived scripts are the exact aswin-specific reproducers used. They target the named authorized test Codespace and accept its GitHub token only through stdin."
+  ],
+  "decision": "Prioritize overlapping SSH connection establishment with private preview verification, while holding bootstrap bytes until privacy is confirmed. Inline runner transfer showed a smaller and more variable saving; leave production runner delivery unchanged for now.",
+  "cleanupAudit": {
+    "recordedAt": "2026-10-04T12:46:37.276731+00:00",
+    "pid": 1483932,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "be6b31d3791059d5833b20f2b7bdac6c7f99d78e00d4fd0c1ab3c7f0d688cc64",
+    "revision": "05d46e8af24f3a79c2ae0c4529d3af9666621fb6"
+  }
+}

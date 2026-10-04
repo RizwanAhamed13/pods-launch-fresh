@@ -1,0 +1,211 @@
+{
+  "recordedAt": "2026-10-04T12:42:18.522541+00:00",
+  "controlRevision": "05d46e8af24f3a79c2ae0c4529d3af9666621fb6",
+  "scope": "Two native Codespaces launches with separate setup-stage observations; first Shutdown, second Available; same cached prepared Micronaut + SQLite image.",
+  "app": {
+    "id": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-ed14d4bc3ecb",
+    "dataKey": "repo-2caafe8ea7f268fe237b7cab",
+    "source": {
+      "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+      "folder": "examples/stacks/micronaut",
+      "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+    },
+    "images": [
+      {
+        "id": "sha256:aff321e8ef7d58dfbf54fc8b72eac7ac5fa77fb1b54f97d8b2913b8f504d7a0b",
+        "sha256": "48ac2bcef4a719876140d74b81474917545c48a15ae316252f31b466246f6d3d",
+        "bytes": 125122053
+      }
+    ]
+  },
+  "results": [
+    {
+      "id": "E0R7xMbsqdbODPeLe-ev-tTwV7BrUUGg",
+      "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-ed14d4bc3ecb",
+      "provider": "github",
+      "port": 26630,
+      "status": "stopped",
+      "compute": {
+        "initialState": "Shutdown",
+        "observedAt": 1791117574970,
+        "resumeRequestedAt": 1791117574988,
+        "previewRequestedAt": 1791117587142,
+        "previewReadyAt": 1791117591930,
+        "bootstrapRequestedAt": 1791117591930,
+        "bootstrapAttempts": 1,
+        "bootstrapDeliveredAt": 1791117601143
+      },
+      "createdAt": 1791117574491,
+      "updatedAt": 1791117627565,
+      "providerReadyAt": 1791117587127,
+      "readyAt": 1791117611872,
+      "timings": {
+        "downloadMs": 266,
+        "imagesMs": 73,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 73,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 10424,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 37381,
+      "deliveryMs": 24745,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 8,
+        "afterWrite": 9,
+        "afterRead": 9,
+        "passed": true,
+        "expectedInitialCount": 8
+      },
+      "sqliteFileRuntimeCheck": {
+        "passed": true,
+        "fixtureProfile": "micronaut",
+        "project": "pods-c0dc0ca6fa37c8352e216af2",
+        "services": [
+          "web"
+        ],
+        "databaseEngine": "SQLite",
+        "inspectionEngineVersion": "3.53.4",
+        "integrity": "ok",
+        "savedCount": 9,
+        "sourceFiles": [
+          "counter.sqlite"
+        ],
+        "snapshotFiles": [
+          "counter.sqlite"
+        ],
+        "applicationPaused": false,
+        "applicationStayedRunning": true,
+        "volume": "pods-c0dc0ca6fa37c8352e216af2_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          26630
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+      },
+      "stageMs": {
+        "beforeProviderReady": 12636,
+        "previewRegistration": 4788,
+        "bootstrapDelivery": 9213,
+        "afterBootstrapUntilHealthy": 10729,
+        "betweenStages": 15
+      }
+    },
+    {
+      "id": "7Is7MykCmre6JNu3IwS_SmMD1z-SvyKF",
+      "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-ed14d4bc3ecb",
+      "provider": "github",
+      "port": 26630,
+      "status": "stopped",
+      "compute": {
+        "initialState": "Available",
+        "observedAt": 1791117628377,
+        "previewRequestedAt": 1791117628406,
+        "previewReadyAt": 1791117630132,
+        "bootstrapRequestedAt": 1791117630132,
+        "bootstrapAttempts": 1,
+        "bootstrapDeliveredAt": 1791117634513
+      },
+      "createdAt": 1791117627893,
+      "updatedAt": 1791117652651,
+      "providerReadyAt": 1791117628397,
+      "readyAt": 1791117640064,
+      "timings": {
+        "downloadMs": 635,
+        "imagesMs": 60,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 60,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 4930,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 12171,
+      "deliveryMs": 11667,
+      "counterCheck": {
+        "productDocument": true,
+        "api": null,
+        "before": 9,
+        "afterWrite": 10,
+        "afterRead": 10,
+        "passed": true,
+        "expectedAfterRelaunch": 9
+      },
+      "sqliteFileRuntimeCheck": {
+        "passed": true,
+        "fixtureProfile": "micronaut",
+        "project": "pods-c0dc0ca6fa37c8352e216af2",
+        "services": [
+          "web"
+        ],
+        "databaseEngine": "SQLite",
+        "inspectionEngineVersion": "3.53.4",
+        "integrity": "ok",
+        "savedCount": 10,
+        "sourceFiles": [
+          "counter.sqlite"
+        ],
+        "snapshotFiles": [
+          "counter.sqlite"
+        ],
+        "applicationPaused": false,
+        "applicationStayedRunning": true,
+        "volume": "pods-c0dc0ca6fa37c8352e216af2_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          26630
+        ],
+        "databaseHostPorts": [],
+        "scope": "Read-only source connection and SQLite online backup including committed WAL data; the application remains running and is never paused. Queries use a private temporary backup. SQLite version describes the inspector, not the application driver. No application SQL was changed; VM replacement and power-loss durability are separate."
+      },
+      "stageMs": {
+        "beforeProviderReady": 504,
+        "previewRegistration": 1726,
+        "bootstrapDelivery": 4381,
+        "afterBootstrapUntilHealthy": 5551,
+        "betweenStages": 9
+      }
+    }
+  ],
+  "nativeBrowserVerified": false,
+  "cachedImageOnly": true,
+  "existingPreparedArtifactReused": true,
+  "persistenceScope": "Native authenticated product HTTP writes8\u21929\u219210, full application stop/relaunch and online SQLite integrity inspection with the application running. Provider VM replacement and power-loss durability are separate.",
+  "timingScope": "Stage timestamps use the PODS server clock. These sequential stage durations sum to server readiness; runner.runtimeReadyMs is a separate in-runner elapsed interval and must not be added again. API Available, preview registration and runner dispatch are recorded as distinct events.",
+  "testEvidence": "stack-codespace-timings-tests.json",
+  "deploymentEvidence": "stack-codespace-timings-deployment.json",
+  "cleanupAudit": {
+    "recordedAt": "2026-10-04T12:41:28.248210+00:00",
+    "pid": 1483932,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "be6b31d3791059d5833b20f2b7bdac6c7f99d78e00d4fd0c1ab3c7f0d688cc64",
+    "revision": "05d46e8af24f3a79c2ae0c4529d3af9666621fb6"
+  },
+  "passed": true
+}

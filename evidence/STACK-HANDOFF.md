@@ -1,9 +1,10 @@
 # Broad stack checkpoint
 
 Goal active and incomplete. Developer URL → isolated aswin build → reusable
-artifact → authorized user compute → actual usable product. This turn implemented
-direct Google key registration for ready compute, passed221 local/Linux checks,
-deployed, and verified two native browser launches with SQLite persistence.
+artifact → authorized user compute → actual usable product. This turn added
+Codespaces stage observations, passed225 local/Linux checks, deployed and measured
+cold/warm native launches. A private-port-gated SSH overlap probe passed and is the
+next implementation candidate; the production launch is still sequential.
 Do not mark the goal complete or blocked: meaningful work remains possible.
 
 ## Current verified state
@@ -18,15 +19,16 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   Seven database/service families are covered. Matrix records tested representatives,
   not every version or arbitrary application. Unknown secrets/schema/migrations
   still require developer inputs; desktop/mobile/GPU/non-web products are excluded.
-- Full suite221/221 local and isolated Linux; stack-google-ready-tests.json verifies
-  all329 snapshot input hashes. Current source7,853physical lines:
-  3,939product/tooling +2,817tests +933examples +164browser tools.
-- Runtime/control1d5282d453933569dda95069b01f9a365d4f7ca8, PID1478794.
-  Preview provider helper7a28920; providers.mjs1d5282d, builder2553fc8, storage77cf340.
+- Full suite225/225 local and isolated Linux; stack-codespace-timings-tests.json verifies
+  all330 snapshot input hashes. Current scoped source7,904physical lines:
+  3,945product/tooling +2,862tests +933examples +164browser tools. Archived diagnostic
+  reproducers in evidence/probes are outside that source-count scope.
+- Runtime/control05d46e8af24f3a79c2ae0c4529d3af9666621fb6, PID1483932.
+  Preview provider helper7a28920; providers.mjs05d46e8, builder2553fc8, storage77cf340.
   RunnerSHAbe6b31d3791059d5833b20f2b7bdac6c7f99d78e00d4fd0c1ab3c7f0d688cc64.
-- Deployment stack-google-ready-deployment.json: health200, SQLiteok, idle,
+- Deployment stack-codespace-timings-deployment.json: health200, SQLiteok, idle,
   preserved57images/131artifacts, unchanged .env and unchanged runner. No restart for docs.
-- Latest idle audit2026-10-04T12:32:50.274556+00:00: health200, SQLiteok,
+- Latest idle audit2026-10-04T12:46:37.276731+00:00: health200, SQLiteok,
   zero active builds/launches. All accepted launches stopped. No jobs running.
 
 ## Latest native gate
@@ -56,7 +58,7 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   Authenticated product HTTP and SQLite online backup passed4→5→6;
   integrityok, private product26630, no exposed DB port, no pause, fully stopped.
 - Range gate ended at count6 both. Current counts after the preview fix:
-  Google8, Codespaces8 after the Google optimization below. Never reset data or
+  Google8, Codespaces10 after the latest Codespaces observations below. Never reset data or
   rerun an old expected value.
 - stack-cdn-range-native.json validates source hashes, unique IDs, build/image
   identity, first-cache-miss/repeat-hit, successful ranges/no fallback, persistence
@@ -126,13 +128,49 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   Probe/audit credentials stayed only in server memory. No account/token/private
   preview values are saved in public evidence.
 
-## Next performance gate
+## Completed Codespaces measurements and next implementation
 
-- Quantify remaining Codespaces preview/bootstrap overhead before selecting a fix;
-  recent new-image runtimeReady14.626s versus total25.357s indicates overhead outside
-  the runner worth measuring. Do not relax private-port checks or force cache clears.
-- First-image product20s remains unmet. Google ready-key optimization covers cached
-  native acceptance so far; keep first-image and cold compute evidence separate.
+- Source05d46e8 adds previewRequestedAt/previewReadyAt, bootstrapRequestedAt/
+  bootstrapDeliveredAt/bootstrapAttempts and optional compatibility timestamps to
+  compute observations. Execution order, private access, retries and deadlines are
+  unchanged. Observation updates cannot cause an extra SSH retry after delivery.
+- stack-codespace-timings-tests.json:4 new cases fail before observations;225/225
+  local and isolated Linux pass,330snapshot input hashes verified. Tests cover
+  independent phases, failed preview/no dispatch, retries, compatibility timing.
+- stack-codespace-timings-deployment.json preserves57images/131artifacts and.env,
+  unchanged runner; active PID1483932. No data/cache reset or new developer build.
+- stack-codespace-timings-native.json: E0R7xMbsqdbODPeLe-ev-tTwV7BrUUGg starts
+  Shutdown; healthy37.381s with12.636s before provider readiness,4.788s preview,
+ 9.213s bootstrap,10.729s after bootstrap,15ms between phases. Repeat
+  7Is7MykCmre6JNu3IwS_SmMD1z-SvyKF startsAvailable; healthy12.171s with0.504s
+  before readiness,1.726s preview,4.381s bootstrap,5.551s after,9ms gaps.
+  Both have imageCacheHits1, no image transfer. HTTP8→9→10, direct SQLite online
+  integrityok/private26630/noDBports/no pause, full stops. Google remains8.
+- The runner runtimeReadyMs is a nested/separate interval; do not add it to server
+  stage durations again. Codespaces native browser interaction remains unverified.
+- stack-bootstrap-overlap-probes.json archives two4-sample ABBA comparisons,
+  with exact reproducers in evidence/probes/bootstrap-{transfer,overlap}.mjs.
+  Source scripts target the configured aswin and authorized named Codespace,
+  accept the GitHub token only via stdin, and never start the application/runner.
+  Each verifies the same46494-byte runner SHA and uses a fresh private temp folder
+  with EXIT cleanup. Existing databases, caches and unrelated files are untouched.
+- Runner delivery via inline base64 averaged3.746s versus4.117s using curl;
+  the two download samples differed substantially, so do not prioritize that change.
+- Starting gh SSH with stdin open/empty alongside read-only private-port lookup,
+  then releasing the harmless probe only after private confirmation, measured
+ 3.788/3.871s combined versus serial6.897/5.492s. All ports private, bytes withheld
+  until confirmed, identical SHA, no runner executed. Small sample, not a full-launch
+  guarantee. Existing production path remains sequential.
+- NEXT: implement overlapping transport establishment with a strict release gate.
+  Never send bootstrap/config bytes or start the runner before private verification.
+  Preserve3 SSH attempts and their failure handling; cancel/reap the waiting child
+  on preview errors, deadline, shutdown or early SSH failure. Preserve separate
+  preview and post-release delivery budgets; do not let slow preview exhaust the
+  whole delivery budget or add unbounded waits. Test these failure boundaries,
+  then full suites, deploy and real product/database acceptance. Afterwards run an
+  ordinary new developer build to measure first-image delivery on ready compute.
+- Validator /tmp/pods-record-codespace-timings-native.py; inputs
+  /tmp/pods-codespace-timings-*.json. Both command probe workers completed normally.
 - Existing questions about GitHub browser2FA, stable hostname and destructive
   provider VM-replacement testing remain pending. Do not repeat or infer approval.
 
@@ -149,16 +187,16 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
 - Push first, then sync with gh auth token piped to ssh aswin and temporary GH_TOKEN,
   helper /home/aswin/pods-tools/bin/gh auth git-credential, git pull --ff-only.
 - Codespace pods-launch-containers-69rw5vx4xp46c5qw5. All native saved data retained.
-  Streamlit counters2both, Symfony Google2/Codespaces3, Micronaut Google8/Codespaces8.
+  Streamlit counters2both, Symfony Google2/Codespaces3, Micronaut Google8/Codespaces10.
 - Preserve older failures: Streamlit initial storage limit/build and403 origin,
   Symfony pause/liveness conflict. See STACK-VERIFICATION-HISTORY.md and individual
   receipts. SQLite inspections now use online backup, never pause the app.
 - QAguest pods-fresh-matrix-01, /snap/lxd/current/bin/lxc, uid/gid1000,
   Node/opt/node/bin/node, deps/opt/pods/node_modules. Current verified candidate
-  /output/google-ready-candidate-0d4a255. Always --disable-stdin for lxc exec overSSH;
+  /output/codespace-timings-candidate-dc0b25b. Always --disable-stdin for lxc exec overSSH;
   earlier setup without it consumed script input and was not counted as a test.
   Keep QAserverPID292107, ports18090/8081/18890, shared caches and runtime.
-- Full test logs /tmp/pods-google-ready-full-local.txt and /tmp/pods-google-ready-full-qa.txt.
+- Full test logs /tmp/pods-codespace-timings-full-local.txt and /tmp/pods-codespace-timings-full-qa.txt.
   Latest validator /tmp/pods-record-preview-budget-native.py; inputs
   /tmp/pods-preview-budget-*.json. Prior validator /tmp/pods-record-range-native.py. Preserve failure input pods-range-codespaces-failed-raw.json.
 - Browser1: stackQa6/tab1 stopped newMicronaut, echoTab/tab2 stopped warmup,

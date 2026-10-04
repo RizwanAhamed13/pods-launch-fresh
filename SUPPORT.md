@@ -196,6 +196,32 @@ a start request. These are cached integration results, not first-image timings o
 a controlled whole-launch comparison. Cold compute and a suspension race were
 covered by automated regression tests, not forced during this native gate.
 
+[Codespaces stage observations](evidence/stack-codespace-timings-native.json)
+now separate provider readiness, private preview setup and runner delivery. Two
+launches of the same cached Micronaut image passed authenticated product HTTP,
+SQLite integrity and full stop/relaunch checks, retaining values 8→9→10.
+
+| Stage | Initially Shutdown | Initially Available |
+| --- | --- | --- |
+| Before provider readiness | 12.636s | 0.504s |
+| Private preview setup | 4.788s | 1.726s |
+| Runner delivery over SSH | 9.213s | 4.381s |
+| After delivery until healthy | 10.729s | 5.551s |
+| Total until healthy, including small gaps | 37.381s | 12.171s |
+
+These are server observations; Codespaces browser interaction remains pending.
+Runner-internal timings are separate intervals and must not be added to these
+stages again. The observation changes pass [225 local/Linux checks](evidence/stack-codespace-timings-tests.json).
+
+A [four-sample command experiment](evidence/stack-bootstrap-overlap-probes.json)
+found that opening SSH while checking private preview access reduced their combined
+time from 5.492–6.897s sequentially to 3.788–3.871s. The probe withheld all script
+bytes until the port was confirmed private, verified the same runner file, and
+never started an application. Production still uses the sequential path. This
+candidate needs cancellation, deadline, privacy-gate and native application checks;
+the small sample does not establish a full-launch speedup. A separate inline runner
+transfer comparison saved only 0.371s on average and is not prioritized.
+
 ## Persistence and operational limits
 
 Database fixtures verify a product write, read, complete application stop,
