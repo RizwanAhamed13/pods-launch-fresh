@@ -1769,7 +1769,7 @@ Both providers preserved **0→1→2** across a full application stop/relaunch.
 Cloud Shell reloads retained each saved value and captured no browser warnings
 or errors. Codespaces additionally confirmed **MariaDB 11.4.13**, a healthy
 private database, and the application's durable workspace volume through direct
-read-only inspection. The product preview port23877 remained private. All four
+read-only inspection. The product preview port 23877 remained private. All four
 previews stopped; the final production audit found no active builds or launches,
 HTTP200, SQLite integrity OK, and the unchanged server PID and runner hash.
 

@@ -414,13 +414,14 @@ All 150 automated checks pass locally and in isolated Linux QA. Current source
 is 6,207 physical lines. Native MariaDB acceptance subsequently passed as recorded below.
 
 
-Flask + MariaDB adds native fixture35. The actual repository form built the
-reusable web/database images in149.216s. Cloud Shell preserved database values
-0→1→2 through button writes, reloads and full stops. First-image write took75.087s;
-cached saved-data restoration took13.336s and the next write13.628s. Codespaces
-resumed stopped compute and reached health in101.232s, then11.325s on cached
-relaunch; product HTTP, persistence and direct MariaDB11.4.13 record inspection
-passed. Both services and their saved data ran on user compute. The database
-had no host port and the product preview stayed private. All four previews
-stopped. Coverage is55/35/35 with20nativefixtures remaining; first-image latency
-and the previously documented browser/VM-replacement/hosting gates remain open.
+Flask + MariaDB adds native fixture 35. The actual repository form built the
+reusable web/database images in 149.216s. Cloud Shell preserved database values
+0→1→2 through button writes, reloads and full stops. The first-image write took
+75.087s; cached saved-data restoration took 13.336s and the next write 13.628s.
+Codespaces resumed stopped compute and reached health in 101.232s, then 11.325s
+on cached relaunch. Product HTTP, persistence and direct MariaDB 11.4.13 record
+inspection passed. Both services and their saved data ran on user compute. The
+database had no host port and the product preview stayed private. All four
+previews stopped. Coverage is 55/35/35 with 20 native fixtures remaining;
+first-image latency and the previously documented browser, VM replacement and
+hosting gates remain open.

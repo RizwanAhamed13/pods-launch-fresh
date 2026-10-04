@@ -469,3 +469,14 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   counter2onbothproviders. Temporary isolated preflight alreadycleaned.
 - Native watch/build/capture/audit handles terminal. No next quota watcher
   started yet; select the next pending fixture and stage its ordinary form.
+
+- Native evidence published b5d677a to GitHub and aswin. The public support DOM
+  shows 55/35/35, Flask + MariaDB Passed/Passed/Passed, and the explicit warning
+  that native Codespaces browser interaction remains pending. Compatibility
+  checks passed 3/3 after the matrix change.
+- Next fixture: Flask + MongoDB 7. Its isolated build/browser checks passed
+  batch10; failed batch06/09 attempts remain in the matrix. Browser stackQa6
+  now holds the unsubmitted examples/stacks/flask-mongodb7 form with Google
+  selected. Do not submit again until the ordinary quota permits it.
+- New bounded normal-quota watcher45000 is running; watcher35120 is terminal.
+  Resume the same handle. No native apps or production builds remain running.

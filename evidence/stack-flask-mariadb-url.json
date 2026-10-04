@@ -79,5 +79,15 @@
     "health": 200,
     "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
     "revision": "aa23f5082a274de4526368453055fd07abfa6780"
+  },
+  "publishedMatrixVerification": {
+    "verifiedAt": "2026-10-04T03:54:36.918187+00:00",
+    "revision": "b5d677a",
+    "url": "https://collection-conferences-ages-clearly.trycloudflare.com/support",
+    "isolatedFixtures": 55,
+    "googleBrowserFixtures": 35,
+    "codespacesProtocolFixtures": 35,
+    "mariadbRow": "Passed / Passed / Passed",
+    "codespacesBrowserPendingNoticeVisible": true
   }
 }
