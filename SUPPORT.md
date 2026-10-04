@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **162 passing checks in full local and isolated aswin QA runs**. Native coverage is 38 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **166 passing checks in full local and isolated aswin QA runs**. Native coverage is 38 Google browser fixtures and
 38 Codespaces HTTP/protocol fixtures; 17 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
@@ -1954,3 +1954,25 @@ Evidence: `stack-flask-sqlite-{url,google,codespaces,audit}.json`. Coverage is n
 **55 isolated / 38 Google browser / 38 Codespaces protocol**, with **17** native
 fixtures pending. Source remains **6,475 physical lines**; the current full
 suites passed **162/162** locally and in isolated aswin QA.
+
+
+## Valkey identity and persistence inspection preflight
+
+The native test helper now verifies Valkey's own server name and version, rather
+than treating its Redis compatibility version as engine identity. The explicit
+Flask + Valkey fixture check uses read-only commands for server identity,
+append-only persistence status, the configured data directory and the counter
+saved through the product. It also checks the private database port and durable
+workspace volume. Enable it with `PODS_COUNTER_CHECK=1 PODS_VALKEY_RUNTIME_CHECK=1`.
+
+All **166 tests passed locally and in isolated aswin Linux QA**. The real stored
+Valkey artifact passed **0→1→2**, empty chunked POSTs and full stop/relaunch;
+direct inspection confirmed **Valkey 8.1.10**, append-only logging enabled with
+successful write status, and the expected persisted counter. Disposable test
+containers, volume and selected storage were removed. This proves application
+restart persistence, not power-loss durability or provider VM replacement.
+
+Evidence: `stack-valkey-runtime-probe-tests.json` and
+`stack-flask-valkey-chunked-probe.{json,mjs}`. Source totals **6,567 physical
+lines**. Native Valkey acceptance is still pending; provider coverage remains
+**55 isolated / 38 Google browser / 38 Codespaces protocol**.

@@ -1,0 +1,95 @@
+{
+  "recordedAt": "2026-10-04T04:56:08.700Z",
+  "scope": "Isolated real Valkey artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+  "dataKey": "flask-valkey-chunked-e810047e6ad2645e",
+  "project": "pods-b10dd38a40035ab6ecc4b01d",
+  "artifactSha256": "e631a8a2e603ab0d9fee2243afeec633c899010f1c6e599b407256b18199c330",
+  "images": [
+    {
+      "id": "sha256:95f1eaa8cf3241ca6878c87f4c10e8472b3e3be506e994386ce9026df4f4a776",
+      "sha256": "88daf514e4998bd0695411f8d15c2821e807253f2513961cd923ee45689b54ea",
+      "bytes": 52234156
+    },
+    {
+      "id": "sha256:081c2f5cb575efc901aa80ff9cdbd1ec6a301682fd35e1ebb4b0990a4a4a8507",
+      "sha256": "10943ffdaadac347af2c806367985ea88bd791101d7d1e0b68c55e40c93f2e7b",
+      "bytes": 17408415
+    }
+  ],
+  "sourceSha256": "ffa4ff98e8de3e10acea4b1f59ed587aa5504beef6a9bccc1fa0d5acbd11775c",
+  "records": [
+    {
+      "database": {
+        "passed": true,
+        "project": "pods-b10dd38a40035ab6ecc4b01d",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          18095
+        ],
+        "volume": "pods-b10dd38a40035ab6ecc4b01d_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Isolated aswin guest: actual Valkey version, saved counter, private ports and persistent bind volume; not a native provider launch.",
+        "databaseEngine": "Valkey",
+        "version": "8.1.10",
+        "buildId": "fd3b186b1408478b",
+        "appendOnly": true,
+        "appendOnlyWriteStatus": "ok",
+        "savedCount": 1
+      },
+      "scenario": "first-launch",
+      "before": 0,
+      "post": {
+        "status": 200,
+        "count": 1
+      },
+      "afterRead": 1,
+      "transferEncoding": "chunked",
+      "contentType": null
+    },
+    {
+      "database": {
+        "passed": true,
+        "project": "pods-b10dd38a40035ab6ecc4b01d",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          18095
+        ],
+        "volume": "pods-b10dd38a40035ab6ecc4b01d_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Isolated aswin guest: actual Valkey version, saved counter, private ports and persistent bind volume; not a native provider launch.",
+        "databaseEngine": "Valkey",
+        "version": "8.1.10",
+        "buildId": "fd3b186b1408478b",
+        "appendOnly": true,
+        "appendOnlyWriteStatus": "ok",
+        "savedCount": 2
+      },
+      "scenario": "full-relaunch",
+      "before": 1,
+      "post": {
+        "status": 200,
+        "count": 2
+      },
+      "afterRead": 2,
+      "transferEncoding": "chunked",
+      "contentType": null
+    }
+  ],
+  "passed": true,
+  "cleanup": {
+    "containersStopped": true,
+    "probeVolumeRemoved": true,
+    "probeStorageDirectoriesRemoved": true,
+    "sharedRuntimeAndCacheRetained": true
+  }
+}

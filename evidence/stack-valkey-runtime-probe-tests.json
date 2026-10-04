@@ -1,0 +1,25 @@
+{
+  "recordedAt": "2026-10-04T04:57:31.799761+00:00",
+  "baseRevision": "4bb9326",
+  "scope": "Explicit Flask + Valkey fixture: own engine identity/version, read-only saved product counter, append-only persistence, private database ports and durable workspace volume. Unit checks are separate from real artifact and native acceptance.",
+  "referenceSources": [
+    "https://valkey.io/commands/info/",
+    "https://valkey.io/topics/persistence/"
+  ],
+  "fullSuite": [
+    {
+      "environment": "local",
+      "tests": 166,
+      "passed": 166,
+      "failed": 0,
+      "outputSha256": "3939906bff04a57e9b93092ba2a30b74601ae8de3bff32ce4193aed46b1e8639"
+    },
+    {
+      "environment": "isolated-aswin-linux",
+      "tests": 166,
+      "passed": 166,
+      "failed": 0,
+      "outputSha256": "2230830b137550c762a0406b3c9defac8d9116d052d617ecc4b1a4accd5f61f1"
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import { mysqlRuntimeProbeCommand } from './probe-mysql-runtime.mjs';
 import { mariadbRuntimeProbeCommand } from './probe-mariadb-runtime.mjs';
 import { mongodbRuntimeProbeCommand } from './probe-mongodb-runtime.mjs';
 import { redisRuntimeProbeCommand } from './probe-redis-runtime.mjs';
+import { valkeyRuntimeProbeCommand } from './probe-valkey-runtime.mjs';
 import { sqliteRuntimeProbeCommand } from './probe-sqlite-runtime.mjs';
 import { staticProbeCommand } from './probe-static.mjs';
 const exec = promisify(execFile);
@@ -20,11 +21,13 @@ const mysqlRuntimeCheck=process.env.PODS_MYSQL_RUNTIME_CHECK==='1';
 const mariadbRuntimeCheck=process.env.PODS_MARIADB_RUNTIME_CHECK==='1';
 const mongodbRuntimeCheck=process.env.PODS_MONGODB_RUNTIME_CHECK==='1';
 const redisRuntimeCheck=process.env.PODS_REDIS_RUNTIME_CHECK==='1';
+const valkeyRuntimeCheck=process.env.PODS_VALKEY_RUNTIME_CHECK==='1';
 const sqliteRuntimeCheck=process.env.PODS_SQLITE_RUNTIME_CHECK==='1';
 if(mysqlRuntimeCheck&&!counterCheck)throw new Error('MySQL runtime inspection requires the counter fixture check');
 if(mariadbRuntimeCheck&&!counterCheck)throw new Error('MariaDB runtime inspection requires the counter fixture check');
 if(mongodbRuntimeCheck&&!counterCheck)throw new Error('MongoDB runtime inspection requires the counter fixture check');
 if(redisRuntimeCheck&&!counterCheck)throw new Error('Redis runtime inspection requires the counter fixture check');
+if(valkeyRuntimeCheck&&!counterCheck)throw new Error('Valkey runtime inspection requires the counter fixture check');
 if(sqliteRuntimeCheck&&!counterCheck)throw new Error('SQLite runtime inspection requires the counter fixture check');
 const apiProduct=process.env.PODS_API_PRODUCT==='1';
 const expectedInitialCount=process.env.PODS_EXPECT_INITIAL_COUNT;
@@ -50,6 +53,7 @@ if(mysqlRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-mysql'
 if(mariadbRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-mariadb')throw new Error('MariaDB runtime inspection is restricted to its explicit fixture');
 if(mongodbRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-mongodb7')throw new Error('MongoDB runtime inspection is restricted to its explicit fixture');
 if(redisRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-redis')throw new Error('Redis runtime inspection is restricted to its explicit fixture');
+if(valkeyRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-valkey')throw new Error('Valkey runtime inspection is restricted to its explicit fixture');
 if(sqliteRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-sqlite')throw new Error('SQLite runtime inspection is restricted to its explicit fixture');
 if(staticCheck&&selectedApp.source?.folder!=='examples/stacks/'+staticFixture)throw new Error('Static inspection is restricted to its explicit fixture');
 if(ssrCheck&&selectedApp.source?.folder!=='examples/stacks/'+ssrFixture)throw new Error('SSR inspection is restricted to its explicit fixture');
@@ -132,6 +136,7 @@ try {
   if(mariadbRuntimeCheck){result.mariadbRuntimeCheck=await probeEnvironment(launch.environment,mariadbRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
   if(mongodbRuntimeCheck){result.mongodbRuntimeCheck=await probeEnvironment(launch.environment,mongodbRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
   if(redisRuntimeCheck){result.redisRuntimeCheck=await probeEnvironment(launch.environment,redisRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
+  if(valkeyRuntimeCheck){result.valkeyRuntimeCheck=await probeEnvironment(launch.environment,valkeyRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
   if(sqliteRuntimeCheck){result.sqliteRuntimeCheck=await probeEnvironment(launch.environment,sqliteRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
   if(workerCheck){result.workerCheck=await probeWorker(launch.environment,base);await persist();if(!result.workerCheck.passed)throw new Error('Worker completion/relaunch persistence failed');}
   if(websocketCheck){result.websocketCheck=await probeWebSocket(launch.environment,base);await persist();if(!result.websocketCheck.passed)throw new Error('WebSocket exchange/relaunch persistence failed');}

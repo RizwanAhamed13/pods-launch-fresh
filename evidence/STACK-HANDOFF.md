@@ -23,10 +23,10 @@ VM replacement durability, or a universal 20-second cold launch.
   pending authorization. The17 fixtures awaiting native acceptance are:
   actix, aspnet, axum, deno, echo, fiber, flask-valkey, go, gradio,
   ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
-- Current full suite:162/162 passed locally and in isolated aswin QA after
-  SQLite inspection tooling. Logs /tmp/pods-sqlite-full-{local,qa}.txt.
-  The previous Redis native acceptance was published36d765c.
-- Physical code:6,475 lines =3,392 product/tooling +1,986 tests +933 examples
+- Current full suite:166/166 passed locally and in isolated aswin QA after
+  Valkey inspection tooling. Logs /tmp/pods-valkey-full-{local,qa}.txt.
+  The previous SQLite native acceptance was published4bb9326.
+- Physical code:6,567 lines =3,430 product/tooling +2,040 tests +933 examples
   +164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
   files; includes .astro. Running provider revision5dde1e5, PID1063107,
   runner SHA2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486.
@@ -689,3 +689,33 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   support DOM at04:53:36.432UTC verified55/38/38, Flask+SQLite allpassed and the
   Codespaces browser pending notice. Compatibility checks3/3passed. No processes
   or native applications remain active; next fixture is unstarted. Goal active.
+
+
+## Valkey inspection and isolated preflight complete
+
+- Previous goal turn progressed: SQLite native acceptance published4bb9326.
+  This turn adds explicit Valkey8 identity/version, fixed read-only INFO/CONFIGGET/
+  GETcounter inspection, append-only write readiness and durable/private boundary
+  validation. It rejects Redis-only identity, wrong version/mode/build, missing
+  AOF, incorrect saved record, wrong volume and exposed DB ports.
+- Four new tests include serialized fresh-process execution. Full166/166 passed
+  local session2574 and isolated aswin QA98842; both ended0. QA candidate is
+  /output/valkey-candidate-4bb9326. No provider/runner changes or service restart.
+- Real isolated preflight38211 ended0 at04:56:08.700UTC: actualValkey8.1.10,
+  buildfd3b186b1408478b, AOFenabled/writeok, counter0→1→2/fullstop/relaunch,
+  emptychunkedPOST, privateDB andpersistentvolume. Artifacte631a8a2… sourceffa4ff98…
+  matched. Keyflask-valkey-chunked-e810047e6ad2645e, projectpods-b10dd38a40035ab6ecc4b01d.
+  Cleanup84340 ended0 and removed only disposable containers/volume/selecteddirs.
+- Native Valkey has not started. Ordinary quota watcher52951 is live; last
+  account3/global3/active0, nextslot05:03:05.821UTC. Resume SAME handle; no quota
+  bypass, account switch or duplicate submission. Tab1 developer form contains
+  unsubmittedexamples/stacks/flask-valkey with Google selected. Tab2SQLite stopped,
+  tab3support55/38/38. All are marked handoff this turn.
+- Native recorder/tmp/pods-record-flask-valkey.py and captureallowlist ready;
+  update recordercheckoutRevisionafterpublishingtooling. UseactualGooglesequential
+  first/cached button0→1→2/reloads/fullstops, thenCodespaces with
+  PODS_COUNTER_CHECK=1 PODS_VALKEY_RUNTIME_CHECK=1 PODS_EXPECT_INITIAL_COUNT=0,
+  evidence/stack-flask-valkey-codespaces.json. Heading"Flask + valkey counter".
+- Current source6567lines=3430product/tooling+2040tests+933examples+164browsertools;
+  coverage55/38/38,17nativepending. GitHub2FA/VMreplacement/stablehostname inputs
+  remainpending; do not repeat questions. Goal is active and making progress.
