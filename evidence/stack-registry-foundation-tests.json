@@ -1,0 +1,111 @@
+{
+  "recordedAt": "2026-10-04T16:36:52.467041+00:00",
+  "baseRevision": "1e2dc510558ff943f6219c992a72ddc81aafd32d",
+  "scope": "Disabled OCI registry preparation and read-only launch-scoped pull surface; runner integration and native provider delivery are not implemented in this gate.",
+  "runs": {
+    "localFocused": {
+      "tests": 19,
+      "pass": 19,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 1724.403917,
+      "logSha256": "7ae096693c5ccf3d05f07a20ca0c1abc29b14a687db3550a01e632351cf8934b"
+    },
+    "localFullSuite": {
+      "tests": 311,
+      "pass": 311,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 26841.673167,
+      "logSha256": "3337f6ac2e62090f4184ba931538d1453a83192789592c236c854b24b6cb4a6d"
+    },
+    "isolatedLinuxInitialFullSuite": {
+      "tests": 311,
+      "pass": 309,
+      "fail": 2,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 65830.824208,
+      "logSha256": "6a1101eedee010bb0093a3e9900fbb9195dc6c79a3f4ef0d08daf64a2ee0eeef"
+    },
+    "isolatedLinuxCompatibilityRecheck": {
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 458.507949,
+      "logSha256": "8a7139bd9b7f44709fcbdae93bb4eb55921d0928f0b0127f2af2a86c35473386"
+    }
+  },
+  "linuxRecovery": {
+    "cause": "QA snapshot omitted evidence/stack-coverage.json; one direct read failed ENOENT and its public route consequently returned500. Production source was unchanged.",
+    "initialFailures": [
+      "compatibility renders every currently passing representative and escapes labels",
+      "compatibility and its assets are public without creating a build or connection"
+    ],
+    "correction": "Copied the exact existing compatibility fixture and verified all345 snapshot file hashes; reran the three compatibility checks, covering both failures. Already passing checks were not repeated.",
+    "uniquePassingChecksAfterCorrection": 311,
+    "singleCleanLinuxFullRunClaimed": false
+  },
+  "isolatedSnapshot": {
+    "directory": "/output/registry-candidate-1e2dc51",
+    "initialInputs": 344,
+    "correctedInputs": 345,
+    "archiveSha256": "2a7a7bdc856d12ae14c99043487b1bcf9e5f510f1d214e41ce0e8836ec75b6b2",
+    "correctedManifestSha256": "dcfe7d2691991f14f1a75ec918f4f2f01844e2a743e964be2ba65bb3384d32e3",
+    "addedFixtureSha256": "2818b47366a34d9760e4f66ff94ae5df0c25fddee54a3947b07c7b1f8339fd2c"
+  },
+  "sourceHashes": {
+    "src/image-registry.mjs": "c9820f0d6ed7188f45110b31ec2df7f31e8041fa4be5976515a87a8137e1286d",
+    "scripts/index-image.py": "6a636323695aea40d822851070419e84a6f892d29824272ab4245a5257bc2967",
+    "scripts/prepare-image-registry.mjs": "ec9d00e801b722bc12f59b3a3a4ad3f27d91360aaa8d5039921d3ffd172911a5",
+    "src/image-delivery.mjs": "1beb6a3b35daece725ca7bc20998dcb03399387a6d719228b549b1a770107b3f",
+    "src/builds.mjs": "d90fc2b9bc4ccba606349a3f355c6dd21dcd4cd80a7a8524fdec9424633b8af7",
+    "src/server.mjs": "1abcd84cce3c3f005e6e59a4ec2bb5e6e35e1e34e768c636f58bba660b4b83be",
+    "test/image-registry.test.mjs": "96c3bc54f9483d761e8b765746d2343c5c30922c8992d0d0fdda0ffe241eb3bf"
+  },
+  "checks": [
+    "Original archive hash and bounded regular-file checks",
+    "No archive-path extraction, symlinks, PAX/GNU extensions or sparse files",
+    "Descriptor closure, blob hashes, image identity and no external layer sources",
+    "Atomic index publication, deduplication and remote publication retry",
+    "Combined archive/registry/staging budget and shared writer lock",
+    "Launch capability, exact repository/image membership and expiry/stop/revocation",
+    "Manifest integrity, HEAD, bounded ranges and read-only routing",
+    "Private redirect allowlist, revocation after resolution and origin fallback"
+  ],
+  "cliChecks": {
+    "helpExitCode": 0,
+    "isolatedActualPreparedImageDryRunExitCode": 0,
+    "isolatedActualPreparedImageRepeatIndexExitCode": 0,
+    "livePrivateBlobPublicationTested": false
+  },
+  "production": {
+    "runtimeDeployed": false,
+    "configurationChanged": false,
+    "registryFilesCreated": false,
+    "providerImagesImported": false,
+    "audit": {
+      "recordedAt": "2026-10-04T16:34:28.937913+00:00",
+      "pid": 1589423,
+      "cwd": "/home/aswin/pods-launch-fresh",
+      "command": "node --env-file=.env src/server.mjs",
+      "listenerMatches": true,
+      "sqliteQuickCheck": "ok",
+      "activeBuilds": 0,
+      "activeLaunches": 0,
+      "health": 200,
+      "runnerSha256": "999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0",
+      "revision": "1e2dc510558ff943f6219c992a72ddc81aafd32d"
+    }
+  },
+  "pending": [
+    "Automatic image indexing during preparation",
+    "Runner pull selection, bounded cancellation and full-archive recovery after partial imports",
+    "Actual Docker-to-private-CDN redirect authorization and transfer acceptance",
+    "Native provider full product/database acceptance and20-second timing"
+  ]
+}

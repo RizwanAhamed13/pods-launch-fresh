@@ -14,6 +14,7 @@ import { renderCompatibility } from './compatibility.mjs';
 import { GitHubImageDelivery } from './image-delivery.mjs';
 import { trustedImageUrl } from './artifact-url.mjs';
 import { imageFailureReasons } from './image-transfer-error.mjs';
+import { serveImageRegistry } from './image-registry.mjs';
 const base = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const statuses = new Set(['downloading','starting','ready','failed','stopped','heartbeat']);
 const returnPage = value => typeof value === 'string' && /^(?:\/|\/develop|\/launch\/[a-z0-9-]+)$/.test(value);
@@ -26,6 +27,7 @@ export async function createApp(options={}) {
   const secure = origin.startsWith('https://');
   const store = new Store(data, options.secret || process.env.PODS_SECRET);
   const imageDelivery = 'imageDelivery' in options ? options.imageDelivery : GitHubImageDelivery.fromEnv({data, store});
+  const registryEnabled = options.registryEnabled ?? process.env.PODS_IMAGE_REGISTRY_ENABLED === '1';
   const runner = (await bundle({entryPoints:[join(base,'src/runner.mjs')],bundle:true,platform:'node',format:'esm',target:'node22',write:false})).outputFiles[0].contents;
   const providers = options.providers || makeProviders({repo,origin,runnerSha:digest(runner)});
   const jobs = new Map();let closing;
@@ -86,6 +88,7 @@ export async function createApp(options={}) {
     const json=(code,value)=>{res.writeHead(code,{'Content-Type':'application/json'});res.end(JSON.stringify(value));};
     const redirect=location=>{res.writeHead(302,{Location:location});res.end();};
     try {
+      if(registryEnabled && await serveImageRegistry(req,res,{data,store,delivery:imageDelivery}))return;
       if(path==='/health')return json(200,{ok:true});
       if(path==='/runner.mjs'&&req.method==='GET'){res.setHeader('Content-Type','text/javascript');return res.end(runner);}
       const agent=/^\/api\/agent\/([A-Za-z0-9_-]{32})(?:\/(artifact)(?:\/images\/([a-f0-9]{64}))?)?$/.exec(path);

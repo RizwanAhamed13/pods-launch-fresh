@@ -1,15 +1,19 @@
 # Broad stack checkpoint
 
 Goal active and incomplete: developer URL → isolated aswin build → reusable artifact
-→ authorized user compute → real usable product. Latest completed gate: isolated
-shared-layer import and full-archive fallback capability. Flask archive57.0→11.1MB
-with exact image/rootfs/dependency checks passed when base content was present.
-An empty store exposed successful load/identity checks for an unrunnable image;
-full-archive import repaired it. No delivery implementation or new native timing.
+→ authorized user compute → real usable product. Latest completed gate: disabled
+OCI registry foundation plus actual authenticated Docker pulls in isolated QA.
+Cold blobs57.4MB/shared-base11.2MB/repeat0; exact image and dependency checks pass.
+Automatic indexing/runner integration and native acceptance remain pending. The
+previous thin-archive diagnostic exposed misleading load/identity success for an
+unrunnable image; retain full-archive recovery in the upcoming runner integration.
 Prior native gate: Flask + MariaDB acceptance of the deployed two-image pipeline.
 Actual first-image product30.229s/write30.947s still misses20s; cached product12.607s/
 write13.005s passes. Both CDN downloads succeeded; persistence2→3→4 passed.
-No source changes or full-suite reruns in this gate. Native Codespaces browser and
+Source is now9517lines;311 local checks passed. Linux309/311 initially, then all3
+compatibility checks passed after a missing QA fixture was restored. Production
+runtime remainsf87b2e0, with no registry configuration or files added there.
+Native Codespaces browser and
 broader first-image latency remain open; no universal compatibility/speed claim.
 
 ## Current verified state
@@ -22,12 +26,16 @@ broader first-image latency remain open; no universal compatibility/speed claim.
   browser and55 Codespaces HTTP/protocol paths. Seven DB/service families.
   Native Codespaces browser sign-in/interaction remains unverified. See SUPPORT.md;
   not every framework version, arbitrary repository or non-web product is covered.
-- Tests stack-image-pipeline-tests.json:292/292 local26.503s/Linux64.895s.
+- Tests stack-registry-foundation-tests.json:311/311 local26.842s; Linux309/311
+  in65.831s, two failures due omitted evidence/stack-coverage.json. Exact fixture
+  restored,345 snapshot inputs verified, compatibility3/3 passed in0.459s. No
+  implementation changes after these runs; passing checks not repeated.
+- Historical deployed tests stack-image-pipeline-tests.json:292/292 local26.503s/Linux64.895s.
   Final candidate /output/image-pipeline-final-candidate-55737b2,343 verified inputs.
   Four selected regressions fail unchanged55737b2 baseline. Initial focused failure
   identified stalled web-stream cancellation; Readable.fromWeb fixes direct and
   range bodies. Empty HTTP200 response now fails before staging-file creation.
-- Scope9012 physical source lines =4183 product/tooling +3718 tests +933 examples
+- Scope9517 physical source lines =4537 product/tooling +3869 tests +933 examples
   +178 browser tools. Exact scope in code-lines.json; archived probes excluded.
 - stack-image-pipeline-comparison.json: ABBA,3images226330909bytes, aggregate20MiB/s
   loopback HTTP, real Docker29.1.3 loads, equally warmed Docker content, synthetic
@@ -38,6 +46,43 @@ broader first-image latency remain open; no universal compatibility/speed claim.
   Deployment preserved59images/135artifactfiles/.env. Post-native audit16:02:35UTC:
   health200/SQLiteok/zero active. Baseline55737b2 retained in test/benchmark evidence.
 - 59 distinct prepared images,10 mappings,49 unmapped totaling5177532324bytes.
+
+## Latest OCI registry foundation
+
+- src/image-registry.mjs; scripts/index-image.py and prepare-image-registry.mjs;
+  test/image-registry.test.mjs. Existing image-delivery publisher can publish raw
+  registry blobs from the verified registry directory. BuildManager publication
+  uses the shared writer lock and includes registry/staging bytes in its budget.
+- Optional server PODS_IMAGE_REGISTRY_ENABLED flag defaults off. GET/HEAD /v2/
+  uses launch Basic credentials. Repository paths encode the exact launch ID in
+  lowercase hex and its original image archive SHA; only the index's reachable
+  manifests/blobs are accessible. Private redirects recheck revocation; manifests
+  are hash verified, HEAD is local, bounded blob ranges supported. No upload API.
+- Python tarfile header subclass rejects extensions/links/sparse metadata before
+  payload processing; only digest-named regular blobs are written. Input archive,
+  all blob hashes and descriptor closure verify, index committed last. Existing
+  artifacts unchanged. Budget and exclusive writer lock cover partial work; no
+  automatic stale-lock removal. Production indexing must wait for this lock to
+  be deployed to all build processes. No production indexing has occurred.
+- stack-registry-pull-qa.json: candidate/output/registry-candidate-1e2dc51;
+  probe/output/registry-probe-v3-1e2dc51. Exact final probe archived. Separate
+  physical containerd roots were empty before use; warm case then imported the
+  existing FastAPI archive. Real PODS server/launch auth served Flask imageb665...
+  (archive41d7...). Indexing965ms;10blobs57400283bytes. No CDN in real Docker check.
+- Cold:9blobGETs57398228bytes,pull7592ms. Shared base:5blobGETs11178157bytes,
+  pull3614ms; all4commonblobGETs absent. Cached repeat:0blobGETs,pull1095ms.
+  Exact image ID/eight rootfs IDs and Flask3.1.1/PyMySQL1.1.2 execution passed in
+  both stores. No appserver/DB started; timings are not native or product latency.
+- Initial probe and its first retry failed before pulls because the demoted QA
+  Node process inherited/root (0700), causing esbuild spawnEACCES. The first retry
+  mistakenly changed source-copy permissions; actual correction was explicit cwd.
+  Failures retained. All5final daemons stopped, noownedprobeprocessesremain;
+  originalQAimages preserved and temporaryDockerclientcredentials removed.
+- Next: integrate automatic preparation and runner selection with bounded pull,
+  cancellation, exact identity/completeness checks and full-archive fallback even
+  after a partial image is present. Test actual recovery before rollout. Then
+  private CDN blob publication/redirect behavior and native first-image product
+  acceptance. Do not advertise the registry as active delivery yet. Goal active.
 
 ## Latest layer-reuse diagnostic
 

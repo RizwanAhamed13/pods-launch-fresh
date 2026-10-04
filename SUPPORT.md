@@ -85,7 +85,11 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **292 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **311 local passing checks**.
+Linux passed309 initially; its two missing-fixture failures were covered by a
+passing three-check compatibility rerun after restoring the exact fixture. The
+original failed run remains in [test evidence](evidence/stack-registry-foundation-tests.json).
+Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
@@ -243,6 +247,36 @@ application stop/relaunch. Direct read-only inspection confirmed MariaDB11.4.13,
 saved record3, no published database port and persistent Cloud Shell home storage.
 Both previews stopped, all nine existing Google keys were preserved, and the
 service remained healthy. The current source and292-check results are unchanged.
+
+## Experimental OCI pull foundation
+
+The [new implementation and tests](evidence/stack-registry-foundation-tests.json)
+add bounded OCI indexing, digest-addressed authenticated reads, HEAD/range support,
+private blob publication, and shared image-store accounting/locking. The registry
+is disabled by default; current runners continue using full archives. Preparation
+does not execute application code. Archive paths, links, extension records,
+missing or changed blobs, and external layer sources are rejected.
+
+[Actual Docker pulls](evidence/stack-registry-pull-qa.json) used the real prepared
+Flask image in separate QA Docker29.1.3/containerd stores with their own roots and
+sockets. Cold transfer fetched nine blobs totaling57,398,228bytes. After importing
+the existing FastAPI base, Docker fetched five blobs totaling11,178,157bytes and
+requested none of the four shared layers. Repeat pull fetched zero blobs. Every
+pull returned the original image identity; both independent stores passed the
+Flask3.1.1/PyMySQL1.1.2 dependency check. All test daemons stopped and temporary
+client credentials were removed; existing QA images remained intact.
+
+Observed loopback pull durations were7.592s cold,3.614s with the base and1.095s on
+repeat. Cache states differ; these are not an A/B implementation comparison,
+native network measurements or time to the usable product. No app server or DB
+was started. The two initial probe setup failures remain recorded. Production
+configuration, image files, artifact links and running server were not changed.
+
+Automatic preparation, runner selection, completeness/fallback recovery and real
+CDN/provider acceptance are the next gates. The standard OCI pull protocol was
+chosen to request content by digest; see the
+[OCI distribution specification](https://github.com/opencontainers/distribution-spec/blob/main/spec.md).
+PODS implements a narrow read-only pull surface, not a general registry service.
 
 ## Layer reuse diagnostic
 
@@ -708,9 +742,10 @@ a stable production hostname remains a deployment requirement.
   a consistent database snapshot, resumes it, then queries the private copy.
   The reported SQLite version belongs to the inspector, not the application
   driver. These isolated checks do not add native-provider acceptance.
-- [Full-suite result](evidence/stack-image-pipeline-tests.json): **292/292**
-  checks passed locally and in isolated aswin Linux QA.
-- [Physical source count](evidence/code-lines.json): **8,597 lines**, including
+- [Current test result](evidence/stack-registry-foundation-tests.json): **311/311**
+  locally; Linux309 passed initially and its two missing-fixture failures passed
+  in the three-check compatibility rerun. The original failure is retained.
+- [Physical source count](evidence/code-lines.json): **9,517 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)

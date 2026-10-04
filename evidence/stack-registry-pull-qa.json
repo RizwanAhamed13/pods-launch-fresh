@@ -1,0 +1,350 @@
+{
+  "scope": "Actual Docker pulls through the candidate PODS read-only authenticated registry in isolated QA; no native provider or product timing",
+  "startedAt": 1791131556.701562,
+  "runs": [
+    {
+      "mode": "cold",
+      "engine": {
+        "ServerVersion": "29.1.3",
+        "Driver": "overlayfs",
+        "DriverStatus": [
+          [
+            "driver-type",
+            "io.containerd.snapshotter.v1"
+          ]
+        ]
+      },
+      "initialImages": 0,
+      "initialPhysicalBlobs": 0,
+      "pulls": [
+        {
+          "phase": "cold",
+          "elapsedMs": 7592,
+          "exitCode": 0,
+          "identityMatches": true
+        },
+        {
+          "phase": "cold-cached",
+          "elapsedMs": 1095,
+          "exitCode": 0,
+          "identityMatches": true
+        }
+      ],
+      "rootfs": [
+        "sha256:a6dc765193a52cbaede3c93a9ff48b9540948dd0774bbe7031fcb5847606f9ac",
+        "sha256:ec5ef3f1cbefdce6c6ac6574e6609310d57e2baab89df410bf30228f5f567273",
+        "sha256:5b57eb74119f41ab33783352993c069e1f4ac4136e711d205e136808aad526b6",
+        "sha256:d88e62f9bbff6447c00667778988589b711cebf26b8046fdf54eebc0a543c204",
+        "sha256:603e86610f06440c5653776024242c8143b725f4f92ebe63ba7511d4c44f40e8",
+        "sha256:7ca762d378e4be7405d66f4e6d8550b3932edaa2596749deeb8005a5c19d0068",
+        "sha256:52bb581824725209d7f03727c29255c45f34d1269be9cc53e39ca24438471599",
+        "sha256:af16ecd95ea0954ae6e10819b5d83578e63c8cf27c2261d22750b2f2a2a6a968"
+      ],
+      "runtimeCheck": {
+        "exitCode": 0,
+        "output": "3.1.1\n1.1.2\n"
+      },
+      "remainingContainers": 0
+    },
+    {
+      "mode": "shared-base",
+      "engine": {
+        "ServerVersion": "29.1.3",
+        "Driver": "overlayfs",
+        "DriverStatus": [
+          [
+            "driver-type",
+            "io.containerd.snapshotter.v1"
+          ]
+        ]
+      },
+      "initialImages": 0,
+      "initialPhysicalBlobs": 0,
+      "pulls": [
+        {
+          "phase": "shared-base",
+          "elapsedMs": 3614,
+          "exitCode": 0,
+          "identityMatches": true
+        }
+      ],
+      "baseImported": true,
+      "targetAbsentBeforePull": true,
+      "rootfs": [
+        "sha256:a6dc765193a52cbaede3c93a9ff48b9540948dd0774bbe7031fcb5847606f9ac",
+        "sha256:ec5ef3f1cbefdce6c6ac6574e6609310d57e2baab89df410bf30228f5f567273",
+        "sha256:5b57eb74119f41ab33783352993c069e1f4ac4136e711d205e136808aad526b6",
+        "sha256:d88e62f9bbff6447c00667778988589b711cebf26b8046fdf54eebc0a543c204",
+        "sha256:603e86610f06440c5653776024242c8143b725f4f92ebe63ba7511d4c44f40e8",
+        "sha256:7ca762d378e4be7405d66f4e6d8550b3932edaa2596749deeb8005a5c19d0068",
+        "sha256:52bb581824725209d7f03727c29255c45f34d1269be9cc53e39ca24438471599",
+        "sha256:af16ecd95ea0954ae6e10819b5d83578e63c8cf27c2261d22750b2f2a2a6a968"
+      ],
+      "runtimeCheck": {
+        "exitCode": 0,
+        "output": "3.1.1\n1.1.2\n"
+      },
+      "remainingContainers": 0
+    }
+  ],
+  "indexing": {
+    "appId": "registry-qa",
+    "images": [
+      {
+        "archiveSha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+        "imageId": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+        "blobs": 10,
+        "blobBytes": 57400283,
+        "addedBlobBytes": 57400283,
+        "delivery": "origin"
+      }
+    ],
+    "storedBytes": 114448267,
+    "elapsedMs": 965
+  },
+  "target": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+  "stopped": {
+    "cold-docker": true,
+    "cold-containerd": true,
+    "shared-base-docker": true,
+    "shared-base-containerd": true,
+    "registry-server": true
+  },
+  "completed": true,
+  "requests": [
+    {
+      "phase": "cold",
+      "method": "HEAD",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/manifests/sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+      "status": 401,
+      "bytes": 0
+    },
+    {
+      "phase": "cold",
+      "method": "HEAD",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/manifests/sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+      "status": 200,
+      "bytes": 0
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/manifests/sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+      "status": 200,
+      "bytes": 2055
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/blobs/sha256:72f3643dddbffa583c4bcc89abfd93dfc2ba596fedb6df7143768df6da781607",
+      "status": 200,
+      "bytes": 6856
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/blobs/sha256:a0c062d2876d87542fa374b5200d8fab9c49f57f64e88b54c8f0f282a4916e6f",
+      "status": 200,
+      "bytes": 93
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/blobs/sha256:e360d85fdc0f3910a4fe48ba2bb0865d5e618392ea8abfa424e66575e45273c0",
+      "status": 200,
+      "bytes": 12120738
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/blobs/sha256:b528b665adb569ee1d2a3b224683a63a62eafca8ea978a4fb9de396835c4ae34",
+      "status": 200,
+      "bytes": 813
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/blobs/sha256:5e62c0470a0973ad9561440c8a37984c3252eda1dd19e00ca7e76a37b62b5dc7",
+      "status": 200,
+      "bytes": 249
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/blobs/sha256:c0727d2a5910751c7e80fce2fde75b0ca8a1a7bc7bab00b20eeeaea1227f75df",
+      "status": 200,
+      "bytes": 180
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/blobs/sha256:a510a9ea6d60786b7cefdbf9577945344c72879881de8d32ef07ec38111fb045",
+      "status": 200,
+      "bytes": 4268666
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/blobs/sha256:811327e928eafdad03082c4271d2fa50424865468252faed92f9b39a09b276bf",
+      "status": 200,
+      "bytes": 11170215
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/blobs/sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8",
+      "status": 200,
+      "bytes": 29830418
+    },
+    {
+      "phase": "cold-cached",
+      "method": "HEAD",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/manifests/sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+      "status": 401,
+      "bytes": 0
+    },
+    {
+      "phase": "cold-cached",
+      "method": "HEAD",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/manifests/sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+      "status": 200,
+      "bytes": 0
+    },
+    {
+      "phase": "shared-base",
+      "method": "HEAD",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/manifests/sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+      "status": 401,
+      "bytes": 0
+    },
+    {
+      "phase": "shared-base",
+      "method": "HEAD",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/manifests/sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+      "status": 200,
+      "bytes": 0
+    },
+    {
+      "phase": "shared-base",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/manifests/sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+      "status": 200,
+      "bytes": 2055
+    },
+    {
+      "phase": "shared-base",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/blobs/sha256:72f3643dddbffa583c4bcc89abfd93dfc2ba596fedb6df7143768df6da781607",
+      "status": 200,
+      "bytes": 6856
+    },
+    {
+      "phase": "shared-base",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/blobs/sha256:b528b665adb569ee1d2a3b224683a63a62eafca8ea978a4fb9de396835c4ae34",
+      "status": 200,
+      "bytes": 813
+    },
+    {
+      "phase": "shared-base",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/blobs/sha256:811327e928eafdad03082c4271d2fa50424865468252faed92f9b39a09b276bf",
+      "status": 200,
+      "bytes": 11170215
+    },
+    {
+      "phase": "shared-base",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/blobs/sha256:a0c062d2876d87542fa374b5200d8fab9c49f57f64e88b54c8f0f282a4916e6f",
+      "status": 200,
+      "bytes": 93
+    },
+    {
+      "phase": "shared-base",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a/blobs/sha256:c0727d2a5910751c7e80fce2fde75b0ca8a1a7bc7bab00b20eeeaea1227f75df",
+      "status": 200,
+      "bytes": 180
+    }
+  ],
+  "existingQaImagesPreserved": true,
+  "temporaryClientCredentialsRemoved": true,
+  "finishedAt": 1791131588.1829731,
+  "recordedAt": "2026-10-04T16:36:52.467041+00:00",
+  "summary": {
+    "cold": {
+      "requests": 12,
+      "blobGets": 9,
+      "blobBytes": 57398228
+    },
+    "cold-cached": {
+      "requests": 2,
+      "blobGets": 0,
+      "blobBytes": 0
+    },
+    "shared-base": {
+      "requests": 8,
+      "blobGets": 5,
+      "blobBytes": 11178157
+    }
+  },
+  "allFourSharedLayerDownloadsSkipped": true,
+  "sourceHashes": {
+    "src/image-registry.mjs": "c9820f0d6ed7188f45110b31ec2df7f31e8041fa4be5976515a87a8137e1286d",
+    "scripts/index-image.py": "6a636323695aea40d822851070419e84a6f892d29824272ab4245a5257bc2967",
+    "scripts/prepare-image-registry.mjs": "ec9d00e801b722bc12f59b3a3a4ad3f27d91360aaa8d5039921d3ffd172911a5",
+    "src/image-delivery.mjs": "1beb6a3b35daece725ca7bc20998dcb03399387a6d719228b549b1a770107b3f",
+    "src/builds.mjs": "d90fc2b9bc4ccba606349a3f355c6dd21dcd4cd80a7a8524fdec9424633b8af7",
+    "src/server.mjs": "1abcd84cce3c3f005e6e59a4ec2bb5e6e35e1e34e768c636f58bba660b4b83be",
+    "test/image-registry.test.mjs": "96c3bc54f9483d761e8b765746d2343c5c30922c8992d0d0fdda0ffe241eb3bf"
+  },
+  "probe": {
+    "path": "evidence/probes/registry-pull-qa.py",
+    "sha256": "7ddd7d9e5c1fe4a274f3ad69d0a24e7047c00a358e351d35a6e87eed90a36b11"
+  },
+  "retainedFailures": [
+    {
+      "attempt": 1,
+      "receipt": {
+        "scope": "Actual Docker pulls through the candidate PODS read-only authenticated registry in isolated QA; no native provider or product timing",
+        "startedAt": 1791131462.6154926,
+        "runs": [],
+        "failure": "Registry candidate exited before readiness",
+        "stopped": {
+          "registry-server": true
+        },
+        "existingQaImagesPreserved": true,
+        "temporaryClientCredentialsRemoved": true,
+        "finishedAt": 1791131466.8086593
+      },
+      "actualCause": "QA child was demoted to uid1000 while retaining cwd/root (0700); esbuild could not spawn. No pull or private Docker daemon started.",
+      "probeSha256": "54f92ed6a75fe4966a9e662da291bd8a65210bfb8bb419a7bb46937bc197bd39"
+    },
+    {
+      "attempt": 2,
+      "receipt": {
+        "scope": "Actual Docker pulls through the candidate PODS read-only authenticated registry in isolated QA; no native provider or product timing",
+        "startedAt": 1791131524.6042132,
+        "runs": [],
+        "failure": "Registry candidate exited before readiness",
+        "stopped": {
+          "registry-server": true
+        },
+        "existingQaImagesPreserved": true,
+        "temporaryClientCredentialsRemoved": true,
+        "finishedAt": 1791131529.0681896
+      },
+      "actualCause": "QA child was demoted to uid1000 while retaining cwd/root (0700); esbuild could not spawn. No pull or private Docker daemon started.",
+      "probeSha256": "040e0a74655e19a47f6c1864e0e953b42c8121ae08d6aa7c55ae960d6bfcf883"
+    }
+  ],
+  "harnessCorrection": "The first retry changed only source-copy permissions and did not fix the error. Verified root cwd and executable permissions, then explicitly set the demoted child cwd to its owned probe directory.",
+  "ownedProbeProcessesRemaining": 0,
+  "ordinaryQaDockerHealthy": true,
+  "applicationStarted": false,
+  "databaseStarted": false,
+  "nativeProviderTested": false,
+  "cdnTested": false,
+  "latencyComparisonLimit": "Different cache states on loopback QA; not an implementation A/B comparison or product timing.",
+  "productionRuntimeChanged": false
+}

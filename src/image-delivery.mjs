@@ -43,7 +43,7 @@ export class GitHubImageDelivery {
       asset.state === 'uploaded' && asset.size === image.bytes && asset.digest === 'sha256:' + image.sha256;
   }
 
-  async publish(images) {
+  async publish(images, {directory = join(this.data,'images'), contentType = 'application/gzip'} = {}) {
     if (!images.length) return;
     if (!images.every(validImage)) throw new Error('Invalid image publication identity.');
     await this.privateRepository(AbortSignal.timeout(5000));
@@ -57,13 +57,13 @@ export class GitHubImageDelivery {
         if (page === 10) throw new Error('Image release asset capacity reached.');
       }
       if (!asset) {
-        const path = join(this.data, 'images', image.sha256 + '.gz');
+        const path = join(directory, image.sha256 + '.gz');
         if ((await stat(path)).size !== image.bytes) throw new Error('Prepared image size changed.');
         const hash = createHash('sha256');
         for await (const chunk of createReadStream(path)) hash.update(chunk);
         if (hash.digest('hex') !== image.sha256) throw new Error('Prepared image integrity check failed.');
         asset = await this.request(`releases/${this.releaseId}/assets?name=${image.sha256}.gz`, {
-          upload:true, method:'POST', headers:{'Content-Type':'application/gzip', 'Content-Length':String(image.bytes)},
+          upload:true, method:'POST', headers:{'Content-Type':contentType, 'Content-Length':String(image.bytes)},
           body:createReadStream(path), duplex:'half', signal:AbortSignal.timeout(180000),
         });
       }

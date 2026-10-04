@@ -4,6 +4,7 @@ import { parseRepository } from './repository.mjs';
 import { decodeArtifact } from './runner.mjs';
 import { digest, uid } from './util.mjs';
 import { IMAGE_TOTAL_LIMIT } from './containers.mjs';
+import { imageStoreBytes, withImageStoreWrite } from './image-registry.mjs';
 
 const terminal = new Set(['ready', 'failed']);
 const fail = (status, message) => Object.assign(new Error(message), { status });
@@ -153,12 +154,12 @@ export class BuildManager {
       const result = await this.adapter.build(build.repository, stage => {
         if (['fetching', 'detecting', 'installing', 'compiling', 'packaging', 'verifying'].includes(stage)) this.update(id, { status: stage });
       });
-      const imageDir=join(this.data,'images');await mkdir(imageDir,{recursive:true});
-      const storedImages=await readdir(imageDir), imageSizes=await Promise.all(storedImages.filter(n=>n.endsWith('.gz')).map(n=>stat(join(imageDir,n)).then(s=>s.size)));
-      if(imageSizes.reduce((a,b)=>a+b,0)+(result.blobs||[]).reduce((a,b)=>a+b.bytes.length,0)>this.imageStorageBytes)throw new Error('Prepared image storage is full. Contact the PODS operator.');
       this.update(id, { status: 'publishing' });
       const manifest = validateBuildOutput(build.repository, result.manifest, result.bytes, result.blobs);
-      const published = await publishArtifact(this.data, manifest, result.bytes, result.blobs);
+      const published = await withImageStoreWrite(this.data, async()=>{
+        if(await imageStoreBytes(this.data)+(result.blobs||[]).reduce((a,b)=>a+b.bytes.length,0)>this.imageStorageBytes)throw new Error('Prepared image storage is full. Contact the PODS operator.');
+        return publishArtifact(this.data, manifest, result.bytes, result.blobs);
+      });
       if (this.imageDelivery && published.images?.length) {
         try { await this.imageDelivery.publish(published.images); this.update(id, {imageDelivery:'available'}); }
         catch { this.update(id, {imageDelivery:'unavailable'}); } // The verified local artifact remains launchable.

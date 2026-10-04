@@ -8,8 +8,11 @@ Current coverage is 55 representative applications, including React, Angular and
 seven database/service families; exact provider evidence is in [SUPPORT.md](SUPPORT.md).
 Launch-speed work remains active. A [layer-reuse diagnostic](evidence/stack-layer-reuse-diagnostic.json)
 reduced one Flask archive from 57.0 MB to 11.1 MB when shared layers were present
-and verified full-archive recovery when they were absent. This is an isolated
-capability check, not a deployed optimization or measured product speedup.
+and verified full-archive recovery when they were absent. The subsequent
+[authenticated Docker pull check](evidence/stack-registry-pull-qa.json) fetched
+57.4 MB from an empty store and 11.2 MB with the shared base present. The new
+registry foundation is disabled by default and is not yet integrated with the
+launcher; these isolated checks do not establish native product speed.
 
 ## Run the control plane
 
@@ -149,6 +152,42 @@ VM replacement can still change browser storage origins.
 Stop application sends a stop request to the runner. It stops the app process group within a few seconds, preserving note data and the cached artifact. Node previews can fall back to a private directory under `/tmp` when persistent storage is unavailable and explicitly report temporary storage. Container/database applications fail instead of silently opening an empty temporary database. No existing user files are deleted.
 
 Preview processes also stop after 30 minutes even if the control plane disappears. The Codespace itself remains running until its provider idle timeout (15 minutes requested by PODS), or until the user stops it in GitHub. Cloud Shell has no API stop operation. Billing and quota remain the user's responsibility.
+
+## Experimental layer delivery foundation
+
+The read-only OCI endpoint supports digest-addressed pulls of explicitly indexed
+prepared images. It uses Docker's existing content store to reuse matching blobs.
+Each request requires the current launch capability and is restricted to that
+launch's image and manifest closure. Known hashes alone do not grant access.
+Manifests and blobs retain their original SHA-256 identities; there is no
+cache-specific archive generation or registry push/tag API.
+
+The indexer requires Python 3 on the control server. It streams verified OCI
+Docker-save archives without extracting their paths, rejects links, extensions,
+external descriptors and missing/changed blobs, and publishes the index last.
+Unsupported archive formats retain the existing full-archive launch path. Blobs,
+metadata and staging bytes count against `PODS_IMAGE_STORAGE_BYTES`. Build
+publication and indexing share an exclusive image writer lock. Deploy this lock
+to every build process before using indexing on production. A lock left after a
+process crash requires operator verification and recovery; do not remove a live
+writer's lock.
+
+```sh
+# Default is read-only verification of the selected prepared application.
+node --env-file=.env scripts/prepare-image-registry.mjs --app APP_ID
+# Index existing images locally, within the configured image-store budget.
+node --env-file=.env scripts/prepare-image-registry.mjs --app APP_ID --index
+# Also publish verified blobs to the configured private GitHub release.
+node --env-file=.env scripts/prepare-image-registry.mjs --app APP_ID --publish
+```
+
+`PODS_IMAGE_REGISTRY_ENABLED=1` enables the experimental endpoint. Current runners
+still download full archives; automatic build indexing, runner integration,
+bounded full-archive fallback and native CDN/provider acceptance remain pending.
+No production registry files or release assets were created in this gate. See
+[test evidence](evidence/stack-registry-foundation-tests.json) and
+[Docker pull evidence](evidence/stack-registry-pull-qa.json). This is not a claim
+of full OCI registry conformance or additional framework coverage.
 
 ## Verification
 
