@@ -330,6 +330,11 @@ reproduced the old stuck progress screen, then recovered two simulated errors
 during preparation and two during launch without an extra progress click. The
 actual notes product opened automatically and retained a saved note on reload.
 These injected faults used local simulated providers, not native cloud failures.
+[Two deployed Cloud Shell browser launches](evidence/stack-browser-recovery-native.json)
+then opened the actual product automatically in 11.548s and 10.726s, retained
+SQLite values 12→13→14 through reload and full stop/relaunch, and stopped normally.
+Both reused a cached image on running compute. The server and runner stayed
+running unchanged; the served browser source matched the tested revision.
 
 ## Persistence and operational limits
 

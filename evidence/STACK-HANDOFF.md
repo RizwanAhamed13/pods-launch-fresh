@@ -1,11 +1,10 @@
 # Broad stack checkpoint
 
 Goal active and incomplete: developer URL → isolated aswin build → reusable
-artifact → authorized user compute → actual usable product. Latest gate fixed native
-test evidence loss, passed 250 local/Linux checks and two cached Codespaces
-launches with persistent SQLite. Production launch behavior is unchanged. The
-earlier HTML status-poll failure and same-instance recovery remain recorded; the
-original response cause is unknown. First-image 20-second product target remains unmet.
+artifact → authorized user compute → actual usable product. Latest gate fixed
+browser status-read recovery, passed 264 local/Linux checks, a real-browser
+controlled-fault before/after test and two deployed Google browser launches with
+persistent SQLite. First-image 20-second product target remains unmet.
 Do not mark the goal complete or blocked; meaningful work remains possible.
 
 ## Current verified state
@@ -21,20 +20,21 @@ Do not mark the goal complete or blocked; meaningful work remains possible.
   These are tested representatives, not every version or arbitrary application.
   Unknown secrets/schema/migrations require developer inputs; desktop/mobile/GPU/
   non-web products are excluded. Frontend localStorage is not backend DB durability.
-- Full suite 250/250 local and isolated Linux; stack-live-evidence-tests.json verifies
-  336 snapshot input hashes. Current scoped source 8,347 physical lines:
-  4,030 product/tooling + 3,220 tests + 933 examples + 164 browser tools.
+- Full suite 264/264 local and isolated Linux; stack-browser-recovery-tests.json verifies
+  337 snapshot input hashes. Current scoped source 8,546 physical lines:
+  4,054 product/tooling + 3,385 tests + 933 examples + 174 browser tools.
   Archived diagnostic reproducers in evidence/probes are outside that scope.
-- Current source fff99254886c0beea3d5715168a605cc915888c4 (harness only).
+- Latest implementation 29dc9e407dd7ee49f3180710a520db7189ffe837 (browser recovery).
   Running production revision 723edfafccdbef383a413c744d11dc2d24c0c61e, PID 1508835.
   Server e189ffd; preview helper 7a28920; providers/deferred-command b9be575;
   builder 2553fc8; storage 77cf340.
   Runner SHA be41ee8a471d684705100e8353a1d7cc34ea1e8d89b2575a6e155f1d50eef13d.
 - stack-eight-ranges-deployment.json records health200/SQLiteok and preservation
   of 58 image files/133 artifacts and .env. A later ordinary build adds artifacts.
-- Final audit 2026-10-04T13:44:23.215453+00:00: same PID/runner, source fff9925,
+- Final audit 2026-10-04T13:59:39.062277+00:00: same PID/runner, source 29dc9e4,
   health200, SQLiteok, zero active builds/launches. All test launches stopped.
-  Docs-only sync does not require a restart.
+  Browser static files are served from disk; new app.js SHA matched over public HTTPS
+  without a service restart. Later docs-only sync also needs no restart.
 
 ## Latest implementation and native gate
 
@@ -119,27 +119,51 @@ Do not mark the goal complete or blocked; meaningful work remains possible.
   See receipt for initial compute states and final idle audit; cached timings do not
   add first-image evidence or establish a speedup. Google count remains12.
 
+## Completed browser recovery gate
+
+- 29dc9e4: public/app.js retries only build/launch status GETs after temporary
+  network, HTML/malformed JSON or HTTP408/5xx failures. Three retries at1/2/4s,
+  10s request timeout, failure count resets on healthy reads. HTTP401/403/404/429
+  stop automatic recovery. Persistent failures retain manual same-ID progress check.
+  Operation generation + AbortController prevent obsolete responses navigating or
+  repainting after stop, changed selection or pagehide. History errors cannot undo
+  terminal readiness. Creation, writes, stop and authorization are never retried.
+- stack-browser-recovery-tests.json: actual client executed with deterministic
+  network/clock/DOM. Before4pass/10fail; after14/14new and264/264full local/Linux.
+  Snapshot337 hashes verified in /output/browser-recovery-candidate-26e50d8.
+- stack-browser-recovery-browser.json: real browser, actual PODS client/server/
+  runner/notes product, simulated build/provider. Old client stuck after HTML503
+  although buildready. Fixed client recovered2build errors→sharelink and2launch
+  errors→automatic product; wrote note, reloaded, normalstop, zero manualprogress
+  clicks or duplicated creation. Local fixture PID2403/worker94999 terminal0;
+  test apps stopped and temporary tab4closed. gstack browse unavailable (missing
+  expected Chromium); existing Codex browser completed all checks, no install.
+- stack-browser-recovery-native.json: two cached Google launches, initiallyRUNNING:
+  oSq-HHDtxFhyVuKs6EmnMlV1ntDaDTqf healthy10695ms/product11548ms;
+  58GKnGl4L9MkrpfalwEEX-Piml_xZPpD healthy9417ms/product10726ms.
+  Automatically opened actual Micronaut product, buttonwrite/reload/fullstop/
+  relaunch12→13→14. No native fault injection or new databasefile inspection.
+  Same prepared image, no new build/cacheclearing. Both stopped; finalhealth200,
+  SQLiteok, zeroactive. ServedclientSHA
+  fae866b21ed5d063b852ea0ef615e9aca0a61b9e3e2bb59ae61220204748dcff.
+  PID1508835/runner unchanged. These cached observations add no first-image
+  performance or native Codespaces browser acceptance.
+
 ## Next bounded gate
 
-- Production browser polling is now inspected: public/app.js poll() catches any
-  error, stops scheduling polls and requires the user to click Check progress.
-  Its api() unconditionally parses JSON, so a transient HTML response could force
-  that extra step. This is a code-derived hypothesis, not a reproduced native browser
-  failure. Reproduce with the real client and controlled responses, then implement
-  bounded read-only recovery that preserves the same build/launch ID and automatic
-  product navigation. Never retry creation/write mutations or conceal auth failures.
-  Verify normal success, temporary errors, persistent failure limits, and stale
-  responses after navigation/operation changes. Keep production edits scoped.
-- Continue measured work on first-image/preview costs after evidence reliability.
-  Preserve private preview gating, signed delivery, integrity, caches and saved data.
-- Pending questions remain GitHub native-browser2FA, stable production hostname,
+- Continue measured work on first-image/preview costs. Use existing timing evidence
+  to choose one concrete bottleneck; preserve private preview gating, signed
+  delivery, integrity checks, caches and saved data. Do not run another full matrix
+  without a relevant production change or an unresolved regression.
+- Pending user inputs remain GitHub native-browser2FA, stable production hostname,
   and destructive provider VM-replacement testing. Do not repeat or infer approval.
+- Current browser recovery gate is finished and published. No need to rerun its
+  passing suite or native checks unless implementation changes.
 - Historical fixes/probes/failures remain in individual receipts and
-  STACK-VERIFICATION-HISTORY.md. Previous detailed checkpoint is preserved in git at
-  723edfafccdbef383a413c744d11dc2d24c0c61e:evidence/STACK-HANDOFF.md.
-  Google ready-key optimization, gated SSH overlap and provider-choice regression
-  are documented in stack-google-ready-*, stack-ssh-overlap-*,
-  stack-provider-bootstrap-* and stack-fresh-image-native.json.
+  STACK-VERIFICATION-HISTORY.md; previous checkpoint is preserved in git at
+  26e50d8:evidence/STACK-HANDOFF.md. Older provider optimizations remain documented
+  in stack-google-ready-*, stack-ssh-overlap-*, stack-provider-bootstrap-* and
+  stack-fresh-image-native.json.
 
 ## Operational constraints and recovery inputs
 
@@ -155,25 +179,24 @@ Do not mark the goal complete or blocked; meaningful work remains possible.
   helper /home/aswin/pods-tools/bin/gh auth git-credential, git pull --ff-only.
   Node /home/aswin/pods-tools/node-v24.21.0-linux-x64/bin/node.
 - Codespace pods-launch-containers-69rw5vx4xp46c5qw5.
-  Current saved Micronaut counts Google12/Codespaces19. Never reset or rerun an old
+  Current saved Micronaut counts Google14/Codespaces19. Never reset or rerun an old
   expected value. Streamlit2both; Symfony Google2/Codespaces3.
 - QAguest pods-fresh-matrix-01; /snap/lxd/current/bin/lxc, uid/gid1000,
   Node/opt/node/bin/node, deps/opt/pods/node_modules. Latest verified candidate
-  /output/live-evidence-candidate-ca6753a. Always --disable-stdin for lxc exec overSSH.
+  /output/browser-recovery-candidate-26e50d8. Always --disable-stdin for lxc exec overSSH.
   Preserve QAserverPID292107, ports18090/8081/18890, shared caches/data/runtime.
-- Latest test logs /tmp/pods-live-evidence-{before,full-local,full-qa}.txt.
-  Snapshot336 hashes, manifest/archive and native receipt inputs in
-  /tmp/pods-live-evidence-*. Validators /tmp/pods-record-live-evidence-{tests,native}.py.
-  Older eight-range inputs remain in /tmp/pods-eight-ranges-*.
-  Native validator /tmp/pods-record-eight-ranges-native.py, capture/audit/browser/build/
-  recovered-product/recovered-stop inputs /tmp/pods-eight-ranges-*.json.
-  Raw Codespaces receipts/logs include private fields: never publish wholesale.
-- Browser: stackQa6/tab1 stopped newMicronaut; echoTab/tab2 stopped warmup;
+- Latest test logs /tmp/pods-browser-recovery-{before,full-local,full-qa}.txt.
+  Snapshot337 hashes; manifest/archive and browser/native/audit inputs in
+  /tmp/pods-browser-recovery-*. Validators
+  /tmp/pods-record-browser-recovery-{tests,native}.py. Raw provider receipts can
+  contain private fields; never publish wholesale. Previous harness/eight-range
+  inputs remain in /tmp/pods-live-evidence-* and /tmp/pods-eight-ranges-*.
+- Browser: stackQa6/tab1 stopped currentMicronaut; echoTab/tab2 stopped warmup;
   mongodbSupport/tab3 support. After compaction cua.rewriteDocumentation first,
-  re-markHandoff each turn. eightRangeGoogleFirst/eightRangeGoogleCached,
-  eightRangeDeveloperFlow/eightRangeWarmup/eightRangeLaunchUrl store latest records.
-  Helpers continueSqliteFramework and stopNativeCounter retained. Use h1
-  'Micronaut + SQLite' (not PODS h2), #value and button 'Add one'. Current count12.
-- All native/build/probe/test/deploy workers are terminal. Latest native69991,
-  capture22441 and audit82680 exited0. No jobs running; no waiting exec cells.
+  re-markHandoff each turn. recoveryGoogleFirst/recoveryGoogleSecond store current
+  browser evidence; eightRangeLaunchUrl is current launchlink. Helpers
+  continueSqliteFramework/stopNativeCounter retained. Product h1
+  'Micronaut + SQLite' (not PODS h2), #value, button 'Add one'. Current count14.
+- All native/build/probe/test/deploy workers are terminal. Latest capture62287,
+  audit90334 and localfixture94999 exited0. No jobs running or waiting exec cells.
   No subagents authorized. Next changes should use a bounded investigation.
