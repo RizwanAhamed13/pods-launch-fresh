@@ -765,3 +765,8 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   for both native runs. No creationRequestedAt; older SQLite Codespace69rw… is
   still present. New apps choose an eligible existing environment; subsequent
   launches keep their saved environment. Do not assume every fixture uses69rw….
+
+- Native Valkey acceptance publishedbaddbf8 and synchronized to aswin. Public
+  support DOM at05:11:38.186UTC verified55/39/39, Flask+Valkey allpassed and the
+  Codespaces browser pending notice. Compatibility checks3/3passed. No live
+  watcher/build/test remains; next Go fixture is unstarted. Goal active.
