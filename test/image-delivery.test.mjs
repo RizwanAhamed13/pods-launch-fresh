@@ -171,6 +171,8 @@ test('server authorizes image membership before resolution, preserves legacy dow
   let response=await fetch(url,{headers:{Authorization:'Bearer '+token}});assert.equal(response.status,200);assert.deepEqual(Buffer.from(await response.arrayBuffer()),blob);assert.equal(resolutions,0);
   response=await fetch(url,options);assert.equal(response.status,307);assert.equal(response.headers.get('location'),signed);assert.equal(response.headers.get('cache-control'),'no-store');
   for(mode of ['failure','missing','unsafe']){response=await fetch(url,options);assert.equal(response.status,200);assert.deepEqual(Buffer.from(await response.arrayBuffer()),blob);}
+  response=await fetch(url.replace(/\/artifact\/images\/.*$/,''),{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({status:'starting',timings:{imageCdnRangeAttempts:1,imageCdnRangeDownloads:1,unknownSignedUrl:signed,imageCdnMs:-1}})});
+  assert.equal(response.status,200);assert.deepEqual(app.store.get('launch',id).timings,{imageCdnRangeAttempts:1,imageCdnRangeDownloads:1,cacheHit:false});
   mode='revoke';assert.equal((await fetch(url,options)).status,410);
   const resolved=resolutions;assert.equal((await fetch(url,options)).status,404);assert.equal(resolutions,resolved);
   app.store.put('launch',id,{...launch,stopRequested:true});assert.equal((await fetch(url,options)).status,404);assert.equal(resolutions,resolved);

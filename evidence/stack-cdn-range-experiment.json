@@ -1,0 +1,194 @@
+{
+  "startedAt": "2026-10-04T11:50:23.591043+00:00",
+  "recordedAt": "2026-10-04T11:50:50.870630+00:00",
+  "repository": "RizwanAhamed13/pods-launch-artifacts-fresh",
+  "repositoryPrivate": true,
+  "provider": "codespaces",
+  "initialComputeState": "Available",
+  "assets": [
+    {
+      "method": "four-ranges",
+      "id": 609748536,
+      "name": "probe-20261004-range-a-four-ranges-e14ef3717c2560df51b9ceb038a2363642ba436e307ac80e9c3c19dbb8ac8cca.gz",
+      "bytes": 125121394,
+      "sha256": "e14ef3717c2560df51b9ceb038a2363642ba436e307ac80e9c3c19dbb8ac8cca",
+      "digest": "sha256:e14ef3717c2560df51b9ceb038a2363642ba436e307ac80e9c3c19dbb8ac8cca",
+      "uploadMs": 25311,
+      "recordedAt": "2026-10-04T11:49:53.580Z",
+      "signedPathSha256": "d6e97ce91b050248de039cb551e5403dee8b6bf65e72130a63d52d57cdeecfd9",
+      "signedUrlExpiresAt": "2026-10-04T12:49:38Z"
+    },
+    {
+      "method": "serial",
+      "id": 609749327,
+      "name": "probe-20261004-range-a-serial-e14ef3717c2560df51b9ceb038a2363642ba436e307ac80e9c3c19dbb8ac8cca.gz",
+      "bytes": 125121394,
+      "sha256": "e14ef3717c2560df51b9ceb038a2363642ba436e307ac80e9c3c19dbb8ac8cca",
+      "digest": "sha256:e14ef3717c2560df51b9ceb038a2363642ba436e307ac80e9c3c19dbb8ac8cca",
+      "uploadMs": 25579,
+      "recordedAt": "2026-10-04T11:50:19.161Z",
+      "signedPathSha256": "f7b0a5abe4d651ca0cd2083716c069cd347bf1e8a990d71305156c3b53c09c0c",
+      "signedUrlExpiresAt": "2026-10-04T12:25:51Z"
+    }
+  ],
+  "sourceHashes": {
+    "stack-artifact-cdn-probe.mjs": "716dc3469f694495cb7939b23d4f2451ccc8c76ed3f1e2c7217a5bef86494448",
+    "stack-cdn-range-probe.mjs": "1bc17314d63b2bc18cf1bf93dbd949c83ec473039067f6adef8187398cb5ddf2"
+  },
+  "observations": [
+    {
+      "recordedAt": "2026-10-04T11:50:28.075Z",
+      "node": "v24.21.0",
+      "method": "four-ranges",
+      "bytes": 125121394,
+      "sha256": "e14ef3717c2560df51b9ceb038a2363642ba436e307ac80e9c3c19dbb8ac8cca",
+      "bodyCompleteMs": 5341,
+      "verifiedMs": 5504,
+      "ranges": [
+        {
+          "start": 0,
+          "end": 31280348,
+          "bytes": 31280349,
+          "responseHeadersMs": 507,
+          "completedMs": 3456,
+          "status": 206
+        },
+        {
+          "start": 31280349,
+          "end": 62560697,
+          "bytes": 31280349,
+          "responseHeadersMs": 501,
+          "completedMs": 3604,
+          "status": 206
+        },
+        {
+          "start": 62560698,
+          "end": 93841046,
+          "bytes": 31280349,
+          "responseHeadersMs": 525,
+          "completedMs": 3691,
+          "status": 206
+        },
+        {
+          "start": 93841047,
+          "end": 125121393,
+          "bytes": 31280347,
+          "responseHeadersMs": 497,
+          "completedMs": 5340,
+          "status": 206
+        }
+      ],
+      "diskHashMatches": true,
+      "requestAuthorizationHeader": false,
+      "redirectsAllowed": false,
+      "temporaryFilesRemoved": true,
+      "assetId": 609748536,
+      "repeat": 0,
+      "probeTotalMs": 5542
+    },
+    {
+      "recordedAt": "2026-10-04T11:50:33.610Z",
+      "node": "v24.21.0",
+      "host": "release-assets.githubusercontent.com",
+      "status": 200,
+      "bytes": 125121394,
+      "sha256": "e14ef3717c2560df51b9ceb038a2363642ba436e307ac80e9c3c19dbb8ac8cca",
+      "responseHeadersMs": 334,
+      "downloadMs": 15123,
+      "effectiveMBps": 8.274,
+      "diskHashMatches": true,
+      "requestAuthorizationHeader": false,
+      "redirectsAllowed": false,
+      "temporaryFilesRemoved": true,
+      "assetId": 609749327,
+      "method": "serial",
+      "repeat": 0,
+      "probeTotalMs": 15326
+    },
+    {
+      "recordedAt": "2026-10-04T11:50:48.935Z",
+      "node": "v24.21.0",
+      "method": "four-ranges",
+      "bytes": 125121394,
+      "sha256": "e14ef3717c2560df51b9ceb038a2363642ba436e307ac80e9c3c19dbb8ac8cca",
+      "bodyCompleteMs": 716,
+      "verifiedMs": 863,
+      "ranges": [
+        {
+          "start": 0,
+          "end": 31280348,
+          "bytes": 31280349,
+          "responseHeadersMs": 43,
+          "completedMs": 651,
+          "status": 206
+        },
+        {
+          "start": 31280349,
+          "end": 62560697,
+          "bytes": 31280349,
+          "responseHeadersMs": 111,
+          "completedMs": 716,
+          "status": 206
+        },
+        {
+          "start": 62560698,
+          "end": 93841046,
+          "bytes": 31280349,
+          "responseHeadersMs": 91,
+          "completedMs": 652,
+          "status": 206
+        },
+        {
+          "start": 93841047,
+          "end": 125121393,
+          "bytes": 31280347,
+          "responseHeadersMs": 96,
+          "completedMs": 686,
+          "status": 206
+        }
+      ],
+      "diskHashMatches": true,
+      "requestAuthorizationHeader": false,
+      "redirectsAllowed": false,
+      "temporaryFilesRemoved": true,
+      "assetId": 609748536,
+      "repeat": 1,
+      "probeTotalMs": 894
+    },
+    {
+      "recordedAt": "2026-10-04T11:50:49.828Z",
+      "node": "v24.21.0",
+      "host": "release-assets.githubusercontent.com",
+      "status": 200,
+      "bytes": 125121394,
+      "sha256": "e14ef3717c2560df51b9ceb038a2363642ba436e307ac80e9c3c19dbb8ac8cca",
+      "responseHeadersMs": 34,
+      "downloadMs": 812,
+      "effectiveMBps": 154.09,
+      "diskHashMatches": true,
+      "requestAuthorizationHeader": false,
+      "redirectsAllowed": false,
+      "temporaryFilesRemoved": true,
+      "assetId": 609749327,
+      "method": "serial",
+      "repeat": 1,
+      "probeTotalMs": 975
+    }
+  ],
+  "scope": "First observed downloads from two newly uploaded asset paths, then one repeat each on the same available Codespace. Exact same image bytes; distinct paths verified by hash. Four ranges and serial are sequential, in that order. Origin/CDN caches and network traffic are not controlled. No Docker load or full product launch is measured. No existing app data or image caches are changed.",
+  "documentation": "https://learn.microsoft.com/en-us/rest/api/storageservices/get-blob",
+  "cleanupPending": false,
+  "cleanup": {
+    "recordedAt": "2026-10-04T11:53:45.499818+00:00",
+    "deletedProbeAssetIds": [
+      609748536,
+      609749327
+    ],
+    "authorizedReadAfterDeleteStatus": 404,
+    "productionAssetsChanged": false,
+    "sourceSha256": "3052075c7b141a7a3017e5649e50a13b8fa47cc20f370db6d69947ca7729b09d"
+  },
+  "decision": "Implement four validated concurrent ranges for CDN images at least 32 MiB, retaining whole-file SHA-256 verification before Docker load and authorized origin fallback on any range failure. This single sequential comparison motivates native acceptance; it is not a latency guarantee.",
+  "uploaderSha256": "e199ebb0c87020512e5acc5f4893e7bbc20470d7cb663f3963814d2df79fd127",
+  "orchestratorSha256": "1e321cbc65bb958a2f80756695375d11e0e33b7584bab792766b6161014ed7ea"
+}

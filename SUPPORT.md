@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **204 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **211 passing checks in full local and isolated aswin QA runs**. Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
 
@@ -160,6 +160,8 @@ delivery and startup still took 32.549s and 49.537s respectively. These results
 do not prove an uncached launch beginning on already-ready compute. CDN timings
 are nested within image-download timings; the historical origin tests are not a
 controlled side-by-side comparison. VM replacement durability is a separate gate.
+
+A [fresh-asset transfer comparison](evidence/stack-cdn-range-experiment.json) verified the same 125.121 MB image in 5.504s using four concurrent ranges, versus 15.326s for a single request including the extra disk check. The two methods used separate new private asset paths on the same available Codespace; this is one sequential comparison, not a guaranteed speedup. Both temporary assets were removed. The large-image range implementation passes [211 local and Linux checks](evidence/stack-cdn-range-tests.json). Whole-product native acceptance of this optimization is pending.
 
 ## Persistence and operational limits
 
@@ -284,7 +286,7 @@ a stable production hostname remains a deployment requirement.
   driver. These isolated checks do not add native-provider acceptance.
 - [Full-suite result](evidence/stack-sqlite-online-tests.json): **193/193**
   checks passed locally and in isolated aswin Linux QA.
-- [Physical source count](evidence/code-lines.json): **7,540 lines**, including
+- [Physical source count](evidence/code-lines.json): **7,699 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)

@@ -232,14 +232,19 @@ again; no user cache or published artifact is rewritten.
 The server checks repository privacy and launch authorization before resolving a
 short-lived asset URL. The runner sends no PODS or GitHub authorization header to
 the CDN, accepts only the designated HTTPS asset host, verifies byte count and
-SHA-256 before Docker load, and retries through aswin if the CDN fails. Legacy
+SHA-256 before Docker load, and retries through aswin if the CDN fails. Images
+of at least 32 MiB use four concurrent byte ranges with a shared deadline; each
+response must match its exact range and size, and the assembled file must match
+the complete image hash. A failed range cancels the other requests and falls back
+to the authorized aswin source. Smaller images use one CDN request. Legacy
 runners keep their original download path. GitHub may return a binary response
 instead of a redirect; that case also uses aswin. Signed links inherit GitHub's
 expiry and are not persisted; stopping a launch does not revoke a link already
 issued, but it still stops the application. See the
 [release asset API contract](https://docs.github.com/en/rest/releases/assets#get-a-release-asset).
 Native timing fields distinguish `imageCdnDownloads`, `imageCdnFallbacks`,
-`imageCdnMs` and `imageOriginDownloads`; they do not replace end-to-end product timing.
+`imageCdnMs`, `imageOriginDownloads`, `imageCdnRangeAttempts` and
+`imageCdnRangeDownloads`; they do not replace end-to-end product timing.
 
 Single Node process and local SQLite on persistent disk. Repository builds require a connected account, CSRF authorization and the isolated builder. Browser sessions last 24 hours. Provider credentials are not refreshed automatically: reconnect on expiry. A restart fails in-flight provisioning explicitly; ready agents continue heartbeats. Only one active app per browser/provider is allowed; selecting a different app while one is active returns an explicit conflict. Use provider controls to stop an environment immediately. This is a working prototype, not a completed public service: GitHub browser OAuth configuration, the remaining native provider/framework validation, durable DNS, stronger abuse controls and monitoring remain follow-up work. Google OAuth and representative native product journeys are verified; see SUPPORT.md for precise coverage.
 

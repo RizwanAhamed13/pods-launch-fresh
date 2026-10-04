@@ -8,6 +8,7 @@ import { docker, runtimeCompose } from './containers.mjs';
 import { persistentVolumes, storageRoot } from './storage.mjs';
 import { transitionApplicationData } from './storage-transition.mjs';
 import { trustedImageUrl } from './artifact-url.mjs';
+import { downloadImageRanges } from './image-ranges.mjs';
 
 async function fileHash(path) {
   const hash = createHash('sha256'); for await (const chunk of createReadStream(path)) hash.update(chunk); return hash.digest('hex');
@@ -47,7 +48,7 @@ export async function containersAlive(plan, args, execute = docker) {
 export async function prepareRuntimeImages(images, config, root, timings, execute = docker, fetcher = fetch) {
   const cache = join(root, 'images'); await mkdir(cache, {recursive:true,mode:0o700});
   const started = performance.now();
-  Object.assign(timings, {imageCacheHits:0,imageArchiveCacheHits:0,imageCacheCheckMs:0,imageDownloadMs:0,imageLoadMs:0,imageCdnDownloads:0,imageCdnFallbacks:0,imageCdnMs:0,imageOriginDownloads:0});
+  Object.assign(timings, {imageCacheHits:0,imageArchiveCacheHits:0,imageCacheCheckMs:0,imageDownloadMs:0,imageLoadMs:0,imageCdnDownloads:0,imageCdnFallbacks:0,imageCdnMs:0,imageOriginDownloads:0,imageCdnRangeAttempts:0,imageCdnRangeDownloads:0});
   const measure = async (key, action) => {
     const at = performance.now();
     try { return await action(); } finally { timings[key] += performance.now() - at; }
@@ -77,7 +78,14 @@ export async function prepareRuntimeImages(images, config, root, timings, execut
           await response.body?.cancel().catch(() => {});
           if (!location) throw new Error('Prepared image redirect rejected');
           try {
-            await measure('imageCdnMs', async () => save(await fetcher(location, {signal:AbortSignal.timeout(30000),redirect:'error'})));
+            await measure('imageCdnMs', async () => {
+              if (image.bytes < 32 * 1024 ** 2) return save(await fetcher(location, {signal:AbortSignal.timeout(30000),redirect:'error'}));
+              timings.imageCdnRangeAttempts++;
+              const temp = path + '.' + config.id;
+              await downloadImageRanges(location, image, temp, fetcher);
+              try { await rename(temp, path); } finally { await rm(temp, {force:true}); }
+              timings.imageCdnRangeDownloads++;
+            });
             timings.imageCdnDownloads++; return;
           } catch { timings.imageCdnFallbacks++; response = await origin(false); }
         }

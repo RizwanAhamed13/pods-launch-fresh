@@ -1,0 +1,41 @@
+{
+  "recordedAt": "2026-10-04T11:56:51.218633+00:00",
+  "baseRevision": "917c7d4b9bb16c54724be8625e22157f24a0bb81",
+  "runs": [
+    {
+      "platform": "local",
+      "passed": 211,
+      "failed": 0,
+      "logSha256": "290c975be62f4e1994b321033b47ae299c8b353ea502c31d004f00ff9e55bb7f"
+    },
+    {
+      "platform": "isolated-aswin-linux",
+      "passed": 211,
+      "failed": 0,
+      "logSha256": "9be0a74af614291af0e4b3a25218a17cd6919be23063900639f40e98817ffa75"
+    }
+  ],
+  "isolatedSnapshot": {
+    "directory": "/output/image-range-candidate-917c7d4",
+    "verifiedFiles": 328,
+    "manifestSha256": "5b8df83881341b3b5bc90aff45f2c3d5c46e06612d4894b5c8a2e95aeb19eace",
+    "archiveSha256": "119cbc5ad8270e1445ba02f4a807d7fff19f9c9143e9139f805294485286f226"
+  },
+  "sourceHashes": {
+    "src/image-ranges.mjs": "d841e87e508089a2bd62f536fa0dac105ae1d0584966f1cb4883e3e91b5b4cd9",
+    "src/container-runtime.mjs": "183f3935983f833e33ccc0ba474d8563ab116ac5d689111e603f9e97ba1352ce",
+    "src/server.mjs": "ef9091bdcada0a7608f9451eecb4d60392adec0bd8a61884c543392654207c56",
+    "test/image-ranges.test.mjs": "b46e5a33f4c1e85f562e936277df20cc9746ac59f2d21d015de6c6b184138112",
+    "test/image-delivery.test.mjs": "00c260c38ca41d093ae9cce05c7a0d65192fdd5323238843517a86224b430d1e"
+  },
+  "coverage": [
+    "Four bounded concurrent requests reassemble non-divisible byte lengths with a full SHA-256 check",
+    "Strict range status, position, total size and byte-length checks; expired, redirected and corrupt responses rejected",
+    "Failed range cancels pending peers and removes the partial file",
+    "Invalid inputs and existing destination files are not fetched, overwritten or deleted",
+    "Large runtime integration: verified range download, one authorized origin fallback, no Docker load if both sources fail integrity",
+    "New timing counters pass through the callback allowlist; unknown and invalid timing fields are dropped"
+  ],
+  "harnessNote": "The first SSH setup returned without test output and was not counted. The explicit non-interactive LXD test command then verified all 328 input hashes and reported 211 passing checks.",
+  "scope": "Full local and isolated Linux suites. Native whole-product acceptance of the new range path remains a separate gate."
+}
