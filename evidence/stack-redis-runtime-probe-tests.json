@@ -1,0 +1,25 @@
+{
+  "recordedAt": "2026-10-04T04:22:45.781392+00:00",
+  "baseRevision": "9a23260",
+  "scope": "Explicit Redis 7 counter fixture: private database boundaries, durable volume, Redis engine, append-only readiness and saved key. Four new cases include serialized fresh-process inspection. Existing MySQL, MariaDB and MongoDB checks retain behavior. Native acceptance remains separate.",
+  "fullSuite": [
+    {
+      "environment": "local",
+      "tests": 158,
+      "passed": 158,
+      "failed": 0,
+      "outputSha256": "a782d0fa1903cc4b980f34cc5da1398c7fff7f54c8c7bbeaa2f715333e14b75e"
+    },
+    {
+      "environment": "isolated-aswin-linux",
+      "tests": 158,
+      "passed": 158,
+      "failed": 0,
+      "outputSha256": "b9f10c2f09b31bd5c29af6427b989359edbd2aebfd51a494ac46e85a72767da3"
+    }
+  ],
+  "references": [
+    "https://redis.io/docs/latest/commands/info/",
+    "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/"
+  ]
+}

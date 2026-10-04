@@ -23,10 +23,10 @@ VM replacement durability, or a universal 20-second cold launch.
   pending authorization. The19 fixtures awaiting native acceptance are:
   actix, aspnet, axum, deno, echo, fiber, flask-redis, flask-sqlite, flask-valkey,
   go, gradio, ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
-- Current full suite: 154/154 passed locally and in isolated aswin QA after
-  MongoDB inspection tooling, published at8fe3b7f. Logs:
-  /tmp/pods-mongodb-full-{local,qa}.txt. No subsequent product/tooling edits.
-- Physical code: 6,293 lines =3,316 product/tooling +1,880 tests +933 examples
+- Current full suite:158/158 passed locally and in isolated aswin QA after
+  Redis inspection tooling. Logs /tmp/pods-redis-full-{local,qa}.txt.
+  The previous MongoDB native acceptance was published9a23260.
+- Physical code:6,384 lines =3,353 product/tooling +1,934 tests +933 examples
   +164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
   files; includes .astro. Running provider revision5dde1e5, PID1063107,
   runner SHA2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486.
@@ -548,3 +548,33 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   Codespaces browser pending notice. Compatibility tests3/3 passed after matrix
   update. Browser mongodbSupport/tab3 is the public matrix, marked for handoff.
   Next Redis gate remains unstarted; no waiting processes. Goal remains active.
+
+## Redis runtime inspection and isolated preflight
+
+- Previous goal turn made progress: MongoDB native acceptance published9a23260.
+  This turn adds Redis read-only engine/version, AOF readiness, exact persistence
+  directory and product-saved key checks. Shared boundary supports explicit/data;
+  native CLI flagPODS_REDIS_RUNTIME_CHECK requires counter mode and Redis fixture.
+- New cases cover real-shaped responses, wrong engine/mode, missing or unsafe
+  AOF, wrong record, exposedDB/wrongmount, and fresh-process serialization.
+  Full158/158 passed local and isolated QA, snapshot/output/redis-candidate-9a23260.
+  Tests37114/8886 are terminal0. No provider/runner change or restart needed.
+- Real preflight54479 ended0, recorded04:20:52.165UTC: Redis7.4.11,
+  build40ff01a501d8e4b6, AOFenabled/writeOK,privatehealthyDB,durablevolume,
+  chunkedPOST/fullstop/relaunch0→1→2. Artifact13a02f4a… and source71f2931b…
+  verified. Projectpods-401c9fa5fe1f86f124f72a44; disposable containers,
+  volume and selectedstorage removed. Sharedcache/runtime retained.
+- Source6384lines=3353product/tooling+1934tests+933examples+164browsertools.
+  Coverage unchanged55/36/36,19nativepending; Redis native not yet started.
+- Ordinary-quota watcher51589 remains live; latest reported account3/global3,
+  activebuild0; nextslot04:26:21.476UTC. Resume SAME handle; no quota bypass.
+  BrowserstackQa6/tab1 holds unsubmittedexamples/stacks/flask-redis form,
+  Googleselected. MongoDBtab2stoppedlauncher and supporttab3 remain preserved.
+- /tmp/pods-capture-native.py allowlist nowincludesflask-redis. Recorder template
+  /tmp/pods-record-flask-redis.py expectsactualGoogleUI0→1→2,2CSruntimechecks,
+  4stoppedlaunches,privateport/health. UpdatecheckoutRevisionafterpublication.
+- Next: ordinaryquota→submitformonce→nativebuild→Googlebrowsersequential
+  first/cached/fullstops→CodespacesCLIcounter+Redisflags/expected0→audit→matrix.
+  Exactheading"Flask + redis counter". ReusecontinueMongo helper logic with
+  headingchanged; preserveoriginalclicktimestampacrosspendingobservationwindows.
+  Existing GitHub2FA,VMreplacementandstablehostingquestionsremainpending.

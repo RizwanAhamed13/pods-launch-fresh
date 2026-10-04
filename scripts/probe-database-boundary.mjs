@@ -2,7 +2,7 @@
 export async function probeDatabaseBoundary(dataKey, execute, {port=8080,databasePath='/var/lib/mysql'}={}) {
   if (!/^[a-z0-9][a-z0-9-]{0,159}$/.test(dataKey || '')) throw new Error('Invalid application data identity');
   if (!Number.isInteger(port) || port<1024 || port>65535) throw new Error('Invalid product port');
-  if (!['/var/lib/mysql','/data/db'].includes(databasePath)) throw new Error('Unsupported database mount path');
+  if (!['/var/lib/mysql','/data/db','/data'].includes(databasePath)) throw new Error('Unsupported database mount path');
   const {createHash} = await import('node:crypto');
   const project = 'pods-' + createHash('sha256').update(dataKey).digest('hex').slice(0,24);
   if (!execute) {
@@ -29,4 +29,3 @@ export async function probeDatabaseBoundary(dataKey, execute, {port=8080,databas
   if (volume.driver !== 'local' || volume.options?.type !== 'none' || volume.options?.o !== 'bind' || volume.options?.device !== expected) throw new Error('Database storage is outside the durable Codespaces application directory');
   return {passed:true,project,services:['web','db'],databaseHealth:db.health,databaseHostPorts:[],productHostPorts:[port],volume:name,durableWorkspaceVolume:true,scope:'Read-only Docker boundary and volume inspection on Codespaces; record persistence is verified separately through HTTP before and after restart.'};
 }
-

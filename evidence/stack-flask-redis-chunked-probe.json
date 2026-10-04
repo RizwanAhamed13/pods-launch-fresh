@@ -1,0 +1,95 @@
+{
+  "recordedAt": "2026-10-04T04:20:52.165Z",
+  "scope": "Isolated real Redis artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+  "dataKey": "flask-redis-chunked-0030c5a1880ed0b0",
+  "project": "pods-401c9fa5fe1f86f124f72a44",
+  "artifactSha256": "13a02f4a67606370ef4916d56a6c01358b474c069db35d45dacd2c8988edcec8",
+  "images": [
+    {
+      "id": "sha256:8a879d2f4c86a704ea77f7e6242ee401b27432d29ea8d6076abd39b98e6e730c",
+      "sha256": "98fba446ba24075861f4e5476289956aa5d50724e51f563318bd2576cf556f35",
+      "bytes": 52233722
+    },
+    {
+      "id": "sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499",
+      "sha256": "bfdc962ecd6dca3b0a34035109f2fb30ac958a5948602330af5f73c639a10102",
+      "bytes": 16256101
+    }
+  ],
+  "sourceSha256": "71f2931b6715c2a6de6eb5c8a84f412d7c51d5ed311e8f95a3a6a8ced7090c78",
+  "records": [
+    {
+      "database": {
+        "passed": true,
+        "project": "pods-401c9fa5fe1f86f124f72a44",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          18095
+        ],
+        "volume": "pods-401c9fa5fe1f86f124f72a44_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Isolated aswin guest: actual Redis version, saved document, private ports and persistent bind volume; not a native provider launch.",
+        "databaseEngine": "Redis",
+        "version": "7.4.11",
+        "buildId": "40ff01a501d8e4b6",
+        "appendOnly": true,
+        "appendOnlyWriteStatus": "ok",
+        "savedCount": 1
+      },
+      "scenario": "first-launch",
+      "before": 0,
+      "post": {
+        "status": 200,
+        "count": 1
+      },
+      "afterRead": 1,
+      "transferEncoding": "chunked",
+      "contentType": null
+    },
+    {
+      "database": {
+        "passed": true,
+        "project": "pods-401c9fa5fe1f86f124f72a44",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          18095
+        ],
+        "volume": "pods-401c9fa5fe1f86f124f72a44_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Isolated aswin guest: actual Redis version, saved document, private ports and persistent bind volume; not a native provider launch.",
+        "databaseEngine": "Redis",
+        "version": "7.4.11",
+        "buildId": "40ff01a501d8e4b6",
+        "appendOnly": true,
+        "appendOnlyWriteStatus": "ok",
+        "savedCount": 2
+      },
+      "scenario": "full-relaunch",
+      "before": 1,
+      "post": {
+        "status": 200,
+        "count": 2
+      },
+      "afterRead": 2,
+      "transferEncoding": "chunked",
+      "contentType": null
+    }
+  ],
+  "passed": true,
+  "cleanup": {
+    "containersStopped": true,
+    "probeVolumeRemoved": true,
+    "probeStorageDirectoriesRemoved": true,
+    "sharedRuntimeAndCacheRetained": true
+  }
+}

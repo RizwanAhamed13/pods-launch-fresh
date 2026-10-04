@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **154 passing checks in full local and isolated aswin QA runs**. Native coverage is 36 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **158 passing checks in full local and isolated aswin QA runs**. Native coverage is 36 Google browser fixtures and
 36 Codespaces HTTP/protocol fixtures; 19 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
@@ -1843,3 +1843,25 @@ Evidence: `stack-flask-mongodb7-{url,google,codespaces,audit}.json`. Coverage is
 **55 isolated / 36 Google browser / 36 Codespaces protocol**, with **19** native
 fixtures pending. Source remains **6,293 physical lines**; the most recent full
 suites remain **154/154** locally and in isolated aswin QA.
+
+## Redis persistence inspection preflight
+
+The native acceptance helper now checks Redis 7 engine identity, the counter key
+saved through the product, enabled append-only persistence and its last write
+status. It verifies that Redis writes inside its persistent application volume
+and that the database has no host-published port. The inspection uses fixed
+read-only commands and is restricted to the explicit Flask + Redis fixture.
+
+All **158 tests passed locally and in isolated aswin Linux QA**. A real stored
+Redis artifact passed an additional counter **0→1→2** check with empty chunked
+POSTs, full application stop/relaunch, Redis **7.4.11**, private boundaries and
+persistent storage. Its disposable containers, volume and selected storage
+were removed. This is isolated evidence; native Flask + Redis acceptance is
+still pending. It does not prove durability under a power loss or VM replacement.
+
+The checks follow Redis's documented [INFO fields](https://redis.io/docs/latest/commands/info/)
+and [persistence model](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/).
+Evidence: `stack-redis-runtime-probe-tests.json` and
+`stack-flask-redis-chunked-probe.{json,mjs}`. Opt-in:
+`PODS_COUNTER_CHECK=1 PODS_REDIS_RUNTIME_CHECK=1`. Current source totals
+**6,384 physical lines**; native coverage remains **55 / 36 / 36**.
