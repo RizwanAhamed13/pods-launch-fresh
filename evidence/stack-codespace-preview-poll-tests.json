@@ -1,0 +1,42 @@
+{
+  "recordedAt": "2026-10-04T14:23:41.632892+00:00",
+  "baseRevision": "444737a6a9e463c587a90392ab3d5645b1a7db19",
+  "runs": [
+    {
+      "platform": "local",
+      "passed": 264,
+      "failed": 0,
+      "durationMs": 28163.94225,
+      "logSha256": "6c31c093c622df98d54a4ccaddf9bf90cabd4c8dca6cd0f93c4fdeb91ff21eb9"
+    },
+    {
+      "platform": "isolated-aswin-linux",
+      "passed": 264,
+      "failed": 0,
+      "durationMs": 57507.899276,
+      "logSha256": "79988e51cc9f3708ce1884e441311f10f36ad4cdc491013b88de8b3dd31968ec"
+    }
+  ],
+  "isolatedSnapshot": {
+    "candidate": "/output/preview-poll-candidate-444737a",
+    "verifiedFiles": 337,
+    "archiveSha256": "49f4ea32c932a23159ead973899e20cf8ceb18857a74a3bfa4c33ab217f72434",
+    "manifestSha256": "cbed5206192b68a3d214a0def10c084ac073f00d0cda271be69c9b70f18788fb"
+  },
+  "sourceHashes": {
+    "src/codespace-preview.mjs": "338d074ec19fc9d0f78bde6a661075b09a356c8695f1b0c44ddccad6571b394e",
+    "src/providers.mjs": "e2b5cafebc2fadf99e425ce99e05c9feed2010458081e4487c85cf6e3ca3efcd",
+    "src/deferred-command.mjs": "62b3b4a346dc4dc1d5e6f4cdba334ab3a1ee5d7c0db8c32c29230e0d86ee7953",
+    "test/codespace-preview.test.mjs": "e9085e20346064f1fb84136244bec3887181d9e8411aba5853dcbecbdd319983",
+    "test/codespace-overlap.test.mjs": "bff0dee2dfe3829b0370ac845446f618bb37c10642e53e414606a616ba59b4d7"
+  },
+  "scope": "Default Codespaces preview poll interval changes from1000ms to500ms. Existing private mapping reuse, private visibility gate, shared deadline and forwarder termination remain unchanged. No new runtime tests that merely assert the constant; existing behavioral suite runs unchanged. Native timing comparison supplies performance evidence.",
+  "behavioralCoverage": [
+    "Existing private mapping avoids forwarding; public/org/unknown visibility changed to private.",
+    "Missing mapping registered before readiness, temporary loopback forwarder terminated.",
+    "Lookup, malformed-response, forwarding, timeout and privacy-change failures reject readiness and clean up.",
+    "Slow lookup and visibility command share a60s deadline; no lookup after timeout.",
+    "SSH may connect concurrently but bootstrap remains held until preview privacy succeeds."
+  ],
+  "performanceEvidence": "stack-codespace-preview-poll.json"
+}

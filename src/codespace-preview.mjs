@@ -1,7 +1,7 @@
 import { spawn } from 'node:child_process';
 import { command, sleep } from './util.mjs';
 
-export async function ensureCodespacePreview({name,port,env,exec=command,spawnProcess=spawn,pollMs=1000,timeoutMs=60000}) {
+export async function ensureCodespacePreview({name,port,env,exec=command,spawnProcess=spawn,pollMs=500,timeoutMs=60000}) {
   const deadline=Date.now()+timeoutMs;
   const options=()=>{
     const timeout=deadline-Date.now();

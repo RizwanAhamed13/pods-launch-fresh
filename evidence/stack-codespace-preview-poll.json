@@ -1,0 +1,295 @@
+{
+  "recordedAt": "2026-10-04T14:23:41.632892+00:00",
+  "baselineRevision": "444737a6a9e463c587a90392ab3d5645b1a7db19",
+  "reproducer": "evidence/probes/codespace-preview-poll.mjs",
+  "reproducerSha256": "c02ef982da824b6675a1420de786a436f5e5117aa461bba0e0fa0d2b6ccd6b07",
+  "probe": {
+    "startedAt": "2026-10-04T14:19:43.346Z",
+    "pollMsOrder": [
+      1000,
+      0,
+      500,
+      500,
+      0,
+      1000
+    ],
+    "samples": [
+      {
+        "pollMs": 1000,
+        "port": 26630,
+        "commands": [
+          {
+            "operation": "lookup",
+            "startedMs": 1,
+            "success": true,
+            "mappingPresent": false,
+            "visibility": null,
+            "elapsedMs": 1748
+          },
+          {
+            "operation": "lookup",
+            "startedMs": 2752,
+            "success": true,
+            "mappingPresent": true,
+            "visibility": "private",
+            "elapsedMs": 1776
+          }
+        ],
+        "processes": [
+          {
+            "startedMs": 1749,
+            "loopbackOnly": true,
+            "elapsedMs": 2784,
+            "exitCode": null,
+            "signal": "SIGTERM"
+          }
+        ],
+        "elapsedMs": 4534,
+        "privateAfter": true,
+        "success": true
+      },
+      {
+        "pollMs": 0,
+        "port": 26525,
+        "commands": [
+          {
+            "operation": "lookup",
+            "startedMs": 0,
+            "success": true,
+            "mappingPresent": false,
+            "visibility": null,
+            "elapsedMs": 1756
+          },
+          {
+            "operation": "lookup",
+            "startedMs": 1762,
+            "success": true,
+            "mappingPresent": false,
+            "visibility": null,
+            "elapsedMs": 1805
+          },
+          {
+            "operation": "lookup",
+            "startedMs": 3568,
+            "success": true,
+            "mappingPresent": true,
+            "visibility": "private",
+            "elapsedMs": 1734
+          }
+        ],
+        "processes": [
+          {
+            "startedMs": 1756,
+            "loopbackOnly": true,
+            "elapsedMs": 3551,
+            "exitCode": null,
+            "signal": "SIGTERM"
+          }
+        ],
+        "elapsedMs": 5307,
+        "privateAfter": true,
+        "success": true
+      },
+      {
+        "pollMs": 500,
+        "port": 23905,
+        "commands": [
+          {
+            "operation": "lookup",
+            "startedMs": 0,
+            "success": true,
+            "mappingPresent": false,
+            "visibility": null,
+            "elapsedMs": 1634
+          },
+          {
+            "operation": "lookup",
+            "startedMs": 2137,
+            "success": true,
+            "mappingPresent": true,
+            "visibility": "private",
+            "elapsedMs": 1754
+          }
+        ],
+        "processes": [
+          {
+            "startedMs": 1634,
+            "loopbackOnly": true,
+            "elapsedMs": 2263,
+            "exitCode": null,
+            "signal": "SIGTERM"
+          }
+        ],
+        "elapsedMs": 3897,
+        "privateAfter": true,
+        "success": true
+      },
+      {
+        "pollMs": 500,
+        "port": 20841,
+        "commands": [
+          {
+            "operation": "lookup",
+            "startedMs": 0,
+            "success": true,
+            "mappingPresent": false,
+            "visibility": null,
+            "elapsedMs": 1765
+          },
+          {
+            "operation": "lookup",
+            "startedMs": 2269,
+            "success": true,
+            "mappingPresent": true,
+            "visibility": "private",
+            "elapsedMs": 1656
+          }
+        ],
+        "processes": [
+          {
+            "startedMs": 1765,
+            "loopbackOnly": true,
+            "elapsedMs": 2165,
+            "exitCode": null,
+            "signal": "SIGTERM"
+          }
+        ],
+        "elapsedMs": 3930,
+        "privateAfter": true,
+        "success": true
+      },
+      {
+        "pollMs": 0,
+        "port": 22269,
+        "commands": [
+          {
+            "operation": "lookup",
+            "startedMs": 0,
+            "success": true,
+            "mappingPresent": false,
+            "visibility": null,
+            "elapsedMs": 1774
+          },
+          {
+            "operation": "lookup",
+            "startedMs": 1777,
+            "success": true,
+            "mappingPresent": false,
+            "visibility": null,
+            "elapsedMs": 1699
+          },
+          {
+            "operation": "lookup",
+            "startedMs": 3476,
+            "success": true,
+            "mappingPresent": true,
+            "visibility": "private",
+            "elapsedMs": 1763
+          }
+        ],
+        "processes": [
+          {
+            "startedMs": 1774,
+            "loopbackOnly": true,
+            "elapsedMs": 3470,
+            "exitCode": null,
+            "signal": "SIGTERM"
+          }
+        ],
+        "elapsedMs": 5245,
+        "privateAfter": true,
+        "success": true
+      },
+      {
+        "pollMs": 1000,
+        "port": 23608,
+        "commands": [
+          {
+            "operation": "lookup",
+            "startedMs": 0,
+            "success": true,
+            "mappingPresent": false,
+            "visibility": null,
+            "elapsedMs": 1644
+          },
+          {
+            "operation": "lookup",
+            "startedMs": 2647,
+            "success": true,
+            "mappingPresent": true,
+            "visibility": "private",
+            "elapsedMs": 1712
+          }
+        ],
+        "processes": [
+          {
+            "startedMs": 1644,
+            "loopbackOnly": true,
+            "elapsedMs": 2718,
+            "exitCode": null,
+            "signal": "SIGTERM"
+          }
+        ],
+        "elapsedMs": 4362,
+        "privateAfter": true,
+        "success": true
+      }
+    ],
+    "providerStates": [
+      {
+        "at": "2026-10-04T14:19:47.187Z",
+        "stage": "starting",
+        "state": "Shutdown"
+      },
+      {
+        "at": "2026-10-04T14:19:49.586Z",
+        "stage": "starting",
+        "state": "Queued"
+      },
+      {
+        "at": "2026-10-04T14:19:56.828Z",
+        "stage": "starting",
+        "state": "Available"
+      },
+      {
+        "at": "2026-10-04T14:20:38.256Z",
+        "stage": "stopping",
+        "state": "ShuttingDown"
+      },
+      {
+        "at": "2026-10-04T14:22:35.130Z",
+        "stage": "stopping",
+        "state": "Shutdown"
+      }
+    ],
+    "applicationStarted": false,
+    "productionChanged": false,
+    "sourceSha256": "f754213af6dd999ac0f9574d37f6e9aa4fc16e39cf64f52398caefe03c133ae7",
+    "stage": "finished",
+    "initialState": "Shutdown",
+    "resumeRequestedAt": "2026-10-04T14:19:43.927Z",
+    "lastObservedState": "Shutdown",
+    "availableAt": "2026-10-04T14:19:56.828Z",
+    "allTargetMappingsInitiallyAbsent": true,
+    "completed": true,
+    "stopRequestedAt": "2026-10-04T14:20:36.231Z",
+    "restoreStopAccepted": true,
+    "finalState": "Shutdown",
+    "finishedAt": "2026-10-04T14:22:35.131Z"
+  },
+  "meansMs": {
+    "1000": 4448,
+    "500": 3913.5,
+    "0": 5276
+  },
+  "observedReductionMs": 534.5,
+  "decision": "Use500ms default. No wait caused a third lookup and was slower in both samples.500ms retained two lookups and private confirmation while reducing mean registration time by534.5ms in this small comparison.",
+  "limitations": [
+    "Two samples per treatment on one Codespace, sequential distinct fixture ports, uncontrolled provider/network variation.",
+    "Explicit interval overrides execute the same baseline helper; this is not a full-launch benchmark or a universal speedup guarantee.",
+    "Compute provisioning, final independent private-port checks and provider shutdown excluded from registration elapsedMs.",
+    "No application launch, product write or database inspection in this probe; native product integration is a separate gate."
+  ],
+  "productionChangedDuringProbe": false,
+  "providerRestoredToShutdown": true
+}
