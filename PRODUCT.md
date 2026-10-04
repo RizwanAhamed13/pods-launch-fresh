@@ -32,9 +32,17 @@ or power-loss guarantees. Current source totals 8,546 scoped physical lines.
 The latest deployed browser client recovers transient status-read failures without
 repeating creation or product writes. Controlled browser failures and native
 Google product/reload/full-stop/relaunch acceptance passed. Use [SUPPORT.md](SUPPORT.md),
-[fixture coverage](evidence/stack-coverage.json), [tests](evidence/stack-browser-recovery-tests.json),
+[fixture coverage](evidence/stack-coverage.json), [tests](evidence/stack-codespace-preview-poll-tests.json),
 [native browser evidence](evidence/stack-browser-recovery-native.json) and the
 [current checkpoint](evidence/STACK-HANDOFF.md) for exact scope and limitations.
+
+The latest backend change reduces the Codespaces preview polling interval to
+500 ms while retaining private visibility and the shared deadline. A small
+controlled-order comparison observed about 0.535s less registration time; two
+native cached-image launches then passed product HTTP and SQLite persistence.
+See [polling evidence](evidence/stack-codespace-preview-poll.json) and
+[native integration](evidence/stack-codespace-preview-poll-native.json). These
+observations do not establish first-image or universal 20-second acceptance.
 
 ## Historical acceptance milestones
 The observations below retain their original milestone context. Counts and pending

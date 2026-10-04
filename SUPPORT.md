@@ -101,6 +101,22 @@ sequential probe does not measure full application launch or prove a general
 performance difference. Production ordering remains unchanged; failed diagnostic
 attempts and provider cleanup are retained in the receipt.
 
+A subsequent [poll-interval comparison](evidence/stack-codespace-preview-poll.json)
+measured 1,000 ms / 0 ms / 500 ms / 500 ms / 0 ms / 1,000 ms across six initially
+absent fixture ports. Mean registration was 4.448s, 5.276s and 3.914s respectively.
+Both zero-wait samples needed a third lookup; both 500 ms samples retained two
+lookups and independent private confirmation. The default is now 500 ms, with the
+same privacy gate and overall deadline. The observed 0.535s reduction comes from
+two samples per interval on one Codespace, not a general launch-speed guarantee.
+
+The change passed [264 local/Linux checks](evidence/stack-codespace-preview-poll-tests.json)
+and [deployment preservation checks](evidence/stack-codespace-preview-poll-deployment.json).
+[Two native cached-image launches](evidence/stack-codespace-preview-poll-native.json)
+passed authenticated product HTTP and online SQLite integrity checks, retaining
+19 → 20 → 21 through full application stops. Initially stopped compute took
+43.431s to application health; the already-available relaunch took 9.663s.
+These checks add neither first-image timing nor native browser acceptance.
+
 ## Native launch performance
 
 [Recorded native timing summary](evidence/stack-native-timings.md) separates
