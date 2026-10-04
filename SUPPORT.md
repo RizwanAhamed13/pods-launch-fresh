@@ -187,6 +187,15 @@ authorization failures stop immediately. [Regression and full-suite evidence](ev
 covers both paths, cleanup and the suspension race. The 20-second product target
 remains open.
 
+[Deployment and native Google browser acceptance](evidence/stack-google-ready-native.json)
+passed with the same prepared Micronaut + SQLite artifact. Both launches began on
+the same already-running environment; the cached product appeared in 10.319s and 10.325s, with servers
+healthy in 9.755s and 9.706s. Button writes, reload and full stop/relaunch retained
+values 6→7→8. Direct key registration took 1.257s and 1.337s; neither launch issued
+a start request. These are cached integration results, not first-image timings or
+a controlled whole-launch comparison. Cold compute and a suspension race were
+covered by automated regression tests, not forced during this native gate.
+
 ## Persistence and operational limits
 
 Database fixtures verify a product write, read, complete application stop,

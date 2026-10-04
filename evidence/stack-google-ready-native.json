@@ -1,0 +1,166 @@
+{
+  "recordedAt": "2026-10-04T12:33:32.229963+00:00",
+  "controlRevision": "1d5282d453933569dda95069b01f9a365d4f7ca8",
+  "scope": "Two Google native browser launches after direct key registration was deployed. Same prepared Micronaut + SQLite artifact, cached image and existing data.",
+  "app": {
+    "id": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-ed14d4bc3ecb",
+    "dataKey": "repo-2caafe8ea7f268fe237b7cab",
+    "source": {
+      "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+      "folder": "examples/stacks/micronaut",
+      "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+    },
+    "images": [
+      {
+        "id": "sha256:aff321e8ef7d58dfbf54fc8b72eac7ac5fa77fb1b54f97d8b2913b8f504d7a0b",
+        "sha256": "48ac2bcef4a719876140d74b81474917545c48a15ae316252f31b466246f6d3d",
+        "bytes": 125122053
+      }
+    ]
+  },
+  "results": [
+    {
+      "id": "lecSmZTJEQwH-z50qLoIlcNxMAl3h7i_",
+      "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-ed14d4bc3ecb",
+      "provider": "google",
+      "port": 26630,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791117106248,
+        "keyRegistrationRequestedAt": 1791117106428,
+        "keyRegistrationAcceptedAt": 1791117107685
+      },
+      "createdAt": 1791117105614,
+      "updatedAt": 1791117128203,
+      "providerReadyAt": 1791117108286,
+      "readyAt": 1791117115369,
+      "timings": {
+        "downloadMs": 367,
+        "imagesMs": 55,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 55,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 5402,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 9755,
+      "deliveryMs": 7083,
+      "browser": {
+        "startedAt": "2026-10-04T12:31:45.426Z",
+        "visibleMs": 10319,
+        "before": 6,
+        "stateRestoredMs": 10772,
+        "writeRequestedAt": "2026-10-04T12:31:56.198Z",
+        "afterWrite": 7,
+        "interactionMs": 11051,
+        "reloadRequestedAt": "2026-10-04T12:31:56.477Z",
+        "reloadCompleted": true,
+        "afterReload": 7,
+        "passed": true,
+        "browserErrorOrWarningLogs": [],
+        "stopRequestedAt": "2026-10-04T12:32:04.677Z",
+        "statusAfterStop": "stopped"
+      }
+    },
+    {
+      "id": "Xn0h2-5upgX7J_lNVCiDtTw2gWYfLSeF",
+      "appId": "repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-ed14d4bc3ecb",
+      "provider": "google",
+      "port": 26630,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791117135872,
+        "keyRegistrationRequestedAt": 1791117136188,
+        "keyRegistrationAcceptedAt": 1791117137525
+      },
+      "createdAt": 1791117135348,
+      "updatedAt": 1791117154870,
+      "providerReadyAt": 1791117137999,
+      "readyAt": 1791117145054,
+      "timings": {
+        "downloadMs": 292,
+        "imagesMs": 57,
+        "imageCacheHits": 1,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 57,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 5528,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 9706,
+      "deliveryMs": 7055,
+      "browser": {
+        "startedAt": "2026-10-04T12:32:15.157Z",
+        "visibleMs": 10325,
+        "before": 7,
+        "stateRestoredMs": 10977,
+        "writeRequestedAt": "2026-10-04T12:32:26.134Z",
+        "afterWrite": 8,
+        "interactionMs": 11271,
+        "reloadRequestedAt": "2026-10-04T12:32:26.428Z",
+        "reloadCompleted": true,
+        "afterReload": 8,
+        "passed": true,
+        "browserErrorOrWarningLogs": [],
+        "stopRequestedAt": "2026-10-04T12:32:33.064Z",
+        "statusAfterStop": "stopped"
+      }
+    }
+  ],
+  "existingPreparedArtifactReused": true,
+  "cachedImageOnly": true,
+  "nativeBrowserVerified": true,
+  "coldComputeTestedNativelyThisGate": false,
+  "suspensionRaceTestedNatively": false,
+  "persistenceScope": "Existing value6 retained; button writes6\u21927\u21928 survive browser reload and complete application stop/relaunch. Provider VM replacement and power-loss durability are not covered.",
+  "keyCleanupObservation": {
+    "before": {
+      "recordedAt": "2026-10-04T12:31:05.303Z",
+      "state": "RUNNING",
+      "registeredPublicKeys": 9
+    },
+    "after": {
+      "recordedAt": "2026-10-04T12:32:50.710Z",
+      "state": "RUNNING",
+      "registeredPublicKeys": 9
+    },
+    "registeredKeyCountUnchanged": true,
+    "scope": "Key count stayed9. Existing keys were not removed or individually inspected. Exact ephemeral-key removal is covered by the focused tests; this count is additional native evidence."
+  },
+  "performanceScope": "10.319s and10.325s are observed product visibility on already-running compute with a cached image. This does not establish a first-image20s result or a controlled whole-launch speedup.",
+  "testEvidence": "stack-google-ready-tests.json",
+  "deploymentEvidence": "stack-google-ready-deployment.json",
+  "cleanupAudit": {
+    "recordedAt": "2026-10-04T12:32:50.274556+00:00",
+    "pid": 1478794,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "be6b31d3791059d5833b20f2b7bdac6c7f99d78e00d4fd0c1ab3c7f0d688cc64",
+    "revision": "1d5282d453933569dda95069b01f9a365d4f7ca8"
+  },
+  "passed": true
+}

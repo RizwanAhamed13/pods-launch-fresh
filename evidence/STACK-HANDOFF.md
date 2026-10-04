@@ -1,9 +1,9 @@
 # Broad stack checkpoint
 
 Goal active and incomplete. Developer URL → isolated aswin build → reusable
-artifact → authorized user compute → actual usable product. This turn measured
-Google key registration overhead. The previous turn fixed the preview deadline
-and passed full local/Linux and native Codespaces acceptance.
+artifact → authorized user compute → actual usable product. This turn implemented
+direct Google key registration for ready compute, passed221 local/Linux checks,
+deployed, and verified two native browser launches with SQLite persistence.
 Do not mark the goal complete or blocked: meaningful work remains possible.
 
 ## Current verified state
@@ -18,17 +18,16 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   Seven database/service families are covered. Matrix records tested representatives,
   not every version or arbitrary application. Unknown secrets/schema/migrations
   still require developer inputs; desktop/mobile/GPU/non-web products are excluded.
-- Full suite214/214 local and isolated Linux; stack-preview-budget-tests.json verifies
-  all328 snapshot input hashes. Current source7,747physical lines:
-  3,922product/tooling +2,728tests +933examples +164browser tools.
-- Runtime/control7a28920f424515a37c8d2fa6d8122f23bde3362a, PID1471581.
-  Preview provider helper7a28920; providers.mjs5dde1e5, builder2553fc8, storage77cf340.
+- Full suite221/221 local and isolated Linux; stack-google-ready-tests.json verifies
+  all329 snapshot input hashes. Current source7,853physical lines:
+  3,939product/tooling +2,817tests +933examples +164browser tools.
+- Runtime/control1d5282d453933569dda95069b01f9a365d4f7ca8, PID1478794.
+  Preview provider helper7a28920; providers.mjs1d5282d, builder2553fc8, storage77cf340.
   RunnerSHAbe6b31d3791059d5833b20f2b7bdac6c7f99d78e00d4fd0c1ab3c7f0d688cc64.
-- Deployment stack-preview-budget-deployment.json: health200, SQLiteok, idle,
+- Deployment stack-google-ready-deployment.json: health200, SQLiteok, idle,
   preserved57images/131artifacts, unchanged .env and unchanged runner. No restart for docs.
-- Latest idle audit2026-10-04T12:19:02.383189+00:00: health200, SQLiteok,
-  zero active builds/launches. All accepted launches and the Google warmup
-  stopped; the first Codespaces attempt remains terminal failed. No jobs running.
+- Latest idle audit2026-10-04T12:32:50.274556+00:00: health200, SQLiteok,
+  zero active builds/launches. All accepted launches stopped. No jobs running.
 
 ## Latest native gate
 
@@ -57,7 +56,8 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   Authenticated product HTTP and SQLite online backup passed4→5→6;
   integrityok, private product26630, no exposed DB port, no pause, fully stopped.
 - Range gate ended at count6 both. Current counts after the preview fix:
-  Google6, Codespaces8. Never reset data or rerun an old expected value.
+  Google8, Codespaces8 after the Google optimization below. Never reset data or
+  rerun an old expected value.
 - stack-cdn-range-native.json validates source hashes, unique IDs, build/image
   identity, first-cache-miss/repeat-hit, successful ranges/no fallback, persistence
   and cleanup. allAttemptsPassed=false because of the earlier preview failure.
@@ -97,27 +97,42 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
 - Investigate skill was read: /Users/rizwanahamed/.codex/skills/gstack-investigate/SKILL.md.
   Root-cause workflow completed with bounded fix and acceptance; freeze helper
   unavailable. No subagents authorized.
+## Completed Google ready-compute optimization
+
+- Source1d5282d: RUNNING compute uses addPublicKey; cold/unknown compute retains
+  start with its unique key. Both require readback of that exact key before SSH.
+  If successful key registration races SUSPENDED/PENDING state, start the same
+  environment with no repeated key registration. Both operations share the original
+  provisioning deadline. Lost responses reconcile state/key without duplicate
+  mutations; auth/quota and explicit operation failures stop. Cleanup remains.
+- The prior stack-google-key-registration-probe.json compared start and addPublicKey
+  in start/add/add/start order: mean registration-through-SSH2.793s
+  versus2.329s. Four samples only; not a full-launch guarantee.
+- stack-google-ready-tests.json: all7 new ready-path cases failed the previous
+  always-start implementation. Updated focused suite47/47 and full221/221 local
+  and Linux pass;329snapshot hashes verified. The first focused run waited on an
+  older mock lacking state/key fields and was explicitly stopped; the corrected
+  bounded run is the passing evidence. No native suspension race was forced.
+- stack-google-ready-deployment.json preserved57images/131artifacts and.env;
+  runner SHA unchanged. PID1478794 is the verified production listener.
+- stack-google-ready-native.json: lecSmZTJEQwH-z50qLoIlcNxMAl3h7i_ and
+  Xn0h2-5upgX7J_lNVCiDtTw2gWYfLSeF both observedRUNNING, direct key registration
+ 1.257/1.337s, no start request, cached image. Healthy9.755/9.706s; product visible
+ 10.319/10.325s. Actual button/reload/fullstop/relaunch preserves6→7→8, no page
+  warnings/errors, bothstopped. This gate does not establish first-image20s or
+  native cold/race behavior. Existing9 provider public keys remained9; do not
+  remove those unrelated keys. Exact attempt-key cleanup is covered by tests.
+- Validator /tmp/pods-record-google-ready-native.py; raw /tmp/pods-google-ready-*.json.
+  Probe/audit credentials stayed only in server memory. No account/token/private
+  preview values are saved in public evidence.
+
 ## Next performance gate
 
-- stack-google-key-registration-probe.json records four real API/SSH samples on
-  the same RUNNING Google environment, in start/addPublicKey/addPublicKey/start order.
-  Mean registration-through-SSH: start2.793s, addPublicKey2.329s, observed difference464ms.
-  Registration API responses alone averaged1.731s versus1.232s. All operations were
-  done on response; all keys registered, SSH true passed, provider keys removed and
-  local temporary key directories removed. No application or database mutation.
-- This is two observations per method, not a guarantee. Key generation and initial
-  environment reads are excluded; full product latency was not retested. Production
-  code is unchanged, so existing214 checks remain applicable and were not rerun.
-- addPublicKey remains a measured optimization candidate; before changing the
-  RUNNING path, preserve deadline, uncertain-mutation/key reconciliation, auth/quota
-  failures and key cleanup. Cover suspension races and retain start for cold compute.
-  Never simply skip key registration. The observed saving alone does not meet20s.
-- Probe script /tmp/pods-google-key-probe.mjs, output /tmp/pods-google-key-probe.json;
-  credentials were read in server memory only. Four samples completed successfully
-  at2026-10-04T12:24:09.125Z. Latest idle audit is embedded in the evidence;
-  health200, zero active builds/launches, unchanged production PID1471581 and runner.
-- Another candidate is remaining Codespaces preview/bootstrap overhead; quantify
-  it before selecting a fix. Do not relax private-port checks or force cache clears.
+- Quantify remaining Codespaces preview/bootstrap overhead before selecting a fix;
+  recent new-image runtimeReady14.626s versus total25.357s indicates overhead outside
+  the runner worth measuring. Do not relax private-port checks or force cache clears.
+- First-image product20s remains unmet. Google ready-key optimization covers cached
+  native acceptance so far; keep first-image and cold compute evidence separate.
 - Existing questions about GitHub browser2FA, stable hostname and destructive
   provider VM-replacement testing remain pending. Do not repeat or infer approval.
 
@@ -134,16 +149,16 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
 - Push first, then sync with gh auth token piped to ssh aswin and temporary GH_TOKEN,
   helper /home/aswin/pods-tools/bin/gh auth git-credential, git pull --ff-only.
 - Codespace pods-launch-containers-69rw5vx4xp46c5qw5. All native saved data retained.
-  Streamlit counters2both, Symfony Google2/Codespaces3, Micronaut Google6/Codespaces8.
+  Streamlit counters2both, Symfony Google2/Codespaces3, Micronaut Google8/Codespaces8.
 - Preserve older failures: Streamlit initial storage limit/build and403 origin,
   Symfony pause/liveness conflict. See STACK-VERIFICATION-HISTORY.md and individual
   receipts. SQLite inspections now use online backup, never pause the app.
 - QAguest pods-fresh-matrix-01, /snap/lxd/current/bin/lxc, uid/gid1000,
   Node/opt/node/bin/node, deps/opt/pods/node_modules. Current verified candidate
-  /output/preview-budget-candidate-f2a46c6. Always --disable-stdin for lxc exec overSSH;
+  /output/google-ready-candidate-0d4a255. Always --disable-stdin for lxc exec overSSH;
   earlier setup without it consumed script input and was not counted as a test.
   Keep QAserverPID292107, ports18090/8081/18890, shared caches and runtime.
-- Full test logs /tmp/pods-preview-budget-full-local.txt and /tmp/pods-preview-budget-full-qa.txt.
+- Full test logs /tmp/pods-google-ready-full-local.txt and /tmp/pods-google-ready-full-qa.txt.
   Latest validator /tmp/pods-record-preview-budget-native.py; inputs
   /tmp/pods-preview-budget-*.json. Prior validator /tmp/pods-record-range-native.py. Preserve failure input pods-range-codespaces-failed-raw.json.
 - Browser1: stackQa6/tab1 stopped newMicronaut, echoTab/tab2 stopped warmup,
@@ -152,5 +167,6 @@ Do not mark the goal complete or blocked: meaningful work remains possible.
   micronautRangeWarmup stores setup, micronautRangeLaunchUrl is current link.
   Micronaut controls: h1 'Micronaut + SQLite', #value, button 'Add one'.
 - Browser handles retain continueSqliteFramework and stopNativeCounter helpers.
+  googleReadyAcceptance contains both latest native Google records; current saved count8.
   Worker sessions20376(Linux),17528(native),10429(deploy) are terminal.
   The first hanging negative-test session30407 was stopped explicitly. No jobs running.
