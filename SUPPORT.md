@@ -1415,3 +1415,27 @@ or a universal 20-second cold launch.
 Evidence: `stack-fastify-fixed-{url,google,codespaces}.json` and
 `stack-fastify-browser-transport.json`; the original failed Google attempt is
 retained in `stack-fastify-google.json`.
+
+## Pending artifact-format transition
+
+The smaller experimental Express bundle is not enabled in production. A real
+isolated transition test with the same application data key confirmed that the
+existing container saved SQLite value 1, the bundle opened a separate empty
+database showing 0, and returning to the container restored 1. The original
+record was retained, but continuity between the two artifact formats failed.
+
+A separate mocked provider-adapter check confirmed that Codespaces rejects a
+saved environment when its runtime label differs from the requested artifact
+format. That check made no compute changes and is not native acceptance. A
+complete format transition must preserve both the existing user environment and
+the application's data, including file ownership, before the packaging
+optimization can ship. Existing same-format persistence results remain valid.
+
+Evidence: `stack-express-transition-probe.json` and
+`stack-provider-format-transition-probe.json`, with their matching replay scripts.
+Both diagnostics preserve the failing behavior explicitly; they are not passing
+migration tests.
+
+Koa's isolated browser preflight additionally passed empty chunked POST handling,
+reload and full app restart with SQLite values 0→1→2. Its native provider tests
+are still pending. See `stack-koa-browser-transport.json`.

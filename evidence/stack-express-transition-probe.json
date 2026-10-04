@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-10-04T01:33:59.973Z",
+  "scope": "Isolated same-dataKey format-transition diagnostic only; no production migration or packaging change. Existing QA container compared with experimental smaller Express bundle.",
+  "sourceSha256": "ee69cc6564046f054486722f62454e066e8e4fdab37f3f280a4ab71384e43fb2",
+  "containerArtifactSha256": "81fd2ab6194e1d62fbfa4890e3e56307563f2c719bf1ac4832c638bcaf2e6065",
+  "containerImages": [
+    {
+      "id": "sha256:b804fab8f5a4893b4271cb0bb048eedf4eaecf85ce6be14a33639656eff30b0d",
+      "sha256": "5e1cfa0c52e20664e1f99a32537b301013bb916f096f325e1b20febf48f9f0d8",
+      "bytes": 82992072
+    }
+  ],
+  "bundleArtifactSha256": "c469dd8aefc5439253a2ea76bb7d7642cd5c0bb6e27e7845277bb4b89a38b3c0",
+  "bundleBytes": 338173,
+  "records": [
+    {
+      "format": "container",
+      "scenario": "existing-container",
+      "before": 0,
+      "after": 1,
+      "storageMode": "persistent"
+    },
+    {
+      "format": "bundle",
+      "scenario": "switch-to-optional-bundle",
+      "before": 0,
+      "after": 0,
+      "storageMode": "persistent"
+    },
+    {
+      "format": "container",
+      "scenario": "return-to-container",
+      "before": 1,
+      "after": 1,
+      "storageMode": "persistent"
+    }
+  ],
+  "dataContinuityPassed": false,
+  "splitStorageReproduced": true,
+  "cleanup": {
+    "containersStopped": true,
+    "probeVolumeRemoved": true,
+    "temporaryRootRemoved": true
+  },
+  "reproduction": "Run stack-express-transition-probe.mjs in the isolated QA guest. Uses a fresh temporary dataKey and root, the stored Express QA container artifact, and an experimental bundle. It asserts the current failing continuity behavior and cleans up its own volume and files."
+}

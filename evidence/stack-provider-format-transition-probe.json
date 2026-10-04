@@ -1,0 +1,22 @@
+{
+  "recordedAt": "2026-10-04T01:36:07.874Z",
+  "scope": "Real provider adapter with mocked API only; no native environment or credentials used.",
+  "formatTransitionSupported": false,
+  "safeRejectionReproduced": true,
+  "results": [
+    {
+      "savedDisplayName": "PODS launch containers",
+      "requestedRuntime": "node-bundle",
+      "failure": "Your saved Codespace no longer matches this PODS runtime. Restore its configuration before relaunching.",
+      "computeMutation": false
+    },
+    {
+      "savedDisplayName": "PODS launch",
+      "requestedRuntime": "container",
+      "failure": "Your saved Codespace no longer matches this PODS runtime. Restore its configuration before relaunching.",
+      "computeMutation": false
+    }
+  ],
+  "sourceRevision": "60b7960",
+  "reproduction": "node evidence/stack-provider-format-transition-probe.mjs; provider API and compute actions are mocked."
+}

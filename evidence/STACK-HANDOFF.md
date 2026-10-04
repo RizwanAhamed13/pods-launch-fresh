@@ -64,12 +64,30 @@ Do not claim universal compatibility, native Codespaces browser acceptance or a
 
 ## Next bounded gate
 
+- Current turn completed Koa browser transport preflight:sourceSHA30ec5f6a71fea263
+  da43d72c3a2993160ced4be0b4179386fa6b3f40f4843b75, artifact4cf6f2739c10d5c7072c
+  855ea4886a4ad8bd9fdafd5ac57cdcde898501700240,101539bytes. Actualbrowser0→1,
+  reload1,fullrestart1→2,reload2; empty chunked POST returned200, no consoleerrors.
+  Evidence stack-koa-browser-transport.json and replayprobe. Probe1842 and tunnel
+  20820 ended0; temporarydevicekoa-transport-qa removed; tab32closed; filesremoved.
+- Express cross-format diagnostic43765 ended0: real existingQAcontainer saved1,
+  same-dataKey experimentalbundle saw0, backtocontainer saw1. ContinuityFAIL,
+  originaldataretained. Its unique Docker volume and temporaryroot were removed.
+  Evidence stack-express-transition-probe.{json,mjs}; no productionpackagerchange.
+- Also reproduced provider-adapter safe rejection for savedcontainer→Node and
+  savedNode→container labels, with mockedAPI and no computemutations. Evidence
+  stack-provider-format-transition-probe.{json,mjs}. Server environmentKey binds
+  account+dataKey independently ofruntime. Do not selectanotherenvironment to
+  bypass this; migration mustretain the savedenvironment andrealdata.
+  Public .devcontainer currently includesNode24,sshd,docker-in-docker, but that
+  config alone does notprove historicalenvironments support everyruntime.
 - NEXT: normal URL preparation and native checks for Koa + persistent data, then
   remaining26 fixtures. Do not assume its timings/results from Fastify. No Koa
   production build has been submitted. Existing QA matrix tests are distinct.
-- Last quota snapshot01:27:37.027096UTC:account3/global3/active0,next ordinary slot
-  01:44:59.996UTC. No live quota watcher. /tmp/pods-next-native-quota-watch.py can
-  watch for20minutes with30second readonly samples. Keep limits3/account/hour and
+- Live quota watcher67969 started01:29:55.073018UTC:account3/global3/active0,next
+  ordinary slot01:44:59.996UTC. Re-poll this exact handle; do not recreate while
+  live. /tmp/pods-next-native-quota-watch.py watches20minutes with30second readonly
+  samples. Keep limits3/account/hour and
   12/global/hour; never change identity/bypass quota/import QA artifacts.
 - /tmp/pods-record-fastify-fixed.py and /tmp/pods-fastify-fixed-{browser,production-
   evidence,ports}.json retain this gate's local evidence inputs; health.txt is200.
