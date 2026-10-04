@@ -7,6 +7,14 @@ VM replacement durability, or a universal 20-second cold launch.
 
 ## Current state
 
+- Latest native acceptance: Sinatra, revision `21b6cd0`, pushed and synced to aswin.
+  Public `/support` verified **55/48/48** at 2026-10-04T08:15:09.166Z.
+  All four Sinatra launches stopped; current saved counters2 on each provider.
+  Next unsubmitted developer draft is `examples/stacks/deno`.
+  Ordinary quota watcher session37339 remains live; its last snapshot at08:14:39UTC
+  reports the next slot at2026-10-04T08:29:35.611000+00:00. Resume that watcher;
+  no quota bypass or resubmission. `/tmp/pods-watch-deno-build.py` is prepared.
+
 - Local: /Users/rizwanahamed/Documents/ChatGPT/podsv2.
 - aswin: /home/aswin/pods-launch-fresh; SSH alias aswin.
 - Core: https://github.com/RizwanAhamed13/pods-launch-fresh (private).
@@ -1297,3 +1305,16 @@ The temporary file-counter documentation helper now invokes it automatically.
   All four launches stopped; no service restart. Coverage55/48/48;7nativepending.
   Source6995/full184 unchanged. Existing GitHub2FA/VMreplacement/stablehostname
   inputs remain pending. Goal active and progressing.
+
+
+## Sinatra publication verified
+
+- Public `stack-sinatra-published.json` confirms all three Sinatra cells passed at revision21b6cd0. Native Codespaces browser interaction still explicitly pending.
+- Four launches stopped, service health200, integrityok, zero active build/launches at08:14:12UTC. ServicePID1063107 and runnerSHA unchanged; no restart.
+- Google first/cached product visible25.589/6.848s, server healthy24.086/6.355s. Codespaces initiallyShutdown53.926s and cachedAvailable9.048s. File values0→1→2, reload and full restart persistence passed; assignedport26238 private.
+- Existing Codespace chosen by the provider: pods-launch-containers-97qw56gjg47gf7vrv. Preserve its saved value2; no new environment forced.
+- Timing report:94 observations,49 excluded provider/fixture pairs. Compatible historical records only; missing timings remain unknown. This does not establish universal20s performance.
+- Compatibility tests3passed. Full184local/Linux and physical6995lines unchanged because only evidence/docs changed.
+- Seven native fixtures remain: Deno, Gradio, Ktor, Micronaut, Phoenix, Streamlit, Symfony. Continue Deno through actual developer form after normal quota; both file-profile runtime preflight and184tests are already valid. Use `PODS_COUNTER_CHECK=1 PODS_FILE_COUNTER_RUNTIME_CHECK=1 PODS_EXPECT_INITIAL_COUNT=0` for its native Codespaces harness.
+- Persistent browser handles: stackQa6/tab1(Deno draft), echoTab/tab2(stoppedSinatra), mongodbSupport/tab3(publicsupport55/48/48). All markedHandoff. Deno product h1 is `Deno persistent counter`, counter#value, Add one.
+- Goal remains active and incomplete. Existing GitHub2FA, VMreplacement durability authorization and stablehostname inputs remain pending; do not repeat those questions.
