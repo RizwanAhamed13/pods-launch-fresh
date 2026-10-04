@@ -1,8 +1,12 @@
 # Broad stack checkpoint
 
 Goal active and incomplete: developer URL → isolated aswin build → reusable artifact
-→ authorized user compute → real usable product. Latest completed gate: native
-first-image and cached Flask + MariaDB acceptance of the deployed two-image pipeline.
+→ authorized user compute → real usable product. Latest completed gate: isolated
+shared-layer import and full-archive fallback capability. Flask archive57.0→11.1MB
+with exact image/rootfs/dependency checks passed when base content was present.
+An empty store exposed successful load/identity checks for an unrunnable image;
+full-archive import repaired it. No delivery implementation or new native timing.
+Prior native gate: Flask + MariaDB acceptance of the deployed two-image pipeline.
 Actual first-image product30.229s/write30.947s still misses20s; cached product12.607s/
 write13.005s passes. Both CDN downloads succeeded; persistence2→3→4 passed.
 No source changes or full-suite reruns in this gate. Native Codespaces browser and
@@ -34,6 +38,38 @@ broader first-image latency remain open; no universal compatibility/speed claim.
   Deployment preserved59images/135artifactfiles/.env. Post-native audit16:02:35UTC:
   health200/SQLiteok/zero active. Baseline55737b2 retained in test/benchmark evidence.
 - 59 distinct prepared images,10 mappings,49 unmapped totaling5177532324bytes.
+
+## Latest layer-reuse diagnostic
+
+- stack-layer-reuse-diagnostic.json, stack-layer-archive-metadata.json and
+  evidence/probes/LAYER-REUSE.md. No production/test/fixture code changes.
+- Flask41d7ce5a... and FastAPI3f34e12c... share4 compressed blobs46220071bytes.
+  Flask fullarchive57046835bytes; generatedthin11121120bytes,80.505% smaller.
+  MariaDBf078164d... shares no compressed blobs with FastAPI.
+- QA Docker29.1.3/containerd: Flask target initially absent, loaded existing
+  FastAPI archive then thinFlask. Exact targetb665a14d.../8rootfs IDs and runtime
+  Flask3.1.1/PyMySQL1.1.2 passed. No appserver or DB started. QA now caches both
+  images; do not clear caches or rerun this as an absent-image case.
+- First cold attempt connected systemcontainerd despite privateDockerdata-root;
+  empty-image assertion stopped before import. Second attempt used a physically
+  empty separatecontainerd and exposed loadexit0/inspectIDsuccess despite missing
+  blobs. Third attempt in newcold-v3 verified executionexit125, fullarchivefallback
+  loadsuccess and exactidentity/rootfs/dependency execution. Both private daemons
+  stopped,0owneddaemonsleft,ordinaryQAhealthy/existingimages+containerspreserved.
+- Paths: aswin/tmp/pods-layer-reuse-b75e0fb; QA/output/layer-reuse-b75e0fb with
+  retainedcold/cold-v2/cold-v3. Reproducers are one-shot; choose fresh owned paths
+  for new experiments, preserve current caches/data. No production/user imports.
+- Native read-only16:08:53UTC: Docker29.8.1/containerd; cachedFastAPI9846cdb8...
+  and7rootfs IDs match. All9existingSSHkeys preserved,ownedkeysremoved. This proves
+  no native thin-load compatibility or product timing. Local import durations are
+  not a controlled comparison and not launch latency.
+- Verified343 unchanged prior snapshot inputs;292 local/Linux checks remain valid.
+  Audit16:16:52UTC:PID1589423/runnerSHAunchanged,health200/SQLiteok/zeroactive.
+- Next gate: bounded authenticated missing-layer transport design and QA, with
+  completeness validation that catches successful partial imports, advisory cache
+  claims, full-archive fallback, integrity/abort/storage checks. Compare transfer
+  and actual runtime before native delivery. Avoid unbounded variant generation;
+  no20s speed claim until actual native product acceptance. Goal remains active.
 
 ## Latest native first-image gate
 

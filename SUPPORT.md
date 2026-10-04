@@ -244,6 +244,32 @@ saved record3, no published database port and persistent Cloud Shell home storag
 Both previews stopped, all nine existing Google keys were preserved, and the
 service remained healthy. The current source and292-check results are unchanged.
 
+## Layer reuse diagnostic
+
+The [isolated diagnostic](evidence/stack-layer-reuse-diagnostic.json) examined the
+existing Flask, FastAPI and MariaDB archives. Flask and FastAPI share four exact
+compressed blobs totaling 46,220,071 bytes; MariaDB shares none with FastAPI.
+Omitting those four blobs reduced the Flask outer archive from 57,046,835 to
+11,121,120 bytes (**80.505% fewer archive bytes**). QA Docker 29.1.3 with containerd
+loaded the exact Flask image after the base content was present; all eight rootfs
+IDs matched and Flask/PyMySQL dependency execution passed.
+
+A separate, physically empty containerd store exposed a critical limitation:
+`docker load` returned success and `docker image inspect` returned the expected
+identity despite missing-blob unpack errors. Execution failed with exit 125.
+Importing the verified full archive repaired the same image and dependency
+execution passed. Both private daemons stopped; existing QA caches were preserved.
+The failed isolation and exit-status assumptions remain in the evidence.
+
+Read-only native inspection confirmed Cloud Shell Docker 29.8.1 with containerd
+and the matching cached FastAPI rootfs. It did not import the smaller archive or
+start an app. Temporary keys were removed and all nine existing keys preserved.
+These results establish a delivery opportunity and fallback requirements, not
+native compatibility, new stack coverage or startup improvement. Production still
+delivers full verified archives through the deployed two-image pipeline. All 343
+prior test snapshot inputs remain identical; the 292-check evidence is unchanged.
+See the [probe notes](evidence/probes/LAYER-REUSE.md) for reproduction and limits.
+
 ## Existing-artifact delivery migration
 
 The operator command documented in [README.md](README.md) verifies one explicitly

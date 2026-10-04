@@ -4,6 +4,13 @@ A fresh implementation. A developer submits a public GitHub repository URL. PODS
 
 The reference application is Field Notes: a real HTTP app whose notes are saved in the user's environment. The control plane never runs the preview application.
 
+Current coverage is 55 representative applications, including React, Angular and
+seven database/service families; exact provider evidence is in [SUPPORT.md](SUPPORT.md).
+Launch-speed work remains active. A [layer-reuse diagnostic](evidence/stack-layer-reuse-diagnostic.json)
+reduced one Flask archive from 57.0 MB to 11.1 MB when shared layers were present
+and verified full-archive recovery when they were absent. This is an isolated
+capability check, not a deployed optimization or measured product speedup.
+
 ## Run the control plane
 
 Requires Node.js 24, GitHub CLI (`gh`), OpenSSH client, and `curl` on the server. User environments need Node.js 22+ (PATH or standard NVM installation), `curl`, `sha256sum` and SSH support. The public [runtime repository](https://github.com/RizwanAhamed13/pods-launch-runtime-fresh) uses the official Node.js 24 Bookworm image pinned by digest and the SSH server feature required by GitHub CLI. The included configuration mirrors it. Initial Codespaces setup may install the runtime SSH feature; it never builds the submitted application.

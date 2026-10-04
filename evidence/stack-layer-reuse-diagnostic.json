@@ -1,0 +1,461 @@
+{
+  "recordedAt": "2026-10-04T16:18:51.025491+00:00",
+  "baseRevision": "b75e0fb4f9f16be03bc092f10fa515ff4918066d",
+  "scope": "Three existing archive inspections, read-only native cache inspection, and isolated QA image-import capability checks. No production layer delivery implemented or native launch timing measured.",
+  "productionChanged": false,
+  "archiveMetadata": "stack-layer-archive-metadata.json",
+  "archiveLayers": [
+    {
+      "archive": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+      "archiveBytes": 57046835,
+      "layers": [
+        {
+          "member": "blobs/sha256/6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8",
+          "bytes": 29830418,
+          "diffId": "sha256:a6dc765193a52cbaede3c93a9ff48b9540948dd0774bbe7031fcb5847606f9ac"
+        },
+        {
+          "member": "blobs/sha256/a510a9ea6d60786b7cefdbf9577945344c72879881de8d32ef07ec38111fb045",
+          "bytes": 4268666,
+          "diffId": "sha256:ec5ef3f1cbefdce6c6ac6574e6609310d57e2baab89df410bf30228f5f567273"
+        },
+        {
+          "member": "blobs/sha256/e360d85fdc0f3910a4fe48ba2bb0865d5e618392ea8abfa424e66575e45273c0",
+          "bytes": 12120738,
+          "diffId": "sha256:5b57eb74119f41ab33783352993c069e1f4ac4136e711d205e136808aad526b6"
+        },
+        {
+          "member": "blobs/sha256/5e62c0470a0973ad9561440c8a37984c3252eda1dd19e00ca7e76a37b62b5dc7",
+          "bytes": 249,
+          "diffId": "sha256:d88e62f9bbff6447c00667778988589b711cebf26b8046fdf54eebc0a543c204"
+        },
+        {
+          "member": "blobs/sha256/a0c062d2876d87542fa374b5200d8fab9c49f57f64e88b54c8f0f282a4916e6f",
+          "bytes": 93,
+          "diffId": "sha256:603e86610f06440c5653776024242c8143b725f4f92ebe63ba7511d4c44f40e8"
+        },
+        {
+          "member": "blobs/sha256/c0727d2a5910751c7e80fce2fde75b0ca8a1a7bc7bab00b20eeeaea1227f75df",
+          "bytes": 180,
+          "diffId": "sha256:7ca762d378e4be7405d66f4e6d8550b3932edaa2596749deeb8005a5c19d0068"
+        },
+        {
+          "member": "blobs/sha256/811327e928eafdad03082c4271d2fa50424865468252faed92f9b39a09b276bf",
+          "bytes": 11170215,
+          "diffId": "sha256:52bb581824725209d7f03727c29255c45f34d1269be9cc53e39ca24438471599"
+        },
+        {
+          "member": "blobs/sha256/b528b665adb569ee1d2a3b224683a63a62eafca8ea978a4fb9de396835c4ae34",
+          "bytes": 813,
+          "diffId": "sha256:af16ecd95ea0954ae6e10819b5d83578e63c8cf27c2261d22750b2f2a2a6a968"
+        }
+      ],
+      "configDigest": "sha256:72f3643dddbffa583c4bcc89abfd93dfc2ba596fedb6df7143768df6da781607"
+    },
+    {
+      "archive": "3f34e12c187fe7d2bdd50bb5910b72381a3b5d4d7c83633fa680fedea91d2032",
+      "archiveBytes": 54898173,
+      "layers": [
+        {
+          "member": "blobs/sha256/6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8",
+          "bytes": 29830418,
+          "diffId": "sha256:a6dc765193a52cbaede3c93a9ff48b9540948dd0774bbe7031fcb5847606f9ac"
+        },
+        {
+          "member": "blobs/sha256/a510a9ea6d60786b7cefdbf9577945344c72879881de8d32ef07ec38111fb045",
+          "bytes": 4268666,
+          "diffId": "sha256:ec5ef3f1cbefdce6c6ac6574e6609310d57e2baab89df410bf30228f5f567273"
+        },
+        {
+          "member": "blobs/sha256/e360d85fdc0f3910a4fe48ba2bb0865d5e618392ea8abfa424e66575e45273c0",
+          "bytes": 12120738,
+          "diffId": "sha256:5b57eb74119f41ab33783352993c069e1f4ac4136e711d205e136808aad526b6"
+        },
+        {
+          "member": "blobs/sha256/5e62c0470a0973ad9561440c8a37984c3252eda1dd19e00ca7e76a37b62b5dc7",
+          "bytes": 249,
+          "diffId": "sha256:d88e62f9bbff6447c00667778988589b711cebf26b8046fdf54eebc0a543c204"
+        },
+        {
+          "member": "blobs/sha256/4f2fc86b94b0e92b2434506cdb7f02298f3a0ef6019e85bf0b25afba52e14b56",
+          "bytes": 93,
+          "diffId": "sha256:39d01ccf1e8d99c59f8a536f995f1ccf269d26a79fa8f95cfb23a895db7e3da1"
+        },
+        {
+          "member": "blobs/sha256/d2168fa0ac77b79bf51a16f96f6751f63ddfc2dc3b86363b5d9eeac6c1ee469d",
+          "bytes": 772,
+          "diffId": "sha256:4a1bf80ba49913f091f0675743adfae428b61fd48c11c7250ef71704270db552"
+        },
+        {
+          "member": "blobs/sha256/d9248d010c5518c9ea42a7380eab4fc976d65ad8f883e5f650ee914ede60a6ad",
+          "bytes": 9014815,
+          "diffId": "sha256:ec22d3ad0365863bee01f6b225aab63d304382ad7b05247af6532b954f88dff4"
+        }
+      ],
+      "configDigest": "sha256:c42e9cfc791c6ab3e58156607e4c9ac8c4c78872cb0bd08ebf1984f67a7d8d21"
+    },
+    {
+      "archive": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+      "archiveBytes": 104507545,
+      "layers": [
+        {
+          "member": "blobs/sha256/a60ef8ec184edb5ed91f5983f00261359fb2fe20f603e8d488b9477d32fcad70",
+          "bytes": 29764422,
+          "diffId": "sha256:d81fb2a7c6ee3be05fdefaa7fd223be219c1ab172083ec1b994c3ecda33ac0a8"
+        },
+        {
+          "member": "blobs/sha256/07afc4eb8b2ccd9efb19d4ec8960cc9c82524b408088597637c6be636b4b1d98",
+          "bytes": 1342,
+          "diffId": "sha256:6ba6130ada07999663a8e7da741f85477e4cd43ba2a0dc9b1fc8a275dd50a4ae"
+        },
+        {
+          "member": "blobs/sha256/086135ab0fe585d3416f96e7ef7f49fda159bf84549acbbd54bff35d05642a3f",
+          "bytes": 7656029,
+          "diffId": "sha256:4d0132a627b1818ff14817c8504bd3a3d5daafa55fb94a8c3deccd9f4a8462d5"
+        },
+        {
+          "member": "blobs/sha256/47af3a184ea1e8859278cade3bc53b529bde157c3dc5ac6e4764686db804f75c",
+          "bytes": 116,
+          "diffId": "sha256:ebcc5e421767d6547ab413445e1d8505732d83e1ebbccfb2245c1abcd28ef29f"
+        },
+        {
+          "member": "blobs/sha256/927fa4a585713209a271cc6522430019e3e1f25bd306d727f482a6e65d20e201",
+          "bytes": 333,
+          "diffId": "sha256:1a6f32d13338136a88e182d22a2c101d03daae6887845596957dcfe7139af41b"
+        },
+        {
+          "member": "blobs/sha256/a76bc7c95d1eaffffd305424646b4c1f57c995333a706298c3bf1b24b60b2b3e",
+          "bytes": 68194128,
+          "diffId": "sha256:e9db0667ad925b339cbee3549406c4d9e266d2a8c1563c95952718447a868ccb"
+        },
+        {
+          "member": "blobs/sha256/36f84c3d5a21399aba08adc6764a72dd2d55cc0449b57c40b8f7dd553323bd25",
+          "bytes": 4034,
+          "diffId": "sha256:86065e753e5431a872fbe4ca3ee59f932634a777d47b942711eabf200078a6ed"
+        },
+        {
+          "member": "blobs/sha256/fc90ba8e9eef90336396b2384fc13abf64da68f7785eaf3b13f91c4a5fb85761",
+          "bytes": 8493,
+          "diffId": "sha256:36b7dbf786ec4c5898b5fa42b01c06caf4de60c0991b6bdcd5ae413c883b27ea"
+        }
+      ],
+      "configDigest": "sha256:ab3dff582d246358b6f6a1f6212f29ac64609fad883eb3dcfb0a89f6f7d0700e"
+    }
+  ],
+  "sharedLayers": {
+    "flaskAndFastapiCount": 4,
+    "compressedBlobBytes": 46220071,
+    "flaskLayerPayloadBytes": 57391372,
+    "flaskUniqueLayerPayloadBytes": 11171301,
+    "mariadbSharesWithFastapi": false,
+    "fullOuterArchiveBytes": 57046835,
+    "thinOuterArchiveBytes": 11121120,
+    "outerArchiveReductionPercent": 80.505,
+    "timingImprovementEstablished": false
+  },
+  "nativeReadOnlyInspection": {
+    "startedAt": "2026-10-04T16:08:49.725Z",
+    "provider": "google",
+    "applicationStarted": false,
+    "productionChanged": false,
+    "initialState": "RUNNING",
+    "initialPublicKeyCount": 9,
+    "runtime": {
+      "checkedAt": "2026-10-04T16:08:53.983Z",
+      "readOnly": true,
+      "engine": {
+        "version": "29.8.1",
+        "driver": "overlayfs",
+        "driverStatus": [
+          [
+            "driver-type",
+            "io.containerd.snapshotter.v1"
+          ]
+        ]
+      },
+      "cachedFastapi": {
+        "id": "sha256:9846cdb84ce20ba80a2d4c4baf5bab0fe4a382646c8280ac8055742c76ad262f",
+        "sha256": "3f34e12c187fe7d2bdd50bb5910b72381a3b5d4d7c83633fa680fedea91d2032",
+        "bytes": 54898173,
+        "layers": [
+          "sha256:a6dc765193a52cbaede3c93a9ff48b9540948dd0774bbe7031fcb5847606f9ac",
+          "sha256:ec5ef3f1cbefdce6c6ac6574e6609310d57e2baab89df410bf30228f5f567273",
+          "sha256:5b57eb74119f41ab33783352993c069e1f4ac4136e711d205e136808aad526b6",
+          "sha256:d88e62f9bbff6447c00667778988589b711cebf26b8046fdf54eebc0a543c204",
+          "sha256:39d01ccf1e8d99c59f8a536f995f1ccf269d26a79fa8f95cfb23a895db7e3da1",
+          "sha256:4a1bf80ba49913f091f0675743adfae428b61fd48c11c7250ef71704270db552",
+          "sha256:ec22d3ad0365863bee01f6b225aab63d304382ad7b05247af6532b954f88dff4"
+        ]
+      }
+    },
+    "completed": true,
+    "finalState": "RUNNING",
+    "keyRemoved": true,
+    "existingKeysPreserved": true,
+    "finalPublicKeyCount": 9,
+    "localKeyRemoved": true,
+    "finishedAt": "2026-10-04T16:08:55.620Z"
+  },
+  "sharedCacheImport": {
+    "sourceArchiveSha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+    "sourceArchiveBytes": 57046835,
+    "baseArchiveSha256": "3f34e12c187fe7d2bdd50bb5910b72381a3b5d4d7c83633fa680fedea91d2032",
+    "thinArchiveSha256": "fb501d1991763cc9cc4ce991463be5ee770940cd6526904207346249d7db5a23",
+    "thinArchiveBytes": 11121120,
+    "omittedCompressedLayerBytes": 46220071,
+    "omittedMembers": [
+      "blobs/sha256/5e62c0470a0973ad9561440c8a37984c3252eda1dd19e00ca7e76a37b62b5dc7",
+      "blobs/sha256/6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8",
+      "blobs/sha256/a510a9ea6d60786b7cefdbf9577945344c72879881de8d32ef07ec38111fb045",
+      "blobs/sha256/e360d85fdc0f3910a4fe48ba2bb0865d5e618392ea8abfa424e66575e45273c0"
+    ],
+    "retainedMemberBytes": 11181242,
+    "targetInitiallyAbsent": true,
+    "baseInitiallyPresent": false,
+    "baseLoadMs": 4259,
+    "thinLoad": {
+      "exitCode": 0,
+      "elapsedMs": 3438,
+      "targetPresent": true,
+      "output": "Loaded image ID: sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672\n"
+    },
+    "rootfs": [
+      "sha256:a6dc765193a52cbaede3c93a9ff48b9540948dd0774bbe7031fcb5847606f9ac",
+      "sha256:ec5ef3f1cbefdce6c6ac6574e6609310d57e2baab89df410bf30228f5f567273",
+      "sha256:5b57eb74119f41ab33783352993c069e1f4ac4136e711d205e136808aad526b6",
+      "sha256:d88e62f9bbff6447c00667778988589b711cebf26b8046fdf54eebc0a543c204",
+      "sha256:603e86610f06440c5653776024242c8143b725f4f92ebe63ba7511d4c44f40e8",
+      "sha256:7ca762d378e4be7405d66f4e6d8550b3932edaa2596749deeb8005a5c19d0068",
+      "sha256:52bb581824725209d7f03727c29255c45f34d1269be9cc53e39ca24438471599",
+      "sha256:af16ecd95ea0954ae6e10819b5d83578e63c8cf27c2261d22750b2f2a2a6a968"
+    ],
+    "runtimeCheck": {
+      "exitCode": 0,
+      "output": "3.1.1\n1.1.2\n"
+    },
+    "checkedAt": 1791130190.548491,
+    "existingCachePreserved": true,
+    "applicationStarted": false,
+    "comparisonScope": "Isolated image import capability, not native provider or product timing"
+  },
+  "coldStoreImportAndFullFallback": {
+    "scope": "Isolated QA import capability with separate Docker and containerd roots, states and sockets; not native product timing",
+    "startedAt": 1791130596.6572113,
+    "engine": {
+      "ServerVersion": "29.1.3",
+      "Driver": "overlayfs",
+      "DriverStatus": [
+        [
+          "driver-type",
+          "io.containerd.snapshotter.v1"
+        ]
+      ]
+    },
+    "isolation": {
+      "explicitContainerdSocket": true,
+      "separateContainerdRootAndState": true,
+      "separateDockerRootAndState": true,
+      "privateUnixSocketsOnly": true
+    },
+    "initialImageCount": 0,
+    "initialContentBlobCount": 0,
+    "initialPhysicalContentBlobCount": 0,
+    "missingBase": {
+      "exitCode": 0,
+      "elapsedMs": 1868,
+      "output": "Loaded image ID: sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672\nError unpacking image sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672: apply layer error for \"moby-dangling@sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672\": failed to extract layer sha256:a6dc765193a52cbaede3c93a9ff48b9540948dd0774bbe7031fcb5847606f9ac: NotFound: failed to get reader from content store: content digest sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8: not found\n",
+      "targetInspect": {
+        "exitCode": 0,
+        "identityMatches": true
+      },
+      "executionCheck": {
+        "exitCode": 125,
+        "output": "docker: Error response from daemon: apply layer error for \"\": failed to extract layer sha256:a6dc765193a52cbaede3c93a9ff48b9540948dd0774bbe7031fcb5847606f9ac: NotFound: failed to get reader from content store: content digest sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8: not found\n\nRun 'docker run --help' for more information\n"
+      },
+      "executionRejected": true
+    },
+    "fullFallback": {
+      "exitCode": 0,
+      "elapsedMs": 7947,
+      "output": "Loaded image ID: sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672\n",
+      "targetInspect": {
+        "exitCode": 0,
+        "identityMatches": true
+      }
+    },
+    "rootfs": [
+      "sha256:a6dc765193a52cbaede3c93a9ff48b9540948dd0774bbe7031fcb5847606f9ac",
+      "sha256:ec5ef3f1cbefdce6c6ac6574e6609310d57e2baab89df410bf30228f5f567273",
+      "sha256:5b57eb74119f41ab33783352993c069e1f4ac4136e711d205e136808aad526b6",
+      "sha256:d88e62f9bbff6447c00667778988589b711cebf26b8046fdf54eebc0a543c204",
+      "sha256:603e86610f06440c5653776024242c8143b725f4f92ebe63ba7511d4c44f40e8",
+      "sha256:7ca762d378e4be7405d66f4e6d8550b3932edaa2596749deeb8005a5c19d0068",
+      "sha256:52bb581824725209d7f03727c29255c45f34d1269be9cc53e39ca24438471599",
+      "sha256:af16ecd95ea0954ae6e10819b5d83578e63c8cf27c2261d22750b2f2a2a6a968"
+    ],
+    "fallbackRuntimeCheck": {
+      "exitCode": 0,
+      "output": "3.1.1\n1.1.2\n"
+    },
+    "probeContainersRemaining": 0,
+    "applicationStarted": false,
+    "completed": true,
+    "cleanup": {
+      "dockerStopped": true,
+      "containerdStopped": true
+    },
+    "existingQaImagesPreserved": true,
+    "existingQaContainersPreserved": true,
+    "logs": {
+      "docker.log": "0024214be2ffda123e70de28f1298cb31d9e2648c9202558e6cc8a3e2d9e4414",
+      "containerd.log": "2eae8ed820bc20d50bcf68bc636b5721c3b4f034d51d3f1abf96b4914e4b4529"
+    },
+    "finishedAt": 1791130613.0597358
+  },
+  "retainedDiagnosticAttempts": [
+    {
+      "category": "diagnostic-setup-shell-quoting",
+      "stage": "read-only QA inspection",
+      "exitCode": 2,
+      "runtimeChanged": false,
+      "recovery": "Python SSH stdin and subprocess argv"
+    },
+    {
+      "category": "diagnostic-input-shape",
+      "stage": "native probe generation used images instead of image",
+      "exitCode": 1,
+      "runtimeChanged": false,
+      "recovery": "Corrected fixture image field before successful authorized read-only probe"
+    },
+    {
+      "category": "private-docker-reused-system-containerd",
+      "receipt": {
+        "scope": "Fresh private Docker content store; no existing Docker or user cache cleared",
+        "startedAt": 1791130280.672295,
+        "engine": {
+          "ServerVersion": "29.1.3",
+          "Driver": "overlayfs",
+          "DriverStatus": [
+            [
+              "driver-type",
+              "io.containerd.snapshotter.v1"
+            ]
+          ]
+        },
+        "diagnosticFailure": "",
+        "privateDaemonStopped": true,
+        "daemonLogSha256": "76166a5bed6a7611392bf256091abb51eb585f208d625902b89f500d1c5de02f",
+        "finishedAt": 1791130283.2390952
+      },
+      "interpretation": "Empty-image guard stopped before import. No cold-store result. Daemon log confirmed /run/containerd/containerd.sock. Separate containerd root/state/socket required."
+    },
+    {
+      "category": "invalid-exit-status-assumption",
+      "receipt": {
+        "scope": "Isolated QA import capability with separate Docker and containerd roots, states and sockets; not native product timing",
+        "startedAt": 1791130574.5229745,
+        "engine": {
+          "ServerVersion": "29.1.3",
+          "Driver": "overlayfs",
+          "DriverStatus": [
+            [
+              "driver-type",
+              "io.containerd.snapshotter.v1"
+            ]
+          ]
+        },
+        "isolation": {
+          "explicitContainerdSocket": true,
+          "separateContainerdRootAndState": true,
+          "separateDockerRootAndState": true,
+          "privateUnixSocketsOnly": true
+        },
+        "initialImageCount": 0,
+        "initialContentBlobCount": 0,
+        "initialPhysicalContentBlobCount": 0,
+        "missingBase": {
+          "exitCode": 0,
+          "elapsedMs": 1771,
+          "output": "Loaded image ID: sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672\nError unpacking image sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672: apply layer error for \"moby-dangling@sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672\": failed to extract layer sha256:a6dc765193a52cbaede3c93a9ff48b9540948dd0774bbe7031fcb5847606f9ac: NotFound: failed to get reader from content store: content digest sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8: not found\n",
+          "targetInspect": {
+            "exitCode": 0,
+            "identityMatches": true
+          }
+        },
+        "diagnosticFailure": "Thin archive unexpectedly loaded without base blobs",
+        "cleanup": {
+          "dockerStopped": true,
+          "containerdStopped": true
+        },
+        "existingQaImagesPreserved": true,
+        "existingQaContainersPreserved": true,
+        "logs": {
+          "docker.log": "939fa8786595efa77ff8143531428dfc1916fc0d0aace6965ad8a89c58fcf8c0",
+          "containerd.log": "333610a7a1aaafdec00575fc115d8f3f097c23848c2722110c6a0757c798615e"
+        },
+        "finishedAt": 1791130580.9311416
+      },
+      "interpretation": "Fresh isolated content store verified. Docker load returned zero and exact image ID despite missing-blob unpack error. Assertion stopped before fallback. v3 records execution failure and full-archive recovery."
+    }
+  ],
+  "conclusions": [
+    "In QA Docker29.1.3 containerd storage, removing four exact shared compressed blobs reduced this Flask archive from 57046835 to11121120 bytes, while the exact target image and dependency execution passed when base content was present.",
+    "Native Cloud Shell Docker29.8.1 uses containerd storage and had the matching FastAPI rootfs cached. No thin archive was imported into user compute, so native thin-load support is not established.",
+    "With an empty separate physical containerd store, Docker load exited0 and image inspect returned the expected ID although required blobs were absent; execution failed125 before application code ran.",
+    "Importing the verified full archive restored the same image and all eight rootfs IDs; Flask3.1.1 and PyMySQL1.1.2 dependency execution passed.",
+    "Delivery must not accept Docker load exit status plus image identity as proof that an incomplete archive is runnable. Readiness and an explicit bounded full fallback are required before deployment.",
+    "Measured local imports used different cache states and are not a controlled latency comparison. There is no measured 20-second improvement or new stack acceptance in this diagnostic."
+  ],
+  "cleanup": {
+    "ownedQaDaemonsRemaining": 0,
+    "ordinaryQaDockerHealthy": true,
+    "existingQaImagesAndContainersPreserved": true,
+    "ownedQaFilesRetainedForReproduction": true,
+    "productionOrUserComputeImagesImported": false,
+    "nativeTemporaryKeysRemoved": true,
+    "existingNineNativeKeysPreserved": true
+  },
+  "verification": {
+    "fullSuiteRerun": false,
+    "reason": "No product, tooling, test or fixture source changed; all343 prior snapshot inputs verified identical. Only documentation and archived evidence added.",
+    "previousFullSuite": "stack-image-pipeline-tests.json",
+    "previousLocalAndLinuxPassCount": 292,
+    "scopedSourceLines": 9012,
+    "unchangedSnapshotInputs": 343,
+    "snapshotManifestSha256": "8d5efc32bc9ec0c4ded03919d0d54451fb39f7c9df6c6a6b4829433346673392",
+    "baseProductionAudit": {
+      "recordedAt": "2026-10-04T16:06:12.679948+00:00",
+      "pid": 1589423,
+      "cwd": "/home/aswin/pods-launch-fresh",
+      "command": "node --env-file=.env src/server.mjs",
+      "listenerMatches": true,
+      "sqliteQuickCheck": "ok",
+      "activeBuilds": 0,
+      "activeLaunches": 0,
+      "health": 200,
+      "runnerSha256": "999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0",
+      "revision": "b75e0fb4f9f16be03bc092f10fa515ff4918066d"
+    },
+    "finalProductionAudit": {
+      "recordedAt": "2026-10-04T16:16:52.668340+00:00",
+      "pid": 1589423,
+      "cwd": "/home/aswin/pods-launch-fresh",
+      "command": "node --env-file=.env src/server.mjs",
+      "listenerMatches": true,
+      "sqliteQuickCheck": "ok",
+      "activeBuilds": 0,
+      "activeLaunches": 0,
+      "health": 200,
+      "runnerSha256": "999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0",
+      "revision": "b75e0fb4f9f16be03bc092f10fa515ff4918066d"
+    }
+  },
+  "probes": {
+    "evidence/probes/layer-reuse-qa.py": "433f3967b3e8bf674fa3f5d56c078988c815bd1c9d0950524af66300d2d50f6d",
+    "evidence/probes/layer-reuse-cold-v1-qa.py": "557720a914ee25bc3b691f09ecd3e9e9602f4980b1c946e61a5392bd6988eaea",
+    "evidence/probes/layer-reuse-cold-v2-qa.py": "f067cf6c2735023798fb4b7c9e3e731e0bdb33b7b17d9fbf43206555d8e2f826",
+    "evidence/probes/layer-reuse-cold-v3-qa.py": "37e82adc62364be057df98fc13fef2901137d9388bc5952c82282fdbe01becf3",
+    "evidence/probes/layer-reuse-native-inspect.mjs": "78980ed741c8c034e572c7fceab1f94e699de0e64eb37bd583e7a82113eb6d2d"
+  },
+  "nextGate": "Choose a bounded authenticated missing-layer transport and validate actual launchability, integrity, partial-import recovery, full-archive fallback, storage limits and cancellation in isolated QA before native delivery or a speed claim."
+}

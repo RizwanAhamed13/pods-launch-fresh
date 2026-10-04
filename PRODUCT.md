@@ -51,6 +51,17 @@ networking and persistent home storage. Both previews stopped. This is first-ima
 acceptance on running compute, not a cold machine or a universal speed guarantee.
 See [first-image evidence](evidence/stack-pipeline-mariadb-native.json).
 
+A subsequent isolated [layer-reuse diagnostic](evidence/stack-layer-reuse-diagnostic.json)
+loaded the exact Flask image from 11.1 MB instead of 57.0 MB when four shared
+compressed layers were already present. In a physically empty Docker/containerd
+store, the same smaller archive misleadingly passed load/identity checks but
+could not execute; importing the verified full archive repaired it. Both private
+test daemons stopped and existing caches were preserved. Native inspection was
+read-only. Layer delivery is not implemented, no product timing improvement is
+established, and the deployed source, 292-check results and 9,012-line count remain
+unchanged. Any implementation needs stronger completeness checks and a bounded
+full-archive fallback.
+
 
 
 The deployed browser client recovers transient status-read failures without
