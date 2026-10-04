@@ -1,0 +1,38 @@
+{
+  "startedAt": "2026-10-04T17:36:35.414Z",
+  "provider": "google",
+  "applicationStarted": false,
+  "productionChanged": false,
+  "initialState": "RUNNING",
+  "initialPublicKeyCount": 9,
+  "runtime": {
+    "passed": true,
+    "project": "pods-76af0e05174a24d8a64394b0",
+    "services": [
+      "web",
+      "db"
+    ],
+    "databaseHealth": "healthy",
+    "databaseHostPorts": [],
+    "productHostPorts": [
+      23877
+    ],
+    "volume": "pods-76af0e05174a24d8a64394b0_records-disk-v1",
+    "persistentHomeVolume": true,
+    "scope": "Read-only inspection of private Docker boundaries, persistent Cloud Shell home storage, MariaDB server version and the record saved through the product. Browser execution is separate.",
+    "databaseEngine": "MariaDB",
+    "version": "11.4.13-MariaDB-ubu2404",
+    "versionComment": "mariadb.org binary distribution",
+    "savedCount": 5
+  },
+  "completed": true,
+  "finalState": "RUNNING",
+  "keyRemoved": true,
+  "existingKeysPreserved": true,
+  "finalPublicKeyCount": 9,
+  "localKeyRemoved": true,
+  "finishedAt": "2026-10-04T17:36:40.472Z",
+  "redactedFields": [
+    "launchId"
+  ]
+}

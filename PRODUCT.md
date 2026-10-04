@@ -49,9 +49,17 @@ The selected-platform indexer now handles MariaDB saves that omit other
 architectures while retaining the original index. It includes matching attestations;
 fresh/cached Docker pulls and networkless MariaDB runtime execution passed.
 See [platform compatibility evidence](evidence/stack-registry-platform-qa.json).
-Native provider/product validation remains pending. Production continues running
-the earlier full-archive pipeline. These are image-transfer checks, not application
-or database acceptance. See [integrated Docker evidence](evidence/stack-registry-launch-qa.json).
+The registry is now enabled after [production recovery](evidence/stack-registry-production.json).
+The [native Cloud Shell check](evidence/stack-registry-native-google.json) opened
+the Flask+MariaDB product in17.425s on inspected ready/cached compute and saved a
+write by17.708s. The counter4→5→6 survived reload and stop/relaunch; direct SQL
+confirmed saved5, a healthy private database and persistent home storage. Both
+launches used two registry pulls without fallback. The first launch reached
+server health in50.476s; its initial compute/cache state was not independently
+inspected, so it is not a controlled cold result. Other native performance gates
+and the original goal remain incomplete. Further development is stopped at the
+user's request. The earlier [integrated Docker evidence](evidence/stack-registry-launch-qa.json)
+still describes image-transfer checks alone.
 
 The image preparation pipeline now holds at most two images in flight and loads
 verified archives into Docker serially. Eight new tests cover overlap, bounded

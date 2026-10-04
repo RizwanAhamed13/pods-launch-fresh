@@ -1,14 +1,48 @@
 # Broad stack checkpoint
 
-Goal active and incomplete: developer URL → isolated aswin build → reusable artifact
-→ authorized user compute → real usable product. Latest completed gate: MariaDB
-platform-limited OCI save and selected-attestation compatibility.353/353 checks
-pass locally and in isolated Linux. Actual Docker29.1.3 fresh/cached pulls took
-10.213s/1.743s; original image/rootfs and MariaDB11.4.13 execution passed.
-This is loopback image QA, not native product or database acceptance.
-Scope9912 physical lines. Coverage remains55 representative apps/seven DB families.
+Further development stopped at the user's request. Commit/push current intended
+source, tests, docs and evidence to main; no additional refactoring, optimization
+or test gates. The original end-to-end goal is incomplete.
 
-## Latest platform compatibility gate
+Latest completed work: production registry preparation and native Cloud Shell
+Flask+MariaDB acceptance. Cached click-to-product17.425s, saved write17.708s;
+counter4→5→6 survives reload and stop/relaunch. First authorization-resumed launch
+request-to-health50.476s; initial compute/cache state not independently inspected,
+so no controlled cold/image-absent or continuous first product timing claim.
+Both launches used two registry pulls with zero fallbacks. All353 checks passed
+locally/Linux before this documentation-only publication. Scope9912 physical lines.
+Coverage remains55 representative apps/seven DB families, not universal support.
+
+## Production/native checkpoint
+
+- Source/runtimeab5a063c3dca9f8487fad94f1b522a0aff5b85a7 before final evidence
+  commit. Registry enabled at17:34:57UTC, servicePID1649154, runnerSHA
+  cfb3d769f330a9bd010132cfd50fe342167d930736d73df8ab644caa912b191e.
+  No product code changed after that runtime. Live source may include the later
+  evidence-only commit without a service restart.
+- stack-registry-production.json: recovered partial Flask indexing, added MariaDB
+  15blobs109926562bytes; total25raw blobs/35delivery mappings. Publication47.278s,
+  repeat14.046s, zero added bytes on repeat, identical assets. Original59archives,
+  135artifactfiles and unrelated mappings/records preserved. Only registry flag
+  changed on enablement; other env values and file mode0600 preserved.
+- stack-registry-native-google.json: actual automatically opened product, browser
+  writes/reloads, private MariaDB SQL check saved5, healthy db with no host port,
+  persistent home volume. Before repeat, computeRUNNING/both Docker images present,
+  manifest cached/outer archives absent; inspected without changing cache.
+- First request-to-health50.476s/provider-ready-to-health37.836s/images26.832s.
+  Cached health16.381s/provider-ready13.893s/images5.927s; browser17.425s/write17.708s.
+  imageRegistryMs is the sum of overlapping per-image pulls, not wall-clock time.
+- Both previews stopped, saved value6 retained. Health/SQLite/listener audit at
+ 17:39:22UTC:zero active builds/launches, same PID and served runner. Final Google
+  key audit17:40:25UTC:RUNNING,9existing keys. Temporary inspection keys removed.
+  First key-audit invocation referenced an absent remote file; corrected stdin
+  invocation passed, without provider mutation.
+- Pending if the user later resumes: actually absent-image ready-compute timing,
+  broader20-second target, native Codespaces browser2FA, stable hostname and
+  separately authorized Cloud Shell VM-replacement persistence. Do not repeat
+  existing permission questions or clear user caches/data to force a cache miss.
+
+## Previous platform compatibility gate
 
 - stack-registry-platform-tests.json and stack-registry-platform-qa.json bind
   source hashes,347-file candidate, exact programs and retained failure receipts.
@@ -26,17 +60,15 @@ Scope9912 physical lines. Coverage remains55 representative apps/seven DB famili
   ordinary QA images preserved. No DB data or user cache touched.
 - Runtime7b27f28 deployed at17:16:05UTC, PID1635758, runnerSHA
   cfb3d769f330a9bd010132cfd50fe342167d930736d73df8ab644caa912b191e.
-  Shared storage lock is deployed. Registry flag remains disabled.59images and
+  At that checkpoint the registry flag remained disabled.59images and
   135artifactfiles/.env preserved by deployment. Audit17:30:05 health200/SQLiteok,
   zero active builds/launches and same runner/PID.
 - First production index attempt failed after Flask success:10verified Flask
   blobs/index retained, delivery mappings10→20, MariaDB index absent. Existing
   Flask private assets reused. Original archives/artifacts preserved. Exact
   failed operator/receipt in probes/registry-production-initial*.
-- Next: sync this tested fix, run the recovery operator against that partial
-  state, verify25raw blob mappings and repeat publication, then controlled native
-  Google registry product/DB acceptance. Actually absent images must be measured
-  separately from cached launches; never clear user Docker cache to simulate it.
+- Production recovery and native acceptance subsequently passed; see the current
+  checkpoint above. Actually absent images remain a separate unproven timing gate.
 - Pending native Codespaces browser2FA, stable hostname and separately authorized
   Cloud Shell VM-replacement persistence remain unchanged. Do not repeat requests.
 
@@ -136,7 +168,7 @@ Scope9912 physical lines. Coverage remains55 representative apps/seven DB famili
   Deployment preserved59images/135artifactfiles/.env. Post-native audit16:02:35UTC:
   health200/SQLiteok/zero active. Baseline55737b2 retained in test/benchmark evidence.
 - 59 distinct prepared archives;10 original full-archive delivery mappings plus
-  10 Flask raw-blob mappings after partial production indexing.49 archives unmapped.
+  25 raw-blob mappings after completed production indexing.49 archives unmapped.
 
 ## Previous OCI registry foundation
 

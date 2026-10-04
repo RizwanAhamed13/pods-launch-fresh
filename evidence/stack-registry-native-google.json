@@ -1,0 +1,243 @@
+{
+  "recordedAt": "2026-10-04T17:40:58.557628+00:00",
+  "revision": "ab5a063c3dca9f8487fad94f1b522a0aff5b85a7",
+  "scope": "Native Google Cloud Shell Flask+MariaDB product, registry delivery, browser interaction and stop/relaunch persistence. No new stack/provider coverage.",
+  "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+  "sourceRevision": "d6da2ed780aec8ae0178fc181f1d24113c322e15",
+  "browser": {
+    "first": {
+      "observedAt": "2026-10-04T17:36:16.202Z",
+      "before": 4,
+      "initialCacheState": "not independently inspected before authorization resumed launch",
+      "productVisible": true,
+      "after": 5,
+      "reloadPreserved": true
+    },
+    "cached": {
+      "startedAt": "2026-10-04T17:38:04.421Z",
+      "computeBefore": "RUNNING",
+      "dockerImagesBefore": "both present; read-only inspection",
+      "archiveCachesBefore": "absent",
+      "counterBefore": 5,
+      "productMs": 17425,
+      "writeMs": 17708,
+      "counterAfter": 6,
+      "reloadPreserved": true
+    },
+    "finalApplicationState": "stopped",
+    "databaseValuePreserved": 6
+  },
+  "serverTelemetry": {
+    "recordedAt": 1791135562.4145122,
+    "launches": [
+      {
+        "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+        "status": "stopped",
+        "createdAt": 1791135309857,
+        "providerReadyAt": 1791135322497,
+        "readyAt": 1791135360333,
+        "updatedAt": 1791135433357,
+        "timings": {
+          "downloadMs": 206,
+          "imagesMs": 26832,
+          "imageCacheHits": 0,
+          "imageArchiveCacheHits": 0,
+          "imageCacheCheckMs": 0,
+          "imageDownloadMs": 0,
+          "imageLoadMs": 0,
+          "imageCdnDownloads": 0,
+          "imageCdnFallbacks": 0,
+          "imageCdnMs": 0,
+          "imageOriginDownloads": 0,
+          "imageCdnRangeAttempts": 0,
+          "imageCdnRangeDownloads": 0,
+          "imageRegistryPulls": 2,
+          "imageRegistryFallbacks": 0,
+          "imageRegistryMs": 44481,
+          "runtimeReadyMs": 36310,
+          "cacheHit": true
+        },
+        "storageMode": "persistent",
+        "images": [
+          {
+            "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+            "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+            "bytes": 57046835
+          },
+          {
+            "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+            "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+            "bytes": 104507545
+          }
+        ],
+        "requestToHealthMs": 50476,
+        "providerReadyToHealthMs": 37836
+      },
+      {
+        "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+        "status": "stopped",
+        "createdAt": 1791135484971,
+        "providerReadyAt": 1791135487459,
+        "readyAt": 1791135501352,
+        "updatedAt": 1791135550328,
+        "timings": {
+          "downloadMs": 184,
+          "imagesMs": 5927,
+          "imageCacheHits": 0,
+          "imageArchiveCacheHits": 0,
+          "imageCacheCheckMs": 0,
+          "imageDownloadMs": 0,
+          "imageLoadMs": 0,
+          "imageCdnDownloads": 0,
+          "imageCdnFallbacks": 0,
+          "imageCdnMs": 0,
+          "imageOriginDownloads": 0,
+          "imageCdnRangeAttempts": 0,
+          "imageCdnRangeDownloads": 0,
+          "imageRegistryPulls": 2,
+          "imageRegistryFallbacks": 0,
+          "imageRegistryMs": 11226,
+          "runtimeReadyMs": 12415,
+          "cacheHit": true
+        },
+        "storageMode": "persistent",
+        "images": [
+          {
+            "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+            "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+            "bytes": 57046835
+          },
+          {
+            "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+            "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+            "bytes": 104507545
+          }
+        ],
+        "requestToHealthMs": 16381,
+        "providerReadyToHealthMs": 13893
+      }
+    ]
+  },
+  "databaseInspection": {
+    "startedAt": "2026-10-04T17:36:35.414Z",
+    "provider": "google",
+    "applicationStarted": false,
+    "productionChanged": false,
+    "initialState": "RUNNING",
+    "initialPublicKeyCount": 9,
+    "runtime": {
+      "passed": true,
+      "project": "pods-76af0e05174a24d8a64394b0",
+      "services": [
+        "web",
+        "db"
+      ],
+      "databaseHealth": "healthy",
+      "databaseHostPorts": [],
+      "productHostPorts": [
+        23877
+      ],
+      "volume": "pods-76af0e05174a24d8a64394b0_records-disk-v1",
+      "persistentHomeVolume": true,
+      "scope": "Read-only inspection of private Docker boundaries, persistent Cloud Shell home storage, MariaDB server version and the record saved through the product. Browser execution is separate.",
+      "databaseEngine": "MariaDB",
+      "version": "11.4.13-MariaDB-ubu2404",
+      "versionComment": "mariadb.org binary distribution",
+      "savedCount": 5
+    },
+    "completed": true,
+    "finalState": "RUNNING",
+    "keyRemoved": true,
+    "existingKeysPreserved": true,
+    "finalPublicKeyCount": 9,
+    "localKeyRemoved": true,
+    "finishedAt": "2026-10-04T17:36:40.472Z",
+    "redactedFields": [
+      "launchId"
+    ]
+  },
+  "productionAfter": {
+    "recordedAt": "2026-10-04T17:39:22.487451+00:00",
+    "pid": 1649154,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "cfb3d769f330a9bd010132cfd50fe342167d930736d73df8ab644caa912b191e",
+    "revision": "ab5a063c3dca9f8487fad94f1b522a0aff5b85a7"
+  },
+  "measurementMethod": "Cached timer starts immediately before clicking Open in the existing browser. It stops only when the automatically opened product heading, persisted counter5 and Add one button are visible. A real button click then changes the value to6; reload retains6. The first authorization-resumed launch was observed across separate calls, so no continuous first click-to-product latency is claimed.",
+  "limitations": [
+    "Initial compute and image cache states of the first launch were not independently inspected, so it is not a controlled cold or image-absent result.",
+    "The first request-to-server-health duration50476ms is not a browser-visible duration and exceeds20seconds.",
+    "Cached product17425ms and write17708ms apply to this app and observed run, not all stacks or a latency guarantee.",
+    "imageRegistryMs sums concurrent per-image pulls; imagesMs is wall-clock image work. Zero old full-archive cache-hit counters do not establish Docker cache misses for registry pulls.",
+    "The first-run direct SQL check verified saved5 in MariaDB11.4.13, healthy private database with no published DB port, and persistent Cloud Shell home volume. The next browser launch read5 and saved6.",
+    "These checks do not cover destructive VM replacement, native Codespaces browser interaction, a stable hostname or arbitrary versions/repositories."
+  ],
+  "proofs": [
+    {
+      "path": "probes/registry-native-browser.json",
+      "sha256": "b404de4820a4e512e0f41a656a8a8e3f5329e9fac995a0502b95e9eabff78ef9"
+    },
+    {
+      "path": "probes/registry-native-cache-before.json",
+      "sha256": "bffbcafa2cfe655001636dbcec4a6b3ac1e76383f0b0606cf0f484bc23fee57e"
+    },
+    {
+      "path": "probes/registry-native-mariadb-receipt.json",
+      "sha256": "e25ae0d9d9be36bd0da43537caddf7a9e99cde92b63e93b6daa2f0ac3f4004fd"
+    },
+    {
+      "path": "probes/registry-native-mariadb-inspect.mjs",
+      "sha256": "0ef50ca63c9c44ff7ddbf8b8cff903b94cd4d1e8837a82fa8796d59ee1b560b7"
+    },
+    {
+      "path": "probes/registry-native-mariadb-google.mjs",
+      "sha256": "8a0ebb633f56c58978e98c7bea2113f3007800ff83be95957e0796b830da9280"
+    },
+    {
+      "path": "probes/registry-native-cache-google.mjs",
+      "sha256": "39f18b19ebebd92d8a8b956bb5b4d470a3e438623a268ddad1a9b90d5d354211"
+    },
+    {
+      "path": "probes/registry-native-cache-inspect.mjs",
+      "sha256": "d3e97d44fb7c1db5af74616d17101bad734af18bd69e9bbb3aa160a712a43f1b"
+    },
+    {
+      "path": "probes/registry-native-telemetry.py",
+      "sha256": "0c6d04e4dc8010de4749c334c6a6265ab6ae3e9cc89817154cbc25fe03e88696"
+    },
+    {
+      "path": "probes/registry-native-telemetry.json",
+      "sha256": "836014776dc45d09055a45b9d3687133dadf13f9686762fe7fe73ba3fb7e8629"
+    },
+    {
+      "path": "probes/registry-native-production-after.json",
+      "sha256": "e2fba2c85f571acbc1a09dbde5ce2fb70338deba353ea67685fb84dbc3d3295d"
+    },
+    {
+      "path": "probes/registry-native-keys-after.json",
+      "sha256": "1464f33114ad67d1200504de2a9909678d5753031c62755a6df427fdcd67d2a7"
+    },
+    {
+      "path": "probes/registry-native-key-audit.mjs",
+      "sha256": "44f5948092e7dabd10449eb2721738392f25f5f824d8e34552aead3bd36af453"
+    }
+  ],
+  "goalStatus": "active",
+  "cleanup": {
+    "applicationState": "both stopped",
+    "databaseCounterPreserved": 6,
+    "cloudShellState": "RUNNING",
+    "registeredPublicKeys": 9,
+    "activeProductionBuilds": 0,
+    "activeProductionLaunches": 0,
+    "temporaryInspectionKeysRemoved": true,
+    "initialKeyAuditInvocation": "The first command referenced a remote file that had not been copied; it exited before contacting Google. The same read-only program was then supplied on stdin and passed."
+  },
+  "workStatus": "Further development stopped at user request; original goal remains incomplete."
+}

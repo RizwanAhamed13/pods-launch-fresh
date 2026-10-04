@@ -1,0 +1,23 @@
+{
+  "first": {
+    "observedAt": "2026-10-04T17:36:16.202Z",
+    "before": 4,
+    "initialCacheState": "not independently inspected before authorization resumed launch",
+    "productVisible": true,
+    "after": 5,
+    "reloadPreserved": true
+  },
+  "cached": {
+    "startedAt": "2026-10-04T17:38:04.421Z",
+    "computeBefore": "RUNNING",
+    "dockerImagesBefore": "both present; read-only inspection",
+    "archiveCachesBefore": "absent",
+    "counterBefore": 5,
+    "productMs": 17425,
+    "writeMs": 17708,
+    "counterAfter": 6,
+    "reloadPreserved": true
+  },
+  "finalApplicationState": "stopped",
+  "databaseValuePreserved": 6
+}

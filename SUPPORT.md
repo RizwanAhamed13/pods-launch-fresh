@@ -300,8 +300,8 @@ The successful retry shortened only the diagnostic upstream connection timeout;
 PODS'45-second pull limit is unchanged. Cache states and instrumentation differ,
 so these are not controlled performance comparisons or native product timings.
 Ten raw assets were added to the existing private release, preserving its prior
-eleven assets. At that checkpoint production had no registry indexes/blob mappings, and the
-flag remains disabled. Native product/DB acceptance is the next gate.
+eleven assets. At that checkpoint production had no registry indexes/blob mappings
+and the flag was disabled.
 The standard OCI pull protocol requests content by digest; see the
 [OCI distribution specification](https://github.com/opencontainers/distribution-spec/blob/main/spec.md).
 The [subsequent MariaDB gate](evidence/stack-registry-platform-qa.json) fixes
@@ -311,8 +311,20 @@ candidate failed a real Docker pull because it omitted the selected attestation;
 that failure remains recorded. The corrected15-blob closure passed a fresh pull
 (10.213s), cached repeat(1.743s), rootfs/identity checks and networkless MariaDB
 11.4.13 execution. All353 local/Linux checks pass. This is isolated loopback QA,
-not a native application/database or20-second acceptance. The registry remains
-disabled while production preparation is recovered.
+not a native application/database or20-second acceptance.
+
+[Production recovery and enablement](evidence/stack-registry-production.json)
+subsequently passed:25 raw blob mappings, unchanged original archives/artifacts,
+and identical private assets on repeat. The registry is enabled. The
+[native Google test](evidence/stack-registry-native-google.json) then passed
+product interaction and MariaDB stop/relaunch persistence4→5→6. The inspected
+ready/cached launch took17.425s to the usable product and17.708s to a saved write.
+The first authorization-resumed launch took50.476s to server health; initial
+compute/cache state was not inspected, so it is not a controlled cold result.
+Both runs used two registry pulls and zero fallbacks. This adds no stack count
+and does not establish20seconds for all apps. Both previews are stopped, saved
+data remains, and all9 pre-existing SSH keys remain. Further development stopped
+at the user's request; native Codespaces browser and other open gates remain.
 
 PODS implements a narrow read-only pull surface, not a general registry service.
 

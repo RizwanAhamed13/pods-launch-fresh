@@ -199,7 +199,8 @@ a 45-second limit and share cancellation with the image worker group. Credential
 are removed after the CLI exits. Startup heartbeats also honor Stop while images
 or the application artifact are downloading.
 
-The option remains disabled on the live service. Actual private CDN publication
+The option is now enabled on the live service after controlled rollout. Earlier
+private CDN publication
 and Docker redirect checks passed in isolated QA. Ten verified OCI blobs were
 added to the existing private release; repeating publication reused every asset.
 A pull with shared layers fetched five remaining blobs (11,178,157 bytes) in
@@ -210,16 +211,22 @@ fallbacks are retained; only the diagnostic proxy's connection timeout changed
 before the successful shared-layer check. Cache conditions differ, so these are
 not a controlled speed comparison or product-launch timings.
 
-The shared writer lock and integrated runner are deployed, with the registry
-still disabled. Production preparation of Flask + MariaDB exposed a multi-platform
+The shared writer lock and integrated runner are deployed. Initial production preparation of Flask + MariaDB exposed a multi-platform
 save incompatibility after Flask indexing/publication completed. The corrected
 indexer passed [real MariaDB Docker checks](evidence/stack-registry-platform-qa.json):
 15 verified blobs, original image identity, matching rootfs and runtime execution.
 It selects Linux/amd64 plus its matching attestations while preserving the original
 index bytes. Other platform data may be absent. Fresh/cached QA pulls took10.213s
 and1.743s; these are loopback image checks, not native product timings.
-Production preparation recovery and native product/database acceptance remain
-pending. See
+[Production recovery](evidence/stack-registry-production.json) then published both
+images:25 verified blobs, with every asset reused on repeat. The enabled path
+passed a [native Cloud Shell product/database check](evidence/stack-registry-native-google.json):
+cached click-to-product17.425s and saved write17.708s, with counter4→5→6 preserved
+through reload and stop/relaunch. Both launches used two registry pulls without
+archive fallback. The first authorization-resumed launch took50.476s to server
+health; its initial cache/compute state was not independently inspected. It is
+not a controlled cold result or a browser-visible timing. The20-second goal is
+not complete. Further development is stopped at the user's request. See
 [private CDN receipts and reproducible probes](evidence/stack-registry-cdn-qa.json),
 [353-check local/Linux results](evidence/stack-registry-platform-tests.json) and
 [actual integrated Docker recovery checks](evidence/stack-registry-launch-qa.json).

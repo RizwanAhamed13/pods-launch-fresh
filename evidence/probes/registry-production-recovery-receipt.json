@@ -1,0 +1,392 @@
+{
+  "startedAt": "2026-10-04T17:32:54.261787+00:00",
+  "sourceRevision": "ab5a063c3dca9f8487fad94f1b522a0aff5b85a7",
+  "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+  "originalImages": [
+    {
+      "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+      "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+      "bytes": 57046835
+    },
+    {
+      "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+      "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+      "bytes": 104507545
+    }
+  ],
+  "before": {
+    "recordedAt": "2026-10-04T17:32:54.222163+00:00",
+    "pid": 1635758,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "cfb3d769f330a9bd010132cfd50fe342167d930736d73df8ab644caa912b191e",
+    "revision": "ab5a063c3dca9f8487fad94f1b522a0aff5b85a7"
+  },
+  "initialMappings": 20,
+  "runs": [
+    {
+      "mode": "publish",
+      "elapsedMs": 47278,
+      "result": {
+        "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+        "images": [
+          {
+            "archiveSha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+            "imageId": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+            "blobs": 10,
+            "blobBytes": 57400283,
+            "addedBlobBytes": 0,
+            "delivery": "private-cdn"
+          },
+          {
+            "archiveSha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+            "imageId": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+            "blobs": 15,
+            "blobBytes": 109926562,
+            "addedBlobBytes": 109926562,
+            "delivery": "private-cdn"
+          }
+        ],
+        "storedBytes": 6288132289
+      },
+      "indexes": [
+        {
+          "archiveSha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+          "imageId": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+          "blobs": 10,
+          "blobBytes": 57400283
+        },
+        {
+          "archiveSha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+          "imageId": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+          "blobs": 15,
+          "blobBytes": 109926562
+        }
+      ],
+      "mappings": [
+        {
+          "sha256": "5e62c0470a0973ad9561440c8a37984c3252eda1dd19e00ca7e76a37b62b5dc7",
+          "bytes": 249,
+          "assetId": 610229463
+        },
+        {
+          "sha256": "6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8",
+          "bytes": 29830418,
+          "assetId": 610229487
+        },
+        {
+          "sha256": "72f3643dddbffa583c4bcc89abfd93dfc2ba596fedb6df7143768df6da781607",
+          "bytes": 6856,
+          "assetId": 610229647
+        },
+        {
+          "sha256": "811327e928eafdad03082c4271d2fa50424865468252faed92f9b39a09b276bf",
+          "bytes": 11170215,
+          "assetId": 610229679
+        },
+        {
+          "sha256": "a0c062d2876d87542fa374b5200d8fab9c49f57f64e88b54c8f0f282a4916e6f",
+          "bytes": 93,
+          "assetId": 610229763
+        },
+        {
+          "sha256": "a510a9ea6d60786b7cefdbf9577945344c72879881de8d32ef07ec38111fb045",
+          "bytes": 4268666,
+          "assetId": 610229795
+        },
+        {
+          "sha256": "b528b665adb569ee1d2a3b224683a63a62eafca8ea978a4fb9de396835c4ae34",
+          "bytes": 813,
+          "assetId": 610229827
+        },
+        {
+          "sha256": "b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+          "bytes": 2055,
+          "assetId": 610229845
+        },
+        {
+          "sha256": "c0727d2a5910751c7e80fce2fde75b0ca8a1a7bc7bab00b20eeeaea1227f75df",
+          "bytes": 180,
+          "assetId": 610229865
+        },
+        {
+          "sha256": "e360d85fdc0f3910a4fe48ba2bb0865d5e618392ea8abfa424e66575e45273c0",
+          "bytes": 12120738,
+          "assetId": 610229896
+        },
+        {
+          "sha256": "07afc4eb8b2ccd9efb19d4ec8960cc9c82524b408088597637c6be636b4b1d98",
+          "bytes": 1342,
+          "assetId": 610281889
+        },
+        {
+          "sha256": "086135ab0fe585d3416f96e7ef7f49fda159bf84549acbbd54bff35d05642a3f",
+          "bytes": 7656029,
+          "assetId": 610281955
+        },
+        {
+          "sha256": "1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+          "bytes": 5133,
+          "assetId": 610282068
+        },
+        {
+          "sha256": "36f84c3d5a21399aba08adc6764a72dd2d55cc0449b57c40b8f7dd553323bd25",
+          "bytes": 4034,
+          "assetId": 610282132
+        },
+        {
+          "sha256": "47af3a184ea1e8859278cade3bc53b529bde157c3dc5ac6e4764686db804f75c",
+          "bytes": 116,
+          "assetId": 610282177
+        },
+        {
+          "sha256": "4a86ba8758b30cfa43331d6100a3cbcf5390020690bec3b7790796eeb54c3a81",
+          "bytes": 841,
+          "assetId": 610282228
+        },
+        {
+          "sha256": "558cadcaf80957b606f4d666643d378f16830b51bac04e5e737a9d972c037b9b",
+          "bytes": 4249926,
+          "assetId": 610282309
+        },
+        {
+          "sha256": "59061449fc910014f1b227556880942a215944910d9f9a4f71b68017a489ccd7",
+          "bytes": 30271,
+          "assetId": 610282433
+        },
+        {
+          "sha256": "927fa4a585713209a271cc6522430019e3e1f25bd306d727f482a6e65d20e201",
+          "bytes": 333,
+          "assetId": 610282509
+        },
+        {
+          "sha256": "a60ef8ec184edb5ed91f5983f00261359fb2fe20f603e8d488b9477d32fcad70",
+          "bytes": 29764422,
+          "assetId": 610282588
+        },
+        {
+          "sha256": "a76bc7c95d1eaffffd305424646b4c1f57c995333a706298c3bf1b24b60b2b3e",
+          "bytes": 68194128,
+          "assetId": 610283108
+        },
+        {
+          "sha256": "ab3dff582d246358b6f6a1f6212f29ac64609fad883eb3dcfb0a89f6f7d0700e",
+          "bytes": 8774,
+          "assetId": 610284011
+        },
+        {
+          "sha256": "b3a2aba5443388e440719cd253860414aefd48c7b63731642a720f17c28d5126",
+          "bytes": 241,
+          "assetId": 610284068
+        },
+        {
+          "sha256": "f2f5e00999bd335343e09091e27e39c9386eb1822efcd0e0bac40b0003fa47e3",
+          "bytes": 2479,
+          "assetId": 610284115
+        },
+        {
+          "sha256": "fc90ba8e9eef90336396b2384fc13abf64da68f7785eaf3b13f91c4a5fb85761",
+          "bytes": 8493,
+          "assetId": 610284180
+        }
+      ]
+    },
+    {
+      "mode": "repeat-publish",
+      "elapsedMs": 14046,
+      "result": {
+        "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+        "images": [
+          {
+            "archiveSha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+            "imageId": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+            "blobs": 10,
+            "blobBytes": 57400283,
+            "addedBlobBytes": 0,
+            "delivery": "private-cdn"
+          },
+          {
+            "archiveSha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+            "imageId": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+            "blobs": 15,
+            "blobBytes": 109926562,
+            "addedBlobBytes": 0,
+            "delivery": "private-cdn"
+          }
+        ],
+        "storedBytes": 6288132289
+      },
+      "indexes": [
+        {
+          "archiveSha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+          "imageId": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+          "blobs": 10,
+          "blobBytes": 57400283
+        },
+        {
+          "archiveSha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+          "imageId": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+          "blobs": 15,
+          "blobBytes": 109926562
+        }
+      ],
+      "mappings": [
+        {
+          "sha256": "5e62c0470a0973ad9561440c8a37984c3252eda1dd19e00ca7e76a37b62b5dc7",
+          "bytes": 249,
+          "assetId": 610229463
+        },
+        {
+          "sha256": "6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8",
+          "bytes": 29830418,
+          "assetId": 610229487
+        },
+        {
+          "sha256": "72f3643dddbffa583c4bcc89abfd93dfc2ba596fedb6df7143768df6da781607",
+          "bytes": 6856,
+          "assetId": 610229647
+        },
+        {
+          "sha256": "811327e928eafdad03082c4271d2fa50424865468252faed92f9b39a09b276bf",
+          "bytes": 11170215,
+          "assetId": 610229679
+        },
+        {
+          "sha256": "a0c062d2876d87542fa374b5200d8fab9c49f57f64e88b54c8f0f282a4916e6f",
+          "bytes": 93,
+          "assetId": 610229763
+        },
+        {
+          "sha256": "a510a9ea6d60786b7cefdbf9577945344c72879881de8d32ef07ec38111fb045",
+          "bytes": 4268666,
+          "assetId": 610229795
+        },
+        {
+          "sha256": "b528b665adb569ee1d2a3b224683a63a62eafca8ea978a4fb9de396835c4ae34",
+          "bytes": 813,
+          "assetId": 610229827
+        },
+        {
+          "sha256": "b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+          "bytes": 2055,
+          "assetId": 610229845
+        },
+        {
+          "sha256": "c0727d2a5910751c7e80fce2fde75b0ca8a1a7bc7bab00b20eeeaea1227f75df",
+          "bytes": 180,
+          "assetId": 610229865
+        },
+        {
+          "sha256": "e360d85fdc0f3910a4fe48ba2bb0865d5e618392ea8abfa424e66575e45273c0",
+          "bytes": 12120738,
+          "assetId": 610229896
+        },
+        {
+          "sha256": "07afc4eb8b2ccd9efb19d4ec8960cc9c82524b408088597637c6be636b4b1d98",
+          "bytes": 1342,
+          "assetId": 610281889
+        },
+        {
+          "sha256": "086135ab0fe585d3416f96e7ef7f49fda159bf84549acbbd54bff35d05642a3f",
+          "bytes": 7656029,
+          "assetId": 610281955
+        },
+        {
+          "sha256": "1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+          "bytes": 5133,
+          "assetId": 610282068
+        },
+        {
+          "sha256": "36f84c3d5a21399aba08adc6764a72dd2d55cc0449b57c40b8f7dd553323bd25",
+          "bytes": 4034,
+          "assetId": 610282132
+        },
+        {
+          "sha256": "47af3a184ea1e8859278cade3bc53b529bde157c3dc5ac6e4764686db804f75c",
+          "bytes": 116,
+          "assetId": 610282177
+        },
+        {
+          "sha256": "4a86ba8758b30cfa43331d6100a3cbcf5390020690bec3b7790796eeb54c3a81",
+          "bytes": 841,
+          "assetId": 610282228
+        },
+        {
+          "sha256": "558cadcaf80957b606f4d666643d378f16830b51bac04e5e737a9d972c037b9b",
+          "bytes": 4249926,
+          "assetId": 610282309
+        },
+        {
+          "sha256": "59061449fc910014f1b227556880942a215944910d9f9a4f71b68017a489ccd7",
+          "bytes": 30271,
+          "assetId": 610282433
+        },
+        {
+          "sha256": "927fa4a585713209a271cc6522430019e3e1f25bd306d727f482a6e65d20e201",
+          "bytes": 333,
+          "assetId": 610282509
+        },
+        {
+          "sha256": "a60ef8ec184edb5ed91f5983f00261359fb2fe20f603e8d488b9477d32fcad70",
+          "bytes": 29764422,
+          "assetId": 610282588
+        },
+        {
+          "sha256": "a76bc7c95d1eaffffd305424646b4c1f57c995333a706298c3bf1b24b60b2b3e",
+          "bytes": 68194128,
+          "assetId": 610283108
+        },
+        {
+          "sha256": "ab3dff582d246358b6f6a1f6212f29ac64609fad883eb3dcfb0a89f6f7d0700e",
+          "bytes": 8774,
+          "assetId": 610284011
+        },
+        {
+          "sha256": "b3a2aba5443388e440719cd253860414aefd48c7b63731642a720f17c28d5126",
+          "bytes": 241,
+          "assetId": 610284068
+        },
+        {
+          "sha256": "f2f5e00999bd335343e09091e27e39c9386eb1822efcd0e0bac40b0003fa47e3",
+          "bytes": 2479,
+          "assetId": 610284115
+        },
+        {
+          "sha256": "fc90ba8e9eef90336396b2384fc13abf64da68f7785eaf3b13f91c4a5fb85761",
+          "bytes": 8493,
+          "assetId": 610284180
+        }
+      ]
+    }
+  ],
+  "passed": true,
+  "after": {
+    "recordedAt": "2026-10-04T17:33:55.712220+00:00",
+    "pid": 1635758,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "cfb3d769f330a9bd010132cfd50fe342167d930736d73df8ab644caa912b191e",
+    "revision": "ab5a063c3dca9f8487fad94f1b522a0aff5b85a7"
+  },
+  "finalMappings": 35,
+  "rawBlobMappings": 25,
+  "priorFlaskAssetsReused": true,
+  "sameAssetsReusedOnRepeat": true,
+  "unrelatedMappingsPreserved": true,
+  "nonDeliveryRecordsUnchanged": true,
+  "artifactFilesUnchanged": true,
+  "imageInventoryUnchanged": true,
+  "environmentUnchanged": true,
+  "serverRestarted": false,
+  "finishedAt": "2026-10-04T17:33:55.729728+00:00"
+}

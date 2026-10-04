@@ -1,0 +1,10 @@
+import { DatabaseSync } from 'node:sqlite';
+import { Store } from '/home/aswin/pods-launch-fresh/src/store.mjs';
+const db=new DatabaseSync('/home/aswin/pods-launch-fresh/.data/pods.sqlite',{readOnly:true});
+const valid=db.prepare('SELECT value FROM records WHERE kind=?').all('connection').map(r=>JSON.parse(r.value)).filter(r=>r.provider==='google'&&r.expiresAt>Date.now());db.close();
+if(valid.length!==1)throw new Error('One current Google connection required');
+const token=Store.prototype.open.call({key:Buffer.from(process.env.PODS_SECRET,'hex')},valid[0].token);
+const response=await fetch('https://cloudshell.googleapis.com/v1/users/me/environments/default',{headers:{Authorization:`Bearer ${token}`},signal:AbortSignal.timeout(20000)});
+if(!response.ok)throw new Error(`Google API HTTP ${response.status}`);
+const env=await response.json();
+console.log(JSON.stringify({recordedAt:new Date().toISOString(),state:env.state,registeredPublicKeys:(env.publicKeys??[]).length}));

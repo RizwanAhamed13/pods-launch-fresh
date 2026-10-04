@@ -1,0 +1,91 @@
+{
+  "recordedAt": 1791135562.4145122,
+  "launches": [
+    {
+      "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+      "status": "stopped",
+      "createdAt": 1791135309857,
+      "providerReadyAt": 1791135322497,
+      "readyAt": 1791135360333,
+      "updatedAt": 1791135433357,
+      "timings": {
+        "downloadMs": 206,
+        "imagesMs": 26832,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 0,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "imageRegistryPulls": 2,
+        "imageRegistryFallbacks": 0,
+        "imageRegistryMs": 44481,
+        "runtimeReadyMs": 36310,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "images": [
+        {
+          "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+          "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+          "bytes": 57046835
+        },
+        {
+          "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+          "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+          "bytes": 104507545
+        }
+      ],
+      "requestToHealthMs": 50476,
+      "providerReadyToHealthMs": 37836
+    },
+    {
+      "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+      "status": "stopped",
+      "createdAt": 1791135484971,
+      "providerReadyAt": 1791135487459,
+      "readyAt": 1791135501352,
+      "updatedAt": 1791135550328,
+      "timings": {
+        "downloadMs": 184,
+        "imagesMs": 5927,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 0,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "imageRegistryPulls": 2,
+        "imageRegistryFallbacks": 0,
+        "imageRegistryMs": 11226,
+        "runtimeReadyMs": 12415,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "images": [
+        {
+          "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+          "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+          "bytes": 57046835
+        },
+        {
+          "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+          "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+          "bytes": 104507545
+        }
+      ],
+      "requestToHealthMs": 16381,
+      "providerReadyToHealthMs": 13893
+    }
+  ]
+}

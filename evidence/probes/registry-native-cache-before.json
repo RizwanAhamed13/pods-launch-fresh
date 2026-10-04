@@ -1,0 +1,56 @@
+{
+  "startedAt": "2026-10-04T17:37:24.861Z",
+  "provider": "google",
+  "applicationStarted": false,
+  "productionChanged": false,
+  "initialState": "RUNNING",
+  "initialPublicKeyCount": 9,
+  "runtime": {
+    "checkedAt": "2026-10-04T17:37:28.131Z",
+    "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+    "images": [
+      {
+        "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+        "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+        "bytes": 57046835,
+        "dockerPresent": true,
+        "archives": [
+          {
+            "root": "persistent",
+            "exists": false
+          },
+          {
+            "root": "fallback",
+            "exists": false
+          }
+        ]
+      },
+      {
+        "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+        "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+        "bytes": 104507545,
+        "dockerPresent": true,
+        "archives": [
+          {
+            "root": "persistent",
+            "exists": false
+          },
+          {
+            "root": "fallback",
+            "exists": false
+          }
+        ]
+      }
+    ],
+    "manifestCache": true,
+    "allImageAndArchiveCachesAbsent": false,
+    "readOnly": true
+  },
+  "completed": true,
+  "finalState": "RUNNING",
+  "keyRemoved": true,
+  "existingKeysPreserved": true,
+  "finalPublicKeyCount": 9,
+  "localKeyRemoved": true,
+  "finishedAt": "2026-10-04T17:37:29.737Z"
+}
