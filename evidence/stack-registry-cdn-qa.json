@@ -1,0 +1,178 @@
+{
+  "recordedAt": "2026-10-04T17:11:57.092877+00:00",
+  "sourceRevision": "0791fe68c4ed973bab1c11f3df5e2bec158291d6",
+  "scope": "Actual private GitHub OCI blob publication and integrated Docker CDN redirects in isolated QA. Native provider, product page, database and end-to-end launch timing are not tested in this gate.",
+  "publication": {
+    "blobs": 10,
+    "bytes": 57400283,
+    "elapsedMs": 23645,
+    "repeatElapsedMs": 5686,
+    "repeatAddedBytes": 0,
+    "existingReleaseAssets": 11,
+    "releaseAssetsAfter": 21,
+    "existingAssetsPreserved": true,
+    "mappingsReused": true,
+    "productionIndexOrMappingCreated": false
+  },
+  "passingPulls": {
+    "directEmptyStore": {
+      "registryMs": 26078,
+      "imagesMs": 26078,
+      "elapsedMs": 26149,
+      "blobRedirects": 9,
+      "expectedUniqueBlobBytes": 57398228,
+      "fallbacks": 0
+    },
+    "inspectedSharedBase": {
+      "registryMs": 8741,
+      "imagesMs": 8742,
+      "elapsedMs": 8818,
+      "verifiedBlobResponses": 5,
+      "verifiedBlobBytes": 11178157,
+      "sharedBlobCount": 4,
+      "sharedBlobBytesNotRequested": 46220071,
+      "allThreeCredentialHeadersAbsent": true,
+      "upstreamTlsVerified": true,
+      "fallbacks": 0
+    }
+  },
+  "imageVerification": {
+    "exactIdentity": {
+      "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+      "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+      "bytes": 57046835
+    },
+    "matchingRootfsLayers": 8,
+    "dependencyExecution": "Flask3.1.1 and PyMySQL1.1.2, exit0, network disabled",
+    "successfulStoresRemainingContainers": 0
+  },
+  "retainedFailures": [
+    {
+      "attempt": "publication / inspected empty store",
+      "registryMs": 45017,
+      "imagesMs": 51375,
+      "fullArchiveBytes": 57046835,
+      "dependencyExecutionCompleted": false
+    },
+    {
+      "attempt": "shared-v2 inspection",
+      "registryMs": 45021,
+      "imagesMs": 50628,
+      "fullArchiveBytes": 57046835,
+      "dependencyExecutionCompleted": false
+    }
+  ],
+  "diagnosticCorrection": {
+    "change": "Only the QA TLS relay connection timeout changed from45s to2s, followed by45s socket reads. PODS pull deadline remains45000ms.",
+    "observation": "The second failed relay returned its first response after45245ms. A separate bounded public CDN HEAD check found three IPv4 addresses responded in229\u2013237ms and one timed out after2002ms.",
+    "inference": "Slow upstream address selection in the Python diagnostic relay may explain the stalls; this is not proof of a general CDN outage.",
+    "limitation": "Network/CDN warmth and image cache conditions differ; timings are not a controlled A/B comparison. The passing shared-base test used TLS instrumentation."
+  },
+  "reproducers": [
+    {
+      "source": "probes/registry-cdn-publication.py",
+      "sourceSha256": "20b75cb32442b8b3c525c2acf79c0a800e60b29961793676bd9ec305197ca6e2",
+      "receipt": "probes/registry-cdn-publication-receipt.json",
+      "receiptSha256": "83ca87e84850db62a0fb1d3ad90707044cfb0914763162caf8b8e8ea0a5393e5",
+      "qaExitCode": 1
+    },
+    {
+      "source": "probes/registry-cdn-shared-v2.py",
+      "sourceSha256": "f4e3deb5b90fe9b8d2c071154cddf2131bb24b16a033fe1ea68ecbdc883995b4",
+      "receipt": "probes/registry-cdn-shared-v2-receipt.json",
+      "receiptSha256": "a54536a7062b620c8c184c3a7b61ac6585510301d1669881f14d5c6682dac10a",
+      "qaExitCode": 1
+    },
+    {
+      "source": "probes/registry-cdn-shared-v3.py",
+      "sourceSha256": "e7ea7797927f8c4d6bd3684f9109a6e04ccf8888de7de95fee49551c674dc2b2",
+      "receipt": "probes/registry-cdn-shared-v3-receipt.json",
+      "receiptSha256": "4c36ec2f137d1130f7a75c3291b328aaaf783d230487770de5d058484b594098",
+      "qaExitCode": 0
+    }
+  ],
+  "cleanup": "All eight owned QA engine processes and three aswin QA servers stopped; all owned LXD proxy devices, launch credentials and private test CA keys removed. Ordinary QA images and devices preserved. Diagnostic stores and image inputs retained. Global CA trust unchanged.",
+  "sourceVerification": {
+    "priorSuite": "stack-registry-launch-tests.json",
+    "recordedRuntimeAndTestHashesUnchanged": {
+      "src/builds.mjs": "0565d22b8224897e0743f5cb5c2dc18961f51aaf90a2bec6edc02549ad1c48ca",
+      "src/container-runtime.mjs": "67caf16a1e1f7e4eb3c7293a79d24dc845014d73d28025a882ccd7cf384ead04",
+      "src/containers.mjs": "0a0926c1213eccb250bd6edabfd956fc78bd2d9d08cf104c04914a1b84065d04",
+      "src/image-pull.mjs": "6dcc69e36afb83fbd6529ef351f942aff2b3ac6d7f09fad814ce8e93f95e71a1",
+      "src/image-registry.mjs": "c9820f0d6ed7188f45110b31ec2df7f31e8041fa4be5976515a87a8137e1286d",
+      "src/runner.mjs": "27312e6d8f11980c6359908fece16e919e8e463dd562db5a6ef8dcbbf954e0c3",
+      "src/server.mjs": "b1b45200de153b3aebd0f6a56170991dcde6b397d65d771b5b343688e740c380",
+      "src/util.mjs": "c94e0cc12bbce9cdad3414c72052a03cb7d7b6cd07a4a2f1b6f0054711c53695",
+      "scripts/index-image.py": "6a636323695aea40d822851070419e84a6f892d29824272ab4245a5257bc2967",
+      "test/image-pull.test.mjs": "080706c3b648a70210d9d3c87f870b0f724a833292d128f823bf9c31c2a79365",
+      "test/image-registry.test.mjs": "1ae5fae984c8c4d347fd6b3245231a8bc09d13f4058513ca147338e35d39e483",
+      "test/core.test.mjs": "e31425dade286bc9876957b4cc108daf39eee0c58030237368629cf0016cf952"
+    },
+    "fullSuiteRerun": false,
+    "note": "Prior328/328 local and Linux suite remains applicable to unchanged runtime code. This gate changes only CLI help text and an env example comment besides documentation/evidence.",
+    "cliHelpCheck": {
+      "passed": true,
+      "outputSha256": "13007258789c75746a69f22c0ef2602a7099604a2de1b1a954c8cc7829990e81"
+    }
+  },
+  "productionBefore": {
+    "recordedAt": "2026-10-04T16:54:48.447553+00:00",
+    "pid": 1589423,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0",
+    "revision": "0791fe68c4ed973bab1c11f3df5e2bec158291d6"
+  },
+  "productionAfter": {
+    "recordedAt": "2026-10-04T17:10:13.678854+00:00",
+    "pid": 1589423,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0",
+    "revision": "0791fe68c4ed973bab1c11f3df5e2bec158291d6"
+  },
+  "productionInventoryAfter": {
+    "recordedAt": "2026-10-04T17:10:33.381230+00:00",
+    "imageCount": 59,
+    "imageBytes": 6120802464,
+    "artifactFiles": 135,
+    "productionImageDeliveryMappings": 10,
+    "registryDirectoryExists": false
+  },
+  "codeLines": {
+    "product_and_tooling": {
+      "files": 66,
+      "lines": 4626
+    },
+    "automated_tests": {
+      "files": 44,
+      "lines": 4027
+    },
+    "example_applications": {
+      "files": 134,
+      "lines": 933
+    },
+    "browser_test_tools": {
+      "files": 2,
+      "lines": 178
+    },
+    "total_lines": 9764,
+    "scope": "Physical source lines including blanks in src/public/scripts/test/examples. Includes JS/TS/JSX/TSX, Python, Go, Java/Kotlin, C#, PHP (including artisan), Ruby (.rb/.ru and Rails bin/rails), Rust, Elixir, HTML/CSS, shell, Svelte/Vue/Astro/Razor. Excludes JSON/lockfiles, Dockerfiles, YAML, docs, dependencies and generated artifacts. Archived diagnostic reproducers under evidence/probes are excluded."
+  },
+  "pending": [
+    "Deploy the shared storage lock to all writers before indexing production images.",
+    "Controlled registry rollout and native Google product/database acceptance, including an actually absent image on ready compute.",
+    "Native Codespaces browser sign-in/interaction, stable production hostname and separately authorized VM-replacement persistence test."
+  ],
+  "goalStatus": "active"
+}

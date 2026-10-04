@@ -8,7 +8,7 @@ import {IMAGE_TOTAL_LIMIT} from '../src/containers.mjs';
 
 const args=process.argv.slice(2);
 if(args.length===1 && args[0]==='--help') {
-  console.log('Usage: node --env-file=.env scripts/prepare-image-registry.mjs --app APP_ID [--index | --publish]\nDefault: verify existing artifacts only. --index adds verified OCI blob/index files within PODS_IMAGE_STORAGE_BYTES. --publish also uploads blobs to the configured private release. Original artifacts and launch links remain unchanged. Python 3 is required for indexing. The experimental read-only registry requires PODS_IMAGE_REGISTRY_ENABLED=1; current runners still use full archives.');
+  console.log('Usage: node --env-file=.env scripts/prepare-image-registry.mjs --app APP_ID [--index | --publish]\nDefault: verify existing artifacts only. --index adds verified OCI blob/index files within PODS_IMAGE_STORAGE_BYTES. --publish also uploads blobs to the configured private release. Original artifacts and launch links remain unchanged. Python 3 is required for indexing. PODS_IMAGE_REGISTRY_ENABLED=1 enables experimental automatic indexing and launch delivery for indexed images, with full-archive fallback.');
 } else {
   let store;
   try {

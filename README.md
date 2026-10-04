@@ -13,6 +13,8 @@ and verified full-archive recovery when they were absent. The subsequent
 57.4 MB from an empty store and 11.2 MB with the shared base present. The new
 registry is disabled by default. Automatic indexing and launcher integration now
 pass [isolated pull, repair and cancellation checks](evidence/stack-registry-launch-qa.json).
+[Real private CDN checks](evidence/stack-registry-cdn-qa.json) also passed:
+26.078s image preparation from an empty store and 8.742s with shared layers.
 These checks do not establish native product speed.
 
 ## Run the control plane
@@ -194,9 +196,20 @@ a 45-second limit and share cancellation with the image worker group. Credential
 are removed after the CLI exits. Startup heartbeats also honor Stop while images
 or the application artifact are downloading.
 
-The option remains disabled on the live service. Real CDN redirect/credential
-behavior and native product/database acceptance are still pending. No production
-registry files or release assets were created in this gate. See
+The option remains disabled on the live service. Actual private CDN publication
+and Docker redirect checks passed in isolated QA. Ten verified OCI blobs were
+added to the existing private release; repeating publication reused every asset.
+A pull with shared layers fetched five remaining blobs (11,178,157 bytes) in
+8.742s of image preparation. Inspection confirmed that all five CDN requests
+omitted Authorization, Cookie and Proxy-Authorization headers. The empty-store
+direct pull took26.078s. Two inspection-proxy timeouts and successful full-archive
+fallbacks are retained; only the diagnostic proxy's connection timeout changed
+before the successful shared-layer check. Cache conditions differ, so these are
+not a controlled speed comparison or product-launch timings.
+
+Production has no registry indexes or blob mappings. Deployment and native
+product/database acceptance remain pending. See
+[private CDN receipts and reproducible probes](evidence/stack-registry-cdn-qa.json),
 [328-check local/Linux results](evidence/stack-registry-launch-tests.json) and
 [actual integrated Docker recovery checks](evidence/stack-registry-launch-qa.json).
 This is not a claim of full OCI registry conformance or additional framework coverage.

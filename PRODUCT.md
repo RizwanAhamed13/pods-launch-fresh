@@ -39,8 +39,14 @@ image identities and dependency execution passed. Automatic preparation and
 runner selection are now implemented. The integrated runner passed actual
 cold/cached pulls, forced full-archive repair of an incomplete image, corrupt
 manifest fallback and transfer cancellation, with temporary credentials removed.
-Native CDN/provider validation remains pending. Production continues running the
-earlier full-archive pipeline. These are image-transfer checks, not application
+Private CDN publication and actual Docker redirects subsequently passed in QA.
+The direct empty-store image preparation took26.078s; with shared layers it took
+8.742s and fetched11,178,157bytes. All five inspected CDN requests omitted
+credential headers, and exact image/dependency execution passed. Two diagnostic
+proxy timeouts with full-archive fallback remain recorded. See
+[private CDN evidence](evidence/stack-registry-cdn-qa.json).
+Native provider/product validation remains pending. Production continues running
+the earlier full-archive pipeline. These are image-transfer checks, not application
 or database acceptance. See [integrated Docker evidence](evidence/stack-registry-launch-qa.json).
 
 The image preparation pipeline now holds at most two images in flight and loads

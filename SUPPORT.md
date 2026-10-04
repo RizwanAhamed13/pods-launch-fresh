@@ -289,8 +289,20 @@ token, and verifies image identity. Indexed images always use Docker's pull path
 a cached ID alone does not prove runnable content. Fallback forces a full load,
 and cancellation waits for the CLI to exit before removing credentials. Startup
 heartbeats honor Stop during artifact/image delivery. All328 local and Linux
-checks pass. Real CDN blob publication/redirect behavior and native product/DB
-acceptance are the next gates. The standard OCI pull protocol requests content by digest; see the
+checks pass. [Real private CDN publication and redirect checks](evidence/stack-registry-cdn-qa.json)
+subsequently passed: ten verified blobs published once and reused on repeat,
+26.078s image preparation from an empty store, and8.742s with a shared base.
+The shared-base pull fetched exactly five remaining blobs (11,178,157 bytes),
+with matching hashes and no Authorization, Cookie or Proxy-Authorization headers
+at the CDN. Exact image/rootfs identity and dependency execution passed. The two
+earlier inspection-proxy timeout failures and full-archive fallbacks are retained.
+The successful retry shortened only the diagnostic upstream connection timeout;
+PODS'45-second pull limit is unchanged. Cache states and instrumentation differ,
+so these are not controlled performance comparisons or native product timings.
+Ten raw assets were added to the existing private release, preserving its prior
+eleven assets; production still has no registry indexes/blob mappings, and the
+flag remains disabled. Native product/DB acceptance is the next gate.
+The standard OCI pull protocol requests content by digest; see the
 [OCI distribution specification](https://github.com/opencontainers/distribution-spec/blob/main/spec.md).
 PODS implements a narrow read-only pull surface, not a general registry service.
 

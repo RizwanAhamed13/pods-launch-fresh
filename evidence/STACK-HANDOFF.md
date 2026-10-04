@@ -1,17 +1,51 @@
 # Broad stack checkpoint
 
 Goal active and incomplete: developer URL → isolated aswin build → reusable artifact
-→ authorized user compute → real usable product. Latest completed gate: automatic
-OCI indexing, runner selection, launch-only credential pulls, forced verified
-full-archive recovery, and startup cancellation. Registry remains disabled; live
-runtime still f87b2e0. Both full suites passed328 checks. Scope9764 physical lines.
-Actual Docker checks in four independent QA stores passed cold/cached pull,
-incomplete-image repair, corrupt-manifest fallback and cancellation during a blob
-transfer. No app/browser/database/native-provider/CDN acceptance in this gate.
+→ authorized user compute → real usable product. Latest completed gate: actual
+private OCI blob publication and integrated Docker CDN redirects in isolated QA.
+Empty-store preparation took26.078s; shared-base preparation8.742s, fetching only
+11,178,157bytes. Five inspected CDN requests omitted credential headers, and image
+identity/dependency execution passed. Two diagnostic timeout failures are retained.
+Registry remains disabled; live runtime still f87b2e0. Both prior full suites
+passed328 checks and runtime hashes are unchanged. Scope9764 physical lines.
+No app/browser/database/native-provider acceptance in this gate.
 The previous native Flask+MariaDB first-image product30.229s still misses20s;
 cached product12.607s and persistence2→3→4 passed. Goal remains active.
 
-## Latest integrated registry gate
+## Latest private CDN gate
+
+- stack-registry-cdn-qa.json and probes/REGISTRY-CDN.md bind all three exact
+  programs/receipts. Source0791fe6; same verified candidate347 files. CLI help and
+  env example comment corrected; prior328 suite not rerun because runtime unchanged.
+- Original Flask archive41d7.../imageb665...:10 raw blobs57400283bytes published
+  to the configured existing private release. Asset inventory11→21; previous11
+  preserved. Publication23645ms, repeat5686ms, zero extra blobs and same mappings.
+  Scratch data only: /tmp/pods-registry-cdn-0791fe6/data. No production index or
+  mapping additions. Preserve all private assets and scratch evidence.
+- Direct CDN pull: initially empty physical store,9redirects,26078ms image work,
+  exact ID/eight rootfs layers and Flask3.1.1/PyMySQL1.1.2 execution passed.
+- Final shared-base probe: /output/registry-cdn-shared-v3-0791fe6. Empty store
+  first, then verified FastAPI base imported; Flask absent. Five response hashes
+  matched11178157bytes; four shared blobs46220071bytes not requested. Registry8741ms,
+  total images8742ms; no archive fallback; same identity/dependency checks passed.
+  All five actual CDN GETs omitted Authorization/Cookie/Proxy-Authorization;
+  upstream TLS verified. Not native/product timing or a controlled A/B comparison.
+- Failed inspection modes retained: first45017ms registry/51375ms total;
+  shared-v2 registry45021ms/50628ms total. Both forced original57046835-byte
+  archive fallback; dependency assertion not reached. One bounded CDN address
+  check timed out; slow diagnostic relay connection may explain the stalls.
+  Only relay connect timeout changed45s→2s, read45s; product deadline stays45s.
+- Eight owned QA engine processes, three QA aswin servers and all owned LXD
+  loopback proxies stopped/removed. Launch credentials/private CA keys removed,
+  global trust unchanged, ordinary QA images/devices preserved. Keep all stores.
+- Production audit17:10:13UTC: same PID1589423/served runner hash, health200,
+  SQLiteok, zero active builds/launches. Inventory17:10:33UTC:59images/6120802464bytes,
+  135artifactfiles/10deliverymappings, no registry directory. No service restart.
+- Next: deploy shared writer lock to all writers before production indexing, then
+  controlled native Google registry product/DB acceptance with actually absent
+  images on ready compute. No additional stack/provider coverage in this gate.
+
+## Previous integrated registry gate
 
 - stack-registry-launch-tests.json:328/328 local26.721s/Linux72.373s. Exact347-file
   candidate /output/registry-launch-candidate-adc78ff. First Linux invocation
@@ -40,8 +74,8 @@ cached product12.607s and persistence2→3→4 passed. Goal remains active.
   process signals cancel startup as well. Docker command supports AbortSignal.
   Generic command timeout waits for child close before releasing writer locks.
   SIGKILL may leave bounded staging files; do not infer automatic crash recovery.
-- Next gate: actual private blob publication and Docker CDN redirect credential
-  behavior. Then controlled rollout and native Google product/DB acceptance with
+- The subsequent CDN gate above verifies publication/redirect credential behavior.
+  Next is controlled rollout and native Google product/DB acceptance with
   genuinely absent images, separate cached/cold measurements. Do not index live
   storage until shared writer lock is deployed to all writers. No production
   registry files/assets/config changes or service restart in this gate.
@@ -302,9 +336,10 @@ cached product12.607s and persistence2→3→4 passed. Goal remains active.
 
 ## Next bounded gate and pending inputs
 
-- Next: real private CDN blob publication and actual Docker redirect/credential
-  behavior, then deployment and native Google product/database acceptance. Registry
-  integration/recovery is now verified in isolated Docker. Do not repeat cached
+- Next: controlled deployment and native Google product/database acceptance.
+  Private CDN publication, redirect credentials and registry integration/recovery
+  are verified in isolated Docker. Deploy the shared storage lock to all writers
+  before indexing production. Do not repeat cached
   Flask+MariaDB as if its images were absent. Preserve artifacts/cache/data; no
   public image exposure or static provider credentials on user compute.
 - Broader CDN migration remains49 images/5.178GB; do not mass-upload them as a
