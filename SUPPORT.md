@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **150 passing checks in full local and isolated aswin QA runs**. Native coverage is 35 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **154 passing checks in full local and isolated aswin QA runs**. Native coverage is 35 Google browser fixtures and
 35 Codespaces HTTP/protocol fixtures; 20 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
@@ -1785,3 +1785,23 @@ Evidence: `stack-flask-mariadb-{url,google,codespaces}.json`. Coverage is now
 **55 isolated / 35 Google browser / 35 Codespaces protocol**, with **20** fixtures
 still awaiting native acceptance. Source remains **6,207** physical lines and
 the most recent full suites remain **150/150** in both environments.
+
+
+## MongoDB engine and persistence validation
+
+The native acceptance helper now verifies the pinned MongoDB 7.0.43 build,
+WiredTiger storage engine and product-saved document through read-only queries.
+A shared boundary check verifies healthy private database services, the assigned
+product port, and the correct persistent database mount. Existing MySQL and
+MariaDB checks retain their behavior.
+
+All **154 checks passed locally and in isolated aswin Linux QA**. A real MongoDB
+artifact preflight verified counter **0→1→2** across a full stop/relaunch with
+empty chunked POST requests. Its temporary containers, named volume and selected
+application storage were removed. This is isolated evidence; native MongoDB
+acceptance is still pending. Current source totals **6,293 physical lines**.
+
+Evidence: `stack-mongodb-runtime-probe-tests.json` and
+`stack-flask-mongodb7-chunked-probe.{json,mjs}`. The native CLI opt-in is
+`PODS_COUNTER_CHECK=1 PODS_MONGODB_RUNTIME_CHECK=1`, restricted to the explicit
+MongoDB fixture. Coverage remains **55 / 35 / 35** until native acceptance passes.

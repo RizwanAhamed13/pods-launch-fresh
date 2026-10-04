@@ -1,0 +1,21 @@
+{
+  "recordedAt": "2026-10-04T03:58:26.578643+00:00",
+  "baseRevision": "5b14854",
+  "scope": "Shared private database boundary, MongoDB build/storage-engine and product-saved document inspection. Four new automated cases, including fresh-process serialized probe; existing MySQL/MariaDB behavior retained. Native acceptance recorded separately.",
+  "fullSuite": [
+    {
+      "environment": "local",
+      "tests": 154,
+      "passed": 154,
+      "failed": 0,
+      "outputSha256": "706da663bffa344ea8eaf0697a3f6fb17d707133416e7c4e238ad69ea36be690"
+    },
+    {
+      "environment": "isolated-aswin-linux",
+      "tests": 154,
+      "passed": 154,
+      "failed": 0,
+      "outputSha256": "89b3181878231cefbc324c7b05db8c119224117a4bff13063e2a0005227c4fcd"
+    }
+  ]
+}

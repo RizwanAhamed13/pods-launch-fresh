@@ -480,3 +480,32 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   selected. Do not submit again until the ordinary quota permits it.
 - New bounded normal-quota watcher45000 is running; watcher35120 is terminal.
   Resume the same handle. No native apps or production builds remain running.
+
+
+## MongoDB runtime inspection and isolated preflight
+
+- Added the MongoDB native acceptance flag and read-only version, git build,
+  WiredTiger and product-saved document verification. Extracted the existing
+  MySQL boundary inspection into probe-database-boundary.mjs, preserving its
+  exports/default behavior and adding the explicit /data/db mount option.
+- Four new cases cover actual expected evidence, wrong version/engine/record,
+  public port or wrong mount, unsupported path, and fresh-process serialization.
+  Full 154/154 pass locally and in isolated QA; logs are
+  /tmp/pods-mongodb-full-{local,qa}.txt. QA snapshot:
+  /output/mongodb-candidate-5b14854. Existing MySQL/MariaDB cases still pass.
+- Isolated preflight56015 ended0 at03:58:24.257UTC: artifact a998ebd8…,
+  current source e04fb15f… verified, MongoDB7.0.43, WiredTiger, healthy/private
+  DB and persistent volume; empty chunked POST and full stop/relaunch0→1→2.
+  Its unique project is pods-35ee72222c99d814f242a56a. Cleanup removes only
+  this disposable volume/storage; native fixture data is separate.
+- Source6293lines=3316product/tooling+1880tests+933examples+164browsertools.
+  Coverage remains55/35/35,20nativepending. No provider/runner edits or restart.
+- Normal quota watcher45000 remains running; next ordinary slot04:02:22.543UTC.
+  Browser stackQa6 is the unsubmitted examples/stacks/flask-mongodb7 form.
+  Resume the same watcher; do not create a second build or bypass account limits.
+- Capture allowlist now includes flask-mongodb7. Recorder template is
+  /tmp/pods-record-flask-mongodb7.py; update its checkoutRevision after publishing
+  tooling. Native CLI needs counter + MongoDB flags and expectedInitialCount0.
+  Exact browser heading is "Flask + mongodb counter", not the folder suffix7.
+- Stored QA images total350699642bytes. Native first-image delivery may exceed
+  one observation window: continue the same launch rather than restarting it.

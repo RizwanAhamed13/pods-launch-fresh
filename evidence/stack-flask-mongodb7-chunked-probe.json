@@ -1,0 +1,93 @@
+{
+  "recordedAt": "2026-10-04T03:58:24.257Z",
+  "scope": "Isolated real MongoDB artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+  "dataKey": "flask-mongodb7-chunked-ff140f5ff3af4a14",
+  "project": "pods-35ee72222c99d814f242a56a",
+  "artifactSha256": "a998ebd8609ae2452012ffcfff88f32af53124445f1404e4187534ee05632c03",
+  "images": [
+    {
+      "id": "sha256:2dc733972b687ffbc2449b2d463f2e9132d662d62e3d8ad7d397eb18fb6f08a1",
+      "sha256": "d8a5d68f3274e44a8e352f273fb118e566dde5031466134f0d6e602a267846b0",
+      "bytes": 54842451
+    },
+    {
+      "id": "sha256:1f995ad6fdb93244a1addab1b58f934a0bc2f5643c38e02f5e9d7f0c7d227a7b",
+      "sha256": "5bb0b4ddadfd4088ffb7ac924243b8b706b668ca367a89fc963dc1d5876327c5",
+      "bytes": 295857191
+    }
+  ],
+  "sourceSha256": "e04fb15f5cbe397ce0f54c924716ea9afc96f6cef496b4de07ce5ed7ebecccfc",
+  "records": [
+    {
+      "database": {
+        "passed": true,
+        "project": "pods-35ee72222c99d814f242a56a",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          18095
+        ],
+        "volume": "pods-35ee72222c99d814f242a56a_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Isolated aswin guest: actual MongoDB version, saved document, private ports and persistent bind volume; not a native provider launch.",
+        "databaseEngine": "MongoDB",
+        "version": "7.0.43",
+        "gitVersion": "ef5a7d3480b59feae13d564376129fc4ceee6177",
+        "storageEngine": "wiredTiger",
+        "savedCount": 1
+      },
+      "scenario": "first-launch",
+      "before": 0,
+      "post": {
+        "status": 200,
+        "count": 1
+      },
+      "afterRead": 1,
+      "transferEncoding": "chunked",
+      "contentType": null
+    },
+    {
+      "database": {
+        "passed": true,
+        "project": "pods-35ee72222c99d814f242a56a",
+        "services": [
+          "web",
+          "db"
+        ],
+        "databaseHealth": "healthy",
+        "databaseHostPorts": [],
+        "productHostPorts": [
+          18095
+        ],
+        "volume": "pods-35ee72222c99d814f242a56a_records-disk-v1",
+        "durableWorkspaceVolume": true,
+        "scope": "Isolated aswin guest: actual MongoDB version, saved document, private ports and persistent bind volume; not a native provider launch.",
+        "databaseEngine": "MongoDB",
+        "version": "7.0.43",
+        "gitVersion": "ef5a7d3480b59feae13d564376129fc4ceee6177",
+        "storageEngine": "wiredTiger",
+        "savedCount": 2
+      },
+      "scenario": "full-relaunch",
+      "before": 1,
+      "post": {
+        "status": 200,
+        "count": 2
+      },
+      "afterRead": 2,
+      "transferEncoding": "chunked",
+      "contentType": null
+    }
+  ],
+  "passed": true,
+  "cleanup": {
+    "containersStopped": true,
+    "probeVolumeRemoved": true,
+    "probeStorageDirectoriesRemoved": true,
+    "sharedRuntimeAndCacheRetained": true
+  }
+}

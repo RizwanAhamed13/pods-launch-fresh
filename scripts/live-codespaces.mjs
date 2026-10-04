@@ -7,6 +7,7 @@ import { probeBunWebSocket } from './probe-websocket.mjs';
 import { ssrProbeCommand } from './probe-ssr.mjs';
 import { mysqlRuntimeProbeCommand } from './probe-mysql-runtime.mjs';
 import { mariadbRuntimeProbeCommand } from './probe-mariadb-runtime.mjs';
+import { mongodbRuntimeProbeCommand } from './probe-mongodb-runtime.mjs';
 import { staticProbeCommand } from './probe-static.mjs';
 const exec = promisify(execFile);
 const provider=process.argv[3]||'github';if(!['github','google'].includes(provider))throw new Error('Unknown provider');
@@ -15,8 +16,10 @@ const origin=process.argv[2];if(!origin)throw new Error('Supply the PODS URL');
 const counterCheck=process.env.PODS_COUNTER_CHECK==='1';
 const mysqlRuntimeCheck=process.env.PODS_MYSQL_RUNTIME_CHECK==='1';
 const mariadbRuntimeCheck=process.env.PODS_MARIADB_RUNTIME_CHECK==='1';
+const mongodbRuntimeCheck=process.env.PODS_MONGODB_RUNTIME_CHECK==='1';
 if(mysqlRuntimeCheck&&!counterCheck)throw new Error('MySQL runtime inspection requires the counter fixture check');
 if(mariadbRuntimeCheck&&!counterCheck)throw new Error('MariaDB runtime inspection requires the counter fixture check');
+if(mongodbRuntimeCheck&&!counterCheck)throw new Error('MongoDB runtime inspection requires the counter fixture check');
 const apiProduct=process.env.PODS_API_PRODUCT==='1';
 const expectedInitialCount=process.env.PODS_EXPECT_INITIAL_COUNT;
 if(expectedInitialCount!==undefined&&(!counterCheck||!/^\d+$/.test(expectedInitialCount)||!Number.isSafeInteger(Number(expectedInitialCount))))throw new Error('Expected initial count requires a nonnegative integer and counter fixture checking');
@@ -39,6 +42,7 @@ if(!me.apps.some(app=>app.id===appId))throw new Error('Prepared application not 
 const selectedApp=me.apps.find(app=>app.id===appId);
 if(mysqlRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-mysql')throw new Error('MySQL runtime inspection is restricted to its explicit fixture');
 if(mariadbRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-mariadb')throw new Error('MariaDB runtime inspection is restricted to its explicit fixture');
+if(mongodbRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-mongodb7')throw new Error('MongoDB runtime inspection is restricted to its explicit fixture');
 if(staticCheck&&selectedApp.source?.folder!=='examples/stacks/'+staticFixture)throw new Error('Static inspection is restricted to its explicit fixture');
 if(ssrCheck&&selectedApp.source?.folder!=='examples/stacks/'+ssrFixture)throw new Error('SSR inspection is restricted to its explicit fixture');
 const evidencePath=process.env.PODS_EVIDENCE_FILE||`evidence/${provider}.json`;
@@ -118,6 +122,7 @@ try {
   if(apiProduct&&new URL(launch.previewUrl).pathname!=='/docs')throw new Error('API product did not select its verified interface');
   if(counterCheck){result.counterCheck=await probeCounter(launch.environment,base);await persist();if(!result.counterCheck.passed)throw new Error('Counter write/read/relaunch persistence failed');}
   if(mariadbRuntimeCheck){result.mariadbRuntimeCheck=await probeEnvironment(launch.environment,mariadbRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
+  if(mongodbRuntimeCheck){result.mongodbRuntimeCheck=await probeEnvironment(launch.environment,mongodbRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
   if(workerCheck){result.workerCheck=await probeWorker(launch.environment,base);await persist();if(!result.workerCheck.passed)throw new Error('Worker completion/relaunch persistence failed');}
   if(websocketCheck){result.websocketCheck=await probeWebSocket(launch.environment,base);await persist();if(!result.websocketCheck.passed)throw new Error('WebSocket exchange/relaunch persistence failed');}
   if(ssrCheck){result.ssrCheck=await probeEnvironment(launch.environment,ssrProbeCommand(ssrFixture,base));await persist();if(!result.ssrCheck.passed)throw new Error('SSR product/client assets failed');}
