@@ -23,13 +23,39 @@ VM replacement durability, or a universal 20-second cold launch.
   actix, adonis, aspnet, axum, deno, echo, fastapi, fiber, flask-mariadb,
   flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, ktor,
   micronaut, nestjs, phoenix, php, rocket, sinatra, streamlit, symfony.
-- Full-suite baseline 18026bb: 114 tests passed locally/aswin; logs
-  /tmp/pods-ssr-complete-tests-{local,aswin}.txt. Product source unchanged since
-  that baseline's subsequent recorded runtime fixes; do not rerun unchanged
-  passing checks without cause. Latest compatibility check: 3 tests passed.
-- Physical code: 5,622 lines = 3,033 product/tooling + 1,492 tests + 933 examples
+- Current candidate passes131 tests locally and in isolated aswin QA; logs
+  /tmp/pods-storage-full-{local,qa}.txt. Includes17 new migration tests; original
+  baseline114 remains historical. No need to rerun unchanged passing checks.
+- Physical code: 5,867 lines = 3,182 product/tooling + 1,588 tests + 933 examples
   + 164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
-  files; includes .astro. No product source changed during this milestone.
+  files; includes .astro. New storage handoff changes the runner; deployment validation follows.
+
+## Current storage migration implementation
+
+- src/storage-transition.mjs now performs staged, journaled transitions for
+  default single-service app-data at/data; originals remain as private backups.
+  src/storage.mjs copyApplicationData imports a tiny empty helper image and
+  copies protected files without executing a helper process. Helpers/images
+  are cleaned. src/runner.mjs and container-runtime.mjs call the transition.
+- Before persistentVolumes, container launches recover any interrupted target
+  rename; otherwise existing missing-data checks would prevent recovery.
+- Tests17new cover both directions/four crash checkpoints, partial copy, data
+  conflict, missing bundle storage, stateless transitions, topology and path
+  guards. Full131passed local/isolatedQA. Control-plane account lock and stable
+  product-port checks exclude another live app before mutation.
+- Real automatic probe34228 ended0 at02:16:59.407UTC: old legacy container
+  wrote1, new runner bundle retained1→2, container2→3, bundle3→4. No manual
+  copy. Source snapshot hashes and cleanup evidence recorded in
+  stack-express-automatic-transition-probe.json. Disposable volume/root and
+  helper images removed. Candidate tree /output/storage-candidate-3102caf
+  in QA guest remains for reproduction; dependency symlink points to/opt/pods.
+- Root-protected record copying probe21960 ended0; directory0700/file0600
+  uid0 copied asuid1000 without application image or executable. Root-only
+  QA fixture removed via guest root.
+- Native format transition, Codespaces runtime-label adaptation and optional
+  bundling are NOT enabled/verified by this change. Keep packaging unchanged.
+  Multi-service or conflicting data requires explicit migration. Backups
+  remain; retention policy and power-loss durability are not proven.
 
 ## Previous native gate: Koa acceptance
 
@@ -96,8 +122,8 @@ VM replacement durability, or a universal 20-second cold launch.
   NestJS production build has been submitted in this sequence. Check for any
   pre-existing saved fixture data before assuming zero.
 - Quota snapshot02:04:10.897726UTC:account3/global3/active0,next ordinary slot
-  02:25:01.241UTC. No live watcher; prior58800 completed. Start a bounded
-  watcher only when useful. /tmp/pods-next-native-quota-watch.py watches20min
+  02:25:01.241UTC. Watcher96793 is LIVE since02:05:56.939548UTC; prior58800 completed.
+  Poll96793 rather than starting another watcher. /tmp/pods-next-native-quota-watch.py watches20min
   with30sec samples, anchorSvelte buildNLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp.
   Keep limits3/account/hour and12/global/hour. Never bypass, change identity to
   evade quota, or import QA artifacts into production.
@@ -129,11 +155,11 @@ VM replacement durability, or a universal 20-second cold launch.
   production migration: no journal, ambiguity handling or provider adaptation.
   Earlier probe attempts31201/2863 ended1 because of probe-only filename and
   staging-directory mistakes; both cleaned up. Corrected79883 is the evidence.
-- Storage currently differs: bundles <root>/data/<dataKey>; default container
+- Storage paths still differ, with automatic handoff now implemented: bundles <root>/data/<dataKey>; default container
   <root>/volumes/pods-<key-sha256-first24>/app-data/data. run() creates the bundle
   directory even for a container, so existence alone does not prove data is there.
   Container files may be root-owned. Preserve ownership checks, refuse ambiguity,
-  and prove data continuity before enabling smaller bundles. Do not weaken checks.
+  and prove native/provider continuity before enabling smaller bundles. Do not weaken checks.
 - Fastify originally failed Google empty chunked POST with HTTP415; corrected
   JSON-body fixture passed native browser and Codespaces checks. Historical failure
   retained. Evidence stack-fastify-fixed-*.json, stack-fastify-google.json and

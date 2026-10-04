@@ -5,7 +5,8 @@ import { join } from 'node:path';
 import { pipeline } from 'node:stream/promises';
 import { Transform } from 'node:stream';
 import { docker, runtimeCompose } from './containers.mjs';
-import { persistentVolumes } from './storage.mjs';
+import { persistentVolumes, storageRoot } from './storage.mjs';
+import { transitionApplicationData } from './storage-transition.mjs';
 
 async function fileHash(path) {
   const hash = createHash('sha256'); for await (const chunk of createReadStream(path)) hash.update(chunk); return hash.digest('hex');
@@ -92,12 +93,15 @@ export async function startContainers(plan, config, root, runDir, timings) {
   const project = 'pods-' + createHash('sha256').update(dataKey).digest('hex').slice(0,24);
   const file = join(runDir, 'compose.json');
   const compose = runtimeCompose(plan, project, config.port || 8080, config.previewUrl);
+  const storageOptions = {plan,legacyRoot:config.provider === 'github' && root === storageRoot('github') ? storageRoot('google') : undefined};
+  await transitionApplicationData(root,dataKey,'container',{...storageOptions,recoverOnly:true});
   compose.volumes = await persistentVolumes(plan,project,root);
+  await transitionApplicationData(root,dataKey,'container',storageOptions);
   await writeFile(file, JSON.stringify(compose), {mode:0o600});
   const args = ['compose','--project-name',project,'--file',file];
   const stop = () => docker([...args,'down','--timeout','10','--remove-orphans'], {timeout:60000});
   try {
     await launchCompose(args,stop,timings);
-    return { stop, alive: () => containersAlive(plan,args) };
+    return { stop, alive: () => containersAlive(plan,args), dataDir:join(root,'data',dataKey) };
   } catch (e) { await stop().catch(() => {}); throw e; }
 }

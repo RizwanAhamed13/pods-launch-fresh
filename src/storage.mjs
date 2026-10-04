@@ -1,9 +1,10 @@
-import { mkdir, lstat, mkdtemp, rename, writeFile, readFile, cp, rmdir } from 'node:fs/promises';
+import { mkdir, lstat, mkdtemp, rename, writeFile, readFile, cp, rmdir, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { homedir } from 'node:os';
 import { spawn } from 'node:child_process';
 import { pipeline } from 'node:stream/promises';
 import { docker } from './containers.mjs';
+import { randomBytes } from 'node:crypto';
 
 export function storageRoot(provider, home = homedir()) {
   return provider === 'github' ? '/workspaces/.pods-launch' : join(home, '.local/share/pods-launch');
@@ -103,4 +104,26 @@ export async function persistentVolumes(plan, project, root, {execute = docker, 
     volumes[v.name] = {name,driver:'local',driver_opts:{type:'none',o:'bind',device}};
   }
   return volumes;
+}
+
+// Copy protected application files as the runner's uid without executing any
+// image code. The imported image contains only an empty tar archive.
+export async function copyApplicationData(source, target, {execute = docker} = {}) {
+  if ([source,target].some(path => !path.startsWith('/') || /[,\r\n]/.test(path))) throw new Error('Unsafe storage copy path');
+  const stat = await lstat(source);
+  if (!stat.isDirectory() || stat.isSymbolicLink()) throw new Error('Unsafe source application data');
+  await privateDirectory(target);
+  if ((await readdir(target)).length) throw new Error('Storage copy requires an empty staging directory');
+  let image, helper;
+  try {
+    image = await execute(['import','--change',`LABEL org.pods.storage-copy=${randomBytes(16).toString('hex')}`,'-'], {input:Buffer.alloc(1024)});
+    if (!/^sha256:[a-f0-9]{64}$/.test(image)) throw new Error('Invalid storage helper image');
+    helper = await execute(['create','--network','none','--read-only','--entrypoint','/__pods_never_executed__','--mount',`type=bind,src=${source},dst=/pods-source,readonly`,image]);
+    if (!/^[a-f0-9]{64}$/.test(helper)) throw new Error('Invalid storage helper container');
+    await execute(['cp',`${helper}:/pods-source/.`,target]);
+    await privateDirectory(target);
+  } finally {
+    if (/^[a-f0-9]{64}$/.test(helper || '')) await execute(['rm',helper]).catch(() => {});
+    if (/^sha256:[a-f0-9]{64}$/.test(image || '')) await execute(['image','rm',image]).catch(() => {});
+  }
 }

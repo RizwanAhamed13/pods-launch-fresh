@@ -9,7 +9,8 @@ import { createServer } from 'node:net';
 import { fileURLToPath } from 'node:url';
 import { validateContainers } from './containers.mjs';
 import { startContainers } from './container-runtime.mjs';
-import { storageRoot, applicationData } from './storage.mjs';
+import { storageRoot } from './storage.mjs';
+import { transitionApplicationData } from './storage-transition.mjs';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const sha = b => createHash('sha256').update(b).digest('hex');
 export function decodeArtifact(bytes, expected) {
@@ -92,11 +93,13 @@ export async function run(config, { root = storageRoot(config.provider), fallbac
       await writeFile(target, Buffer.from(file.data, 'base64'), { mode: 0o600 });
     }
     await new Promise((ok, fail) => { const s = createServer(); s.once('error', () => fail(new Error(`Port ${port} is already in use; stop the existing application first`))); s.listen(port, '0.0.0.0', () => s.close(ok)); });
-    const dataDir = await applicationData(root,config.dataKey || config.appId,config.provider === 'github' && root === storageRoot('github') ? storageRoot('google') : undefined);
+    let dataDir;
     await report('starting');
     if (artifact.format === 2) {
       containers = await startContainers(artifact.containers, config, root, runDir, timings);
+      dataDir = containers.dataDir;
     } else {
+    ({dataDirectory:dataDir} = await transitionApplicationData(root,config.dataKey || config.appId,'bundle',{legacyRoot:config.provider === 'github' && root === storageRoot('github') ? storageRoot('google') : undefined}));
     child = spawn(process.execPath, [join(runDir, artifact.entry)], { cwd: runDir, detached: true, env: { PATH: process.env.PATH, HOME: dataDir, NODE_ENV: 'production', HOST: '0.0.0.0', PORT: String(port), PODS_APP_DATA: dataDir, PODS_SESSION: config.id, PODS_STORAGE_MODE: storageMode }, stdio: ['ignore', 'pipe', 'pipe'] });
     let appError = ''; child.stdout.on('data', () => {}); child.stderr.on('data', b => { appError = (appError + b).slice(-1000); });
     child.on('error', e => { appError = e.message; });

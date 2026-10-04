@@ -66,10 +66,11 @@ export function runtimeCompose(plan, project, port, previewUrl) {
   return { name: project, services, volumes };
 }
 
-export function docker(args, { cwd, timeout = 120000, env, output } = {}) {
+export function docker(args, { cwd, timeout = 120000, env, output, input } = {}) {
   return new Promise((resolve, reject) => {
     // Do not forward cloud/provider credentials or arbitrary Docker endpoints.
-    const p = spawn('docker', ['--host','unix:///var/run/docker.sock',...args], {cwd, env: env || {PATH:process.env.PATH,HOME:process.env.HOME}, stdio:['ignore','pipe','pipe']});
+    const p = spawn('docker', ['--host','unix:///var/run/docker.sock',...args], {cwd, env: env || {PATH:process.env.PATH,HOME:process.env.HOME}, stdio:[input === undefined ? 'ignore' : 'pipe','pipe','pipe']});
+    if (input !== undefined) { p.stdin.on('error', () => {}); p.stdin.end(input); }
     let result = '', error = '';
     const timer = setTimeout(() => p.kill('SIGKILL'), timeout);
     p.stdout.on('data', b => { result = (result + b).slice(-65536); output?.(b); });

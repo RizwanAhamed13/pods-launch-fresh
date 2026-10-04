@@ -85,8 +85,8 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **114 passing
-checks locally and on aswin**. Native coverage is 31 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **131 passing
+checks locally and in isolated aswin QA**. Native coverage is 31 Google browser fixtures and
 31 Codespaces HTTP/protocol fixtures; 24 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
@@ -1513,3 +1513,31 @@ health 200 and preview port 25759 private. Coverage is **55 isolated / 31 Google
 browser / 31 Codespaces HTTP**, with **24 fixtures** awaiting those native paths.
 These measurements do not prove VM replacement durability or universal cold
 launches within 20 seconds. Evidence: `stack-hono-{url,google,codespaces}.json`.
+
+## Automatic runner storage handoff
+
+The runner now migrates a default single-service `/data` store between container
+and Node-bundle formats. It copies into private staging, records the transition,
+keeps the previous destination as a backup, and resumes an interrupted transition
+before launching the application. It preserves copies of older data under the
+managed storage directory; these backups consume space until explicitly removed.
+
+A real isolated test started with the old runner's Express container database,
+then used the new runner for bundle → container → bundle. SQLite values advanced
+0→1→2→3→4 without manual copying. Temporary copying containers never execute code
+and are removed along with their empty helper images. The test left no runtime,
+volume or helper image behind.
+
+All **131 automated tests** pass locally and in isolated aswin QA. Added checks
+cover interruption at four stages in both directions, partial copies, conflicting
+legacy databases, unexpected volume bindings, active containers, unsafe paths,
+missing saved data and unsupported database topologies. The copying helper also
+passed a real check against a root-owned directory and mode-0600 record.
+
+This does not migrate application schemas or arbitrary multi-service databases.
+Conflicting saved datasets require an explicit choice; existing records are
+preserved. Process-interruption recovery does not prove power-loss or provider
+VM replacement durability. Native format-transition acceptance and saved Codespace
+runtime-label adaptation remain pending, so the smaller Express bundle is still
+experimental. Source count: **5,867 physical lines**. Evidence and reproduction:
+`stack-express-automatic-transition-probe.{json,mjs}`.
