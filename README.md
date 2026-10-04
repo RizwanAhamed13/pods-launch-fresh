@@ -213,6 +213,13 @@ successful migration completion and completed-job recovery. See
 
 ## Operating limits
 
+The prepared image store defaults to a 5 GiB admission budget. Operators can set
+`PODS_IMAGE_STORAGE_BYTES` to a positive integer byte count and restart the control
+plane after checking free disk space and build headroom. A full store rejects new
+publication without deleting existing images or launch links. This setting does
+not change the 3/account/hour and 12/global/hour build quotas or the per-application
+image limits. Keep the budget below the available persistent-disk capacity.
+
 Single Node process and local SQLite on persistent disk. Repository builds require a connected account, CSRF authorization and the isolated builder. Browser sessions last 24 hours. Provider credentials are not refreshed automatically: reconnect on expiry. A restart fails in-flight provisioning explicitly; ready agents continue heartbeats. Only one active app per browser/provider is allowed; selecting a different app while one is active returns an explicit conflict. Use provider controls to stop an environment immediately. This is a working prototype, not a completed public service: GitHub browser OAuth configuration, the remaining native provider/framework validation, durable DNS, stronger abuse controls and monitoring remain follow-up work. Google OAuth and representative native product journeys are verified; see SUPPORT.md for precise coverage.
 
 Provider contracts: [Codespaces REST API](https://docs.github.com/en/rest/codespaces/codespaces), [GitHub CLI SSH](https://cli.github.com/manual/gh_codespace_ssh), [Cloud Shell start API](https://docs.cloud.google.com/shell/docs/reference/rest/v1/users.environments/start).

@@ -1,0 +1,35 @@
+{
+  "recordedAt": "2026-10-04T10:16:55.168977+00:00",
+  "baseRevision": "4aa0a946fb180261e921938c3d72b00665ba3d64",
+  "sourceHashes": {
+    "src/builds.mjs": "89091dabfb6c3b8056592fe62ba14c60277a1988734a2a440239aa3eb9ace928",
+    "test/builds.test.mjs": "6aeb22e539027b03aadc46e6f64f0447fe6656943806c1ab99e1e3d9f873ed4c"
+  },
+  "qaCandidate": "/output/image-budget-candidate-4aa0a94",
+  "snapshotManifestSha256": "f09f5e6befb508f72e2cc1e7056c2c7902024072cd83798de38314dae53183b2",
+  "snapshotFilesMatched": 322,
+  "scope": "Control-plane operator image-store admission budget. Default remains 5 GiB. Tests cover exact boundary, rejection without modifying existing artifacts, a store above 5 GiB with an 8 GiB operator budget, unchanged account build quota, and invalid configuration. Runtime, provider and per-application limits are unchanged.",
+  "fullSuite": [
+    {
+      "environment": "local",
+      "tests": 192,
+      "pass": 192,
+      "fail": 0,
+      "outputSha256": "426b8d0979dabc36fc994b0511083a752e5ed38dcf066f53a6c3d115c2753459"
+    },
+    {
+      "environment": "isolated-aswin-linux",
+      "tests": 192,
+      "pass": 192,
+      "fail": 0,
+      "outputSha256": "41c05090018c301c79d797ad53b3e6af4624a402d954bbe98ab2c89da2788dea"
+    }
+  ],
+  "verificationCorrections": [
+    {
+      "stage": "final Linux transfer",
+      "result": "Overwriting the existing temporary guest archive was denied before tests began. Used a distinct final archive path, verified all 322 input hashes, then all 192 tests passed.",
+      "outputSha256": "83c7188c678badbdc4fb5e4b7a839ca14e612ccf29c49aaaab7682aeb65dbbd4"
+    }
+  ]
+}

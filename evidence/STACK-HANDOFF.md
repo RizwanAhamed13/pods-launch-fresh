@@ -21,19 +21,23 @@ VM replacement durability or universal launches under20s without evidence.
   Native Codespaces browser interaction remains pending authorization.
   The2 fixtures awaiting native acceptance are:
   streamlit, symfony.
-- Current full suite:189/189 passed locally and in isolated aswin QA.
-  Evidence stack-sqlite-file-tests.json; logs /tmp/pods-sqlite-file-full-{local,qa}.txt.
-  Source7128physical lines:3717product/tooling +2314tests +933examples +164browser.
+- Current full suite:192/192 passed locally and in isolated aswin QA.
+  Evidence stack-image-budget-tests.json; logs /tmp/pods-image-budget-full-{local,qa}-final.txt.
+  Source7190physical lines:3718product/tooling +2375tests +933examples +164browser.
   Evidence code-lines.json defines exclusions; do not count generated/evidence files.
 
 ## Next native gate: Streamlit
 
-- Phoenix is complete; no build/launch watcher is running. Quota snapshot at09:57:10UTC
+- Phoenix is complete. Streamlit build vDIc9sGiIvX_5MMI3Ui3PPo-yS0E01a3 failed
+  after188.557s at the image-store budget; no launch was attempted. Failure is
+  retained in stack-streamlit-storage-failure.json. The operator budget fix passed
+  192/192 local/Linux; deploy and verify before the next actual form retry.
+  No build/launch watcher is running. Quota snapshot at10:13:01UTC
   showed3account/global builds in the last hour and zero active builds. Next ordinary
-  slot2026-10-04T10:05:47.894000+00:00; recheck actual availability before submitting.
+  slot2026-10-04T10:30:30.874000+00:00; recheck actual availability before submitting.
   Quota3/account/hour,12global/hour: never bypass, switch account to evade quota,
   or import isolated QA artifacts into production.
-- Browser1 handles: stackQa6/tab1 completedPhoenix developer form; echoTab/tab2 stoppedPhoenix;
+- Browser1 handles: stackQa6/tab1 failedStreamlit developer form; echoTab/tab2 stoppedPhoenix;
   mongodbSupport/tab3 publicsupport. Re-markHandoff each new turn. After a browser
   context compaction, call cua.rewriteDocumentation before browser actions.
 - Set application folder examples/stacks/streamlit and submit through the actual developer
@@ -108,8 +112,9 @@ VM replacement durability or universal launches under20s without evidence.
 
 - LXD guest pods-fresh-matrix-01. Use /snap/lxd/current/bin/lxc; snapwrapper broken.
   Run as uid/gid1000. Node /opt/node/bin/node, deps /opt/pods/node_modules.
-  Current candidate /output/sqlite-file-candidate-a6a7f5d, all322manifest hashes checked.
-  Tests189local/Linux. First incomplete snapshot failure is preserved, not a product bug.
+  Current candidate /output/image-budget-candidate-4aa0a94, all322manifest hashes checked.
+  Tests192local/Linux. Final archive overwrite failure was a transfer issue; a new
+  archive path was verified before the passing run. See stack-image-budget-tests.json.
 - Retain unrelated QA serverPID292107, app18090/proxy8081/host18890. All current scoped
   preflight containers, volumes and storage directories were cleaned. Cleanup only
   explicitly recorded dataKey/project paths; keep shared runtime and caches.

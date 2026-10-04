@@ -1,0 +1,49 @@
+{
+  "recordedAt": "2026-10-04T10:13:35.243065+00:00",
+  "failedBuild": {
+    "id": "vDIc9sGiIvX_5MMI3Ui3PPo-yS0E01a3",
+    "repository": {
+      "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+      "owner": "rizwanahamed13",
+      "name": "pods-launch-runtime-fresh",
+      "folder": "examples/stacks/streamlit",
+      "key": "239d840381e192f76f9bfb38"
+    },
+    "status": "failed",
+    "createdAt": 1791108378168,
+    "startedAt": 1791108378287,
+    "finishedAt": 1791108566844,
+    "error": "Prepared image storage is full."
+  },
+  "imageFiles": 53,
+  "storedImageBytes": 5212803563,
+  "imageInventorySha256": "00cf317406056879831110f0305e8628d1f042d1b38a535730a20cb59c52ce4b",
+  "artifactFiles": 123,
+  "artifactInventorySha256": "f9fe5805c3b5c9c838047608bf7879e3b05a24245e6e7fc817ef842639ee2183",
+  "diskTotalBytes": 210779168768,
+  "diskFreeBytes": 33811582976,
+  "configuredImageStorageBytes": 5368709120,
+  "scope": "Actual developer form preparation failed at the control-plane image-store admission limit after isolated build and packaging. No native launch was attempted; this is not application or provider acceptance.",
+  "submittedAt": "2026-10-04T10:06:17.625Z",
+  "quotaBefore": {
+    "at": "2026-10-04T10:06:12.519360+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "developerForm": {
+    "status": "Preparation needs attention",
+    "message": "Prepared image storage is full."
+  },
+  "quotaAfter": {
+    "at": "2026-10-04T10:13:01.153398+00:00",
+    "status": "waiting",
+    "accountBuildsLastHour": 3,
+    "globalBuildsLastHour": 3,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": "2026-10-04T10:30:30.874000+00:00"
+  },
+  "nativeAcceptanceAdded": false
+}

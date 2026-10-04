@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, rm, readFile, readdir } from 'node:fs/promises';
+import { mkdtemp, rm, readFile, readdir, mkdir, writeFile, open } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createServer } from 'node:http';
@@ -29,6 +29,67 @@ async function waitFor(predicate) {
   throw new Error('Test timed out waiting for the build state.');
 }
 const idleAdapter = { initialize: async () => {}, close: async () => {} };
+
+function containerOutput(repo, contents) {
+  const image = { id: 'sha256:' + digest(contents), sha256: digest(contents), bytes: contents.length };
+  const bytes = gzipSync(JSON.stringify({ format: 2, runtime: 'docker', healthPath: '/', containers: {
+    web: 'web', port: 8080, images: [image], services: { web: { image: image.id } },
+  } }));
+  return { bytes, manifest: { ...output(repo).manifest, applicationType: 'container', sha256: digest(bytes), bytes: bytes.length },
+    blobs: [{ sha256: image.sha256, bytes: contents }] };
+}
+
+test('image storage budget rejects overflow without altering existing artifacts and accepts its exact boundary', async () => {
+  const root = await temp(), store = new Store(root, 'ab'.repeat(32));
+  let contents = Buffer.from('first');
+  const manager = new BuildManager({ store, data: root, origin: 'https://pods.example', imageStorageBytes: 8,
+    adapter: { ...idleAdapter, build: async repo => containerOutput(repo, contents) } });
+  try {
+    await mkdir(join(root, 'images')); await writeFile(join(root, 'images', 'existing.gz'), 'old');
+    await manager.initialize();
+    const first = manager.submit('browser', 'github:one', { url: repository.url });
+    await waitFor(() => !manager.running);
+    const published = manager.own('browser', first.id); assert.equal(published.status, 'ready');
+    const catalog = (await readdir(join(root, 'artifacts'))).sort();
+    contents = Buffer.from('next');
+    const second = manager.submit('browser', 'github:one', { url: repository.url });
+    await waitFor(() => !manager.running);
+    assert.equal(manager.own('browser', second.id).status, 'failed');
+    assert.match(manager.own('browser', second.id).error, /Prepared image storage is full/);
+    assert.deepEqual((await readdir(join(root, 'artifacts'))).sort(), catalog);
+    assert.deepEqual((await readdir(join(root, 'images'))).sort(), [digest(Buffer.from('first')) + '.gz', 'existing.gz'].sort());
+    assert.equal(await readFile(join(root, 'images', 'existing.gz'), 'utf8'), 'old');
+    assert.deepEqual(JSON.parse(await readFile(join(root, 'artifacts', published.app.id + '.json'))), published.app);
+  } finally { await manager.close(); store.close(); await rm(root, { recursive: true, force: true }); }
+});
+
+test('operator image budget permits a store above 5 GiB while retaining the account build quota', async () => {
+  const root = await temp(), store = new Store(root, 'ab'.repeat(32)), previous = process.env.PODS_IMAGE_STORAGE_BYTES;
+  let manager;
+  try {
+    process.env.PODS_IMAGE_STORAGE_BYTES = String(8 * 1024 ** 3);
+    manager = new BuildManager({ store, data: root, origin: 'https://pods.example',
+      adapter: { ...idleAdapter, build: async repo => containerOutput(repo, Buffer.from('prepared image')) } });
+    await mkdir(join(root, 'images'));
+    const sparse = await open(join(root, 'images', 'existing.gz'), 'w');
+    try { await sparse.truncate(5 * 1024 ** 3); } finally { await sparse.close(); }
+    await manager.initialize();
+    for (let i = 0; i < 3; i++) {
+      const job = manager.submit('browser', 'github:one', { url: repository.url });
+      await waitFor(() => !manager.running); assert.equal(manager.own('browser', job.id).status, 'ready');
+    }
+    assert.throws(() => manager.submit('browser', 'github:one', { url: repository.url }), e => e.status === 429);
+  } finally {
+    if (previous === undefined) delete process.env.PODS_IMAGE_STORAGE_BYTES; else process.env.PODS_IMAGE_STORAGE_BYTES = previous;
+    await manager?.close(); store.close(); await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('invalid operator image budgets fail before builder initialization', () => {
+  for (const imageStorageBytes of [0, -1, 1.5, NaN, Infinity, Number.MAX_SAFE_INTEGER + 1, '8', null]) {
+    assert.throws(() => new BuildManager({ imageStorageBytes }), /PODS_IMAGE_STORAGE_BYTES/);
+  }
+});
 
 test('container output must match repository, integrity and HTML verification; published metadata is reconstructed', () => {
   const result = output();

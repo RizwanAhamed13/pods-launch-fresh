@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **189 passing checks in full local and isolated aswin QA runs**. Native coverage is 53 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **192 passing checks in full local and isolated aswin QA runs**. Native coverage is 53 Google browser fixtures and
 53 Codespaces HTTP/protocol fixtures; 2 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
@@ -235,3 +235,9 @@ a stable production hostname remains a deployment requirement.
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)
   preserve older measurements and the implementation timeline.
+
+Streamlit native preparation hit the shared prepared-image storage budget before
+publication; [the failed attempt](evidence/stack-streamlit-storage-failure.json) is
+retained. The operator budget is now configurable, with [192 passing local and
+isolated Linux checks](evidence/stack-image-budget-tests.json). Streamlit and
+Symfony still require native acceptance; no coverage pass was added for this fix.
