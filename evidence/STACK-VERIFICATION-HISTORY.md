@@ -2382,3 +2382,38 @@ Cold/first delivery often misses20s; native Codespaces browser is still pending.
 No product/runtime change, source6995 and full184 remain valid. Regenerate
 with python3 evidence/stack-native-timing-report.py after each native acceptance.
 The temporary file-counter documentation helper now invokes it automatically.
+
+
+## PHP native product acceptance
+
+The actual developer form prepared `examples/stacks/php` from fixture
+revision `d6da2ed780ae` in **248.459 seconds** after ordinary same-account
+quota availability. Artifact `afdc81b489bd07093d81b01f676f17aac9fdc4159793d4e478e304e1e8dea17f` contains **222,191,011 image bytes**.
+No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell RUNNING, first image delivery | Server healthy 62.295s; product visible 64.308s; counter read 65.309s; button write 65.598s |
+| Cloud Shell cached relaunch | Server healthy 6.288s; product visible 7.541s; saved value restored 7.653s; next write 7.934s |
+| Codespaces initially Shutdown | Server healthy 89.180s; delivery/startup 76.538s; image cache hits 0 |
+| Codespaces cached relaunch | Server healthy 8.216s; authenticated HTTP write/read and saved-file inspection passed |
+
+Google browser buttons, reloads and full application stops verified **0→1→2**
+without console warnings or errors. Product visibility matched its h1.
+Codespaces authenticated HTTP verified the same sequence. Direct inspection
+checked the recipe command, single web service, project network, assigned product
+port **20228** and persistent workspace volume. The copied file counter matched
+each write. This check does not independently identify the framework version;
+the pinned source and real server build identify the prepared fixture.
+
+Both Google launches completed and stopped before Codespaces tests began. All
+four launches ended stopped; the Codespaces product port remained private.
+Audit at 2026-10-04T07:58:20.270649+00:00 confirmed health200, SQLite integrity ok, no active
+builds/launches and unchanged service PID/runner SHA. These are file-persistence
+and fixture-specific timing results. Native Codespaces browser interaction and
+VM replacement durability remain unverified.
+
+Evidence: `stack-php-{url,google,codespaces,audit}.json`. Coverage is now
+**55 isolated / 47 Google browser / 47 Codespaces protocol**, with **8** native
+fixtures pending. Full suite **184/184** and source **6,995 lines** remain valid;
+this acceptance changed only evidence and documentation.

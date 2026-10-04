@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-04T07:58:20.192113+00:00",
+  "controlRevision": "5dde1e5",
+  "checkoutRevision": "eff8450693880dbeb1ce57ca2b683dbc2c6166a0",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T07:47:12.314402+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T07:47:20.450Z",
+  "attempts": [
+    {
+      "id": "X7zjH9GZqqiYUrJuq9h0CBzdEU2XyuHk",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/php",
+        "key": "01fb4736a4428be595bbd312"
+      },
+      "status": "ready",
+      "createdAt": 1791100041377,
+      "startedAt": 1791100041388,
+      "finishedAt": 1791100289847,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-01fb4736a4428be595bbd312-d6da2ed780ae-afdc81b489bd",
+      "app": {
+        "id": "repo-01fb4736a4428be595bbd312-d6da2ed780ae-afdc81b489bd",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "afdc81b489bd07093d81b01f676f17aac9fdc4159793d4e478e304e1e8dea17f",
+        "bytes": 278,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-01fb4736a4428be595bbd312",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/php",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "PHP counter"
+        },
+        "preparedAt": "2026-10-04T07:51:29.054Z",
+        "images": [
+          {
+            "id": "sha256:4257784d9ddc9d0730456b490e36045405694d29206bcf3793fe33906ac33647",
+            "sha256": "9afffcdf234742959abefb9e6166d99b84dd8d1071c79e329117bfd3f9c3ef9a",
+            "bytes": 222191011
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 248459
+}

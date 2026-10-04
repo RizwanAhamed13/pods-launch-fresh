@@ -1043,7 +1043,11 @@
       "serverEvidence": "stack-matrix-18.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-02.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-php-url.json",
+        "stack-php-google.json",
+        "stack-php-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-02.json",
@@ -1053,7 +1057,12 @@
           "evidence": "stack-matrix-18.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      },
+      "nativeProviderScope": "php passed native Google product button, reload and file retention across full stop/relaunch. Codespaces authenticated HTTP product, writes, saved file inspection and full restart persistence passed. Native Codespaces browser interaction remains pending."
     },
     {
       "fixture": "preact",
