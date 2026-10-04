@@ -395,3 +395,11 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   watcher98548 is terminal. Resume35120 rather than launching a duplicate.
 - Compatibility checks3/3 passed after coverage update. Updated README,
   PRODUCT and SUPPORT also reflect the prior Google recovery gate146tests.
+- Native acceptance published41249c7 to local/aswin. Public support DOM verified
+  55/34/34, FastAPI Passed/Passed/Passed and Codespaces browserpendingwarning.
+- Nextfixture selected: Flask + MariaDB (new native database coverage).
+  stackQa6/tab13 holds an unsubmitted draft examples/stacks/flask-mariadb.
+  Its existing Compose uses mariadb:11.4 with private /var/lib/mysql storage;
+  existing MySQL runtime inspection must not be misattributed to MariaDB.
+- Watcher35120 last confirmedlive: own3/global3/active0; nextordinaryslot
+  03:45:44.827UTC. Poll the samehandle. No other jobs/apps remain running.
