@@ -1,0 +1,7 @@
+{
+  "recordedAt": "2026-10-04T08:02:51.723Z",
+  "url": "https://collection-conferences-ages-clearly.trycloudflare.com/support",
+  "revision": "1af03ab",
+  "summary": "55 representative apps tested\n\nAll 55 passed isolated server builds and browser interaction. 47 passed native Google Cloud Shell browser checks; 47 passed Codespaces HTTP or protocol checks.\n\nCodespaces browser sign-in and interaction remain pending. A passing representative does not guarantee every repository using that framework will work.",
+  "row": "PHP\nPHP\n\tPassed\tPassed\tPassed"
+}

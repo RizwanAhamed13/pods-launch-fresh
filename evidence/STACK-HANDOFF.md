@@ -1274,3 +1274,11 @@ The temporary file-counter documentation helper now invokes it automatically.
   All four launches stopped; no service restart. Coverage55/47/47;8nativepending.
   Source6995/full184 unchanged. Existing GitHub2FA/VMreplacement/stablehostname
   inputs remain pending. Goal active and progressing.
+
+
+## PHP publication verified
+
+- Evidence revision `1af03ab` pushed and fast-forwarded on aswin without service restart.
+- Public support page verified at 2026-10-04T08:02:51.723Z: **55 isolated / 47 Google browser / 47 Codespaces protocol**. PHP shows Passed on each path; Codespaces browser remains pending. Saved in `stack-php-published.json`.
+- All PHP launches are stopped. Next developer draft is `examples/stacks/sinatra`, not submitted. Normal quota watcher reports next ordinary slot 2026-10-04T08:05:23.832000+00:00; no bypass.
+- Native timing report now includes 90 observations, with 49 provider/fixture pairs explicitly excluded for missing or noncanonical timing provenance. Cached results do not establish a universal 20-second launch guarantee.
