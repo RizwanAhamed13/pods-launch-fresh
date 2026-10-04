@@ -66,7 +66,7 @@ if(redisRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-redis'
 if(valkeyRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-valkey')throw new Error('Valkey runtime inspection is restricted to its explicit fixture');
 if(sqliteRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-sqlite')throw new Error('SQLite runtime inspection is restricted to its explicit fixture');
 if(goRuntimeCheck&&!['go','echo','fiber'].some(fixture=>selectedApp.source?.folder==='examples/stacks/'+fixture))throw new Error('Go runtime inspection is restricted to its explicit fixtures');
-if(fileCounterRuntimeCheck&&!['actix','axum','rocket','aspnet'].some(fixture=>selectedApp.source?.folder==='examples/stacks/'+fixture))throw new Error('File counter inspection is restricted to its explicit fixtures');
+if(fileCounterRuntimeCheck&&!['actix','axum','rocket','aspnet','deno','php','sinatra'].some(fixture=>selectedApp.source?.folder==='examples/stacks/'+fixture))throw new Error('File counter inspection is restricted to its explicit fixtures');
 if(staticCheck&&selectedApp.source?.folder!=='examples/stacks/'+staticFixture)throw new Error('Static inspection is restricted to its explicit fixture');
 if(ssrCheck&&selectedApp.source?.folder!=='examples/stacks/'+ssrFixture)throw new Error('SSR inspection is restricted to its explicit fixture');
 if(dashboardCheck&&selectedApp.source?.folder!=='examples/stacks/'+dashboardFixture)throw new Error('Dashboard inspection is restricted to its explicit fixture');

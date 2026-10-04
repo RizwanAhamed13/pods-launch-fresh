@@ -1,6 +1,6 @@
 // Restricted native acceptance fixtures; never execute tools inside the application.
 export async function probeFileCounterRuntime(dataKey,{port,expectedCount,fixture},execute) {
-  const profiles={actix:['/product',[]],axum:['/product',[]],rocket:['/product',[]],aspnet:['dotnet',['Counter.dll']]};
+  const profiles={actix:['/product',[]],axum:['/product',[]],rocket:['/product',[]],aspnet:['dotnet',['Counter.dll']],deno:['/product',[],'counter.txt'],php:['docker-php-entrypoint',['php','-S','0.0.0.0:8080','-t','.']],sinatra:['bundle',['exec','rackup','--host','0.0.0.0','--port','8080']]};
   if(!Object.hasOwn(profiles,fixture))throw new Error('Unsupported file counter fixture');
   if(!/^[a-z0-9][a-z0-9-]{0,159}$/.test(dataKey||''))throw new Error('Invalid application data identity');
   if(!Number.isInteger(port)||port<1024||port>65535)throw new Error('Invalid product port');
@@ -20,7 +20,7 @@ export async function probeFileCounterRuntime(dataKey,{port,expectedCount,fixtur
   if(!/^[a-f0-9]{12,64}$/.test(id))throw new Error('Expected exactly one file counter web container');
   const format='{"service":{{json (index .Config.Labels "com.docker.compose.service")}},"networkMode":{{json .HostConfig.NetworkMode}},"ports":{{json .HostConfig.PortBindings}},"mounts":{{json .Mounts}},"running":{{json .State.Running}},"path":{{json .Path}},"args":{{json .Args}}}';
   const web=JSON.parse(await execute(['inspect','--format',format,id]));
-  const [path,args]=profiles[fixture];
+  const [path,args,filename='count']=profiles[fixture];
   if(web.service!=='web'||!web.running||web.networkMode!==project+'_default'||web.path!==path||JSON.stringify(web.args)!==JSON.stringify(args))throw new Error('Unexpected file counter command or application boundary');
   const ports=Object.entries(web.ports||{}).filter(([,bindings])=>bindings?.length);
   if(ports.length!==1||ports[0][0]!=='8080/tcp'||ports[0][1].some(p=>p.HostPort!==String(port)))throw new Error('Unexpected public product port');
@@ -31,7 +31,7 @@ export async function probeFileCounterRuntime(dataKey,{port,expectedCount,fixtur
   const temporary=await mkdtemp(join(tmpdir(),'pods-file-counter-inspection-'));
   try {
     const recordPath=join(temporary,'count');
-    await execute(['cp',id+':/data/count',recordPath]);
+    await execute(['cp',id+':/data/'+filename,recordPath]);
     const file=await lstat(recordPath);
     if(!file.isFile()||file.size>32)throw new Error('Unexpected counter inspection file');
     const value=(await readFile(recordPath,'utf8')).trim(),savedCount=Number(value);

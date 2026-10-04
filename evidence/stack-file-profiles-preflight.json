@@ -1,0 +1,257 @@
+{
+  "recordedAt": "2026-10-04T07:22:17.807283+00:00",
+  "baseRevision": "4c96520c430ddbc7c4ee4e6a8cf83fd1d7917217",
+  "sourceHashes": {
+    "src/runner.mjs": "de3680794b58f02d4e912810164e79049559fe994556501ec6969bd3cf3dafde",
+    "src/container-runtime.mjs": "51c866cf69fab25476f0cb286747db4c5f2aaa34c2e093b9580444970d970374",
+    "src/storage-transition.mjs": "4bf7ba7c9489cb1d2afbe372ac54e1d37c0dc3a9fe48a34f13f6bcc6300dc161",
+    "src/containers.mjs": "1c1a811c983f666d7a4c222bd115a56268263d28e6737133e6d84ab451a57eba",
+    "scripts/live-codespaces.mjs": "fbcd98163433f7daec2a35b585821f22cfb2d3d4b534c52501750d4d9dad2f10",
+    "scripts/probe-file-counter-runtime.mjs": "249ce3d3d884620861e9583032afd456aab9cb00af6fd68dff41d93a0ad3e597",
+    "test/file-counter-runtime-probe.test.mjs": "804d5c1229d2fa7738b1c7cd0855b9193a9e6983f843712ad4af266d6f81f3d4",
+    "evidence/stack-file-profiles-live.mjs": "6de4fd2388354e0863e641700f8104c9a8e855495e6b6789e884fafb59668d8d"
+  },
+  "qaCandidate": "/output/file-profiles-candidate-4c96520",
+  "snapshotManifestSha256": "89d904517cd9b1b71368a23184ddf6f61b8ef2b3822b73e307241d49af0d1ec0",
+  "snapshotFilesMatched": 320,
+  "scope": "Shared native file-counter inspection helper on pinned real PHP, Sinatra and compiled Deno artifacts in isolated aswin QA. Does not add native-provider or new browser acceptance.",
+  "results": [
+    {
+      "recordedAt": "2026-10-04T07:19:50.542Z",
+      "fixture": "php",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+      "dataKey": "php-chunked-a46ac2b2e32ecc24",
+      "project": "pods-4fa66351e04b02d028a5a3dc",
+      "artifactSha256": "e5f7104a97fd9ce67a922c38e1fadfdbbc7701fdce46ac04d9162a844428da26",
+      "images": [
+        {
+          "id": "sha256:4e5cd41ffc2547713f52f4c3b3eef33e544379bf547c14302ac0a9b3e8cbb54a",
+          "sha256": "347fe45e7cc6242cfaf9f2244dbb62b1b59027de186f903c61ea83ecd0c742fa",
+          "bytes": 222193162
+        }
+      ],
+      "sourceSha256": "d24e79adbceba54f76d9da775080f525a0b6b9900f421ad64f8cab4faea8a501",
+      "records": [
+        {
+          "storage": {
+            "passed": true,
+            "fixtureProfile": "php",
+            "project": "pods-4fa66351e04b02d028a5a3dc",
+            "services": [
+              "web"
+            ],
+            "savedCount": 1,
+            "volume": "pods-4fa66351e04b02d028a5a3dc_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+          },
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "storage": {
+            "passed": true,
+            "fixtureProfile": "php",
+            "project": "pods-4fa66351e04b02d028a5a3dc",
+            "services": [
+              "web"
+            ],
+            "savedCount": 2,
+            "volume": "pods-4fa66351e04b02d028a5a3dc_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+          },
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T07:20:03.650Z",
+      "fixture": "sinatra",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+      "dataKey": "sinatra-chunked-2f0bdf007108ee58",
+      "project": "pods-0f00f18a6b479ec9f313d2d8",
+      "artifactSha256": "61415baf2faa6d9d73280c9b05d5f1d5f47a65981d73c20aa8ebfbdd9b59d203",
+      "images": [
+        {
+          "id": "sha256:301db020770905e95333028288dbb4290d7268148a5cbc7bb51901d38e98f31e",
+          "sha256": "2c28556bcd085342f6a440294d7722365f0410959b25c7c654a58ffe293cfeb8",
+          "bytes": 72508238
+        }
+      ],
+      "sourceSha256": "4abfb7f862b7dac94085a2625f59d064ec10c15e6a41acabd081f6857ad10301",
+      "records": [
+        {
+          "storage": {
+            "passed": true,
+            "fixtureProfile": "sinatra",
+            "project": "pods-0f00f18a6b479ec9f313d2d8",
+            "services": [
+              "web"
+            ],
+            "savedCount": 1,
+            "volume": "pods-0f00f18a6b479ec9f313d2d8_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+          },
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "storage": {
+            "passed": true,
+            "fixtureProfile": "sinatra",
+            "project": "pods-0f00f18a6b479ec9f313d2d8",
+            "services": [
+              "web"
+            ],
+            "savedCount": 2,
+            "volume": "pods-0f00f18a6b479ec9f313d2d8_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+          },
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    },
+    {
+      "recordedAt": "2026-10-04T07:20:36.142Z",
+      "fixture": "deno",
+      "scope": "Isolated real framework artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+      "dataKey": "deno-chunked-1897d39f081cff57",
+      "project": "pods-d992b5f1a30ba8f00bb73cbb",
+      "artifactSha256": "21f01a08587ef3bef871b7b953be04cc8c0fd9e0600ae5f5d9329f335fa3f376",
+      "images": [
+        {
+          "id": "sha256:6506e90c1e25ed4b6b9547fee5199e8ea027150d31e827ab5a48842e1c0011e2",
+          "sha256": "57dc4024bbac45b14cba1a7aac63428569f546a25bd2d429dc62324af27ddf2c",
+          "bytes": 61421310
+        }
+      ],
+      "sourceSha256": "321b7dfcb4906db32ae03c19f15e023636a42359acdebaf7f8acb105c9e065a5",
+      "records": [
+        {
+          "storage": {
+            "passed": true,
+            "fixtureProfile": "deno",
+            "project": "pods-d992b5f1a30ba8f00bb73cbb",
+            "services": [
+              "web"
+            ],
+            "savedCount": 1,
+            "volume": "pods-d992b5f1a30ba8f00bb73cbb_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+          },
+          "scenario": "first-launch",
+          "before": 0,
+          "post": {
+            "status": 200,
+            "count": 1
+          },
+          "afterRead": 1,
+          "transferEncoding": "chunked",
+          "contentType": null
+        },
+        {
+          "storage": {
+            "passed": true,
+            "fixtureProfile": "deno",
+            "project": "pods-d992b5f1a30ba8f00bb73cbb",
+            "services": [
+              "web"
+            ],
+            "savedCount": 2,
+            "volume": "pods-d992b5f1a30ba8f00bb73cbb_app-data-disk-v1",
+            "durableWorkspaceVolume": true,
+            "productHostPorts": [
+              18095
+            ],
+            "databaseHostPorts": [],
+            "scope": "Read-only inspection of the fixture command, saved file counter and persistent workspace volume. Does not independently identify the framework version or prove database, power-loss or VM replacement durability."
+          },
+          "scenario": "full-relaunch",
+          "before": 1,
+          "post": {
+            "status": 200,
+            "count": 2
+          },
+          "afterRead": 2,
+          "transferEncoding": "chunked",
+          "contentType": null
+        }
+      ],
+      "passed": true,
+      "cleanup": {
+        "containersStopped": true,
+        "probeVolumeRemoved": true,
+        "probeStorageDirectoriesRemoved": true,
+        "sharedRuntimeAndCacheRetained": true
+      }
+    }
+  ]
+}

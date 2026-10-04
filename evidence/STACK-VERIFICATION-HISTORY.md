@@ -2286,3 +2286,24 @@ Evidence: `stack-rocket-{url,google,codespaces,audit}.json`. Coverage is now
 **55 isolated / 45 Google browser / 45 Codespaces protocol**, with **10** native
 fixtures pending. Full suite **184/184** and source **6,994 lines** remain valid;
 this acceptance changed only evidence and documentation.
+
+
+## PHP, Sinatra and Deno native inspection preflight
+
+The shared opt-in file-counter inspector now recognizes the exact plain PHP,
+Sinatra and compiled Deno fixture commands. Deno stores counter.txt; the other
+file-backed representatives use count. PHP and Sinatra support documentation
+now distinguishes their file persistence from the SQLite Laravel/Symfony/Rails
+fixtures. No application runtime or provider changes were needed.
+
+Pinned real artifacts passed empty chunked POST writes and read-back 0→1→2
+across full application stops, plus direct saved-file, private network, assigned
+port and persistent volume inspection. Scoped test containers, named volumes
+and storage directories were removed; shared runtime/cache retained. This is
+isolated QA evidence, not new native-provider or browser acceptance.
+
+All seven fixed recipe commands/filenames passed direct and fresh-process
+serialized unit cases. Full suite184/184 passed locally and in Linux QA after
+all320 snapshot files matched the recorded manifest. Physical source6995lines.
+Evidence: stack-file-profiles-{live.mjs,preflight.json,tests.json}.
+Coverage remains55 isolated /45 Google browser /45 Codespaces protocol.

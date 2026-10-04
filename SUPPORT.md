@@ -61,8 +61,8 @@ QA guest; provider tests are recorded separately below.
 | Go | net/http, Gin, Echo, Fiber | Persistent record write/read/restart and browser reload passed |
 | Rust | Axum, Actix Web, Rocket | Persistent record write/read/restart and browser reload passed |
 | .NET | ASP.NET Core, Blazor Server | ASP.NET file counter and Blazor SQLite write/read/restart; Blazor interactive server UI passed |
-| PHP | Plain PHP, Laravel, Symfony | SQLite write/read/restart and browser reload passed |
-| Ruby | Sinatra, Rails | SQLite write/read/restart and browser reload passed |
+| PHP | Plain PHP, Laravel, Symfony | Plain PHP file persistence; Laravel/Symfony SQLite write/read/restart and browser reload passed |
+| Ruby | Sinatra, Rails | Sinatra file persistence; Rails SQLite write/read/restart and browser reload passed |
 | Other runtimes | Compiled Deno, compiled Bun, Elixir/Phoenix | Product and persistent record passed; Bun WebSocket ping/pong and live UI passed |
 | JSON API product | FastAPI API + SQLite | Existing Swagger UI discovered automatically; browser API write/read and database restart passed |
 | Combined application | React + Express + PostgreSQL | Browser write/reload and full database restart passed |
@@ -176,9 +176,12 @@ a stable production hostname remains a deployment requirement.
 - [Shared dashboard helper](evidence/stack-dashboard-helper-preflight.json) verifies
   the exact serialized native harness against real Gradio and Streamlit artifacts.
   Their native provider acceptance still needs separate runs.
-- [Full-suite result](evidence/stack-dashboard-helper-tests.json): **184/184**
+- [PHP, Sinatra and Deno file persistence preflight](evidence/stack-file-profiles-preflight.json)
+  verifies their exact launch commands, stored values and persistent volumes after
+  full stops. These isolated checks do not add native-provider acceptance.
+- [Full-suite result](evidence/stack-file-profiles-tests.json): **184/184**
   checks passed locally and in isolated aswin Linux QA.
-- [Physical source count](evidence/code-lines.json): **6,994 lines**, including
+- [Physical source count](evidence/code-lines.json): **6,995 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)

@@ -11,19 +11,20 @@ const key='repo-file-counter-fixture',port=24567,id='b'.repeat(12),project='pods
 const web={service:'web',networkMode:project+'_default',ports:{'8080/tcp':[{HostPort:String(port)}]},mounts:[{Destination:'/data',Type:'volume',RW:true,Name:project+'_app-data-disk-v1'}],running:true,path:'/product',args:[]};
 const volume={driver:'local',options:{type:'none',o:'bind',device:`/workspaces/.pods-launch/volumes/${project}/app-data/data`}};
 const options={port,expectedCount:4,fixture:'actix'};
-function executor({value='4',runtime=web,storage=volume,ids=id,copy}={},calls=[]){return async args=>{
+const recipes={actix:['/product',[]],axum:['/product',[]],rocket:['/product',[]],aspnet:['dotnet',['Counter.dll']],deno:['/product',[],'counter.txt'],php:['docker-php-entrypoint',['php','-S','0.0.0.0:8080','-t','.']],sinatra:['bundle',['exec','rackup','--host','0.0.0.0','--port','8080']]};
+function executor({value='4',runtime=web,storage=volume,ids=id,copy,filename='count'}={},calls=[]){return async args=>{
   calls.push(args);
   if(args[0]==='ps')return ids;
   if(args[0]==='inspect')return JSON.stringify(runtime);
   if(args[0]==='volume')return JSON.stringify(storage);
-  assert.deepEqual(args.slice(0,2),['cp',id+':/data/count']);
+  assert.deepEqual(args.slice(0,2),['cp',id+':/data/'+filename]);
   if(copy)await copy(args[2]);else await writeFile(args[2],value);
   return '';
 };}
 test('file counter inspection verifies each explicit recipe command, stored value and workspace volume without container execution',async()=>{
-  for(const fixture of ['actix','axum','rocket','aspnet']){
-    const calls=[],runtime=fixture==='aspnet'?{...web,path:'dotnet',args:['Counter.dll']}:web;
-    const result=await probeFileCounterRuntime(key,{...options,fixture},executor({runtime},calls));
+  for(const [fixture,[path,args,filename='count']] of Object.entries(recipes)){
+    const calls=[],runtime={...web,path,args};
+    const result=await probeFileCounterRuntime(key,{...options,fixture},executor({runtime,filename},calls));
     assert.equal(result.passed,true);assert.equal(result.fixtureProfile,fixture);assert.equal(result.savedCount,4);assert.equal(result.durableWorkspaceVolume,true);assert.deepEqual(result.productHostPorts,[port]);
     assert.deepEqual(result.databaseHostPorts,[]);assert.match(result.scope,/Does not independently identify the framework version/);
     assert.ok(calls.every(a=>['ps','inspect','volume','cp'].includes(a[0])));
@@ -50,11 +51,11 @@ test('file counter inspection refuses oversized files, directories and symlinks 
     await assert.rejects(access(dirname(calls.find(a=>a[0]==='cp')[2])));
   }
 });
-test('serialized file counter probe works independently for Rust and ASP.NET commands',async t=>{
+test('serialized file counter probe works independently for all fixed commands and counter filenames',async t=>{
   const root=await mkdtemp(join(tmpdir(),'pods-file-counter-probe-'));t.after(()=>rm(root,{recursive:true,force:true}));const fake=join(root,'docker');
-  for(const fixture of ['actix','axum','rocket','aspnet']){
-    const runtime=fixture==='aspnet'?{...web,path:'dotnet',args:['Counter.dll']}:web;
-    await writeFile(fake,`#!${process.execPath}\nconst fs=require('node:fs');const a=process.argv.slice(2);if(a[0]!=='--host'||a[1]!=='unix:///var/run/docker.sock')process.exit(2);if(a[2]==='cp'){if(a[3]!==${JSON.stringify(id+':/data/count')})process.exit(3);fs.writeFileSync(a[4],'4');}else process.stdout.write(a[2]==='ps'?${JSON.stringify(id)}:a[2]==='inspect'?${JSON.stringify(JSON.stringify(runtime))}:a[2]==='volume'?${JSON.stringify(JSON.stringify(volume))}:process.exit(4));\n`);await chmod(fake,0o700);
+  for(const [fixture,[path,args,filename='count']] of Object.entries(recipes)){
+    const runtime={...web,path,args};
+    await writeFile(fake,`#!${process.execPath}\nconst fs=require('node:fs');const a=process.argv.slice(2);if(a[0]!=='--host'||a[1]!=='unix:///var/run/docker.sock')process.exit(2);if(a[2]==='cp'){if(a[3]!==${JSON.stringify(id+':/data/'+filename)})process.exit(3);fs.writeFileSync(a[4],'4');}else process.stdout.write(a[2]==='ps'?${JSON.stringify(id)}:a[2]==='inspect'?${JSON.stringify(JSON.stringify(runtime))}:a[2]==='volume'?${JSON.stringify(JSON.stringify(volume))}:process.exit(4));\n`);await chmod(fake,0o700);
     const {stdout}=await promisify(execFile)(process.execPath,['--input-type=module','-e',fileCounterRuntimeProbeCommand(key,{...options,fixture})],{env:{...process.env,PATH:root+':'+process.env.PATH},timeout:10000});
     const result=JSON.parse(stdout);assert.equal(result.passed,true);assert.equal(result.savedCount,4);assert.equal(result.fixtureProfile,fixture);
   }
