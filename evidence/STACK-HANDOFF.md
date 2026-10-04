@@ -17,11 +17,11 @@ VM replacement durability, or a universal 20-second cold launch.
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
   saved format changes on actual environment capabilities.
-- Coverage:55 isolated build/artifact/browser passes;41 Google native browser
-  and41 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+- Coverage:55 isolated build/artifact/browser passes;42 Google native browser
+  and42 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Native Codespaces browser checks remain
-  pending authorization. The14 fixtures awaiting native acceptance are:
-  actix, aspnet, axum, deno, fiber, gradio,
+  pending authorization. The13 fixtures awaiting native acceptance are:
+  actix, aspnet, axum, deno, gradio,
   ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
 - Current full suite:173/173 passed locally and in isolated aswin QA after
   Go/Echo/Fiber inspection tooling. Logs /tmp/pods-go-framework-full-{local,qa}.txt.
@@ -916,3 +916,19 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   Existing GitHub2FA/VMreplacement/stablehostname inputs remainpending.
 
 - Transport preflight publishedbd877ec and synchronized to aswin. Audit at 2026-10-04T06:00:49.616389+00:00 confirmed health200/integrityok/zero active builds and launches, unchangedPID1063107/runnerSHA. No restart. Watcher95047 remains live; Fiber form unsubmitted.
+
+
+## Fiber native acceptance checkpoint
+
+- Build 0fTMQ1N7z7QaV28SjTXaOb47DwyVtlr6 submitted 2026-10-04T06:04:49.235Z, ready after 207644ms.
+  App repo-01ebe447da81a612713747af-d6da2ed780ae-469391b875d8; image bytes 7801893.
+- Google first/cached health8734/6362ms, product visible10617/7888ms,
+  write11849/8291ms. Counter0→1→2, reloads passed, console clean, both stopped.
+- Codespaces42370 ended0, existing environment pods-launch-containers-69rw5vx4xp46c5qw5;
+  first Shutdown health41463ms/delivery19557ms, cached7745ms.
+  Fiber3.5.0/Go1.26.8, compiled ELF/CGO0, saved file counters1/2, durablevolume/privateport21784.
+- Audit 2026-10-04T06:11:48.644769+00:00: health200/integrityok/zero active, unchangedPID1063107/runnerSHA.
+  All four launches stopped; no service restart. Coverage55/42/42;13 native pending.
+- All four Go fixtures now accepted on Google browser/Codespaces protocol. Source6703/full173 unchanged.
+  Actix is next; its isolated transport preflight already passed. No new preparation submitted.
+  GitHub2FA/VM replacement/stable-hostname inputs remain pending.

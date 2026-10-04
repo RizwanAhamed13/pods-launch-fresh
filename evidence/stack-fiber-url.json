@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-04T06:11:45.411664+00:00",
+  "controlRevision": "5dde1e5",
+  "checkoutRevision": "26727d3",
+  "scope": "Actual developer preparation form after ordinary same-account quota availability; production isolated build, no imported QA artifact.",
+  "quotaBefore": {
+    "at": "2026-10-04T06:03:56.868332+00:00",
+    "status": "available",
+    "accountBuildsLastHour": 2,
+    "globalBuildsLastHour": 2,
+    "activeBuilds": 0,
+    "nextOrdinarySlot": null
+  },
+  "submittedAt": "2026-10-04T06:04:49.235Z",
+  "attempts": [
+    {
+      "id": "0fTMQ1N7z7QaV28SjTXaOb47DwyVtlr6",
+      "repository": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "owner": "rizwanahamed13",
+        "name": "pods-launch-runtime-fresh",
+        "folder": "examples/stacks/fiber",
+        "key": "01ebe447da81a612713747af"
+      },
+      "status": "ready",
+      "createdAt": 1791093890289,
+      "startedAt": 1791093890301,
+      "finishedAt": 1791094097945,
+      "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-01ebe447da81a612713747af-d6da2ed780ae-469391b875d8",
+      "app": {
+        "id": "repo-01ebe447da81a612713747af-d6da2ed780ae-469391b875d8",
+        "name": "pods-launch-runtime-fresh",
+        "description": "",
+        "sha256": "469391b875d8acec3bc3cddc69d9a91f543b988496a3983853cf8cb794fc0ebf",
+        "bytes": 275,
+        "files": 0,
+        "healthPath": "/",
+        "applicationType": "container",
+        "runtime": "docker-linux-amd64",
+        "dataKey": "repo-01ebe447da81a612713747af",
+        "productType": "web",
+        "productPath": "/",
+        "source": {
+          "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+          "folder": "examples/stacks/fiber",
+          "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+        },
+        "verification": {
+          "documentPath": "/",
+          "status": 200,
+          "title": "Fiber counter"
+        },
+        "preparedAt": "2026-10-04T06:08:17.914Z",
+        "images": [
+          {
+            "id": "sha256:8e6da66d9bb3b17e6ffdfdf4d745606cc5ba5d10a148988a5f2294cced9cdaf7",
+            "sha256": "69228fa152deb2638eac7c4927439b3ded87ae9f0093b1a251a63770fa7c0621",
+            "bytes": 7801893
+          }
+        ]
+      }
+    }
+  ],
+  "buildMs": 207644
+}

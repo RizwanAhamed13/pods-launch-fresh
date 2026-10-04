@@ -85,8 +85,8 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **173 passing checks in full local and isolated aswin QA runs**. Native coverage is 41 Google browser fixtures and
-41 Codespaces HTTP/protocol fixtures; 14 still lack at least one native acceptance path. Codespaces
+later passing attempts do not erase them. Automated coverage is **173 passing checks in full local and isolated aswin QA runs**. Native coverage is 42 Google browser fixtures and
+42 Codespaces HTTP/protocol fixtures; 13 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Native launch performance
@@ -147,6 +147,10 @@ a stable production hostname remains a deployment requirement.
   [Cloud Shell browser](evidence/stack-echo-google.json), and
   [Codespaces protocol and framework inspection](evidence/stack-echo-codespaces.json).
   Both paths retained the file counter across full stop/relaunch.
+- Fiber native acceptance: [developer build](evidence/stack-fiber-url.json),
+  [Cloud Shell browser](evidence/stack-fiber-google.json), and
+  [Codespaces protocol and framework inspection](evidence/stack-fiber-codespaces.json).
+  All four Go fixtures now pass these native paths; Codespaces browser checks remain pending.
 - [Rust and ASP.NET transport preflight](evidence/stack-counter-transport-preflight.json)
   checks empty chunked POST and full-restart file persistence on isolated compute.
   These checks do not add native-provider acceptance.

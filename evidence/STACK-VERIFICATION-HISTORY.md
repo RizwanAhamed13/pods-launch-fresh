@@ -2070,3 +2070,37 @@ Evidence: `stack-counter-transport-preflight.json` and
 41 Google browser / 41 Codespaces protocol**. No implementation or existing test
 source changed; **173/173** full-suite results and **6,703 source lines** remain
 valid. Fiber native preparation awaits ordinary quota availability.
+
+
+## Fiber native product acceptance
+
+The actual developer form prepared `examples/stacks/fiber` from fixture revision
+`d6da2ed780ae` in **207.644 seconds** after ordinary same-account quota
+availability. Artifact `469391b875d8acec3bc3cddc69d9a91f543b988496a3983853cf8cb794fc0ebf` contains **7,801,893 image bytes**. No QA artifact was imported.
+
+| Native scenario | Observed result |
+| --- | --- |
+| Cloud Shell RUNNING, first image delivery | Server healthy 8.734s; product visible 10.617s; counter read 11.474s; button write 11.849s |
+| Cloud Shell cached relaunch | Server healthy 6.362s; product visible 7.888s; saved value restored 8.002s; next write 8.291s |
+| Codespaces initially Shutdown | Server healthy 41.463s; delivery/startup 19.557s; no cached image |
+| Codespaces cached relaunch | Server healthy 7.745s; authenticated HTTP write/read and framework inspection passed |
+
+Google browser buttons, reloads and full application stop/relaunch verified
+**0→1→2** without console warnings or errors. Product visibility matched its h1.
+Codespaces authenticated HTTP verified the same sequence, and fixed read-only
+inspection confirmed **Fiber v3.5.0**, **go1.26.8**,
+module `pods.example/fiber`, Linux x64 ELF and CGO disabled. The saved file value
+matched each product write; its volume is backed by the persistent workspace.
+Product port **21784** remains private. This fixture stores a file, not a database.
+
+Google launches completed and stopped before Codespaces tests began. All four
+launches ended stopped. Audit at 2026-10-04T06:11:48.644769+00:00 confirmed health200, SQLite
+integrity ok, zero active builds/launches and unchanged service PID/runner SHA.
+The stopped Codespace exceeded20s. Measurements are fixture-specific; native
+Codespaces browser interaction and VM replacement durability remain unverified.
+
+Evidence: `stack-fiber-{url,google,codespaces,audit}.json`. Coverage is now
+**55 isolated / 42 Google browser / 42 Codespaces protocol**, with **13** native
+fixtures pending. All four Go fixtures have passed these native paths. Full
+suite **173/173** and source **6,703 lines** remain valid because this step changed
+only evidence and documentation.

@@ -459,7 +459,11 @@
       "serverEvidence": "stack-matrix-11-progress.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-11.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-fiber-url.json",
+        "stack-fiber-google.json",
+        "stack-fiber-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-07.json",
@@ -469,7 +473,12 @@
           "evidence": "stack-matrix-11-progress.json",
           "status": "passed"
         }
-      ]
+      ],
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      },
+      "nativeProviderScope": "Fiber v3 passed native Google product button, reload and Fiber file retention across full stop/relaunch. Codespaces authenticated HTTP product, writes and full restart persistence passed. Native Codespaces browser interaction remains pending."
     },
     {
       "fixture": "flask-mariadb",
