@@ -1,11 +1,11 @@
 # Broad stack checkpoint
 
 Goal active and incomplete: developer URL → isolated aswin build → reusable
-artifact → authorized user compute → actual usable product. Latest gate deployed
-eight verified download ranges for large images, passed 242 local/Linux checks,
-and verified a fresh developer build plus five native launches. One Codespaces
-status-poll harness failed and its same running product required recovery; retain
-that failure. The first-image 20-second product target remains unmet.
+artifact → authorized user compute → actual usable product. Latest gate fixed native
+test evidence loss, passed 250 local/Linux checks and two cached Codespaces
+launches with persistent SQLite. Production launch behavior is unchanged. The
+earlier HTML status-poll failure and same-instance recovery remain recorded; the
+original response cause is unknown. First-image 20-second product target remains unmet.
 Do not mark the goal complete or blocked; meaningful work remains possible.
 
 ## Current verified state
@@ -21,17 +21,18 @@ Do not mark the goal complete or blocked; meaningful work remains possible.
   These are tested representatives, not every version or arbitrary application.
   Unknown secrets/schema/migrations require developer inputs; desktop/mobile/GPU/
   non-web products are excluded. Frontend localStorage is not backend DB durability.
-- Full suite 242/242 local and isolated Linux; stack-eight-ranges-tests.json verifies
-  335 snapshot input hashes. Current scoped source 8,187 physical lines:
-  4,015 product/tooling + 3,075 tests + 933 examples + 164 browser tools.
+- Full suite 250/250 local and isolated Linux; stack-live-evidence-tests.json verifies
+  336 snapshot input hashes. Current scoped source 8,347 physical lines:
+  4,030 product/tooling + 3,220 tests + 933 examples + 164 browser tools.
   Archived diagnostic reproducers in evidence/probes are outside that scope.
-- Deployed runtime revision 723edfafccdbef383a413c744d11dc2d24c0c61e, PID 1508835.
+- Current source fff99254886c0beea3d5715168a605cc915888c4 (harness only).
+  Running production revision 723edfafccdbef383a413c744d11dc2d24c0c61e, PID 1508835.
   Server e189ffd; preview helper 7a28920; providers/deferred-command b9be575;
   builder 2553fc8; storage 77cf340.
   Runner SHA be41ee8a471d684705100e8353a1d7cc34ea1e8d89b2575a6e155f1d50eef13d.
 - stack-eight-ranges-deployment.json records health200/SQLiteok and preservation
   of 58 image files/133 artifacts and .env. A later ordinary build adds artifacts.
-- Final audit 2026-10-04T13:35:08.763838+00:00: same PID/runner/revision,
+- Final audit 2026-10-04T13:44:23.215453+00:00: same PID/runner, source fff9925,
   health200, SQLiteok, zero active builds/launches. All test launches stopped.
   Docs-only sync does not require a restart.
 
@@ -93,17 +94,42 @@ Do not mark the goal complete or blocked; meaningful work remains possible.
   Existing Docker layers/caches were retained; not an empty-machine benchmark.
   Native Codespaces browser and first-image20s remain unproven/unmet respectively.
 
-## Next bounded gate
+## Completed native test-harness fix
 
-- Fix the evidenced native test-harness gap: scripts/live-codespaces.mjs only
+- The evidenced gap was: scripts/live-codespaces.mjs only
   appends a launch result after ready/failed/stopped. A non-JSON status response
   before that point loses its durable launch ID, error and stop confirmation.
-  Persist each launch immediately and capture safe HTTP status/content-type diagnostics;
-  preserve cleanup for the actual launch and avoid retrying writes/launch mutations.
-  Test failure during status polling, stop success/failure and second-attempt identity
-  without spending live provider quota, then run a bounded native cached acceptance.
-  Production browser polling has not been inspected for this issue; do not assume it
-  shares the bug. Do not repeatedly rebuild unchanged code to chase a timing pass.
+  Fixed at fff9925: persist an attempt before POST and its launch identity before
+  GET polling; persist each observed state. Error/cleanup metadata belongs to the
+  current attempt, with HTTP status and normalized content type but no response body.
+  Ambiguous launch POST is never repeated; ambiguous stop POST is reconciled with
+  GET without repeating the mutation. This is harness-only, no production restart.
+- stack-live-evidence-tests.json: seven cases failed old code and its success case
+  passed. All eight new cases and full250 local/Linux pass after the fix. Real CLI
+  subprocesses use a loopback HTTP server. Tests cover HTTP503 HTML, HTTP200 HTML,
+  malformed JSON, unsuccessful cleanup, interrupted repeat, ambiguous launch/stop,
+  and two successful launches. No provider failure was injected. Initial account/
+  bootstrap failures and process/filesystem crashes are outside this gate's scope.
+- stack-live-evidence-native.json: two cached launches on the same prepared image:
+  5sUJ3jPK-BbC4YlY48KPzrS2ITXq-IXo healthy10829ms;
+  kwCbwbQsUUibOK3Kd5czs6bW90_ZLGJ6 healthy9249ms.
+  Authenticated product HTTP and online SQLite integrity17→18→19 passed through
+  full stops, private26630/no DBports/no pause. Both recorded stop accepted/stopped,
+  no test or cleanup errors. Worker69991 terminal0. Native browser remains unverified.
+  See receipt for initial compute states and final idle audit; cached timings do not
+  add first-image evidence or establish a speedup. Google count remains12.
+
+## Next bounded gate
+
+- Production browser polling is now inspected: public/app.js poll() catches any
+  error, stops scheduling polls and requires the user to click Check progress.
+  Its api() unconditionally parses JSON, so a transient HTML response could force
+  that extra step. This is a code-derived hypothesis, not a reproduced native browser
+  failure. Reproduce with the real client and controlled responses, then implement
+  bounded read-only recovery that preserves the same build/launch ID and automatic
+  product navigation. Never retry creation/write mutations or conceal auth failures.
+  Verify normal success, temporary errors, persistent failure limits, and stale
+  responses after navigation/operation changes. Keep production edits scoped.
 - Continue measured work on first-image/preview costs after evidence reliability.
   Preserve private preview gating, signed delivery, integrity, caches and saved data.
 - Pending questions remain GitHub native-browser2FA, stable production hostname,
@@ -129,14 +155,16 @@ Do not mark the goal complete or blocked; meaningful work remains possible.
   helper /home/aswin/pods-tools/bin/gh auth git-credential, git pull --ff-only.
   Node /home/aswin/pods-tools/node-v24.21.0-linux-x64/bin/node.
 - Codespace pods-launch-containers-69rw5vx4xp46c5qw5.
-  Current saved Micronaut counts Google12/Codespaces17. Never reset or rerun an old
+  Current saved Micronaut counts Google12/Codespaces19. Never reset or rerun an old
   expected value. Streamlit2both; Symfony Google2/Codespaces3.
 - QAguest pods-fresh-matrix-01; /snap/lxd/current/bin/lxc, uid/gid1000,
   Node/opt/node/bin/node, deps/opt/pods/node_modules. Latest verified candidate
-  /output/eight-ranges-candidate-4bb6a83. Always --disable-stdin for lxc exec overSSH.
+  /output/live-evidence-candidate-ca6753a. Always --disable-stdin for lxc exec overSSH.
   Preserve QAserverPID292107, ports18090/8081/18890, shared caches/data/runtime.
-- Local test logs /tmp/pods-eight-ranges-{before,full-local,full-qa}.txt.
-  Snapshot335 hashes, manifest and archive in /tmp/pods-eight-ranges-*.
+- Latest test logs /tmp/pods-live-evidence-{before,full-local,full-qa}.txt.
+  Snapshot336 hashes, manifest/archive and native receipt inputs in
+  /tmp/pods-live-evidence-*. Validators /tmp/pods-record-live-evidence-{tests,native}.py.
+  Older eight-range inputs remain in /tmp/pods-eight-ranges-*.
   Native validator /tmp/pods-record-eight-ranges-native.py, capture/audit/browser/build/
   recovered-product/recovered-stop inputs /tmp/pods-eight-ranges-*.json.
   Raw Codespaces receipts/logs include private fields: never publish wholesale.
@@ -146,6 +174,6 @@ Do not mark the goal complete or blocked; meaningful work remains possible.
   eightRangeDeveloperFlow/eightRangeWarmup/eightRangeLaunchUrl store latest records.
   Helpers continueSqliteFramework and stopNativeCounter retained. Use h1
   'Micronaut + SQLite' (not PODS h2), #value and button 'Add one'. Current count12.
-- All native/build/probe/test/deploy workers are terminal. Latest native77868,
-  captures62812 and audit73089 exited0. No jobs running; no waiting exec cells.
+- All native/build/probe/test/deploy workers are terminal. Latest native69991,
+  capture22441 and audit82680 exited0. No jobs running; no waiting exec cells.
   No subagents authorized. Next changes should use a bounded investigation.

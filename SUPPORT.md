@@ -314,6 +314,10 @@ overwrite an earlier success, and an ambiguous stop response is reconciled with
 GET without repeating the stop request. [Eight CLI regressions and the full
 250-check local/Linux suite](evidence/stack-live-evidence-tests.json) pass. This
 improves test evidence and cleanup; production launch behavior is unchanged.
+[Two native cached launches with the corrected harness](evidence/stack-live-evidence-native.json)
+passed at 10.829s and 9.249s, retained SQLite values 17→18→19 across full stops,
+and recorded both stop confirmations. The same prepared image was reused. These
+checks add no new-image timing or native Codespaces browser acceptance.
 
 ## Persistence and operational limits
 
