@@ -91,6 +91,11 @@ native browser authorization and interaction remain pending.
 
 ## Native launch performance
 
+[Recorded native timing summary](evidence/stack-native-timings.md) separates
+explicitly observed compute states, first/repeat runs, server readiness and product
+visibility. It preserves missing timing as unknown and lists excluded historical
+records; its mixed-fixture observations are not a controlled benchmark.
+
 Builds happen once on the PODS server. Provider launch measurements start when
 the user requests the prepared application. A healthy server, a visible page,
 and a completed product interaction are recorded separately.

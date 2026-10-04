@@ -1238,3 +1238,24 @@ product interactions; do not apply the Add one locator to those two fixtures.
   preflights and four remaining SQLite framework transport preflights passed.
   Their disposable storage is cleaned. Do not reset native saved counters.
   Pending GitHub2FA/VMreplacement/stablehostname inputs stay pending.
+
+
+## Native timing evidence audit
+
+Added reproducible evidence/stack-native-timing-report.py and generated
+stack-native-timings.{json,md}. It selects only linked canonical first/repeat
+pairs with explicit provider compute states, checks readiness timestamps and
+unique launch identities, and admits browser timing only with a matching
+start clock and sane readiness/interaction ordering. Missing data stays unknown.
+All input hashes, source/result indices, raw cache fields and excluded pair
+reasons are retained; private environment/preview values are not copied.
+
+Initial report has86 classified observations from21 Google and22 Codespaces
+fixture pairs;49 older/noncanonical pairs remain unclassified. These are
+historical acceptance observations across revisions/fixtures, not a controlled
+benchmark or provider ranking. All21 Google repeat server timings and19 usable
+repeat browser timings are within20s, as are22 Codespaces repeat health timings.
+Cold/first delivery often misses20s; native Codespaces browser is still pending.
+No product/runtime change, source6995 and full184 remain valid. Regenerate
+with python3 evidence/stack-native-timing-report.py after each native acceptance.
+The temporary file-counter documentation helper now invokes it automatically.

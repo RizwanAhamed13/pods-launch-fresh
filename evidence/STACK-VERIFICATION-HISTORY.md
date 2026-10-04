@@ -2361,3 +2361,24 @@ Evidence: `stack-aspnet-{url,google,codespaces,audit}.json`. Coverage is now
 **55 isolated / 46 Google browser / 46 Codespaces protocol**, with **9** native
 fixtures pending. Full suite **184/184** and source **6,995 lines** remain valid;
 this acceptance changed only evidence and documentation.
+
+
+## Native timing evidence audit
+
+Added reproducible evidence/stack-native-timing-report.py and generated
+stack-native-timings.{json,md}. It selects only linked canonical first/repeat
+pairs with explicit provider compute states, checks readiness timestamps and
+unique launch identities, and admits browser timing only with a matching
+start clock and sane readiness/interaction ordering. Missing data stays unknown.
+All input hashes, source/result indices, raw cache fields and excluded pair
+reasons are retained; private environment/preview values are not copied.
+
+Initial report has86 classified observations from21 Google and22 Codespaces
+fixture pairs;49 older/noncanonical pairs remain unclassified. These are
+historical acceptance observations across revisions/fixtures, not a controlled
+benchmark or provider ranking. All21 Google repeat server timings and19 usable
+repeat browser timings are within20s, as are22 Codespaces repeat health timings.
+Cold/first delivery often misses20s; native Codespaces browser is still pending.
+No product/runtime change, source6995 and full184 remain valid. Regenerate
+with python3 evidence/stack-native-timing-report.py after each native acceptance.
+The temporary file-counter documentation helper now invokes it automatically.
