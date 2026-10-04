@@ -86,8 +86,8 @@ or in-flight crash recovery.
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
 later passing attempts do not erase them. Automated coverage is **131 passing
-checks locally and in isolated aswin QA**. Native coverage is 31 Google browser fixtures and
-31 Codespaces HTTP/protocol fixtures; 24 still lack at least one native acceptance path. Codespaces
+checks locally and in isolated aswin QA**. Native coverage is 32 Google browser fixtures and
+32 Codespaces HTTP/protocol fixtures; 23 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
 ## Actual repository URL to native product
@@ -1551,3 +1551,29 @@ took 7.605s. Both paths used cached artifacts. All regression launches stopped,
 health stayed 200, SQLite integrity passed, and the Codespaces port remained
 private. These checks do not establish native cross-format migration. Evidence:
 `stack-storage-deployment.json`, `stack-storage-hono-codespaces.json`.
+
+## NestJS native acceptance
+
+The ordinary developer form prepared `examples/stacks/nestjs` from public
+revision `d6da2ed` in 101.382 seconds after normal quota availability. The prepared
+container image is 83,083,824 bytes. No QA artifact was imported into production.
+
+The first Cloud Shell launch resumed suspended compute and fetched its uncached
+image: health took 47.775 seconds, the actual product appeared at 49.890 seconds,
+and the first successful SQLite button write completed at 50.185 seconds. The
+cached relaunch on running compute reached health in 7.615 seconds, restored the
+saved value at 9.207 seconds and completed the next write at 9.491 seconds. The
+real browser verified 0→1, reload1, full stop/relaunch1→2, reload2, with no
+console warnings or errors. The first launch misses the 20-second target.
+
+Codespaces authenticated HTTP checks resumed a stopped environment and took
+64.204 seconds to health with an uncached image; the available, cached relaunch
+took 9.082 seconds. SQLite writes and full-stop retention passed 0→1→2. Native
+Codespaces browser interaction remains pending sign-in.
+
+The final audit at 02:30:01 UTC found all four launches stopped, no active builds
+or launches, health200 and product port22269 private. Coverage is now **55
+isolated /32 Google browser /32 Codespaces HTTP**, with **23** fixtures pending
+native acceptance. These results do not prove VM replacement durability or
+universal cold launches within20 seconds. Evidence:
+`stack-nestjs-{url,google,codespaces}.json`.

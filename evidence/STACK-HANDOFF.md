@@ -16,13 +16,13 @@ VM replacement durability, or a universal 20-second cold launch.
   support page (55/30/30, Koa all passed, Codespaces browser pending warning).
   Hono transport preflight was published at 176a79a; native acceptance at
   3102caf. Runtime 77cf340 now adds automatic storage format migration.
-- Coverage: 55 isolated build/artifact/browser passes; 31 Google native browser
-  and 31 Codespaces authenticated HTTP/protocol passes. All eight static frontend
+- Coverage: 55 isolated build/artifact/browser passes; 32 Google native browser
+  and 32 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Every native Codespaces browser check
-  remains pending. The 24 fixtures awaiting both native acceptance paths are:
+  remains pending. The 23 fixtures awaiting both native acceptance paths are:
   actix, adonis, aspnet, axum, deno, echo, fastapi, fiber, flask-mariadb,
   flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, ktor,
-  micronaut, nestjs, phoenix, php, rocket, sinatra, streamlit, symfony.
+  micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
 - Current candidate passes131 tests locally and in isolated aswin QA; logs
   /tmp/pods-storage-full-{local,qa}.txt. Includes17 new migration tests; original
   baseline114 remains historical. No need to rerun unchanged passing checks.
@@ -137,20 +137,38 @@ VM replacement durability, or a universal 20-second cold launch.
   stack-hono-browser-transport-probe.mjs. No QA artifact imported to production.
 - Browser binding honoTransportResult retains raw browser observations.
 
+## Latest native gate: NestJS acceptance
+
+- Public fixture d6da2ed, ordinary URL form preparation101382ms; Docker image
+  83083824bytes. App repo-4ce4a27db492259d64c087b5-d6da2ed780ae-a96fe128e4ec.
+- Google first initialSUSPENDED:health47775ms,delivery36546,page49890,
+  restored49903,write50185. Cached initialRUNNING:health7615,delivery4300,
+  page9092,restored9207,write9491. BrowserSQLite0→1→2,reload passed,
+  consolewarning/error0; both full stops confirmed. First launch exceeds20s.
+- Codespaces56755 ended0, environment pods-launch-containers-69rw5vx4xp46c5qw5.
+  First initialShutdown:health64204ms/delivery51813; cachedAvailable:
+  health9082/delivery8272. HTTPSQLite0→1→2 retained across full stop.
+  Native browser pending2FA, freshly observed02:25 this turn.
+- Audit02:30:01.414932UTC:activebuild0/launch0,health200,port22269private.
+  Evidence stack-nestjs-{url,google,codespaces}.json. Compatibility3tests pass.
+  Current NestJS saved values bothproviders2.
+- Inputs /tmp/pods-nestjs-{production-evidence,browser,ports}.json,health.txt
+  and /tmp/pods-record-nestjs.py. Runtime77cf340; checkoutfa976b1 at preparation.
+
 ## Next gate and performance work
 
-- NEXT native fixture: NestJS URL preparation/browser/HTTP persistence. No
-  NestJS production build has been submitted in this sequence. Check for any
-  pre-existing saved fixture data before assuming zero.
-- Quota snapshot02:04:10.897726UTC:account3/global3/active0,next ordinary slot
-  02:25:01.241UTC. Watcher96793 is LIVE since02:05:56.939548UTC; prior58800 completed.
-  Poll96793 rather than starting another watcher. /tmp/pods-next-native-quota-watch.py watches20min
-  with30sec samples, anchorSvelte buildNLXLM6VYS1P01fMd4cFhdzEoXVCJy0Fp.
-  Keep limits3/account/hour and12/global/hour. Never bypass, change identity to
-  evade quota, or import QA artifacts into production.
+- NEXT native fixture: AdonisJS URL preparation/browser/HTTP persistence. Check
+  for existing production builds/data before assuming zero. NestJS completed
+  below; its preparation form remains the browser handoff.
+- Quota watcher96793 ended0 at02:25:27.009292UTC: account2/global2/active0.
+  NestJS submitted once02:26:01.546UTC. Fresh quota02:30:33.292750UTC is
+  account3/global3/active0, next ordinary slot02:45:29.969UTC. No watcher
+  remains live. /tmp/pods-next-native-quota-watch.py is bounded20min/30sec
+  samples; start it only if useful next turn. Keep limits3/account/hour and
+  12/global/hour. Never bypass quotas or import QA artifacts into production.
 - /tmp/pods-capture-native.py reads aswin SQLite readonly, whitelists fields and
   derives timings. Its explicit fixture allowlist currently includes astro,
-  react-router, express, fastify, koa and hono.
+  react-router, express, fastify, koa, hono and nestjs.
 - scripts/live-codespaces.mjs receives gh token on stdin. Use the correct fixture
   probe, explicit output file and expected initial count. Counter/SSR/static/
   WebSocket/worker checks require two launches, including confirmed full stop.
@@ -193,19 +211,19 @@ VM replacement durability, or a universal 20-second cold launch.
 After compaction first CUA call must be cua.rewriteDocumentation. Reuse bindings;
 mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 
-- stackQa6: IAB2 tab13, Hono preparation completed; button Prepare another
-  version. Next fixture folder is examples/stacks/nestjs. Ready region name includes period: Your application is ready
+- stackQa6: IAB2 tab13, NestJS preparation completed; button Prepare another
+  version. Next fixture folder is examples/stacks/adonis. Ready region name includes period: Your application is ready
   to share. Try this version link in that region identifies the exact artifact.
-- accountWorker: IAB2 tab12, stopped Hono launcher. honoLaunchUrl,
-  honoPreparationSubmittedAt, honoBrowserChecks (both passed), honoFirstLogs and
-  honoSecondLogs (empty) persist. measureHonoCounter records continuous page/read/
+- accountWorker: IAB2 tab12, stopped NestJS launcher. nestjsLaunchUrl,
+  nestjsPreparationSubmittedAt, nestjsBrowserChecks (both passed), nestjsFirstLogs
+  and nestjsSecondLogs (empty) persist. measureNestjsCounter records page/read/
   write timing and reload;50sec deadline. Stop helper stopPreparedProduct confirms
   terminal state. History may briefly lag while its async refresh finishes.
-- supportQa: IAB2 tab29, public support deliverable; refresh after publication to verify55/31/31,
-  Hono allPassed. Native CS browser warning remains visible.
+- supportQa: IAB2 tab29, public support deliverable; refresh after publication to verify55/32/32,
+  NestJS allPassed. Native CS browser warning remains visible.
 - nativeGithubKeep: IAB2 tab10; freshly checked this turn, still Two-factor
   authentication. User already asked; no SMS/code sent. Do not repeat question.
-- cloudLifecycle: IAB2 tab14; freshly checked this turn, Restart confirmation and
+- cloudLifecycle: IAB2 tab14; previous Restart confirmation and
   background Authorize request remain pending. No VM replacement approval;
   do not click Restart or accept the unrelated background permission request.
 - Redact Connected-account text and private Google preview hosts from snapshots.
@@ -214,14 +232,14 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 - Origin https://collection-conferences-ages-clearly.trycloudflare.com.
   Support /support renders coverage each request; flags, not filenames, grant
   acceptance. No raw private evidence is served publicly.
-- User service pods-launch-fresh.service on aswin; last observed PID946172,
-  runtime5e5b4a0. Node/gh /home/aswin/pods-tools/bin. /health at127.0.0.1:8787.
+- User service pods-launch-fresh.service on aswin; last observed PID1032728,
+  runtime77cf340. Node/gh /home/aswin/pods-tools/bin. /health at127.0.0.1:8787.
   Before any restart prove idle and revalidate unit PID/cwd/cmdline/listener and
   SQLite integrity. Docs/evidence sync needs no restart. Never use old PID files
-  or touch unrelated pods-j03 services. Last restart23:36:28 UTC.
+  or touch unrelated pods-j03 services. Last restart2026-10-04 02:22:17 UTC.
 - Cloudflared manualPID2322522; fixed hostname/DNS supervision still awaits user
   input. Keep callback hostname unchanged. RunnerSHA
-  9ef8029d995e07421e5297aaa1b644fb145a54c838e0b2d2f6f38f0e356cfc3b.
+  2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486.
 - DB: file:/home/aswin/pods-launch-fresh/.data/pods.sqlite?mode=ro;
   records(kind,id,value JSON), singular build/launch. Use whitelisted output.
 - QA guest pods-fresh-matrix-01 via /snap/lxd/current/bin/lxc. Source /opt/pods,
@@ -230,7 +248,7 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   one-shot SIGTERM handler was consumed; do not blindly signal. Temporary Koa/
   Fastify probes/tunnels/devices are stopped and removed; no current probe.
 - Graph project Users-rizwanahamed-Documents-ChatGPT-podsv2, indexed through
-  5e5b4a0. scripts/public/examples/deploy excluded; targeted fallback appropriate.
+  77cf340 runtime source. scripts/public/examples/deploy excluded; targeted fallback appropriate.
 - Use set -e for validation→commit. User requests no subagents. Keep goal active;
-  native Codespaces browser,24 remaining fixture paths, runtime migration,
+  native Codespaces browser,23 remaining fixture paths, native format migration,
   VM replacement durability, stable hosting and cold performance remain open.

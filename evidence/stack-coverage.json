@@ -786,7 +786,11 @@
       "serverEvidence": "stack-matrix-24.json",
       "browserPassed": true,
       "browserEvidence": "stack-browser-24.json",
-      "nativeProviderEvidence": [],
+      "nativeProviderEvidence": [
+        "stack-nestjs-url.json",
+        "stack-nestjs-google.json",
+        "stack-nestjs-codespaces.json"
+      ],
       "attempts": [
         {
           "evidence": "stack-matrix-04.json",
@@ -802,7 +806,12 @@
           "status": "passed"
         }
       ],
-      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json"
+      "recipeOptimizationEvidence": "stack-npm-cache-comparison.json",
+      "nativeAcceptance": {
+        "googleBrowser": true,
+        "codespacesProtocol": true
+      },
+      "nativeProviderScope": "NestJS passed native Google product button, reload and SQLite retention across full stop/relaunch. Codespaces authenticated HTTP product, writes and full restart persistence passed. Native Codespaces browser interaction remains pending."
     },
     {
       "fixture": "next",
