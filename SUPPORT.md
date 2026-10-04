@@ -141,6 +141,8 @@ a stable production hostname remains a deployment requirement.
 
 - [Machine-readable fixture coverage](evidence/stack-coverage.json) records
   separate isolated, Cloud Shell browser and Codespaces protocol acceptance.
+- [Published matrix verification](evidence/stack-wide-support-published.json)
+  records the live 55/55/55 summary, latest framework rows and healthy deployment.
 - Numbered `evidence/stack-matrix-*.json` and `stack-browser-*.json` retain real
   builds, browser interactions, persistence checks and failed attempts.
 - [Latest SQLite developer build](evidence/stack-flask-sqlite-url.json),

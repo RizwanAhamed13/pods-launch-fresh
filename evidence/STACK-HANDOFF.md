@@ -19,7 +19,11 @@ progress; it is not a blocked turn. No universal compatibility or20s claim.
   Source7216physical lines:3729product/tooling +2390tests +933examples +164browser.
 - Latest accepted fixtures Streamlit and Symfony; stack-{streamlit,symfony}-{url,google,codespaces,audit}.json.
   Detailed timings and all earlier acceptance notes are in STACK-VERIFICATION-HISTORY.md.
-- Latest idle audit2026-10-04T11:10UTC: health200, SQLiteok, zero active builds/launches.
+- Evidence revision6f0f460 pushed and synced to aswin. Public /support DOM verified
+  at2026-10-04T11:12:33.556Z:55 isolated,55 Google browser,55 Codespaces protocol;
+  all55 applications shown, including passing Streamlit and Symfony rows.
+  Publication receipt: stack-wide-support-published.json.
+- Latest idle audit2026-10-04T11:12:26UTC: health200, SQLiteok, zero active builds/launches.
   All accepted launches stopped. Earlier failed attempts remain terminal, not relabeled.
   No build/launch watcher or test harness is currently running.
 

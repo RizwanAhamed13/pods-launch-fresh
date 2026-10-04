@@ -1,0 +1,42 @@
+{
+  "recordedAt": "2026-10-04T11:12:33.556Z",
+  "url": "https://collection-conferences-ages-clearly.trycloudflare.com/support",
+  "evidenceRevision": "6f0f46088dab644790fc240711e1ce841f58ef7f",
+  "summary": "55 representative apps tested\n\nAll 55 passed isolated server builds and browser interaction. 55 passed native Google Cloud Shell browser checks; 55 passed Codespaces HTTP or protocol checks.\n\nCodespaces browser sign-in and interaction remain pending. A passing representative does not guarantee every repository using that framework will work.",
+  "applicationCountStatus": "55 applications shown",
+  "rows": [
+    {
+      "application": "Streamlit",
+      "family": "Python and data services",
+      "isolatedBuildAndBrowser": "Passed",
+      "googleCloudShellBrowser": "Passed",
+      "codespacesHttpOrProtocol": "Passed"
+    },
+    {
+      "application": "Symfony",
+      "family": "PHP",
+      "isolatedBuildAndBrowser": "Passed",
+      "googleCloudShellBrowser": "Passed",
+      "codespacesHttpOrProtocol": "Passed"
+    }
+  ],
+  "deploymentAudit": {
+    "recordedAt": "2026-10-04T11:12:26.056194+00:00",
+    "pid": 1390769,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "a8140865a8d18aa4f36c6194bc011507508af34b9ad26cc40c78ccdafbe5925d",
+    "revision": "6f0f46088dab644790fc240711e1ce841f58ef7f"
+  },
+  "compatibilityChecks": {
+    "command": "node --test test/compatibility.test.mjs",
+    "passed": 3,
+    "failed": 0
+  },
+  "scope": "Actual public DOM observed after reload following the native evidence commit being pushed and synced to aswin. This receipt verifies publication and service health; functional acceptance, failed attempts, cache state and timing remain in the separate fixture evidence. Codespaces browser interaction, universal compatibility and a universal 20-second launch are not established."
+}
