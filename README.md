@@ -15,7 +15,10 @@ registry is disabled by default. Automatic indexing and launcher integration now
 pass [isolated pull, repair and cancellation checks](evidence/stack-registry-launch-qa.json).
 [Real private CDN checks](evidence/stack-registry-cdn-qa.json) also passed:
 26.078s image preparation from an empty store and 8.742s with shared layers.
-These checks do not establish native product speed.
+These checks do not establish native product speed. The latest
+[MariaDB compatibility gate](evidence/stack-registry-platform-qa.json) preserves
+platform-limited OCI saves and their selected attestations. Both local and Linux
+suites pass353 checks; actual fresh/cached Docker pulls and runtime execution pass.
 
 ## Run the control plane
 
@@ -207,10 +210,18 @@ fallbacks are retained; only the diagnostic proxy's connection timeout changed
 before the successful shared-layer check. Cache conditions differ, so these are
 not a controlled speed comparison or product-launch timings.
 
-Production has no registry indexes or blob mappings. Deployment and native
-product/database acceptance remain pending. See
+The shared writer lock and integrated runner are deployed, with the registry
+still disabled. Production preparation of Flask + MariaDB exposed a multi-platform
+save incompatibility after Flask indexing/publication completed. The corrected
+indexer passed [real MariaDB Docker checks](evidence/stack-registry-platform-qa.json):
+15 verified blobs, original image identity, matching rootfs and runtime execution.
+It selects Linux/amd64 plus its matching attestations while preserving the original
+index bytes. Other platform data may be absent. Fresh/cached QA pulls took10.213s
+and1.743s; these are loopback image checks, not native product timings.
+Production preparation recovery and native product/database acceptance remain
+pending. See
 [private CDN receipts and reproducible probes](evidence/stack-registry-cdn-qa.json),
-[328-check local/Linux results](evidence/stack-registry-launch-tests.json) and
+[353-check local/Linux results](evidence/stack-registry-platform-tests.json) and
 [actual integrated Docker recovery checks](evidence/stack-registry-launch-qa.json).
 This is not a claim of full OCI registry conformance or additional framework coverage.
 

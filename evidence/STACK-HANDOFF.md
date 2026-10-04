@@ -1,18 +1,46 @@
 # Broad stack checkpoint
 
 Goal active and incomplete: developer URL → isolated aswin build → reusable artifact
-→ authorized user compute → real usable product. Latest completed gate: actual
-private OCI blob publication and integrated Docker CDN redirects in isolated QA.
-Empty-store preparation took26.078s; shared-base preparation8.742s, fetching only
-11,178,157bytes. Five inspected CDN requests omitted credential headers, and image
-identity/dependency execution passed. Two diagnostic timeout failures are retained.
-Registry remains disabled; live runtime still f87b2e0. Both prior full suites
-passed328 checks and runtime hashes are unchanged. Scope9764 physical lines.
-No app/browser/database/native-provider acceptance in this gate.
-The previous native Flask+MariaDB first-image product30.229s still misses20s;
-cached product12.607s and persistence2→3→4 passed. Goal remains active.
+→ authorized user compute → real usable product. Latest completed gate: MariaDB
+platform-limited OCI save and selected-attestation compatibility.353/353 checks
+pass locally and in isolated Linux. Actual Docker29.1.3 fresh/cached pulls took
+10.213s/1.743s; original image/rootfs and MariaDB11.4.13 execution passed.
+This is loopback image QA, not native product or database acceptance.
+Scope9912 physical lines. Coverage remains55 representative apps/seven DB families.
 
-## Latest private CDN gate
+## Latest platform compatibility gate
+
+- stack-registry-platform-tests.json and stack-registry-platform-qa.json bind
+  source hashes,347-file candidate, exact programs and retained failure receipts.
+  Final QA snapshot /output/registry-platform-v3-candidate-7b27f28 and engine
+  store /output/registry-platform-v3-probe-7b27f28. Preserve both and prior stores.
+- Original MariaDB archivef078.../index129284... retains8 platform/attestation
+  descriptors but only amd64 and its attestation bytes. Old indexer required all
+  platforms. First fix excluded attestations and Docker failed fetching4a86...404.
+  Final closure15blobs109926562bytes includes the selected matching attestation.
+  Original index remains byte identical; other architectures remain unauthorized.
+- Synthetic tests include legacy/OCI artifact attestations, required byte and size
+  checks, invalid subjects/platforms/references, nested indexes and ambiguity.
+  A fixture alias error was corrected; both initial failed353-check runs retained.
+- All3 owned QA processes stopped, no containers, temporary login removed,
+  ordinary QA images preserved. No DB data or user cache touched.
+- Runtime7b27f28 deployed at17:16:05UTC, PID1635758, runnerSHA
+  cfb3d769f330a9bd010132cfd50fe342167d930736d73df8ab644caa912b191e.
+  Shared storage lock is deployed. Registry flag remains disabled.59images and
+  135artifactfiles/.env preserved by deployment. Audit17:30:05 health200/SQLiteok,
+  zero active builds/launches and same runner/PID.
+- First production index attempt failed after Flask success:10verified Flask
+  blobs/index retained, delivery mappings10→20, MariaDB index absent. Existing
+  Flask private assets reused. Original archives/artifacts preserved. Exact
+  failed operator/receipt in probes/registry-production-initial*.
+- Next: sync this tested fix, run the recovery operator against that partial
+  state, verify25raw blob mappings and repeat publication, then controlled native
+  Google registry product/DB acceptance. Actually absent images must be measured
+  separately from cached launches; never clear user Docker cache to simulate it.
+- Pending native Codespaces browser2FA, stable hostname and separately authorized
+  Cloud Shell VM-replacement persistence remain unchanged. Do not repeat requests.
+
+## Previous private CDN gate
 
 - stack-registry-cdn-qa.json and probes/REGISTRY-CDN.md bind all three exact
   programs/receipts. Source0791fe6; same verified candidate347 files. CLI help and
@@ -90,24 +118,25 @@ cached product12.607s and persistence2→3→4 passed. Goal remains active.
   browser and55 Codespaces HTTP/protocol paths. Seven DB/service families.
   Native Codespaces browser sign-in/interaction remains unverified. See SUPPORT.md;
   not every framework version, arbitrary repository or non-web product is covered.
-- Current tests: stack-registry-launch-tests.json,328/328 local and Linux.
+- Current tests: stack-registry-platform-tests.json,353/353 local and Linux.
   Previous foundation fixture failures remain in stack-registry-foundation-tests.json.
 - Historical deployed tests stack-image-pipeline-tests.json:292/292 local26.503s/Linux64.895s.
   Final candidate /output/image-pipeline-final-candidate-55737b2,343 verified inputs.
   Four selected regressions fail unchanged55737b2 baseline. Initial focused failure
   identified stalled web-stream cancellation; Readable.fromWeb fixes direct and
   range bodies. Empty HTTP200 response now fails before staging-file creation.
-- Scope9764 physical source lines =4626 product/tooling +4027 tests +933 examples
+- Scope9912 physical source lines =4668 product/tooling +4133 tests +933 examples
   +178 browser tools. Exact scope in code-lines.json; archived probes excluded.
 - stack-image-pipeline-comparison.json: ABBA,3images226330909bytes, aggregate20MiB/s
   loopback HTTP, real Docker29.1.3 loads, equally warmed Docker content, synthetic
   image-cache misses. Candidate peak2requests/1load. Not CDN/native/product timing.
   Prepared archives and existing Docker cache preserved; owned trial folders removed.
-- Deployed runtimef87b2e0effd2fd68a1143f46bf174deba17a7492, serverPID1589423,
+- Previous runtimef87b2e0effd2fd68a1143f46bf174deba17a7492, serverPID1589423,
   runnerSHA999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0.
   Deployment preserved59images/135artifactfiles/.env. Post-native audit16:02:35UTC:
   health200/SQLiteok/zero active. Baseline55737b2 retained in test/benchmark evidence.
-- 59 distinct prepared images,10 mappings,49 unmapped totaling5177532324bytes.
+- 59 distinct prepared archives;10 original full-archive delivery mappings plus
+  10 Flask raw-blob mappings after partial production indexing.49 archives unmapped.
 
 ## Previous OCI registry foundation
 

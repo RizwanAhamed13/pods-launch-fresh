@@ -1,0 +1,35 @@
+{
+  "startedAt": "2026-10-04T17:17:06.785355+00:00",
+  "sourceRevision": "7b27f2859dc28e25b19871ce8bc890c5d2c997ac",
+  "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+  "originalImages": [
+    {
+      "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+      "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+      "bytes": 57046835
+    },
+    {
+      "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+      "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+      "bytes": 104507545
+    }
+  ],
+  "before": {
+    "recordedAt": "2026-10-04T17:17:06.748755+00:00",
+    "pid": 1635758,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "cfb3d769f330a9bd010132cfd50fe342167d930736d73df8ab644caa912b191e",
+    "revision": "7b27f2859dc28e25b19871ce8bc890c5d2c997ac"
+  },
+  "initialMappings": 10,
+  "runs": [],
+  "passed": false,
+  "failure": "Production index verification failed; inspect last completed phase before retrying",
+  "finishedAt": "2026-10-04T17:17:14.182561+00:00"
+}

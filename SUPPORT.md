@@ -85,9 +85,9 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **328 passing checks**
+later passing attempts do not erase them. Automated coverage is **353 passing checks**
 in each full local and isolated Linux suite. See the
-[current test evidence](evidence/stack-registry-launch-tests.json). The earlier
+[current test evidence](evidence/stack-registry-platform-tests.json). The earlier
 missing-fixture failure remains in [foundation evidence](evidence/stack-registry-foundation-tests.json).
 Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
@@ -288,8 +288,8 @@ flag. A pull has a45-second limit, uses an isolated Docker config with the launc
 token, and verifies image identity. Indexed images always use Docker's pull path;
 a cached ID alone does not prove runnable content. Fallback forces a full load,
 and cancellation waits for the CLI to exit before removing credentials. Startup
-heartbeats honor Stop during artifact/image delivery. All328 local and Linux
-checks pass. [Real private CDN publication and redirect checks](evidence/stack-registry-cdn-qa.json)
+heartbeats honor Stop during artifact/image delivery. That gate passed328 local and Linux
+checks. [Real private CDN publication and redirect checks](evidence/stack-registry-cdn-qa.json)
 subsequently passed: ten verified blobs published once and reused on repeat,
 26.078s image preparation from an empty store, and8.742s with a shared base.
 The shared-base pull fetched exactly five remaining blobs (11,178,157 bytes),
@@ -300,10 +300,20 @@ The successful retry shortened only the diagnostic upstream connection timeout;
 PODS'45-second pull limit is unchanged. Cache states and instrumentation differ,
 so these are not controlled performance comparisons or native product timings.
 Ten raw assets were added to the existing private release, preserving its prior
-eleven assets; production still has no registry indexes/blob mappings, and the
+eleven assets. At that checkpoint production had no registry indexes/blob mappings, and the
 flag remains disabled. Native product/DB acceptance is the next gate.
 The standard OCI pull protocol requests content by digest; see the
 [OCI distribution specification](https://github.com/opencontainers/distribution-spec/blob/main/spec.md).
+The [subsequent MariaDB gate](evidence/stack-registry-platform-qa.json) fixes
+platform-limited saves: one Linux/amd64 branch and its matching attestations are
+verified and served without changing the root digest. The first runtime-only
+candidate failed a real Docker pull because it omitted the selected attestation;
+that failure remains recorded. The corrected15-blob closure passed a fresh pull
+(10.213s), cached repeat(1.743s), rootfs/identity checks and networkless MariaDB
+11.4.13 execution. All353 local/Linux checks pass. This is isolated loopback QA,
+not a native application/database or20-second acceptance. The registry remains
+disabled while production preparation is recovered.
+
 PODS implements a narrow read-only pull surface, not a general registry service.
 
 ## Layer reuse diagnostic
@@ -770,7 +780,7 @@ a stable production hostname remains a deployment requirement.
   a consistent database snapshot, resumes it, then queries the private copy.
   The reported SQLite version belongs to the inspector, not the application
   driver. These isolated checks do not add native-provider acceptance.
-- [Current test result](evidence/stack-registry-launch-tests.json): **328/328**
+- [Current test result](evidence/stack-registry-platform-tests.json): **353/353**
   in each full local and isolated Linux suite. Earlier failures are retained.
 - [Physical source count](evidence/code-lines.json): **9,764 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated

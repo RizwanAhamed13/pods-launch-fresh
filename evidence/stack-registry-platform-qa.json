@@ -1,0 +1,351 @@
+{
+  "scope": "Actual Docker pulls through the candidate PODS read-only authenticated registry in isolated QA; no native provider or product timing",
+  "startedAt": 1791134989.8497741,
+  "runs": [
+    {
+      "mode": "cold",
+      "engine": {
+        "ServerVersion": "29.1.3",
+        "Driver": "overlayfs",
+        "DriverStatus": [
+          [
+            "driver-type",
+            "io.containerd.snapshotter.v1"
+          ]
+        ]
+      },
+      "initialImages": 0,
+      "initialPhysicalBlobs": 0,
+      "pulls": [
+        {
+          "phase": "cold",
+          "elapsedMs": 10213,
+          "exitCode": 0,
+          "identityMatches": true
+        },
+        {
+          "phase": "cold-cached",
+          "elapsedMs": 1743,
+          "exitCode": 0,
+          "identityMatches": true
+        }
+      ],
+      "rootfs": [
+        "sha256:d81fb2a7c6ee3be05fdefaa7fd223be219c1ab172083ec1b994c3ecda33ac0a8",
+        "sha256:6ba6130ada07999663a8e7da741f85477e4cd43ba2a0dc9b1fc8a275dd50a4ae",
+        "sha256:4d0132a627b1818ff14817c8504bd3a3d5daafa55fb94a8c3deccd9f4a8462d5",
+        "sha256:ebcc5e421767d6547ab413445e1d8505732d83e1ebbccfb2245c1abcd28ef29f",
+        "sha256:1a6f32d13338136a88e182d22a2c101d03daae6887845596957dcfe7139af41b",
+        "sha256:e9db0667ad925b339cbee3549406c4d9e266d2a8c1563c95952718447a868ccb",
+        "sha256:86065e753e5431a872fbe4ca3ee59f932634a777d47b942711eabf200078a6ed",
+        "sha256:36b7dbf786ec4c5898b5fa42b01c06caf4de60c0991b6bdcd5ae413c883b27ea"
+      ],
+      "runtimeCheck": {
+        "exitCode": 0,
+        "output": "mariadbd  Ver 11.4.13-MariaDB-ubu2404 for debian-linux-gnu on x86_64 (mariadb.org binary distribution)\n"
+      },
+      "remainingContainers": 0
+    }
+  ],
+  "indexing": {
+    "appId": "registry-qa",
+    "images": [
+      {
+        "archiveSha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+        "imageId": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+        "blobs": 15,
+        "blobBytes": 109926562,
+        "addedBlobBytes": 109926562,
+        "delivery": "origin"
+      }
+    ],
+    "storedBytes": 214435913,
+    "elapsedMs": 1614,
+    "baseline": {
+      "exitCode": 1,
+      "missingPlatformBytes": true
+    },
+    "members": {
+      "sha256:07afc4eb8b2ccd9efb19d4ec8960cc9c82524b408088597637c6be636b4b1d98": 1342,
+      "sha256:086135ab0fe585d3416f96e7ef7f49fda159bf84549acbbd54bff35d05642a3f": 7656029,
+      "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6": 5133,
+      "sha256:36f84c3d5a21399aba08adc6764a72dd2d55cc0449b57c40b8f7dd553323bd25": 4034,
+      "sha256:47af3a184ea1e8859278cade3bc53b529bde157c3dc5ac6e4764686db804f75c": 116,
+      "sha256:4a86ba8758b30cfa43331d6100a3cbcf5390020690bec3b7790796eeb54c3a81": 841,
+      "sha256:558cadcaf80957b606f4d666643d378f16830b51bac04e5e737a9d972c037b9b": 4249926,
+      "sha256:59061449fc910014f1b227556880942a215944910d9f9a4f71b68017a489ccd7": 30271,
+      "sha256:927fa4a585713209a271cc6522430019e3e1f25bd306d727f482a6e65d20e201": 333,
+      "sha256:a60ef8ec184edb5ed91f5983f00261359fb2fe20f603e8d488b9477d32fcad70": 29764422,
+      "sha256:a76bc7c95d1eaffffd305424646b4c1f57c995333a706298c3bf1b24b60b2b3e": 68194128,
+      "sha256:ab3dff582d246358b6f6a1f6212f29ac64609fad883eb3dcfb0a89f6f7d0700e": 8774,
+      "sha256:b3a2aba5443388e440719cd253860414aefd48c7b63731642a720f17c28d5126": 241,
+      "sha256:f2f5e00999bd335343e09091e27e39c9386eb1822efcd0e0bac40b0003fa47e3": 2479,
+      "sha256:fc90ba8e9eef90336396b2384fc13abf64da68f7785eaf3b13f91c4a5fb85761": 8493
+    },
+    "manifests": {
+      "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6": "application/vnd.oci.image.index.v1+json",
+      "sha256:f2f5e00999bd335343e09091e27e39c9386eb1822efcd0e0bac40b0003fa47e3": "application/vnd.oci.image.manifest.v1+json",
+      "sha256:4a86ba8758b30cfa43331d6100a3cbcf5390020690bec3b7790796eeb54c3a81": "application/vnd.oci.image.manifest.v1+json"
+    }
+  },
+  "target": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+  "stopped": {
+    "cold-docker": true,
+    "cold-containerd": true,
+    "registry-server": true
+  },
+  "originalIndexDescriptors": [
+    {
+      "digest": "sha256:f2f5e00999bd335343e09091e27e39c9386eb1822efcd0e0bac40b0003fa47e3",
+      "platform": {
+        "architecture": "amd64",
+        "os": "linux"
+      },
+      "included": true
+    },
+    {
+      "digest": "sha256:4a86ba8758b30cfa43331d6100a3cbcf5390020690bec3b7790796eeb54c3a81",
+      "platform": {
+        "architecture": "unknown",
+        "os": "unknown"
+      },
+      "included": true
+    },
+    {
+      "digest": "sha256:0130d92c05fbf2d82adc2b86de742eaede65b2596c65d91786f8e03cd19e6a39",
+      "platform": {
+        "architecture": "arm64",
+        "os": "linux",
+        "variant": "v8"
+      },
+      "included": false
+    },
+    {
+      "digest": "sha256:b1fefd4554799af3f39b5c10972378ce42280c760b5491e843477c1fabe94075",
+      "platform": {
+        "architecture": "unknown",
+        "os": "unknown"
+      },
+      "included": false
+    },
+    {
+      "digest": "sha256:74586e1b86bcc30b69dd2d484de5fad090814003b44c29aaeef2617b66462ed6",
+      "platform": {
+        "architecture": "ppc64le",
+        "os": "linux"
+      },
+      "included": false
+    },
+    {
+      "digest": "sha256:0d09ec36afb3afccf1c73233a58aff7e5cc9c62bb253610d57eddfd5f06343ef",
+      "platform": {
+        "architecture": "unknown",
+        "os": "unknown"
+      },
+      "included": false
+    },
+    {
+      "digest": "sha256:a26e04da4296e2c4ce56bc89749d0daec05eb0d67c5d9f9a5fba5c050d524cf4",
+      "platform": {
+        "architecture": "s390x",
+        "os": "linux"
+      },
+      "included": false
+    },
+    {
+      "digest": "sha256:f7cfc631f798cf2df9ca9194c16cee20c3c1ecbb54f35de54cd0e776dd3fa1e3",
+      "platform": {
+        "architecture": "unknown",
+        "os": "unknown"
+      },
+      "included": false
+    }
+  ],
+  "completed": true,
+  "requests": [
+    {
+      "phase": "cold",
+      "method": "HEAD",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/manifests/sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+      "status": 401,
+      "bytes": 0
+    },
+    {
+      "phase": "cold",
+      "method": "HEAD",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/manifests/sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+      "status": 200,
+      "bytes": 0
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/manifests/sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+      "status": 200,
+      "bytes": 5133
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/manifests/sha256:f2f5e00999bd335343e09091e27e39c9386eb1822efcd0e0bac40b0003fa47e3",
+      "status": 200,
+      "bytes": 2479
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/blobs/sha256:ab3dff582d246358b6f6a1f6212f29ac64609fad883eb3dcfb0a89f6f7d0700e",
+      "status": 200,
+      "bytes": 8774
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/manifests/sha256:4a86ba8758b30cfa43331d6100a3cbcf5390020690bec3b7790796eeb54c3a81",
+      "status": 200,
+      "bytes": 841
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/referrers/sha256:4a86ba8758b30cfa43331d6100a3cbcf5390020690bec3b7790796eeb54c3a81",
+      "status": 404,
+      "bytes": 0
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/manifests/sha256-4a86ba8758b30cfa43331d6100a3cbcf5390020690bec3b7790796eeb54c3a81",
+      "status": 404,
+      "bytes": 0
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/blobs/sha256:59061449fc910014f1b227556880942a215944910d9f9a4f71b68017a489ccd7",
+      "status": 200,
+      "bytes": 30271
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/blobs/sha256:b3a2aba5443388e440719cd253860414aefd48c7b63731642a720f17c28d5126",
+      "status": 200,
+      "bytes": 241
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/blobs/sha256:558cadcaf80957b606f4d666643d378f16830b51bac04e5e737a9d972c037b9b",
+      "status": 200,
+      "bytes": 4249926
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/blobs/sha256:fc90ba8e9eef90336396b2384fc13abf64da68f7785eaf3b13f91c4a5fb85761",
+      "status": 200,
+      "bytes": 8493
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/blobs/sha256:086135ab0fe585d3416f96e7ef7f49fda159bf84549acbbd54bff35d05642a3f",
+      "status": 200,
+      "bytes": 7656029
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/blobs/sha256:07afc4eb8b2ccd9efb19d4ec8960cc9c82524b408088597637c6be636b4b1d98",
+      "status": 200,
+      "bytes": 1342
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/blobs/sha256:a60ef8ec184edb5ed91f5983f00261359fb2fe20f603e8d488b9477d32fcad70",
+      "status": 200,
+      "bytes": 29764422
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/blobs/sha256:927fa4a585713209a271cc6522430019e3e1f25bd306d727f482a6e65d20e201",
+      "status": 200,
+      "bytes": 333
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/blobs/sha256:36f84c3d5a21399aba08adc6764a72dd2d55cc0449b57c40b8f7dd553323bd25",
+      "status": 200,
+      "bytes": 4034
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/blobs/sha256:47af3a184ea1e8859278cade3bc53b529bde157c3dc5ac6e4764686db804f75c",
+      "status": 200,
+      "bytes": 116
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/blobs/sha256:a76bc7c95d1eaffffd305424646b4c1f57c995333a706298c3bf1b24b60b2b3e",
+      "status": 200,
+      "bytes": 68194128
+    },
+    {
+      "phase": "cold-cached",
+      "method": "HEAD",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/manifests/sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+      "status": 401,
+      "bytes": 0
+    },
+    {
+      "phase": "cold-cached",
+      "method": "HEAD",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/manifests/sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+      "status": 200,
+      "bytes": 0
+    },
+    {
+      "phase": "cold-cached",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/referrers/sha256:4a86ba8758b30cfa43331d6100a3cbcf5390020690bec3b7790796eeb54c3a81",
+      "status": 404,
+      "bytes": 0
+    },
+    {
+      "phase": "cold-cached",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/manifests/sha256-4a86ba8758b30cfa43331d6100a3cbcf5390020690bec3b7790796eeb54c3a81",
+      "status": 404,
+      "bytes": 0
+    }
+  ],
+  "existingQaImagesPreserved": true,
+  "temporaryClientCredentialsRemoved": true,
+  "finishedAt": 1791135012.2690437,
+  "sourceSnapshot": {
+    "directory": "/output/registry-platform-v3-candidate-7b27f28",
+    "files": 347,
+    "archiveSha256": "bc573b5edcd0dcc6a3c1a25292ec3d2c75d6758f3cb7023d3b41cc99161e6c07",
+    "manifestSha256": "f5302710d8039f35ef95cf015baedff8d37d3f59d6c4890b2d3e9941a6341371",
+    "manifest": "probes/registry-platform-snapshot.json"
+  },
+  "reproducer": "probes/registry-platform-docker.py",
+  "reproducerSha256": "29b488f1e375ef305d9516108bbd01b389e69d2854af07edf0bbea6d822b89fb",
+  "rawReceipt": "probes/registry-platform-docker-receipt.json",
+  "rawReceiptSha256": "753859050cb106458c631422168cc57dfac68cca1a2d0b3181009952b8e4eb08",
+  "retainedFailure": {
+    "reproducer": "probes/registry-platform-incomplete-docker.py",
+    "reproducerSha256": "666dabd39be56a0a3436fea355ebc53367fa6e9ebdf1678c40ad0453a6479ef9",
+    "receipt": "probes/registry-platform-incomplete-docker-receipt.json",
+    "receiptSha256": "0ec7d1e154d6515d0b2953caafd0a61b136e788b609a1710514b8bfcbedf46a2",
+    "cause": "Platform-only candidate excluded the selected attestation. Docker requested it and failed with404."
+  },
+  "indexerSha256": "7ee0c87ffe02c1e63c788a290575cbc21ee4429f937817694acb5ea7a7d39ece",
+  "goalStatus": "active"
+}

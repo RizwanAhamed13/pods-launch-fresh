@@ -29,7 +29,8 @@ async function fixture(t,{manifest=baseManifest,extra=[],omitLayer=false,index=f
   const data=await mkdtemp(join(tmpdir(),'pods-registry-'));t.after(()=>rm(data,{recursive:true,force:true}));
   await mkdir(join(data,'images'));await mkdir(join(data,'artifacts'));
   const manifestBytes=Buffer.from(JSON.stringify(manifest));
-  const top=index?Buffer.from(JSON.stringify({schemaVersion:2,mediaType:'application/vnd.oci.image.index.v1+json',manifests:[{...descriptor(manifestBytes,media),platform:{os:'linux',architecture:'amd64'}}]})):manifestBytes;
+  const child={...descriptor(manifestBytes,media),platform:{os:'linux',architecture:'amd64'}};
+  const top=index?Buffer.from(JSON.stringify({schemaVersion:2,mediaType:'application/vnd.oci.image.index.v1+json',manifests:typeof index==='function'?index(child):[child]})):manifestBytes;
   const entries=[{name:'blobs/sha256/'+digest(config),bytes:config},...(!omitLayer?[{name:'blobs/sha256/'+digest(layer),bytes:layer}]:[]),{name:'blobs/sha256/'+digest(manifestBytes),bytes:manifestBytes},...(index?[{name:'blobs/sha256/'+digest(top),bytes:top}]:[]),...extra];
   const bytes=archive(entries),image={id:'sha256:'+digest(top),sha256:digest(bytes),bytes:bytes.length};
   const artifact=gzipSync(JSON.stringify({format:2,runtime:'docker',healthPath:'/',containers:{web:'web',port:8080,images:[image],services:{web:{image:image.id}}}}));
@@ -39,6 +40,99 @@ async function fixture(t,{manifest=baseManifest,extra=[],omitLayer=false,index=f
   return {data,image,bytes,top,blobPath:join(data,'registry','blobs',digest(layer)+'.gz')};
 }
 const prepare=f=>prepareRegistryForApp({data:f.data,appId,budget});
+
+function attestedFixture({artifact=false,omit='',change=()=>{}}={}) {
+  const runtime=descriptor(Buffer.from(JSON.stringify(baseManifest)),media);
+  const attConfig=Buffer.from(JSON.stringify(artifact?{}:{architecture:'unknown',os:'unknown'}));
+  const statement=Buffer.from(JSON.stringify({_type:'https://in-toto.io/Statement/v1',subject:[{digest:{sha256:runtime.digest.slice(7)}}],predicateType:'https://spdx.dev/Document',predicate:{}}));
+  const manifest={schemaVersion:2,mediaType:media,config:descriptor(attConfig,artifact?'application/vnd.oci.empty.v1+json':'application/vnd.oci.image.config.v1+json'),layers:[descriptor(statement,'application/vnd.in-toto+json')],...(artifact?{artifactType:'application/vnd.docker.attestation.manifest.v1+json',subject:{...runtime}}:{})};
+  change(manifest);const bytes=Buffer.from(JSON.stringify(manifest));
+  const attestation={...descriptor(bytes,media),platform:{os:'unknown',architecture:'unknown'},annotations:{'vnd.docker.reference.type':'attestation-manifest','vnd.docker.reference.digest':runtime.digest}};
+  const excluded={...attestation,digest:'sha256:'+'e'.repeat(64),annotations:{...attestation.annotations,'vnd.docker.reference.digest':'sha256:'+'f'.repeat(64)}};
+  const extra=[['manifest',bytes],['config',attConfig],['layer',statement]].filter(([name])=>name!==omit).map(([,bytes])=>({name:'blobs/sha256/'+digest(bytes),bytes}));
+  return {index:child=>[child,attestation,excluded],extra,attestation,excluded,statement};
+}
+
+test('selected platform attestations remain available to Docker with their exact verified content',async t=>{
+  for(const artifact of [false,true])await t.test(artifact?'OCI artifact':'legacy image manifest',async t=>{
+    const options=attestedFixture({artifact}),f=await server(t,null,true,options);
+    const index=await registryIndex(f.data,f.image),again=await prepare(f);
+    assert.equal(Object.keys(index.members).length,7);assert.equal(Object.keys(index.manifests).length,3);
+    assert.equal(again.images[0].addedBlobBytes,0);assert.equal(index.members[options.excluded.digest],undefined);
+    assert.deepEqual(await readFile(join(f.data,'registry/blobs',f.image.id.slice(7)+'.gz')),f.top);
+    const response=await f.get('/manifests/'+options.attestation.digest);assert.equal(response.status,200);
+    assert.equal(digest(Buffer.from(await response.arrayBuffer())),options.attestation.digest.slice(7));
+    const layer=await f.get('/blobs/sha256:'+digest(options.statement));assert.equal(layer.status,200);
+    assert.deepEqual(Buffer.from(await layer.arrayBuffer()),options.statement);
+    assert.equal((await f.get('/manifests/'+options.excluded.digest)).status,404);
+  });
+});
+
+test('selected attestations cannot omit bytes, change subjects, or become runnable targets',async t=>{
+  for(const [name,options,edit] of [
+    ['missing manifest',{omit:'manifest'}],['missing config',{omit:'config'}],['missing statement',{omit:'layer'}],
+    ['wrong layer size',{change:m=>m.layers[0].size++}],
+    ['external statement',{change:m=>m.layers[0].urls=['https://example.invalid/attestation']}],
+    ['wrong artifact subject',{artifact:true,change:m=>m.subject.digest='sha256:'+'f'.repeat(64)}],
+    ['runnable attestation platform',{},o=>o.attestation.platform={os:'linux',architecture:'amd64'}],
+    ['invalid attestation reference',{},o=>o.attestation.annotations['vnd.docker.reference.digest']='invalid'],
+  ])await t.test(name,async t=>{
+    const optionsWithAttestation=attestedFixture(options);edit?.(optionsWithAttestation);
+    const f=await fixture(t,optionsWithAttestation);await assert.rejects(prepare(f),/indexing failed/);
+    assert.equal(await registryIndex(f.data,f.image),null);assert.deepEqual(await readdir(join(f.data,'registry/blobs')),[]);
+    assert.deepEqual((await readdir(join(f.data,'registry'))).sort(),['blobs','indexes']);
+    assert.deepEqual(await readFile(join(f.data,'images',f.image.sha256+'.gz')),f.bytes);
+  });
+});
+
+test('platform-limited OCI saves retain the original index and only require Linux amd64 content',async t=>{
+  const absent={digest:'sha256:'+'f'.repeat(64),size:321,mediaType:media,platform:{os:'linux',architecture:'arm64'}};
+  const attestation=Buffer.from('{"attestation":"not runtime content"}');
+  const extra={name:'blobs/sha256/'+digest(attestation),bytes:attestation};
+  const f=await fixture(t,{index:child=>[absent,child,{...descriptor(attestation,media),platform:{os:'unknown',architecture:'unknown'}}],extra:[extra]});
+  const original=await readFile(join(f.data,'artifacts',appId+'.json'));
+  const first=await prepare(f),second=await prepare(f),index=await registryIndex(f.data,f.image);
+  assert.equal(first.images[0].blobs,4);assert.equal(second.images[0].addedBlobBytes,0);
+  assert.equal(index.platform,'linux/amd64');assert.equal(index.imageId,f.image.id);
+  assert.deepEqual(await readFile(join(f.data,'registry/blobs',f.image.id.slice(7)+'.gz')),f.top);
+  assert.equal(index.members[absent.digest],undefined);assert.equal(index.members['sha256:'+digest(attestation)],undefined);
+  assert.deepEqual((await readdir(join(f.data,'registry/blobs'))).sort(),Object.keys(index.members).map(id=>id.slice(7)+'.gz').sort());
+  assert.deepEqual(await readFile(join(f.data,'artifacts',appId+'.json')),original);
+  assert.deepEqual(await readFile(join(f.data,'images',f.image.sha256+'.gz')),f.bytes);
+});
+
+test('platform selection rejects missing or ambiguous targets and never skips target integrity checks',async t=>{
+  const armConfig=Buffer.from(JSON.stringify({architecture:'arm64',os:'linux'}));
+  for(const [name,options] of [
+    ['target manifest absent',{index:child=>[{...child,digest:'sha256:'+'e'.repeat(64)}]}],
+    ['target layer absent',{index:true,omitLayer:true}],
+    ['target descriptor size changed',{index:child=>[{...child,size:child.size+1}]}],
+    ['no supported platform',{index:child=>[{...child,platform:{os:'linux',architecture:'arm64'}}]}],
+    ['CPU variant requires newer hardware',{index:child=>[{...child,platform:{os:'linux',architecture:'amd64',variant:'v3'}}]}],
+    ['ambiguous target',{index:child=>[child,{...child}]}],
+    ['external nonselected descriptor',{index:child=>[child,{...child,platform:{os:'linux',architecture:'arm64'},urls:['https://example.invalid/layer']}]}],
+    ['malformed platform',{index:child=>[{...child,platform:'linux/amd64'}]}],
+    ['config disagrees with selected platform',{index:true,manifest:{...baseManifest,config:descriptor(armConfig,'application/vnd.oci.image.config.v1+json')},extra:[{name:'blobs/sha256/'+digest(armConfig),bytes:armConfig}]}],
+  ])await t.test(name,async t=>{
+    const f=await fixture(t,options);await assert.rejects(prepare(f),/indexing failed/);
+    assert.equal(await registryIndex(f.data,f.image),null);
+    assert.deepEqual(await readdir(join(f.data,'registry/blobs')),[]);
+    assert.deepEqual((await readdir(join(f.data,'registry'))).sort(),['blobs','indexes']);
+    assert.deepEqual(await readFile(join(f.data,'images',f.image.sha256+'.gz')),f.bytes);
+  });
+});
+
+test('an unlabelled nested index resolves the baseline amd64 variant without requiring other architectures',async t=>{
+  const manifestBytes=Buffer.from(JSON.stringify(baseManifest)),indexMedia='application/vnd.oci.image.index.v1+json';
+  const nested=Buffer.from(JSON.stringify({schemaVersion:2,mediaType:indexMedia,manifests:[
+    {...descriptor(manifestBytes,media),platform:{os:'linux',architecture:'amd64',variant:'v1'}},
+    {digest:'sha256:'+'f'.repeat(64),size:100,mediaType:media,platform:{os:'windows',architecture:'amd64'}},
+  ]}));
+  const f=await fixture(t,{index:()=>[descriptor(nested,indexMedia)],extra:[{name:'blobs/sha256/'+digest(nested),bytes:nested}]});
+  await prepare(f);const index=await registryIndex(f.data,f.image);
+  assert.equal(Object.keys(index.manifests).length,3);assert.equal(Object.keys(index.members).length,5);
+  assert.equal(index.members['sha256:'+'f'.repeat(64)],undefined);
+});
 
 test('OCI preparation verifies and deduplicates exact blobs while preserving the original artifact',async t=>{
   const f=await fixture(t,{index:true}),before=await readFile(join(f.data,'images',f.image.sha256+'.gz'));
@@ -104,8 +198,8 @@ test('OCI publication uses verified private blob storage and reuses indexes afte
   fail=false;const result=await prepareRegistryForApp({data:f.data,appId,budget,delivery});assert.equal(result.images[0].addedBlobBytes,0);assert.equal(calls,2);
 });
 
-async function server(t,delivery=null,enabled=true) {
-  const f=await fixture(t);await prepare(f);
+async function server(t,delivery=null,enabled=true,options={}) {
+  const f=await fixture(t,options);await prepare(f);
   const app=await createApp({data:f.data,secret:'bc'.repeat(32),providers:{},imageDelivery:delivery,registryEnabled:enabled});
   await new Promise(done=>app.server.listen(0,'127.0.0.1',done));
   t.after(async()=>{await new Promise(done=>app.server.close(done));await app.closeResources();});
@@ -114,6 +208,18 @@ async function server(t,delivery=null,enabled=true) {
   const headers={Authorization:'Basic '+Buffer.from(id+':'+token).toString('base64')};
   return {...f,app,id,launch,origin,path,headers,get:(suffix,options={})=>fetch(origin+path+suffix,{headers,...options,redirect:'manual'})};
 }
+
+test('registry preserves a multi-platform index but refuses its nonselected platform digests',async t=>{
+  let resolutions=0;const excluded='sha256:'+'f'.repeat(64);
+  const f=await server(t,{resolve:async()=>{resolutions++;return null;}},true,{index:child=>[
+    {digest:excluded,size:300,mediaType:media,platform:{os:'linux',architecture:'arm64'}},child,
+  ]});
+  const root=await f.get('/manifests/'+f.image.id);assert.equal(root.status,200);
+  assert.equal(root.headers.get('content-type'),'application/vnd.oci.image.index.v1+json');
+  assert.deepEqual(Buffer.from(await root.arrayBuffer()),f.top);
+  for(const kind of ['manifests','blobs'])for(const method of ['GET','HEAD'])assert.equal((await f.get('/'+kind+'/'+excluded,{method})).status,404);
+  assert.equal(resolutions,0);
+});
 
 test('registry serves exact authorized manifests and blobs with HEAD and bounded ranges',async t=>{
   const f=await server(t);

@@ -1,0 +1,2159 @@
+{"snapshotFilesMatched": 347}
+TAP version 13
+# Subtest: real account bootstrap exposes only selectable compute providers on developer and launch pages
+ok 1 - real account bootstrap exposes only selectable compute providers on developer and launch pages
+  ---
+  duration_ms: 316.003845
+  type: 'test'
+  ...
+# Subtest: browser automatically opens the same launch after a temporary HTML response
+ok 2 - browser automatically opens the same launch after a temporary HTML response
+  ---
+  duration_ms: 45.004885
+  type: 'test'
+  ...
+# Subtest: browser automatically opens the same launch after a temporary malformed JSON
+ok 3 - browser automatically opens the same launch after a temporary malformed JSON
+  ---
+  duration_ms: 4.30763
+  type: 'test'
+  ...
+# Subtest: browser automatically opens the same launch after a temporary network failure
+ok 4 - browser automatically opens the same launch after a temporary network failure
+  ---
+  duration_ms: 3.522994
+  type: 'test'
+  ...
+# Subtest: browser preparation recovers automatically and shares the same completed build
+ok 5 - browser preparation recovers automatically and shares the same completed build
+  ---
+  duration_ms: 5.526833
+  type: 'test'
+  ...
+# Subtest: browser bounds consecutive failures and manual progress check keeps the same launch
+ok 6 - browser bounds consecutive failures and manual progress check keeps the same launch
+  ---
+  duration_ms: 3.888793
+  type: 'test'
+  ...
+# Subtest: browser does not automatically retry denied progress status 401
+ok 7 - browser does not automatically retry denied progress status 401
+  ---
+  duration_ms: 2.210177
+  type: 'test'
+  ...
+# Subtest: browser does not automatically retry denied progress status 403
+ok 8 - browser does not automatically retry denied progress status 403
+  ---
+  duration_ms: 2.066143
+  type: 'test'
+  ...
+# Subtest: browser does not automatically retry denied progress status 404
+ok 9 - browser does not automatically retry denied progress status 404
+  ---
+  duration_ms: 1.916759
+  type: 'test'
+  ...
+# Subtest: browser does not automatically retry denied progress status 429
+ok 10 - browser does not automatically retry denied progress status 429
+  ---
+  duration_ms: 3.633077
+  type: 'test'
+  ...
+# Subtest: browser retries a timed-out status read and resets the failure count after success
+ok 11 - browser retries a timed-out status read and resets the failure count after success
+  ---
+  duration_ms: 4.001562
+  type: 'test'
+  ...
+# Subtest: browser ignores an obsolete ready response after stopping the same launch
+ok 12 - browser ignores an obsolete ready response after stopping the same launch
+  ---
+  duration_ms: 2.861817
+  type: 'test'
+  ...
+# Subtest: browser ignores a stale build response after selecting a different history item
+ok 13 - browser ignores a stale build response after selecting a different history item
+  ---
+  duration_ms: 1.889089
+  type: 'test'
+  ...
+# Subtest: browser cancels progress recovery when the page is left
+ok 14 - browser cancels progress recovery when the page is left
+  ---
+  duration_ms: 2.171609
+  type: 'test'
+  ...
+# Subtest: browser does not retry launch creation or allow a history error to undo readiness
+ok 15 - browser does not retry launch creation or allow a history error to undo readiness
+  ---
+  duration_ms: 4.283469
+  type: 'test'
+  ...
+# Subtest: browser opens a newly healthy app promptly during delivering
+ok 16 - browser opens a newly healthy app promptly during delivering
+  ---
+  duration_ms: 2.737931
+  type: 'test'
+  ...
+# Subtest: browser opens a newly healthy app promptly during downloading
+ok 17 - browser opens a newly healthy app promptly during downloading
+  ---
+  duration_ms: 2.965556
+  type: 'test'
+  ...
+# Subtest: browser opens a newly healthy app promptly during starting
+ok 18 - browser opens a newly healthy app promptly during starting
+  ---
+  duration_ms: 2.733952
+  type: 'test'
+  ...
+# Subtest: browser keeps normal cadence while provisioning or preparing
+ok 19 - browser keeps normal cadence while provisioning or preparing
+  ---
+  duration_ms: 8.46893
+  type: 'test'
+  ...
+# Subtest: browser startup polling retains error backoff and stops after navigation
+ok 20 - browser startup polling retains error backoff and stops after navigation
+  ---
+  duration_ms: 2.885185
+  type: 'test'
+  ...
+# Subtest: browser stopping during delivery cancels fast polling and cannot open the product
+ok 21 - browser stopping during delivery cancels fast polling and cannot open the product
+  ---
+  duration_ms: 3.002758
+  type: 'test'
+  ...
+# Subtest: private image publication runs only after local validation and remains optional for a launchable build
+ok 22 - private image publication runs only after local validation and remains optional for a launchable build
+  ---
+  duration_ms: 390.036883
+  type: 'test'
+  ...
+# Subtest: image storage budget rejects overflow without altering existing artifacts and accepts its exact boundary
+ok 23 - image storage budget rejects overflow without altering existing artifacts and accepts its exact boundary
+  ---
+  duration_ms: 345.839192
+  type: 'test'
+  ...
+# Subtest: operator image budget permits a store above 5 GiB while retaining the account build quota
+ok 24 - operator image budget permits a store above 5 GiB while retaining the account build quota
+  ---
+  duration_ms: 426.958438
+  type: 'test'
+  ...
+# Subtest: invalid operator image budgets fail before builder initialization
+ok 25 - invalid operator image budgets fail before builder initialization
+  ---
+  duration_ms: 0.855191
+  type: 'test'
+  ...
+# Subtest: container output must match repository, integrity and HTML verification; published metadata is reconstructed
+ok 26 - container output must match repository, integrity and HTML verification; published metadata is reconstructed
+  ---
+  duration_ms: 2.472408
+  type: 'test'
+  ...
+# Subtest: API documentation discovery requires a bounded local OpenAPI schema and its existing UI
+ok 27 - API documentation discovery requires a bounded local OpenAPI schema and its existing UI
+  ---
+  duration_ms: 85.05661
+  type: 'test'
+  ...
+# Subtest: published API entrypoints are reconstructed from verified local documentation
+ok 28 - published API entrypoints are reconstructed from verified local documentation
+  ---
+  duration_ms: 1.41995
+  type: 'test'
+  ...
+# Subtest: build queue serializes work, deduplicates retries, hides ownership and publishes immutable launch versions
+ok 29 - build queue serializes work, deduplicates retries, hides ownership and publishes immutable launch versions
+  ---
+  duration_ms: 459.385435
+  type: 'test'
+  ...
+# Subtest: account limits survive new browser sessions; queue limits reject overload and restart marks unfinished jobs failed
+ok 30 - account limits survive new browser sessions; queue limits reject overload and restart marks unfinished jobs failed
+  ---
+  duration_ms: 388.378312
+  type: 'test'
+  ...
+# Subtest: invalid artifacts do not publish; cleanup failure disables further jobs
+ok 31 - invalid artifacts do not publish; cleanup failure disables further jobs
+  ---
+  duration_ms: 297.822453
+  type: 'test'
+  ...
+# Subtest: LXD file import rejects symlinks, declared oversized files and streaming overflow
+ok 32 - LXD file import rejects symlinks, declared oversized files and streaming overflow
+  ---
+  duration_ms: 19.602485
+  type: 'test'
+  ...
+# Subtest: build failure retains the final diagnostic after verbose Docker progress
+ok 33 - build failure retains the final diagnostic after verbose Docker progress
+  ---
+  duration_ms: 224.756189
+  type: 'test'
+  ...
+# Subtest: worker failure always deletes its own container; cleanup errors fail closed
+ok 34 - worker failure always deletes its own container; cleanup errors fail closed
+  ---
+  duration_ms: 2.930255
+  type: 'test'
+  ...
+# Subtest: submission API requires account authorization and CSRF, protects jobs, and launches the selected immutable version
+ok 35 - submission API requires account authorization and CSRF, protects jobs, and launches the selected immutable version
+  ---
+  duration_ms: 567.533198
+  type: 'test'
+  ...
+# Subtest: detected Node app preserves its own missing optional dependency fallback in a runnable bundle
+ok 36 - detected Node app preserves its own missing optional dependency fallback in a runnable bundle
+  ---
+  duration_ms: 83.390412
+  type: 'test'
+  ...
+# Subtest: an optional occurrence never excuses a required occurrence of the same missing module
+ok 37 - an optional occurrence never excuses a required occurrence of the same missing module
+  ---
+  duration_ms: 9.714723
+  type: 'test'
+  ...
+# Subtest: require.resolve and dynamic import stay outside the optional literal-require optimization
+ok 38 - require.resolve and dynamic import stay outside the optional literal-require optimization
+  ---
+  duration_ms: 10.066152
+  type: 'test'
+  ...
+# Subtest: a required native module still fails bundle compilation
+ok 39 - a required native module still fails bundle compilation
+  ---
+  duration_ms: 5.729625
+  type: 'test'
+  ...
+# Subtest: SSH opens during pending preview but releases no application bytes until privacy succeeds
+ok 40 - SSH opens during pending preview but releases no application bytes until privacy succeeds
+  ---
+  duration_ms: 3.718936
+  type: 'test'
+  ...
+# Subtest: preview failure cancels the waiting transport without sending or retrying
+ok 41 - preview failure cancels the waiting transport without sending or retrying
+  ---
+  duration_ms: 0.960534
+  type: 'test'
+  ...
+# Subtest: an early SSH failure consumes one attempt; retry follows privacy confirmation on the same compute
+ok 42 - an early SSH failure consumes one attempt; retry follows privacy confirmation on the same compute
+  ---
+  duration_ms: 9.8232
+  type: 'test'
+  ...
+# Subtest: SSH early failures and delivery failures keep the three-attempt limit; missing gh is immediate
+ok 43 - SSH early failures and delivery failures keep the three-attempt limit; missing gh is immediate
+  ---
+  duration_ms: 6.346803
+  type: 'test'
+  ...
+# Subtest: shutdown cancels pending transport and prevents a late preview result from dispatching
+ok 44 - shutdown cancels pending transport and prevents a late preview result from dispatching
+  ---
+  duration_ms: 0.696741
+  type: 'test'
+  ...
+# Subtest: failed observation updates close a waiting SSH process and never retry a delivered bootstrap
+ok 45 - failed observation updates close a waiting SSH process and never retry a delivered bootstrap
+  ---
+  duration_ms: 0.81557
+  type: 'test'
+  ...
+# Subtest: server shutdown awaits provider cleanup before closing its store and runs cleanup once
+ok 46 - server shutdown awaits provider cleanup before closing its store and runs cleanup once
+  ---
+  duration_ms: 196.247802
+  type: 'test'
+  ...
+# Subtest: existing private preview needs no forwarding process; other visibility is made private
+ok 47 - existing private preview needs no forwarding process; other visibility is made private
+  ---
+  duration_ms: 2.822805
+  type: 'test'
+  ...
+# Subtest: absent preview is registered privately before the temporary loopback forwarder is closed
+ok 48 - absent preview is registered privately before the temporary loopback forwarder is closed
+  ---
+  duration_ms: 7.284089
+  type: 'test'
+  ...
+# Subtest: registration errors, malformed responses and timeouts never report a ready preview or leak a child
+ok 49 - registration errors, malformed responses and timeouts never report a ready preview or leak a child
+  ---
+  duration_ms: 17.339004
+  type: 'test'
+  ...
+# Subtest: a slow initial port lookup can complete and register a private preview within the stage deadline
+ok 50 - a slow initial port lookup can complete and register a private preview within the stage deadline
+  ---
+  duration_ms: 2.152837
+  type: 'test'
+  ...
+# Subtest: a slow lookup and privacy change share one deadline rather than receiving new budgets
+ok 51 - a slow lookup and privacy change share one deadline rather than receiving new budgets
+  ---
+  duration_ms: 1.049191
+  type: 'test'
+  ...
+# Subtest: preview registration stops at its deadline without another lookup and closes the forwarder
+ok 52 - preview registration stops at its deadline without another lookup and closes the forwarder
+  ---
+  duration_ms: 1.265954
+  type: 'test'
+  ...
+# Subtest: Codespaces records private-preview and bootstrap stages independently of provider readiness
+ok 53 - Codespaces records private-preview and bootstrap stages independently of provider readiness
+  ---
+  duration_ms: 4.323776
+  type: 'test'
+  ...
+# Subtest: failed private-preview setup records its start and never claims a bootstrap or dispatches it
+ok 54 - failed private-preview setup records its start and never claims a bootstrap or dispatches it
+  ---
+  duration_ms: 2.233516
+  type: 'test'
+  ...
+# Subtest: bootstrap retry timing spans all attempts without repeating preview registration
+ok 55 - bootstrap retry timing spans all attempts without repeating preview registration
+  ---
+  duration_ms: 6.420466
+  type: 'test'
+  ...
+# Subtest: saved-runtime compatibility checking has its own timing before preview and bootstrap
+ok 56 - saved-runtime compatibility checking has its own timing before preview and bootstrap
+  ---
+  duration_ms: 0.99645
+  type: 'test'
+  ...
+# Subtest: compatibility separates provider evidence and excludes failed representatives
+ok 57 - compatibility separates provider evidence and excludes failed representatives
+  ---
+  duration_ms: 1.81414
+  type: 'test'
+  ...
+# Subtest: compatibility renders every currently passing representative and escapes labels
+ok 58 - compatibility renders every currently passing representative and escapes labels
+  ---
+  duration_ms: 7.846168
+  type: 'test'
+  ...
+# Subtest: compatibility and its assets are public without creating a build or connection
+ok 59 - compatibility and its assets are public without creating a build or connection
+  ---
+  duration_ms: 311.581837
+  type: 'test'
+  ...
+# Subtest: base64url preparation identities ending in separators produce valid Docker repository names
+ok 60 - base64url preparation identities ending in separators produce valid Docker repository names
+  ---
+  duration_ms: 1.781401
+  type: 'test'
+  ...
+# Subtest: image preparation retries only transient transport failures once within its original deadline
+ok 61 - image preparation retries only transient transport failures once within its original deadline
+  ---
+  duration_ms: 2.012905
+  type: 'test'
+  ...
+# Subtest: prepared Node servers select existing production scripts instead of Angular or Nest development servers
+ok 62 - prepared Node servers select existing production scripts instead of Angular or Nest development servers
+  ---
+  duration_ms: 16.541664
+  type: 'test'
+  ...
+# Subtest: Adonis and Nest preserve framework runtime files even with a direct node start command
+ok 63 - Adonis and Nest preserve framework runtime files even with a direct node start command
+  ---
+  duration_ms: 6.871058
+  type: 'test'
+  ...
+# Subtest: Nuxt standalone packaging preserves the npm lifecycle and leaves custom runtimes intact
+ok 64 - Nuxt standalone packaging preserves the npm lifecycle and leaves custom runtimes intact
+  ---
+  duration_ms: 7.073247
+  type: 'test'
+  ...
+# Subtest: image delivery distinguishes verified download, archive reuse and installed-image reuse
+ok 65 - image delivery distinguishes verified download, archive reuse and installed-image reuse
+  ---
+  duration_ms: 55.013431
+  type: 'test'
+  ...
+# Subtest: image timing keeps integrity failures visible without loading unverified bytes
+ok 66 - image timing keeps integrity failures visible without loading unverified bytes
+  ---
+  duration_ms: 40.017091
+  type: 'test'
+  ...
+# Subtest: runtime readiness requires the worker and healthy database even while the web service runs
+ok 67 - runtime readiness requires the worker and healthy database even while the web service runs
+  ---
+  duration_ms: 1.636692
+  type: 'test'
+  ...
+# Subtest: successful one-time dependencies stay valid but failed migrations and stopped web services fail
+ok 68 - successful one-time dependencies stay valid but failed migrations and stopped web services fail
+  ---
+  duration_ms: 0.522175
+  type: 'test'
+  ...
+# Subtest: stale resumed container task retries once without rebuilding; other application failures do not retry
+ok 69 - stale resumed container task retries once without rebuilding; other application failures do not retry
+  ---
+  duration_ms: 0.792607
+  type: 'test'
+  ...
+# Subtest: container artifact is integrity checked, bounded and rejects host access or missing dependencies
+ok 70 - container artifact is integrity checked, bounded and rejects host access or missing dependencies
+  ---
+  duration_ms: 3.279187
+  type: 'test'
+  ...
+# Subtest: runtime exposes only the product, never rebuilds/pulls, and keeps named database volumes
+ok 71 - runtime exposes only the product, never rebuilds/pulls, and keeps named database volumes
+  ---
+  duration_ms: 0.978384
+  type: 'test'
+  ...
+# Subtest: Angular SSR receives the exact provider preview host and local health hosts at runtime
+ok 72 - Angular SSR receives the exact provider preview host and local health hosts at runtime
+  ---
+  duration_ms: 0.815187
+  type: 'test'
+  ...
+# Subtest: Streamlit receives only its current preview hostname without disabling origin or XSRF checks
+ok 73 - Streamlit receives only its current preview hostname without disabling origin or XSRF checks
+  ---
+  duration_ms: 0.42176
+  type: 'test'
+  ...
+# Subtest: Compose detects the web service, database dependency, explicit defaults and portable storage
+ok 74 - Compose detects the web service, database dependency, explicit defaults and portable storage
+  ---
+  duration_ms: 1.892265
+  type: 'test'
+  ...
+# Subtest: publication verifies every separate image and binds data identity to the repository folder
+ok 75 - publication verifies every separate image and binds data identity to the repository folder
+  ---
+  duration_ms: 1.831792
+  type: 'test'
+  ...
+# Subtest: Angular browser output, SSR and non-Node runtimes use the correct preparation paths
+ok 76 - Angular browser output, SSR and non-Node runtimes use the correct preparation paths
+  ---
+  duration_ms: 17.339207
+  type: 'test'
+  ...
+# Subtest: server build is reusable, deterministic and bundles TypeScript
+ok 77 - server build is reusable, deterministic and bundles TypeScript
+  ---
+  duration_ms: 45.39493
+  type: 'test'
+  ...
+# Subtest: artifact corruption, path escapes, collisions and wrong formats fail closed
+ok 78 - artifact corruption, path escapes, collisions and wrong formats fail closed
+  ---
+  duration_ms: 4.089393
+  type: 'test'
+  ...
+# Subtest: stored provider credentials are authenticated ciphertext
+ok 79 - stored provider credentials are authenticated ciphertext
+  ---
+  duration_ms: 168.385275
+  type: 'test'
+  ...
+# Subtest: real prepared app starts, saves data on compute, stops, and reuses artifact cache
+ok 80 - real prepared app starts, saves data on compute, stops, and reuses artifact cache
+  ---
+  duration_ms: 690.790764
+  type: 'test'
+  ...
+# Subtest: unhealthy app never reports ready; inherited provider tokens do not reach app
+ok 81 - unhealthy app never reports ready; inherited provider tokens do not reach app
+  ---
+  duration_ms: 149.495502
+  type: 'test'
+  ...
+# Subtest: API enforces browser ownership, CSRF, capability auth and idempotent launches
+ok 82 - API enforces browser ownership, CSRF, capability auth and idempotent launches
+  ---
+  duration_ms: 420.360955
+  type: 'test'
+  ...
+# Subtest: unwritable home falls back to session storage and reports its durability
+ok 83 - unwritable home falls back to session storage and reports its durability
+  ---
+  duration_ms: 269.806816
+  type: 'test'
+  ...
+# Subtest: API launch opens verified documentation on the provider host and rejects arbitrary product paths
+ok 84 - API launch opens verified documentation on the provider host and rejects arbitrary product paths
+  ---
+  duration_ms: 587.393753
+  type: 'test'
+  ...
+# Subtest: one compute account cannot be launched concurrently from separate browser sessions
+ok 85 - one compute account cannot be launched concurrently from separate browser sessions
+  ---
+  duration_ms: 778.896289
+  type: 'test'
+  ...
+# Subtest: existing ready previews gain durable private account locks when the server upgrades
+ok 86 - existing ready previews gain durable private account locks when the server upgrades
+  ---
+  duration_ms: 485.2443
+  type: 'test'
+  ...
+# Subtest: Codespace data affinity survives versions, browser sessions and server restarts without crossing accounts
+ok 87 - Codespace data affinity survives versions, browser sessions and server restarts without crossing accounts
+  ---
+  duration_ms: 1188.665365
+  type: 'test'
+  ...
+# Subtest: stop requested during startup cancels the pending artifact body and reports stopped without starting the app
+ok 88 - stop requested during startup cancels the pending artifact body and reports stopped without starting the app
+  ---
+  duration_ms: 3012.713875
+  type: 'test'
+  ...
+# Subtest: dashboard probes verify real protocol results and independent durable SQLite inspection
+ok 89 - dashboard probes verify real protocol results and independent durable SQLite inspection
+  ---
+  duration_ms: 34.924287
+  type: 'test'
+  ...
+# Subtest: dashboard rejects stale data before writing and malformed or failed Gradio completions
+ok 90 - dashboard rejects stale data before writing and malformed or failed Gradio completions
+  ---
+  duration_ms: 11.429273
+  type: 'test'
+  ...
+# Subtest: dashboard rejects unsafe identity, cross-container boundaries, exposed ports and nondurable data before interaction
+ok 91 - dashboard rejects unsafe identity, cross-container boundaries, exposed ports and nondurable data before interaction
+  ---
+  duration_ms: 2.00972
+  type: 'test'
+  ...
+# Subtest: dashboard rejects mismatched Streamlit results and corrupt or inconsistent saved database
+ok 92 - dashboard rejects mismatched Streamlit results and corrupt or inconsistent saved database
+  ---
+  duration_ms: 4.807828
+  type: 'test'
+  ...
+# Subtest: serialized dashboard command includes the Python protocol and runs independently
+ok 93 - serialized dashboard command includes the Python protocol and runs independently
+  ---
+  duration_ms: 344.148418
+  type: 'test'
+  ...
+# Subtest: SSH stdin stays open and empty until explicitly released; completion reaps the child
+ok 94 - SSH stdin stays open and empty until explicitly released; completion reaps the child
+  ---
+  duration_ms: 50.911504
+  type: 'test'
+  ...
+# Subtest: privacy cancellation reaps SSH and refuses subsequent payload release
+ok 95 - privacy cancellation reaps SSH and refuses subsequent payload release
+  ---
+  duration_ms: 44.269533
+  type: 'test'
+  ...
+# Subtest: pre-release wait has a deadline and cancellation waits for process close
+ok 96 - pre-release wait has a deadline and cancellation waits for process close
+  ---
+  duration_ms: 55.03009
+  type: 'test'
+  ...
+# Subtest: slow privacy confirmation leaves a full separate delivery budget
+ok 97 - slow privacy confirmation leaves a full separate delivery budget
+  ---
+  duration_ms: 48.546247
+  type: 'test'
+  ...
+# Subtest: early success, failed SSH and a missing executable cannot be mistaken for delivery
+ok 98 - early success, failed SSH and a missing executable cannot be mistaken for delivery
+  ---
+  duration_ms: 98.033087
+  type: 'test'
+  ...
+# Subtest: failed delivery is bounded, omits remote output and never sends twice
+ok 99 - failed delivery is bounded, omits remote output and never sends twice
+  ---
+  duration_ms: 53.826912
+  type: 'test'
+  ...
+# Subtest: cancellation kills an SSH descendant in the same process group
+ok 100 - cancellation kills an SSH descendant in the same process group
+  ---
+  duration_ms: 52.781958
+  type: 'test'
+  ...
+# Subtest: detects and bundles a TypeScript server and its assets without pods.json
+ok 101 - detects and bundles a TypeScript server and its assets without pods.json
+  ---
+  duration_ms: 49.213759
+  type: 'test'
+  ...
+# Subtest: detects a generated Node entrypoint before build, but packaging requires its output
+ok 102 - detects a generated Node entrypoint before build, but packaging requires its output
+  ---
+  duration_ms: 10.622614
+  type: 'test'
+  ...
+# Subtest: detects Vite frontend output and rejects missing build output
+ok 103 - detects Vite frontend output and rejects missing build output
+  ---
+  duration_ms: 10.024541
+  type: 'test'
+  ...
+# Subtest: plain static artifact serves its actual page, assets and client routes on compute
+ok 104 - plain static artifact serves its actual page, assets and client routes on compute
+  ---
+  duration_ms: 289.523135
+  type: 'test'
+  ...
+# Subtest: detection reports ambiguity and never executes a shell start command
+ok 105 - detection reports ambiguity and never executes a shell start command
+  ---
+  duration_ms: 7.721086
+  type: 'test'
+  ...
+# Subtest: entrypoints and asset directories cannot escape through paths or symlinks
+ok 106 - entrypoints and asset directories cannot escape through paths or symlinks
+  ---
+  duration_ms: 10.691682
+  type: 'test'
+  ...
+# Subtest: file counter inspection verifies each explicit recipe command, stored value and workspace volume without container execution
+ok 107 - file counter inspection verifies each explicit recipe command, stored value and workspace volume without container execution
+  ---
+  duration_ms: 25.2328
+  type: 'test'
+  ...
+# Subtest: file counter inspection rejects incorrect saved values, noncanonical records and unsafe integers
+ok 108 - file counter inspection rejects incorrect saved values, noncanonical records and unsafe integers
+  ---
+  duration_ms: 11.336606
+  type: 'test'
+  ...
+# Subtest: file counter inspection rejects wrong commands, exposed services, host networking and nondurable storage before copying
+ok 109 - file counter inspection rejects wrong commands, exposed services, host networking and nondurable storage before copying
+  ---
+  duration_ms: 2.820522
+  type: 'test'
+  ...
+# Subtest: file counter inspection rejects untrusted profile and identity inputs before Docker access
+ok 110 - file counter inspection rejects untrusted profile and identity inputs before Docker access
+  ---
+  duration_ms: 0.534456
+  type: 'test'
+  ...
+# Subtest: file counter inspection refuses oversized files, directories and symlinks and removes temporary data after copy errors
+ok 111 - file counter inspection refuses oversized files, directories and symlinks and removes temporary data after copy errors
+  ---
+  duration_ms: 5.839541
+  type: 'test'
+  ...
+# Subtest: serialized file counter probe works independently for all fixed commands and counter filenames
+ok 112 - serialized file counter probe works independently for all fixed commands and counter filenames
+  ---
+  duration_ms: 1818.170551
+  type: 'test'
+  ...
+# Subtest: launch links select their exact version and unavailable versions never select another product
+ok 113 - launch links select their exact version and unavailable versions never select another product
+  ---
+  duration_ms: 1.499642
+  type: 'test'
+  ...
+# Subtest: OAuth continuation is time-bounded and bound to the original action, product and provider
+ok 114 - OAuth continuation is time-bounded and bound to the original action, product and provider
+  ---
+  duration_ms: 1.283293
+  type: 'test'
+  ...
+# Subtest: automatic navigation accepts provider previews and rejects arbitrary or credential-bearing destinations
+ok 115 - automatic navigation accepts provider previews and rejects arbitrary or credential-bearing destinations
+  ---
+  duration_ms: 0.461556
+  type: 'test'
+  ...
+# Subtest: provider identities use stable account IDs rather than a shared Cloud Shell label or mutable display name
+ok 116 - provider identities use stable account IDs rather than a shared Cloud Shell label or mutable display name
+  ---
+  duration_ms: 2.222997
+  type: 'test'
+  ...
+# Subtest: Go probe verifies compiled ELF/module identity, persistent counter and private boundary without executing container tools
+ok 117 - Go probe verifies compiled ELF/module identity, persistent counter and private boundary without executing container tools
+  ---
+  duration_ms: 15.291138
+  type: 'test'
+  ...
+# Subtest: Go probe rejects non-Go binaries, unsupported build metadata and malformed inline lengths
+ok 118 - Go probe rejects non-Go binaries, unsupported build metadata and malformed inline lengths
+  ---
+  duration_ms: 28.581062
+  type: 'test'
+  ...
+# Subtest: Go probe rejects a changed launch command, exposed port, wrong storage, extra container and invalid input before copying
+ok 119 - Go probe rejects a changed launch command, exposed port, wrong storage, extra container and invalid input before copying
+  ---
+  duration_ms: 2.457947
+  type: 'test'
+  ...
+# Subtest: Go probe cleans its temporary copies on inspection failure
+ok 120 - Go probe cleans its temporary copies on inspection failure
+  ---
+  duration_ms: 3.452198
+  type: 'test'
+  ...
+# Subtest: Go framework probes verify the exact Echo or Fiber module and dependency in the compiled binary
+ok 121 - Go framework probes verify the exact Echo or Fiber module and dependency in the compiled binary
+  ---
+  duration_ms: 6.467379
+  type: 'test'
+  ...
+# Subtest: Go framework probes reject omitted, substituted, replaced or mismatched dependencies and unknown profiles
+ok 122 - Go framework probes reject omitted, substituted, replaced or mismatched dependencies and unknown profiles
+  ---
+  duration_ms: 15.712825
+  type: 'test'
+  ...
+# Subtest: serialized Go probe inspects copied executable and record in a fresh process
+ok 123 - serialized Go probe inspects copied executable and record in a fresh process
+  ---
+  duration_ms: 912.857849
+  type: 'test'
+  ...
+# Subtest: running Cloud Shell registers its unique key without an unnecessary start and delivers the assigned preview
+ok 124 - running Cloud Shell registers its unique key without an unnecessary start and delivers the assigned preview
+  ---
+  duration_ms: 16.516686
+  type: 'test'
+  ...
+# Subtest: lost key registration and a later lost resume are reconciled without repeating either mutation
+ok 125 - lost key registration and a later lost resume are reconciled without repeating either mutation
+  ---
+  duration_ms: 8.926408
+  type: 'test'
+  ...
+# Subtest: suspension after acknowledged registration resumes the same environment without registering the key twice
+ok 126 - suspension after acknowledged registration resumes the same environment without registering the key twice
+  ---
+  duration_ms: 2.964015
+  type: 'test'
+  ...
+# Subtest: ready key authorization, quota and explicit operation failures never fall back to starting compute
+ok 127 - ready key authorization, quota and explicit operation failures never fall back to starting compute
+  ---
+  duration_ms: 8.637616
+  type: 'test'
+  ...
+# Subtest: acknowledged registration still requires the exact key before delivery or a resume
+ok 128 - acknowledged registration still requires the exact key before delivery or a resume
+  ---
+  duration_ms: 27.431884
+  type: 'test'
+  ...
+# Subtest: registration and suspension recovery share one deadline, including slow completed responses
+ok 129 - registration and suspension recovery share one deadline, including slow completed responses
+  ---
+  duration_ms: 5.360285
+  type: 'test'
+  ...
+# Subtest: an acknowledged key operation polls the same operation and SSH failures still remove both keys
+ok 130 - an acknowledged key operation polls the same operation and SSH failures still remove both keys
+  ---
+  duration_ms: 5.070511
+  type: 'test'
+  ...
+# Subtest: an uncertain start is reconciled only after the same environment exposes this attempt’s key and is running
+ok 131 - an uncertain start is reconciled only after the same environment exposes this attempt’s key and is running
+  ---
+  duration_ms: 27.285619
+  type: 'test'
+  ...
+# Subtest: RUNNING without the attempt key never permits delivery or a repeated start
+ok 132 - RUNNING without the attempt key never permits delivery or a repeated start
+  ---
+  duration_ms: 23.170204
+  type: 'test'
+  ...
+# Subtest: transient operation polling resumes the same acknowledged operation without a second mutation
+ok 133 - transient operation polling resumes the same acknowledged operation without a second mutation
+  ---
+  duration_ms: 8.850168
+  type: 'test'
+  ...
+# Subtest: authorization and quota start failures stop immediately and still clean the ephemeral key
+ok 134 - authorization and quota start failures stop immediately and still clean the ephemeral key
+  ---
+  duration_ms: 6.079142
+  type: 'test'
+  ...
+# Subtest: persistent transient reads stop after three attempts without delivering an application
+ok 135 - persistent transient reads stop after three attempts without delivering an application
+  ---
+  duration_ms: 7.014723
+  type: 'test'
+  ...
+# Subtest: explicit failed or malformed operations cannot trigger reconciliation or runner delivery
+ok 136 - explicit failed or malformed operations cannot trigger reconciliation or runner delivery
+  ---
+  duration_ms: 4.831334
+  type: 'test'
+  ...
+# Subtest: an uncompleted operation reaches the configured deadline without another start
+ok 137 - an uncompleted operation reaches the configured deadline without another start
+  ---
+  duration_ms: 23.837451
+  type: 'test'
+  ...
+# Subtest: response-body transport failures remain visible for provider recovery, while empty responses remain valid
+ok 138 - response-body transport failures remain visible for provider recovery, while empty responses remain valid
+  ---
+  duration_ms: 29.455997
+  type: 'test'
+  ...
+# Subtest: private publisher verifies upload bytes and GitHub digest, then reuses the existing asset
+ok 139 - private publisher verifies upload bytes and GitHub digest, then reuses the existing asset
+  ---
+  duration_ms: 24.047459
+  type: 'test'
+  ...
+# Subtest: publication refuses public repositories, conflicting assets and changed local image bytes
+ok 140 - publication refuses public repositories, conflicting assets and changed local image bytes
+  ---
+  duration_ms: 8.349044
+  type: 'test'
+  ...
+# Subtest: private asset discovery follows bounded pagination without duplicating an existing image
+ok 141 - private asset discovery follows bounded pagination without duplicating an existing image
+  ---
+  duration_ms: 4.124381
+  type: 'test'
+  ...
+# Subtest: resolution uses only verified private asset mappings and never persists a signed URL
+ok 142 - resolution uses only verified private asset mappings and never persists a signed URL
+  ---
+  duration_ms: 4.525916
+  type: 'test'
+  ...
+# Subtest: configuration and destination validation reject partial credentials and untrusted download URLs
+ok 143 - configuration and destination validation reject partial credentials and untrusted download URLs
+  ---
+  duration_ms: 0.689895
+  type: 'test'
+  ...
+# Subtest: runner downloads signed assets without forwarding either authorization header and checks identity before Docker load
+ok 144 - runner downloads signed assets without forwarding either authorization header and checks identity before Docker load
+  ---
+  duration_ms: 10.502986
+  type: 'test'
+  ...
+# Subtest: failed, expired, truncated, oversized or corrupt CDN downloads fall back once to authorized local bytes
+ok 145 - failed, expired, truncated, oversized or corrupt CDN downloads fall back once to authorized local bytes
+  ---
+  duration_ms: 26.18171
+  type: 'test'
+  ...
+# Subtest: runner rejects an untrusted redirect before making any external request or loading an image
+ok 146 - runner rejects an untrusted redirect before making any external request or loading an image
+  ---
+  duration_ms: 3.462831
+  type: 'test'
+  ...
+# Subtest: corrupt CDN bytes followed by corrupt origin bytes never reach Docker and leave no partial archive
+ok 147 - corrupt CDN bytes followed by corrupt origin bytes never reach Docker and leave no partial archive
+  ---
+  duration_ms: 6.846404
+  type: 'test'
+  ...
+# Subtest: server authorizes image membership before resolution, preserves legacy downloads and checks revocation after resolution
+ok 148 - server authorizes image membership before resolution, preserves legacy downloads and checks revocation after resolution
+  ---
+  duration_ms: 702.896199
+  type: 'test'
+  ...
+# Subtest: migration dry-run verifies prepared bytes without contacting delivery or changing files
+ok 149 - migration dry-run verifies prepared bytes without contacting delivery or changing files
+  ---
+  duration_ms: 24.123482
+  type: 'test'
+  ...
+# Subtest: migration publishes shared service images once, preserves links, and resolves through existing delivery
+ok 150 - migration publishes shared service images once, preserves links, and resolves through existing delivery
+  ---
+  duration_ms: 42.621432
+  type: 'test'
+  ...
+# Subtest: retry resumes partial publication and recovers an uploaded asset whose response was lost
+ok 151 - retry resumes partial publication and recovers an uploaded asset whose response was lost
+  ---
+  duration_ms: 17.162416
+  type: 'test'
+  ...
+# Subtest: migration rejects changed metadata, archive, or any image before a remote write
+    # Subtest: id
+    ok 1 - id
+      ---
+      duration_ms: 3.775919
+      type: 'test'
+      ...
+    # Subtest: metadata-images
+    ok 2 - metadata-images
+      ---
+      duration_ms: 4.001978
+      type: 'test'
+      ...
+    # Subtest: archive
+    ok 3 - archive
+      ---
+      duration_ms: 3.421585
+      type: 'test'
+      ...
+    # Subtest: image
+    ok 4 - image
+      ---
+      duration_ms: 3.736111
+      type: 'test'
+      ...
+    # Subtest: conflicting-image-hash
+    ok 5 - conflicting-image-hash
+      ---
+      duration_ms: 8.592315
+      type: 'test'
+      ...
+    1..5
+ok 152 - migration rejects changed metadata, archive, or any image before a remote write
+  ---
+  duration_ms: 25.162367
+  type: 'test'
+  ...
+# Subtest: migration rejects symlink inputs and untrusted application paths
+ok 153 - migration rejects symlink inputs and untrusted application paths
+  ---
+  duration_ms: 6.983439
+  type: 'test'
+  ...
+# Subtest: bundle migration is a no-op while container publication requires private delivery
+ok 154 - bundle migration is a no-op while container publication requires private delivery
+  ---
+  duration_ms: 7.434751
+  type: 'test'
+  ...
+# Subtest: operator CLI defaults to offline dry-run and returns a bounded error without leaking secrets
+ok 155 - operator CLI defaults to offline dry-run and returns a bounded error without leaking secrets
+  ---
+  duration_ms: 291.546433
+  type: 'test'
+  ...
+# Subtest: two image slots overlap transfer with load, bound prefetch, and serialize verified Docker loads
+ok 156 - two image slots overlap transfer with load, bound prefetch, and serialize verified Docker loads
+  ---
+  duration_ms: 66.809894
+  type: 'test'
+  ...
+# Subtest: a corrupt peer cancels a pending body, preserves the first error and cleans partial files before return
+ok 157 - a corrupt peer cancels a pending body, preserves the first error and cleans partial files before return
+  ---
+  duration_ms: 8.448345
+  type: 'test'
+  ...
+# Subtest: a failed Docker load cancels the peer range group without origin fallback and retains the verified retry archive
+ok 158 - a failed Docker load cancels the peer range group without origin fallback and retains the verified retry archive
+  ---
+  duration_ms: 11.236216
+  type: 'test'
+  ...
+# Subtest: a pre-aborted image group never opens a range file or starts requests
+ok 159 - a pre-aborted image group never opens a range file or starts requests
+  ---
+  duration_ms: 1.487109
+  type: 'test'
+  ...
+# Subtest: conflicting image archive identities fail before any inspect, network request or staging file
+ok 160 - conflicting image archive identities fail before any inspect, network request or staging file
+  ---
+  duration_ms: 1.166038
+  type: 'test'
+  ...
+# Subtest: an existing temporary archive is never overwritten or deleted when exclusive creation fails
+ok 161 - an existing temporary archive is never overwritten or deleted when exclusive creation fails
+  ---
+  duration_ms: 3.788795
+  type: 'test'
+  ...
+# Subtest: an empty successful response fails before creating a temporary archive
+ok 162 - an empty successful response fails before creating a temporary archive
+  ---
+  duration_ms: 23.301848
+  type: 'test'
+  ...
+# Subtest: parent cancellation stops stalled range bodies and removes their partial archive
+ok 163 - parent cancellation stops stalled range bodies and removes their partial archive
+  ---
+  duration_ms: 9.077239
+  type: 'test'
+  ...
+# Subtest: registry target is launch-scoped, digest-pinned and cannot redirect the launch capability
+ok 164 - registry target is launch-scoped, digest-pinned and cannot redirect the launch capability
+  ---
+  duration_ms: 2.143208
+  type: 'test'
+  ...
+# Subtest: pull uses only ephemeral private launch credentials and still pulls when an incomplete image ID could be cached
+ok 165 - pull uses only ephemeral private launch credentials and still pulls when an incomplete image ID could be cached
+  ---
+  duration_ms: 15.902323
+  type: 'test'
+  ...
+# Subtest: failed or identity-mismatched pull forces a verified full load despite a visible cached image ID
+    # Subtest: false
+    ok 1 - false
+      ---
+      duration_ms: 40.031837
+      type: 'test'
+      ...
+    # Subtest: true
+    ok 2 - true
+      ---
+      duration_ms: 6.161383
+      type: 'test'
+      ...
+    1..2
+ok 166 - failed or identity-mismatched pull forces a verified full load despite a visible cached image ID
+  ---
+  duration_ms: 47.214462
+  type: 'test'
+  ...
+# Subtest: fallback reuses a verified archive but never loads corrupt bytes or reports a registry error
+ok 167 - fallback reuses a verified archive but never loads corrupt bytes or reports a registry error
+  ---
+  duration_ms: 10.611984
+  type: 'test'
+  ...
+# Subtest: parent cancellation waits for pull shutdown, removes credentials, and never starts archive fallback
+ok 168 - parent cancellation waits for pull shutdown, removes credentials, and never starts archive fallback
+  ---
+  duration_ms: 2.871621
+  type: 'test'
+  ...
+# Subtest: a failed archive peer cancels an in-flight registry pull and stops the bounded worker group
+ok 169 - a failed archive peer cancels an in-flight registry pull and stops the bounded worker group
+  ---
+  duration_ms: 4.383119
+  type: 'test'
+  ...
+# Subtest: Docker cancellation and deadline reap the actual CLI child before returning
+ok 170 - Docker cancellation and deadline reap the actual CLI child before returning
+  ---
+  duration_ms: 106.469927
+  type: 'test'
+  ...
+# Subtest: generic command timeout retains the caller lock until the child is reaped
+ok 171 - generic command timeout retains the caller lock until the child is reaped
+  ---
+  duration_ms: 47.611239
+  type: 'test'
+  ...
+# Subtest: four concurrent ranges reassemble out of order into an exact private verified archive
+ok 172 - four concurrent ranges reassemble out of order into an exact private verified archive
+  ---
+  duration_ms: 49.29905
+  type: 'test'
+  ...
+# Subtest: large images use eight bounded ranges and verify the exact uneven archive before publication
+ok 173 - large images use eight bounded ranges and verify the exact uneven archive before publication
+  ---
+  duration_ms: 769.997319
+  type: 'test'
+  ...
+# Subtest: a failed large-image range cancels all seven peers and removes unverified bytes
+ok 174 - a failed large-image range cancels all seven peers and removes unverified bytes
+  ---
+  duration_ms: 3.651316
+  type: 'test'
+  ...
+# Subtest: range status, offsets, totals, length and full-file digest are enforced with partial files removed
+ok 175 - range status, offsets, totals, length and full-file digest are enforced with partial files removed
+  ---
+  duration_ms: 26.432233
+  type: 'test'
+  ...
+# Subtest: one rejected range aborts pending peers before closing and removing the output
+ok 176 - one rejected range aborts pending peers before closing and removing the output
+  ---
+  duration_ms: 2.680905
+  type: 'test'
+  ...
+# Subtest: a later range HTTP failure is retained instead of earlier peers cancellation errors
+ok 177 - a later range HTTP failure is retained instead of earlier peers cancellation errors
+  ---
+  duration_ms: 2.467185
+  type: 'test'
+  ...
+# Subtest: range timeout classification survives peer aborts and cleans temporary bytes
+ok 178 - range timeout classification survives peer aborts and cleans temporary bytes
+  ---
+  duration_ms: 1.998229
+  type: 'test'
+  ...
+# Subtest: invalid range inputs and existing destinations never fetch, overwrite or delete unrelated bytes
+ok 179 - invalid range inputs and existing destinations never fetch, overwrite or delete unrelated bytes
+  ---
+  duration_ms: 2.858038
+  type: 'test'
+  ...
+# Subtest: large runtime image ranges verifies the entire archive before Docker load
+ok 180 - large runtime image ranges verifies the entire archive before Docker load
+  ---
+  duration_ms: 491.373307
+  type: 'test'
+  ...
+# Subtest: large runtime image origin-fallback verifies the entire archive before Docker load
+ok 181 - large runtime image origin-fallback verifies the entire archive before Docker load
+  ---
+  duration_ms: 483.114585
+  type: 'test'
+  ...
+# Subtest: large runtime image corrupt-both verifies the entire archive before Docker load
+ok 182 - large runtime image corrupt-both verifies the entire archive before Docker load
+  ---
+  duration_ms: 378.090025
+  type: 'test'
+  ...
+# Subtest: selected platform attestations remain available to Docker with their exact verified content
+    # Subtest: legacy image manifest
+    ok 1 - legacy image manifest
+      ---
+      duration_ms: 720.140196
+      type: 'test'
+      ...
+    # Subtest: OCI artifact
+    ok 2 - OCI artifact
+      ---
+      duration_ms: 502.420095
+      type: 'test'
+      ...
+    1..2
+ok 183 - selected platform attestations remain available to Docker with their exact verified content
+  ---
+  duration_ms: 1224.241102
+  type: 'test'
+  ...
+# Subtest: selected attestations cannot omit bytes, change subjects, or become runnable targets
+    # Subtest: missing manifest
+    ok 1 - missing manifest
+      ---
+      duration_ms: 65.259091
+      type: 'test'
+      ...
+    # Subtest: missing config
+    ok 2 - missing config
+      ---
+      duration_ms: 64.711237
+      type: 'test'
+      ...
+    # Subtest: missing statement
+    ok 3 - missing statement
+      ---
+      duration_ms: 64.201087
+      type: 'test'
+      ...
+    # Subtest: wrong layer size
+    ok 4 - wrong layer size
+      ---
+      duration_ms: 66.515029
+      type: 'test'
+      ...
+    # Subtest: external statement
+    ok 5 - external statement
+      ---
+      duration_ms: 66.312654
+      type: 'test'
+      ...
+    # Subtest: wrong artifact subject
+    not ok 6 - wrong artifact subject
+      ---
+      duration_ms: 65.598851
+      type: 'test'
+      location: '/output/registry-platform-v2-candidate-7b27f28/test/image-registry.test.mjs:79:13'
+      failureType: 'testCodeFailure'
+      error: 'Missing expected rejection.'
+      code: 'ERR_ASSERTION'
+      name: 'AssertionError'
+      expected:
+      operator: 'rejects'
+      stack: |-
+        async TestContext.<anonymous> (file:///output/registry-platform-v2-candidate-7b27f28/test/image-registry.test.mjs:81:53)
+        async Test.run (node:internal/test_runner/test:1409:7)
+        async TestContext.<anonymous> (file:///output/registry-platform-v2-candidate-7b27f28/test/image-registry.test.mjs:79:5)
+        async Test.run (node:internal/test_runner/test:1409:7)
+        async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+      ...
+    # Subtest: runnable attestation platform
+    ok 7 - runnable attestation platform
+      ---
+      duration_ms: 65.844905
+      type: 'test'
+      ...
+    # Subtest: invalid attestation reference
+    ok 8 - invalid attestation reference
+      ---
+      duration_ms: 67.505607
+      type: 'test'
+      ...
+    1..8
+not ok 184 - selected attestations cannot omit bytes, change subjects, or become runnable targets
+  ---
+  duration_ms: 528.312477
+  type: 'test'
+  location: '/output/registry-platform-v2-candidate-7b27f28/test/image-registry.test.mjs:71:1'
+  failureType: 'subtestsFailed'
+  error: '1 subtest failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: platform-limited OCI saves retain the original index and only require Linux amd64 content
+ok 185 - platform-limited OCI saves retain the original index and only require Linux amd64 content
+  ---
+  duration_ms: 128.206235
+  type: 'test'
+  ...
+# Subtest: platform selection rejects missing or ambiguous targets and never skips target integrity checks
+    # Subtest: target manifest absent
+    ok 1 - target manifest absent
+      ---
+      duration_ms: 61.310809
+      type: 'test'
+      ...
+    # Subtest: target layer absent
+    ok 2 - target layer absent
+      ---
+      duration_ms: 62.093568
+      type: 'test'
+      ...
+    # Subtest: target descriptor size changed
+    ok 3 - target descriptor size changed
+      ---
+      duration_ms: 62.651246
+      type: 'test'
+      ...
+    # Subtest: no supported platform
+    ok 4 - no supported platform
+      ---
+      duration_ms: 62.477706
+      type: 'test'
+      ...
+    # Subtest: CPU variant requires newer hardware
+    ok 5 - CPU variant requires newer hardware
+      ---
+      duration_ms: 61.434262
+      type: 'test'
+      ...
+    # Subtest: ambiguous target
+    ok 6 - ambiguous target
+      ---
+      duration_ms: 61.789288
+      type: 'test'
+      ...
+    # Subtest: external nonselected descriptor
+    ok 7 - external nonselected descriptor
+      ---
+      duration_ms: 64.563582
+      type: 'test'
+      ...
+    # Subtest: malformed platform
+    ok 8 - malformed platform
+      ---
+      duration_ms: 62.904262
+      type: 'test'
+      ...
+    # Subtest: config disagrees with selected platform
+    ok 9 - config disagrees with selected platform
+      ---
+      duration_ms: 63.066246
+      type: 'test'
+      ...
+    1..9
+ok 186 - platform selection rejects missing or ambiguous targets and never skips target integrity checks
+  ---
+  duration_ms: 564.3427
+  type: 'test'
+  ...
+# Subtest: an unlabelled nested index resolves the baseline amd64 variant without requiring other architectures
+ok 187 - an unlabelled nested index resolves the baseline amd64 variant without requiring other architectures
+  ---
+  duration_ms: 78.131298
+  type: 'test'
+  ...
+# Subtest: OCI preparation verifies and deduplicates exact blobs while preserving the original artifact
+ok 188 - OCI preparation verifies and deduplicates exact blobs while preserving the original artifact
+  ---
+  duration_ms: 133.479111
+  type: 'test'
+  ...
+# Subtest: OCI indexing rejects missing layers, external descriptors, invalid graph and unsafe TAR members
+    # Subtest: missing layer
+    ok 1 - missing layer
+      ---
+      duration_ms: 63.294407
+      type: 'test'
+      ...
+    # Subtest: external source
+    ok 2 - external source
+      ---
+      duration_ms: 63.014594
+      type: 'test'
+      ...
+    # Subtest: wrong descriptor size
+    ok 3 - wrong descriptor size
+      ---
+      duration_ms: 61.593556
+      type: 'test'
+      ...
+    # Subtest: unsupported graph
+    ok 4 - unsupported graph
+      ---
+      duration_ms: 61.880559
+      type: 'test'
+      ...
+    # Subtest: path traversal
+    ok 5 - path traversal
+      ---
+      duration_ms: 61.474297
+      type: 'test'
+      ...
+    # Subtest: symlink
+    ok 6 - symlink
+      ---
+      duration_ms: 64.668078
+      type: 'test'
+      ...
+    # Subtest: oversized PAX extension
+    ok 7 - oversized PAX extension
+      ---
+      duration_ms: 62.118491
+      type: 'test'
+      ...
+    # Subtest: duplicate member
+    ok 8 - duplicate member
+      ---
+      duration_ms: 61.519132
+      type: 'test'
+      ...
+    # Subtest: wrong blob digest
+    ok 9 - wrong blob digest
+      ---
+      duration_ms: 67.536859
+      type: 'test'
+      ...
+    1..9
+ok 189 - OCI indexing rejects missing layers, external descriptors, invalid graph and unsafe TAR members
+  ---
+  duration_ms: 569.382762
+  type: 'test'
+  ...
+# Subtest: OCI indexing rejects changed archive and existing blob bytes without replacing them
+ok 190 - OCI indexing rejects changed archive and existing blob bytes without replacing them
+  ---
+  duration_ms: 120.456072
+  type: 'test'
+  ...
+# Subtest: image budgets include OCI metadata, blobs and staging bytes; a failed index leaves no staging data
+ok 191 - image budgets include OCI metadata, blobs and staging bytes; a failed index leaves no staging data
+  ---
+  duration_ms: 127.667002
+  type: 'test'
+  ...
+# Subtest: shared image writer lock prevents competing publication and preserves another writer
+ok 192 - shared image writer lock prevents competing publication and preserves another writer
+  ---
+  duration_ms: 66.252047
+  type: 'test'
+  ...
+# Subtest: OCI publication uses verified private blob storage and reuses indexes after partial remote failure
+ok 193 - OCI publication uses verified private blob storage and reuses indexes after partial remote failure
+  ---
+  duration_ms: 122.922808
+  type: 'test'
+  ...
+# Subtest: registry preserves a multi-platform index but refuses its nonselected platform digests
+ok 194 - registry preserves a multi-platform index but refuses its nonselected platform digests
+  ---
+  duration_ms: 420.056578
+  type: 'test'
+  ...
+# Subtest: registry serves exact authorized manifests and blobs with HEAD and bounded ranges
+ok 195 - registry serves exact authorized manifests and blobs with HEAD and bounded ranges
+  ---
+  duration_ms: 463.533008
+  type: 'test'
+  ...
+# Subtest: registry rejects cross-launch, nonmember, expired and revoked requests before delivery resolution
+ok 196 - registry rejects cross-launch, nonmember, expired and revoked requests before delivery resolution
+  ---
+  duration_ms: 607.776423
+  type: 'test'
+  ...
+# Subtest: registry checks revocation after CDN lookup and keeps redirects private with safe origin fallback
+ok 197 - registry checks revocation after CDN lookup and keeps redirects private with safe origin fallback
+  ---
+  duration_ms: 472.462175
+  type: 'test'
+  ...
+# Subtest: registry rejects changed manifest content and symlink blobs; disabled registry exposes no content
+ok 198 - registry rejects changed manifest content and symlink blobs; disabled registry exposes no content
+  ---
+  duration_ms: 744.412799
+  type: 'test'
+  ...
+# Subtest: enabled preparation automatically indexes verified OCI images while unsupported archives retain full-image launches
+ok 199 - enabled preparation automatically indexes verified OCI images while unsupported archives retain full-image launches
+  ---
+  duration_ms: 633.206439
+  type: 'test'
+  ...
+# Subtest: launcher selects only matching indexes when enabled and preserves immutable artifact bytes
+    # Subtest: indexed
+    ok 1 - indexed
+      ---
+      duration_ms: 769.744236
+      type: 'test'
+      ...
+    # Subtest: missing
+    ok 2 - missing
+      ---
+      duration_ms: 636.847831
+      type: 'test'
+      ...
+    # Subtest: corrupt
+    ok 3 - corrupt
+      ---
+      duration_ms: 664.970049
+      type: 'test'
+      ...
+    # Subtest: disabled
+    ok 4 - disabled
+      ---
+      duration_ms: 591.000356
+      type: 'test'
+      ...
+    1..4
+ok 200 - launcher selects only matching indexes when enabled and preserves immutable artifact bytes
+  ---
+  duration_ms: 2664.337486
+  type: 'test'
+  ...
+# Subtest: live harness retains launch and safe diagnostics after html polling response
+ok 201 - live harness retains launch and safe diagnostics after html polling response
+  ---
+  duration_ms: 4177.678752
+  type: 'test'
+  ...
+# Subtest: live harness retains launch and safe diagnostics after html200 polling response
+ok 202 - live harness retains launch and safe diagnostics after html200 polling response
+  ---
+  duration_ms: 4163.457759
+  type: 'test'
+  ...
+# Subtest: live harness retains launch and safe diagnostics after json polling response
+ok 203 - live harness retains launch and safe diagnostics after json polling response
+  ---
+  duration_ms: 4166.29982
+  type: 'test'
+  ...
+# Subtest: live harness retains both launch failure and unsuccessful cleanup without claiming stopped
+ok 204 - live harness retains both launch failure and unsuccessful cleanup without claiming stopped
+  ---
+  duration_ms: 3152.200163
+  type: 'test'
+  ...
+# Subtest: live harness assigns an interrupted repeat launch to its own result
+ok 205 - live harness assigns an interrupted repeat launch to its own result
+  ---
+  duration_ms: 5179.321917
+  type: 'test'
+  ...
+# Subtest: live harness records an ambiguous launch request separately and never retries it
+ok 206 - live harness records an ambiguous launch request separately and never retries it
+  ---
+  duration_ms: 1166.920817
+  type: 'test'
+  ...
+# Subtest: live harness reconciles an ambiguous stop response without repeating the mutation
+ok 207 - live harness reconciles an ambiguous stop response without repeating the mutation
+  ---
+  duration_ms: 1147.260603
+  type: 'test'
+  ...
+# Subtest: live harness preserves the two-launch success receipt
+ok 208 - live harness preserves the two-launch success receipt
+  ---
+  duration_ms: 2184.66393
+  type: 'test'
+  ...
+# Subtest: MariaDB probe verifies the real database record and private durable runtime on an assigned port
+ok 209 - MariaDB probe verifies the real database record and private durable runtime on an assigned port
+  ---
+  duration_ms: 8.894506
+  type: 'test'
+  ...
+# Subtest: MariaDB evidence rejects a different engine, wrong saved record and malformed output
+ok 210 - MariaDB evidence rejects a different engine, wrong saved record and malformed output
+  ---
+  duration_ms: 4.668932
+  type: 'test'
+  ...
+# Subtest: serialized MariaDB probe runs without module closure state in a fresh Node process
+ok 211 - serialized MariaDB probe runs without module closure state in a fresh Node process
+  ---
+  duration_ms: 315.734238
+  type: 'test'
+  ...
+# Subtest: MongoDB probe verifies its pinned build, saved document and private durable runtime
+ok 212 - MongoDB probe verifies its pinned build, saved document and private durable runtime
+  ---
+  duration_ms: 3.703706
+  type: 'test'
+  ...
+# Subtest: MongoDB probe rejects another version, storage engine and wrong or malformed saved document
+ok 213 - MongoDB probe rejects another version, storage engine and wrong or malformed saved document
+  ---
+  duration_ms: 5.038112
+  type: 'test'
+  ...
+# Subtest: MongoDB boundary rejects a MySQL mount, exposed database and unsupported mount path
+ok 214 - MongoDB boundary rejects a MySQL mount, exposed database and unsupported mount path
+  ---
+  duration_ms: 1.153325
+  type: 'test'
+  ...
+# Subtest: serialized MongoDB probe executes without module closure state in a fresh process
+ok 215 - serialized MongoDB probe executes without module closure state in a fresh process
+  ---
+  duration_ms: 335.930391
+  type: 'test'
+  ...
+# Subtest: MySQL runtime evidence inspects only the selected project and redacts raw mount paths
+ok 216 - MySQL runtime evidence inspects only the selected project and redacts raw mount paths
+  ---
+  duration_ms: 3.4604
+  type: 'test'
+  ...
+# Subtest: MySQL runtime evidence follows the assigned product port and rejects mismatches
+ok 217 - MySQL runtime evidence follows the assigned product port and rejects mismatches
+  ---
+  duration_ms: 2.5791
+  type: 'test'
+  ...
+# Subtest: MySQL runtime evidence rejects exposed, unhealthy and nonpersistent databases
+ok 218 - MySQL runtime evidence rejects exposed, unhealthy and nonpersistent databases
+  ---
+  duration_ms: 3.275261
+  type: 'test'
+  ...
+# Subtest: serialized MySQL runtime probe executes in a fresh Node process
+ok 219 - serialized MySQL runtime probe executes in a fresh Node process
+  ---
+  duration_ms: 214.461209
+  type: 'test'
+  ...
+# Subtest: different products get distinct preview origins; versions and new sessions retain the same origin and data
+ok 220 - different products get distinct preview origins; versions and new sessions retain the same origin and data
+  ---
+  duration_ms: 1928.806212
+  type: 'test'
+  ...
+# Subtest: port reservations resolve collisions, stay scoped to compute accounts and fail closed when exhausted
+ok 221 - port reservations resolve collisions, stay scoped to compute accounts and fail closed when exhausted
+  ---
+  duration_ms: 689.15036
+  type: 'test'
+  ...
+# Subtest: Codespaces preserves initial Available compute state through delivery
+ok 222 - Codespaces preserves initial Available compute state through delivery
+  ---
+  duration_ms: 4.174111
+  type: 'test'
+  ...
+# Subtest: Codespaces preserves initial Shutdown compute state through delivery
+ok 223 - Codespaces preserves initial Shutdown compute state through delivery
+  ---
+  duration_ms: 2.559708
+  type: 'test'
+  ...
+# Subtest: Codespaces preserves initial ShuttingDown compute state through delivery
+ok 224 - Codespaces preserves initial ShuttingDown compute state through delivery
+  ---
+  duration_ms: 10.774649
+  type: 'test'
+  ...
+# Subtest: Codespaces preserves initial Provisioning compute state through delivery
+ok 225 - Codespaces preserves initial Provisioning compute state through delivery
+  ---
+  duration_ms: 1.814825
+  type: 'test'
+  ...
+# Subtest: Codespaces preserves initial absent compute state through delivery
+ok 226 - Codespaces preserves initial absent compute state through delivery
+  ---
+  duration_ms: 1.206429
+  type: 'test'
+  ...
+# Subtest: Cloud Shell records RUNNING before key registration or its start operation
+ok 227 - Cloud Shell records RUNNING before key registration or its start operation
+  ---
+  duration_ms: 7.403617
+  type: 'test'
+  ...
+# Subtest: Cloud Shell records SUSPENDED before key registration or its start operation
+ok 228 - Cloud Shell records SUSPENDED before key registration or its start operation
+  ---
+  duration_ms: 3.363608
+  type: 'test'
+  ...
+# Subtest: Cloud Shell records PENDING before key registration or its start operation
+ok 229 - Cloud Shell records PENDING before key registration or its start operation
+  ---
+  duration_ms: 4.197301
+  type: 'test'
+  ...
+# Subtest: Cloud Shell records unknown before key registration or its start operation
+ok 230 - Cloud Shell records unknown before key registration or its start operation
+  ---
+  duration_ms: 3.92726
+  type: 'test'
+  ...
+# Subtest: a discovered Codespace shutting down is reused and resumed once after shutdown
+ok 231 - a discovered Codespace shutting down is reused and resumed once after shutdown
+  ---
+  duration_ms: 21.365157
+  type: 'test'
+  ...
+# Subtest: a saved Codespace shutting down is reused and resumed once after shutdown
+ok 232 - a saved Codespace shutting down is reused and resumed once after shutdown
+  ---
+  duration_ms: 4.789361
+  type: 'test'
+  ...
+# Subtest: a Codespace stuck shutting down reaches the deadline without mutation or runner dispatch
+ok 233 - a Codespace stuck shutting down reaches the deadline without mutation or runner dispatch
+  ---
+  duration_ms: 8.922405
+  type: 'test'
+  ...
+# Subtest: transient Codespaces discovery and polling errors recover within one launch without duplicate mutations
+ok 234 - transient Codespaces discovery and polling errors recover within one launch without duplicate mutations
+  ---
+  duration_ms: 5.09882
+  type: 'test'
+  ...
+# Subtest: uncertain resume is reconciled against the same Codespace without repeating start or creating another
+ok 235 - uncertain resume is reconciled against the same Codespace without repeating start or creating another
+  ---
+  duration_ms: 8.385334
+  type: 'test'
+  ...
+# Subtest: persistent reads and terminal provider errors are bounded; uncertain creation is never repeated
+ok 236 - persistent reads and terminal provider errors are bounded; uncertain creation is never repeated
+  ---
+  duration_ms: 16.595763
+  type: 'test'
+  ...
+# Subtest: an unacknowledged resume reaches its deadline without repeating the mutation or dispatching an app
+ok 237 - an unacknowledged resume reaches its deadline without repeating the mutation or dispatching an app
+  ---
+  duration_ms: 8.170176
+  type: 'test'
+  ...
+# Subtest: resume authorization and quota failures are surfaced immediately without reconciliation or duplicate requests
+ok 238 - resume authorization and quota failures are surfaced immediately without reconciliation or duplicate requests
+  ---
+  duration_ms: 0.897733
+  type: 'test'
+  ...
+# Subtest: providers use the assigned port in both the private preview and delivered runner config
+ok 239 - providers use the assigned port in both the private preview and delivered runner config
+  ---
+  duration_ms: 6.996534
+  type: 'test'
+  ...
+# Subtest: private preview registration failure prevents starting the Codespaces runner
+ok 240 - private preview registration failure prevents starting the Codespaces runner
+  ---
+  duration_ms: 0.898246
+  type: 'test'
+  ...
+# Subtest: Codespaces reuses only the configured PODS runtime and delivers over SSH stdin
+ok 241 - Codespaces reuses only the configured PODS runtime and delivers over SSH stdin
+  ---
+  duration_ms: 0.510097
+  type: 'test'
+  ...
+# Subtest: a running PODS Codespace is preferred over an older provisioning or stopped environment
+ok 242 - a running PODS Codespace is preferred over an older provisioning or stopped environment
+  ---
+  duration_ms: 0.450675
+  type: 'test'
+  ...
+# Subtest: an app returns to its saved Codespace even when a different environment is warm
+ok 243 - an app returns to its saved Codespace even when a different environment is warm
+  ---
+  duration_ms: 0.512327
+  type: 'test'
+  ...
+# Subtest: a missing, failed or unrelated saved Codespace never silently replaces application data
+ok 244 - a missing, failed or unrelated saved Codespace never silently replaces application data
+  ---
+  duration_ms: 0.636411
+  type: 'test'
+  ...
+# Subtest: saved Codespaces accept either runtime only after capabilities pass, without replacing their environment
+ok 245 - saved Codespaces accept either runtime only after capabilities pass, without replacing their environment
+  ---
+  duration_ms: 0.635348
+  type: 'test'
+  ...
+# Subtest: missing or unverified Codespaces capabilities preserve the saved environment without runner or preview mutation
+ok 246 - missing or unverified Codespaces capabilities preserve the saved environment without runner or preview mutation
+  ---
+  duration_ms: 0.608534
+  type: 'test'
+  ...
+# Subtest: a runtime change resumes the exact saved Codespace once before checking capabilities
+ok 247 - a runtime change resumes the exact saved Codespace once before checking capabilities
+  ---
+  duration_ms: 0.445686
+  type: 'test'
+  ...
+# Subtest: retrying a pending PODS Codespace waits for it instead of creating another environment
+ok 248 - retrying a pending PODS Codespace waits for it instead of creating another environment
+  ---
+  duration_ms: 12.283539
+  type: 'test'
+  ...
+# Subtest: Codespaces provisioning failure propagates without trying to execute a runner
+ok 249 - Codespaces provisioning failure propagates without trying to execute a runner
+  ---
+  duration_ms: 0.634738
+  type: 'test'
+  ...
+# Subtest: a missing server GitHub CLI is diagnosed without retrying user compute
+ok 250 - a missing server GitHub CLI is diagnosed without retrying user compute
+  ---
+  duration_ms: 0.572695
+  type: 'test'
+  ...
+# Subtest: bootstrap quotes shell values and pins the runner before execution
+ok 251 - bootstrap quotes shell values and pins the runner before execution
+  ---
+  duration_ms: 0.18187
+  type: 'test'
+  ...
+# Subtest: OAuth uses PKCE and session-bound single-use state; callback never exposes token
+ok 252 - OAuth uses PKCE and session-bound single-use state; callback never exposes token
+  ---
+  duration_ms: 679.837808
+  type: 'test'
+  ...
+# Subtest: expired or swept OAuth state returns to the original product and provider without exchanging the code
+ok 253 - expired or swept OAuth state returns to the original product and provider without exchanging the code
+  ---
+  duration_ms: 762.657293
+  type: 'test'
+  ...
+# Subtest: Redis probe verifies the product record, append-only persistence and private durable runtime
+ok 254 - Redis probe verifies the product record, append-only persistence and private durable runtime
+  ---
+  duration_ms: 4.201329
+  type: 'test'
+  ...
+# Subtest: Redis probe rejects missing or unsafe persistence and incorrect engine or saved record
+ok 255 - Redis probe rejects missing or unsafe persistence and incorrect engine or saved record
+  ---
+  duration_ms: 11.536551
+  type: 'test'
+  ...
+# Subtest: Redis probe rejects a wrong volume mount or exposed database
+ok 256 - Redis probe rejects a wrong volume mount or exposed database
+  ---
+  duration_ms: 0.660613
+  type: 'test'
+  ...
+# Subtest: serialized Redis probe executes read-only checks without module state in a fresh process
+ok 257 - serialized Redis probe executes read-only checks without module state in a fresh process
+  ---
+  duration_ms: 451.32229
+  type: 'test'
+  ...
+# Subtest: repository identity is stable and accepts an optional application folder
+ok 258 - repository identity is stable and accepts an optional application folder
+  ---
+  duration_ms: 2.12388
+  type: 'test'
+  ...
+# Subtest: repository input rejects local addresses, credentials, URL tricks and escaping folders
+ok 259 - repository input rejects local addresses, credentials, URL tricks and escaping folders
+  ---
+  duration_ms: 0.969843
+  type: 'test'
+  ...
+# Subtest: repository build worker refuses execution outside its isolated environment
+ok 260 - repository build worker refuses execution outside its isolated environment
+  ---
+  duration_ms: 0.744699
+  type: 'test'
+  ...
+# Subtest: fresh containers wait for DNS and report a bounded failure if networking never starts
+ok 261 - fresh containers wait for DNS and report a bounded failure if networking never starts
+  ---
+  duration_ms: 0.7998
+  type: 'test'
+  ...
+# Subtest: all four SQLite profiles inspect committed WAL through online backup without pausing or writing the source
+ok 262 - all four SQLite profiles inspect committed WAL through online backup without pausing or writing the source
+  ---
+  duration_ms: 1921.878175
+  type: 'test'
+  ...
+# Subtest: online SQLite inspection rejects stale, corrupt, extra and symlinked source files
+ok 263 - online SQLite inspection rejects stale, corrupt, extra and symlinked source files
+  ---
+  duration_ms: 1486.616273
+  type: 'test'
+  ...
+# Subtest: online SQLite inspection rejects a product that stopped or paused during its read
+ok 264 - online SQLite inspection rejects a product that stopped or paused during its read
+  ---
+  duration_ms: 944.148748
+  type: 'test'
+  ...
+# Subtest: online SQLite inspection rejects wrong service, runtime, network, exposure or persistent storage before reading
+ok 265 - online SQLite inspection rejects wrong service, runtime, network, exposure or persistent storage before reading
+  ---
+  duration_ms: 2020.118477
+  type: 'test'
+  ...
+# Subtest: serialized online SQLite probe runs in a fresh process and performs no pause/copy/container exec
+ok 266 - serialized online SQLite probe runs in a fresh process and performs no pause/copy/container exec
+  ---
+  duration_ms: 647.976094
+  type: 'test'
+  ...
+# Subtest: SQLite probe reads the actual saved row and verifies its isolated persistent volume
+ok 267 - SQLite probe reads the actual saved row and verifies its isolated persistent volume
+  ---
+  duration_ms: 3.591267
+  type: 'test'
+  ...
+# Subtest: SQLite probe rejects corrupt or wrong databases, missing rows and incorrect saved values
+ok 268 - SQLite probe rejects corrupt or wrong databases, missing rows and incorrect saved values
+  ---
+  duration_ms: 6.496555
+  type: 'test'
+  ...
+# Subtest: SQLite probe rejects extra containers, wrong mounts, extra ports and unsafe identities before querying
+ok 269 - SQLite probe rejects extra containers, wrong mounts, extra ports and unsafe identities before querying
+  ---
+  duration_ms: 4.040366
+  type: 'test'
+  ...
+# Subtest: serialized SQLite probe opens read-only in a fresh Node process without module state
+ok 270 - serialized SQLite probe opens read-only in a fresh Node process without module state
+  ---
+  duration_ms: 265.124739
+  type: 'test'
+  ...
+# Subtest: SSR probe checks rendered Next, Nuxt, SvelteKit and React Router plus their client entry requests
+ok 271 - SSR probe checks rendered Next, Nuxt, SvelteKit and React Router plus their client entry requests
+  ---
+  duration_ms: 89.487136
+  type: 'test'
+  ...
+# Subtest: SSR probe rejects a healthy unrelated page or missing client entry
+ok 272 - SSR probe rejects a healthy unrelated page or missing client entry
+  ---
+  duration_ms: 9.847377
+  type: 'test'
+  ...
+# Subtest: SSR probe rejects missing assets and HTML pretending to be JavaScript
+ok 273 - SSR probe rejects missing assets and HTML pretending to be JavaScript
+  ---
+  duration_ms: 24.215469
+  type: 'test'
+  ...
+# Subtest: SSR probe refuses external and wrong-framework assets before any asset request
+ok 274 - SSR probe refuses external and wrong-framework assets before any asset request
+  ---
+  duration_ms: 10.406105
+  type: 'test'
+  ...
+# Subtest: SSR probe rejects unknown fixture before network access
+ok 275 - SSR probe rejects unknown fixture before network access
+  ---
+  duration_ms: 0.780991
+  type: 'test'
+  ...
+# Subtest: SvelteKit probe rejects incomplete or external bootstrap imports before fetching assets
+ok 276 - SvelteKit probe rejects incomplete or external bootstrap imports before fetching assets
+  ---
+  duration_ms: 8.910572
+  type: 'test'
+  ...
+# Subtest: native SSR command executes in a fresh Node process for all external-client frameworks
+ok 277 - native SSR command executes in a fresh Node process for all external-client frameworks
+  ---
+  duration_ms: 566.968741
+  type: 'test'
+  ...
+# Subtest: React Router probe rejects missing entries, non-module imports and external assets before fetching scripts
+ok 278 - React Router probe rejects missing entries, non-module imports and external assets before fetching scripts
+  ---
+  duration_ms: 9.143853
+  type: 'test'
+  ...
+# Subtest: Astro probe verifies fresh server rendering and inline client delivery in a separate process
+ok 279 - Astro probe verifies fresh server rendering and inline client delivery in a separate process
+  ---
+  duration_ms: 127.589906
+  type: 'test'
+  ...
+# Subtest: Astro probe rejects static, stale, unrelated and missing-client responses
+ok 280 - Astro probe rejects static, stale, unrelated and missing-client responses
+  ---
+  duration_ms: 54.08561
+  type: 'test'
+  ...
+# Subtest: static probe checks compiled entries for all eight frontend fixtures
+ok 281 - static probe checks compiled entries for all eight frontend fixtures
+  ---
+  duration_ms: 126.668618
+  type: 'test'
+  ...
+# Subtest: static probe rejects empty shells, unrelated apps, and absent module entries
+ok 282 - static probe rejects empty shells, unrelated apps, and absent module entries
+  ---
+  duration_ms: 10.54657
+  type: 'test'
+  ...
+# Subtest: static probe rejects missing bundles, HTML fallbacks, and unrelated JavaScript
+ok 283 - static probe rejects missing bundles, HTML fallbacks, and unrelated JavaScript
+  ---
+  duration_ms: 19.584863
+  type: 'test'
+  ...
+# Subtest: static probe rejects external or uncompiled entries before fetching them
+ok 284 - static probe rejects external or uncompiled entries before fetching them
+  ---
+  duration_ms: 48.190842
+  type: 'test'
+  ...
+# Subtest: native static probe command executes in a fresh Node process
+ok 285 - native static probe command executes in a fresh Node process
+  ---
+  duration_ms: 1546.570666
+  type: 'test'
+  ...
+# Subtest: frontend inspection rejects another fixture bundle even with valid mount and asset paths
+ok 286 - frontend inspection rejects another fixture bundle even with valid mount and asset paths
+  ---
+  duration_ms: 36.730023
+  type: 'test'
+  ...
+# Subtest: static probe rejects unavailable or incorrect nested application documents
+ok 287 - static probe rejects unavailable or incorrect nested application documents
+  ---
+  duration_ms: 14.99074
+  type: 'test'
+  ...
+# Subtest: static probe rejects nested routes whose relative bundles resolve to another location
+ok 288 - static probe rejects nested routes whose relative bundles resolve to another location
+  ---
+  duration_ms: 33.937522
+  type: 'test'
+  ...
+# Subtest: static probe rejects a missing asset masked by a successful fallback
+ok 289 - static probe rejects a missing asset masked by a successful fallback
+  ---
+  duration_ms: 7.31397
+  type: 'test'
+  ...
+# Subtest: legacy container records move to a bundle and return without resetting either latest value
+ok 290 - legacy container records move to a bundle and return without resetting either latest value
+  ---
+  duration_ms: 644.192931
+  type: 'test'
+  ...
+# Subtest: conflicting legacy databases are preserved and require an explicit choice
+ok 291 - conflicting legacy databases are preserved and require an explicit choice
+  ---
+  duration_ms: 8.775698
+  type: 'test'
+  ...
+# Subtest: migration resumes after interruption at before-copy
+ok 292 - migration resumes after interruption at before-copy
+  ---
+  duration_ms: 203.116301
+  type: 'test'
+  ...
+# Subtest: migration resumes after interruption at after-copy
+ok 293 - migration resumes after interruption at after-copy
+  ---
+  duration_ms: 154.527534
+  type: 'test'
+  ...
+# Subtest: migration resumes after interruption at after-backup
+ok 294 - migration resumes after interruption at after-backup
+  ---
+  duration_ms: 138.313598
+  type: 'test'
+  ...
+# Subtest: migration resumes after interruption at after-install
+ok 295 - migration resumes after interruption at after-install
+  ---
+  duration_ms: 211.186208
+  type: 'test'
+  ...
+# Subtest: a partial copy never replaces data and is safely retried
+ok 296 - a partial copy never replaces data and is safely retried
+  ---
+  duration_ms: 204.592189
+  type: 'test'
+  ...
+# Subtest: active containers, unexpected volume bindings and symlink destinations block migration
+ok 297 - active containers, unexpected volume bindings and symlink destinations block migration
+  ---
+  duration_ms: 90.045795
+  type: 'test'
+  ...
+# Subtest: an opaque database topology cannot silently become an empty bundle
+ok 298 - an opaque database topology cannot silently become an empty bundle
+  ---
+  duration_ms: 79.105314
+  type: 'test'
+  ...
+# Subtest: journal path injection cannot reach unrelated data
+ok 299 - journal path injection cannot reach unrelated data
+  ---
+  duration_ms: 89.424475
+  type: 'test'
+  ...
+# Subtest: protected-file copy never starts a helper and cleans resources on failure
+ok 300 - protected-file copy never starts a helper and cleans resources on failure
+  ---
+  duration_ms: 17.743003
+  type: 'test'
+  ...
+# Subtest: container destination recovers before volume initialization at before-copy
+ok 301 - container destination recovers before volume initialization at before-copy
+  ---
+  duration_ms: 126.938826
+  type: 'test'
+  ...
+# Subtest: container destination recovers before volume initialization at after-copy
+ok 302 - container destination recovers before volume initialization at after-copy
+  ---
+  duration_ms: 276.422036
+  type: 'test'
+  ...
+# Subtest: container destination recovers before volume initialization at after-backup
+ok 303 - container destination recovers before volume initialization at after-backup
+  ---
+  duration_ms: 229.680914
+  type: 'test'
+  ...
+# Subtest: container destination recovers before volume initialization at after-install
+ok 304 - container destination recovers before volume initialization at after-install
+  ---
+  duration_ms: 210.609461
+  type: 'test'
+  ...
+# Subtest: a stateless container may change runtime without manufacturing a database
+ok 305 - a stateless container may change runtime without manufacturing a database
+  ---
+  duration_ms: 103.731076
+  type: 'test'
+  ...
+# Subtest: a known bundle database directory is never silently recreated after deletion
+ok 306 - a known bundle database directory is never silently recreated after deletion
+  ---
+  duration_ms: 89.459694
+  type: 'test'
+  ...
+# Subtest: provider storage uses persistent workspaces and migrates only the selected application once
+ok 307 - provider storage uses persistent workspaces and migrates only the selected application once
+  ---
+  duration_ms: 24.425155
+  type: 'test'
+  ...
+# Subtest: managed storage rejects traversal and symlink destinations
+ok 308 - managed storage rejects traversal and symlink destinations
+  ---
+  duration_ms: 5.57734
+  type: 'test'
+  ...
+# Subtest: database files survive loss of Docker volume metadata and legacy data is retained
+ok 309 - database files survive loss of Docker volume metadata and legacy data is retained
+  ---
+  duration_ms: 12.80954
+  type: 'test'
+  ...
+# Subtest: wrong volume identity and interrupted migration fail without creating an empty replacement
+ok 310 - wrong volume identity and interrupted migration fail without creating an empty replacement
+  ---
+  duration_ms: 16.540586
+  type: 'test'
+  ...
+# Subtest: Valkey probe verifies the product record, append-only persistence and private durable runtime
+ok 311 - Valkey probe verifies the product record, append-only persistence and private durable runtime
+  ---
+  duration_ms: 4.096152
+  type: 'test'
+  ...
+# Subtest: Valkey probe rejects missing or unsafe persistence and incorrect engine or saved record
+ok 312 - Valkey probe rejects missing or unsafe persistence and incorrect engine or saved record
+  ---
+  duration_ms: 11.455655
+  type: 'test'
+  ...
+# Subtest: Valkey probe rejects a wrong volume mount or exposed database
+ok 313 - Valkey probe rejects a wrong volume mount or exposed database
+  ---
+  duration_ms: 0.638149
+  type: 'test'
+  ...
+# Subtest: serialized Valkey probe executes read-only checks without module state in a fresh process
+ok 314 - serialized Valkey probe executes read-only checks without module state in a fresh process
+  ---
+  duration_ms: 442.706715
+  type: 'test'
+  ...
+1..314
+# tests 353
+# suites 0
+# pass 351
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 78727.35302
+Traceback (most recent call last):
+  File "<stdin>", line 16, in <module>
+  File "/usr/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/snap/lxd/current/bin/lxc', 'exec', 'pods-fresh-matrix-01', '--disable-stdin', '--user', '1000', '--group', '1000', '--env', 'PATH=/opt/node/bin:/usr/bin:/bin', '--', 'python3', '-c', "import hashlib,json,tarfile,subprocess,sys\nfrom pathlib import Path\np=Path('/output/registry-platform-v2-candidate-7b27f28');p.mkdir()\nwith tarfile.open('/tmp/pods-registry-platform-v2-candidate-7b27f28.tar.gz') as t:t.extractall(p,filter='data')\nm=json.loads((p/'candidate-manifest.json').read_text())\nassert all(hashlib.sha256((p/k).read_bytes()).hexdigest()==v for k,v in m.items())\n(p/'node_modules').symlink_to('/opt/pods/node_modules',target_is_directory=True)\nprint(json.dumps({'snapshotFilesMatched':len(m)}),flush=True)\nresult=subprocess.run(['/opt/node/bin/node','--test','--test-timeout=60000','--test-reporter=tap',*[str(f.relative_to(p)) for f in sorted((p/'test').glob('*.test.mjs'))]],cwd=p)\nsys.exit(result.returncode)\n"]' returned non-zero exit status 1.

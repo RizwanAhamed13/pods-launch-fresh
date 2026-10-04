@@ -143,7 +143,7 @@ def index_image(request):
             file = stage / (id[7:] + ".gz")
             return json.loads((file if file.exists() else blobs / file.name).read_bytes())
 
-        def visit(id, expected=None, depth=0, attestation_target=None):
+        def visit(id, expected=None, depth=0):
             require(depth <= 3 and id not in manifests and id in members and members[id] <= JSON_LIMIT, "Invalid OCI manifest graph")
             value = blob_json(id)
             media = value.get("mediaType")
@@ -151,21 +151,12 @@ def index_image(request):
             manifests[id] = media
             reachable.add(id)
             if media in INDEXES:
-                require(attestation_target is None, "Attestation must be a manifest")
                 children = value.get("manifests")
                 require(isinstance(children, list) and 0 < len(children) <= 16, "Invalid OCI index")
-                selected, attestations = [], []
+                selected = []
                 for child in children:
                     descriptor(child, required=False)
                     require(child.get("mediaType") in MANIFESTS | INDEXES, "Unsupported OCI child manifest")
-                    annotations = child.get("annotations", {})
-                    require(isinstance(annotations, dict), "Invalid OCI annotations")
-                    if annotations.get("vnd.docker.reference.type") == "attestation-manifest":
-                        require(child.get("platform") == {"os": "unknown", "architecture": "unknown"}
-                                and child["mediaType"] in MANIFESTS
-                                and DIGEST.fullmatch(annotations.get("vnd.docker.reference.digest", "")), "Invalid attestation descriptor")
-                        attestations.append(child)
-                        continue
                     if child.get("platform") is None or linux_amd64(child["platform"]):
                         selected.append(child)
                 # Docker saves may retain the original multi-platform index but
@@ -174,21 +165,9 @@ def index_image(request):
                 require(len(selected) == 1, "OCI index requires one Linux amd64 target")
                 child = selected[0]
                 visit(descriptor(child), child["mediaType"], depth + 1)
-                # Docker also fetches the selected platform's attestations. They
-                # remain metadata, never runnable platform candidates.
-                for attestation in attestations:
-                    if attestation["annotations"]["vnd.docker.reference.digest"] == child["digest"]:
-                        visit(descriptor(attestation), attestation["mediaType"], depth + 1, child)
             else:
                 config = blob_json(descriptor(value.get("config")))
-                if attestation_target is None:
-                    require(linux_amd64(config), "OCI configuration is not Linux amd64")
-                else:
-                    require(isinstance(config, dict), "Invalid attestation configuration")
-                    require(value.get("artifactType") in {None, "application/vnd.docker.attestation.manifest.v1+json"}, "Unsupported attestation artifact")
-                    if "subject" in value:
-                        require(descriptor(value["subject"]) == attestation_target["digest"]
-                                and value["subject"].get("mediaType") == attestation_target["mediaType"], "Attestation subject mismatch")
+                require(linux_amd64(config), "OCI configuration is not Linux amd64")
                 layers = value.get("layers")
                 require(isinstance(layers, list) and len(layers) <= 128, "Invalid OCI layers")
                 for layer in layers:

@@ -1,0 +1,54 @@
+(node:222) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ selected platform attestations remain available to Docker with their exact verified content
+  ✖ legacy image manifest (281.218375ms)
+  ✖ OCI artifact (148.019042ms)
+✖ selected platform attestations remain available to Docker with their exact verified content (430.160333ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 600.771417
+
+✖ failing tests:
+
+test at test/image-registry.test.mjs:57:46
+✖ legacy image manifest (281.218375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  4 !== 7
+  
+      at TestContext.<anonymous> (file:///Users/rizwanahamed/Documents/ChatGPT/podsv2/test/image-registry.test.mjs:60:12)
+      at async Test.run (node:internal/test_runner/test:1088:7)
+      at async TestContext.<anonymous> (file:///Users/rizwanahamed/Documents/ChatGPT/podsv2/test/image-registry.test.mjs:57:38)
+      at async Test.run (node:internal/test_runner/test:1088:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 7,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/image-registry.test.mjs:57:46
+✖ OCI artifact (148.019042ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  4 !== 7
+  
+      at TestContext.<anonymous> (file:///Users/rizwanahamed/Documents/ChatGPT/podsv2/test/image-registry.test.mjs:60:12)
+      at async Test.run (node:internal/test_runner/test:1088:7)
+      at async TestContext.<anonymous> (file:///Users/rizwanahamed/Documents/ChatGPT/podsv2/test/image-registry.test.mjs:57:38)
+      at async Test.run (node:internal/test_runner/test:1088:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 7,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

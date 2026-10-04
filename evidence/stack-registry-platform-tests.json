@@ -1,0 +1,105 @@
+{
+  "recordedAt": "2026-10-04T17:31:14.073226+00:00",
+  "baseRevision": "7b27f2859dc28e25b19871ce8bc890c5d2c997ac",
+  "scope": "Platform-limited OCI saves and selected-platform attestation compatibility; no additional framework or native product acceptance.",
+  "tests": {
+    "localFullSuite": {
+      "tests": 353,
+      "pass": 353,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 26862.734667,
+      "logSha256": "a23f3a06ad22d1f4e4bc3c5ab666319ea75ad4e071e21492eda7020c09404fc1",
+      "log": "probes/registry-platform-local-tests.txt"
+    },
+    "isolatedLinuxFullSuite": {
+      "tests": 353,
+      "pass": 353,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 76902.579834,
+      "logSha256": "021b95b02023a2bd101e4bcef13633ad9c9983dcb7213a1dc5699cb08f8d080e",
+      "log": "probes/registry-platform-linux-tests.txt"
+    }
+  },
+  "sourceHashes": {
+    "src/builds.mjs": "0565d22b8224897e0743f5cb5c2dc18961f51aaf90a2bec6edc02549ad1c48ca",
+    "src/container-runtime.mjs": "67caf16a1e1f7e4eb3c7293a79d24dc845014d73d28025a882ccd7cf384ead04",
+    "src/containers.mjs": "0a0926c1213eccb250bd6edabfd956fc78bd2d9d08cf104c04914a1b84065d04",
+    "src/image-pull.mjs": "6dcc69e36afb83fbd6529ef351f942aff2b3ac6d7f09fad814ce8e93f95e71a1",
+    "src/image-registry.mjs": "c9820f0d6ed7188f45110b31ec2df7f31e8041fa4be5976515a87a8137e1286d",
+    "src/runner.mjs": "27312e6d8f11980c6359908fece16e919e8e463dd562db5a6ef8dcbbf954e0c3",
+    "src/server.mjs": "b1b45200de153b3aebd0f6a56170991dcde6b397d65d771b5b343688e740c380",
+    "src/util.mjs": "c94e0cc12bbce9cdad3414c72052a03cb7d7b6cd07a4a2f1b6f0054711c53695",
+    "scripts/index-image.py": "7ee0c87ffe02c1e63c788a290575cbc21ee4429f937817694acb5ea7a7d39ece",
+    "test/image-pull.test.mjs": "080706c3b648a70210d9d3c87f870b0f724a833292d128f823bf9c31c2a79365",
+    "test/image-registry.test.mjs": "5d1d339a45cb7b0b21d37cf2609fb6da09f34abcd51a1216473ea4e147c9bfd6",
+    "test/core.test.mjs": "e31425dade286bc9876957b4cc108daf39eee0c58030237368629cf0016cf952"
+  },
+  "snapshot": {
+    "directory": "/output/registry-platform-v3-candidate-7b27f28",
+    "files": 347,
+    "archiveSha256": "bc573b5edcd0dcc6a3c1a25292ec3d2c75d6758f3cb7023d3b41cc99161e6c07",
+    "manifestSha256": "f5302710d8039f35ef95cf015baedff8d37d3f59d6c4890b2d3e9941a6341371",
+    "manifest": "probes/registry-platform-snapshot.json"
+  },
+  "retainedFixtureFailure": {
+    "cause": "Test mutation shared its subject object with the descriptor target; corrected by copying subject before mutation.",
+    "local": {
+      "tests": 353,
+      "pass": 351,
+      "fail": 2,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 26807.799417,
+      "logSha256": "17ee0fb958203f4c67c275fc32b5c6d81912c5a94022074d9c677a2ea0abda17",
+      "log": "probes/registry-platform-fixture-failure-local.txt"
+    },
+    "linux": {
+      "tests": 353,
+      "pass": 351,
+      "fail": 2,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 78727.35302,
+      "logSha256": "0d737ea4cc9edf529b63339dcd049991f992d1a4c306b3364bb99c49bab954c9",
+      "log": "probes/registry-platform-fixture-failure-linux.txt"
+    }
+  },
+  "codeLines": {
+    "product_and_tooling": {
+      "files": 66,
+      "lines": 4668
+    },
+    "automated_tests": {
+      "files": 44,
+      "lines": 4133
+    },
+    "example_applications": {
+      "files": 134,
+      "lines": 933
+    },
+    "browser_test_tools": {
+      "files": 2,
+      "lines": 178
+    },
+    "total_lines": 9912,
+    "scope": "Physical source lines including blanks in src/public/scripts/test/examples. Includes JS/TS/JSX/TSX, Python, Go, Java/Kotlin, C#, PHP (including artisan), Ruby (.rb/.ru and Rails bin/rails), Rust, Elixir, HTML/CSS, shell, Svelte/Vue/Astro/Razor. Excludes JSON/lockfiles, Dockerfiles, YAML, docs, dependencies and generated artifacts. Archived diagnostic reproducers under evidence/probes are excluded."
+  },
+  "productionBefore": {
+    "recordedAt": "2026-10-04T17:30:05.403760+00:00",
+    "pid": 1635758,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "cfb3d769f330a9bd010132cfd50fe342167d930736d73df8ab644caa912b191e",
+    "revision": "7b27f2859dc28e25b19871ce8bc890c5d2c997ac"
+  },
+  "baselineAttestationRegressionLog": "probes/registry-attestation-regression-before.txt"
+}

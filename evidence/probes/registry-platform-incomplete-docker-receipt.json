@@ -1,0 +1,118 @@
+{
+  "scope": "Actual Docker pulls through the candidate PODS read-only authenticated registry in isolated QA; no native provider or product timing",
+  "startedAt": 1791134569.8305626,
+  "runs": [
+    {
+      "mode": "cold",
+      "engine": {
+        "ServerVersion": "29.1.3",
+        "Driver": "overlayfs",
+        "DriverStatus": [
+          [
+            "driver-type",
+            "io.containerd.snapshotter.v1"
+          ]
+        ]
+      },
+      "initialImages": 0,
+      "initialPhysicalBlobs": 0,
+      "pulls": [
+        {
+          "phase": "cold",
+          "elapsedMs": 839,
+          "exitCode": 1
+        }
+      ]
+    }
+  ],
+  "indexing": {
+    "appId": "registry-qa",
+    "images": [
+      {
+        "archiveSha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+        "imageId": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+        "blobs": 11,
+        "blobBytes": 105645283,
+        "addedBlobBytes": 105645283,
+        "delivery": "origin"
+      }
+    ],
+    "storedBytes": 210154197,
+    "elapsedMs": 1590,
+    "baseline": {
+      "exitCode": 1,
+      "missingPlatformBytes": true
+    },
+    "members": {
+      "sha256:07afc4eb8b2ccd9efb19d4ec8960cc9c82524b408088597637c6be636b4b1d98": 1342,
+      "sha256:086135ab0fe585d3416f96e7ef7f49fda159bf84549acbbd54bff35d05642a3f": 7656029,
+      "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6": 5133,
+      "sha256:36f84c3d5a21399aba08adc6764a72dd2d55cc0449b57c40b8f7dd553323bd25": 4034,
+      "sha256:47af3a184ea1e8859278cade3bc53b529bde157c3dc5ac6e4764686db804f75c": 116,
+      "sha256:927fa4a585713209a271cc6522430019e3e1f25bd306d727f482a6e65d20e201": 333,
+      "sha256:a60ef8ec184edb5ed91f5983f00261359fb2fe20f603e8d488b9477d32fcad70": 29764422,
+      "sha256:a76bc7c95d1eaffffd305424646b4c1f57c995333a706298c3bf1b24b60b2b3e": 68194128,
+      "sha256:ab3dff582d246358b6f6a1f6212f29ac64609fad883eb3dcfb0a89f6f7d0700e": 8774,
+      "sha256:f2f5e00999bd335343e09091e27e39c9386eb1822efcd0e0bac40b0003fa47e3": 2479,
+      "sha256:fc90ba8e9eef90336396b2384fc13abf64da68f7785eaf3b13f91c4a5fb85761": 8493
+    },
+    "manifests": {
+      "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6": "application/vnd.oci.image.index.v1+json",
+      "sha256:f2f5e00999bd335343e09091e27e39c9386eb1822efcd0e0bac40b0003fa47e3": "application/vnd.oci.image.manifest.v1+json"
+    }
+  },
+  "target": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+  "failure": "Authenticated Docker pull failed; owned log retained",
+  "stopped": {
+    "cold-docker": true,
+    "cold-containerd": true,
+    "registry-server": true
+  },
+  "requests": [
+    {
+      "phase": "cold",
+      "method": "HEAD",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/manifests/sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+      "status": 401,
+      "bytes": 0
+    },
+    {
+      "phase": "cold",
+      "method": "HEAD",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/manifests/sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+      "status": 200,
+      "bytes": 0
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/manifests/sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+      "status": 200,
+      "bytes": 5133
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/manifests/sha256:f2f5e00999bd335343e09091e27e39c9386eb1822efcd0e0bac40b0003fa47e3",
+      "status": 200,
+      "bytes": 2479
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/blobs/sha256:ab3dff582d246358b6f6a1f6212f29ac64609fad883eb3dcfb0a89f6f7d0700e",
+      "status": 200,
+      "bytes": 8774
+    },
+    {
+      "phase": "cold",
+      "method": "GET",
+      "path": "/v2/pods/4141414141414141414141414141414141414141414141414141414141414141/f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f/manifests/sha256:4a86ba8758b30cfa43331d6100a3cbcf5390020690bec3b7790796eeb54c3a81",
+      "status": 404,
+      "bytes": 0
+    }
+  ],
+  "existingQaImagesPreserved": true,
+  "temporaryClientCredentialsRemoved": true,
+  "finishedAt": 1791134578.457142
+}

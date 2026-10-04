@@ -15,8 +15,8 @@ Provider authorization is required. Conventional public GitHub applications can 
 
 Cold provisioning and uncached image transfer are measured separately from cached launch. User compute remains owned and billed by the user's provider. Persistent container data is stored under Cloud Shell's home or Codespaces' `/workspaces`; provider lifecycle durability requires separate evidence.
 ## Evidence on Hand
-As of 2026-10-04, all 328 automated checks passed locally and in isolated Linux.
-See [registry launch tests](evidence/stack-registry-launch-tests.json); earlier
+As of 2026-10-04, all 353 automated checks passed locally and in isolated Linux.
+See [platform and attestation tests](evidence/stack-registry-platform-tests.json); earlier
 failures remain recorded in their original evidence.
 The matrix records 55 passing representative applications: isolated server build,
 prepared-artifact launch and browser interaction, plus 55 native Cloud Shell
@@ -29,7 +29,7 @@ launches still exceed the 20-second product target in several measured cases;
 cached and cold observations remain separate. A stable production hostname and
 Cloud Shell VM-replacement durability also remain open. Database acceptance
 covers the recorded write/read/stop/relaunch scenarios, not arbitrary migrations
-or power-loss guarantees. Current source totals 9,764 scoped physical lines.
+or power-loss guarantees. Current source totals 9,912 scoped physical lines.
 
 The disabled-by-default OCI registry foundation now indexes verified prepared
 images and serves them through launch-scoped authorization, with bounded storage
@@ -45,6 +45,10 @@ The direct empty-store image preparation took26.078s; with shared layers it took
 credential headers, and exact image/dependency execution passed. Two diagnostic
 proxy timeouts with full-archive fallback remain recorded. See
 [private CDN evidence](evidence/stack-registry-cdn-qa.json).
+The selected-platform indexer now handles MariaDB saves that omit other
+architectures while retaining the original index. It includes matching attestations;
+fresh/cached Docker pulls and networkless MariaDB runtime execution passed.
+See [platform compatibility evidence](evidence/stack-registry-platform-qa.json).
 Native provider/product validation remains pending. Production continues running
 the earlier full-archive pipeline. These are image-transfer checks, not application
 or database acceptance. See [integrated Docker evidence](evidence/stack-registry-launch-qa.json).
