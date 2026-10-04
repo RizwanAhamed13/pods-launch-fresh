@@ -1,11 +1,11 @@
 {
   "product_and_tooling": {
-    "files": 65,
-    "lines": 4537
+    "files": 66,
+    "lines": 4626
   },
   "automated_tests": {
-    "files": 43,
-    "lines": 3869
+    "files": 44,
+    "lines": 4027
   },
   "example_applications": {
     "files": 134,
@@ -15,6 +15,6 @@
     "files": 2,
     "lines": 178
   },
-  "total_lines": 9517,
+  "total_lines": 9764,
   "scope": "Physical source lines including blanks in src/public/scripts/test/examples. Includes JS/TS/JSX/TSX, Python, Go, Java/Kotlin, C#, PHP (including artisan), Ruby (.rb/.ru and Rails bin/rails), Rust, Elixir, HTML/CSS, shell, Svelte/Vue/Astro/Razor. Excludes JSON/lockfiles, Dockerfiles, YAML, docs, dependencies and generated artifacts. Archived diagnostic reproducers under evidence/probes are excluded."
 }

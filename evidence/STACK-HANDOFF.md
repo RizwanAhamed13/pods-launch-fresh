@@ -1,20 +1,50 @@
 # Broad stack checkpoint
 
 Goal active and incomplete: developer URL → isolated aswin build → reusable artifact
-→ authorized user compute → real usable product. Latest completed gate: disabled
-OCI registry foundation plus actual authenticated Docker pulls in isolated QA.
-Cold blobs57.4MB/shared-base11.2MB/repeat0; exact image and dependency checks pass.
-Automatic indexing/runner integration and native acceptance remain pending. The
-previous thin-archive diagnostic exposed misleading load/identity success for an
-unrunnable image; retain full-archive recovery in the upcoming runner integration.
-Prior native gate: Flask + MariaDB acceptance of the deployed two-image pipeline.
-Actual first-image product30.229s/write30.947s still misses20s; cached product12.607s/
-write13.005s passes. Both CDN downloads succeeded; persistence2→3→4 passed.
-Source is now9517lines;311 local checks passed. Linux309/311 initially, then all3
-compatibility checks passed after a missing QA fixture was restored. Production
-runtime remainsf87b2e0, with no registry configuration or files added there.
-Native Codespaces browser and
-broader first-image latency remain open; no universal compatibility/speed claim.
+→ authorized user compute → real usable product. Latest completed gate: automatic
+OCI indexing, runner selection, launch-only credential pulls, forced verified
+full-archive recovery, and startup cancellation. Registry remains disabled; live
+runtime still f87b2e0. Both full suites passed328 checks. Scope9764 physical lines.
+Actual Docker checks in four independent QA stores passed cold/cached pull,
+incomplete-image repair, corrupt-manifest fallback and cancellation during a blob
+transfer. No app/browser/database/native-provider/CDN acceptance in this gate.
+The previous native Flask+MariaDB first-image product30.229s still misses20s;
+cached product12.607s and persistence2→3→4 passed. Goal remains active.
+
+## Latest integrated registry gate
+
+- stack-registry-launch-tests.json:328/328 local26.721s/Linux72.373s. Exact347-file
+  candidate /output/registry-launch-candidate-adc78ff. First Linux invocation
+  exited127 from SSH quoting before tests; corrected argv ran the unchanged snapshot.
+- stack-registry-launch-qa.json and probes/registry-launch-qa.py: exact executed
+  program, four distinct physical Docker/containerd stores in
+  /output/registry-launch-probe-v2-adc78ff. Initial stores were empty. Cold fetched
+  57,398,228 blob bytes, cached repeat zero. Partial-image case first imported the
+  original thin diagnostic (load0/inspect ID visible/execution125), then forced
+  full57,046,835-byte reload after denied registry and passed dependency execution.
+  Corrupt manifest also recovered through exactly one full archive. Cancelled
+  stalled blob did not fallback. All nine owned processes stopped; no containers,
+  temporary credentials removed, normal QA images preserved. Keep stores/inputs.
+- Initial probe v1 failed because QA adapter added a duplicate --host; Docker
+  rejected it. Corrected only QA adapter with an owned socket shim; product code
+  unchanged. Failure receipt/hash retained. These are not native timing claims.
+- src/image-pull.mjs derives destination from artifact origin and uses0700/0600
+  private ephemeral Docker config. Always pulls selected images by exact digest;
+  cached identity cannot bypass completeness. Pull failure/mismatched ID forces
+  full verified archive load.45s bound; two image workers; shared cancellation;
+  full loads serialized. Credentials removed only after CLI close.
+- BuildManager optionally indexes/publishes after verified artifact publication;
+  unsupported formats keep the ready full-archive path. Server selects only valid
+  matching indexes when registry flag enabled. Artifact/link unchanged.
+- Runner startup heartbeat now handles Stop during artifact/image delivery;
+  process signals cancel startup as well. Docker command supports AbortSignal.
+  Generic command timeout waits for child close before releasing writer locks.
+  SIGKILL may leave bounded staging files; do not infer automatic crash recovery.
+- Next gate: actual private blob publication and Docker CDN redirect credential
+  behavior. Then controlled rollout and native Google product/DB acceptance with
+  genuinely absent images, separate cached/cold measurements. Do not index live
+  storage until shared writer lock is deployed to all writers. No production
+  registry files/assets/config changes or service restart in this gate.
 
 ## Current verified state
 
@@ -26,16 +56,14 @@ broader first-image latency remain open; no universal compatibility/speed claim.
   browser and55 Codespaces HTTP/protocol paths. Seven DB/service families.
   Native Codespaces browser sign-in/interaction remains unverified. See SUPPORT.md;
   not every framework version, arbitrary repository or non-web product is covered.
-- Tests stack-registry-foundation-tests.json:311/311 local26.842s; Linux309/311
-  in65.831s, two failures due omitted evidence/stack-coverage.json. Exact fixture
-  restored,345 snapshot inputs verified, compatibility3/3 passed in0.459s. No
-  implementation changes after these runs; passing checks not repeated.
+- Current tests: stack-registry-launch-tests.json,328/328 local and Linux.
+  Previous foundation fixture failures remain in stack-registry-foundation-tests.json.
 - Historical deployed tests stack-image-pipeline-tests.json:292/292 local26.503s/Linux64.895s.
   Final candidate /output/image-pipeline-final-candidate-55737b2,343 verified inputs.
   Four selected regressions fail unchanged55737b2 baseline. Initial focused failure
   identified stalled web-stream cancellation; Readable.fromWeb fixes direct and
   range bodies. Empty HTTP200 response now fails before staging-file creation.
-- Scope9517 physical source lines =4537 product/tooling +3869 tests +933 examples
+- Scope9764 physical source lines =4626 product/tooling +4027 tests +933 examples
   +178 browser tools. Exact scope in code-lines.json; archived probes excluded.
 - stack-image-pipeline-comparison.json: ABBA,3images226330909bytes, aggregate20MiB/s
   loopback HTTP, real Docker29.1.3 loads, equally warmed Docker content, synthetic
@@ -47,7 +75,7 @@ broader first-image latency remain open; no universal compatibility/speed claim.
   health200/SQLiteok/zero active. Baseline55737b2 retained in test/benchmark evidence.
 - 59 distinct prepared images,10 mappings,49 unmapped totaling5177532324bytes.
 
-## Latest OCI registry foundation
+## Previous OCI registry foundation
 
 - src/image-registry.mjs; scripts/index-image.py and prepare-image-registry.mjs;
   test/image-registry.test.mjs. Existing image-delivery publisher can publish raw
@@ -78,11 +106,7 @@ broader first-image latency remain open; no universal compatibility/speed claim.
   mistakenly changed source-copy permissions; actual correction was explicit cwd.
   Failures retained. All5final daemons stopped, noownedprobeprocessesremain;
   originalQAimages preserved and temporaryDockerclientcredentials removed.
-- Next: integrate automatic preparation and runner selection with bounded pull,
-  cancellation, exact identity/completeness checks and full-archive fallback even
-  after a partial image is present. Test actual recovery before rollout. Then
-  private CDN blob publication/redirect behavior and native first-image product
-  acceptance. Do not advertise the registry as active delivery yet. Goal active.
+- This foundation gate is superseded by the integrated runner evidence above.
 
 ## Latest layer-reuse diagnostic
 
@@ -278,14 +302,11 @@ broader first-image latency remain open; no universal compatibility/speed claim.
 
 ## Next bounded gate and pending inputs
 
-- First-image pipeline acceptance is complete; do not repeat the now-cached
-  Flask + MariaDB case as if uncached. Its16.450s image preparation remains the
-  largest added first-image cost. Next bounded diagnostic: inspect the selected
-  saved-image payloads for redundant base layers shared with already cached
-  FastAPI/other verified images, and quantify potential transfer savings before
-  choosing an implementation. Shared-layer savings and any alternative delivery
-  protocol are hypotheses, not established benefits. Preserve existing artifacts,
-  cached layers and DB data; no public image exposure or static credential delivery.
+- Next: real private CDN blob publication and actual Docker redirect/credential
+  behavior, then deployment and native Google product/database acceptance. Registry
+  integration/recovery is now verified in isolated Docker. Do not repeat cached
+  Flask+MariaDB as if its images were absent. Preserve artifacts/cache/data; no
+  public image exposure or static provider credentials on user compute.
 - Broader CDN migration remains49 images/5.178GB; do not mass-upload them as a
   substitute for improving the measured first-image path.
 - Code graph refreshed for current checkout as pods-launch-current (fast index).
@@ -321,7 +342,7 @@ broader first-image latency remain open; no universal compatibility/speed claim.
 - Codespace pods-launch-containers-69rw5vx4xp46c5qw5 last observed Shutdown at
   2026-10-04T14:29:20.206Z. Check fresh state before using it.
   Latest Micronaut values Google20/Codespaces21; Ktor Google4; FastAPI Google4;
-  React/Express/PostgreSQL Google3.
+  React/Express/PostgreSQL Google5; Flask/MariaDB Google4.
   Never reset values.
 - Prepared buildL2AiK3hVAKYytXputQXo0R8rWt6bDhVs, app
   repo-2caafe8ea7f268fe237b7cab-d6da2ed780ae-5a4e0078fab4,

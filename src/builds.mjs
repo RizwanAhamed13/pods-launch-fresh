@@ -4,7 +4,7 @@ import { parseRepository } from './repository.mjs';
 import { decodeArtifact } from './runner.mjs';
 import { digest, uid } from './util.mjs';
 import { IMAGE_TOTAL_LIMIT } from './containers.mjs';
-import { imageStoreBytes, withImageStoreWrite } from './image-registry.mjs';
+import { imageStoreBytes, withImageStoreWrite, prepareRegistryForApp } from './image-registry.mjs';
 
 const terminal = new Set(['ready', 'failed']);
 const fail = (status, message) => Object.assign(new Error(message), { status });
@@ -77,9 +77,9 @@ export async function publishArtifact(data, manifest, bytes, blobs = []) {
 }
 
 export class BuildManager {
-  constructor({ store, data, adapter, origin, imageDelivery = null, maxPending = 4, accountLimit = 3, globalLimit = 12, imageStorageBytes = Number(process.env.PODS_IMAGE_STORAGE_BYTES ?? 5 * IMAGE_TOTAL_LIMIT) }) {
+  constructor({ store, data, adapter, origin, imageDelivery = null, registryEnabled = false, maxPending = 4, accountLimit = 3, globalLimit = 12, imageStorageBytes = Number(process.env.PODS_IMAGE_STORAGE_BYTES ?? 5 * IMAGE_TOTAL_LIMIT) }) {
     if (!Number.isSafeInteger(imageStorageBytes) || imageStorageBytes < 1) throw new Error('PODS_IMAGE_STORAGE_BYTES must be a positive safe integer in bytes.');
-    Object.assign(this, { store, data, adapter, origin, imageDelivery, maxPending, accountLimit, globalLimit, imageStorageBytes });
+    Object.assign(this, { store, data, adapter, origin, imageDelivery, registryEnabled, maxPending, accountLimit, globalLimit, imageStorageBytes });
     this.pending = [];
     this.closed = false;
     this.fault = null;
@@ -163,6 +163,10 @@ export class BuildManager {
       if (this.imageDelivery && published.images?.length) {
         try { await this.imageDelivery.publish(published.images); this.update(id, {imageDelivery:'available'}); }
         catch { this.update(id, {imageDelivery:'unavailable'}); } // The verified local artifact remains launchable.
+      }
+      if (this.registryEnabled && published.images?.length) {
+        try { await prepareRegistryForApp({data:this.data,appId:published.id,budget:this.imageStorageBytes,delivery:this.imageDelivery}); this.update(id, {imageRegistry:'available'}); }
+        catch { this.update(id, {imageRegistry:'unavailable'}); } // Unsupported archives retain the verified full-image path.
       }
       this.update(id, { status: 'ready', finishedAt: Date.now(), app: published, launchUrl: this.origin + '/launch/' + published.id });
     } catch (error) {

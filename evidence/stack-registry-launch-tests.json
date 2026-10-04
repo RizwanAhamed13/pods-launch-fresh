@@ -1,0 +1,103 @@
+{
+  "recordedAt": "2026-10-04T16:51:48.120815+00:00",
+  "baseRevision": "adc78ff5b0eb5e61eb7b36941f55f8698b7a190b",
+  "scope": "Disabled-by-default automatic OCI indexing, indexed launch selection, private credential pull, verified full-archive fallback and startup cancellation. Source synchronized separately from the still-running earlier production runtime. No native provider, product timing, database or live CDN acceptance in this gate.",
+  "tests": {
+    "localFullSuite": {
+      "tests": 328,
+      "pass": 328,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 26721.34725,
+      "logSha256": "a99ba5c6e03731a9a949933bb15fb7d1c31197d25068496a23988d9c326a4d0c"
+    },
+    "isolatedLinuxFullSuite": {
+      "tests": 328,
+      "pass": 328,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 72373.11479,
+      "logSha256": "8f9db8f35733317e3cb9506ecc055ccff98f4095b82438d4dde4425e593dd3a0"
+    }
+  },
+  "linuxSetupCorrection": "First test invocation ended127 before running tests because SSH quoting treated the whole Node command as an executable. Corrected argument-vector invocation ran all328 checks successfully; snapshot bytes were unchanged.",
+  "snapshot": {
+    "directory": "/output/registry-launch-candidate-adc78ff",
+    "files": 347,
+    "archiveSha256": "469e6c5e70fdc66c7379757104e0d923edb9ca167064d1005368e9a1d5855198",
+    "manifestSha256": "d51e8f46c7843aa9f26d88344cc8cc636aebc7404d6e31ac0f3a80eab7bc1fd9"
+  },
+  "sourceHashes": {
+    "src/builds.mjs": "0565d22b8224897e0743f5cb5c2dc18961f51aaf90a2bec6edc02549ad1c48ca",
+    "src/container-runtime.mjs": "67caf16a1e1f7e4eb3c7293a79d24dc845014d73d28025a882ccd7cf384ead04",
+    "src/containers.mjs": "0a0926c1213eccb250bd6edabfd956fc78bd2d9d08cf104c04914a1b84065d04",
+    "src/image-pull.mjs": "6dcc69e36afb83fbd6529ef351f942aff2b3ac6d7f09fad814ce8e93f95e71a1",
+    "src/image-registry.mjs": "c9820f0d6ed7188f45110b31ec2df7f31e8041fa4be5976515a87a8137e1286d",
+    "src/runner.mjs": "27312e6d8f11980c6359908fece16e919e8e463dd562db5a6ef8dcbbf954e0c3",
+    "src/server.mjs": "b1b45200de153b3aebd0f6a56170991dcde6b397d65d771b5b343688e740c380",
+    "src/util.mjs": "c94e0cc12bbce9cdad3414c72052a03cb7d7b6cd07a4a2f1b6f0054711c53695",
+    "scripts/index-image.py": "6a636323695aea40d822851070419e84a6f892d29824272ab4245a5257bc2967",
+    "test/image-pull.test.mjs": "080706c3b648a70210d9d3c87f870b0f724a833292d128f823bf9c31c2a79365",
+    "test/image-registry.test.mjs": "1ae5fae984c8c4d347fd6b3245231a8bc09d13f4058513ca147338e35d39e483",
+    "test/core.test.mjs": "e31425dade286bc9876957b4cc108daf39eee0c58030237368629cf0016cf952"
+  },
+  "checks": [
+    "Enabled preparation indexes verified OCI images automatically; unsupported formats leave ready full-archive builds.",
+    "Server selects only matching index metadata; missing/corrupt metadata and disabled mode preserve full-archive selection.",
+    "Registry host comes from artifact origin; digest and launch ID determine the repository. No provider/release tokens reach user compute.",
+    "Private per-pull Docker config is0600 inside0700 temporary directory; existing user login untouched.",
+    "Indexed images always pull, even if an incomplete image ID is visible. Failure or identity mismatch forces one verified full load.",
+    "Corrupt downloaded archives never reach Docker; verified retry archives are reusable.",
+    "Parent stop and failed peer cancel active pulls without full-image fallback; cleanup waits for command exit.",
+    "Actual CLI cancellation/deadline and generic index command timeout reap the subprocess before returning. Forced termination may leave bounded index staging files for verified operator recovery.",
+    "Startup heartbeat observes stop during a stalled artifact body; no ready/failed status or app start; listeners cleaned."
+  ],
+  "codeLines": {
+    "product_and_tooling": {
+      "files": 66,
+      "lines": 4626
+    },
+    "automated_tests": {
+      "files": 44,
+      "lines": 4027
+    },
+    "example_applications": {
+      "files": 134,
+      "lines": 933
+    },
+    "browser_test_tools": {
+      "files": 2,
+      "lines": 178
+    },
+    "total_lines": 9764,
+    "scope": "Physical source lines including blanks in src/public/scripts/test/examples. Includes JS/TS/JSX/TSX, Python, Go, Java/Kotlin, C#, PHP (including artisan), Ruby (.rb/.ru and Rails bin/rails), Rust, Elixir, HTML/CSS, shell, Svelte/Vue/Astro/Razor. Excludes JSON/lockfiles, Dockerfiles, YAML, docs, dependencies and generated artifacts. Archived diagnostic reproducers under evidence/probes are excluded."
+  },
+  "productionBefore": {
+    "recordedAt": "2026-10-04T16:41:55.323187+00:00",
+    "pid": 1589423,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0",
+    "revision": "adc78ff5b0eb5e61eb7b36941f55f8698b7a190b"
+  },
+  "productionBeforeSourceSync": {
+    "recordedAt": "2026-10-04T16:53:37.778271+00:00",
+    "pid": 1589423,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0",
+    "revision": "adc78ff5b0eb5e61eb7b36941f55f8698b7a190b"
+  }
+}

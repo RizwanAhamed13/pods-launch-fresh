@@ -11,8 +11,9 @@ reduced one Flask archive from 57.0 MB to 11.1 MB when shared layers were presen
 and verified full-archive recovery when they were absent. The subsequent
 [authenticated Docker pull check](evidence/stack-registry-pull-qa.json) fetched
 57.4 MB from an empty store and 11.2 MB with the shared base present. The new
-registry foundation is disabled by default and is not yet integrated with the
-launcher; these isolated checks do not establish native product speed.
+registry is disabled by default. Automatic indexing and launcher integration now
+pass [isolated pull, repair and cancellation checks](evidence/stack-registry-launch-qa.json).
+These checks do not establish native product speed.
 
 ## Run the control plane
 
@@ -153,7 +154,7 @@ Stop application sends a stop request to the runner. It stops the app process gr
 
 Preview processes also stop after 30 minutes even if the control plane disappears. The Codespace itself remains running until its provider idle timeout (15 minutes requested by PODS), or until the user stops it in GitHub. Cloud Shell has no API stop operation. Billing and quota remain the user's responsibility.
 
-## Experimental layer delivery foundation
+## Experimental layer delivery
 
 The read-only OCI endpoint supports digest-addressed pulls of explicitly indexed
 prepared images. It uses Docker's existing content store to reuse matching blobs.
@@ -181,13 +182,24 @@ node --env-file=.env scripts/prepare-image-registry.mjs --app APP_ID --index
 node --env-file=.env scripts/prepare-image-registry.mjs --app APP_ID --publish
 ```
 
-`PODS_IMAGE_REGISTRY_ENABLED=1` enables the experimental endpoint. Current runners
-still download full archives; automatic build indexing, runner integration,
-bounded full-archive fallback and native CDN/provider acceptance remain pending.
-No production registry files or release assets were created in this gate. See
-[test evidence](evidence/stack-registry-foundation-tests.json) and
-[Docker pull evidence](evidence/stack-registry-pull-qa.json). This is not a claim
-of full OCI registry conformance or additional framework coverage.
+`PODS_IMAGE_REGISTRY_ENABLED=1` enables automatic indexing after preparation,
+the authenticated endpoint, and indexed-image selection at launch. Unsupported
+archives and unavailable indexes retain the full-archive path. Each selected image
+uses a temporary private Docker configuration containing only its launch token.
+The runner pulls by digest even when an image ID exists, because an interrupted
+import can leave an incomplete image with a visible ID. Docker reuses complete
+cached layers. A failed pull or mismatched ID forces one verified full-archive
+load; it never skips recovery because the partial ID appears cached. Pulls have
+a 45-second limit and share cancellation with the image worker group. Credentials
+are removed after the CLI exits. Startup heartbeats also honor Stop while images
+or the application artifact are downloading.
+
+The option remains disabled on the live service. Real CDN redirect/credential
+behavior and native product/database acceptance are still pending. No production
+registry files or release assets were created in this gate. See
+[328-check local/Linux results](evidence/stack-registry-launch-tests.json) and
+[actual integrated Docker recovery checks](evidence/stack-registry-launch-qa.json).
+This is not a claim of full OCI registry conformance or additional framework coverage.
 
 ## Verification
 

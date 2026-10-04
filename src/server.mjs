@@ -14,7 +14,7 @@ import { renderCompatibility } from './compatibility.mjs';
 import { GitHubImageDelivery } from './image-delivery.mjs';
 import { trustedImageUrl } from './artifact-url.mjs';
 import { imageFailureReasons } from './image-transfer-error.mjs';
-import { serveImageRegistry } from './image-registry.mjs';
+import { serveImageRegistry, registryIndex } from './image-registry.mjs';
 const base = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const statuses = new Set(['downloading','starting','ready','failed','stopped','heartbeat']);
 const returnPage = value => typeof value === 'string' && /^(?:\/|\/develop|\/launch\/[a-z0-9-]+)$/.test(value);
@@ -32,7 +32,7 @@ export async function createApp(options={}) {
   const providers = options.providers || makeProviders({repo,origin,runnerSha:digest(runner)});
   const jobs = new Map();let closing;
   const buildsEnabled = options.buildAdapter || process.env.PODS_BUILDS_ENABLED === '1';
-  const builds = buildsEnabled ? new BuildManager({ store, data, origin, imageDelivery, adapter: options.buildAdapter || new LxdBuilder() }) : null;
+  const builds = buildsEnabled ? new BuildManager({ store, data, origin, imageDelivery, registryEnabled, adapter: options.buildAdapter || new LxdBuilder() }) : null;
   if (builds) await builds.initialize();
   const computeKey = c => c?.identityId ? digest(JSON.stringify([c.provider,c.identityId])) : null;
   const environmentKey = (key,dataKey) => digest(JSON.stringify([key,dataKey]));
@@ -118,7 +118,7 @@ export async function createApp(options={}) {
           if(event.status==='ready') { if(!s.providerReadyAt)throw fail(409,'Provider is not ready');patch.readyAt=s.readyAt||Date.now(); }
           if(event.status==='failed')patch.error=String(event.error||'Application failed').slice(-500);
           if(event.timings) {
-            patch.timings={};for(const k of ['downloadMs','imagesMs','imageCacheHits','imageArchiveCacheHits','imageCacheCheckMs','imageDownloadMs','imageLoadMs','imageCdnDownloads','imageCdnFallbacks','imageCdnMs','imageOriginDownloads','imageCdnRangeAttempts','imageCdnRangeDownloads','runtimeReadyMs','runtimeRetries'])if(Number.isFinite(event.timings[k])&&event.timings[k]>=0&&event.timings[k]<600000)patch.timings[k]=event.timings[k];patch.timings.cacheHit=event.timings.cacheHit===true;
+            patch.timings={};for(const k of ['downloadMs','imagesMs','imageCacheHits','imageArchiveCacheHits','imageCacheCheckMs','imageDownloadMs','imageLoadMs','imageCdnDownloads','imageCdnFallbacks','imageCdnMs','imageOriginDownloads','imageCdnRangeAttempts','imageCdnRangeDownloads','imageRegistryPulls','imageRegistryFallbacks','imageRegistryMs','runtimeReadyMs','runtimeRetries'])if(Number.isFinite(event.timings[k])&&event.timings[k]>=0&&event.timings[k]<600000)patch.timings[k]=event.timings[k];patch.timings.cacheHit=event.timings.cacheHit===true;
             const failure=event.timings.imageCdnLastFailure;
             if(imageFailureReasons.includes(failure?.reason)) {
               patch.timings.imageCdnLastFailure={reason:failure.reason};
@@ -190,6 +190,7 @@ export async function createApp(options={}) {
         const s={id,owner:user.id,computeKey:key,dataKey,port,appId:app.id,appName:app.name,provider:b.provider,sha256:app.sha256,images:app.images || [],productPath:app.productPath==='/docs'?'/docs':'/',status:'connecting',createdAt,updatedAt:createdAt,expiresAt:createdAt+30*60*1000,tokenHash:digest(token)};
         store.put('launch',id,s);
         const config={id,provider:b.provider,appId:app.id,dataKey,preferredEnvironment,containerRuntime:app.runtime==='docker-linux-amd64',sha256:app.sha256,artifactUrl:`${origin}/api/agent/${id}/artifact`,callbackUrl:`${origin}/api/agent/${id}`,token,port,expiresAt:s.expiresAt};
+        if(registryEnabled)config.registryImages=(await Promise.all(s.images.map(async image=>await registryIndex(data,image).catch(()=>null)?image.sha256:null))).filter(Boolean);
         const job=providers[b.provider].launch(store.open(c.token),config,patch=>update(id,patch)).then(result=>update(id,result)).catch(e=>{console.error('launch',id,e.message);update(id,{status:'failed',error:'Could not start your compute. '+String(e.message).slice(0,220)});}).finally(()=>jobs.delete(id));
         jobs.set(id,job);return json(202,publicLaunch(s));
       }

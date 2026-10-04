@@ -71,16 +71,21 @@ export function runtimeCompose(plan, project, port, previewUrl) {
   return { name: project, services, volumes };
 }
 
-export function docker(args, { cwd, timeout = 120000, env, output, input } = {}) {
+export function docker(args, { cwd, timeout = 120000, env, output, input, signal } = {}) {
   return new Promise((resolve, reject) => {
+    signal?.throwIfAborted();
     // Do not forward cloud/provider credentials or arbitrary Docker endpoints.
     const p = spawn('docker', ['--host','unix:///var/run/docker.sock',...args], {cwd, env: env || {PATH:process.env.PATH,HOME:process.env.HOME}, stdio:[input === undefined ? 'ignore' : 'pipe','pipe','pipe']});
     if (input !== undefined) { p.stdin.on('error', () => {}); p.stdin.end(input); }
-    let result = '', error = '';
-    const timer = setTimeout(() => p.kill('SIGKILL'), timeout);
+    let result = '', error = '', interrupted;
+    const abort = () => { interrupted ||= signal.reason; p.kill('SIGKILL'); };
+    const timer = setTimeout(() => { interrupted ||= new Error('Docker operation timed out'); p.kill('SIGKILL'); }, timeout);
+    signal?.addEventListener('abort', abort, {once:true});
+    const cleanup = () => { clearTimeout(timer); signal?.removeEventListener('abort', abort); };
     p.stdout.on('data', b => { result = (result + b).slice(-65536); output?.(b); });
     p.stderr.on('data', b => { error = (error + b).slice(-2048); });
-    p.once('error', e => { clearTimeout(timer); reject(e); });
-    p.once('close', code => { clearTimeout(timer); code === 0 ? resolve(result.trim()) : reject(new Error(`Docker ${args[0]} failed (${code ?? 'timeout'}): ${args[0] === 'build' ? result.slice(-4000) + '\n' : ''}${error.slice(-800)}`)); });
+    p.once('error', e => { cleanup(); reject(e); });
+    // Wait for close before callers remove credentials or release an import slot.
+    p.once('close', code => { cleanup(); interrupted ? reject(interrupted) : code === 0 ? resolve(result.trim()) : reject(new Error(`Docker ${args[0]} failed (${code ?? 'timeout'}): ${args[0] === 'build' ? result.slice(-4000) + '\n' : ''}${error.slice(-800)}`)); });
   });
 }

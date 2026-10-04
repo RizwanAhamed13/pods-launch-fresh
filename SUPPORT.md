@@ -85,10 +85,10 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **311 local passing checks**.
-Linux passed309 initially; its two missing-fixture failures were covered by a
-passing three-check compatibility rerun after restoring the exact fixture. The
-original failed run remains in [test evidence](evidence/stack-registry-foundation-tests.json).
+later passing attempts do not erase them. Automated coverage is **328 passing checks**
+in each full local and isolated Linux suite. See the
+[current test evidence](evidence/stack-registry-launch-tests.json). The earlier
+missing-fixture failure remains in [foundation evidence](evidence/stack-registry-foundation-tests.json).
 Native coverage is 55 Google browser fixtures and
 55 Codespaces HTTP/protocol fixtures. Every representative has passed both paths.
 Codespaces native browser authorization and interaction remain pending.
@@ -248,13 +248,13 @@ saved record3, no published database port and persistent Cloud Shell home storag
 Both previews stopped, all nine existing Google keys were preserved, and the
 service remained healthy. The current source and292-check results are unchanged.
 
-## Experimental OCI pull foundation
+## Experimental OCI pull delivery
 
 The [new implementation and tests](evidence/stack-registry-foundation-tests.json)
 add bounded OCI indexing, digest-addressed authenticated reads, HEAD/range support,
 private blob publication, and shared image-store accounting/locking. The registry
-is disabled by default; current runners continue using full archives. Preparation
-does not execute application code. Archive paths, links, extension records,
+is disabled by default. The live service still runs the earlier full-archive
+implementation. Indexing does not execute application code. Archive paths, links, extension records,
 missing or changed blobs, and external layer sources are rejected.
 
 [Actual Docker pulls](evidence/stack-registry-pull-qa.json) used the real prepared
@@ -272,9 +272,25 @@ native network measurements or time to the usable product. No app server or DB
 was started. The two initial probe setup failures remain recorded. Production
 configuration, image files, artifact links and running server were not changed.
 
-Automatic preparation, runner selection, completeness/fallback recovery and real
-CDN/provider acceptance are the next gates. The standard OCI pull protocol was
-chosen to request content by digest; see the
+The [integrated launcher](evidence/stack-registry-launch-qa.json) subsequently
+passed cold and cached pulls in a fresh store. A separate store deliberately
+contained an incomplete image whose ID was visible and whose execution failed125.
+With the registry denied, the runner fetched the original57,046,835-byte archive,
+forced a load, and recovered working Flask/PyMySQL dependencies. A corrupt registry
+manifest also triggered exactly one verified full-archive download and recovery.
+Cancellation during a stalled blob transfer triggered no archive fallback. All
+four stores retained zero containers; all nine owned processes stopped, temporary
+credentials were removed, and ordinary QA images were preserved. The initial QA
+adapter failure (duplicate Docker host flag) is retained in the evidence.
+
+Automatic indexing and launch selection are implemented behind the same disabled
+flag. A pull has a45-second limit, uses an isolated Docker config with the launch
+token, and verifies image identity. Indexed images always use Docker's pull path;
+a cached ID alone does not prove runnable content. Fallback forces a full load,
+and cancellation waits for the CLI to exit before removing credentials. Startup
+heartbeats honor Stop during artifact/image delivery. All328 local and Linux
+checks pass. Real CDN blob publication/redirect behavior and native product/DB
+acceptance are the next gates. The standard OCI pull protocol requests content by digest; see the
 [OCI distribution specification](https://github.com/opencontainers/distribution-spec/blob/main/spec.md).
 PODS implements a narrow read-only pull surface, not a general registry service.
 
@@ -742,10 +758,9 @@ a stable production hostname remains a deployment requirement.
   a consistent database snapshot, resumes it, then queries the private copy.
   The reported SQLite version belongs to the inspector, not the application
   driver. These isolated checks do not add native-provider acceptance.
-- [Current test result](evidence/stack-registry-foundation-tests.json): **311/311**
-  locally; Linux309 passed initially and its two missing-fixture failures passed
-  in the three-check compatibility rerun. The original failure is retained.
-- [Physical source count](evidence/code-lines.json): **9,517 lines**, including
+- [Current test result](evidence/stack-registry-launch-tests.json): **328/328**
+  in each full local and isolated Linux suite. Earlier failures are retained.
+- [Physical source count](evidence/code-lines.json): **9,764 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)

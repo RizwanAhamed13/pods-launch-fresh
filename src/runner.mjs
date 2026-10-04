@@ -40,6 +40,9 @@ export async function run(config, { root = storageRoot(config.provider), fallbac
   if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error('Invalid port');
   const start = performance.now();
   let child, containers, timer, stopped = false, runDir;
+  const controller = new AbortController();
+  let startupDone, stopJob, cleanupJob, starting = true;
+  const startupFinished = new Promise(resolve => { startupDone = resolve; });
   const timings = {};
   let storageMode = 'persistent';
   async function report(status, extra = {}) {
@@ -48,14 +51,30 @@ export async function run(config, { root = storageRoot(config.provider), fallbac
     return res.json();
   }
   const kill = () => { if (child && child.exitCode === null) { try { process.kill(-child.pid, 'SIGTERM'); } catch {} setTimeout(() => { if (child.exitCode === null && !child.signalCode) { try { process.kill(-child.pid, 'SIGKILL'); } catch {} } }, 2000).unref(); } };
-  async function stop() {
-    if (stopped) return; stopped = true; clearInterval(timer); process.off('SIGTERM',stop); process.off('SIGINT',stop); kill();
+  const detach = () => { clearInterval(timer); process.off('SIGTERM',stop); process.off('SIGINT',stop); };
+  const cleanup = () => cleanupJob ||= (async () => {
+    kill();
     if(child && child.exitCode===null && !child.signalCode)await new Promise(done=>{const timeout=setTimeout(done,2500);child.once('exit',()=>{clearTimeout(timeout);done();});});
-    await containers?.stop(); await report('stopped').catch(() => {});
-    if (runDir) await rm(runDir, {recursive:true,force:true}).catch(()=>{});
+    try { await containers?.stop(); }
+    finally { if (runDir) await rm(runDir, {recursive:true,force:true}).catch(()=>{}); }
+  })();
+  function stop() {
+    return stopJob ||= (async () => {
+      stopped = true; controller.abort(new Error('Launch stopped')); detach(); kill();
+      await startupFinished;
+      await cleanup();
+      if (!starting) await report('stopped').catch(() => {});
+    })();
   }
   try {
     if (!Number.isFinite(config.expiresAt) || config.expiresAt <= Date.now()) throw new Error('Launch authorization expired');
+    process.once('SIGTERM', stop); process.once('SIGINT', stop);
+    let checkingStartup = false;
+    timer = setInterval(async () => {
+      if (checkingStartup || stopped) return; checkingStartup = true;
+      try { if (Date.now() >= config.expiresAt || (await report('heartbeat')).action === 'stop') await stop(); }
+      catch {} finally { checkingStartup = false; }
+    }, 3000);
     async function writable(directory) {
       await mkdir(directory, { recursive: true, mode: 0o700 });
       const stat = await lstat(directory);
@@ -75,7 +94,7 @@ export async function run(config, { root = storageRoot(config.provider), fallbac
     try { bytes = await readFile(cache); if (sha(bytes) !== config.sha256) bytes = null; } catch {}
     timings.cacheHit = Boolean(bytes);
     if (!bytes) {
-      const res = await fetch(config.artifactUrl, { headers: { Authorization: `Bearer ${config.token}` }, signal: AbortSignal.timeout(20000), redirect: 'error' });
+      const res = await fetch(config.artifactUrl, { headers: { Authorization: `Bearer ${config.token}` }, signal: AbortSignal.any([controller.signal,AbortSignal.timeout(20000)]), redirect: 'error' });
       if (!res.ok) throw new Error(`Artifact download returned ${res.status}`);
       const parts = []; let size = 0;
       for await (const b of res.body) { size += b.length; if (size > 20 * 1024 * 1024) throw new Error('Artifact download too large'); parts.push(b); }
@@ -95,11 +114,13 @@ export async function run(config, { root = storageRoot(config.provider), fallbac
     await new Promise((ok, fail) => { const s = createServer(); s.once('error', () => fail(new Error(`Port ${port} is already in use; stop the existing application first`))); s.listen(port, '0.0.0.0', () => s.close(ok)); });
     let dataDir;
     await report('starting');
+    controller.signal.throwIfAborted();
     if (artifact.format === 2) {
-      containers = await startContainers(artifact.containers, config, root, runDir, timings);
+      containers = await startContainers(artifact.containers, {...config,signal:controller.signal}, root, runDir, timings);
       dataDir = containers.dataDir;
     } else {
     ({dataDirectory:dataDir} = await transitionApplicationData(root,config.dataKey || config.appId,'bundle',{legacyRoot:config.provider === 'github' && root === storageRoot('github') ? storageRoot('google') : undefined}));
+    controller.signal.throwIfAborted();
     child = spawn(process.execPath, [join(runDir, artifact.entry)], { cwd: runDir, detached: true, env: { PATH: process.env.PATH, HOME: dataDir, NODE_ENV: 'production', HOST: '0.0.0.0', PORT: String(port), PODS_APP_DATA: dataDir, PODS_SESSION: config.id, PODS_STORAGE_MODE: storageMode }, stdio: ['ignore', 'pipe', 'pipe'] });
     let appError = ''; child.stdout.on('data', () => {}); child.stderr.on('data', b => { appError = (appError + b).slice(-1000); });
     child.on('error', e => { appError = e.message; });
@@ -107,16 +128,21 @@ export async function run(config, { root = storageRoot(config.provider), fallbac
     let healthy = false;
     const healthDeadline = Math.min(Date.now() + (containers ? 60000 : 10000), config.expiresAt);
     while (Date.now() < healthDeadline) {
+      controller.signal.throwIfAborted();
       await sleep(100);
       if (child && (child.exitCode !== null || child.signalCode || !child.pid)) throw new Error('Application exited before becoming healthy');
       try { const res = await fetch(`http://127.0.0.1:${port}${artifact.healthPath}`, {signal:AbortSignal.timeout(1000)}); await res.body?.cancel(); if (res.ok) { healthy = true; break; } } catch {}
     }
     if (!healthy) throw new Error('Application health check timed out');
     if (containers && !await containers.alive()) throw new Error('An application service stopped or became unhealthy before launch completed.');
+    controller.signal.throwIfAborted();
     timings.runtimeReadyMs = Math.round(performance.now() - start);
     await report('ready', { previewUrl: config.previewUrl });
+    controller.signal.throwIfAborted();
     await writeFile(join(root, `${config.id}.json`), JSON.stringify({id:config.id,pid:child?.pid,runnerPid:process.pid,timings,readyAt:Date.now()}), {mode:0o600});
+    controller.signal.throwIfAborted();
     let checking = false;
+    clearInterval(timer); starting = false;
     timer = setInterval(async () => {
       if (checking || stopped) return; checking = true;
       try {
@@ -130,9 +156,9 @@ export async function run(config, { root = storageRoot(config.provider), fallbac
         const reply = await report('heartbeat'); if (reply.action === 'stop') await stop();
       } catch {} finally { checking = false; }
     }, 3000);
-    process.once('SIGTERM', stop); process.once('SIGINT', stop);
     return { timings, pid: child?.pid, stop, dataDir, storageMode };
-  } catch (e) { kill(); await containers?.stop().catch(()=>{}); await report('failed', {error:e.message}).catch(()=>{}); throw e; }
+  } catch (e) { detach(); await cleanup().catch(()=>{}); await report(stopped?'stopped':'failed', stopped?{}:{error:e.message}).catch(()=>{}); throw e; }
+  finally { startupDone(); }
 }
 if (process.argv[1] === fileURLToPath(import.meta.url) && process.argv[2]) {
   const path = process.argv[2];

@@ -10,6 +10,7 @@ import { transitionApplicationData } from './storage-transition.mjs';
 import { trustedImageUrl } from './artifact-url.mjs';
 import { downloadImageRanges } from './image-ranges.mjs';
 import { ImageTransferError, imageFailureDetails } from './image-transfer-error.mjs';
+import { registryTarget, pullRegistryImage } from './image-pull.mjs';
 
 async function fileHash(path) {
   const hash = createHash('sha256'); for await (const chunk of createReadStream(path)) hash.update(chunk); return hash.digest('hex');
@@ -46,23 +47,44 @@ export async function containersAlive(plan, args, execute = docker) {
   });
 }
 
-export async function prepareRuntimeImages(images, config, root, timings, execute = docker, fetcher = fetch) {
+export async function prepareRuntimeImages(images, config, root, timings, execute = docker, fetcher = fetch, signal) {
   if (new Set(images.map(image => image.sha256)).size !== images.length) throw new Error('Conflicting prepared image archives');
+  const targets = images.map(image => registryTarget(image, config));
+  signal?.throwIfAborted();
   const cache = join(root, 'images'); await mkdir(cache, {recursive:true,mode:0o700});
   const started = performance.now();
   Object.assign(timings, {imageCacheHits:0,imageArchiveCacheHits:0,imageCacheCheckMs:0,imageDownloadMs:0,imageLoadMs:0,imageCdnDownloads:0,imageCdnFallbacks:0,imageCdnMs:0,imageOriginDownloads:0,imageCdnRangeAttempts:0,imageCdnRangeDownloads:0});
   delete timings.imageCdnLastFailure;
+  Object.assign(timings, {imageRegistryPulls:0,imageRegistryFallbacks:0,imageRegistryMs:0});
   const controller = new AbortController();
+  const abort = () => controller.abort(signal.reason);
+  signal?.addEventListener('abort', abort, {once:true});
+  if (signal?.aborted) abort();
   let next = 0, failure, loading = Promise.resolve();
   const fail = error => { failure ||= error; controller.abort(failure); };
   const measure = async (key, action) => {
     const at = performance.now();
     try { return await action(); } finally { timings[key] += performance.now() - at; }
   };
-  const prepare = async image => {
+  const prepare = async (image, target) => {
     controller.signal.throwIfAborted();
-    const present = await measure('imageCacheCheckMs', () => execute(['image','inspect',image.id,'--format','{{.Id}}']).catch(() => ''));
-    if (present === image.id) { timings.imageCacheHits++; return; }
+    if (target) {
+      try {
+        // Always pull indexed images: inspect alone can accept incomplete content
+        // left by an interrupted import. Docker reuses its verified shared blobs.
+        await measure('imageRegistryMs', () => pullRegistryImage(image, config, root, target, execute, controller.signal));
+        timings.imageRegistryPulls++; return;
+      } catch {
+        controller.signal.throwIfAborted();
+        timings.imageRegistryFallbacks++;
+        // Force the full archive load even if a partial pull published the ID.
+        // Never expose Docker errors containing registry/CDN capabilities.
+      }
+    } else {
+      const present = await measure('imageCacheCheckMs', () => execute(['image','inspect',image.id,'--format','{{.Id}}'], {signal:controller.signal}).catch(() => ''));
+      controller.signal.throwIfAborted();
+      if (present === image.id) { timings.imageCacheHits++; return; }
+    }
     const path = join(cache, image.sha256 + '.gz');
     const valid = await measure('imageCacheCheckMs', () => stat(path).then(async s => s.size === image.bytes && await fileHash(path) === image.sha256).catch(() => false));
     if (valid) timings.imageArchiveCacheHits++;
@@ -106,8 +128,8 @@ export async function prepareRuntimeImages(images, config, root, timings, execut
     const load = loading.then(async () => {
       controller.signal.throwIfAborted();
       try { await measure('imageLoadMs', async () => {
-        await execute(['load','--input',path], {timeout:180000});
-        if (await execute(['image','inspect',image.id,'--format','{{.Id}}']) !== image.id) throw new Error('Loaded image identity mismatch');
+        await execute(['load','--input',path], {timeout:180000,signal:controller.signal});
+        if (await execute(['image','inspect',image.id,'--format','{{.Id}}'], {signal:controller.signal}) !== image.id) throw new Error('Loaded image identity mismatch');
       }); } catch (error) { fail(error); throw error; }
     });
     loading = load.catch(() => {});
@@ -117,7 +139,8 @@ export async function prepareRuntimeImages(images, config, root, timings, execut
   };
   const worker = async () => {
     while (!failure && next < images.length) {
-      try { await prepare(images[next++]); } catch (error) { fail(error); }
+      const index = next++;
+      try { await prepare(images[index], targets[index]); } catch (error) { fail(error); }
     }
   };
   try {
@@ -125,17 +148,19 @@ export async function prepareRuntimeImages(images, config, root, timings, execut
     await Promise.all(Array.from({length:Math.min(2, images.length)}, worker));
     if (failure) throw failure;
   } finally {
-    for (const key of ['imageCacheCheckMs','imageDownloadMs','imageLoadMs','imageCdnMs']) timings[key] = Math.round(timings[key]);
+    signal?.removeEventListener('abort', abort);
+    for (const key of ['imageCacheCheckMs','imageDownloadMs','imageLoadMs','imageCdnMs','imageRegistryMs']) timings[key] = Math.round(timings[key]);
     timings.imagesMs = Math.round(performance.now() - started);
   }
 }
 
 export async function startContainers(plan, config, root, runDir, timings) {
-  await docker(['info','--format','{{.OSType}}/{{.Architecture}}']).then(platform => {
+  const execute = (args, options = {}) => docker(args, {...options,signal:config.signal});
+  await execute(['info','--format','{{.OSType}}/{{.Architecture}}']).then(platform => {
     if (!/^linux\/(?:x86_64|amd64)$/.test(platform)) throw new Error('This artifact requires a Linux amd64 Docker engine.');
   });
-  await docker(['compose','version']);
-  await prepareRuntimeImages(plan.images, config, root, timings);
+  await execute(['compose','version']);
+  await prepareRuntimeImages(plan.images, config, root, timings, docker, fetch, config.signal);
   // Stable application identity preserves named volumes between artifact versions.
   const dataKey = config.dataKey || config.appId;
   const project = 'pods-' + createHash('sha256').update(dataKey).digest('hex').slice(0,24);
@@ -145,11 +170,13 @@ export async function startContainers(plan, config, root, runDir, timings) {
   await transitionApplicationData(root,dataKey,'container',{...storageOptions,recoverOnly:true});
   compose.volumes = await persistentVolumes(plan,project,root);
   await transitionApplicationData(root,dataKey,'container',storageOptions);
+  config.signal?.throwIfAborted();
   await writeFile(file, JSON.stringify(compose), {mode:0o600});
   const args = ['compose','--project-name',project,'--file',file];
   const stop = () => docker([...args,'down','--timeout','10','--remove-orphans'], {timeout:60000});
   try {
-    await launchCompose(args,stop,timings);
+    await launchCompose(args,stop,timings,execute);
+    config.signal?.throwIfAborted();
     return { stop, alive: () => containersAlive(plan,args), dataDir:join(root,'data',dataKey) };
   } catch (e) { await stop().catch(() => {}); throw e; }
 }

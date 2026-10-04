@@ -15,10 +15,9 @@ Provider authorization is required. Conventional public GitHub applications can 
 
 Cold provisioning and uncached image transfer are measured separately from cached launch. User compute remains owned and billed by the user's provider. Persistent container data is stored under Cloud Shell's home or Codespaces' `/workspaces`; provider lifecycle durability requires separate evidence.
 ## Evidence on Hand
-As of 2026-10-04, 311 automated checks passed locally. The Linux run passed 309;
-its two failures were a missing QA compatibility-data fixture. After adding that
-exact fixture, all three compatibility checks passed, covering both failures.
-See [registry foundation tests](evidence/stack-registry-foundation-tests.json).
+As of 2026-10-04, all 328 automated checks passed locally and in isolated Linux.
+See [registry launch tests](evidence/stack-registry-launch-tests.json); earlier
+failures remain recorded in their original evidence.
 The matrix records 55 passing representative applications: isolated server build,
 prepared-artifact launch and browser interaction, plus 55 native Cloud Shell
 browser acceptances and 55 Codespaces HTTP/protocol acceptances. The historical
@@ -30,17 +29,19 @@ launches still exceed the 20-second product target in several measured cases;
 cached and cold observations remain separate. A stable production hostname and
 Cloud Shell VM-replacement durability also remain open. Database acceptance
 covers the recorded write/read/stop/relaunch scenarios, not arbitrary migrations
-or power-loss guarantees. Current source totals 9,517 scoped physical lines.
+or power-loss guarantees. Current source totals 9,764 scoped physical lines.
 
 The disabled-by-default OCI registry foundation now indexes verified prepared
 images and serves them through launch-scoped authorization, with bounded storage
 and private blob publication support. Actual Docker pulls in separate QA stores
 fetched57.4MB cold,11.2MB with a matching base, and zero blobs on repeat; exact
-image identities and dependency execution passed. Automatic preparation/runner
-integration, full-archive fallback and native CDN/provider validation remain
-pending. Production continues running the earlier full-archive pipeline. These
-are image-transfer checks, not application or database acceptance. See
-[Docker pull evidence](evidence/stack-registry-pull-qa.json).
+image identities and dependency execution passed. Automatic preparation and
+runner selection are now implemented. The integrated runner passed actual
+cold/cached pulls, forced full-archive repair of an incomplete image, corrupt
+manifest fallback and transfer cancellation, with temporary credentials removed.
+Native CDN/provider validation remains pending. Production continues running the
+earlier full-archive pipeline. These are image-transfer checks, not application
+or database acceptance. See [integrated Docker evidence](evidence/stack-registry-launch-qa.json).
 
 The image preparation pipeline now holds at most two images in flight and loads
 verified archives into Docker serially. Eight new tests cover overlap, bounded

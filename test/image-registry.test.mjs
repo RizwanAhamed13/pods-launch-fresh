@@ -149,3 +149,44 @@ test('registry rejects changed manifest content and symlink blobs; disabled regi
   await rm(f.blobPath);await symlink(join(f.data,'images',f.image.sha256+'.gz'),f.blobPath);assert.equal((await f.get('/blobs/sha256:'+digest(layer))).status,404);
   const disabled=await server(t,null,false);assert.equal((await disabled.get('/manifests/'+disabled.image.id)).status,404);
 });
+
+test('enabled preparation automatically indexes verified OCI images while unsupported archives retain full-image launches',async t=>{
+  const {BuildManager}=await import('../src/builds.mjs');const {Store}=await import('../src/store.mjs');const {parseRepository}=await import('../src/repository.mjs');
+  const f=await fixture(t),repository=parseRepository('https://github.com/example/registry-product'),store=new Store(f.data,'bc'.repeat(32));
+  const metadata=JSON.parse(await readFile(join(f.data,'artifacts',appId+'.json'),'utf8')),artifact=await readFile(join(f.data,'artifacts',metadata.sha256+'.gz'));
+  let invalid=false;
+  const manager=new BuildManager({store,data:f.data,origin:'https://pods.example',registryEnabled:true,imageStorageBytes:budget,adapter:{initialize:async()=>{},close:async()=>{},build:async()=>{
+    const blob=invalid?Buffer.from('legacy unsupported image'):f.bytes;
+    const image=invalid?{...f.image,sha256:digest(blob),bytes:blob.length}:f.image;
+    const bytes=invalid?gzipSync(JSON.stringify({format:2,runtime:'docker',healthPath:'/',containers:{web:'web',port:8080,images:[image],services:{web:{image:image.id}}}})):artifact;
+    return {bytes,blobs:[{sha256:image.sha256,bytes:blob}],manifest:{id:'repo-'+repository.key,sha256:digest(bytes),bytes:bytes.length,applicationType:'container',source:{url:repository.url,folder:repository.folder,revision:'a'.repeat(40)},verification:{status:200,documentPath:'/',contentType:'text/html'}}};
+  }}});
+  try{
+    await manager.initialize();
+    for(invalid of [false,true]){
+      const build=manager.submit('browser','fixture-account',{url:repository.url});await manager.running;
+      const result=manager.own('browser',build.id);assert.equal(result.status,'ready');assert.equal(result.imageRegistry,invalid?'unavailable':'available');
+      assert.ok(await readFile(join(f.data,'artifacts',result.app.sha256+'.gz')));if(!invalid)assert.ok(await registryIndex(f.data,f.image));
+    }
+  }finally{await manager.close();store.close();}
+});
+
+test('launcher selects only matching indexes when enabled and preserves immutable artifact bytes',async t=>{
+  for(const mode of ['indexed','missing','corrupt','disabled'])await t.test(mode,async t=>{
+    const f=await fixture(t);if(mode!=='missing')await prepare(f);
+    if(mode==='corrupt')await writeFile(join(f.data,'registry/indexes',f.image.sha256+'.json'),'{}');
+    const metadata=JSON.parse(await readFile(join(f.data,'artifacts',appId+'.json'),'utf8'));await writeFile(join(f.data,'artifacts',appId+'.json'),JSON.stringify({...metadata,name:'Registry fixture',runtime:'docker-linux-amd64'}));
+    let received;const provider={validate:async()=>({name:'fixture',id:'fixture-account'}),launch:async(_,config)=>{received=config;return {status:'delivering'};}};
+    const app=await createApp({data:f.data,secret:'bc'.repeat(32),providers:{github:provider},registryEnabled:mode!=='disabled',imageDelivery:null});
+    await new Promise(done=>app.server.listen(0,'127.0.0.1',done));
+    try{
+      const origin='http://127.0.0.1:'+app.server.address().port,r=await fetch(origin+'/api/me'),cookie=r.headers.get('set-cookie').split(';')[0],me=await r.json();
+      const post=(path,body)=>fetch(origin+path,{method:'POST',headers:{Cookie:cookie,'X-Pods-CSRF':me.csrf,'Content-Type':'application/json'},body:JSON.stringify(body)});
+      assert.equal((await post('/api/connections/github',{token:'t'.repeat(32)})).status,200);
+      const launched=await post('/api/launches',{provider:'github',appId});assert.equal(launched.status,202);assert.ok(received);
+      assert.deepEqual(received.registryImages,mode==='disabled'?undefined:mode==='indexed'?[f.image.sha256]:[]);
+      assert.equal(received.sha256,metadata.sha256);assert.equal(received.token.length,32);assert.equal((await registryIndex(f.data,f.image).catch(()=>null))?.archiveSha256,mode==='indexed'||mode==='disabled'?f.image.sha256:undefined);
+      const publicResult=await launched.text();assert.ok(!publicResult.includes(received.token));
+    }finally{await new Promise(done=>app.server.close(done));await app.closeResources();}
+  });
+});

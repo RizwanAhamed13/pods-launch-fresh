@@ -176,3 +176,18 @@ test('Codespace data affinity survives versions, browser sessions and server res
   }
  }finally{if(instance){await close(instance.server);await instance.closeResources();}await rm(root,{recursive:true,force:true});}
 });
+
+test('stop requested during startup cancels the pending artifact body and reports stopped without starting the app',async()=>{
+ const root=await temp(),events=[];let bodyClosed=false;
+ const server=createServer(async(req,res)=>{
+   if(req.url==='/artifact'){res.writeHead(200);res.write('pending');req.on('close',()=>{bodyClosed=true;});return;}
+   let body='';for await(const b of req)body+=b;const event=JSON.parse(body);events.push(event.status);res.end(JSON.stringify({action:event.status==='heartbeat'?'stop':'continue'}));
+ });
+ const origin=await listen(server),before=[process.listenerCount('SIGTERM'),process.listenerCount('SIGINT')];
+ try{
+   await assert.rejects(run({id:randomBytes(24).toString('base64url'),appId:'startup-stop',sha256:'a'.repeat(64),artifactUrl:origin+'/artifact',callbackUrl:origin+'/callback',token:'fixture',port:18085,expiresAt:Date.now()+30000},{root}),/Launch stopped|abort/i);
+   assert.ok(events.includes('heartbeat'));assert.ok(events.includes('stopped'));assert.ok(!events.some(s=>['starting','ready','failed'].includes(s)));
+   for(let n=0;n<20&&!bodyClosed;n++)await sleep(10);assert.equal(bodyClosed,true);
+   assert.deepEqual([process.listenerCount('SIGTERM'),process.listenerCount('SIGINT')],before);
+ }finally{server.closeAllConnections();await close(server);await rm(root,{recursive:true,force:true});}
+});
