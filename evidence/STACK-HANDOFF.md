@@ -1161,3 +1161,22 @@ serialized unit cases. Full suite184/184 passed locally and in Linux QA after
 all320 snapshot files matched the recorded manifest. Physical source6995lines.
 Evidence: stack-file-profiles-{live.mjs,preflight.json,tests.json}.
 Coverage remains55 isolated /45 Google browser /45 Codespaces protocol.
+
+
+## File-profile publication and next native gate
+
+- c398e6c published to GitHub and synced to aswin. Audit at
+  2026-10-04T07:23:16.093688UTC confirmed health200, integrityok, zero active
+  builds/launches and unchanged servicePID1063107/runnerSHA. No restart.
+- Native ASP.NET form is ready at IABtab1, folder examples/stacks/aspnet;
+  it has not been submitted. Same-account quota watcher43058 remains live;
+  last ordinary slot forecast07:28:54.366UTC. Resume that handle; do not bypass
+  quota, change identity, import QA artifacts or submit twice.
+- Once watcher reports available, capture quotaBefore and actual browser submit
+  time. Use /tmp/pods-watch-aspnet-build.py with that timestamp. Continue Google
+  button/reload/full-stop tests0→1→2, then native Codespaces counter+file checks.
+  The temporary record/document scripts now accept all seven file fixtures.
+- Completed current handles87850QA,36761local,88900cleanup,99025push,99104sync,
+  55353audit. All passed. No test launch remains running. Tabs1/2/3 marked for
+  continuation. Pending GitHub browser2FA, VMreplacement and stablehostname
+  questions stay pending; do not repeat them. Goal remains active and incomplete.
