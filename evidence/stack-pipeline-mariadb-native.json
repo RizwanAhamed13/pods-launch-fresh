@@ -1,0 +1,303 @@
+{
+  "recordedAt": "2026-10-04T16:03:51.755519+00:00",
+  "revision": "0bb4d09bdc70405e6c64faf8cd2b486313191d76",
+  "runtimeRevision": "f87b2e0effd2fd68a1143f46bf174deba17a7492",
+  "runnerSha256": "999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0",
+  "scope": "Native Google first-image and cached Flask + MariaDB product acceptance of the deployed two-image pipeline. Existing developer artifact reused; no rebuild, cache clearing or QA artifact import.",
+  "build": {
+    "id": "1pmZzhTBO07D4txVxTeO_vbt9rtjdS6O",
+    "repository": {
+      "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+      "owner": "rizwanahamed13",
+      "name": "pods-launch-runtime-fresh",
+      "folder": "examples/stacks/flask-mariadb",
+      "key": "46d8ac316f3e95857ce28b48"
+    },
+    "status": "ready",
+    "createdAt": 1791085557733,
+    "startedAt": 1791085557745,
+    "finishedAt": 1791085706961,
+    "launchUrl": "https://collection-conferences-ages-clearly.trycloudflare.com/launch/repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+    "app": {
+      "id": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+      "name": "pods-launch-runtime-fresh",
+      "description": "",
+      "sha256": "04f62fea5403e11a5262471ed1fe76b0f279775263de7a047c1e3f550f445cf7",
+      "bytes": 589,
+      "files": 0,
+      "healthPath": "/",
+      "applicationType": "container",
+      "runtime": "docker-linux-amd64",
+      "dataKey": "repo-46d8ac316f3e95857ce28b48",
+      "productType": "web",
+      "productPath": "/",
+      "source": {
+        "url": "https://github.com/rizwanahamed13/pods-launch-runtime-fresh",
+        "folder": "examples/stacks/flask-mariadb",
+        "revision": "d6da2ed780aec8ae0178fc181f1d24113c322e15"
+      },
+      "verification": {
+        "documentPath": "/",
+        "status": 200,
+        "title": "PODS stack counter"
+      },
+      "preparedAt": "2026-10-04T03:48:26.402Z",
+      "images": [
+        {
+          "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+          "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+          "bytes": 57046835
+        },
+        {
+          "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+          "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+          "bytes": 104507545
+        }
+      ]
+    }
+  },
+  "prelaunchCacheInspection": {
+    "startedAt": "2026-10-04T15:58:18.235Z",
+    "provider": "google",
+    "applicationStarted": false,
+    "productionChanged": false,
+    "initialState": "RUNNING",
+    "initialPublicKeyCount": 9,
+    "runtime": {
+      "checkedAt": "2026-10-04T15:58:21.354Z",
+      "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+      "images": [
+        {
+          "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+          "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+          "bytes": 57046835,
+          "dockerPresent": false,
+          "archives": [
+            {
+              "root": "persistent",
+              "exists": false
+            },
+            {
+              "root": "fallback",
+              "exists": false
+            }
+          ]
+        },
+        {
+          "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+          "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+          "bytes": 104507545,
+          "dockerPresent": false,
+          "archives": [
+            {
+              "root": "persistent",
+              "exists": false
+            },
+            {
+              "root": "fallback",
+              "exists": false
+            }
+          ]
+        }
+      ],
+      "manifestCache": true,
+      "allImageAndArchiveCachesAbsent": true,
+      "readOnly": true
+    },
+    "completed": true,
+    "finalState": "RUNNING",
+    "keyRemoved": true,
+    "existingKeysPreserved": true,
+    "finalPublicKeyCount": 9,
+    "localKeyRemoved": true,
+    "finishedAt": "2026-10-04T15:58:23.034Z"
+  },
+  "launches": [
+    {
+      "id": "KtZLiMkikNECmu1FDGhT2yzey_DiW1E4",
+      "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+      "provider": "google",
+      "port": 23877,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791129563014,
+        "keyRegistrationRequestedAt": 1791129563218,
+        "keyRegistrationAcceptedAt": 1791129564465
+      },
+      "createdAt": 1791129562393,
+      "updatedAt": 1791129655626,
+      "providerReadyAt": 1791129564962,
+      "readyAt": 1791129591574,
+      "timings": {
+        "downloadMs": 213,
+        "imagesMs": 16450,
+        "imageCacheHits": 0,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 75,
+        "imageDownloadMs": 18205,
+        "imageLoadMs": 7534,
+        "imageCdnDownloads": 2,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 15936,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 2,
+        "imageCdnRangeDownloads": 2,
+        "runtimeReadyMs": 24561,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 29181,
+      "deliveryMs": 26612
+    },
+    {
+      "id": "ZkHEWCtSkpKCxVwchg99Xv581n76VlMD",
+      "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+      "provider": "google",
+      "port": 23877,
+      "status": "stopped",
+      "compute": {
+        "initialState": "RUNNING",
+        "observedAt": 1791129661772,
+        "keyRegistrationRequestedAt": 1791129662612,
+        "keyRegistrationAcceptedAt": 1791129663827
+      },
+      "createdAt": 1791129661272,
+      "updatedAt": 1791129683242,
+      "providerReadyAt": 1791129664239,
+      "readyAt": 1791129673254,
+      "timings": {
+        "downloadMs": 362,
+        "imagesMs": 93,
+        "imageCacheHits": 2,
+        "imageArchiveCacheHits": 0,
+        "imageCacheCheckMs": 159,
+        "imageDownloadMs": 0,
+        "imageLoadMs": 0,
+        "imageCdnDownloads": 0,
+        "imageCdnFallbacks": 0,
+        "imageCdnMs": 0,
+        "imageOriginDownloads": 0,
+        "imageCdnRangeAttempts": 0,
+        "imageCdnRangeDownloads": 0,
+        "runtimeReadyMs": 6902,
+        "cacheHit": true
+      },
+      "storageMode": "persistent",
+      "totalMs": 11982,
+      "deliveryMs": 9015
+    }
+  ],
+  "browser": [
+    {
+      "launchId": "KtZLiMkikNECmu1FDGhT2yzey_DiW1E4",
+      "startedAt": "2026-10-04T15:59:22.201Z",
+      "visibleMs": 30229,
+      "stateRestoredMs": 30671,
+      "interactionMs": 30947,
+      "before": 2,
+      "afterWrite": 3,
+      "afterReload": 3,
+      "reloadCompleted": true,
+      "passed": true,
+      "stopRequestedAt": "2026-10-04T16:00:52.282Z",
+      "statusAfterStop": "stopped"
+    },
+    {
+      "launchId": "ZkHEWCtSkpKCxVwchg99Xv581n76VlMD",
+      "startedAt": "2026-10-04T16:01:01.103Z",
+      "visibleMs": 12607,
+      "stateRestoredMs": 12724,
+      "interactionMs": 13005,
+      "before": 3,
+      "afterWrite": 4,
+      "afterReload": 4,
+      "reloadCompleted": true,
+      "passed": true,
+      "stopRequestedAt": "2026-10-04T16:01:20.383Z",
+      "statusAfterStop": "stopped"
+    }
+  ],
+  "browserTimingScope": "Both measurements continuously span the Open button, actual product heading, saved value, one button write and reload; no gap between bounded browser calls.",
+  "runtimeInspection": {
+    "startedAt": "2026-10-04T16:00:18.238Z",
+    "provider": "google",
+    "applicationStarted": false,
+    "productionChanged": false,
+    "launchId": "KtZLiMkikNECmu1FDGhT2yzey_DiW1E4",
+    "initialState": "RUNNING",
+    "initialPublicKeyCount": 9,
+    "runtime": {
+      "passed": true,
+      "project": "pods-76af0e05174a24d8a64394b0",
+      "services": [
+        "web",
+        "db"
+      ],
+      "databaseHealth": "healthy",
+      "databaseHostPorts": [],
+      "productHostPorts": [
+        23877
+      ],
+      "volume": "pods-76af0e05174a24d8a64394b0_records-disk-v1",
+      "persistentHomeVolume": true,
+      "scope": "Read-only inspection of private Docker boundaries, persistent Cloud Shell home storage, MariaDB server version and the record saved through the product. Browser execution is separate.",
+      "databaseEngine": "MariaDB",
+      "version": "11.4.13-MariaDB-ubu2404",
+      "versionComment": "mariadb.org binary distribution",
+      "savedCount": 3
+    },
+    "completed": true,
+    "finalState": "RUNNING",
+    "keyRemoved": true,
+    "existingKeysPreserved": true,
+    "finalPublicKeyCount": 9,
+    "localKeyRemoved": true,
+    "finishedAt": "2026-10-04T16:00:23.654Z"
+  },
+  "probeSourceHashes": {
+    "evidence/probes/pipeline-mariadb-cache-inspect.mjs": "d3e97d44fb7c1db5af74616d17101bad734af18bd69e9bbb3aa160a712a43f1b",
+    "evidence/probes/pipeline-mariadb-runtime-inspect.mjs": "e2625d66b1b564921fe8a29865b090157fb60acd71301ae90723f6b7c7116199"
+  },
+  "phaseInterpretation": {
+    "firstImageWallMs": 16450,
+    "summedImageDownloadMs": 18205,
+    "serializedImageLoadMs": 7534,
+    "note": "Per-image download/check/CDN totals overlap. Their sum is not wall time or an estimate of sequential native behavior. Native preparation wall time is less than summed download work, consistent with the separately tested concurrent pipeline."
+  },
+  "passed": true,
+  "twentySecondProductTargetMet": {
+    "firstImage": false,
+    "cached": true
+  },
+  "preserved": [
+    "Original prepared artifact and build record",
+    "All existing Docker cache and persistent database data",
+    "All nine pre-existing Google public keys",
+    "Existing runtime PID and served runner",
+    "All unrelated prepared-image delivery mappings"
+  ],
+  "limitations": [
+    "Initially RUNNING compute with cached manifest and existing Docker layers; neither cold compute nor an empty-machine test.",
+    "CDN cache warmth was not established.",
+    "Historical 72.528-second health result used origin delivery and concurrent provider load; it is not a controlled comparison with this gate.",
+    "First-image product 30.229 seconds still misses 20 seconds; this gate does not prove universal launch speed.",
+    "Existing representative coverage remains 55 apps; this is renewed runtime acceptance, not a new supported stack.",
+    "Codespaces was not retested here; its native browser acceptance remains pending.",
+    "Database boundaries and saved record were directly inspected after first write; second persistence check used the actual browser product.",
+    "Archived probes are the exact read-only payloads used for this checkpoint; the runtime probe expects an active selected app with saved counter 3."
+  ],
+  "audit": {
+    "recordedAt": "2026-10-04T16:02:35.580682+00:00",
+    "pid": 1589423,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0",
+    "revision": "0bb4d09bdc70405e6c64faf8cd2b486313191d76"
+  }
+}

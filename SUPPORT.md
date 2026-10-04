@@ -215,6 +215,35 @@ browser timing was not measured across token refresh. These cached results do
 not measure transfer overlap or establish first-image performance.
 
 
+## Native first-image pipeline acceptance
+
+The existing Flask + MariaDB artifact now uses two verified CDN mappings. An
+[operator check](evidence/stack-pipeline-mariadb-operator.json) published161,554,380
+bytes in36.289s and reused the same assets on repeat. Build records, artifact
+bytes, configuration and runtime stayed unchanged. Inventory is now10 mapped and
+49 unmapped images; these are image counts, not framework counts.
+
+[Native Google browser acceptance](evidence/stack-pipeline-mariadb-native.json)
+first proved both image IDs and archive caches absent, with no cache removal:
+
+| Initially RUNNING Cloud Shell | Health | Product visible | Button write |
+| --- | --- | --- | --- |
+| Both images absent | 29.181s | 30.229s | 30.947s |
+| Both images cached | 11.982s | 12.607s | 13.005s |
+
+Both CDN range downloads succeeded without fallback. Image preparation took
+16.450s wall time; summed image-download work was18.205s and serialized loads
+7.534s. These work totals overlap and must not be added as wall time. The first
+product still misses20s. Manifest and pre-existing Docker layers were retained;
+CDN cache warmth was not measured. Historical origin-transfer results used
+concurrent provider load, so they are not a controlled comparison.
+
+MariaDB retained **2 → 3 → 4** through actual product buttons, reloads and a full
+application stop/relaunch. Direct read-only inspection confirmed MariaDB11.4.13,
+saved record3, no published database port and persistent Cloud Shell home storage.
+Both previews stopped, all nine existing Google keys were preserved, and the
+service remained healthy. The current source and292-check results are unchanged.
+
 ## Existing-artifact delivery migration
 
 The operator command documented in [README.md](README.md) verifies one explicitly

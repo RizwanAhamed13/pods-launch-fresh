@@ -38,9 +38,19 @@ misses against equally warmed Docker content and does not establish native launc
 speed. See [pipeline evidence](evidence/stack-image-pipeline-comparison.json).
 The validated pipeline is deployed. Native Google React + Express + PostgreSQL
 passed cached launch, write, reload and full stop/relaunch, retaining3→4→5.
-Continuous cached product/write timing was9.852s/10.148s; native first-image
-pipeline timing remains pending. Both previews are stopped. See
+Continuous cached product/write timing was9.852s/10.148s. Both previews are stopped. See
 [native acceptance](evidence/stack-image-pipeline-native.json).
+
+A subsequent native Google Flask + MariaDB check verified both images absent
+before launch, with existing data and caches preserved. CDN range delivery passed
+for both images with no fallback; image preparation took16.450s. The actual
+product appeared in30.229s and saved a database write in30.947s, still above20s.
+Cached relaunch reached product/write in12.607s/13.005s. Values2→3→4 survived full
+stop/relaunch and reloads; direct inspection confirmed MariaDB11.4.13, private DB
+networking and persistent home storage. Both previews stopped. This is first-image
+acceptance on running compute, not a cold machine or a universal speed guarantee.
+See [first-image evidence](evidence/stack-pipeline-mariadb-native.json).
+
 
 
 The deployed browser client recovers transient status-read failures without

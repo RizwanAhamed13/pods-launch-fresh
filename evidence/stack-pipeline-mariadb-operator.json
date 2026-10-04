@@ -1,0 +1,211 @@
+{
+  "startedAt": "2026-10-04T15:58:35.302113+00:00",
+  "revision": "0bb4d09bdc70405e6c64faf8cd2b486313191d76",
+  "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+  "artifactSha256": "04f62fea5403e11a5262471ed1fe76b0f279775263de7a047c1e3f550f445cf7",
+  "images": [
+    {
+      "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+      "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+      "bytes": 57046835
+    },
+    {
+      "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+      "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+      "bytes": 104507545
+    }
+  ],
+  "before": {
+    "recordedAt": "2026-10-04T15:58:35.266661+00:00",
+    "pid": 1589423,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0",
+    "revision": "0bb4d09bdc70405e6c64faf8cd2b486313191d76"
+  },
+  "initialMappings": 8,
+  "runs": [
+    {
+      "mode": "dry-run",
+      "elapsedMs": 670,
+      "events": [
+        {
+          "event": "complete",
+          "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+          "artifactSha256": "04f62fea5403e11a5262471ed1fe76b0f279775263de7a047c1e3f550f445cf7",
+          "mode": "dry-run",
+          "imageCount": 2,
+          "imageBytes": 161554380,
+          "verifiedMappings": 0
+        }
+      ],
+      "mappings": []
+    },
+    {
+      "mode": "publish",
+      "elapsedMs": 36289,
+      "events": [
+        {
+          "event": "image-mapped",
+          "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+          "artifactSha256": "04f62fea5403e11a5262471ed1fe76b0f279775263de7a047c1e3f550f445cf7",
+          "mode": "publish",
+          "imageCount": 2,
+          "imageBytes": 161554380,
+          "verifiedMappings": 1,
+          "imageSha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a"
+        },
+        {
+          "event": "image-mapped",
+          "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+          "artifactSha256": "04f62fea5403e11a5262471ed1fe76b0f279775263de7a047c1e3f550f445cf7",
+          "mode": "publish",
+          "imageCount": 2,
+          "imageBytes": 161554380,
+          "verifiedMappings": 2,
+          "imageSha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f"
+        },
+        {
+          "event": "complete",
+          "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+          "artifactSha256": "04f62fea5403e11a5262471ed1fe76b0f279775263de7a047c1e3f550f445cf7",
+          "mode": "publish",
+          "imageCount": 2,
+          "imageBytes": 161554380,
+          "verifiedMappings": 2
+        }
+      ],
+      "mappings": [
+        {
+          "repository": "RizwanAhamed13/pods-launch-artifacts-fresh",
+          "releaseId": 402982733,
+          "assetId": 610136464,
+          "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+          "bytes": 57046835
+        },
+        {
+          "repository": "RizwanAhamed13/pods-launch-artifacts-fresh",
+          "releaseId": 402982733,
+          "assetId": 610136765,
+          "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+          "bytes": 104507545
+        }
+      ]
+    },
+    {
+      "mode": "repeat-publish",
+      "elapsedMs": 2716,
+      "events": [
+        {
+          "event": "image-mapped",
+          "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+          "artifactSha256": "04f62fea5403e11a5262471ed1fe76b0f279775263de7a047c1e3f550f445cf7",
+          "mode": "publish",
+          "imageCount": 2,
+          "imageBytes": 161554380,
+          "verifiedMappings": 1,
+          "imageSha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a"
+        },
+        {
+          "event": "image-mapped",
+          "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+          "artifactSha256": "04f62fea5403e11a5262471ed1fe76b0f279775263de7a047c1e3f550f445cf7",
+          "mode": "publish",
+          "imageCount": 2,
+          "imageBytes": 161554380,
+          "verifiedMappings": 2,
+          "imageSha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f"
+        },
+        {
+          "event": "complete",
+          "appId": "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403",
+          "artifactSha256": "04f62fea5403e11a5262471ed1fe76b0f279775263de7a047c1e3f550f445cf7",
+          "mode": "publish",
+          "imageCount": 2,
+          "imageBytes": 161554380,
+          "verifiedMappings": 2
+        }
+      ],
+      "mappings": [
+        {
+          "repository": "RizwanAhamed13/pods-launch-artifacts-fresh",
+          "releaseId": 402982733,
+          "assetId": 610136464,
+          "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+          "bytes": 57046835
+        },
+        {
+          "repository": "RizwanAhamed13/pods-launch-artifacts-fresh",
+          "releaseId": 402982733,
+          "assetId": 610136765,
+          "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+          "bytes": 104507545
+        }
+      ]
+    }
+  ],
+  "passed": true,
+  "after": {
+    "recordedAt": "2026-10-04T15:59:15.105477+00:00",
+    "pid": 1589423,
+    "cwd": "/home/aswin/pods-launch-fresh",
+    "command": "node --env-file=.env src/server.mjs",
+    "listenerMatches": true,
+    "sqliteQuickCheck": "ok",
+    "activeBuilds": 0,
+    "activeLaunches": 0,
+    "health": 200,
+    "runnerSha256": "999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0",
+    "revision": "0bb4d09bdc70405e6c64faf8cd2b486313191d76"
+  },
+  "finalMappings": 10,
+  "verifiedAssetIds": [
+    610136464,
+    610136765
+  ],
+  "sameAssetsReused": true,
+  "unrelatedMappingsPreserved": true,
+  "nonDeliveryRecordsUnchanged": true,
+  "artifactFilesUnchanged": true,
+  "imageInventoryUnchanged": true,
+  "environmentUnchanged": true,
+  "buildCountUnchanged": true,
+  "serverRestarted": false,
+  "finishedAt": "2026-10-04T15:59:15.122583+00:00",
+  "inventoryAfterNativeAcceptance": {
+    "recordedAt": "2026-10-04T16:02:35.495831+00:00",
+    "uniquePreparedImages": 59,
+    "storedMappings": 10,
+    "remainingUnmappedImages": 49,
+    "remainingUnmappedBytes": 5177532324,
+    "selected": [
+      {
+        "image": {
+          "id": "sha256:b665a14dc0b04f33af0d1cc12992b0535c9652e47e2a13b0b0282b1412b23672",
+          "sha256": "41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a",
+          "bytes": 57046835
+        },
+        "assetId": 610136464,
+        "preparedApplicationReferences": [
+          "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403"
+        ]
+      },
+      {
+        "image": {
+          "id": "sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+          "sha256": "f078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f",
+          "bytes": 104507545
+        },
+        "assetId": 610136765,
+        "preparedApplicationReferences": [
+          "repo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403"
+        ]
+      }
+    ]
+  }
+}

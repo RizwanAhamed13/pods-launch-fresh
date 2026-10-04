@@ -1,12 +1,12 @@
 # Broad stack checkpoint
 
 Goal active and incomplete: developer URL → isolated aswin build → reusable artifact
-→ authorized user compute → real usable product. Latest implementation gate:
-bounded image preparation with two image slots, serialized verified Docker loads,
-shared cancellation, owned partial-file cleanup and preservation of first failure.
-292/292 checks pass locally and in isolated Linux. Controlled image preparation
-averaged21.570s before/16.043s after (25.6% reduction). Protected deployment and native cached Google product acceptance passed.
-No new universal or native first-image latency claim.
+→ authorized user compute → real usable product. Latest completed gate: native
+first-image and cached Flask + MariaDB acceptance of the deployed two-image pipeline.
+Actual first-image product30.229s/write30.947s still misses20s; cached product12.607s/
+write13.005s passes. Both CDN downloads succeeded; persistence2→3→4 passed.
+No source changes or full-suite reruns in this gate. Native Codespaces browser and
+broader first-image latency remain open; no universal compatibility/speed claim.
 
 ## Current verified state
 
@@ -31,9 +31,35 @@ No new universal or native first-image latency claim.
   Prepared archives and existing Docker cache preserved; owned trial folders removed.
 - Deployed runtimef87b2e0effd2fd68a1143f46bf174deba17a7492, serverPID1589423,
   runnerSHA999300822c203590074dc327387c01938409b49562b41052f2381d0edf8902f0.
-  Deployment preserved59images/135artifactfiles/.env. Post-native audit15:55:15UTC:
+  Deployment preserved59images/135artifactfiles/.env. Post-native audit16:02:35UTC:
   health200/SQLiteok/zero active. Baseline55737b2 retained in test/benchmark evidence.
-- 59 distinct prepared images,8 mappings,51 unmapped totaling5339086704bytes.
+- 59 distinct prepared images,10 mappings,49 unmapped totaling5177532324bytes.
+
+## Latest native first-image gate
+
+- stack-pipeline-mariadb-operator.json: original build1pmZzhTBO07D4txVxTeO_vbt9rtjdS6O,
+  apprepo-46d8ac316f3e95857ce28b48-d6da2ed780ae-04f62fea5403, sourcepin d6da2ed780ae.
+  Artifact04f62fea5403e11a5262471ed1fe76b0f279775263de7a047c1e3f550f445cf7 unchanged.
+  Web57046835bytes/DB104507545bytes; archiveSHAs41d7ce5a4b47d63b122094aaa15594a9f559ebc63b6caa92bbecd01cdadde78a
+  andf078164d28ddf31c6ea97c0356b9eba598645ee7b47f02329b1e304bbea85d4f.
+  Dry-run670ms/publish36289ms/repeat2716ms. Same assets610136464/610136765 reused.
+  Mappings8→10, non-delivery records/builds/artifacts/config/runtime preserved.
+- stack-pipeline-mariadb-native.json: prior read-only Cloud Shell proof established
+  both image IDs and persistent/fallback archives absent, manifest cached. No
+  application started or data/cache cleared during preflight.
+- KtZLiMkikNECmu1FDGhT2yzey_DiW1E4: RUNNING, image/archive hits0, both CDN ranges
+  passed/no fallback. images16450ms wall; summeddownload18205/load7534ms overlap.
+  health29181/product30229/write30947ms, continuously measured. Counter2→3/reload3.
+- ZkHEWCtSkpKCxVwchg99Xv581n76VlMD: RUNNING, imagehits2/no download;
+  health11982/product12607/write13005ms, counter3→4/reload4. Both fully stopped.
+- Direct native inspection after first write verifiedMariaDB11.4.13-MariaDB-ubu2404,
+  record3, healthy privateDB, onlyproductport23877, namedvolume backed by persistent
+  Cloud Shell home. Exact read-only payloads archived under evidence/probes/pipeline-mariadb-*.
+  Both preflight and runtime inspection removed owned temporary keys and preserved
+  all9 existing Google keys. Source9012/checks292 unchanged and hashes verified.
+- Initial computeRUNNING; existing Docker layers/data/manifest retained, CDN warmth
+  unknown. Not cold-machine evidence. Historical72.528s health used origin plus
+  concurrent provider load, so no controlled native improvement percentage claimed.
 
 ## Latest deployed pipeline acceptance
 
@@ -171,10 +197,16 @@ No new universal or native first-image latency claim.
 
 ## Next bounded gate and pending inputs
 
-- Next: select an existing multi-image app whose images are actually absent for
-  ordinary native first-image acceptance of the deployed pipeline; do not clear
-  caches. Flask + MariaDB/MySQL is a candidate, subject to live cache-state proof.
-  Broader CDN migration is still51 images, one explicit app selection per gate.
+- First-image pipeline acceptance is complete; do not repeat the now-cached
+  Flask + MariaDB case as if uncached. Its16.450s image preparation remains the
+  largest added first-image cost. Next bounded diagnostic: inspect the selected
+  saved-image payloads for redundant base layers shared with already cached
+  FastAPI/other verified images, and quantify potential transfer savings before
+  choosing an implementation. Shared-layer savings and any alternative delivery
+  protocol are hypotheses, not established benefits. Preserve existing artifacts,
+  cached layers and DB data; no public image exposure or static credential delivery.
+- Broader CDN migration remains49 images/5.178GB; do not mass-upload them as a
+  substitute for improving the measured first-image path.
 - Code graph refreshed for current checkout as pods-launch-current (fast index).
   Earlier pods-launch-fresh graph is stale.
 - Operator migration/idempotency and native FastAPI/full-stack persistence gates
