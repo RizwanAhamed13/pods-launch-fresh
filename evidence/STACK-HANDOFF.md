@@ -15,7 +15,8 @@ VM replacement durability, or a universal 20-second cold launch.
 - Koa native acceptance was published at d7dbc22 and verified on the public
   support page (55/30/30, Koa all passed, Codespaces browser pending warning).
   Hono transport preflight was published at 176a79a; native acceptance at
-  3102caf. Runtime 77cf340 now adds automatic storage format migration.
+  3102caf. Runtime77cf340 added automatic storage migration; provider73bd9f4 now gates
+  saved format changes on actual environment capabilities.
 - Coverage: 55 isolated build/artifact/browser passes; 32 Google native browser
   and 32 Codespaces authenticated HTTP/protocol passes. All eight static frontend
   and six SSR fixtures pass both paths. Every native Codespaces browser check
@@ -23,7 +24,7 @@ VM replacement durability, or a universal 20-second cold launch.
   actix, adonis, aspnet, axum, deno, echo, fastapi, fiber, flask-mariadb,
   flask-mongodb7, flask-redis, flask-sqlite, flask-valkey, go, gradio, ktor,
   micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
-- Current provider candidate passes134 tests locally and in isolated aswin QA;
+- Deployed provider73bd9f4 passes134 tests locally and in isolated aswin QA;
   logs /tmp/pods-provider-full-{local,qa}.txt. Adds3 provider compatibility
   cases after17 storage cases. Baselines114/131 remain historical; do not
   rerun unchanged passing checks.
@@ -81,7 +82,7 @@ VM replacement durability, or a universal 20-second cold launch.
 
 ## Provider runtime format compatibility
 
-- Current candidate preserves an app's preferred Codespace across either known
+- Deployed provider73bd9f4 preserves an app's preferred Codespace across either known
   PODS label, with exact name/repository verification unchanged. It checks
   Node>=22, Linuxx64, usable local Linuxx64Docker and Compose over readonlySSH
   before preview registration or runner dispatch. No installer, replacement
@@ -94,8 +95,12 @@ VM replacement durability, or a universal 20-second cold launch.
   pods-launch-jj497rpqpp7529v7 and containerprofile
   pods-launch-containers-69rw5vx4xp46c5qw5 both Available and compatible.
   No application launched or data modified. Evidence
-  stack-codespaces-runtime-capabilities{,-probe}.json/.mjs and
+  stack-codespaces-runtime-capabilities.json plus its -probe.mjs and
   stack-provider-format-adapter.json. Full native format migration still pending.
+- Deployment62661 ended0: fresh idle precheck, service restarted02:37:28.804718
+  UTC toPID1041360, health200, SQLite quick_check ok, activebuild0/launch0.
+  Runner hash unchanged (provider-only change). Deployment recorded in
+  stack-provider-format-adapter.json; no need to rerun unchanged native apps.
 
 ## Previous native gate: Koa acceptance
 
@@ -177,8 +182,8 @@ VM replacement durability, or a universal 20-second cold launch.
 ## Next gate and performance work
 
 - NEXT native fixture: AdonisJS URL preparation/browser/HTTP persistence. Check
-  for existing production builds/data before assuming zero. NestJS completed
-  below; its preparation form remains the browser handoff.
+  for current data before writing. Readonly audit02:37UTC found Adonis build0.
+  The developer form is now staged at examples/stacks/adonis, not submitted.
 - Quota watcher96793 ended0 at02:25:27.009292UTC: account2/global2/active0.
   NestJS submitted once02:26:01.546UTC. Fresh quota02:30:33.292750UTC is
   account3/global3/active0, next ordinary slot02:45:29.969UTC. Watcher14019 is LIVE since02:33:00.602172UTC, bounded20min/30sec
@@ -231,8 +236,8 @@ VM replacement durability, or a universal 20-second cold launch.
 After compaction first CUA call must be cua.rewriteDocumentation. Reuse bindings;
 mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 
-- stackQa6: IAB2 tab13, NestJS preparation completed; button Prepare another
-  version. Next fixture folder is examples/stacks/adonis. Ready region name includes period: Your application is ready
+- stackQa6: IAB2 tab13, Adonis folder filled, button Prepare application.
+  No submission yet; wait for normal quota handle14019. Ready region name includes period: Your application is ready
   to share. Try this version link in that region identifies the exact artifact.
 - accountWorker: IAB2 tab12, stopped NestJS launcher. nestjsLaunchUrl,
   nestjsPreparationSubmittedAt, nestjsBrowserChecks (both passed), nestjsFirstLogs
@@ -252,11 +257,11 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
 - Origin https://collection-conferences-ages-clearly.trycloudflare.com.
   Support /support renders coverage each request; flags, not filenames, grant
   acceptance. No raw private evidence is served publicly.
-- User service pods-launch-fresh.service on aswin; last observed PID1032728,
-  runtime77cf340. Node/gh /home/aswin/pods-tools/bin. /health at127.0.0.1:8787.
+- User service pods-launch-fresh.service on aswin; last observed PID1041360,
+  provider73bd9f4; bundled runner unchanged from77cf340. Node/gh /home/aswin/pods-tools/bin. /health at127.0.0.1:8787.
   Before any restart prove idle and revalidate unit PID/cwd/cmdline/listener and
   SQLite integrity. Docs/evidence sync needs no restart. Never use old PID files
-  or touch unrelated pods-j03 services. Last restart2026-10-04 02:22:17 UTC.
+  or touch unrelated pods-j03 services. Last restart2026-10-04 02:37:28 UTC.
 - Cloudflared manualPID2322522; fixed hostname/DNS supervision still awaits user
   input. Keep callback hostname unchanged. RunnerSHA
   2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486.
@@ -268,7 +273,7 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   one-shot SIGTERM handler was consumed; do not blindly signal. Temporary Koa/
   Fastify probes/tunnels/devices are stopped and removed; no current probe.
 - Graph project Users-rizwanahamed-Documents-ChatGPT-podsv2, indexed through
-  77cf340 runtime source. scripts/public/examples/deploy excluded; targeted fallback appropriate.
+  73bd9f4 runtime source. scripts/public/examples/deploy excluded; targeted fallback appropriate.
 - Use set -e for validation→commit. User requests no subagents. Keep goal active;
   native Codespaces browser,23 remaining fixture paths, native format migration,
   VM replacement durability, stable hosting and cold performance remain open.

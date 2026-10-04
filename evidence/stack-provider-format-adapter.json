@@ -19,5 +19,35 @@
     "Native artifact-format transition remains unverified",
     "No optional-import packaging optimization enabled",
     "Capability success does not prove database schema compatibility or VM replacement durability"
-  ]
+  ],
+  "deployment": {
+    "before": {
+      "recordedAt": "2026-10-04T02:37:22.645820+00:00",
+      "pid": 1032728,
+      "cwd": "/home/aswin/pods-launch-fresh",
+      "command": "node --env-file=.env src/server.mjs",
+      "listenerMatches": true,
+      "sqliteQuickCheck": "ok",
+      "activeBuilds": 0,
+      "activeLaunches": 0,
+      "health": 200,
+      "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+      "revision": "73bd9f47bda9489c71851a15f37d803df0e8ffd3"
+    },
+    "after": {
+      "recordedAt": "2026-10-04T02:37:28.804718+00:00",
+      "pid": 1041360,
+      "cwd": "/home/aswin/pods-launch-fresh",
+      "command": "node --env-file=.env src/server.mjs",
+      "listenerMatches": true,
+      "sqliteQuickCheck": "ok",
+      "activeBuilds": 0,
+      "activeLaunches": 0,
+      "health": 200,
+      "runnerSha256": "2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486",
+      "revision": "73bd9f47bda9489c71851a15f37d803df0e8ffd3"
+    },
+    "passed": true,
+    "runnerUnchanged": true
+  }
 }
