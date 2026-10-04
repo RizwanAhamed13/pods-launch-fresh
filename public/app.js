@@ -174,7 +174,7 @@ async function poll(kind, failures = 0, version) {
     notice('');
     if (kind === 'build') showBuild(state); else showLaunch(state);
     if (!current()) return;
-    if (!ended(state.status) || state.stopRequested && !['failed', 'stopped'].includes(state.status)) timer = setTimeout(() => poll(kind, 0, version), 1000);
+    if (!ended(state.status) || state.stopRequested && !['failed', 'stopped'].includes(state.status)) timer = setTimeout(() => poll(kind, 0, version), kind === 'launch' && !state.stopRequested && ['delivering', 'downloading', 'starting'].includes(state.status) ? 250 : 1000);
     else await history().catch(() => {});
   } catch (error) {
     if (!current()) return;

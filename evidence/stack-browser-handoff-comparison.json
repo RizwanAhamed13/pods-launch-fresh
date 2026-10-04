@@ -1,0 +1,290 @@
+{
+  "recordedAt": "2026-10-04T14:43:27.454737+00:00",
+  "baseRevision": "25faa8e9adc99d2fb89462447a8f04539347c1f9",
+  "scope": "Controlled real browser/client/server/runner/notes product with simulated provider and authorization; two sequential launches per treatment, baseline then candidate. Server-side first completed readiness status response minus server readyAt, not product render timing. Real UI automatic navigation, note save/reload and stop/relaunch checked for both treatments.",
+  "method": {
+    "baselineClientSha256": "fae866b21ed5d063b852ea0ef615e9aca0a61b9e3e2bb59ae61220204748dcff",
+    "candidateClientSha256": "9d17d3df52a587d8a8e3169daf9f68c3eaa002bf8d16482d5e64c548c29e4d2b",
+    "fixture": "scripts/browser-fixture.mjs",
+    "environment": {
+      "PODS_FIXTURE_RUNTIME_DELAY_MS": "1500"
+    },
+    "reproduction": "Run isolated baseline and candidate copies with the fixture, one active browser session at a time because localhost ports share cookies. Connect simulated GitHub, launch Field Notes, save/reload a note, stop and relaunch through the UI. Read /fixture/report before shutting each fixture down. Compute first successful status response finishedAt >= launch.readyAt minus readyAt.",
+    "simulatedRuntimeDelayMs": 1500
+  },
+  "samples": [
+    {
+      "variant": "baseline",
+      "launch": {
+        "id": "msdYrN9UEffDvuY0OxpB0mexbZc6XQZu",
+        "appId": "field-notes",
+        "provider": "github",
+        "status": "stopped",
+        "createdAt": 1791124750159,
+        "readyAt": 1791124752490
+      },
+      "statusReadsThroughReadiness": [
+        {
+          "path": "/api/launches/msdYrN9UEffDvuY0OxpB0mexbZc6XQZu",
+          "startedAt": 1791124750173,
+          "finishedAt": 1791124750174,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/msdYrN9UEffDvuY0OxpB0mexbZc6XQZu",
+          "startedAt": 1791124751183,
+          "finishedAt": 1791124751188,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/msdYrN9UEffDvuY0OxpB0mexbZc6XQZu",
+          "startedAt": 1791124752204,
+          "finishedAt": 1791124752204,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/msdYrN9UEffDvuY0OxpB0mexbZc6XQZu",
+          "startedAt": 1791124753211,
+          "finishedAt": 1791124753216,
+          "status": 200
+        }
+      ],
+      "readinessDetectionMs": 726,
+      "statusReadCount": 4,
+      "automaticProductNavigationVerified": true,
+      "productWriteReloadAndStopRelaunchVerified": true
+    },
+    {
+      "variant": "baseline",
+      "launch": {
+        "id": "tSzFpcDOCulFCmpuAwRGgQDwZlIn-wWz",
+        "appId": "field-notes",
+        "provider": "github",
+        "status": "stopped",
+        "createdAt": 1791124795720,
+        "readyAt": 1791124797856
+      },
+      "statusReadsThroughReadiness": [
+        {
+          "path": "/api/launches/tSzFpcDOCulFCmpuAwRGgQDwZlIn-wWz",
+          "startedAt": 1791124795728,
+          "finishedAt": 1791124795728,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/tSzFpcDOCulFCmpuAwRGgQDwZlIn-wWz",
+          "startedAt": 1791124796734,
+          "finishedAt": 1791124796735,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/tSzFpcDOCulFCmpuAwRGgQDwZlIn-wWz",
+          "startedAt": 1791124797741,
+          "finishedAt": 1791124797742,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/tSzFpcDOCulFCmpuAwRGgQDwZlIn-wWz",
+          "startedAt": 1791124798752,
+          "finishedAt": 1791124798752,
+          "status": 200
+        }
+      ],
+      "readinessDetectionMs": 896,
+      "statusReadCount": 4,
+      "automaticProductNavigationVerified": true,
+      "productWriteReloadAndStopRelaunchVerified": true
+    },
+    {
+      "variant": "candidate",
+      "launch": {
+        "id": "BF36X39Ga8BU2aBCiGxyFWZ2BJ2QVyuF",
+        "appId": "field-notes",
+        "provider": "github",
+        "status": "stopped",
+        "createdAt": 1791124823217,
+        "readyAt": 1791124825392
+      },
+      "statusReadsThroughReadiness": [
+        {
+          "path": "/api/launches/BF36X39Ga8BU2aBCiGxyFWZ2BJ2QVyuF",
+          "startedAt": 1791124823222,
+          "finishedAt": 1791124823223,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/BF36X39Ga8BU2aBCiGxyFWZ2BJ2QVyuF",
+          "startedAt": 1791124824228,
+          "finishedAt": 1791124824229,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/BF36X39Ga8BU2aBCiGxyFWZ2BJ2QVyuF",
+          "startedAt": 1791124824499,
+          "finishedAt": 1791124824508,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/BF36X39Ga8BU2aBCiGxyFWZ2BJ2QVyuF",
+          "startedAt": 1791124824761,
+          "finishedAt": 1791124824762,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/BF36X39Ga8BU2aBCiGxyFWZ2BJ2QVyuF",
+          "startedAt": 1791124825017,
+          "finishedAt": 1791124825018,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/BF36X39Ga8BU2aBCiGxyFWZ2BJ2QVyuF",
+          "startedAt": 1791124825274,
+          "finishedAt": 1791124825274,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/BF36X39Ga8BU2aBCiGxyFWZ2BJ2QVyuF",
+          "startedAt": 1791124825529,
+          "finishedAt": 1791124825530,
+          "status": 200
+        }
+      ],
+      "readinessDetectionMs": 138,
+      "statusReadCount": 7,
+      "automaticProductNavigationVerified": true,
+      "productWriteReloadAndStopRelaunchVerified": true
+    },
+    {
+      "variant": "candidate",
+      "launch": {
+        "id": "Hyi9E7Eb-4Lr5OGbQP_leHwc7RQDWpRt",
+        "appId": "field-notes",
+        "provider": "github",
+        "status": "stopped",
+        "createdAt": 1791124845339,
+        "readyAt": 1791124847474
+      },
+      "statusReadsThroughReadiness": [
+        {
+          "path": "/api/launches/Hyi9E7Eb-4Lr5OGbQP_leHwc7RQDWpRt",
+          "startedAt": 1791124845349,
+          "finishedAt": 1791124845349,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/Hyi9E7Eb-4Lr5OGbQP_leHwc7RQDWpRt",
+          "startedAt": 1791124846356,
+          "finishedAt": 1791124846357,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/Hyi9E7Eb-4Lr5OGbQP_leHwc7RQDWpRt",
+          "startedAt": 1791124846614,
+          "finishedAt": 1791124846615,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/Hyi9E7Eb-4Lr5OGbQP_leHwc7RQDWpRt",
+          "startedAt": 1791124846872,
+          "finishedAt": 1791124846872,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/Hyi9E7Eb-4Lr5OGbQP_leHwc7RQDWpRt",
+          "startedAt": 1791124847129,
+          "finishedAt": 1791124847130,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/Hyi9E7Eb-4Lr5OGbQP_leHwc7RQDWpRt",
+          "startedAt": 1791124847387,
+          "finishedAt": 1791124847387,
+          "status": 200
+        },
+        {
+          "path": "/api/launches/Hyi9E7Eb-4Lr5OGbQP_leHwc7RQDWpRt",
+          "startedAt": 1791124847643,
+          "finishedAt": 1791124847643,
+          "status": 200
+        }
+      ],
+      "readinessDetectionMs": 169,
+      "statusReadCount": 7,
+      "automaticProductNavigationVerified": true,
+      "productWriteReloadAndStopRelaunchVerified": true
+    }
+  ],
+  "meanReadinessDetectionMs": {
+    "baseline": 811,
+    "candidate": 153.5
+  },
+  "observedReductionMs": 657.5,
+  "invalidSetupAttempts": {
+    "excluded": true,
+    "reason": "Concurrent fixture sessions on the same localhost hostname shared OAuth/session cookies. Baseline status returned404 and candidate authorization expired. Both fixtures were stopped with exit0; subsequent measurements used isolated sequential sessions.",
+    "reports": {
+      "baseline": {
+        "requests": [
+          {
+            "path": "/api/launches",
+            "status": 202
+          }
+        ],
+        "authorizations": [
+          "github"
+        ],
+        "statusReads": [
+          {
+            "path": "/api/launches/Al_jXEGPVMENmDxOkcP35kAVinWkOark",
+            "startedAt": 1791124598519,
+            "finishedAt": 1791124598520,
+            "status": 200
+          },
+          {
+            "path": "/api/launches/Al_jXEGPVMENmDxOkcP35kAVinWkOark",
+            "startedAt": 1791124599536,
+            "finishedAt": 1791124599550,
+            "status": 404
+          }
+        ],
+        "pollFailures": {},
+        "builds": [],
+        "launches": [
+          {
+            "id": "Al_jXEGPVMENmDxOkcP35kAVinWkOark",
+            "appId": "field-notes",
+            "provider": "github",
+            "status": "ready",
+            "createdAt": 1791124598514,
+            "readyAt": 1791124600837
+          }
+        ]
+      },
+      "candidate": {
+        "requests": [],
+        "authorizations": [
+          "github"
+        ],
+        "statusReads": [],
+        "pollFailures": {},
+        "builds": [],
+        "launches": []
+      }
+    }
+  },
+  "cleanup": {
+    "allFourApplicationsStopped": true,
+    "fixtureProcessesExited": true,
+    "fixtureExitCodes": [
+      0,
+      0
+    ],
+    "temporaryTabsClosed": true
+  },
+  "limitations": [
+    "Two runs per variant on one local computer; no randomized ordering or statistical speedup guarantee.",
+    "The explicit simulated1500ms startup delay ensures delivery-phase polling is exercised; provider provisioning/auth are not native.",
+    "Status reads increased from4 to7 per measured launch. Faster polling only during delivery/downloading/starting; build, provisioning, stop and failure backoff unchanged.",
+    "Browser observed working products but this receipt does not measure first paint or native launch latency."
+  ]
+}

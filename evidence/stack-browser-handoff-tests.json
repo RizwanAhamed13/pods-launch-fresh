@@ -1,0 +1,58 @@
+{
+  "recordedAt": "2026-10-04T14:43:27.454737+00:00",
+  "baseRevision": "25faa8e9adc99d2fb89462447a8f04539347c1f9",
+  "runs": [
+    {
+      "platform": "local",
+      "tests": 270,
+      "pass": 270,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 29228.370083,
+      "logSha256": "bb74dfecdec9ea7eb0188cc0b9acee619cbc30ec30e23167083abe7b9de5669c"
+    },
+    {
+      "platform": "isolated-aswin-linux",
+      "tests": 270,
+      "pass": 270,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 58808.368666,
+      "logSha256": "315b768840c20fb1d3ce920abfc4176e9e48175b7ec5e0f6fc887de939414420"
+    }
+  ],
+  "actualClientRegression": {
+    "before": {
+      "tests": 20,
+      "pass": 16,
+      "fail": 4
+    },
+    "after": {
+      "tests": 20,
+      "pass": 20,
+      "fail": 0
+    }
+  },
+  "isolatedSnapshot": {
+    "candidate": "/output/browser-handoff-candidate-25faa8e",
+    "verifiedFiles": 337,
+    "archiveSha256": "b7a1a9c35b97a3174f80810a5c1f56c850f28851ddd3e94c376ce6ffae42a793",
+    "manifestSha256": "5c55313d3cb8f1020be85e41928c30049df4a868452bc266a03bb3627a87bfd6"
+  },
+  "sourceHashes": {
+    "public/app.js": "9d17d3df52a587d8a8e3169daf9f68c3eaa002bf8d16482d5e64c548c29e4d2b",
+    "scripts/browser-fixture.mjs": "8fbd28920806e3ca94a8ead896a0257484aa018f3fede1d96c4c8ac1e0862eeb",
+    "test/browser-polling.test.mjs": "a420e49f36c22746a4f7d28608270b12dc90ae735c1e371810b860060f3e0e95"
+  },
+  "scope": "Poll application readiness every250ms during delivering/downloading/starting; retain1000ms build/provisioning/stop cadence and1/2/4s transient-failure backoff. Six new behavioral cases execute the real client with deterministic timers, alongside14 previous client regressions.",
+  "behavioralCoverage": [
+    "Newly healthy app opens within500ms in each active delivery phase and subsequent polling ends.",
+    "Build and provisioning cadence remains1000ms.",
+    "Transient failure during fast startup polling retains1000ms first retry delay and cancels after navigation.",
+    "Stop during delivery cancels fast polling and cannot open the product.",
+    "Existing authorization denial, stale responses, aborted reads, page exit, manual recovery and no creation retries remain covered."
+  ],
+  "performanceEvidence": "stack-browser-handoff-comparison.json"
+}

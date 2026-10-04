@@ -15,10 +15,11 @@ const root = await mkdtemp(join(tmpdir(), 'pods-browser-'));
 const sourceManifest = await prepare('examples/notes', root);
 const artifact = await readFile(join(root, 'artifacts', sourceManifest.sha256 + '.gz'));
 const historyDelay = Number(process.env.PODS_FIXTURE_HISTORY_DELAY_MS || 0);
+const runtimeDelay = Number(process.env.PODS_FIXTURE_RUNTIME_DELAY_MS || 0);
 const productTitle = process.env.PODS_FIXTURE_TITLE || 'Prepared notes';
 const runners = [];
 const processes = new Map();
-const requests = [], authorizations = [];
+const requests = [], authorizations = [], statusReads = [];
 let expireEveryAction = false;
 let expireSessionEveryAction = false;
 let productPort = Number(process.env.PODS_FIXTURE_PRODUCT_PORT || 19900);
@@ -40,6 +41,7 @@ function compute(provider) {
       const appPort = ++productPort;
       const previewUrl = origin + `/fixture/product/${config.id}/`;
       await update({ status: 'delivering', providerReadyAt: Date.now(), previewUrl });
+      await sleep(runtimeDelay);
       const running = await run({ ...config, port: appPort }, { root: join(root, 'compute-' + provider) });
       runners.push(running); processes.set(config.id, appPort);
       return { previewUrl, environment: 'simulated-' + provider };
@@ -71,12 +73,14 @@ server.on('request', async (req, res) => {
   }
   if (req.method === 'GET' && url.pathname === '/fixture/report') {
     res.setHeader('Content-Type', 'application/json');
-    return res.end(JSON.stringify({ requests, authorizations, pollFailures: Object.fromEntries(pollFailures),
+    return res.end(JSON.stringify({ requests, authorizations, statusReads, pollFailures: Object.fromEntries(pollFailures),
       builds: store.list('build').map(({ id, repository, status, appId }) => ({ id, repository, status, appId })),
-      launches: store.list('launch').map(({ id, appId, provider, status }) => ({ id, appId, provider, status })),
+      launches: store.list('launch').map(({ id, appId, provider, status, createdAt, readyAt }) => ({ id, appId, provider, status, createdAt, readyAt })),
     }));
   }
   if (req.method === 'GET' && /^\/api\/(builds|launches)\/[A-Za-z0-9_-]{32}$/.test(url.pathname)) {
+    const startedAt = Date.now();
+    res.once('finish', () => statusReads.push({ path: url.pathname, startedAt, finishedAt: Date.now(), status: res.statusCode }));
     const count = pollFailures.get(url.pathname) || 0;
     if (count < pollFailureLimit) {
       pollFailures.set(url.pathname, count + 1);

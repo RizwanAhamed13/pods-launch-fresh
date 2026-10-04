@@ -163,3 +163,50 @@ test('browser does not retry launch creation or allow a history error to undo re
   assert.deepEqual(c.destinations, [ready.previewUrl]);
   assert.equal(c.node('retry-status').hidden, true);
 });
+
+for (const status of ['delivering', 'downloading', 'starting']) test('browser opens a newly healthy app promptly during ' + status, async () => {
+  const c = await client({ statuses: [{ ...pending, status }, { ...ready, readyAt: 10001 }] });
+  await c.fire('launch'); await c.advance(500);
+  assert.deepEqual(c.destinations, [ready.previewUrl]);
+  const timing = JSON.parse(c.storage.get('pods-last-navigation'));
+  assert.ok(timing.navigationAt - timing.healthyAt <= 500);
+  await c.advance(60000);
+  assert.equal(c.calls.filter(r => r.path === '/api/launches/launch-one').length, 2);
+});
+
+test('browser keeps normal cadence while provisioning or preparing', async () => {
+  for (const view of ['launch', 'develop']) {
+    const status = view === 'launch' ? { ...pending, status: 'provisioning' } : build;
+    const c = await client({ view, statuses: [status, view === 'launch' ? ready : built] });
+    if (view === 'launch') await c.fire('launch');
+    else { c.node('repository').value = build.repository.url; await c.fire('build-form', 'submit'); }
+    const path = view === 'launch' ? '/api/launches/launch-one' : '/api/builds/build-one';
+    await c.advance(999);
+    assert.equal(c.calls.filter(r => r.path === path).length, 1);
+    await c.advance(1);
+    assert.equal(c.calls.filter(r => r.path === path).length, 2);
+  }
+});
+
+test('browser startup polling retains error backoff and stops after navigation', async () => {
+  const c = await client({ statuses: [{ ...pending, status: 'starting' }, html(), ready] });
+  await c.fire('launch'); await c.advance(250);
+  assert.equal(c.calls.filter(r => r.path === '/api/launches/launch-one').length, 2);
+  await c.advance(999);
+  assert.equal(c.calls.filter(r => r.path === '/api/launches/launch-one').length, 2);
+  assert.deepEqual(c.destinations, []);
+  await c.advance(1); await c.advance(60000);
+  assert.deepEqual(c.destinations, [ready.previewUrl]);
+  assert.equal(c.calls.filter(r => r.path === '/api/launches/launch-one').length, 3);
+});
+
+test('browser stopping during delivery cancels fast polling and cannot open the product', async () => {
+  const delivering = { ...pending, status: 'delivering' };
+  const c = await client({ statuses: [delivering, { ...delivering, stopRequested: true }, { ...pending, status: 'stopped' }] });
+  await c.fire('launch'); await c.fire('stop'); await c.advance(999);
+  assert.equal(c.calls.filter(r => r.path === '/api/launches/launch-one').length, 2);
+  await c.advance(1); await c.advance(60000);
+  assert.deepEqual(c.destinations, []);
+  assert.equal(c.calls.filter(r => r.path === '/api/launches/launch-one').length, 3);
+  assert.equal(c.node('stop').hidden, true);
+});
