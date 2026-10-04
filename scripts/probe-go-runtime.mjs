@@ -1,5 +1,8 @@
-// Restricted Go net/http fixture: inspect copied files without executing tools in scratch.
-export async function probeGoRuntime(dataKey,{port,expectedCount},execute) {
+// Restricted Go fixtures: inspect copied files without executing container tools.
+export async function probeGoRuntime(dataKey,{port,expectedCount,fixture='go'},execute) {
+  const profiles={go:{module:'pods.example/counter',toolchain:/^go1\.24\.\d+$/},echo:{module:'pods.example/echo',toolchain:/^go1\.26\.\d+$/,dependency:'github.com/labstack/echo/v5',framework:'Echo',frameworkVersion:'v5.4.0'},fiber:{module:'pods.example/fiber',toolchain:/^go1\.26\.\d+$/,dependency:'github.com/gofiber/fiber/v3',framework:'Fiber',frameworkVersion:'v3.5.0'}};
+  if(!Object.hasOwn(profiles,fixture))throw new Error('Unsupported Go fixture');
+  const profile=profiles[fixture];
   if(!/^[a-z0-9][a-z0-9-]{0,159}$/.test(dataKey||''))throw new Error('Invalid application data identity');
   if(!Number.isInteger(port)||port<1024||port>65535)throw new Error('Invalid product port');
   if(!Number.isSafeInteger(expectedCount)||expectedCount<0)throw new Error('Expected counter value is required');
@@ -38,10 +41,13 @@ export async function probeGoRuntime(dataKey,{port,expectedCount},execute) {
     let cursor=offset+32;
     const readBytes=()=>{let length=0,factor=1;for(let n=0;n<4;n++){if(cursor>=binary.length)break;const byte=binary[cursor++];length+=(byte&127)*factor;if(byte<128){if(length>65536||cursor+length>binary.length)break;const result=binary.subarray(cursor,cursor+length);cursor+=length;return result;}factor*=128;}throw new Error('Malformed Go build information');};
     const version=readBytes().toString('utf8'),framedModule=readBytes(),moduleInfo=framedModule.subarray(16,-16).toString('utf8');
-    if(!/^go1\.24\.\d+$/.test(version)||framedModule.length<33||framedModule.at(-17)!==10||!moduleInfo.split('\n').includes('path\tpods.example/counter')||!moduleInfo.split('\n').includes('build\tCGO_ENABLED=0'))throw new Error('Go fixture build identity does not match');
+    const moduleLines=moduleInfo.split('\n');
+    if(!profile.toolchain.test(version)||framedModule.length<33||framedModule.at(-17)!==10||!moduleLines.includes('path\t'+profile.module)||!moduleLines.includes('build\tCGO_ENABLED=0'))throw new Error('Go fixture build identity does not match');
+    const dependency=profile.dependency&&moduleLines.find(line=>line.startsWith('dep\t'+profile.dependency+'\t'))?.split('\t');
+    if(profile.dependency&&(dependency?.[2]!==profile.frameworkVersion||moduleLines.some(line=>line.startsWith('=>\t'))))throw new Error('Go framework dependency does not match');
     const savedCount=Number(value);
     if(!/^(0|[1-9]\d*)$/.test(value)||!Number.isSafeInteger(savedCount)||savedCount!==expectedCount)throw new Error('Go record does not match the value saved through the product');
-    return {passed:true,project,services:['web'],runtime:'Go',version,module:'pods.example/counter',binaryFormat:'ELF-linux-x64',binarySha256:createHash('sha256').update(binary).digest('hex'),binaryBytes:binary.length,cgoEnabled:false,savedCount,volume,durableWorkspaceVolume:true,productHostPorts:[port],databaseHostPorts:[],scope:'Read-only inspection of the compiled Go fixture, saved file counter and durable Codespaces volume. This is not database, power-loss or VM replacement evidence.'};
+    return {passed:true,project,services:['web'],runtime:'Go',version,module:profile.module,...(dependency?{framework:profile.framework,frameworkVersion:dependency[2],frameworkDependency:profile.dependency}:{}),binaryFormat:'ELF-linux-x64',binarySha256:createHash('sha256').update(binary).digest('hex'),binaryBytes:binary.length,cgoEnabled:false,savedCount,volume,durableWorkspaceVolume:true,productHostPorts:[port],databaseHostPorts:[],scope:'Read-only inspection of the compiled Go fixture, saved file counter and durable Codespaces volume. This is not database, power-loss or VM replacement evidence.'};
   } finally {await rm(temporary,{recursive:true,force:true});}
 }
 

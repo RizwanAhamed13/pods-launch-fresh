@@ -85,7 +85,7 @@ or in-flight crash recovery.
 
 Evidence is in numbered `evidence/stack-matrix-*.json` and
 `evidence/stack-browser-*.json` files. Original failed attempts are retained;
-later passing attempts do not erase them. Automated coverage is **171 passing checks in full local and isolated aswin QA runs**. Native coverage is 40 Google browser fixtures and
+later passing attempts do not erase them. Automated coverage is **173 passing checks in full local and isolated aswin QA runs**. Native coverage is 40 Google browser fixtures and
 40 Codespaces HTTP/protocol fixtures; 15 still lack at least one native acceptance path. Codespaces
 native browser authorization and interaction remain pending.
 
@@ -143,9 +143,9 @@ a stable production hostname remains a deployment requirement.
   [Cloud Shell browser](evidence/stack-go-google.json), and
   [Codespaces protocol and compiled runtime inspection](evidence/stack-go-codespaces.json).
   Both paths retained the file counter across full stop/relaunch.
-- [Full-suite result](evidence/stack-go-runtime-probe-tests.json): **171/171**
+- [Full-suite result](evidence/stack-go-framework-runtime-tests.json): **173/173**
   checks passed locally and in isolated aswin Linux QA.
-- [Physical source count](evidence/code-lines.json): **6,679 lines**, including
+- [Physical source count](evidence/code-lines.json): **6,703 lines**, including
   product/tooling, tests, examples and browser test tools; excluding generated
   files, dependencies and documentation.
 - [Historical verification details](evidence/STACK-VERIFICATION-HISTORY.md)

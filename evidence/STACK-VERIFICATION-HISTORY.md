@@ -1989,3 +1989,25 @@ Evidence: `stack-go-{url,google,codespaces,audit}.json`. Coverage is now
 **55 isolated / 40 Google browser / 40 Codespaces protocol**; **15** native
 fixtures remain pending. The171/171 full suite and6,679 source-line count remain
 valid because native acceptance added only evidence and documentation.
+
+
+## Echo and Fiber compiled framework inspection
+
+The Go inspection helper now has explicit Echo and Fiber fixture profiles. It
+checks their compiled module, declared toolchain and framework dependency/version,
+with tests for missing, substituted and replaced dependencies. All three profiles
+serialize into a standalone read-only inspection command. Existing Go boundary,
+malformed-binary and temporary-file cleanup checks remain covered.
+
+Actual stored artifacts confirmed **Echo 5.4.0** and **Fiber 3.5.0**, both compiled
+with **Go 1.26.8**, CGO disabled. Each passed the empty chunked POST used by the
+preview path and **0→1→2** file persistence over complete application stops.
+Scoped test containers, volumes and storage directories were removed; shared
+runtime/cache remained. This is isolated artifact evidence, not native provider,
+database or VM replacement acceptance.
+
+Evidence: `stack-{echo,fiber}-chunked-probe.json`,
+`stack-go-framework-chunked-probe.mjs`, and `stack-go-framework-runtime-tests.json`.
+Full suites: **173/173** locally and isolated Linux QA. Source: **6,703 lines**.
+Native coverage remains **55 isolated / 40 Google browser / 40 Codespaces
+protocol** until the next native acceptance gate.

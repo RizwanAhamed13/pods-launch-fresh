@@ -1,0 +1,97 @@
+{
+  "recordedAt": "2026-10-04T05:40:06.060Z",
+  "fixture": "fiber",
+  "scope": "Isolated real Go artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+  "dataKey": "fiber-chunked-c3269899cfcfb12d",
+  "project": "pods-522c9041b1d3a60baf2905b6",
+  "artifactSha256": "a95883401a9e6863b48d8045c1f9cf36f40b0a4757d35d9dbbc47fb9a8c0e19a",
+  "images": [
+    {
+      "id": "sha256:64340cee832f926903a5a47da10d2b4c9c0f4f5e0bbfa5f289495bc087c3123e",
+      "sha256": "973eb844c525251167100f39f1bb919f49c293e685db766937867a151475d7d9",
+      "bytes": 7801882
+    }
+  ],
+  "sourceSha256": "53d370518607a7c80b811f8cddf6797c4437fa207bfda123ce5071feb7a8f19e",
+  "records": [
+    {
+      "compiledRuntime": {
+        "passed": true,
+        "project": "pods-522c9041b1d3a60baf2905b6",
+        "services": [
+          "web"
+        ],
+        "runtime": "Go",
+        "version": "go1.26.8",
+        "module": "pods.example/fiber",
+        "framework": "Fiber",
+        "frameworkVersion": "v3.5.0",
+        "frameworkDependency": "github.com/gofiber/fiber/v3",
+        "binaryFormat": "ELF-linux-x64",
+        "binarySha256": "d0dbc128239b65be4daf9c85efe854cfd200830c344cd40f09e41deea92043d9",
+        "binaryBytes": 12927013,
+        "cgoEnabled": false,
+        "savedCount": 1,
+        "volume": "pods-522c9041b1d3a60baf2905b6_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          18095
+        ],
+        "databaseHostPorts": [],
+        "scope": "Isolated aswin guest: compiled Go executable/module, saved file counter, product port and persistent bind volume; not database or native provider evidence."
+      },
+      "scenario": "first-launch",
+      "before": 0,
+      "post": {
+        "status": 200,
+        "count": 1
+      },
+      "afterRead": 1,
+      "transferEncoding": "chunked",
+      "contentType": null
+    },
+    {
+      "compiledRuntime": {
+        "passed": true,
+        "project": "pods-522c9041b1d3a60baf2905b6",
+        "services": [
+          "web"
+        ],
+        "runtime": "Go",
+        "version": "go1.26.8",
+        "module": "pods.example/fiber",
+        "framework": "Fiber",
+        "frameworkVersion": "v3.5.0",
+        "frameworkDependency": "github.com/gofiber/fiber/v3",
+        "binaryFormat": "ELF-linux-x64",
+        "binarySha256": "d0dbc128239b65be4daf9c85efe854cfd200830c344cd40f09e41deea92043d9",
+        "binaryBytes": 12927013,
+        "cgoEnabled": false,
+        "savedCount": 2,
+        "volume": "pods-522c9041b1d3a60baf2905b6_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          18095
+        ],
+        "databaseHostPorts": [],
+        "scope": "Isolated aswin guest: compiled Go executable/module, saved file counter, product port and persistent bind volume; not database or native provider evidence."
+      },
+      "scenario": "full-relaunch",
+      "before": 1,
+      "post": {
+        "status": 200,
+        "count": 2
+      },
+      "afterRead": 2,
+      "transferEncoding": "chunked",
+      "contentType": null
+    }
+  ],
+  "passed": true,
+  "cleanup": {
+    "containersStopped": true,
+    "probeVolumeRemoved": true,
+    "probeStorageDirectoriesRemoved": true,
+    "sharedRuntimeAndCacheRetained": true
+  }
+}

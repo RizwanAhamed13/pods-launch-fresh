@@ -10,11 +10,11 @@ import {probeGoRuntime,goRuntimeProbeCommand} from '../scripts/probe-go-runtime.
 const key='repo-go-fixture',port=24567,id='a'.repeat(12),project='pods-'+createHash('sha256').update(key).digest('hex').slice(0,24);
 const web={service:'web',networkMode:project+'_default',ports:{'8080/tcp':[{HostPort:String(port)}]},mounts:[{Destination:'/data',Type:'volume',RW:true,Name:project+'_app-data-disk-v1'}],running:true,path:'/product',args:[]};
 const volume={driver:'local',options:{type:'none',o:'bind',device:`/workspaces/.pods-launch/volumes/${project}/app-data/data`}};
-function executable(version='go1.24.13',module='pods.example/counter',cgo=0){
+function executable(version='go1.24.13',module='pods.example/counter',cgo=0,dependencies=''){
   const header=Buffer.alloc(96);Buffer.from('7f454c46020101','hex').copy(header);header.writeUInt16LE(2,16);header.writeUInt16LE(62,18);
   Buffer.from([255,...Buffer.from(' Go buildinf:')]).copy(header,64);header[78]=8;header[79]=2;
   const encoded=b=>{const length=[];let n=b.length;do{length.push((n&127)|(n>=128?128:0));n=Math.floor(n/128);}while(n);return Buffer.concat([Buffer.from(length),b]);};
-  const mod=Buffer.concat([Buffer.alloc(16,255),Buffer.from(`path\t${module}\nbuild\tCGO_ENABLED=${cgo}\n`),Buffer.alloc(16,255)]);
+  const mod=Buffer.concat([Buffer.alloc(16,255),Buffer.from(`path\t${module}\n${dependencies}build\tCGO_ENABLED=${cgo}\n`),Buffer.alloc(16,255)]);
   return Buffer.concat([header,encoded(Buffer.from(version)),encoded(mod)]);
 }
 function executor({binary=executable(),value='4',runtime=web,storage=volume,ids=id,failCopy=false}={},calls=[]){return async args=>{
@@ -49,9 +49,27 @@ test('Go probe cleans its temporary copies on inspection failure',async()=>{
   const calls=[];await assert.rejects(probeGoRuntime(key,{port,expectedCount:4},executor({failCopy:true},calls)),/Copy unavailable/);
   await assert.rejects(access(dirname(calls.find(x=>x[0]==='cp')[2])));
 });
+const frameworks=[['echo','Echo','github.com/labstack/echo/v5','v5.4.0'],['fiber','Fiber','github.com/gofiber/fiber/v3','v3.5.0']];
+test('Go framework probes verify the exact Echo or Fiber module and dependency in the compiled binary',async()=>{
+  for(const [fixture,framework,dependency,version] of frameworks){
+    const binary=executable('go1.26.3','pods.example/'+fixture,0,`dep\t${dependency}\t${version}\th1:fixture\n`);
+    const result=await probeGoRuntime(key,{port,expectedCount:4,fixture},executor({binary}));
+    assert.equal(result.framework,framework);assert.equal(result.frameworkVersion,version);assert.equal(result.frameworkDependency,dependency);assert.equal(result.module,'pods.example/'+fixture);assert.equal(result.savedCount,4);
+  }
+});
+test('Go framework probes reject omitted, substituted, replaced or mismatched dependencies and unknown profiles',async()=>{
+  for(const [fixture,,dependency,version] of frameworks){
+    for(const deps of ['',`dep\twrong/module\t${version}\th1:fixture\n`,`dep\t${dependency}\tv0.0.0\th1:fixture\n`,`dep\t${dependency}\t${version}\th1:fixture\n=>\t../local\t(devel)\n`])await assert.rejects(probeGoRuntime(key,{port,expectedCount:4,fixture},executor({binary:executable('go1.26.3','pods.example/'+fixture,0,deps)})),/framework dependency/);
+    await assert.rejects(probeGoRuntime(key,{port,expectedCount:4,fixture},executor({binary:executable()})),/build identity/);
+  }
+  for(const fixture of ['unknown','__proto__','toString',null])await assert.rejects(probeGoRuntime(key,{port,expectedCount:4,fixture},()=>assert.fail('Invalid fixture must not execute')),/Unsupported Go fixture/);
+});
 test('serialized Go probe inspects copied executable and record in a fresh process',async t=>{
   const root=await mkdtemp(join(tmpdir(),'pods-go-probe-'));t.after(()=>rm(root,{recursive:true,force:true}));const fake=join(root,'docker');
-  await writeFile(fake,`#!${process.execPath}\nconst fs=require('node:fs');const a=process.argv.slice(2);if(a[0]!=='--host'||a[1]!=='unix:///var/run/docker.sock')process.exit(2);if(a[2]==='cp'){if(a[3]!==${JSON.stringify(id+':/product')}&&a[3]!==${JSON.stringify(id+':/data/count')})process.exit(3);fs.writeFileSync(a[4],a[3].endsWith('/product')?Buffer.from(${JSON.stringify(executable().toString('base64'))},'base64'):'4');}else process.stdout.write(a[2]==='ps'?${JSON.stringify(id)}:a[2]==='inspect'?${JSON.stringify(JSON.stringify(web))}:a[2]==='volume'?${JSON.stringify(JSON.stringify(volume))}:process.exit(4));\n`);await chmod(fake,0o700);
-  const {stdout}=await promisify(execFile)(process.execPath,['--input-type=module','-e',goRuntimeProbeCommand(key,{port,expectedCount:4})],{env:{...process.env,PATH:root+':'+process.env.PATH},timeout:10000});
-  const result=JSON.parse(stdout);assert.equal(result.passed,true);assert.equal(result.savedCount,4);assert.equal(result.runtime,'Go');
+  for(const [fixture,framework,dependency,version] of [['go'],...frameworks]){
+    const binary=fixture==='go'?executable():executable('go1.26.3','pods.example/'+fixture,0,`dep\t${dependency}\t${version}\th1:fixture\n`);
+    await writeFile(fake,`#!${process.execPath}\nconst fs=require('node:fs');const a=process.argv.slice(2);if(a[0]!=='--host'||a[1]!=='unix:///var/run/docker.sock')process.exit(2);if(a[2]==='cp'){if(a[3]!==${JSON.stringify(id+':/product')}&&a[3]!==${JSON.stringify(id+':/data/count')})process.exit(3);fs.writeFileSync(a[4],a[3].endsWith('/product')?Buffer.from(${JSON.stringify(binary.toString('base64'))},'base64'):'4');}else process.stdout.write(a[2]==='ps'?${JSON.stringify(id)}:a[2]==='inspect'?${JSON.stringify(JSON.stringify(web))}:a[2]==='volume'?${JSON.stringify(JSON.stringify(volume))}:process.exit(4));\n`);await chmod(fake,0o700);
+    const {stdout}=await promisify(execFile)(process.execPath,['--input-type=module','-e',goRuntimeProbeCommand(key,{port,expectedCount:4,fixture})],{env:{...process.env,PATH:root+':'+process.env.PATH},timeout:10000});
+    const result=JSON.parse(stdout);assert.equal(result.passed,true);assert.equal(result.savedCount,4);assert.equal(result.runtime,'Go');assert.equal(result.framework,framework);
+  }
 });

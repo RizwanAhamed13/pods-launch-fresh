@@ -23,10 +23,10 @@ VM replacement durability, or a universal 20-second cold launch.
   pending authorization. The15 fixtures awaiting native acceptance are:
   actix, aspnet, axum, deno, echo, fiber, gradio,
   ktor, micronaut, phoenix, php, rocket, sinatra, streamlit, symfony.
-- Current full suite:171/171 passed locally and in isolated aswin QA after
-  Go executable inspection tooling. Logs /tmp/pods-go-full-{local,qa}.txt.
+- Current full suite:173/173 passed locally and in isolated aswin QA after
+  Go/Echo/Fiber inspection tooling. Logs /tmp/pods-go-framework-full-{local,qa}.txt.
   The previous SQLite native acceptance was published4bb9326.
-- Physical code:6,679 lines =3,485 product/tooling +2,097 tests +933 examples
+- Physical code:6,703 lines =3,491 product/tooling +2,115 tests +933 examples
   +164 browser tools. Scope excludes evidence scripts, JSON, docs and generated
   files; includes .astro. Running provider revision5dde1e5, PID1063107,
   runner SHA2b346a88a772b11270734361db0d2d50b66c1868e3e0c75f23e487ee40ccd486.
@@ -829,3 +829,28 @@ mark pending tabs each new turn. Never duplicate a launch/build after timeout.
   DOM at05:36:13.152UTC verified55/40/40, Go net/http allpassed, and the Codespaces
   browser pending notice. Compatibility checks3/3passed. No live watcher, build
   or test remains. Current source6679/full171. Next native fixture unstarted.
+
+
+## Echo and Fiber framework preflight
+
+- Extended the existing Go runtime inspection with explicit Echo and Fiber fixture
+  profiles. Verify declared toolchain/module and framework dependency/version;
+  reject absent, substituted or replaced dependencies and unknown fixture names.
+  The actual product/provider implementation is unchanged. Native inspection
+  selection is restricted to examples/stacks/go, echo and fiber.
+- Focused7/7 and full173/173 passed locally and in isolated Linux QA. Candidate
+  /output/go-framework-candidate-3947f18 in pods-fresh-matrix-01; logs
+  /tmp/pods-go-framework-full-{local,qa}.txt. Tests cover standalone serialization
+  for allthreeprofiles and preserve the earlier Go boundary/cleanup checks.
+- Real stored Echo5.4.0 and Fiber3.5.0 artifacts both passed empty chunked POST
+  and filecounter0→1→2 over complete application stops. CompiledGo1.26.8,
+  CGOdisabled, correctframeworkdependencies and durableprivatevolume verified.
+  All scoped containers, volumes and selected data directories were removed;
+  shared runtime/cache retained. Evidence stack-{echo,fiber}-chunked-probe.json,
+  stack-go-framework-chunked-probe.mjs and stack-go-framework-runtime-tests.json.
+- Source6703lines=3491product/tooling+2115tests+933examples+164browsertools.
+  Native coverage remains55/40/40. Native Echo and Fiber acceptance is pending.
+- Ordinary quota watcher84364 is live, next expected slot05:46:05.919UTC.
+  Echo developer form is filled but unsubmitted. Resume the same watcher;
+  no quota bypass or QA artifact import. No QA test/preflight process remains.
+  Existing pending user inputs remain unchanged. Goal active and progressing.

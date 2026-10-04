@@ -1,0 +1,21 @@
+{
+  "recordedAt": "2026-10-04T05:41:39.136835+00:00",
+  "baseRevision": "3947f18",
+  "scope": "Restricted Go/Echo/Fiber fixture inspection: actual compiled module and framework dependency, counter file, private product port and durable storage. No application runtime or provider behavior changed.",
+  "fullSuite": [
+    {
+      "environment": "local",
+      "tests": 173,
+      "passed": 173,
+      "failed": 0,
+      "outputSha256": "4fbe1a4915b2cc5cf4421343c29fcd44d3d6872d3d2734e3f7293d774861830a"
+    },
+    {
+      "environment": "isolated-aswin-linux",
+      "tests": 173,
+      "passed": 173,
+      "failed": 0,
+      "outputSha256": "25efcdc44bc82b832cec0fe47f78c987a1b7d233c50e5616f3f1857aee2702f9"
+    }
+  ]
+}

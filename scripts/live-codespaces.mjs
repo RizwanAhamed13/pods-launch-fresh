@@ -58,7 +58,7 @@ if(mongodbRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-mong
 if(redisRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-redis')throw new Error('Redis runtime inspection is restricted to its explicit fixture');
 if(valkeyRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-valkey')throw new Error('Valkey runtime inspection is restricted to its explicit fixture');
 if(sqliteRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/flask-sqlite')throw new Error('SQLite runtime inspection is restricted to its explicit fixture');
-if(goRuntimeCheck&&selectedApp.source?.folder!=='examples/stacks/go')throw new Error('Go runtime inspection is restricted to its explicit fixture');
+if(goRuntimeCheck&&!['go','echo','fiber'].some(fixture=>selectedApp.source?.folder==='examples/stacks/'+fixture))throw new Error('Go runtime inspection is restricted to its explicit fixtures');
 if(staticCheck&&selectedApp.source?.folder!=='examples/stacks/'+staticFixture)throw new Error('Static inspection is restricted to its explicit fixture');
 if(ssrCheck&&selectedApp.source?.folder!=='examples/stacks/'+ssrFixture)throw new Error('SSR inspection is restricted to its explicit fixture');
 const evidencePath=process.env.PODS_EVIDENCE_FILE||`evidence/${provider}.json`;
@@ -142,7 +142,7 @@ try {
   if(redisRuntimeCheck){result.redisRuntimeCheck=await probeEnvironment(launch.environment,redisRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
   if(valkeyRuntimeCheck){result.valkeyRuntimeCheck=await probeEnvironment(launch.environment,valkeyRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
   if(sqliteRuntimeCheck){result.sqliteRuntimeCheck=await probeEnvironment(launch.environment,sqliteRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
-  if(goRuntimeCheck){result.goRuntimeCheck=await probeEnvironment(launch.environment,goRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead}));await persist();}
+  if(goRuntimeCheck){result.goRuntimeCheck=await probeEnvironment(launch.environment,goRuntimeProbeCommand(selectedApp.dataKey||selectedApp.id,{port:launch.port||8080,expectedCount:result.counterCheck.afterRead,fixture:selectedApp.source.folder.split('/').at(-1)}));await persist();}
   if(workerCheck){result.workerCheck=await probeWorker(launch.environment,base);await persist();if(!result.workerCheck.passed)throw new Error('Worker completion/relaunch persistence failed');}
   if(websocketCheck){result.websocketCheck=await probeWebSocket(launch.environment,base);await persist();if(!result.websocketCheck.passed)throw new Error('WebSocket exchange/relaunch persistence failed');}
   if(ssrCheck){result.ssrCheck=await probeEnvironment(launch.environment,ssrProbeCommand(ssrFixture,base));await persist();if(!result.ssrCheck.passed)throw new Error('SSR product/client assets failed');}

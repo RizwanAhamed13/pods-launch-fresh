@@ -1,0 +1,97 @@
+{
+  "recordedAt": "2026-10-04T05:39:53.749Z",
+  "fixture": "echo",
+  "scope": "Isolated real Go artifact, simulated proxy empty chunked POST and full application restart. Not a native provider or new browser acceptance test.",
+  "dataKey": "echo-chunked-e3f2b1e133dce1f9",
+  "project": "pods-e99a7073f0cad284aa52ce76",
+  "artifactSha256": "f9c2e4f0c2a2bc61d08204a35384dac0619122eaaa6f749011a56b6e8389a842",
+  "images": [
+    {
+      "id": "sha256:1050cdaa51599fc888906c8bbce5e363f210f3c0995075f2d02212d2ee275401",
+      "sha256": "8f13c65d9b52c810e320635c2225e4f472ea363c37bc5f1621022c560f0c8ab5",
+      "bytes": 5835493
+    }
+  ],
+  "sourceSha256": "40e3364a488e445835a0f8099780f14e5fe81ce0d99ba9305ccc45dd400f8061",
+  "records": [
+    {
+      "compiledRuntime": {
+        "passed": true,
+        "project": "pods-e99a7073f0cad284aa52ce76",
+        "services": [
+          "web"
+        ],
+        "runtime": "Go",
+        "version": "go1.26.8",
+        "module": "pods.example/echo",
+        "framework": "Echo",
+        "frameworkVersion": "v5.4.0",
+        "frameworkDependency": "github.com/labstack/echo/v5",
+        "binaryFormat": "ELF-linux-x64",
+        "binarySha256": "36ae597112737f851fa9dbff182d6d31498f4c175951c6e12e343c80c8702593",
+        "binaryBytes": 9225480,
+        "cgoEnabled": false,
+        "savedCount": 1,
+        "volume": "pods-e99a7073f0cad284aa52ce76_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          18095
+        ],
+        "databaseHostPorts": [],
+        "scope": "Isolated aswin guest: compiled Go executable/module, saved file counter, product port and persistent bind volume; not database or native provider evidence."
+      },
+      "scenario": "first-launch",
+      "before": 0,
+      "post": {
+        "status": 200,
+        "count": 1
+      },
+      "afterRead": 1,
+      "transferEncoding": "chunked",
+      "contentType": null
+    },
+    {
+      "compiledRuntime": {
+        "passed": true,
+        "project": "pods-e99a7073f0cad284aa52ce76",
+        "services": [
+          "web"
+        ],
+        "runtime": "Go",
+        "version": "go1.26.8",
+        "module": "pods.example/echo",
+        "framework": "Echo",
+        "frameworkVersion": "v5.4.0",
+        "frameworkDependency": "github.com/labstack/echo/v5",
+        "binaryFormat": "ELF-linux-x64",
+        "binarySha256": "36ae597112737f851fa9dbff182d6d31498f4c175951c6e12e343c80c8702593",
+        "binaryBytes": 9225480,
+        "cgoEnabled": false,
+        "savedCount": 2,
+        "volume": "pods-e99a7073f0cad284aa52ce76_app-data-disk-v1",
+        "durableWorkspaceVolume": true,
+        "productHostPorts": [
+          18095
+        ],
+        "databaseHostPorts": [],
+        "scope": "Isolated aswin guest: compiled Go executable/module, saved file counter, product port and persistent bind volume; not database or native provider evidence."
+      },
+      "scenario": "full-relaunch",
+      "before": 1,
+      "post": {
+        "status": 200,
+        "count": 2
+      },
+      "afterRead": 2,
+      "transferEncoding": "chunked",
+      "contentType": null
+    }
+  ],
+  "passed": true,
+  "cleanup": {
+    "containersStopped": true,
+    "probeVolumeRemoved": true,
+    "probeStorageDirectoriesRemoved": true,
+    "sharedRuntimeAndCacheRetained": true
+  }
+}
